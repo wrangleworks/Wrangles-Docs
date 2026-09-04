@@ -1,0 +1,95 @@
+{
+  "format": "wrangles-registry-entry",
+  "registry_version": "0.1.0-pilot",
+  "schema_version": "0.1",
+  "type": "wrangle",
+  "id": "95a84ab6-a66e-450f-8a4a-7a87e3a77932",
+  "wrangle_name": "sample",
+  "namespace": "select",
+  "wrangle_key": "select.sample",
+  "aliases": [],
+  "slug": "select/sample",
+  "title": "Sample",
+  "description": "Return a random sample of the rows.",
+  "status": "active",
+  "visibility": "public",
+  "tags": [
+    "select",
+    "sample"
+  ],
+  "runtime": {
+    "package": "wrangles",
+    "symbol": "wrangles.recipe_wrangles.select.sample",
+    "contract_status": "verified"
+  },
+  "access": {
+    "ai_powered": false,
+    "requires_account": false,
+    "requires_subscription": false,
+    "requires_external_api_key": false
+  },
+  "capabilities": {
+    "if": true,
+    "where": true,
+    "where_params": true
+  },
+  "parameters": [
+    {
+      "name": "rows",
+      "description": "If a whole number, will select that number of rows. If a decimal between 0 and 1 will select that fraction of the rows e.g. 0.1 => 10% of rows will be returned.",
+      "required": true,
+      "role": "option",
+      "schema": {
+        "type": [
+          "integer",
+          "number"
+        ],
+        "exclusiveMinimum": 0
+      }
+    },
+    {
+      "name": "if",
+      "description": "Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`.",
+      "required": false,
+      "schema": {
+        "type": "string"
+      },
+      "role": "common-control"
+    },
+    {
+      "name": "where",
+      "description": "Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`.",
+      "required": false,
+      "schema": {
+        "type": "string"
+      },
+      "role": "common-control"
+    },
+    {
+      "name": "where_params",
+      "description": "Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`.",
+      "required": false,
+      "schema": {
+        "type": [
+          "array",
+          "object"
+        ]
+      },
+      "role": "common-control"
+    }
+  ],
+  "examples": [],
+  "guidance": "Return a random sample of the rows\n\n## Migrated examples\n#### Selecting 2 Random Rows\n\n##### Recipe\n\n```yaml\nwrangles:\n  - select.sample:\n      rows: 2\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n| Product | Manufacturer |\n| --- | --- |\n| Ball Bearing | SKF |\n| Bearing Race | Timken |\n| Needle Bearing | Acme Bearings |\n| Roller Bearing | General Bearing Co. |\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| Product | Manufacturer |\n| --- | --- |\n| Ball Bearing | SKF |\n| Needle Bearing | Acme Bearings |\n\n</div>\n\n</div>\n\n#### Selecting a Random 25% of All Rows\n\n##### Recipe\n\n```yaml\nwrangles:\n  - select.sample:\n      rows: .25\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n| Product | Manufacturer |\n| --- | --- |\n| Ball Bearing | SKF |\n| Bearing Race | Timken |\n| Needle Bearing | Acme Bearings |\n| Roller Bearing | General Bearing Co. |\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| Product | Manufacturer |\n| --- | --- |\n| Needle Bearing | Acme Bearings |\n\n</div>\n\n</div>",
+  "sources": [
+    {
+      "id": "runtime",
+      "resource": "https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/select.py",
+      "title": "WranglesPY select.sample implementation"
+    },
+    {
+      "id": "quasi-registry",
+      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/select/_sources/sample.md",
+      "title": "Existing select.sample Markdown"
+    }
+  ]
+}

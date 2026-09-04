@@ -1,0 +1,94 @@
+{
+  "format": "wrangles-registry-entry",
+  "registry_version": "0.1.0-pilot",
+  "schema_version": "0.1",
+  "type": "wrangle",
+  "id": "c376f3ff-2283-4c4c-8d7f-70db6f53ed19",
+  "wrangle_name": "uuid",
+  "namespace": "create",
+  "wrangle_key": "create.uuid",
+  "aliases": [],
+  "slug": "create/uuid",
+  "title": "UUID",
+  "description": "Create column(s) with a UUID.",
+  "status": "active",
+  "visibility": "public",
+  "tags": [
+    "create",
+    "uuid"
+  ],
+  "runtime": {
+    "package": "wrangles",
+    "symbol": "wrangles.recipe_wrangles.create.uuid",
+    "contract_status": "verified"
+  },
+  "access": {
+    "ai_powered": false,
+    "requires_account": false,
+    "requires_subscription": false,
+    "requires_external_api_key": false
+  },
+  "capabilities": {
+    "if": true,
+    "where": true,
+    "where_params": true
+  },
+  "parameters": [
+    {
+      "name": "output",
+      "description": "Name or list of names of new columns.",
+      "required": true,
+      "role": "column-output",
+      "schema": {
+        "type": [
+          "string",
+          "array"
+        ]
+      }
+    },
+    {
+      "name": "if",
+      "description": "Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`.",
+      "required": false,
+      "schema": {
+        "type": "string"
+      },
+      "role": "common-control"
+    },
+    {
+      "name": "where",
+      "description": "Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`.",
+      "required": false,
+      "schema": {
+        "type": "string"
+      },
+      "role": "common-control"
+    },
+    {
+      "name": "where_params",
+      "description": "Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`.",
+      "required": false,
+      "schema": {
+        "type": [
+          "array",
+          "object"
+        ]
+      },
+      "role": "common-control"
+    }
+  ],
+  "examples": [],
+  "guidance": "Create a column with a UUID (Universally Unique Identifier).\n\n## Migrated examples\n#### Creating a New GUID Column\n\n##### Recipe\n\n```yaml\nwrangles:\n  - create.guid:\n      output: GUID Column\n\n  # OR\n\n  - create.uuid:\n      output: GUID Column\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n_No sample available._\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| GUID Column |\n| --- |\n| 9a13b4dd-1993-4bd2-8974-3f9a0f006d86 |\n| 1528d918-ecd7-457c-b44d-3d30705696d3 |\n\n</div>\n\n</div>",
+  "sources": [
+    {
+      "id": "runtime",
+      "resource": "https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/create.py",
+      "title": "WranglesPY create.uuid implementation"
+    },
+    {
+      "id": "quasi-registry",
+      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/create/_sources/uuid.md",
+      "title": "Existing create.uuid Markdown"
+    }
+  ]
+}

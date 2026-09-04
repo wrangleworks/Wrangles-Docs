@@ -22,7 +22,7 @@ from typing import Any
 
 
 ROOT = Path(__file__).resolve().parents[1]
-MAPPINGS_PATH = ROOT / "my-docs-site/src/components/WrangleFlowPlayground/wrangleMappings.json"
+MAPPINGS_PATH = ROOT / "wrangles-docs/src/components/WrangleFlowPlayground/wrangleMappings.json"
 DEFAULT_TABLE = "public.wranglesio_content"
 
 
@@ -317,7 +317,7 @@ def collect_examples() -> dict[str, list[dict[str, Any]]]:
     seen = set()
 
     for doc_path in docs_paths:
-        full_path = ROOT / "my-docs-site" / doc_path
+        full_path = ROOT / "wrangles-docs" / doc_path
         if not full_path.exists():
             continue
 

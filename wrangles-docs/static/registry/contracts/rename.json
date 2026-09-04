@@ -1,0 +1,107 @@
+{
+  "format": "wrangles-registry-entry",
+  "registry_version": "0.1.0-pilot",
+  "schema_version": "0.1",
+  "type": "wrangle",
+  "id": "ab06898f-faf7-42e7-8275-5e3034a4d727",
+  "wrangle_name": "rename",
+  "namespace": null,
+  "wrangle_key": "rename",
+  "aliases": [],
+  "slug": "rename",
+  "title": "Rename",
+  "description": "Rename a column or list of columns.",
+  "status": "active",
+  "visibility": "public",
+  "tags": [
+    "transform",
+    "rename"
+  ],
+  "runtime": {
+    "package": "wrangles",
+    "symbol": "wrangles.recipe_wrangles.main.rename",
+    "contract_status": "verified"
+  },
+  "access": {
+    "ai_powered": false,
+    "requires_account": false,
+    "requires_subscription": false,
+    "requires_external_api_key": false
+  },
+  "capabilities": {
+    "if": true,
+    "where": false,
+    "where_params": false
+  },
+  "parameters": [
+    {
+      "name": "input",
+      "description": "Name or list of input columns.",
+      "required": false,
+      "role": "column-selector",
+      "runtime_default": null,
+      "schema": {
+        "type": [
+          "string",
+          "integer",
+          "array",
+          "null"
+        ]
+      }
+    },
+    {
+      "name": "output",
+      "description": "Name or list of output columns.",
+      "required": false,
+      "role": "column-output",
+      "runtime_default": null,
+      "schema": {
+        "type": [
+          "string",
+          "array",
+          "null"
+        ]
+      }
+    },
+    {
+      "name": "wrangles",
+      "description": "Use wrangles to transform the column names. The input is named 'columns' and the final result must also include the column named 'columns'. This can only be used instead of the standard rename.",
+      "required": false,
+      "role": "nested-wrangles",
+      "runtime_default": null,
+      "schema": {
+        "type": [
+          "array",
+          "null"
+        ],
+        "minItems": 1,
+        "items": {
+          "$ref": "#/$defs/wrangles/items"
+        }
+      }
+    },
+    {
+      "name": "if",
+      "description": "Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`.",
+      "required": false,
+      "schema": {
+        "type": "string"
+      },
+      "role": "common-control"
+    }
+  ],
+  "examples": [],
+  "guidance": "Rename a column or list of columns.\n\n## Migrated examples\n:::note\nRename is not compatible with `where` filtering.\n:::\n\n#### Renaming Columns With Input and Output\n\n##### Recipe\n\n```yaml\nwrangles:\n  - rename:\n      input:\n        - Manufacturer Name\n        - Manufacturer Part Number\n      output:\n        - Manufacturer\n        - MPN\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n| Manufacturer Name | Manufacturer Part Number |\n| --- | --- |\n| SKF | 302-2 |\n| Timken | PF48 |\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| Manufacturer | MPN |\n| --- | --- |\n| SKF | 302-2 |\n| Timken | PF48 |\n\n</div>\n\n</div>\n\n#### Renaming Columns Without Using Input and Output\n\n##### Recipe\n\n```yaml\nwrangles:\n  - rename:\n      Manufacturer Name: Manufacturer\n      Manufacturer Part Number: MPN\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n| Manufacturer Name | Manufacturer Part Number |\n| --- | --- |\n| SKF | 302-2 |\n| Timken | PF48 |\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| Manufacturer | MPN |\n| --- | --- |\n| SKF | 302-2 |\n| Timken | PF48 |\n\n</div>\n\n</div>\n\n#### Using Wrangles in Rename\n\n##### Recipe\n\n```yaml\nwrangles:\n  - rename:\n      wrangles:\n        - convert.case:\n            input: columns\n            case: upper\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n| Manufacturer Name | Manufacturer Part Number |\n| --- | --- |\n| SKF | 302-2 |\n| Timken | PF48 |\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| MANUFACTURER NAME | MANUFACTURER PART NUMBER |\n| --- | --- |\n| SKF | 302-2 |\n| Timken | PF48 |\n\n</div>\n\n</div>",
+  "sources": [
+    {
+      "id": "runtime",
+      "resource": "https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/main.py",
+      "title": "WranglesPY rename implementation"
+    },
+    {
+      "id": "quasi-registry",
+      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/transform/_sources/rename.md",
+      "title": "Existing rename Markdown"
+    }
+  ]
+}

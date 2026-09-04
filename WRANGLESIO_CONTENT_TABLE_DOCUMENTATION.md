@@ -13,10 +13,10 @@ It is separate from the older mixed `models` table. The old table contains DIY w
 Current seed source:
 
 ```text
-my-docs-site/src/components/WrangleFlowPlayground/wrangleCatalog.generated.js
-my-docs-site/src/components/WrangleFlowPlayground/wrangleMappings.json
-my-docs-site/docs/python/recipes/wrangles/*.md
-my-docs-site/docs/excel/*.md
+wrangles-docs/src/components/WrangleFlowPlayground/wrangleCatalog.generated.js
+wrangles-docs/src/components/WrangleFlowPlayground/wrangleMappings.json
+wrangles-docs/docs/python/recipes/wrangles/*.md
+wrangles-docs/docs/excel/*.md
 ```
 
 ## Naming Model
@@ -406,8 +406,8 @@ Current shape:
 {
   "docs": ["docs/python/recipes/wrangles/convert.md"],
   "color": "sun",
-  "source_catalog": "my-docs-site/src/components/WrangleFlowPlayground/wrangleCatalog.generated.js",
-  "source_mapping": "my-docs-site/src/components/WrangleFlowPlayground/wrangleMappings.json"
+  "source_catalog": "wrangles-docs/src/components/WrangleFlowPlayground/wrangleCatalog.generated.js",
+  "source_mapping": "wrangles-docs/src/components/WrangleFlowPlayground/wrangleMappings.json"
 }
 ```
 

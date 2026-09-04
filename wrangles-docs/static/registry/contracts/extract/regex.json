@@ -1,0 +1,167 @@
+{
+  "format": "wrangles-registry-entry",
+  "registry_version": "0.1.0-pilot",
+  "schema_version": "0.1",
+  "type": "wrangle",
+  "id": "9aa0253a-4b70-4737-832c-964e15967289",
+  "wrangle_name": "regex",
+  "namespace": "extract",
+  "wrangle_key": "extract.regex",
+  "aliases": [],
+  "slug": "extract/regex",
+  "title": "Regex",
+  "description": "Extract matches or specific capture groups using regex.",
+  "status": "active",
+  "visibility": "public",
+  "tags": [
+    "extract",
+    "regex"
+  ],
+  "runtime": {
+    "package": "wrangles",
+    "symbol": "wrangles.recipe_wrangles.extract.regex",
+    "contract_status": "verified"
+  },
+  "access": {
+    "ai_powered": false,
+    "requires_account": false,
+    "requires_subscription": false,
+    "requires_external_api_key": false
+  },
+  "capabilities": {
+    "if": true,
+    "where": true,
+    "where_params": true
+  },
+  "parameters": [
+    {
+      "name": "input",
+      "description": "Name of the input column(s).",
+      "required": true,
+      "role": "column-selector",
+      "schema": {
+        "type": [
+          "string",
+          "integer",
+          "array"
+        ]
+      }
+    },
+    {
+      "name": "find",
+      "description": "Pattern to find using regex.",
+      "required": true,
+      "role": "option",
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "output",
+      "description": "Name of the output column(s).",
+      "required": true,
+      "role": "column-output",
+      "schema": {
+        "type": [
+          "string",
+          "array"
+        ]
+      }
+    },
+    {
+      "name": "output_pattern",
+      "description": "Specifies the format to output matches and specific capture groups using backreferences (e.g., `\\1`, `\\2`). Default is to return entire matches. **Example**: For a regex pattern `r'(\\d+)\\s(\\w+)'` and `output_pattern = '\\2 \\1'`, with input `'120 volt'`, the output would be `'volt 120'`.",
+      "required": false,
+      "role": "column-output",
+      "runtime_default": null,
+      "schema": {
+        "type": [
+          "string",
+          "null"
+        ]
+      }
+    },
+    {
+      "name": "first_element",
+      "description": "Get the first element from results.",
+      "required": false,
+      "role": "option",
+      "runtime_default": false,
+      "schema": {
+        "type": "boolean"
+      }
+    },
+    {
+      "name": "output_format",
+      "description": "Format of the extract output.",
+      "required": false,
+      "role": "column-output",
+      "runtime_default": null,
+      "schema": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "enum": [
+          "list",
+          "columns",
+          "concatenate"
+        ]
+      }
+    },
+    {
+      "name": "char",
+      "description": "Character to use when output_format is concatenate.",
+      "required": false,
+      "role": "option",
+      "runtime_default": ", ",
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "if",
+      "description": "Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`.",
+      "required": false,
+      "schema": {
+        "type": "string"
+      },
+      "role": "common-control"
+    },
+    {
+      "name": "where",
+      "description": "Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`.",
+      "required": false,
+      "schema": {
+        "type": "string"
+      },
+      "role": "common-control"
+    },
+    {
+      "name": "where_params",
+      "description": "Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`.",
+      "required": false,
+      "schema": {
+        "type": [
+          "array",
+          "object"
+        ]
+      },
+      "role": "common-control"
+    }
+  ],
+  "examples": [],
+  "guidance": "Extract single values, matches, or specific capture groups using regex.\n\n## Migrated examples\n#### Extracting Number of Months From Range\n\n##### Recipe\n\n```yaml\nwrangles:\n  - extract.regex:\n      input: Product\n      output: GPM\n      find: \\d\\.?\\d? ?gpm\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n_No sample available._\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| GPM | Product |\n| --- | --- |\n| 3.4 gpm | 3.4 gpm water pump |\n| 2gpm | 2gpm water pump |\n\n</div>\n\n</div>\n\n#### Implementing output_pattern\n\n##### Recipe\n\n```yaml\nwrangles:\n  - extract.regex:\n      input: Product\n      output: GPM\n      find: (\\d\\.?\\d?) ?gpm\n      output_pattern: \\1 Gallons Per Minute\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n_No sample available._\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| GPM | Product |\n| --- | --- |\n| 3.4 Gallons Per Minute | 3.4 gpm water pump for 5.5 gallon tank |\n| 2 Gallons Per Minute | 2gpm water pump for 2 gal tank |\n\n</div>\n\n</div>",
+  "sources": [
+    {
+      "id": "runtime",
+      "resource": "https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/extract.py",
+      "title": "WranglesPY extract.regex implementation"
+    },
+    {
+      "id": "quasi-registry",
+      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/extract/_sources/regex.md",
+      "title": "Existing extract.regex Markdown"
+    }
+  ]
+}

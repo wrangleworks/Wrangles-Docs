@@ -1,0 +1,91 @@
+{
+  "format": "wrangles-registry-entry",
+  "registry_version": "0.1.0-pilot",
+  "schema_version": "0.1",
+  "type": "wrangle",
+  "id": "60853759-c160-49a4-87eb-036516a9d823",
+  "wrangle_name": "tail",
+  "namespace": "select",
+  "wrangle_key": "select.tail",
+  "aliases": [],
+  "slug": "select/tail",
+  "title": "Tail",
+  "description": "Return the last n rows.",
+  "status": "active",
+  "visibility": "public",
+  "tags": [
+    "select",
+    "tail"
+  ],
+  "runtime": {
+    "package": "wrangles",
+    "symbol": "wrangles.recipe_wrangles.select.tail",
+    "contract_status": "verified"
+  },
+  "access": {
+    "ai_powered": false,
+    "requires_account": false,
+    "requires_subscription": false,
+    "requires_external_api_key": false
+  },
+  "capabilities": {
+    "if": true,
+    "where": true,
+    "where_params": true
+  },
+  "parameters": [
+    {
+      "name": "n",
+      "description": "Number of rows to return.",
+      "required": true,
+      "role": "option",
+      "schema": {
+        "type": "integer"
+      }
+    },
+    {
+      "name": "if",
+      "description": "Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`.",
+      "required": false,
+      "schema": {
+        "type": "string"
+      },
+      "role": "common-control"
+    },
+    {
+      "name": "where",
+      "description": "Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`.",
+      "required": false,
+      "schema": {
+        "type": "string"
+      },
+      "role": "common-control"
+    },
+    {
+      "name": "where_params",
+      "description": "Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`.",
+      "required": false,
+      "schema": {
+        "type": [
+          "array",
+          "object"
+        ]
+      },
+      "role": "common-control"
+    }
+  ],
+  "examples": [],
+  "guidance": "Return the last n rows\n\n## Migrated examples\n#### Selecting The Last n Rows\n\n##### Recipe\n\n```yaml\nwrangles:\n  - select.tail:\n      n: 2\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n| Product | Manufacturer |\n| --- | --- |\n| Ball Bearing | SKF |\n| Bearing Race | Timken |\n| Needle Bearing | Acme Bearings |\n| Roller Bearing | General Bearing Co. |\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| Product | Manufacturer |\n| --- | --- |\n| Needle Bearing | Acme Bearings |\n| Roller Bearing | General Bearing Co. |\n\n</div>\n\n</div>",
+  "sources": [
+    {
+      "id": "runtime",
+      "resource": "https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/select.py",
+      "title": "WranglesPY select.tail implementation"
+    },
+    {
+      "id": "quasi-registry",
+      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/select/_sources/tail.md",
+      "title": "Existing select.tail Markdown"
+    }
+  ]
+}

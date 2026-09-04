@@ -1,0 +1,73 @@
+{
+  "format": "wrangles-registry-entry",
+  "registry_version": "0.1.0-pilot",
+  "schema_version": "0.1",
+  "type": "wrangle",
+  "id": "363bffbf-397e-4975-8382-e9efa5e9eed6",
+  "wrangle_name": "drop",
+  "namespace": null,
+  "wrangle_key": "drop",
+  "aliases": [],
+  "slug": "drop",
+  "title": "Drop",
+  "description": "Drop (Delete) selected column(s).",
+  "status": "active",
+  "visibility": "public",
+  "tags": [
+    "select",
+    "drop"
+  ],
+  "runtime": {
+    "package": "wrangles",
+    "symbol": "wrangles.recipe_wrangles.pandas.drop",
+    "contract_status": "verified"
+  },
+  "access": {
+    "ai_powered": false,
+    "requires_account": false,
+    "requires_subscription": false,
+    "requires_external_api_key": false
+  },
+  "capabilities": {
+    "if": true,
+    "where": false,
+    "where_params": false
+  },
+  "parameters": [
+    {
+      "name": "columns",
+      "description": "Name of the column(s) to drop.",
+      "required": true,
+      "role": "option",
+      "schema": {
+        "type": [
+          "string",
+          "array"
+        ]
+      }
+    },
+    {
+      "name": "if",
+      "description": "Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`.",
+      "required": false,
+      "schema": {
+        "type": "string"
+      },
+      "role": "common-control"
+    }
+  ],
+  "examples": [],
+  "guidance": "Drop (Delete) selected column(s)\n\n## Migrated examples\n#### Dropping a Column\n\n##### Recipe\n\n```yaml\nwrangles:\n  - drop:\n      columns:\n        - Material\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n| Material | Product Data |\n| --- | --- |\n| Ceramic | SKF ball brg |\n| Rubber | brg seal |\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| Product Data |\n| --- |\n| SKF ball bearing |\n| bearing seal |\n\n</div>\n\n</div>",
+  "sources": [
+    {
+      "id": "runtime",
+      "resource": "https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/pandas.py",
+      "title": "WranglesPY drop implementation"
+    },
+    {
+      "id": "quasi-registry",
+      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/select/_sources/drop.md",
+      "title": "Existing drop Markdown"
+    }
+  ]
+}

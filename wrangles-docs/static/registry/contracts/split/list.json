@@ -1,0 +1,106 @@
+{
+  "format": "wrangles-registry-entry",
+  "registry_version": "0.1.0-pilot",
+  "schema_version": "0.1",
+  "type": "wrangle",
+  "id": "3260b9f7-aae2-499f-8004-d211c2cf643e",
+  "wrangle_name": "list",
+  "namespace": "split",
+  "wrangle_key": "split.list",
+  "aliases": [],
+  "slug": "split/list",
+  "title": "List",
+  "description": "Split a list in a single column to multiple columns.",
+  "status": "active",
+  "visibility": "public",
+  "tags": [
+    "split",
+    "list"
+  ],
+  "runtime": {
+    "package": "wrangles",
+    "symbol": "wrangles.recipe_wrangles.split.list",
+    "contract_status": "verified"
+  },
+  "access": {
+    "ai_powered": false,
+    "requires_account": false,
+    "requires_subscription": false,
+    "requires_external_api_key": false
+  },
+  "capabilities": {
+    "if": true,
+    "where": true,
+    "where_params": true
+  },
+  "parameters": [
+    {
+      "name": "input",
+      "description": "Name of the column to be split.",
+      "required": true,
+      "role": "column-selector",
+      "schema": {
+        "type": [
+          "string",
+          "integer"
+        ]
+      }
+    },
+    {
+      "name": "output",
+      "description": "Name of column(s) for the results. If providing a single column, use a wildcard (*) to indicate a incrementing integer.",
+      "required": true,
+      "role": "column-output",
+      "schema": {
+        "type": [
+          "string",
+          "array"
+        ]
+      }
+    },
+    {
+      "name": "if",
+      "description": "Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`.",
+      "required": false,
+      "schema": {
+        "type": "string"
+      },
+      "role": "common-control"
+    },
+    {
+      "name": "where",
+      "description": "Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`.",
+      "required": false,
+      "schema": {
+        "type": "string"
+      },
+      "role": "common-control"
+    },
+    {
+      "name": "where_params",
+      "description": "Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`.",
+      "required": false,
+      "schema": {
+        "type": [
+          "array",
+          "object"
+        ]
+      },
+      "role": "common-control"
+    }
+  ],
+  "examples": [],
+  "guidance": "Split a list into multiple columns. If only one output is given, `split.list` returns the same list it was given, so output should be a list of columns or a column name with a wildcard (`*`).\n\n## Migrated examples\n#### Using a Wildcard\n\n##### Recipe\n\n```yaml\nwrangles:\n  - split.list:\n      input: Column\n      output: Column*\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n| Column |\n| --- |\n| ['A', 'B', 'C'] |\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| Column1 | Column2 | Column3 |\n| --- | --- | --- |\n| A | B | C |\n\n</div>\n\n</div>\n\n#### Named Columns\n\n##### Recipe\n\n```yaml\nwrangles:\n  - split.list:\n      input: Column\n      output:\n        - Heading A\n        - Heading B\n        - Heading C\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n| Column |\n| --- |\n| ['A', 'B', 'C'] |\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| Heading A | Heading B | Heading C |\n| --- | --- | --- |\n| A | B | C |\n\n</div>\n\n</div>",
+  "sources": [
+    {
+      "id": "runtime",
+      "resource": "https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/split.py",
+      "title": "WranglesPY split.list implementation"
+    },
+    {
+      "id": "quasi-registry",
+      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/split/_sources/list.md",
+      "title": "Existing split.list Markdown"
+    }
+  ]
+}

@@ -1,0 +1,119 @@
+{
+  "format": "wrangles-registry-entry",
+  "registry_version": "0.1.0-pilot",
+  "schema_version": "0.1",
+  "type": "wrangle",
+  "id": null,
+  "wrangle_name": "try",
+  "namespace": null,
+  "wrangle_key": "try",
+  "aliases": [],
+  "slug": "try",
+  "title": "Try",
+  "description": "Try a list of wrangles and catch any errors that occur.",
+  "status": "active",
+  "visibility": "public",
+  "tags": [
+    "utility",
+    "try"
+  ],
+  "runtime": {
+    "package": "wrangles",
+    "symbol": "wrangles.recipe_wrangles.main.Try",
+    "contract_status": "verified"
+  },
+  "access": {
+    "ai_powered": false,
+    "requires_account": false,
+    "requires_subscription": false,
+    "requires_external_api_key": false
+  },
+  "capabilities": {
+    "if": true,
+    "where": true,
+    "where_params": true
+  },
+  "parameters": [
+    {
+      "name": "wrangles",
+      "description": "List of wrangles to apply.",
+      "required": true,
+      "role": "nested-wrangles",
+      "schema": {
+        "type": "array",
+        "minItems": 1,
+        "items": {
+          "$ref": "#/$defs/wrangles/items"
+        }
+      }
+    },
+    {
+      "name": "retries",
+      "description": "Number of times to retry the wrangles if an error occurs. Default 0.",
+      "required": false,
+      "role": "option",
+      "runtime_default": 0,
+      "schema": {
+        "type": "integer",
+        "minimum": 0
+      }
+    },
+    {
+      "name": "except",
+      "description": "An action to take if the wrangles encounter an error. This can contain a list of wrangles or a dictionary of column names and values. If except is not provided, the error will be logged and the recipe will continue.",
+      "required": false,
+      "role": "option",
+      "schema": {
+        "type": "object",
+        "minItems": 1,
+        "items": {
+          "$ref": "#/$defs/wrangles/items"
+        }
+      }
+    },
+    {
+      "name": "if",
+      "description": "Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`.",
+      "required": false,
+      "schema": {
+        "type": "string"
+      },
+      "role": "common-control"
+    },
+    {
+      "name": "where",
+      "description": "Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`.",
+      "required": false,
+      "schema": {
+        "type": "string"
+      },
+      "role": "common-control"
+    },
+    {
+      "name": "where_params",
+      "description": "Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`.",
+      "required": false,
+      "schema": {
+        "type": [
+          "array",
+          "object"
+        ]
+      },
+      "role": "common-control"
+    }
+  ],
+  "examples": [],
+  "guidance": "Run a list of wrangles and catch errors. When `except` is provided, its wrangles or fallback column values run after an error; otherwise, the error is logged and the recipe continues.\n\n## Migrated examples\n#### Use Fallback Wrangles After an Error\n\n##### Recipe\n\n```yaml\nwrangles:\n  - try:\n      wrangles:\n        - risky_wrangle:\n            input: column\n      except:\n        - backup_wrangle:\n            input: column\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n_The input dataframe is passed to the primary wrangles._\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n_The primary result is returned on success; the `except` result is returned after an error._\n\n</div>\n\n</div>",
+  "sources": [
+    {
+      "id": "runtime",
+      "resource": "https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/main.py",
+      "title": "WranglesPY try implementation"
+    },
+    {
+      "id": "quasi-registry",
+      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/utility/_sources/try.md",
+      "title": "Existing try Markdown"
+    }
+  ]
+}

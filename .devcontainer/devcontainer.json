@@ -16,8 +16,8 @@
   // 1. Nukes the root-owned temp cache
   // 2. Forces workspace ownership to the 'node' user
   // 3. Installs dependencies
-  "postCreateCommand": "sudo rm -rf /tmp/node-jiti && sudo chown -R node:node /workspaces/Wrangles.io-Docusaurus && cd my-docs-site && npm install",
+  "postCreateCommand": "sudo rm -rf /tmp/node-jiti && sudo chown -R node:node /workspaces/Wrangles.io-Docusaurus && cd wrangles-docs && npm install",
   
   // Starts the server automatically in a visible terminal
-  "postAttachCommand": "cd my-docs-site && npm start"
+  "postAttachCommand": "cd wrangles-docs && npm start"
 }

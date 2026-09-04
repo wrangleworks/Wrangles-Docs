@@ -1,0 +1,16 @@
+[
+  {
+    "attributes_json": "{\"material\":\"steel\",\"voltage\":18}",
+    "attributes": {
+      "material": "steel",
+      "voltage": 18
+    }
+  },
+  {
+    "attributes_json": "[\"corded\",\"variable speed\"]",
+    "attributes": [
+      "corded",
+      "variable speed"
+    ]
+  }
+]

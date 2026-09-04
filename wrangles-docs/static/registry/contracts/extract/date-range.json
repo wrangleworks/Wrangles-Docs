@@ -1,0 +1,138 @@
+{
+  "format": "wrangles-registry-entry",
+  "registry_version": "0.1.0-pilot",
+  "schema_version": "0.1",
+  "type": "wrangle",
+  "id": "9cebfa6f-a524-4aec-84a7-02d77b792843",
+  "wrangle_name": "date_range",
+  "namespace": "extract",
+  "wrangle_key": "extract.date_range",
+  "aliases": [],
+  "slug": "extract/date-range",
+  "title": "Date Range",
+  "description": "Extract date range frequency from two dates.",
+  "status": "active",
+  "visibility": "public",
+  "tags": [
+    "extract",
+    "date-range"
+  ],
+  "runtime": {
+    "package": "wrangles",
+    "symbol": "wrangles.recipe_wrangles.extract.date_range",
+    "contract_status": "verified"
+  },
+  "access": {
+    "ai_powered": false,
+    "requires_account": false,
+    "requires_subscription": false,
+    "requires_external_api_key": false
+  },
+  "capabilities": {
+    "if": true,
+    "where": true,
+    "where_params": true
+  },
+  "parameters": [
+    {
+      "name": "start_time",
+      "description": "Name of the start date column.",
+      "required": true,
+      "role": "option",
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "end_time",
+      "description": "Name of the end date column.",
+      "required": true,
+      "role": "option",
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "output",
+      "description": "Name of the output column.",
+      "required": true,
+      "role": "column-output",
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "range",
+      "description": "Type of frequency to count.",
+      "required": false,
+      "role": "option",
+      "runtime_default": "day",
+      "schema": {
+        "type": "string",
+        "enum": [
+          "business days",
+          "days",
+          "weeks",
+          "months",
+          "semi months",
+          "business month ends",
+          "month starts",
+          "semi month starts",
+          "business month starts",
+          "quarters",
+          "quarter starts",
+          "years",
+          "business hours",
+          "hours",
+          "minutes",
+          "seconds",
+          "milliseconds"
+        ]
+      }
+    },
+    {
+      "name": "if",
+      "description": "Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`.",
+      "required": false,
+      "schema": {
+        "type": "string"
+      },
+      "role": "common-control"
+    },
+    {
+      "name": "where",
+      "description": "Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`.",
+      "required": false,
+      "schema": {
+        "type": "string"
+      },
+      "role": "common-control"
+    },
+    {
+      "name": "where_params",
+      "description": "Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`.",
+      "required": false,
+      "schema": {
+        "type": [
+          "array",
+          "object"
+        ]
+      },
+      "role": "common-control"
+    }
+  ],
+  "examples": [],
+  "guidance": "Extract date range frequency from two dates.\n\n## Migrated examples\n#### Extracting Number of Months From Range\n\n##### Recipe\n\n```yaml\nwrangles:\n  - extract.date_range:\n      start_time: Start\n      end_time: End\n      output: Output\n      range: months\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n_No sample available._\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| End | Start | Output |\n| --- | --- | --- |\n| 2023-08-13 00:00:00 | 1992-08-13 00:00:00 | 371 |\n\n</div>\n\n</div>",
+  "sources": [
+    {
+      "id": "runtime",
+      "resource": "https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/extract.py",
+      "title": "WranglesPY extract.date_range implementation"
+    },
+    {
+      "id": "quasi-registry",
+      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/extract/_sources/date-range.md",
+      "title": "Existing extract.date_range Markdown"
+    }
+  ]
+}

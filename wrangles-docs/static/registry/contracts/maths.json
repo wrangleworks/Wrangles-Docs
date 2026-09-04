@@ -1,0 +1,94 @@
+{
+  "format": "wrangles-registry-entry",
+  "registry_version": "0.1.0-pilot",
+  "schema_version": "0.1",
+  "type": "wrangle",
+  "id": null,
+  "wrangle_name": "maths",
+  "namespace": null,
+  "wrangle_key": "maths",
+  "aliases": [],
+  "slug": "maths",
+  "title": "Maths",
+  "description": "Deprecated alias for `math`; evaluate an expression and write its result to an output column.",
+  "status": "deprecated",
+  "visibility": "public",
+  "tags": [
+    "maths"
+  ],
+  "runtime": {
+    "package": "wrangles",
+    "symbol": "wrangles.recipe_wrangles.main.maths",
+    "contract_status": "verified"
+  },
+  "access": {
+    "ai_powered": false,
+    "requires_account": false,
+    "requires_subscription": false,
+    "requires_external_api_key": false
+  },
+  "capabilities": {
+    "if": true,
+    "where": true,
+    "where_params": true
+  },
+  "parameters": [
+    {
+      "name": "input",
+      "description": "Name, index, or list of input columns.",
+      "required": true,
+      "role": "column-selector",
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "output",
+      "description": "Name or list of output columns.",
+      "required": true,
+      "role": "column-output",
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "if",
+      "description": "Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`.",
+      "required": false,
+      "schema": {
+        "type": "string"
+      },
+      "role": "common-control"
+    },
+    {
+      "name": "where",
+      "description": "Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`.",
+      "required": false,
+      "schema": {
+        "type": "string"
+      },
+      "role": "common-control"
+    },
+    {
+      "name": "where_params",
+      "description": "Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`.",
+      "required": false,
+      "schema": {
+        "type": [
+          "array",
+          "object"
+        ]
+      },
+      "role": "common-control"
+    }
+  ],
+  "examples": [],
+  "guidance": "## Behavior\n\nDeprecated alias for `math`; evaluate an expression and write its result to an output column.\n\nThis first-pass guidance is derived from the callable signature.",
+  "sources": [
+    {
+      "id": "runtime",
+      "resource": "https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/main.py",
+      "title": "WranglesPY maths implementation"
+    }
+  ]
+}

@@ -1,0 +1,135 @@
+{
+  "format": "wrangles-registry-entry",
+  "registry_version": "0.1.0-pilot",
+  "schema_version": "0.1",
+  "type": "wrangle",
+  "id": "a393225e-7ccf-4708-83f8-d5abd6ba9b1e",
+  "wrangle_name": "lists",
+  "namespace": "compare",
+  "wrangle_key": "compare.lists",
+  "aliases": [],
+  "slug": "compare/lists",
+  "title": "Lists",
+  "description": "Compare multiple lists and return the intersection, difference, or union.",
+  "status": "active",
+  "visibility": "public",
+  "tags": [
+    "compare",
+    "lists"
+  ],
+  "runtime": {
+    "package": "wrangles",
+    "symbol": "wrangles.recipe_wrangles.compare.lists",
+    "contract_status": "verified"
+  },
+  "access": {
+    "ai_powered": false,
+    "requires_account": false,
+    "requires_subscription": false,
+    "requires_external_api_key": false
+  },
+  "capabilities": {
+    "if": true,
+    "where": true,
+    "where_params": true
+  },
+  "parameters": [
+    {
+      "name": "input",
+      "description": "List of input columns containing lists to compare.",
+      "required": true,
+      "role": "column-selector",
+      "schema": {
+        "type": "array"
+      }
+    },
+    {
+      "name": "output",
+      "description": "Name of the output column.",
+      "required": true,
+      "role": "column-output",
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "method",
+      "description": "Type of comparison to perform.",
+      "required": false,
+      "role": "option",
+      "runtime_default": "intersection",
+      "schema": {
+        "type": "string",
+        "enum": [
+          "intersection",
+          "difference",
+          "union"
+        ]
+      }
+    },
+    {
+      "name": "remove_duplicates",
+      "description": "Remove duplicates from the result.",
+      "required": false,
+      "role": "option",
+      "runtime_default": false,
+      "schema": {
+        "type": "boolean"
+      }
+    },
+    {
+      "name": "ignore_case",
+      "description": "Ignore case when comparing string items.",
+      "required": false,
+      "role": "option",
+      "runtime_default": false,
+      "schema": {
+        "type": "boolean"
+      }
+    },
+    {
+      "name": "if",
+      "description": "Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`.",
+      "required": false,
+      "schema": {
+        "type": "string"
+      },
+      "role": "common-control"
+    },
+    {
+      "name": "where",
+      "description": "Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`.",
+      "required": false,
+      "schema": {
+        "type": "string"
+      },
+      "role": "common-control"
+    },
+    {
+      "name": "where_params",
+      "description": "Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`.",
+      "required": false,
+      "schema": {
+        "type": [
+          "array",
+          "object"
+        ]
+      },
+      "role": "common-control"
+    }
+  ],
+  "examples": [],
+  "guidance": "Compare multiple lists and return the intersection, difference, or union.\n\n## Migrated examples\n#### Comparing the difference between two columns of lists\n\n##### Recipe\n\n```yaml\nwrangles:\n  - compare.lists:\n      input:\n        - col1\n        - col2\n      output: Difference\n      method: difference\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n| Col1 | Col2 |\n| --- | --- |\n| [A, B, C] | [C, D, E] |\n| [H, I, J, K] | [H, I, J] |\n| [X, Y, Z] | [1, 2, 3] |\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| Difference |\n| --- |\n| [A, B] |\n| [K] |\n| [X, Y, Z] |\n\n</div>\n\n</div>\n\n#### Comparing the intersection between two columns of lists\n\n##### Recipe\n\n```yaml\nwrangles:\n  - compare.lists:\n      input:\n        - col1\n        - col2\n      output: Intersection\n      method: intersection\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n| Col1 | Col2 |\n| --- | --- |\n| [A, B, C] | [C, D, E] |\n| [H, I, J, K] | [H, I, J] |\n| [X, Y, Z] | [1, 2, 3] |\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| Intersection |\n| --- |\n| [C] |\n| [H, I, J] |\n| [] |\n\n</div>\n\n</div>\n\n#### Comparing the union between two columns of lists\n\n##### Recipe\n\n```yaml\nwrangles:\n  - compare.lists:\n      input:\n        - col1\n        - col2\n      output: Union\n      method: union\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n| Col1 | Col2 |\n| --- | --- |\n| [A, B, C] | [C, D, E] |\n| [H, I, J, K] | [H, I, J] |\n| [X, Y, Z] | [1, 2, 3] |\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| Union |\n| --- |\n| [A, B, C, D, E] |\n| [H, I, J, K] |\n| [X, Y, Z, 1, 2, 3] |\n\n</div>\n\n</div>",
+  "sources": [
+    {
+      "id": "runtime",
+      "resource": "https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/compare.py",
+      "title": "WranglesPY compare.lists implementation"
+    },
+    {
+      "id": "quasi-registry",
+      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/compare/_sources/lists.md",
+      "title": "Existing compare.lists Markdown"
+    }
+  ]
+}

@@ -1,0 +1,136 @@
+{
+  "format": "wrangles-registry-entry",
+  "registry_version": "0.1.0-pilot",
+  "schema_version": "0.1",
+  "type": "wrangle",
+  "id": null,
+  "wrangle_name": "accordion",
+  "namespace": null,
+  "wrangle_key": "accordion",
+  "aliases": [],
+  "slug": "accordion",
+  "title": "Accordion",
+  "description": "Apply a series of wrangles to column(s) containing lists. The wrangles will be applied to each element in the list and the results will be returned back as a list.",
+  "status": "active",
+  "visibility": "public",
+  "tags": [
+    "utility",
+    "accordion"
+  ],
+  "runtime": {
+    "package": "wrangles",
+    "symbol": "wrangles.recipe_wrangles.main.accordion",
+    "contract_status": "verified"
+  },
+  "access": {
+    "ai_powered": false,
+    "requires_account": false,
+    "requires_subscription": false,
+    "requires_external_api_key": false
+  },
+  "capabilities": {
+    "if": true,
+    "where": true,
+    "where_params": true
+  },
+  "parameters": [
+    {
+      "name": "wrangles",
+      "description": "List of wrangles to apply.",
+      "required": true,
+      "role": "nested-wrangles",
+      "schema": {
+        "type": "array",
+        "minItems": 1,
+        "items": {
+          "$ref": "#/$defs/wrangles/items"
+        }
+      }
+    },
+    {
+      "name": "input",
+      "description": "The column(s) containing the list(s) that the wrangles will be applied to the elements of.",
+      "required": true,
+      "role": "column-selector",
+      "schema": {
+        "type": [
+          "string",
+          "integer",
+          "array"
+        ]
+      }
+    },
+    {
+      "name": "output",
+      "description": "Output of the wrangles to save back to the dataframe.",
+      "required": false,
+      "role": "column-output",
+      "runtime_default": null,
+      "schema": {
+        "type": [
+          "string",
+          "array",
+          "null"
+        ]
+      }
+    },
+    {
+      "name": "propagate",
+      "description": "Limit the column(s) that will be available to the wrangles and replicated for each element. If not specified, all columns will be propogated. This may be useful to limit the memory use for large datasets.",
+      "required": false,
+      "role": "option",
+      "runtime_default": null,
+      "schema": {
+        "type": [
+          "string",
+          "array",
+          "null"
+        ]
+      }
+    },
+    {
+      "name": "if",
+      "description": "Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`.",
+      "required": false,
+      "schema": {
+        "type": "string"
+      },
+      "role": "common-control"
+    },
+    {
+      "name": "where",
+      "description": "Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`.",
+      "required": false,
+      "schema": {
+        "type": "string"
+      },
+      "role": "common-control"
+    },
+    {
+      "name": "where_params",
+      "description": "Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`.",
+      "required": false,
+      "schema": {
+        "type": [
+          "array",
+          "object"
+        ]
+      },
+      "role": "common-control"
+    }
+  ],
+  "examples": [],
+  "guidance": "Apply a series of wrangles to the individual elements of one or more lists.\n\n## Migrated examples\n#### Apply Convert Case to List Elements\n\nThis example applies `convert.case` to each string in a list, where the wrangle would not normally operate on the list as a whole.\n\n##### Recipe\n\n```yaml\nwrangles:\n  - accordion:\n      input: list_column\n      output: modified_lists\n      wrangles:\n        - convert.case:\n            input: list_column\n            output: modified_lists\n            case: upper\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n| list_column |\n| --- |\n| [\"a\", \"b\", \"c\"] |\n| [\"e\", \"f\", \"g\"] |\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| list_column | modified_lists |\n| --- | --- |\n| [\"a\", \"b\", \"c\"] | [\"A\", \"B\", \"C\"] |\n| [\"e\", \"f\", \"g\"] | [\"E\", \"F\", \"G\"] |\n\n</div>\n\n</div>",
+  "sources": [
+    {
+      "id": "runtime",
+      "resource": "https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/main.py",
+      "title": "WranglesPY accordion implementation"
+    },
+    {
+      "id": "quasi-registry",
+      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/utility/_sources/accordion.md",
+      "title": "Existing accordion Markdown"
+    }
+  ]
+}

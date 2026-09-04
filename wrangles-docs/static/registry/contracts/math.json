@@ -1,0 +1,100 @@
+{
+  "format": "wrangles-registry-entry",
+  "registry_version": "0.1.0-pilot",
+  "schema_version": "0.1",
+  "type": "wrangle",
+  "id": "494b11ad-00c1-4748-8b93-6bec982f4fec",
+  "wrangle_name": "math",
+  "namespace": null,
+  "wrangle_key": "math",
+  "aliases": [],
+  "slug": "math",
+  "title": "Math",
+  "description": "Apply a mathematical calculation.",
+  "status": "active",
+  "visibility": "public",
+  "tags": [
+    "compute",
+    "math"
+  ],
+  "runtime": {
+    "package": "wrangles",
+    "symbol": "wrangles.recipe_wrangles.main.math",
+    "contract_status": "verified"
+  },
+  "access": {
+    "ai_powered": false,
+    "requires_account": false,
+    "requires_subscription": false,
+    "requires_external_api_key": false
+  },
+  "capabilities": {
+    "if": true,
+    "where": true,
+    "where_params": true
+  },
+  "parameters": [
+    {
+      "name": "input",
+      "description": "The mathematical expression using column names. e.g. column1 * column2 + column3. Note: spaces within column names are replaced by underscores (_).",
+      "required": true,
+      "role": "column-selector",
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "output",
+      "description": "The column to output the results to.",
+      "required": true,
+      "role": "column-output",
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "if",
+      "description": "Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`.",
+      "required": false,
+      "schema": {
+        "type": "string"
+      },
+      "role": "common-control"
+    },
+    {
+      "name": "where",
+      "description": "Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`.",
+      "required": false,
+      "schema": {
+        "type": "string"
+      },
+      "role": "common-control"
+    },
+    {
+      "name": "where_params",
+      "description": "Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`.",
+      "required": false,
+      "schema": {
+        "type": [
+          "array",
+          "object"
+        ]
+      },
+      "role": "common-control"
+    }
+  ],
+  "examples": [],
+  "guidance": "Apply mathematical calculations to columns. Also called as `maths`.\n\n:::info\nSpaces within column headers are replaced with underscores automatically. Account for this when writing expressions in `input`.\n:::\n\n## Migrated examples\n#### Square Root Example\n\n##### Recipe\n\n```yaml\nwrangles:\n  - math:\n      input: sqrt(Values)\n      output: Square Root\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n| Values |\n| --- |\n| 4 |\n| 9 |\n| 16 |\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| Values | Square Root |\n| --- | --- |\n| 4 | 2 |\n| 9 | 3 |\n| 16 | 4 |\n\n</div>\n\n</div>",
+  "sources": [
+    {
+      "id": "runtime",
+      "resource": "https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/main.py",
+      "title": "WranglesPY math implementation"
+    },
+    {
+      "id": "quasi-registry",
+      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/compute/_sources/math.md",
+      "title": "Existing math Markdown"
+    }
+  ]
+}

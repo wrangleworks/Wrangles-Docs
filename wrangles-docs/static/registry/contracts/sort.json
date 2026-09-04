@@ -1,0 +1,119 @@
+{
+  "format": "wrangles-registry-entry",
+  "registry_version": "0.1.0-pilot",
+  "schema_version": "0.1",
+  "type": "wrangle",
+  "id": "1dcf06ad-898a-4d83-862c-4774be37a687",
+  "wrangle_name": "sort",
+  "namespace": null,
+  "wrangle_key": "sort",
+  "aliases": [],
+  "slug": "sort",
+  "title": "Sort",
+  "description": "Sort the data.",
+  "status": "active",
+  "visibility": "public",
+  "tags": [
+    "select",
+    "sort"
+  ],
+  "runtime": {
+    "package": "wrangles",
+    "symbol": "wrangles.recipe_wrangles.pandas.sort",
+    "contract_status": "verified"
+  },
+  "access": {
+    "ai_powered": false,
+    "requires_account": false,
+    "requires_subscription": false,
+    "requires_external_api_key": false
+  },
+  "capabilities": {
+    "if": true,
+    "where": true,
+    "where_params": true
+  },
+  "parameters": [
+    {
+      "name": "ignore_index",
+      "description": "Ignore Index value accepted by the runtime.",
+      "required": false,
+      "role": "option",
+      "runtime_default": true,
+      "schema": {
+        "type": "boolean"
+      }
+    },
+    {
+      "name": "by",
+      "description": "Name or list of the column(s) to sort by.",
+      "required": true,
+      "role": "column-selector",
+      "schema": {
+        "type": [
+          "string",
+          "array"
+        ]
+      }
+    },
+    {
+      "name": "ascending",
+      "description": "Sort ascending vs. descending. Specify a list to sort multiple columns in different orders. If this is a list of bools then it must match the length of the by.",
+      "required": false,
+      "role": "option",
+      "schema": {
+        "type": [
+          "boolean",
+          "array"
+        ],
+        "items": {
+          "type": "boolean"
+        }
+      }
+    },
+    {
+      "name": "if",
+      "description": "Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`.",
+      "required": false,
+      "schema": {
+        "type": "string"
+      },
+      "role": "common-control"
+    },
+    {
+      "name": "where",
+      "description": "Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`.",
+      "required": false,
+      "schema": {
+        "type": "string"
+      },
+      "role": "common-control"
+    },
+    {
+      "name": "where_params",
+      "description": "Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`.",
+      "required": false,
+      "schema": {
+        "type": [
+          "array",
+          "object"
+        ]
+      },
+      "role": "common-control"
+    }
+  ],
+  "examples": [],
+  "guidance": "Sort the data\n\n## Migrated examples\n#### Replacing Abbreviations\n\n##### Recipe\n\n```yaml\nwrangles:\n  - sort:\n      by: Price\n      ascending: true\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n| Item | Price |\n| --- | --- |\n| Hammer | 11.99 |\n| Chisel | 4.99 |\n| Drill | 29.99 |\n| Wrench | 6.99 |\n| Saw | 13.99 |\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| Item | Price |\n| --- | --- |\n| Chisel | 4.99 |\n| Wrench | 6.99 |\n| Hammer | 11.99 |\n| Saw | 13.99 |\n| Drill | 29.99 |\n\n</div>\n\n</div>",
+  "sources": [
+    {
+      "id": "runtime",
+      "resource": "https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/pandas.py",
+      "title": "WranglesPY sort implementation"
+    },
+    {
+      "id": "quasi-registry",
+      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/select/_sources/sort.md",
+      "title": "Existing sort Markdown"
+    }
+  ]
+}

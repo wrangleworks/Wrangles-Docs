@@ -1,0 +1,126 @@
+{
+  "format": "wrangles-registry-entry",
+  "registry_version": "0.1.0-pilot",
+  "schema_version": "0.1",
+  "type": "wrangle",
+  "id": "223d2f4e-3247-4189-8b6c-e73fe44c4266",
+  "wrangle_name": "element",
+  "namespace": "select",
+  "wrangle_key": "select.element",
+  "aliases": [],
+  "slug": "select/element",
+  "title": "Element",
+  "description": "Select elements of lists or dicts using python syntax like col[0]['key'].",
+  "status": "active",
+  "visibility": "public",
+  "tags": [
+    "select",
+    "element"
+  ],
+  "runtime": {
+    "package": "wrangles",
+    "symbol": "wrangles.recipe_wrangles.select.element",
+    "contract_status": "verified"
+  },
+  "access": {
+    "ai_powered": false,
+    "requires_account": false,
+    "requires_subscription": false,
+    "requires_external_api_key": false
+  },
+  "capabilities": {
+    "if": true,
+    "where": true,
+    "where_params": true
+  },
+  "parameters": [
+    {
+      "name": "input",
+      "description": "Name of the input column and sub elements This permits by index for lists or dict and by key for dicts e.g. col[0]['key'] // [{\"key\":\"val\"}] -> \"val\".",
+      "required": true,
+      "role": "column-selector",
+      "schema": {
+        "type": [
+          "string",
+          "integer",
+          "array"
+        ]
+      }
+    },
+    {
+      "name": "output",
+      "description": "Name of the output column(s).",
+      "required": false,
+      "role": "column-output",
+      "runtime_default": null,
+      "schema": {
+        "type": [
+          "string",
+          "array",
+          "null"
+        ]
+      }
+    },
+    {
+      "name": "default",
+      "description": "Set the default value to return if the specified element doesn't exist.",
+      "required": false,
+      "role": "fallback-value",
+      "runtime_default": null,
+      "schema": {
+        "type": [
+          "string",
+          "number",
+          "array",
+          "object",
+          "boolean",
+          "null"
+        ]
+      }
+    },
+    {
+      "name": "if",
+      "description": "Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`.",
+      "required": false,
+      "schema": {
+        "type": "string"
+      },
+      "role": "common-control"
+    },
+    {
+      "name": "where",
+      "description": "Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`.",
+      "required": false,
+      "schema": {
+        "type": "string"
+      },
+      "role": "common-control"
+    },
+    {
+      "name": "where_params",
+      "description": "Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`.",
+      "required": false,
+      "schema": {
+        "type": [
+          "array",
+          "object"
+        ]
+      },
+      "role": "common-control"
+    }
+  ],
+  "examples": [],
+  "guidance": "Select elements of lists or dictionaries using Python syntax like `col[1:3]['key']`.\n\n## Migrated examples\n#### Selecting The First Element\n\n##### Recipe\n\n```yaml\nwrangles:\n  - select.element:\n      input: Column A[0]\n      output: First Element\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n| Column A |\n| --- |\n| [A, 0.9] |\n| [B, 0.8] |\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| Column A | First Element |\n| --- | --- |\n| [A, 0.9] | A |\n| [B, 0.8] | B |\n\n</div>\n\n</div>",
+  "sources": [
+    {
+      "id": "runtime",
+      "resource": "https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/select.py",
+      "title": "WranglesPY select.element implementation"
+    },
+    {
+      "id": "quasi-registry",
+      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/select/_sources/element.md",
+      "title": "Existing select.element Markdown"
+    }
+  ]
+}

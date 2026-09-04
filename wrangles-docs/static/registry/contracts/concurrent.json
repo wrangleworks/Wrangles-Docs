@@ -1,0 +1,116 @@
+{
+  "format": "wrangles-registry-entry",
+  "registry_version": "0.1.0-pilot",
+  "schema_version": "0.1",
+  "type": "wrangle",
+  "id": null,
+  "wrangle_name": "concurrent",
+  "namespace": null,
+  "wrangle_key": "concurrent",
+  "aliases": [],
+  "slug": "concurrent",
+  "title": "Concurrent",
+  "description": "Run multiple wrangles concurrently rather than sequentially. Wrangles must specify output columns to be used concurrently. When using concurrent, Wrangles may not complete in a predictable order and it is not recommended to update overlapping columns with different wrangles.",
+  "status": "active",
+  "visibility": "public",
+  "tags": [
+    "utility",
+    "concurrent"
+  ],
+  "runtime": {
+    "package": "wrangles",
+    "symbol": "wrangles.recipe_wrangles.main.concurrent",
+    "contract_status": "verified"
+  },
+  "access": {
+    "ai_powered": false,
+    "requires_account": false,
+    "requires_subscription": false,
+    "requires_external_api_key": false
+  },
+  "capabilities": {
+    "if": true,
+    "where": true,
+    "where_params": true
+  },
+  "parameters": [
+    {
+      "name": "wrangles",
+      "description": "The wrangles section of a recipe to execute for each combination of variables.",
+      "required": true,
+      "role": "nested-wrangles",
+      "schema": {
+        "type": "array",
+        "minItems": 1,
+        "items": {
+          "$ref": "#/$defs/wrangles/items"
+        }
+      }
+    },
+    {
+      "name": "max_concurrency",
+      "description": "The maximum number of wrangles to execute in parallel.",
+      "required": false,
+      "role": "option",
+      "runtime_default": 10,
+      "schema": {
+        "type": "integer",
+        "minimum": 1
+      }
+    },
+    {
+      "name": "use_multiprocessing",
+      "description": "Use process-based workers instead of threads. This is an advanced runtime option.",
+      "required": false,
+      "role": "option",
+      "runtime_default": false,
+      "schema": {
+        "type": "boolean"
+      }
+    },
+    {
+      "name": "if",
+      "description": "Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`.",
+      "required": false,
+      "schema": {
+        "type": "string"
+      },
+      "role": "common-control"
+    },
+    {
+      "name": "where",
+      "description": "Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`.",
+      "required": false,
+      "schema": {
+        "type": "string"
+      },
+      "role": "common-control"
+    },
+    {
+      "name": "where_params",
+      "description": "Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`.",
+      "required": false,
+      "schema": {
+        "type": [
+          "array",
+          "object"
+        ]
+      },
+      "role": "common-control"
+    }
+  ],
+  "examples": [],
+  "guidance": "Run multiple wrangles concurrently instead of sequentially. Concurrent wrangles must declare output columns, may finish in any order, and should not update overlapping columns.\n\nSee the [Concurrent connector](/python/connectors/concurrent) for the connector equivalent.\n\n## Migrated examples\n#### Run Extraction Wrangles Concurrently\n\n##### Recipe\n\n```yaml\nwrangles:\n  - concurrent:\n      wrangles:\n        - extract.codes:\n            input: Products\n            output: Part Codes\n        - extract.attributes:\n            input: Products\n            output: Attributes\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n| Products |\n| --- |\n| SKF ball brg 2\" od 6202 |\n| brg seal 1\" id 5493 |\n| 3lb hammer 87102 |\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| Products | Part Codes | Attributes |\n| --- | --- | --- |\n| SKF ball brg 2\" od 6202 | 6202 | `{\"length\":[\"2in\"]}` |\n| brg seal 1\" id 5493 | 5493 | `{\"length\":[\"1in\"]}` |\n| 3lb hammer 87102 | 87102 | `{\"weight\":[\"3lb\"]}` |\n\n</div>\n\n</div>",
+  "sources": [
+    {
+      "id": "runtime",
+      "resource": "https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/main.py",
+      "title": "WranglesPY concurrent implementation"
+    },
+    {
+      "id": "quasi-registry",
+      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/utility/_sources/concurrent.md",
+      "title": "Existing concurrent Markdown"
+    }
+  ]
+}

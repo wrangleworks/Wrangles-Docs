@@ -1,0 +1,58 @@
+name: Validate Registry
+
+on:
+  pull_request:
+    paths:
+      - 'registry/**'
+      - 'wrangles-docs/registry-docs/**'
+      - 'wrangles-docs/static/registry/**'
+      - 'wrangles-docs/static/schemas/recipes/**'
+      - 'wrangles-docs/scripts/compile-registry.cjs'
+      - 'wrangles-docs/docusaurus.config.js'
+      - 'wrangles-docs/sidebarsRegistry.js'
+      - 'wrangles-docs/package.json'
+      - 'wrangles-docs/package-lock.json'
+      - '.github/workflows/registry.yml'
+  push:
+    branches:
+      - main
+    paths:
+      - 'registry/**'
+      - 'wrangles-docs/registry-docs/**'
+      - 'wrangles-docs/static/registry/**'
+      - 'wrangles-docs/static/schemas/recipes/**'
+      - 'wrangles-docs/scripts/compile-registry.cjs'
+      - 'wrangles-docs/docusaurus.config.js'
+      - 'wrangles-docs/sidebarsRegistry.js'
+      - 'wrangles-docs/package.json'
+      - 'wrangles-docs/package-lock.json'
+      - '.github/workflows/registry.yml'
+
+jobs:
+  registry:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Use Node.js 22
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22.x
+          cache: npm
+          cache-dependency-path: wrangles-docs/package-lock.json
+
+      - name: Install dependencies
+        working-directory: wrangles-docs
+        run: npm ci
+
+      - name: Validate Registry artifacts
+        working-directory: wrangles-docs
+        run: npm run check:registry
+
+      - name: Build documentation site
+        working-directory: wrangles-docs
+        run: npm run build

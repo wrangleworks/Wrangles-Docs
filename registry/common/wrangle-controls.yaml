@@ -1,0 +1,19 @@
+schema_version: "0.1"
+controls:
+  where:
+    description: Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`.
+    required: false
+    schema:
+      type: string
+  where_params:
+    description: Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`.
+    required: false
+    schema:
+      type:
+        - array
+        - object
+  if:
+    description: Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`.
+    required: false
+    schema:
+      type: string

@@ -1,0 +1,146 @@
+{
+  "format": "wrangles-registry-entry",
+  "registry_version": "0.1.0-pilot",
+  "schema_version": "0.1",
+  "type": "wrangle",
+  "id": "76c19378-38f4-45aa-85d1-3cdf8f8aae29",
+  "wrangle_name": "pad",
+  "namespace": "format",
+  "wrangle_key": "format.pad",
+  "aliases": [],
+  "slug": "format/pad",
+  "title": "Pad",
+  "description": "Pad a string to a fixed length.",
+  "status": "active",
+  "visibility": "public",
+  "tags": [
+    "format",
+    "pad"
+  ],
+  "runtime": {
+    "package": "wrangles",
+    "symbol": "wrangles.recipe_wrangles.format.pad",
+    "contract_status": "verified"
+  },
+  "access": {
+    "ai_powered": false,
+    "requires_account": false,
+    "requires_subscription": false,
+    "requires_external_api_key": false
+  },
+  "capabilities": {
+    "if": true,
+    "where": true,
+    "where_params": true
+  },
+  "parameters": [
+    {
+      "name": "input",
+      "description": "Name of the input column.",
+      "required": true,
+      "role": "column-selector",
+      "schema": {
+        "type": [
+          "string",
+          "integer",
+          "array"
+        ]
+      }
+    },
+    {
+      "name": "pad_length",
+      "description": "Length for the output.",
+      "required": true,
+      "role": "option",
+      "schema": {
+        "type": "integer"
+      }
+    },
+    {
+      "name": "side",
+      "description": "Side from which to fill resulting string.",
+      "required": true,
+      "role": "option",
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "char",
+      "description": "The character to pad the input with.",
+      "required": true,
+      "role": "option",
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "output",
+      "description": "Name of the output column.",
+      "required": false,
+      "role": "column-output",
+      "runtime_default": null,
+      "schema": {
+        "type": [
+          "string",
+          "array",
+          "null"
+        ]
+      }
+    },
+    {
+      "name": "skip_empty",
+      "description": "If true, skip padding for empty or whitespace-only values.",
+      "required": false,
+      "role": "option",
+      "runtime_default": false,
+      "schema": {
+        "type": "boolean"
+      }
+    },
+    {
+      "name": "if",
+      "description": "Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`.",
+      "required": false,
+      "schema": {
+        "type": "string"
+      },
+      "role": "common-control"
+    },
+    {
+      "name": "where",
+      "description": "Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`.",
+      "required": false,
+      "schema": {
+        "type": "string"
+      },
+      "role": "common-control"
+    },
+    {
+      "name": "where_params",
+      "description": "Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`.",
+      "required": false,
+      "schema": {
+        "type": [
+          "array",
+          "object"
+        ]
+      },
+      "role": "common-control"
+    }
+  ],
+  "examples": [],
+  "guidance": "Pad a string to a fixed length\n\n## Migrated examples\n#### Adding Dashes to Part Numbers\n\n##### Recipe\n\n```yaml\nwrangles:\n  - format.pad:\n      input: Part Number\n      pad_length: 5\n      side: left\n      char: \"-\"\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n| Part Number |\n| --- |\n| 0458 |\n| 396 |\n| 84 |\n| 98516 |\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| Part Number |\n| --- |\n| -0458 |\n| --396 |\n| ---84 |\n| 98516 |\n\n</div>\n\n</div>",
+  "sources": [
+    {
+      "id": "runtime",
+      "resource": "https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/format.py",
+      "title": "WranglesPY format.pad implementation"
+    },
+    {
+      "id": "quasi-registry",
+      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/format/_sources/pad.md",
+      "title": "Existing format.pad Markdown"
+    }
+  ]
+}

@@ -1,0 +1,133 @@
+{
+  "format": "wrangles-registry-entry",
+  "registry_version": "0.1.0-pilot",
+  "schema_version": "0.1",
+  "type": "wrangle",
+  "id": "232e3ba0-4735-4934-88aa-0163181abb3f",
+  "wrangle_name": "bins",
+  "namespace": "create",
+  "wrangle_key": "create.bins",
+  "aliases": [],
+  "slug": "create/bins",
+  "title": "Bins",
+  "description": "Create a column that groups data into bins.",
+  "status": "active",
+  "visibility": "public",
+  "tags": [
+    "create",
+    "bins"
+  ],
+  "runtime": {
+    "package": "wrangles",
+    "symbol": "wrangles.recipe_wrangles.create.bins",
+    "contract_status": "verified"
+  },
+  "access": {
+    "ai_powered": false,
+    "requires_account": false,
+    "requires_subscription": false,
+    "requires_external_api_key": false
+  },
+  "capabilities": {
+    "if": true,
+    "where": true,
+    "where_params": true
+  },
+  "parameters": [
+    {
+      "name": "input",
+      "description": "Name of input column.",
+      "required": true,
+      "role": "column-selector",
+      "schema": {
+        "type": [
+          "string",
+          "integer",
+          "array"
+        ]
+      }
+    },
+    {
+      "name": "output",
+      "description": "Name of new column.",
+      "required": true,
+      "role": "column-output",
+      "schema": {
+        "type": [
+          "string",
+          "array"
+        ]
+      }
+    },
+    {
+      "name": "bins",
+      "description": "Defines the number of equal-width bins in the range.",
+      "required": true,
+      "role": "option",
+      "schema": {
+        "type": [
+          "integer",
+          "array"
+        ]
+      }
+    },
+    {
+      "name": "labels",
+      "description": "Labels for the returned bins.",
+      "required": false,
+      "role": "option",
+      "runtime_default": null,
+      "schema": {
+        "type": [
+          "string",
+          "array",
+          "null"
+        ]
+      }
+    },
+    {
+      "name": "if",
+      "description": "Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`.",
+      "required": false,
+      "schema": {
+        "type": "string"
+      },
+      "role": "common-control"
+    },
+    {
+      "name": "where",
+      "description": "Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`.",
+      "required": false,
+      "schema": {
+        "type": "string"
+      },
+      "role": "common-control"
+    },
+    {
+      "name": "where_params",
+      "description": "Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`.",
+      "required": false,
+      "schema": {
+        "type": [
+          "array",
+          "object"
+        ]
+      },
+      "role": "common-control"
+    }
+  ],
+  "examples": [],
+  "guidance": "Creates a column that segments and sorts data values into bins. `bins` can be an integer or a list. When `bins` is an integer, the input data is split equally into that number of bins. When `bins` is a list, the input data is split based on the list boundaries.\n\n## Migrated examples\n#### Creating Bins With an Integer\n\n##### Recipe\n\n```yaml\nwrangles:\n  - create.bins:\n      input: Data\n      output: Category\n      bins: 3\n      labels:\n        - Bad\n        - Medium\n        - Good\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n_No sample available._\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| Data | Category |\n| --- | --- |\n| 1 | Bad |\n| 7 | Good |\n| 5 | Medium |\n| 4 | Medium |\n| 6 | Good |\n| 3 | Bad |\n\n</div>\n\n</div>\n\n#### Creating Bins With a List\n\n##### Recipe\n\n```yaml\nwrangles:\n  - create.bins:\n      input: Grades\n      output: Letter Grade\n      bins:\n        - 0\n        - 60\n        - 70\n        - 80\n        - 90\n        - 100\n      labels:\n        - F\n        - D\n        - C\n        - B\n        - A\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n| Grade | Student |\n| --- | --- |\n| 64 | Charles |\n| 92 | Sabrina |\n| 76 | Edward |\n| 84 | Wendy |\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| Grade | Student | Letter Grade |\n| --- | --- | --- |\n| 64 | Charles | D |\n| 92 | Sabrina | A |\n| 76 | Edward | C |\n| 84 | Wendy | B |\n\n</div>\n\n</div>",
+  "sources": [
+    {
+      "id": "runtime",
+      "resource": "https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/create.py",
+      "title": "WranglesPY create.bins implementation"
+    },
+    {
+      "id": "quasi-registry",
+      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/create/_sources/bins.md",
+      "title": "Existing create.bins Markdown"
+    }
+  ]
+}

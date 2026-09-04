@@ -1,0 +1,123 @@
+{
+  "format": "wrangles-registry-entry",
+  "registry_version": "0.1.0-pilot",
+  "schema_version": "0.1",
+  "type": "wrangle",
+  "id": "11e8fc13-00d2-4779-8d87-6288b07de7e7",
+  "wrangle_name": "hash",
+  "namespace": "create",
+  "wrangle_key": "create.hash",
+  "aliases": [],
+  "slug": "create/hash",
+  "title": "Hash",
+  "description": "Create a hash of a column.",
+  "status": "active",
+  "visibility": "public",
+  "tags": [
+    "create",
+    "hash"
+  ],
+  "runtime": {
+    "package": "wrangles",
+    "symbol": "wrangles.recipe_wrangles.create.hash",
+    "contract_status": "verified"
+  },
+  "access": {
+    "ai_powered": false,
+    "requires_account": false,
+    "requires_subscription": false,
+    "requires_external_api_key": false
+  },
+  "capabilities": {
+    "if": true,
+    "where": true,
+    "where_params": true
+  },
+  "parameters": [
+    {
+      "name": "input",
+      "description": "Name of input column.",
+      "required": true,
+      "role": "column-selector",
+      "schema": {
+        "type": [
+          "string",
+          "integer",
+          "array"
+        ]
+      }
+    },
+    {
+      "name": "output",
+      "description": "Name of new column.",
+      "required": true,
+      "role": "column-output",
+      "schema": {
+        "type": [
+          "string",
+          "array"
+        ]
+      }
+    },
+    {
+      "name": "method",
+      "description": "The method to use to hash the input (Default: md5).",
+      "required": false,
+      "role": "option",
+      "runtime_default": "md5",
+      "schema": {
+        "type": "string",
+        "enum": [
+          "md5",
+          "sha1",
+          "sha256",
+          "sha512"
+        ]
+      }
+    },
+    {
+      "name": "if",
+      "description": "Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`.",
+      "required": false,
+      "schema": {
+        "type": "string"
+      },
+      "role": "common-control"
+    },
+    {
+      "name": "where",
+      "description": "Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`.",
+      "required": false,
+      "schema": {
+        "type": "string"
+      },
+      "role": "common-control"
+    },
+    {
+      "name": "where_params",
+      "description": "Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`.",
+      "required": false,
+      "schema": {
+        "type": [
+          "array",
+          "object"
+        ]
+      },
+      "role": "common-control"
+    }
+  ],
+  "examples": [],
+  "guidance": "Create a hash of a column.\n\n## Migrated examples\n#### Creating a New Hash Column\n\n##### Recipe\n\n```yaml\nwrangles:\n  - create.hash:\n      input: Description\n      output: hash\n      method: md5\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n| Description |\n| --- |\n| The wrench is blue |\n| The hammer is yellow |\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| New Column |\n| --- |\n| ce114e4501d2f4e2dcea3e17b546f339 |\n| a54d88e06612d820bc3be72877c74f257b561b19 |\n\n</div>\n\n</div>",
+  "sources": [
+    {
+      "id": "runtime",
+      "resource": "https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/create.py",
+      "title": "WranglesPY create.hash implementation"
+    },
+    {
+      "id": "quasi-registry",
+      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/create/_sources/hash.md",
+      "title": "Existing create.hash Markdown"
+    }
+  ]
+}

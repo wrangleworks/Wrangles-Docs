@@ -1,0 +1,111 @@
+{
+  "format": "wrangles-registry-entry",
+  "registry_version": "0.1.0-pilot",
+  "schema_version": "0.1",
+  "type": "wrangle",
+  "id": "b002fbdc-92c0-4347-889d-0f4bfeec99fa",
+  "wrangle_name": "copy",
+  "namespace": null,
+  "wrangle_key": "copy",
+  "aliases": [],
+  "slug": "copy",
+  "title": "Copy",
+  "description": "Make a copy of a column or a list of columns.",
+  "status": "active",
+  "visibility": "public",
+  "tags": [
+    "transform",
+    "copy"
+  ],
+  "runtime": {
+    "package": "wrangles",
+    "symbol": "wrangles.recipe_wrangles.pandas.copy",
+    "contract_status": "verified"
+  },
+  "access": {
+    "ai_powered": false,
+    "requires_account": false,
+    "requires_subscription": false,
+    "requires_external_api_key": false
+  },
+  "capabilities": {
+    "if": true,
+    "where": true,
+    "where_params": true
+  },
+  "parameters": [
+    {
+      "name": "input",
+      "description": "Name of the input columns or columns.",
+      "required": false,
+      "role": "column-selector",
+      "runtime_default": null,
+      "schema": {
+        "type": [
+          "string",
+          "integer",
+          "array",
+          "null"
+        ]
+      }
+    },
+    {
+      "name": "output",
+      "description": "Name of the output columns or columns.",
+      "required": false,
+      "role": "column-output",
+      "runtime_default": null,
+      "schema": {
+        "type": [
+          "string",
+          "array",
+          "null"
+        ]
+      }
+    },
+    {
+      "name": "if",
+      "description": "Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`.",
+      "required": false,
+      "schema": {
+        "type": "string"
+      },
+      "role": "common-control"
+    },
+    {
+      "name": "where",
+      "description": "Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`.",
+      "required": false,
+      "schema": {
+        "type": "string"
+      },
+      "role": "common-control"
+    },
+    {
+      "name": "where_params",
+      "description": "Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`.",
+      "required": false,
+      "schema": {
+        "type": [
+          "array",
+          "object"
+        ]
+      },
+      "role": "common-control"
+    }
+  ],
+  "examples": [],
+  "guidance": "Create a copy of columns in a dataframe.\n\n## Migrated examples\n#### Copying a Column With Input and Output\n\n##### Recipe\n\n```yaml\nwrangles:\n  - copy:\n      input: Product Data\n      output: Product Data (copy)\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n| Product Data |\n| --- |\n| SKF ball brg |\n| brg seal |\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| Product Data | Product Data (copy) |\n| --- | --- |\n| SKF ball bearing | SKF ball bearing |\n| bearing seal | bearing seal |\n\n</div>\n\n</div>\n\n#### Copying a Column Express as a Dictionary\n\n##### Recipe\n\n```yaml\nwrangles:\n  - copy:\n      Product Data: Product Data (copy)\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n| Product Data |\n| --- |\n| SKF ball brg |\n| brg seal |\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| Product Data | Product Data (copy) |\n| --- | --- |\n| SKF ball bearing | SKF ball bearing |\n| bearing seal | bearing seal |\n\n</div>\n\n</div>",
+  "sources": [
+    {
+      "id": "runtime",
+      "resource": "https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/pandas.py",
+      "title": "WranglesPY copy implementation"
+    },
+    {
+      "id": "quasi-registry",
+      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/transform/_sources/copy.md",
+      "title": "Existing copy Markdown"
+    }
+  ]
+}

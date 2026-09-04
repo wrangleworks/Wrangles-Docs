@@ -19,8 +19,8 @@ from typing import Any
 
 
 ROOT = Path(__file__).resolve().parents[1]
-CATALOG_PATH = ROOT / "my-docs-site/src/components/WrangleFlowPlayground/wrangleCatalog.generated.js"
-MAPPINGS_PATH = ROOT / "my-docs-site/src/components/WrangleFlowPlayground/wrangleMappings.json"
+CATALOG_PATH = ROOT / "wrangles-docs/src/components/WrangleFlowPlayground/wrangleCatalog.generated.js"
+MAPPINGS_PATH = ROOT / "wrangles-docs/src/components/WrangleFlowPlayground/wrangleMappings.json"
 DEFAULT_TABLE = "public.wranglesio_content"
 
 
