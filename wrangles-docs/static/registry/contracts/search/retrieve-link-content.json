@@ -1,6 +1,6 @@
 {
   "format": "wrangles-registry-entry",
-  "registry_version": "0.1.0-pilot",
+  "registry_version": "0.1.0",
   "schema_version": "0.1",
   "type": "wrangle",
   "id": "3d5faa87-9e96-48c0-8226-5ae566e8d76c",

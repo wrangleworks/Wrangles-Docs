@@ -649,7 +649,7 @@ Run another recipe as a wrangle against the current dataframe.
 
 Run another recipe as a wrangle against the current dataframe.
 
-This first-pass guidance is derived from the callable signature and its embedded Python schema docstring.
+This guidance was derived from the callable signature and its embedded Python schema docstring.
 
 ### Parameters
 

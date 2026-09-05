@@ -11,7 +11,6 @@ const entriesRoot = path.join(registryRoot, 'wrangles');
 const runtimeManifestPath = path.join(registryRoot, 'runtime', 'wranglespy.json');
 const quasiRegistryRoot = path.join(siteRoot, 'wrangle-docs');
 const COMMON_CONTROLS = new Set(['if', 'where', 'where_params']);
-const CURATED_KEYS = new Set(['convert.case', 'convert.data_type', 'convert.from_json']);
 const ALL_JSON_TYPES = ['string', 'number', 'integer', 'boolean', 'array', 'object', 'null'];
 const DEPRECATED_REPLACEMENTS = {
   maths: 'math',
@@ -512,7 +511,7 @@ function entryDocument(metadata, quasi, runtime) {
 
 ${metadata.description}
 
-This first-pass guidance is derived from the callable signature${
+This guidance was derived from the callable signature${
   runtime.docstring_schema_status === 'available'
     ? ' and its embedded Python schema docstring'
     : ''
@@ -521,7 +520,6 @@ This first-pass guidance is derived from the callable signature${
 }
 
 async function main() {
-  const refreshGenerated = process.argv.includes('--refresh-generated');
   const manifest = JSON.parse(await fs.readFile(runtimeManifestPath, 'utf8'));
   const quasiRegistry = await readQuasiRegistry();
   const existing = new Set((await listFiles(entriesRoot, '.md')).map((filename) => path.resolve(filename)));
@@ -531,9 +529,7 @@ async function main() {
 
   for (const runtime of manifest.wrangles) {
     const output = entryPath(runtime.runtime_key);
-    if (existing.has(path.resolve(output)) && (
-      !refreshGenerated || CURATED_KEYS.has(runtime.runtime_key)
-    )) {
+    if (existing.has(path.resolve(output))) {
       preserved += 1;
       continue;
     }
@@ -546,7 +542,7 @@ async function main() {
   }
 
   console.log(
-    `Created ${created} first-pass Registry entries; preserved ${preserved} existing entries; ` +
+    `Created ${created} missing Registry entries; preserved ${preserved} existing entries; ` +
     `${missingIds} newly created entries await a database UUID.`,
   );
 }

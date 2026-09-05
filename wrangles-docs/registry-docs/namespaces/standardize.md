@@ -20,7 +20,7 @@ Repair common encoding, Unicode, HTML character reference, control character, an
 
 Repair common encoding, Unicode, HTML character reference, control character, and whitespace problems locally.
 
-This first-pass guidance is derived from the callable signature and its embedded Python schema docstring.
+This guidance was derived from the callable signature and its embedded Python schema docstring.
 
 ### Parameters
 
@@ -95,7 +95,7 @@ Standardize data using a DIY or bespoke standardization wrangle. Requires Wrangl
 
 Standardize data using a DIY or bespoke standardization wrangle. Requires WrangleWorks Account and Subscription.
 
-This first-pass guidance is derived from the callable signature and its embedded Python schema docstring.
+This guidance was derived from the callable signature and its embedded Python schema docstring.
 
 ### Parameters
 

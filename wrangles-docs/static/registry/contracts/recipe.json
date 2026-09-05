@@ -1,6 +1,6 @@
 {
   "format": "wrangles-registry-entry",
-  "registry_version": "0.1.0-pilot",
+  "registry_version": "0.1.0",
   "schema_version": "0.1",
   "type": "wrangle",
   "id": null,
@@ -120,7 +120,7 @@
     }
   ],
   "examples": [],
-  "guidance": "## Behavior\n\nRun another recipe as a wrangle against the current dataframe.\n\nThis first-pass guidance is derived from the callable signature and its embedded Python schema docstring.",
+  "guidance": "## Behavior\n\nRun another recipe as a wrangle against the current dataframe.\n\nThis guidance was derived from the callable signature and its embedded Python schema docstring.",
   "sources": [
     {
       "id": "runtime",

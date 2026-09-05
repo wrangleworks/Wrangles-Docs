@@ -54,4 +54,4 @@ sources:
 
 Deprecated alias for `math`; evaluate an expression and write its result to an output column.
 
-This first-pass guidance is derived from the callable signature.
+This guidance was derived from the callable signature.

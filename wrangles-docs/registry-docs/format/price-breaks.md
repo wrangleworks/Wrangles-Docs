@@ -16,7 +16,7 @@ Expand non-empty price-break cells into paired category and value columns.
 
 Expand non-empty price-break cells into paired category and value columns.
 
-This first-pass guidance is derived from the callable signature.
+This guidance was derived from the callable signature.
 
 ## Parameters
 

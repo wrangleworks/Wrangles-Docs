@@ -1,6 +1,6 @@
 {
   "format": "wrangles-registry-entry",
-  "registry_version": "0.1.0-pilot",
+  "registry_version": "0.1.0",
   "schema_version": "0.1",
   "type": "wrangle",
   "id": null,
@@ -84,7 +84,7 @@
     }
   ],
   "examples": [],
-  "guidance": "## Behavior\n\nDeprecated alias for `math`; evaluate an expression and write its result to an output column.\n\nThis first-pass guidance is derived from the callable signature.",
+  "guidance": "## Behavior\n\nDeprecated alias for `math`; evaluate an expression and write its result to an output column.\n\nThis guidance was derived from the callable signature.",
   "sources": [
     {
       "id": "runtime",

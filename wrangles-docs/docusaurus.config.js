@@ -46,7 +46,7 @@ const config = {
       '@docusaurus/plugin-content-docs',
       /** @type {import('@docusaurus/plugin-content-docs').Options} */
       ({
-        id: 'registryPilot',
+        id: 'registry',
         path: 'registry-docs',
         routeBasePath: 'wrangles',
         sidebarPath: './sidebarsRegistry.js',
@@ -113,7 +113,7 @@ const config = {
           {
             to: '/wrangles/',
             position: 'left',
-            label: 'Registry Pilot',
+            label: 'Registry',
           },
         ],
       },

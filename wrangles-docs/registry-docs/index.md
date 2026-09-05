@@ -1,15 +1,15 @@
 ---
-title: Wrangles Registry Pilot
-description: Pilot of the versioned Wrangles recipe knowledge registry.
+title: Wrangles Registry
+description: Pre-production version of the Wrangles recipe knowledge registry.
 slug: /
 registry_entry: true
 ---
 
-# Wrangles Registry Pilot
+# Wrangles Registry
 
-This preview contains the first Registry records compiled from the new
-Markdown contract. These pages are not yet the production replacement for the
-existing wrangle reference. Wrangles are grouped using their Registry namespace;
+These pages are compiled from the Registry Markdown contract. The Registry is
+pre-production until the migration and production-readiness criteria in its
+contract are complete. Wrangles are grouped using their Registry namespace;
 root-level compatibility keys remain in their existing documentation group.
 
 | Namespace or group | Wrangles | Description |

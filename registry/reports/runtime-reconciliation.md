@@ -3,7 +3,7 @@
 Generated file. Do not edit directly.
 
 - Runtime source: [`7916bf158e8b7e561270a1bea7b808f88956edc4`](https://github.com/wrangleworks/WranglesPY/commit/7916bf158e8b7e561270a1bea7b808f88956edc4)
-- Registry version: `0.1.0-pilot`
+- Registry version: `0.1.0`
 - Runtime entries: 98
 - Embedded Python schema docstrings: 96
 - Existing quasi-registry records: 93

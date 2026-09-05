@@ -5,7 +5,7 @@ const path = require('node:path');
 const crypto = require('node:crypto');
 const yaml = require('js-yaml');
 
-const REGISTRY_VERSION = '0.1.0-pilot';
+const REGISTRY_VERSION = '0.1.0';
 const ENTRY_SCHEMA_VERSION = '0.1';
 const PUBLIC_ORIGIN = 'https://docs.wrangles.com';
 
@@ -27,7 +27,7 @@ const reportsOutputRoot = path.join(registryRoot, 'reports');
 const docsOutputRoot = path.join(siteRoot, 'registry-docs');
 const registrySidebarPath = path.join(siteRoot, 'sidebarsRegistry.js');
 const rawOutputRoot = path.join(siteRoot, 'static', 'registry');
-const schemaOutputRoot = path.join(siteRoot, 'static', 'schemas', 'recipes', 'pilot');
+const schemaOutputRoot = path.join(siteRoot, 'static', 'schemas', 'recipes', 'registry');
 
 const LEGACY_GROUP_OVERRIDES = {
   maths: 'compute',
@@ -1150,7 +1150,7 @@ function renderRegistrySidebar(groups) {
   return `/** @type {import('@docusaurus/plugin-content-docs').SidebarsConfig} */
 const sidebarsRegistry = {
   registrySidebar: [
-    {type: 'doc', id: 'index', label: 'Registry Pilot'},
+    {type: 'doc', id: 'index', label: 'Registry'},
 ${items}
   ],
 };
@@ -1164,17 +1164,17 @@ function renderDocsIndex(groups) {
     `| [${groupLabel(group)}](${groupRoute(group)}) | ${entries.length} | ${groupLabel(group)} wrangles and compatibility entries. |`,
   ).join('\n');
   return `---
-title: Wrangles Registry Pilot
-description: Pilot of the versioned Wrangles recipe knowledge registry.
+title: Wrangles Registry
+description: Pre-production version of the Wrangles recipe knowledge registry.
 slug: /
 registry_entry: true
 ---
 
-# Wrangles Registry Pilot
+# Wrangles Registry
 
-This preview contains the first Registry records compiled from the new
-Markdown contract. These pages are not yet the production replacement for the
-existing wrangle reference. Wrangles are grouped using their Registry namespace;
+These pages are compiled from the Registry Markdown contract. The Registry is
+pre-production until the migration and production-readiness criteria in its
+contract are complete. Wrangles are grouped using their Registry namespace;
 root-level compatibility keys remain in their existing documentation group.
 
 | Namespace or group | Wrangles | Description |
@@ -1192,15 +1192,15 @@ function renderRawIndex(entries) {
 okf_version: "0.2"
 type: collection
 title: Wrangles Registry
-description: Public pilot bundle for Wrangles recipe primitives.
-status: pilot
+description: Public pre-production bundle for Wrangles recipe primitives.
+status: pre-production
 registry_version: ${REGISTRY_VERSION}
 ---
 
 # Wrangles Registry
 
-This is the public, agent-readable pilot bundle. Use \`manifest.json\` for
-structured discovery.
+This is the public, agent-readable pre-production bundle. Use \`manifest.json\`
+for structured discovery.
 
 ${rows}
 `;
@@ -1269,10 +1269,10 @@ function buildRecipeSchema(entries, controls) {
 
   return {
     $schema: 'http://json-schema.org/draft-07/schema#',
-    $id: `${PUBLIC_ORIGIN}/schemas/recipes/pilot/schema.json`,
-    title: 'Wrangles Recipe Schema - Registry Pilot',
-    description: 'Pilot schema containing only the initial Registry entries.',
-    $comment: 'Not the production recipe schema. Generated from Registry version 0.1.0-pilot.',
+    $id: `${PUBLIC_ORIGIN}/schemas/recipes/registry/schema.json`,
+    title: 'Wrangles Recipe Schema - Registry',
+    description: 'Pre-production schema generated from the Docs Registry.',
+    $comment: 'Pre-production artifact. See the Registry contract for production-readiness criteria.',
     type: 'object',
     additionalProperties: false,
     required: ['wrangles'],
@@ -2031,7 +2031,7 @@ function buildOutputs(entries, controls, reconciliation, registrySchemas, runtim
     format: 'wrangles-registry',
     registry_version: REGISTRY_VERSION,
     contract_version: ENTRY_SCHEMA_VERSION,
-    status: 'pilot',
+    status: 'pre-production',
     entry_count: publicEntries.length,
     entries: publicEntries.map((entry) => ({
       type: entry.metadata.type,
@@ -2055,7 +2055,7 @@ function buildOutputs(entries, controls, reconciliation, registrySchemas, runtim
     })),
     artifacts: {
       index: '/registry/index.md',
-      recipe_schema: '/schemas/recipes/pilot/schema.json',
+      recipe_schema: '/schemas/recipes/registry/schema.json',
       entry_schema: '/registry/schema/wrangle-entry.schema.json',
       runtime_manifest: '/registry/runtime/wranglespy.json',
       runtime_manifest_schema: '/registry/schema/wrangles-runtime-manifest.schema.json',

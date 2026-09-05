@@ -1,7 +1,7 @@
 /** @type {import('@docusaurus/plugin-content-docs').SidebarsConfig} */
 const sidebarsRegistry = {
   registrySidebar: [
-    {type: 'doc', id: 'index', label: 'Registry Pilot'},
+    {type: 'doc', id: 'index', label: 'Registry'},
     {type: 'doc', id: 'namespaces/convert', label: 'Convert'},
     {type: 'doc', id: 'namespaces/merge', label: 'Merge'},
     {type: 'doc', id: 'namespaces/split', label: 'Split'},

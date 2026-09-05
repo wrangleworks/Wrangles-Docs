@@ -2,15 +2,15 @@
 okf_version: "0.2"
 type: collection
 title: Wrangles Registry
-description: Public pilot bundle for Wrangles recipe primitives.
-status: pilot
-registry_version: 0.1.0-pilot
+description: Public pre-production bundle for Wrangles recipe primitives.
+status: pre-production
+registry_version: 0.1.0
 ---
 
 # Wrangles Registry
 
-This is the public, agent-readable pilot bundle. Use `manifest.json` for
-structured discovery.
+This is the public, agent-readable pre-production bundle. Use `manifest.json`
+for structured discovery.
 
 - [`accordion`](wrangles/_root/accordion.md): Apply a series of wrangles to column(s) containing lists. The wrangles will be applied to each element in the list and the results will be returned back as a list.
 - [`batch`](wrangles/_root/batch.md): Split the data into batches for executing a list of wrangles. Use this in situations such as where the intermediate data is too large to fit in memory.

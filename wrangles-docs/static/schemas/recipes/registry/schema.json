@@ -1,9 +1,9 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://docs.wrangles.com/schemas/recipes/pilot/schema.json",
-  "title": "Wrangles Recipe Schema - Registry Pilot",
-  "description": "Pilot schema containing only the initial Registry entries.",
-  "$comment": "Not the production recipe schema. Generated from Registry version 0.1.0-pilot.",
+  "$id": "https://docs.wrangles.com/schemas/recipes/registry/schema.json",
+  "title": "Wrangles Recipe Schema - Registry",
+  "description": "Pre-production schema generated from the Docs Registry.",
+  "$comment": "Pre-production artifact. See the Registry contract for production-readiness criteria.",
   "type": "object",
   "additionalProperties": false,
   "required": [

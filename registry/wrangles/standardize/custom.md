@@ -78,4 +78,4 @@ sources:
 
 Standardize data using a DIY or bespoke standardization wrangle. Requires WrangleWorks Account and Subscription.
 
-This first-pass guidance is derived from the callable signature and its embedded Python schema docstring.
+This guidance was derived from the callable signature and its embedded Python schema docstring.

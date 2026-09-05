@@ -1,8 +1,8 @@
 {
   "format": "wrangles-registry",
-  "registry_version": "0.1.0-pilot",
+  "registry_version": "0.1.0",
   "contract_version": "0.1",
-  "status": "pilot",
+  "status": "pre-production",
   "entry_count": 98,
   "entries": [
     {
@@ -2166,7 +2166,7 @@
   ],
   "artifacts": {
     "index": "/registry/index.md",
-    "recipe_schema": "/schemas/recipes/pilot/schema.json",
+    "recipe_schema": "/schemas/recipes/registry/schema.json",
     "entry_schema": "/registry/schema/wrangle-entry.schema.json",
     "runtime_manifest": "/registry/runtime/wranglespy.json",
     "runtime_manifest_schema": "/registry/schema/wrangles-runtime-manifest.schema.json"
