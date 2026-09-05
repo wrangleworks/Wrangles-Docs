@@ -1,0 +1,179 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://docs.wrangles.com/registry/schema/wrangle-entry.schema.json",
+  "title": "Wrangles Registry entry",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "type",
+    "id",
+    "wrangle_name",
+    "namespace",
+    "title",
+    "description",
+    "wrangle_key",
+    "aliases",
+    "slug",
+    "status",
+    "visibility",
+    "tags",
+    "runtime",
+    "access",
+    "capabilities",
+    "parameters",
+    "examples",
+    "sources"
+  ],
+  "properties": {
+    "schema_version": {"const": "0.1"},
+    "type": {"const": "wrangle"},
+    "id": {
+      "type": ["string", "null"],
+      "format": "uuid",
+      "description": "Canonical UUID allocated by the Wrangles catalog database. Null is allowed only while an existing wrangle awaits database identity reconciliation."
+    },
+    "wrangle_name": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]*$"
+    },
+    "namespace": {
+      "type": ["string", "null"],
+      "pattern": "^[a-z][a-z0-9_]*$",
+      "description": "Executable prefix of a dotted recipe key, or null for a current root-level runtime key."
+    },
+    "title": {"type": "string", "minLength": 1},
+    "description": {"type": "string", "minLength": 1},
+    "wrangle_key": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]*(\\.[a-z][a-z0-9_]*)*$"
+    },
+    "aliases": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9_]*(\\.[a-z][a-z0-9_]*)*$"
+      }
+    },
+    "slug": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:[a-z0-9_-]*[a-z0-9])?(?:/[a-z0-9]+(?:[a-z0-9_-]*[a-z0-9])?)*$"
+    },
+    "status": {
+      "enum": ["draft", "active", "deprecated", "removed"]
+    },
+    "visibility": {
+      "enum": ["public", "internal"]
+    },
+    "tags": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "runtime": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["package", "symbol", "contract_status"],
+      "properties": {
+        "package": {"type": "string", "minLength": 1},
+        "symbol": {"type": "string", "minLength": 1},
+        "contract_status": {
+          "enum": ["awaiting-manifest", "verified"]
+        }
+      }
+    },
+    "access": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "ai_powered",
+        "requires_account",
+        "requires_subscription",
+        "requires_external_api_key"
+      ],
+      "properties": {
+        "ai_powered": {"type": "boolean"},
+        "requires_account": {"type": "boolean"},
+        "requires_subscription": {"type": "boolean"},
+        "requires_external_api_key": {"type": "boolean"}
+      }
+    },
+    "capabilities": {
+      "type": "object",
+      "additionalProperties": {"type": "boolean"}
+    },
+    "parameters": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/parameter"}
+    },
+    "examples": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/example"}
+    },
+    "sources": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/source"}
+    }
+  },
+  "$defs": {
+    "parameter": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "description", "required", "role", "schema"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "name_pattern": {
+          "type": "string",
+          "minLength": 1,
+          "description": "JSON Schema regular expression for a documented family of dynamic keyword names."
+        },
+        "description": {"type": "string", "minLength": 1},
+        "required": {"type": "boolean"},
+        "role": {"type": "string", "minLength": 1},
+        "runtime_default": {},
+        "schema": {"type": "object", "minProperties": 1}
+      }
+    },
+    "example": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "title",
+        "recipe",
+        "input_fixture",
+        "output_fixture",
+        "verification"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+        },
+        "title": {"type": "string", "minLength": 1},
+        "recipe": {"type": "string", "minLength": 1},
+        "input_fixture": {"type": "string", "minLength": 1},
+        "output_fixture": {"type": "string", "minLength": 1},
+        "verification": {
+          "enum": ["static", "offline", "live", "manual"]
+        }
+      }
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "resource"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "resource": {"type": "string", "minLength": 1},
+        "title": {"type": "string"}
+      }
+    }
+  }
+}

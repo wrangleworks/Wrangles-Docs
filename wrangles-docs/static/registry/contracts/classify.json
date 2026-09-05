@@ -1,0 +1,125 @@
+{
+  "format": "wrangles-registry-entry",
+  "registry_version": "0.1.0-pilot",
+  "schema_version": "0.1",
+  "type": "wrangle",
+  "id": "06669ef8-cdd1-42f7-8078-98e0b7a42c30",
+  "wrangle_name": "classify",
+  "namespace": null,
+  "wrangle_key": "classify",
+  "aliases": [],
+  "slug": "classify",
+  "title": "Classify",
+  "description": "Run classify wrangles on the specified columns. Requires WrangleWorks Account and Subscription.",
+  "status": "active",
+  "visibility": "public",
+  "tags": [
+    "ai",
+    "classify"
+  ],
+  "runtime": {
+    "package": "wrangles",
+    "symbol": "wrangles.recipe_wrangles.main.classify",
+    "contract_status": "verified"
+  },
+  "access": {
+    "ai_powered": false,
+    "requires_account": true,
+    "requires_subscription": false,
+    "requires_external_api_key": false
+  },
+  "capabilities": {
+    "if": true,
+    "where": true,
+    "where_params": true
+  },
+  "parameters": [
+    {
+      "name": "input",
+      "description": "Name of the input column.",
+      "required": true,
+      "role": "column-selector",
+      "schema": {
+        "type": [
+          "string",
+          "integer",
+          "array"
+        ]
+      }
+    },
+    {
+      "name": "output",
+      "description": "Name of the output column.",
+      "required": true,
+      "role": "column-output",
+      "schema": {
+        "type": [
+          "string",
+          "array"
+        ]
+      }
+    },
+    {
+      "name": "model_id",
+      "description": "ID of the classification model to be used.",
+      "required": true,
+      "role": "model-reference",
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "include_confidence",
+      "description": "For models that support it, include the confidence level in the output.",
+      "required": false,
+      "role": "option",
+      "schema": {
+        "type": "boolean"
+      }
+    },
+    {
+      "name": "if",
+      "description": "Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`.",
+      "required": false,
+      "schema": {
+        "type": "string"
+      },
+      "role": "common-control"
+    },
+    {
+      "name": "where",
+      "description": "Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`.",
+      "required": false,
+      "schema": {
+        "type": "string"
+      },
+      "role": "common-control"
+    },
+    {
+      "name": "where_params",
+      "description": "Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`.",
+      "required": false,
+      "schema": {
+        "type": [
+          "array",
+          "object"
+        ]
+      },
+      "role": "common-control"
+    }
+  ],
+  "examples": [],
+  "guidance": "Run a custom classification wrangle on the specified column or columns. A classification wrangle must be trained first.\n\n## Migrated examples\n#### Food Type Example\n\n##### Recipe\n\n```yaml\nwrangles:\n  - classify:\n      input: Products\n      output: Category\n      model_id: ${model_id}\n      where: Products = Milk\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n| Products |\n| --- |\n| Rice |\n| Milk |\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| Products | Category |\n| --- | --- |\n| Rice |  |\n| Milk | Dairy |\n\n</div>\n\n</div>",
+  "sources": [
+    {
+      "id": "runtime",
+      "resource": "https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/main.py",
+      "title": "WranglesPY classify implementation"
+    },
+    {
+      "id": "quasi-registry",
+      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/ai/_sources/classify.md",
+      "title": "Existing classify Markdown"
+    }
+  ]
+}

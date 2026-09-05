@@ -1,0 +1,117 @@
+---
+schema_version: '0.1'
+type: wrangle
+id: d9978f00-b3d4-4583-884e-a53b98a43e9a
+wrangle_name: lists
+namespace: merge
+title: Lists
+description: Take lists in multiple columns and merge them to a single list.
+wrangle_key: merge.lists
+aliases: []
+slug: merge/lists
+status: active
+visibility: public
+tags:
+  - merge
+  - lists
+runtime:
+  package: wrangles
+  symbol: wrangles.recipe_wrangles.merge.lists
+  contract_status: verified
+access:
+  ai_powered: false
+  requires_account: false
+  requires_subscription: false
+  requires_external_api_key: false
+capabilities:
+  if: true
+  where: true
+  where_params: true
+parameters:
+  - name: input
+    description: List of input columns.
+    required: true
+    role: column-selector
+    schema:
+      type: array
+  - name: output
+    description: Name of the output column.
+    required: true
+    role: column-output
+    schema:
+      type: string
+  - name: remove_duplicates
+    description: Whether to remove duplicates from the created list.
+    required: false
+    role: option
+    runtime_default: false
+    schema:
+      type: boolean
+  - name: ignore_case
+    description: Ignore case when removing duplicates.
+    required: false
+    role: option
+    runtime_default: false
+    schema:
+      type: boolean
+  - name: include_empty
+    description: Whether to include empty values in the created list.
+    required: false
+    role: option
+    runtime_default: true
+    schema:
+      type: boolean
+examples: []
+sources:
+  - id: runtime
+    resource: >-
+      https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/merge.py
+    title: WranglesPY merge.lists implementation
+  - id: quasi-registry
+    resource: >-
+      https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/merge/_sources/lists.md
+    title: Existing merge.lists Markdown
+---
+
+# Lists
+
+Take lists in multiple columns and merge them to a single list.
+
+## Migrated examples
+#### Merging Two Lists
+
+##### Recipe
+
+```yaml
+wrangles:
+  - merge.lists:
+      input:
+        - col1
+        - col2
+      output: Combined Col
+      remove_duplicates: false
+```
+
+<div className="ww-sample-grid">
+
+<div className="ww-sample-panel">
+
+##### Input Sample
+
+| Col1 | Col2 |
+| --- | --- |
+| ['A', 'B'] | ['D', 'E'] |
+
+</div>
+
+<div className="ww-sample-panel">
+
+##### Output Sample
+
+| Combined Col |
+| --- |
+| ['A', 'B', 'D', 'E'] |
+
+</div>
+
+</div>

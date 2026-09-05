@@ -1,0 +1,96 @@
+{
+  "format": "wrangles-registry-entry",
+  "registry_version": "0.1.0-pilot",
+  "schema_version": "0.1",
+  "type": "wrangle",
+  "id": "8716347f-f286-49b2-8a0b-cb73292e7475",
+  "wrangle_name": "transpose",
+  "namespace": null,
+  "wrangle_key": "transpose",
+  "aliases": [],
+  "slug": "transpose",
+  "title": "Transpose",
+  "description": "Transpose the DataFrame (swap columns to rows).",
+  "status": "active",
+  "visibility": "public",
+  "tags": [
+    "transform",
+    "transpose"
+  ],
+  "runtime": {
+    "package": "wrangles",
+    "symbol": "wrangles.recipe_wrangles.pandas.transpose",
+    "contract_status": "verified"
+  },
+  "access": {
+    "ai_powered": false,
+    "requires_account": false,
+    "requires_subscription": false,
+    "requires_external_api_key": false
+  },
+  "capabilities": {
+    "if": true,
+    "where": true,
+    "where_params": true
+  },
+  "parameters": [
+    {
+      "name": "header_column",
+      "description": "Name or position of the column that will be used as the column headings for the transposed DataFrame. Default 0 (first column). Use header_column = null to not use any column as header.",
+      "required": false,
+      "role": "column-selector",
+      "runtime_default": 0,
+      "schema": {
+        "type": [
+          "string",
+          "integer",
+          "null"
+        ]
+      }
+    },
+    {
+      "name": "if",
+      "description": "Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`.",
+      "required": false,
+      "schema": {
+        "type": "string"
+      },
+      "role": "common-control"
+    },
+    {
+      "name": "where",
+      "description": "Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`.",
+      "required": false,
+      "schema": {
+        "type": "string"
+      },
+      "role": "common-control"
+    },
+    {
+      "name": "where_params",
+      "description": "Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`.",
+      "required": false,
+      "schema": {
+        "type": [
+          "array",
+          "object"
+        ]
+      },
+      "role": "common-control"
+    }
+  ],
+  "examples": [],
+  "guidance": "Transpose a dataframe.\n\n## Migrated examples\n:::note\nTranspose is not compatible with `where` filtering.\n:::\n\n#### Transposing a Dataframe\n\n##### Recipe\n\n```yaml\nwrangles:\n  - transpose:\n      header_column: Material\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n| Material | Product Data |\n| --- | --- |\n| Ceramic | SKF ball brg |\n| Rubber | brg seal |\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| Material | Ceramic | Rubber |\n| --- | --- | --- |\n| Product Data | SKF ball brg | brg seal |\n\n</div>\n\n</div>",
+  "sources": [
+    {
+      "id": "runtime",
+      "resource": "https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/pandas.py",
+      "title": "WranglesPY transpose implementation"
+    },
+    {
+      "id": "quasi-registry",
+      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/transform/_sources/transpose.md",
+      "title": "Existing transpose Markdown"
+    }
+  ]
+}

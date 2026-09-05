@@ -1,0 +1,127 @@
+{
+  "format": "wrangles-registry-entry",
+  "registry_version": "0.1.0-pilot",
+  "schema_version": "0.1",
+  "type": "wrangle",
+  "id": "a346de62-93cd-44ba-8d30-a6305629c6d7",
+  "wrangle_name": "date_properties",
+  "namespace": "extract",
+  "wrangle_key": "extract.date_properties",
+  "aliases": [],
+  "slug": "extract/date-properties",
+  "title": "Date Properties",
+  "description": "Extract date properties from a date (day, month, year, etc...).",
+  "status": "active",
+  "visibility": "public",
+  "tags": [
+    "extract",
+    "date-properties"
+  ],
+  "runtime": {
+    "package": "wrangles",
+    "symbol": "wrangles.recipe_wrangles.extract.date_properties",
+    "contract_status": "verified"
+  },
+  "access": {
+    "ai_powered": false,
+    "requires_account": false,
+    "requires_subscription": false,
+    "requires_external_api_key": false
+  },
+  "capabilities": {
+    "if": true,
+    "where": true,
+    "where_params": true
+  },
+  "parameters": [
+    {
+      "name": "input",
+      "description": "Name of the input column.",
+      "required": true,
+      "role": "column-selector",
+      "schema": {
+        "type": [
+          "string",
+          "integer",
+          "array"
+        ]
+      }
+    },
+    {
+      "name": "property",
+      "description": "Property to extract from date.",
+      "required": true,
+      "role": "option",
+      "schema": {
+        "type": "string",
+        "enum": [
+          "day",
+          "day_of_year",
+          "month",
+          "month_name",
+          "weekday",
+          "week_day_name",
+          "week_year",
+          "quarter"
+        ]
+      }
+    },
+    {
+      "name": "output",
+      "description": "Name of the output columns.",
+      "required": false,
+      "role": "column-output",
+      "runtime_default": null,
+      "schema": {
+        "type": [
+          "string",
+          "null"
+        ]
+      }
+    },
+    {
+      "name": "if",
+      "description": "Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`.",
+      "required": false,
+      "schema": {
+        "type": "string"
+      },
+      "role": "common-control"
+    },
+    {
+      "name": "where",
+      "description": "Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`.",
+      "required": false,
+      "schema": {
+        "type": "string"
+      },
+      "role": "common-control"
+    },
+    {
+      "name": "where_params",
+      "description": "Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`.",
+      "required": false,
+      "schema": {
+        "type": [
+          "array",
+          "object"
+        ]
+      },
+      "role": "common-control"
+    }
+  ],
+  "examples": [],
+  "guidance": "Extract date properties from a date, such as day, month, year, weekday, or quarter.\n\n## Migrated examples\n#### Extracting Month From Date\n\n##### Recipe\n\n```yaml\nwrangles:\n  - extract.date_properties:\n      input: Date\n      output: Output\n      property: month_name\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n_No sample available._\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| Date | Output |\n| --- | --- |\n| 1992-08-13 00:00:00 | August |\n\n</div>\n\n</div>",
+  "sources": [
+    {
+      "id": "runtime",
+      "resource": "https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/extract.py",
+      "title": "WranglesPY extract.date_properties implementation"
+    },
+    {
+      "id": "quasi-registry",
+      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/extract/_sources/date-properties.md",
+      "title": "Existing extract.date_properties Markdown"
+    }
+  ]
+}

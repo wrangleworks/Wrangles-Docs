@@ -1,0 +1,110 @@
+{
+  "format": "wrangles-registry-entry",
+  "registry_version": "0.1.0-pilot",
+  "schema_version": "0.1",
+  "type": "wrangle",
+  "id": "9b869210-0d89-403b-8409-7cecdb5f9c7c",
+  "wrangle_name": "to_dict",
+  "namespace": "merge",
+  "wrangle_key": "merge.to_dict",
+  "aliases": [],
+  "slug": "merge/to-dict",
+  "title": "To Dict",
+  "description": "Take multiple columns and merge them to a dictionary (aka object) using the column headers as keys.",
+  "status": "active",
+  "visibility": "public",
+  "tags": [
+    "merge",
+    "to-dict"
+  ],
+  "runtime": {
+    "package": "wrangles",
+    "symbol": "wrangles.recipe_wrangles.merge.to_dict",
+    "contract_status": "verified"
+  },
+  "access": {
+    "ai_powered": false,
+    "requires_account": false,
+    "requires_subscription": false,
+    "requires_external_api_key": false
+  },
+  "capabilities": {
+    "if": true,
+    "where": true,
+    "where_params": true
+  },
+  "parameters": [
+    {
+      "name": "input",
+      "description": "List of input columns.",
+      "required": true,
+      "role": "column-selector",
+      "schema": {
+        "type": "array"
+      }
+    },
+    {
+      "name": "output",
+      "description": "Name of the output column.",
+      "required": true,
+      "role": "column-output",
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "include_empty",
+      "description": "Whether to include empty columns in the created dictionary.",
+      "required": false,
+      "role": "option",
+      "runtime_default": false,
+      "schema": {
+        "type": "boolean"
+      }
+    },
+    {
+      "name": "if",
+      "description": "Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`.",
+      "required": false,
+      "schema": {
+        "type": "string"
+      },
+      "role": "common-control"
+    },
+    {
+      "name": "where",
+      "description": "Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`.",
+      "required": false,
+      "schema": {
+        "type": "string"
+      },
+      "role": "common-control"
+    },
+    {
+      "name": "where_params",
+      "description": "Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`.",
+      "required": false,
+      "schema": {
+        "type": [
+          "array",
+          "object"
+        ]
+      },
+      "role": "common-control"
+    }
+  ],
+  "examples": [],
+  "guidance": "Take multiple columns and merge them to a dictionary (aka object) using the column headers as keys.\n\n## Migrated examples\n#### Merging Two Columns Into a Dictionary\n\n##### Recipe\n\n```yaml\nwrangles:\n  - merge.to_dict:\n      input:\n        - Col1\n        - Col2\n      output: Dict Col\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n| Col1 | Col2 |\n| --- | --- |\n| A | B |\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| Dict Col |\n| --- |\n| \\{'Col1': 'A', 'Col2': 'B'\\} |\n\n</div>\n\n</div>",
+  "sources": [
+    {
+      "id": "runtime",
+      "resource": "https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/merge.py",
+      "title": "WranglesPY merge.to_dict implementation"
+    },
+    {
+      "id": "quasi-registry",
+      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/merge/_sources/to-dict.md",
+      "title": "Existing merge.to_dict Markdown"
+    }
+  ]
+}

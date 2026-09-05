@@ -1,0 +1,128 @@
+{
+  "format": "wrangles-registry-entry",
+  "registry_version": "0.1.0-pilot",
+  "schema_version": "0.1",
+  "type": "wrangle",
+  "id": "0a4909ca-6e14-4da7-8a70-a7fd106d6944",
+  "wrangle_name": "index",
+  "namespace": "create",
+  "wrangle_key": "create.index",
+  "aliases": [],
+  "slug": "create/index",
+  "title": "Index",
+  "description": "Create column(s) with an incremental index. e.g. 1,2,3...",
+  "status": "active",
+  "visibility": "public",
+  "tags": [
+    "create",
+    "index"
+  ],
+  "runtime": {
+    "package": "wrangles",
+    "symbol": "wrangles.recipe_wrangles.create.index",
+    "contract_status": "verified"
+  },
+  "access": {
+    "ai_powered": false,
+    "requires_account": false,
+    "requires_subscription": false,
+    "requires_external_api_key": false
+  },
+  "capabilities": {
+    "if": true,
+    "where": true,
+    "where_params": true
+  },
+  "parameters": [
+    {
+      "name": "output",
+      "description": "Name or list of names of new columns.",
+      "required": true,
+      "role": "column-output",
+      "schema": {
+        "type": [
+          "string",
+          "array"
+        ]
+      }
+    },
+    {
+      "name": "start",
+      "description": "(Optional; default 1) Starting number for the index.",
+      "required": false,
+      "role": "option",
+      "runtime_default": 1,
+      "schema": {
+        "type": "integer"
+      }
+    },
+    {
+      "name": "step",
+      "description": "(Optional; default 1) Step between successive rows.",
+      "required": false,
+      "role": "option",
+      "runtime_default": 1,
+      "schema": {
+        "type": "integer"
+      }
+    },
+    {
+      "name": "by",
+      "description": "Optional. Cluster the created indexes by one or more columns.",
+      "required": false,
+      "role": "column-selector",
+      "runtime_default": null,
+      "schema": {
+        "type": [
+          "string",
+          "array",
+          "null"
+        ]
+      }
+    },
+    {
+      "name": "if",
+      "description": "Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`.",
+      "required": false,
+      "schema": {
+        "type": "string"
+      },
+      "role": "common-control"
+    },
+    {
+      "name": "where",
+      "description": "Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`.",
+      "required": false,
+      "schema": {
+        "type": "string"
+      },
+      "role": "common-control"
+    },
+    {
+      "name": "where_params",
+      "description": "Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`.",
+      "required": false,
+      "schema": {
+        "type": [
+          "array",
+          "object"
+        ]
+      },
+      "role": "common-control"
+    }
+  ],
+  "examples": [],
+  "guidance": "Create a new incremental index.\n\n## Migrated examples\n#### Creating a New Index Column\n\n##### Recipe\n\n```yaml\nwrangles:\n  - create.index:\n      output: New Index\n      start: 1    # optional\n      step: 1     # optional\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n_No sample available._\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| New Index |\n| --- |\n| 1 |\n| 2 |\n\n</div>\n\n</div>",
+  "sources": [
+    {
+      "id": "runtime",
+      "resource": "https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/create.py",
+      "title": "WranglesPY create.index implementation"
+    },
+    {
+      "id": "quasi-registry",
+      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/create/_sources/index.md",
+      "title": "Existing create.index Markdown"
+    }
+  ]
+}

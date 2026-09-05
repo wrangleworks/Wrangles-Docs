@@ -5,9 +5,9 @@ Connection:
   export DATABASE_URL='postgresql://user:password@host:5432/database'
 
 Output:
-  my-docs-site/wrangle-docs/index.md
-  my-docs-site/wrangle-docs/<type>/<type>.md
-  my-docs-site/wrangle-docs/<type>/_sources/<wrangle>.md
+  wrangles-docs/wrangle-docs/index.md
+  wrangles-docs/wrangle-docs/<type>/<type>.md
+  wrangles-docs/wrangle-docs/<type>/_sources/<wrangle>.md
 
 Each category page imports separate wrangle source Markdown files from its _sources folder.
 
@@ -30,7 +30,7 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_TABLE = "public.wranglesio_content"
-DEFAULT_OUTPUT_DIR = ROOT / "my-docs-site/wrangle-docs"
+DEFAULT_OUTPUT_DIR = ROOT / "wrangles-docs/wrangle-docs"
 DEFAULT_TEMPLATE = DEFAULT_OUTPUT_DIR / "wrangle_template.md"
 
 CATEGORY_DESCRIPTIONS = {

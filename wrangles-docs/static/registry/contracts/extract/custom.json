@@ -1,0 +1,230 @@
+{
+  "format": "wrangles-registry-entry",
+  "registry_version": "0.1.0-pilot",
+  "schema_version": "0.1",
+  "type": "wrangle",
+  "id": "e8e96b76-86bf-41dc-8d16-825dcff9688b",
+  "wrangle_name": "custom",
+  "namespace": "extract",
+  "wrangle_key": "extract.custom",
+  "aliases": [],
+  "slug": "extract/custom",
+  "title": "Custom",
+  "description": "Extract data from the input using a DIY or bespoke extraction wrangle. Requires WrangleWorks Account and Subscription.",
+  "status": "active",
+  "visibility": "public",
+  "tags": [
+    "extract",
+    "custom"
+  ],
+  "runtime": {
+    "package": "wrangles",
+    "symbol": "wrangles.recipe_wrangles.extract.custom",
+    "contract_status": "verified"
+  },
+  "access": {
+    "ai_powered": false,
+    "requires_account": true,
+    "requires_subscription": false,
+    "requires_external_api_key": false
+  },
+  "capabilities": {
+    "if": true,
+    "where": true,
+    "where_params": true
+  },
+  "parameters": [
+    {
+      "name": "input",
+      "description": "Name or list of input columns.",
+      "required": true,
+      "role": "column-selector",
+      "schema": {
+        "type": [
+          "string",
+          "integer",
+          "array"
+        ]
+      }
+    },
+    {
+      "name": "model_id",
+      "description": "The ID of the wrangle to use.",
+      "required": true,
+      "role": "model-reference",
+      "schema": {
+        "type": [
+          "string",
+          "array"
+        ]
+      }
+    },
+    {
+      "name": "output",
+      "description": "Name or list of output columns.",
+      "required": false,
+      "role": "column-output",
+      "runtime_default": null,
+      "schema": {
+        "type": [
+          "string",
+          "array",
+          "null"
+        ]
+      }
+    },
+    {
+      "name": "use_labels",
+      "description": "Use Labels in the extract output {label: value}.",
+      "required": false,
+      "role": "option",
+      "runtime_default": false,
+      "schema": {
+        "type": "boolean"
+      }
+    },
+    {
+      "name": "first_element",
+      "description": "Get the first element from results.",
+      "required": false,
+      "role": "option",
+      "runtime_default": false,
+      "schema": {
+        "type": "boolean"
+      }
+    },
+    {
+      "name": "case_sensitive",
+      "description": "Allows the wrangle to be case sensitive if set to True, default is False.",
+      "required": false,
+      "role": "option",
+      "runtime_default": false,
+      "schema": {
+        "type": "boolean"
+      }
+    },
+    {
+      "name": "extract_raw",
+      "description": "Extract the raw data from the wrangle.",
+      "required": false,
+      "role": "option",
+      "runtime_default": false,
+      "schema": {
+        "type": "boolean"
+      }
+    },
+    {
+      "name": "use_spellcheck",
+      "description": "Use spellcheck to also find minor mispellings compared to the reference data.",
+      "required": false,
+      "role": "option",
+      "runtime_default": false,
+      "schema": {
+        "type": "boolean"
+      }
+    },
+    {
+      "name": "include_empty_labels",
+      "description": "Include labels with no found values in the output when using use_labels=True.",
+      "required": false,
+      "role": "option",
+      "runtime_default": true,
+      "schema": {
+        "type": "boolean"
+      }
+    },
+    {
+      "name": "sort",
+      "description": "Sort the results.",
+      "required": false,
+      "role": "option",
+      "runtime_default": "training_order",
+      "schema": {
+        "type": "string",
+        "enum": [
+          "training_order",
+          "input_order",
+          "longest",
+          "shortest",
+          "alphabetical",
+          "reverse_alphabetical",
+          "ascending",
+          "descending"
+        ]
+      }
+    },
+    {
+      "name": "output_format",
+      "description": "Format of the extract output.",
+      "required": false,
+      "role": "column-output",
+      "runtime_default": null,
+      "schema": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "enum": [
+          "list",
+          "dictionary",
+          "columns",
+          "concatenate"
+        ]
+      }
+    },
+    {
+      "name": "char",
+      "description": "Character to use when output_format is concatenate.",
+      "required": false,
+      "role": "option",
+      "runtime_default": ", ",
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "if",
+      "description": "Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`.",
+      "required": false,
+      "schema": {
+        "type": "string"
+      },
+      "role": "common-control"
+    },
+    {
+      "name": "where",
+      "description": "Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`.",
+      "required": false,
+      "schema": {
+        "type": "string"
+      },
+      "role": "common-control"
+    },
+    {
+      "name": "where_params",
+      "description": "Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`.",
+      "required": false,
+      "schema": {
+        "type": [
+          "array",
+          "object"
+        ]
+      },
+      "role": "common-control"
+    }
+  ],
+  "examples": [],
+  "guidance": "Extract data from the input using a DIY or bespoke extraction wrangle. Can be performed on one column or multiple columns. Requires WrangleWorks Account and Subscription.\n\n:::info\nNon-regex pattern matching extracts whole-word matches separated by word boundaries. Word boundaries include anything that is not a letter, number, or underscore.\n:::\n\n## Migrated examples\n#### Extracting Wood Types From Single Column\n\n##### Recipe\n\n```yaml\n# One column input\nwrangles:\n  - extract.custom:\n      input: Product\n      output: Wood Types\n      model_id: model_id_here\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n_No sample available._\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| Product | Wood Types |\n| --- | --- |\n| Dining Oakwood Chair | Oakwood |\n| Living Room Teakwood Frame Mirror | Teakwood |\n\n</div>\n\n</div>\n\n#### Extracting Wood Types From Multiple Columns\n\n##### Recipe\n\n```yaml\n# Multi column input\nwrangles:\n  - extract.custom:\n      input:\n        - Part 1 of 2\n        - Part 2 of 2\n      output: Wood Types\n      model_id: model_id_here\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n_No sample available._\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| Wood Types | Part 1 of 2 | Part 2 of 2 |\n| --- | --- | --- |\n| ['Acacia Wood', 'Imitation Wood'] | Dining Acacia Wood Table | Imitation Wood Table Chairs |\n\n</div>\n\n</div>\n\n#### Using Multiple Extract Models\n\n##### Recipe\n\n```yaml\n# Multiple Models\nwrangles:\n  - extract.custom:\n      input:\n        - Product\n        - Product\n      output:\n        - Wood Types\n        - Item Type\n      model_id:\n        - wood_Type_model_id\n        - item_type_model_id\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n_No sample available._\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| Product | Item Type | Wood Types |\n| --- | --- | --- |\n| Dining Oakwood Chair | Chair | Oakwood |\n| Living Room Teakwood Frame Mirror | Mirror | Teakwood |\n\n</div>\n\n</div>",
+  "sources": [
+    {
+      "id": "runtime",
+      "resource": "https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/extract.py",
+      "title": "WranglesPY extract.custom implementation"
+    },
+    {
+      "id": "quasi-registry",
+      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/extract/_sources/custom.md",
+      "title": "Existing extract.custom Markdown"
+    }
+  ]
+}

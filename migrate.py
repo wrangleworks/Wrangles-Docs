@@ -19,8 +19,8 @@ PROJECT_NAME = "docusaurus"
 CURRENT_DIR = pathlib.Path(os.getcwd())
 
 # Dump into the Docusaurus site structure.
-OUT_DIR = CURRENT_DIR / "my-docs-site" / "docs"
-STATIC_DIR = CURRENT_DIR / "my-docs-site" / "static"
+OUT_DIR = CURRENT_DIR / "wrangles-docs" / "docs"
+STATIC_DIR = CURRENT_DIR / "wrangles-docs" / "static"
 
 RATE_LIMIT_DELAY = 0.2
 HEAD = {"Authorization": f"Bearer {API_TOKEN}"}

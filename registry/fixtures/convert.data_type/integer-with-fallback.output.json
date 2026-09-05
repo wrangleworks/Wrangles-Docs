@@ -1,0 +1,10 @@
+[
+  {
+    "quantity": "12",
+    "quantity_integer": 12
+  },
+  {
+    "quantity": "not available",
+    "quantity_integer": 0
+  }
+]

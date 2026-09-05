@@ -1,0 +1,119 @@
+{
+  "format": "wrangles-registry-entry",
+  "registry_version": "0.1.0-pilot",
+  "schema_version": "0.1",
+  "type": "wrangle",
+  "id": "12f3111b-8511-4e42-8d3f-b5302dc3b4e4",
+  "wrangle_name": "round",
+  "namespace": null,
+  "wrangle_key": "round",
+  "aliases": [],
+  "slug": "round",
+  "title": "Round",
+  "description": "Round column(s) to the specified decimals.",
+  "status": "active",
+  "visibility": "public",
+  "tags": [
+    "format",
+    "round"
+  ],
+  "runtime": {
+    "package": "wrangles",
+    "symbol": "wrangles.recipe_wrangles.pandas.round",
+    "contract_status": "verified"
+  },
+  "access": {
+    "ai_powered": false,
+    "requires_account": false,
+    "requires_subscription": false,
+    "requires_external_api_key": false
+  },
+  "capabilities": {
+    "if": true,
+    "where": true,
+    "where_params": true
+  },
+  "parameters": [
+    {
+      "name": "input",
+      "description": "Name of the input column(s).",
+      "required": true,
+      "role": "column-selector",
+      "schema": {
+        "type": [
+          "string",
+          "integer",
+          "array"
+        ]
+      }
+    },
+    {
+      "name": "decimals",
+      "description": "Number of decimal places to round column.",
+      "required": false,
+      "role": "option",
+      "runtime_default": 0,
+      "schema": {
+        "type": "integer"
+      }
+    },
+    {
+      "name": "output",
+      "description": "Name of the output column(s).",
+      "required": false,
+      "role": "column-output",
+      "runtime_default": null,
+      "schema": {
+        "type": [
+          "string",
+          "array",
+          "null"
+        ]
+      }
+    },
+    {
+      "name": "if",
+      "description": "Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`.",
+      "required": false,
+      "schema": {
+        "type": "string"
+      },
+      "role": "common-control"
+    },
+    {
+      "name": "where",
+      "description": "Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`.",
+      "required": false,
+      "schema": {
+        "type": "string"
+      },
+      "role": "common-control"
+    },
+    {
+      "name": "where_params",
+      "description": "Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`.",
+      "required": false,
+      "schema": {
+        "type": [
+          "array",
+          "object"
+        ]
+      },
+      "role": "common-control"
+    }
+  ],
+  "examples": [],
+  "guidance": "Round numbers in a column to the nearest decimal point of your choosing.\n\n## Migrated examples\n#### Rounding a Column\n\n##### Recipe\n\n```yaml\nwrangles:\n  - round:\n      input: Cost Per Unit\n      output: Cost Rounded\n      decimals: 2\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n| Cost Per Unit |\n| --- |\n| 3.14159 |\n| 2.71828 |\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| Cost Per Unit | Cost Rounded |\n| --- | --- |\n| 3.14159 | 3.14 |\n| 2.71828 | 2.72 |\n\n</div>\n\n</div>",
+  "sources": [
+    {
+      "id": "runtime",
+      "resource": "https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/pandas.py",
+      "title": "WranglesPY round implementation"
+    },
+    {
+      "id": "quasi-registry",
+      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/format/_sources/round.md",
+      "title": "Existing round Markdown"
+    }
+  ]
+}

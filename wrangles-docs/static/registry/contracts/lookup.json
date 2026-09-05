@@ -1,0 +1,145 @@
+{
+  "format": "wrangles-registry-entry",
+  "registry_version": "0.1.0-pilot",
+  "schema_version": "0.1",
+  "type": "wrangle",
+  "id": "b3339193-d1cc-4c89-8ed6-901efa6d81be",
+  "wrangle_name": "lookup",
+  "namespace": null,
+  "wrangle_key": "lookup",
+  "aliases": [],
+  "slug": "lookup",
+  "title": "Lookup",
+  "description": "Lookup values from a saved lookup wrangle.",
+  "status": "active",
+  "visibility": "public",
+  "tags": [
+    "lookup"
+  ],
+  "runtime": {
+    "package": "wrangles",
+    "symbol": "wrangles.recipe_wrangles.main.lookup",
+    "contract_status": "verified"
+  },
+  "access": {
+    "ai_powered": false,
+    "requires_account": false,
+    "requires_subscription": false,
+    "requires_external_api_key": false
+  },
+  "capabilities": {
+    "if": true,
+    "where": true,
+    "where_params": true
+  },
+  "parameters": [
+    {
+      "name": "input",
+      "description": "Name of the column(s) to lookup.",
+      "required": true,
+      "role": "column-selector",
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "output",
+      "description": "Name of the output column(s). When n is provided and the output list length equals n, each output column receives the corresponding match. A single output containing a wildcard (*) is expanded into n columns, e.g. \"Top *\" with n: 3 becomes \"Top 1\", \"Top 2\", \"Top 3\".",
+      "required": false,
+      "role": "column-output",
+      "runtime_default": null,
+      "schema": {
+        "type": [
+          "string",
+          "array",
+          "null"
+        ]
+      }
+    },
+    {
+      "name": "model_id",
+      "description": "The model_id to use lookup against.",
+      "required": false,
+      "role": "model-reference",
+      "runtime_default": null,
+      "schema": {
+        "type": [
+          "string",
+          "null"
+        ]
+      }
+    },
+    {
+      "name": "lookup_mode",
+      "description": "How to perform lookups. 'by_row' (default): lookup each row individually. 'by_dataframe': lookup unique values once, copy results to all rows. 'by_matrix': lookup once per matrix permutation.",
+      "required": false,
+      "role": "option",
+      "runtime_default": "by_row",
+      "schema": {
+        "type": "string",
+        "enum": [
+          "by_row",
+          "by_matrix",
+          "by_dataframe"
+        ]
+      }
+    },
+    {
+      "name": "n",
+      "description": "Number of matches to return per input value. When the output list length equals n, each output column receives the corresponding match. Otherwise all n matches are stored as a list in each output column.",
+      "required": false,
+      "role": "option",
+      "runtime_default": null,
+      "schema": {
+        "type": [
+          "integer",
+          "null"
+        ]
+      }
+    },
+    {
+      "name": "if",
+      "description": "Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`.",
+      "required": false,
+      "schema": {
+        "type": "string"
+      },
+      "role": "common-control"
+    },
+    {
+      "name": "where",
+      "description": "Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`.",
+      "required": false,
+      "schema": {
+        "type": "string"
+      },
+      "role": "common-control"
+    },
+    {
+      "name": "where_params",
+      "description": "Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`.",
+      "required": false,
+      "schema": {
+        "type": [
+          "array",
+          "object"
+        ]
+      },
+      "role": "common-control"
+    }
+  ],
+  "examples": [],
+  "guidance": "Look up data from a saved Lookup Wrangle. Data is output as a dictionary if an output is not specified or the output does not match any columns in the lookup. If specific lookup columns are named in the output, they will be output as individual columns.\n\n## Migrated examples\n#### State Example\n\n##### Recipe\n\n```yaml\nwrangles:\n  - lookup:\n      input: State\n      output:\n        - Abbreviation\n      model_id: 55555555-5555-5555\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n| State |\n| --- |\n| Texas |\n| New York |\n| Virginia |\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| Abbreviation |\n| --- |\n| TX |\n| NY |\n| VA |\n\n</div>\n\n</div>",
+  "sources": [
+    {
+      "id": "runtime",
+      "resource": "https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/main.py",
+      "title": "WranglesPY lookup implementation"
+    },
+    {
+      "id": "quasi-registry",
+      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/lookup/_sources/lookup.md",
+      "title": "Existing lookup Markdown"
+    }
+  ]
+}

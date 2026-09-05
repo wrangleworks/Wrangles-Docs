@@ -1,0 +1,110 @@
+{
+  "format": "wrangles-registry-entry",
+  "registry_version": "0.1.0-pilot",
+  "schema_version": "0.1",
+  "type": "wrangle",
+  "id": "93e27737-e966-4ba9-8777-4e96724ebfc4",
+  "wrangle_name": "dictionaries",
+  "namespace": "merge",
+  "wrangle_key": "merge.dictionaries",
+  "aliases": [],
+  "slug": "merge/dictionaries",
+  "title": "Dictionaries",
+  "description": "Take dictionaries in multiple columns and merge them to a single dictionary.",
+  "status": "active",
+  "visibility": "public",
+  "tags": [
+    "merge",
+    "dictionaries"
+  ],
+  "runtime": {
+    "package": "wrangles",
+    "symbol": "wrangles.recipe_wrangles.merge.dictionaries",
+    "contract_status": "verified"
+  },
+  "access": {
+    "ai_powered": false,
+    "requires_account": false,
+    "requires_subscription": false,
+    "requires_external_api_key": false
+  },
+  "capabilities": {
+    "if": true,
+    "where": true,
+    "where_params": true
+  },
+  "parameters": [
+    {
+      "name": "input",
+      "description": "List of input columns.",
+      "required": true,
+      "role": "column-selector",
+      "schema": {
+        "type": "array"
+      }
+    },
+    {
+      "name": "output",
+      "description": "Name of the output column.",
+      "required": true,
+      "role": "column-output",
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "skip_empty",
+      "description": "Whether to skip empty dictionaries when merging.",
+      "required": false,
+      "role": "option",
+      "runtime_default": false,
+      "schema": {
+        "type": "boolean"
+      }
+    },
+    {
+      "name": "if",
+      "description": "Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`.",
+      "required": false,
+      "schema": {
+        "type": "string"
+      },
+      "role": "common-control"
+    },
+    {
+      "name": "where",
+      "description": "Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`.",
+      "required": false,
+      "schema": {
+        "type": "string"
+      },
+      "role": "common-control"
+    },
+    {
+      "name": "where_params",
+      "description": "Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`.",
+      "required": false,
+      "schema": {
+        "type": [
+          "array",
+          "object"
+        ]
+      },
+      "role": "common-control"
+    }
+  ],
+  "examples": [],
+  "guidance": "Take dictionaries in multiple columns and merge them to a single dictionary.\n\n:::note\nFor duplicate keys, the last key in the input list takes precedence in the merged dictionary.\n:::\n\n## Migrated examples\n#### Using Named Columns\n\n##### Recipe\n\n```yaml\nwrangles:\n  - merge.dictionaries:\n      input:\n        - Dict 1\n        - Dict 2\n      output: Merged\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n| Dict 1 | Dict 2 |\n| --- | --- |\n| \\{'First': 'One'\\} | \\{'Second': 'Two'\\} |\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| Merged |\n| --- |\n| \\{'First': 'One', 'Second': 'Two'\\} |\n\n</div>\n\n</div>\n\n#### Using a Wildcard (*)\n\n##### Recipe\n\n```yaml\n# Using a Wildcard (*)\nwrangles:\n  - merge.dictionaries:\n      input: Dict *\n      output: Merged\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n| Dict 1 | Dict 2 |\n| --- | --- |\n| \\{'First': 'One'\\} | \\{'Second': 'Two'\\} |\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| Merged |\n| --- |\n| \\{'First': 'One', 'Second': 'Two'\\} |\n\n</div>\n\n</div>\n\n#### Using a Wildcard (*) With Not Columns\n\n##### Recipe\n\n```yaml\n# Using a Wildcard (*)\nwrangles:\n  - merge.dictionaries:\n      input:\n        - Dict *\n        - -Dict 2\n      output: Merged\n```\n\nNote the extra dash in front of `Dict 2` excludes that column from the wildcard selection.\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n| Dict 1 | Dict 2 | Dict 3 |\n| --- | --- | --- |\n| \\{'First': 'One'\\} | \\{'Second': 'Two'\\} | \\{'Third': 'Three'\\} |\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| Merged |\n| --- |\n| \\{'First': 'One', 'Third': 'Three'\\} |\n\n</div>\n\n</div>",
+  "sources": [
+    {
+      "id": "runtime",
+      "resource": "https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/merge.py",
+      "title": "WranglesPY merge.dictionaries implementation"
+    },
+    {
+      "id": "quasi-registry",
+      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/merge/_sources/dictionaries.md",
+      "title": "Existing merge.dictionaries Markdown"
+    }
+  ]
+}

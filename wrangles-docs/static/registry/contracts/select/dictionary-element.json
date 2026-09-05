@@ -1,0 +1,135 @@
+{
+  "format": "wrangles-registry-entry",
+  "registry_version": "0.1.0-pilot",
+  "schema_version": "0.1",
+  "type": "wrangle",
+  "id": "5adaeada-6da8-464f-84cb-9fb5ecc17e48",
+  "wrangle_name": "dictionary_element",
+  "namespace": "select",
+  "wrangle_key": "select.dictionary_element",
+  "aliases": [],
+  "slug": "select/dictionary-element",
+  "title": "Dictionary Element",
+  "description": "Select one or more element of a dictionary.",
+  "status": "active",
+  "visibility": "public",
+  "tags": [
+    "select",
+    "dictionary-element"
+  ],
+  "runtime": {
+    "package": "wrangles",
+    "symbol": "wrangles.recipe_wrangles.select.dictionary_element",
+    "contract_status": "verified"
+  },
+  "access": {
+    "ai_powered": false,
+    "requires_account": false,
+    "requires_subscription": false,
+    "requires_external_api_key": false
+  },
+  "capabilities": {
+    "if": true,
+    "where": true,
+    "where_params": true
+  },
+  "parameters": [
+    {
+      "name": "input",
+      "description": "Name of the input column.",
+      "required": true,
+      "role": "column-selector",
+      "schema": {
+        "type": [
+          "string",
+          "integer",
+          "array"
+        ]
+      }
+    },
+    {
+      "name": "element",
+      "description": "The key or keys from the dictionary to select. If a single key is provided, the value will be returned If a lists of keys are selected, the result will be a new dictionary.",
+      "required": true,
+      "role": "option",
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "output",
+      "description": "Name of the output column. If omitted, the input column will be replaced.",
+      "required": false,
+      "role": "column-output",
+      "runtime_default": null,
+      "schema": {
+        "type": [
+          "string",
+          "array",
+          "null"
+        ]
+      }
+    },
+    {
+      "name": "default",
+      "description": "Set the default value to return if the specified element doesn't exist. If selecting multiple elements, a dict of defaults can be set.",
+      "required": false,
+      "role": "fallback-value",
+      "runtime_default": "",
+      "schema": {
+        "type": [
+          "string",
+          "number",
+          "array",
+          "object",
+          "boolean",
+          "null"
+        ]
+      }
+    },
+    {
+      "name": "if",
+      "description": "Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`.",
+      "required": false,
+      "schema": {
+        "type": "string"
+      },
+      "role": "common-control"
+    },
+    {
+      "name": "where",
+      "description": "Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`.",
+      "required": false,
+      "schema": {
+        "type": "string"
+      },
+      "role": "common-control"
+    },
+    {
+      "name": "where_params",
+      "description": "Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`.",
+      "required": false,
+      "schema": {
+        "type": [
+          "array",
+          "object"
+        ]
+      },
+      "role": "common-control"
+    }
+  ],
+  "examples": [],
+  "guidance": "Select one or more element of a dictionary.\n\n## Migrated examples\n#### Selecting Dictionary Element Using Where\n\n##### Recipe\n\n```yaml\nwrangles:\n  - select.dictionary_element:\n      input: Properties\n      output: Shapes\n      element: shapes\n      default: square\n      where: Part Number = 1234\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n| Properties | Part Number |\n| --- | --- |\n| \\{'colours': ['red', 'white', 'blue'], 'shapes': 'round', 'materials': 'tungsten'\\} | 1234 |\n| \\{'colours': ['green', 'yellow', 'orange'], 'shapes': 'square', 'materials': 'tungsten'\\} | 5678 |\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| Shapes |\n| --- |\n| round |\n|  |\n\n</div>\n\n</div>\n\n#### Selecting Multiple Dictionary Elements\n\n##### Recipe\n\n```yaml\nwrangles:\n  - select.dictionary_element:\n      input: Properties\n      element:\n        - shapes\n        - materials\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n| Properties |\n| --- |\n| \\{'colours': ['red', 'white', 'blue'], 'shapes': 'round', 'materials': 'tungsten'\\} |\n| \\{'colours': ['green', 'yellow', 'orange'], 'shapes': 'square', 'materials': 'tungsten'\\} |\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| Properties |\n| --- |\n| \\{'shapes': 'round', 'materials': 'tungsten'\\} |\n| \\{'shapes': 'square', 'materials': 'tungsten'\\} |\n\n</div>\n\n</div>\n\n#### Selecting Multiple Dictionary Elements Using a Wildcard\n\n##### Recipe\n\n```yaml\nwrangles:\n  - select.dictionary_element:\n      input: Properties\n      output: Output Dict\n      element:\n        - Col*\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n| Column |\n| --- |\n| \\{'Col1': 'A', 'Col2': 'B', 'Other3': 'C'\\} |\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| Column | Output Dict |\n| --- | --- |\n| \\{'Col1': 'A', 'Col2': 'B', 'Col3': 'C'\\} | \\{'Col1': 'A', 'Col2': 'B'\\} |\n\n</div>\n\n</div>\n\n#### Selecting Multiple Dictionary Elements Using Regex\n\n##### Recipe\n\n```yaml\nwrangles:\n  - select.dictionary_element:\n      input: Properties\n      output: Output Dict\n      element:\n        - \"regex: .*2\"\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n| Column |\n| --- |\n| \\{'Col1': 'A', 'Col2': 'B', 'Col3': 'C'\\} |\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| Column | Output Dict |\n| --- | --- |\n| \\{'Col1': 'A', 'Col2': 'B', 'Col3': 'C'\\} | \\{'Col2': 'B'\\} |\n\n</div>\n\n</div>\n\n#### Selecting Elements While Renaming\n\n##### Recipe\n\n```yaml\nwrangles:\n  - select.dictionary_element:\n      input: Properties\n      output: Output Dict\n      element:\n        - Col1: Column 1\n        - Col2: Column 2\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n| Column |\n| --- |\n| \\{'Col1': 'A', 'Col2': 'B', 'Col3': 'C'\\} |\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| Column | Output Dict |\n| --- | --- |\n| \\{'Col1': 'A', 'Col2': 'B', 'Col3': 'C'\\} | \\{'Column 1': 'A', 'Column 2': 'B'\\} |\n\n</div>\n\n</div>\n\n#### Using Default to Fill Missing Elements\n\n##### Recipe\n\n```yaml\nwrangles:\n  - select.dictionary_element:\n      input: Properties\n      output: Output Dict\n      element:\n        - Col1\n        - Col3\n      default:\n        Col1: Z\n        Col3: Y\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n| Column |\n| --- |\n| \\{'Col1': 'A', 'Col2': 'B', 'Col3': 'C'\\} |\n| \\{'Col1': 'D', 'Col2': 'E'\\} |\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| Column | Output Dict |\n| --- | --- |\n| \\{'Col1': 'A', 'Col2': 'B', 'Col3': 'C'\\} | \\{'Col1': 'A', 'Col3': 'C'\\} |\n| \\{'Col1': 'D', 'Col2': 'E'\\} | \\{'Col1': 'D', 'Col3': 'Y'\\} |\n\n</div>\n\n</div>",
+  "sources": [
+    {
+      "id": "runtime",
+      "resource": "https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/select.py",
+      "title": "WranglesPY select.dictionary_element implementation"
+    },
+    {
+      "id": "quasi-registry",
+      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/select/_sources/dictionary-element.md",
+      "title": "Existing select.dictionary_element Markdown"
+    }
+  ]
+}

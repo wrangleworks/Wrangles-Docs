@@ -1,0 +1,160 @@
+{
+  "format": "wrangles-registry-entry",
+  "registry_version": "0.1.0-pilot",
+  "schema_version": "0.1",
+  "type": "wrangle",
+  "id": "6177808e-aa2d-4d0b-8385-858b16948a5d",
+  "wrangle_name": "log",
+  "namespace": null,
+  "wrangle_key": "log",
+  "aliases": [],
+  "slug": "log",
+  "title": "Log",
+  "description": "Log the current status of the dataframe.",
+  "status": "active",
+  "visibility": "public",
+  "tags": [
+    "utility",
+    "log"
+  ],
+  "runtime": {
+    "package": "wrangles",
+    "symbol": "wrangles.recipe_wrangles.main.log",
+    "contract_status": "verified"
+  },
+  "access": {
+    "ai_powered": false,
+    "requires_account": false,
+    "requires_subscription": false,
+    "requires_external_api_key": false
+  },
+  "capabilities": {
+    "if": true,
+    "where": true,
+    "where_params": true
+  },
+  "parameters": [
+    {
+      "name": "columns",
+      "description": "(Optional, default all columns) List of specific columns to log.",
+      "required": false,
+      "role": "option",
+      "runtime_default": null,
+      "schema": {
+        "type": [
+          "array",
+          "null"
+        ]
+      }
+    },
+    {
+      "name": "write",
+      "description": "(Optional) Allows for an intermediate output to a file/dataframe/database etc.",
+      "required": false,
+      "role": "option",
+      "runtime_default": null,
+      "schema": {
+        "type": [
+          "array",
+          "null"
+        ],
+        "minItems": 1,
+        "items": {
+          "$ref": "#/$defs/write/items"
+        }
+      }
+    },
+    {
+      "name": "warning",
+      "description": "Log a warning to the console.",
+      "required": false,
+      "role": "option",
+      "runtime_default": null,
+      "schema": {
+        "type": [
+          "string",
+          "null"
+        ]
+      }
+    },
+    {
+      "name": "info",
+      "description": "Log info to the console.",
+      "required": false,
+      "role": "option",
+      "runtime_default": null,
+      "schema": {
+        "type": [
+          "string",
+          "null"
+        ]
+      }
+    },
+    {
+      "name": "log_data",
+      "description": "Whether to log a sample of the contents of the dataframe. Default True if not logging to a write, error, warning or info. Default False otherwise.",
+      "required": false,
+      "role": "option",
+      "runtime_default": null,
+      "schema": {
+        "type": [
+          "boolean",
+          "null"
+        ]
+      }
+    },
+    {
+      "name": "error",
+      "description": "Log an error to the console.",
+      "required": false,
+      "role": "option",
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "if",
+      "description": "Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`.",
+      "required": false,
+      "schema": {
+        "type": "string"
+      },
+      "role": "common-control"
+    },
+    {
+      "name": "where",
+      "description": "Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`.",
+      "required": false,
+      "schema": {
+        "type": "string"
+      },
+      "role": "common-control"
+    },
+    {
+      "name": "where_params",
+      "description": "Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`.",
+      "required": false,
+      "schema": {
+        "type": [
+          "array",
+          "object"
+        ]
+      },
+      "role": "common-control"
+    }
+  ],
+  "examples": [],
+  "guidance": "Print the current status of the dataframe. Only a sample of rows is logged.\n\n## Migrated examples\n#### Logging All Columns to Terminal\n\n##### Recipe\n\n```yaml\nwrangles:\n  - log: {}\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n_Logging side-effect; no tabular input sample._\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n_Logs a sample of rows or status information to the configured destination._\n\n</div>\n\n</div>\n\n#### Logging Specific Columns to Terminal\n\n##### Recipe\n\n```yaml\nwrangles:\n  - log:\n      columns:\n        - column1\n        - column2\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n_Logging side-effect; no tabular input sample._\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n_Logs a sample of rows or status information to the configured destination._\n\n</div>\n\n</div>\n\n#### Logging to a File\n\n##### Recipe\n\n```yaml\nwrangles:\n  - log:\n      write:\n        - file:\n            name: output/filepath\n            columns:\n              - column 1\n              - column 2\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n_Logging side-effect; no tabular input sample._\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n_Logs a sample of rows or status information to the configured destination._\n\n</div>\n\n</div>\n\n#### Native Variables\n\n| Variable | Function |\n| --- | --- |\n| `${column_count}` | Number of columns. |\n| `${columns}` | List of all columns. |\n| `${df}` | Current dataframe. |\n| `${row_count}` | Number of visible rows processed in each batch. |",
+  "sources": [
+    {
+      "id": "runtime",
+      "resource": "https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/main.py",
+      "title": "WranglesPY log implementation"
+    },
+    {
+      "id": "quasi-registry",
+      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/utility/_sources/log.md",
+      "title": "Existing log Markdown"
+    }
+  ]
+}

@@ -1,0 +1,179 @@
+{
+  "format": "wrangles-registry-entry",
+  "registry_version": "0.1.0-pilot",
+  "schema_version": "0.1",
+  "type": "wrangle",
+  "id": "23bbdb86-fd13-4b78-8fff-a7a76769ab63",
+  "wrangle_name": "properties",
+  "namespace": "extract",
+  "wrangle_key": "extract.properties",
+  "aliases": [],
+  "slug": "extract/properties",
+  "title": "Properties",
+  "description": "Extract text properties from the input. Requires WrangleWorks Account.",
+  "status": "active",
+  "visibility": "public",
+  "tags": [
+    "extract",
+    "properties"
+  ],
+  "runtime": {
+    "package": "wrangles",
+    "symbol": "wrangles.recipe_wrangles.extract.properties",
+    "contract_status": "verified"
+  },
+  "access": {
+    "ai_powered": false,
+    "requires_account": true,
+    "requires_subscription": false,
+    "requires_external_api_key": false
+  },
+  "capabilities": {
+    "if": true,
+    "where": true,
+    "where_params": true
+  },
+  "parameters": [
+    {
+      "name": "input",
+      "description": "Name of the input column.",
+      "required": true,
+      "role": "column-selector",
+      "schema": {
+        "type": [
+          "string",
+          "integer",
+          "array"
+        ]
+      }
+    },
+    {
+      "name": "output",
+      "description": "Name of the output columns.",
+      "required": true,
+      "role": "column-output",
+      "schema": {
+        "type": [
+          "string",
+          "array"
+        ]
+      }
+    },
+    {
+      "name": "property_type",
+      "description": "The specific type of properties to extract.",
+      "required": false,
+      "role": "option",
+      "runtime_default": null,
+      "schema": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "enum": [
+          "Colours",
+          "Materials",
+          "Shapes",
+          "Standards"
+        ]
+      }
+    },
+    {
+      "name": "return_data_type",
+      "description": "Legacy format option. Prefer output_format.",
+      "required": false,
+      "role": "option",
+      "runtime_default": "list",
+      "schema": {
+        "type": "string",
+        "enum": [
+          "list",
+          "string"
+        ]
+      }
+    },
+    {
+      "name": "first_element",
+      "description": "Get the first element from results.",
+      "required": false,
+      "role": "option",
+      "runtime_default": false,
+      "schema": {
+        "type": "boolean"
+      }
+    },
+    {
+      "name": "output_format",
+      "description": "Format of the extract output.",
+      "required": false,
+      "role": "column-output",
+      "runtime_default": null,
+      "schema": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "enum": [
+          "list",
+          "dictionary",
+          "columns",
+          "concatenate"
+        ]
+      }
+    },
+    {
+      "name": "char",
+      "description": "Character to use when output_format is concatenate.",
+      "required": false,
+      "role": "option",
+      "runtime_default": ", ",
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "if",
+      "description": "Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`.",
+      "required": false,
+      "schema": {
+        "type": "string"
+      },
+      "role": "common-control"
+    },
+    {
+      "name": "where",
+      "description": "Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`.",
+      "required": false,
+      "schema": {
+        "type": "string"
+      },
+      "role": "common-control"
+    },
+    {
+      "name": "where_params",
+      "description": "Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`.",
+      "required": false,
+      "schema": {
+        "type": [
+          "array",
+          "object"
+        ]
+      },
+      "role": "common-control"
+    }
+  ],
+  "examples": [],
+  "guidance": "Extract categorical properties from unstructured text, such as colours or materials. Requires WrangleWorks Account.\n\n## Migrated examples\n#### Extracting All Properties\n\n##### Recipe\n\n```yaml\nwrangles:\n  - extract.properties:\n      input: water bottles\n      output: properties\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n_No sample available._\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| Products | Product Properties |\n| --- | --- |\n| Stainless Steel Blue Bottle | \\{'Colours': ['Blue'], 'Materials': ['Stainless Steel']\\} |\n| Plastic Yellow Bottle | \\{'Colours': ['Yellow'], 'Materials': ['Plastic']\\} |\n\n</div>\n\n</div>\n\n#### Extracting Colour\n\n##### Recipe\n\n```yaml\nwrangles:\n  - extract.properties:\n      input: water bottles\n      output: properties\n      property_type: colours # Optional\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n_No sample available._\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| Products | Product Colours |\n| --- | --- |\n| Stainless Steel Blue Bottle | ['Blue'] |\n| Plastic Yellow Bottle | ['Yellow'] |\n\n</div>\n\n</div>",
+  "sources": [
+    {
+      "id": "runtime",
+      "resource": "https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/extract.py",
+      "title": "WranglesPY extract.properties implementation"
+    },
+    {
+      "id": "quasi-registry",
+      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/extract/_sources/properties.md",
+      "title": "Existing extract.properties Markdown"
+    }
+  ]
+}

@@ -1,0 +1,118 @@
+{
+  "format": "wrangles-registry-entry",
+  "registry_version": "0.1.0-pilot",
+  "schema_version": "0.1",
+  "type": "wrangle",
+  "id": "5cdd9857-0c77-43bf-80d7-d0a8cb6f980b",
+  "wrangle_name": "left",
+  "namespace": "select",
+  "wrangle_key": "select.left",
+  "aliases": [],
+  "slug": "select/left",
+  "title": "Left",
+  "description": "Return characters from the left of text. Strings shorter than the length defined will be unaffected.",
+  "status": "active",
+  "visibility": "public",
+  "tags": [
+    "select",
+    "left"
+  ],
+  "runtime": {
+    "package": "wrangles",
+    "symbol": "wrangles.recipe_wrangles.select.left",
+    "contract_status": "verified"
+  },
+  "access": {
+    "ai_powered": false,
+    "requires_account": false,
+    "requires_subscription": false,
+    "requires_external_api_key": false
+  },
+  "capabilities": {
+    "if": true,
+    "where": true,
+    "where_params": true
+  },
+  "parameters": [
+    {
+      "name": "input",
+      "description": "Name of the column(s) to edit.",
+      "required": true,
+      "role": "column-selector",
+      "schema": {
+        "type": [
+          "string",
+          "integer",
+          "array"
+        ]
+      }
+    },
+    {
+      "name": "length",
+      "description": "Number of characters to include from the left. If negative, this will remove the specified number of characters from the left. May not equal 0.",
+      "required": true,
+      "role": "option",
+      "schema": {
+        "type": "integer"
+      }
+    },
+    {
+      "name": "output",
+      "description": "Name of the output column(s).",
+      "required": false,
+      "role": "column-output",
+      "runtime_default": null,
+      "schema": {
+        "type": [
+          "string",
+          "array",
+          "null"
+        ]
+      }
+    },
+    {
+      "name": "if",
+      "description": "Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`.",
+      "required": false,
+      "schema": {
+        "type": "string"
+      },
+      "role": "common-control"
+    },
+    {
+      "name": "where",
+      "description": "Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`.",
+      "required": false,
+      "schema": {
+        "type": "string"
+      },
+      "role": "common-control"
+    },
+    {
+      "name": "where_params",
+      "description": "Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`.",
+      "required": false,
+      "schema": {
+        "type": [
+          "array",
+          "object"
+        ]
+      },
+      "role": "common-control"
+    }
+  ],
+  "examples": [],
+  "guidance": "Select characters from the left of the input. Using a negative length reverses the side of selection, selecting from the right.\n\n## Migrated examples\n#### Selecting Three Leftmost Elements\n\n##### Recipe\n\n```yaml\nwrangles:\n  - select.left:\n      input: Column\n      output: Result\n      length: 3\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n| Column |\n| --- |\n| pudding |\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| Result |\n| --- |\n| pud |\n\n</div>\n\n</div>",
+  "sources": [
+    {
+      "id": "runtime",
+      "resource": "https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/select.py",
+      "title": "WranglesPY select.left implementation"
+    },
+    {
+      "id": "quasi-registry",
+      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/select/_sources/left.md",
+      "title": "Existing select.left Markdown"
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+---
+schema_version: "0.1"
+type: wrangle
+id: 52384f01-7164-404f-8615-063e7677a588
+wrangle_name: data_type
+namespace: convert
+title: Convert Data Type
+description: Convert values to strings, numbers, booleans, or datetimes.
+wrangle_key: convert.data_type
+aliases: []
+slug: convert/data-type
+status: active
+visibility: public
+tags:
+  - convert
+  - data-type
+  - validation
+runtime:
+  package: wrangles
+  symbol: wrangles.recipe_wrangles.convert.data_type
+  contract_status: verified
+access:
+  ai_powered: false
+  requires_account: false
+  requires_subscription: false
+  requires_external_api_key: false
+capabilities:
+  where: true
+  where_params: true
+  if: true
+parameters:
+  - name: input
+    description: Name, index, or list of input columns.
+    required: true
+    role: column-selector
+    schema:
+      type: [string, integer, array]
+      items:
+        type: [string, integer]
+  - name: output
+    description: Name or list of output columns. If omitted, each input column is overwritten.
+    required: false
+    role: column-output
+    runtime_default: null
+    schema:
+      type: [string, array]
+      items:
+        type: string
+  - name: data_type
+    description: Data type to produce.
+    required: false
+    role: option
+    runtime_default: str
+    schema:
+      type: string
+      enum: [str, float, int, bool, datetime]
+  - name: default
+    description: Value returned when conversion fails. If omitted, the original value is retained.
+    required: false
+    role: fallback-value
+    runtime_default: null
+    schema:
+      type: [string, number, array, object, boolean, "null"]
+examples:
+  - id: integer-with-fallback
+    title: Convert quantities to integers with a fallback
+    recipe: |-
+      wrangles:
+        - convert.data_type:
+            input: quantity
+            output: quantity_integer
+            data_type: int
+            default: 0
+    input_fixture: ../../fixtures/convert.data_type/integer-with-fallback.input.json
+    output_fixture: ../../fixtures/convert.data_type/integer-with-fallback.output.json
+    verification: static
+sources:
+  - id: runtime
+    resource: https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/convert.py
+    title: WranglesPY convert.data_type implementation
+  - id: legacy-docs
+    resource: https://wrangles.io/python/recipes/wrangles/convert#data-type
+    title: Legacy convert.data_type documentation
+---
+
+# Convert Data Type
+
+Use `convert.data_type` when a recipe needs consistent Python-compatible
+values rather than display-only formatting.
+
+## Behavior
+
+- Supported target types are `str`, `float`, `int`, `bool`, and `datetime`.
+- Omitting `data_type` uses the runtime default `str`.
+- Omitting `output` overwrites the input column.
+- Failed conversions retain the original value unless `default` is supplied.
+- Additional undocumented keyword arguments are implementation details and are
+  not part of the public Registry contract.

@@ -1,0 +1,144 @@
+{
+  "format": "wrangles-registry-entry",
+  "registry_version": "0.1.0-pilot",
+  "schema_version": "0.1",
+  "type": "wrangle",
+  "id": "e370dfcf-b0fe-4c48-8a52-6f34c47e7978",
+  "wrangle_name": "from_json",
+  "namespace": "convert",
+  "wrangle_key": "convert.from_json",
+  "aliases": [],
+  "slug": "convert/from-json",
+  "title": "Convert From JSON",
+  "description": "Parse JSON text into lists, objects, scalars, booleans, or null values.",
+  "status": "active",
+  "visibility": "public",
+  "tags": [
+    "convert",
+    "json",
+    "structured-data"
+  ],
+  "runtime": {
+    "package": "wrangles",
+    "symbol": "wrangles.recipe_wrangles.convert.from_json",
+    "contract_status": "verified"
+  },
+  "access": {
+    "ai_powered": false,
+    "requires_account": false,
+    "requires_subscription": false,
+    "requires_external_api_key": false
+  },
+  "capabilities": {
+    "where": true,
+    "where_params": true,
+    "if": true
+  },
+  "parameters": [
+    {
+      "name": "input",
+      "description": "Name, index, or list of columns containing valid JSON text.",
+      "required": true,
+      "role": "column-selector",
+      "schema": {
+        "type": [
+          "string",
+          "integer",
+          "array"
+        ],
+        "items": {
+          "type": [
+            "string",
+            "integer"
+          ]
+        }
+      }
+    },
+    {
+      "name": "output",
+      "description": "Name or list of output columns. If omitted, each input column is overwritten.",
+      "required": false,
+      "role": "column-output",
+      "runtime_default": null,
+      "schema": {
+        "type": [
+          "string",
+          "array"
+        ],
+        "items": {
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "default",
+      "description": "Value returned for empty or invalid JSON. A list may supply one fallback per input column.",
+      "required": false,
+      "role": "fallback-value",
+      "runtime_default": null,
+      "schema": {
+        "type": [
+          "string",
+          "number",
+          "array",
+          "object",
+          "boolean",
+          "null"
+        ]
+      }
+    },
+    {
+      "name": "where",
+      "description": "Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`.",
+      "required": false,
+      "schema": {
+        "type": "string"
+      },
+      "role": "common-control"
+    },
+    {
+      "name": "where_params",
+      "description": "Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`.",
+      "required": false,
+      "schema": {
+        "type": [
+          "array",
+          "object"
+        ]
+      },
+      "role": "common-control"
+    },
+    {
+      "name": "if",
+      "description": "Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`.",
+      "required": false,
+      "schema": {
+        "type": "string"
+      },
+      "role": "common-control"
+    }
+  ],
+  "examples": [
+    {
+      "id": "parse-structured-values",
+      "title": "Parse JSON objects and lists",
+      "recipe": "wrangles:\n  - convert.from_json:\n      input: attributes_json\n      output: attributes",
+      "input_fixture": "/registry/fixtures/convert.from_json/parse-structured-values.input.json",
+      "output_fixture": "/registry/fixtures/convert.from_json/parse-structured-values.output.json",
+      "verification": "static"
+    }
+  ],
+  "guidance": "Use `convert.from_json` when a column contains JSON text that later wrangles\nneed to treat as structured values.\n\n## Behavior\n\n- Each non-fallback value is parsed with Python's JSON parser.\n- Omitting `output` overwrites the input column.\n- Multiple input columns may share one fallback or use one fallback per input.\n- Invalid JSON raises an error unless a non-null fallback is supplied.\n- Permissive Python-literal or YAML-like parsing is outside this wrangle's\n  contract.",
+  "sources": [
+    {
+      "id": "runtime",
+      "resource": "https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/convert.py",
+      "title": "WranglesPY convert.from_json implementation"
+    },
+    {
+      "id": "legacy-docs",
+      "resource": "https://wrangles.io/python/recipes/wrangles/convert#from-json",
+      "title": "Legacy convert.from_json documentation"
+    }
+  ]
+}

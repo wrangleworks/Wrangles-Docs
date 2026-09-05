@@ -1,0 +1,119 @@
+{
+  "format": "wrangles-registry-entry",
+  "registry_version": "0.1.0-pilot",
+  "schema_version": "0.1",
+  "type": "wrangle",
+  "id": "7c55752e-70ab-4809-8298-c59436127457",
+  "wrangle_name": "fraction_to_decimal",
+  "namespace": "convert",
+  "wrangle_key": "convert.fraction_to_decimal",
+  "aliases": [],
+  "slug": "convert/fraction-to-decimal",
+  "title": "Fraction to Decimal",
+  "description": "Convert fractions to decimals.",
+  "status": "active",
+  "visibility": "public",
+  "tags": [
+    "convert",
+    "fraction-to-decimal"
+  ],
+  "runtime": {
+    "package": "wrangles",
+    "symbol": "wrangles.recipe_wrangles.convert.fraction_to_decimal",
+    "contract_status": "verified"
+  },
+  "access": {
+    "ai_powered": false,
+    "requires_account": false,
+    "requires_subscription": false,
+    "requires_external_api_key": false
+  },
+  "capabilities": {
+    "if": true,
+    "where": true,
+    "where_params": true
+  },
+  "parameters": [
+    {
+      "name": "input",
+      "description": "Name of the input column.",
+      "required": true,
+      "role": "column-selector",
+      "schema": {
+        "type": [
+          "string",
+          "integer",
+          "array"
+        ]
+      }
+    },
+    {
+      "name": "decimals",
+      "description": "Number of decimals to round fraction.",
+      "required": false,
+      "role": "option",
+      "runtime_default": 4,
+      "schema": {
+        "type": "integer"
+      }
+    },
+    {
+      "name": "output",
+      "description": "Name of the output colum.",
+      "required": false,
+      "role": "column-output",
+      "runtime_default": null,
+      "schema": {
+        "type": [
+          "string",
+          "array",
+          "null"
+        ]
+      }
+    },
+    {
+      "name": "if",
+      "description": "Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`.",
+      "required": false,
+      "schema": {
+        "type": "string"
+      },
+      "role": "common-control"
+    },
+    {
+      "name": "where",
+      "description": "Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`.",
+      "required": false,
+      "schema": {
+        "type": "string"
+      },
+      "role": "common-control"
+    },
+    {
+      "name": "where_params",
+      "description": "Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`.",
+      "required": false,
+      "schema": {
+        "type": [
+          "array",
+          "object"
+        ]
+      },
+      "role": "common-control"
+    }
+  ],
+  "examples": [],
+  "guidance": "Convert fractions to decimals.\n\n## Migrated examples\n#### Converting a Column of Fractions to Decimals\n\n##### Recipe\n\n```yaml\nwrangles:\n  - convert.fraction_to_decimal:\n      input: fractions\n      output: decimals\n      decimals: 3\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n| fractions |\n| --- |\n| 3/32 |\n| 25/64 |\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| decimals |\n| --- |\n| 0.094 |\n| 0.391 |\n\n</div>\n\n</div>",
+  "sources": [
+    {
+      "id": "runtime",
+      "resource": "https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/convert.py",
+      "title": "WranglesPY convert.fraction_to_decimal implementation"
+    },
+    {
+      "id": "quasi-registry",
+      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/convert/_sources/fraction-to-decimal.md",
+      "title": "Existing convert.fraction_to_decimal Markdown"
+    }
+  ]
+}

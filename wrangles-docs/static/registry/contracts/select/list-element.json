@@ -1,0 +1,136 @@
+{
+  "format": "wrangles-registry-entry",
+  "registry_version": "0.1.0-pilot",
+  "schema_version": "0.1",
+  "type": "wrangle",
+  "id": "ec40495d-d29a-4f62-86dd-eafa43cf388a",
+  "wrangle_name": "list_element",
+  "namespace": "select",
+  "wrangle_key": "select.list_element",
+  "aliases": [],
+  "slug": "select/list-element",
+  "title": "List Element",
+  "description": "Select a numbered element of a list (zero indexed).",
+  "status": "active",
+  "visibility": "public",
+  "tags": [
+    "select",
+    "list-element"
+  ],
+  "runtime": {
+    "package": "wrangles",
+    "symbol": "wrangles.recipe_wrangles.select.list_element",
+    "contract_status": "verified"
+  },
+  "access": {
+    "ai_powered": false,
+    "requires_account": false,
+    "requires_subscription": false,
+    "requires_external_api_key": false
+  },
+  "capabilities": {
+    "if": true,
+    "where": true,
+    "where_params": true
+  },
+  "parameters": [
+    {
+      "name": "input",
+      "description": "Name of the input column.",
+      "required": true,
+      "role": "column-selector",
+      "schema": {
+        "type": [
+          "string",
+          "integer",
+          "array"
+        ]
+      }
+    },
+    {
+      "name": "output",
+      "description": "Name of the output column.",
+      "required": false,
+      "role": "column-output",
+      "runtime_default": null,
+      "schema": {
+        "type": [
+          "string",
+          "array",
+          "null"
+        ]
+      }
+    },
+    {
+      "name": "element",
+      "description": "The numbered element of the list to select. Starts from zero. This may use python slicing syntax to select a subset of the list.",
+      "required": false,
+      "role": "option",
+      "runtime_default": 0,
+      "schema": {
+        "type": "integer"
+      }
+    },
+    {
+      "name": "default",
+      "description": "Set the default value to return if the specified element doesn't exist.",
+      "required": false,
+      "role": "fallback-value",
+      "runtime_default": "",
+      "schema": {
+        "type": [
+          "string",
+          "number",
+          "array",
+          "object",
+          "boolean",
+          "null"
+        ]
+      }
+    },
+    {
+      "name": "if",
+      "description": "Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`.",
+      "required": false,
+      "schema": {
+        "type": "string"
+      },
+      "role": "common-control"
+    },
+    {
+      "name": "where",
+      "description": "Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`.",
+      "required": false,
+      "schema": {
+        "type": "string"
+      },
+      "role": "common-control"
+    },
+    {
+      "name": "where_params",
+      "description": "Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`.",
+      "required": false,
+      "schema": {
+        "type": [
+          "array",
+          "object"
+        ]
+      },
+      "role": "common-control"
+    }
+  ],
+  "examples": [],
+  "guidance": "Select a numbered element of a list (zero indexed).\n\n## Migrated examples\n#### Selecting the Second Element in a List\n\n##### Recipe\n\n```yaml\nwrangles:\n  - select.list_element:\n      input: Col1\n      output: Second Element\n      element: 2 # Zero indexed\n      default: F\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n| Col1 |\n| --- |\n| ['A', 'B', 'C'] |\n| ['D', 'E'] |\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| Third Element |\n| --- |\n| C |\n| F |\n\n</div>\n\n</div>",
+  "sources": [
+    {
+      "id": "runtime",
+      "resource": "https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/select.py",
+      "title": "WranglesPY select.list_element implementation"
+    },
+    {
+      "id": "quasi-registry",
+      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/select/_sources/list-element.md",
+      "title": "Existing select.list_element Markdown"
+    }
+  ]
+}

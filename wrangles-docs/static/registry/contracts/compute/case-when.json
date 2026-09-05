@@ -1,0 +1,137 @@
+{
+  "format": "wrangles-registry-entry",
+  "registry_version": "0.1.0-pilot",
+  "schema_version": "0.1",
+  "type": "wrangle",
+  "id": "9a9662e4-53d1-4932-8adf-bc3e7aa364ad",
+  "wrangle_name": "case_when",
+  "namespace": "compute",
+  "wrangle_key": "compute.case_when",
+  "aliases": [],
+  "slug": "compute/case-when",
+  "title": "Case When",
+  "description": "Assign values to a column based on conditional logic.",
+  "status": "active",
+  "visibility": "public",
+  "tags": [
+    "compute",
+    "case-when"
+  ],
+  "runtime": {
+    "package": "wrangles",
+    "symbol": "wrangles.recipe_wrangles.compute.case_when",
+    "contract_status": "verified"
+  },
+  "access": {
+    "ai_powered": false,
+    "requires_account": false,
+    "requires_subscription": false,
+    "requires_external_api_key": false
+  },
+  "capabilities": {
+    "if": true,
+    "where": true,
+    "where_params": true
+  },
+  "parameters": [
+    {
+      "name": "output",
+      "description": "Name of the output column.",
+      "required": true,
+      "role": "column-output",
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "cases",
+      "description": "List of conditions and corresponding values.",
+      "required": true,
+      "role": "option",
+      "schema": {
+        "type": "array",
+        "minItems": 1,
+        "items": {
+          "type": "object",
+          "required": [
+            "condition",
+            "value"
+          ],
+          "properties": {
+            "condition": {
+              "type": "string"
+            },
+            "value": {
+              "type": [
+                "string",
+                "number",
+                "integer",
+                "boolean"
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "default",
+      "description": "Value to assign if no conditions are met. Default None.",
+      "required": false,
+      "role": "fallback-value",
+      "runtime_default": null,
+      "schema": {
+        "type": [
+          "string",
+          "number",
+          "integer",
+          "boolean",
+          "null"
+        ]
+      }
+    },
+    {
+      "name": "if",
+      "description": "Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`.",
+      "required": false,
+      "schema": {
+        "type": "string"
+      },
+      "role": "common-control"
+    },
+    {
+      "name": "where",
+      "description": "Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`.",
+      "required": false,
+      "schema": {
+        "type": "string"
+      },
+      "role": "common-control"
+    },
+    {
+      "name": "where_params",
+      "description": "Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`.",
+      "required": false,
+      "schema": {
+        "type": [
+          "array",
+          "object"
+        ]
+      },
+      "role": "common-control"
+    }
+  ],
+  "examples": [],
+  "guidance": "Assign values to a column based on conditional logic.\n\n## Migrated examples\n#### Assigning Letter Grades\n\n##### Recipe\n\n```yaml\nwrangles:\n  - compute.case_when:\n      output: Letter Grade\n      cases:\n        - condition: Grade > 89\n          value: 'A'\n        - condition: 90 > Grade > 79\n          value: 'B'\n        - condition: 80 > Grade > 69\n          value: 'C'\n        - condition: 70 > Grade\n          value: 'F'\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n| Student | Grade |\n| --- | --- |\n| Billy | 62 |\n| Sarah | 91 |\n| Timmy | 88 |\n| Tammy | 74 |\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| Student | Grade | Letter Grade |\n| --- | --- | --- |\n| Billy | 62 | F |\n| Sarah | 91 | A |\n| Timmy | 88 | B |\n| Tammy | 74 | C |\n\n</div>\n\n</div>\n\n#### Assigning Letter Grades with Attendance\n\nConditions can be combined so multiple criteria must be met before assigning a value.\n\n##### Recipe\n\n```yaml\nwrangles:\n  - compute.case_when:\n      output: Letter Grade\n      cases:\n        - condition: (Grade > .89) & (Attendance == 'Good')\n          value: 'A'\n        - condition: (.90 > Grade > .79) & (Attendance == 'Good')\n          value: 'B'\n        - condition: (.80 > Grade > .69) & (Attendance == 'Good')\n          value: 'C'\n        - condition: (.70 > Grade) or (Attendance == 'Poor')\n          value: 'F'\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n| Student | Grade | Attendance |\n| --- | --- | --- |\n| Billy | 62 | Poor |\n| Sarah | 91 | Poor |\n| Timmy | 88 | Good |\n| Tammy | 74 | Good |\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| Student | Grade | Attendance | Letter Grade |\n| --- | --- | --- | --- |\n| Billy | 62 | Poor | F |\n| Sarah | 91 | Poor | F |\n| Timmy | 88 | Good | B |\n| Tammy | 74 | Good | C |\n\n</div>\n\n</div>",
+  "sources": [
+    {
+      "id": "runtime",
+      "resource": "https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/compute.py",
+      "title": "WranglesPY compute.case_when implementation"
+    },
+    {
+      "id": "quasi-registry",
+      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/compute/_sources/case-when.md",
+      "title": "Existing compute.case_when Markdown"
+    }
+  ]
+}

@@ -1,0 +1,150 @@
+{
+  "format": "wrangles-registry-entry",
+  "registry_version": "0.1.0-pilot",
+  "schema_version": "0.1",
+  "type": "wrangle",
+  "id": "728fc87a-a20d-4efa-833a-612e0b5eadc3",
+  "wrangle_name": "html",
+  "namespace": "extract",
+  "wrangle_key": "extract.html",
+  "aliases": [],
+  "slug": "extract/html",
+  "title": "HTML",
+  "description": "Extract elements from strings containing html. Requires WrangleWorks Account.",
+  "status": "active",
+  "visibility": "public",
+  "tags": [
+    "extract",
+    "html"
+  ],
+  "runtime": {
+    "package": "wrangles",
+    "symbol": "wrangles.recipe_wrangles.extract.html",
+    "contract_status": "verified"
+  },
+  "access": {
+    "ai_powered": false,
+    "requires_account": true,
+    "requires_subscription": false,
+    "requires_external_api_key": false
+  },
+  "capabilities": {
+    "if": true,
+    "where": true,
+    "where_params": true
+  },
+  "parameters": [
+    {
+      "name": "input",
+      "description": "Name or list of input columns.",
+      "required": true,
+      "role": "column-selector",
+      "schema": {
+        "type": [
+          "string",
+          "integer",
+          "array"
+        ]
+      }
+    },
+    {
+      "name": "data_type",
+      "description": "The type of data to extract.",
+      "required": true,
+      "role": "option",
+      "schema": {
+        "type": "string",
+        "enum": [
+          "text",
+          "links"
+        ]
+      }
+    },
+    {
+      "name": "output",
+      "description": "Name or list of output columns.",
+      "required": false,
+      "role": "column-output",
+      "runtime_default": null,
+      "schema": {
+        "type": [
+          "string",
+          "array",
+          "null"
+        ]
+      }
+    },
+    {
+      "name": "output_format",
+      "description": "Format of the extract output.",
+      "required": false,
+      "role": "column-output",
+      "runtime_default": null,
+      "schema": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "enum": [
+          "list",
+          "columns",
+          "concatenate"
+        ]
+      }
+    },
+    {
+      "name": "char",
+      "description": "Character to use when output_format is concatenate.",
+      "required": false,
+      "role": "option",
+      "runtime_default": ", ",
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "if",
+      "description": "Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`.",
+      "required": false,
+      "schema": {
+        "type": "string"
+      },
+      "role": "common-control"
+    },
+    {
+      "name": "where",
+      "description": "Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`.",
+      "required": false,
+      "schema": {
+        "type": "string"
+      },
+      "role": "common-control"
+    },
+    {
+      "name": "where_params",
+      "description": "Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`.",
+      "required": false,
+      "schema": {
+        "type": [
+          "array",
+          "object"
+        ]
+      },
+      "role": "common-control"
+    }
+  ],
+  "examples": [],
+  "guidance": "Extract text and links from HTML elements. Requires WrangleWorks Account.\n\n## Migrated examples\n#### Extracting Text From HTML\n\n##### Recipe\n\n```yaml\nwrangles:\n  - extract.html:\n      input: HTML\n      output: Text\n      data_type: text\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n_No sample available._\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| HTML | Text |\n| --- | --- |\n| ` |  |\n\n</div>\n\n</div>\n\n#### Extracting Links From HTML\n\n##### Recipe\n\n```yaml\nwrangles:\n  - extract.html:\n      input: HTML\n      output: Links\n      data_type: links\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n_No sample available._\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| HTML | Links |\n| --- | --- |\n| ` |  |\n\n</div>\n\n</div>",
+  "sources": [
+    {
+      "id": "runtime",
+      "resource": "https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/extract.py",
+      "title": "WranglesPY extract.html implementation"
+    },
+    {
+      "id": "quasi-registry",
+      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/extract/_sources/html.md",
+      "title": "Existing extract.html Markdown"
+    }
+  ]
+}

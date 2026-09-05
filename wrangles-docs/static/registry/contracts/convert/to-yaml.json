@@ -1,0 +1,138 @@
+{
+  "format": "wrangles-registry-entry",
+  "registry_version": "0.1.0-pilot",
+  "schema_version": "0.1",
+  "type": "wrangle",
+  "id": "4cd6252f-ce47-4a9d-8272-3d87e875b72a",
+  "wrangle_name": "to_yaml",
+  "namespace": "convert",
+  "wrangle_key": "convert.to_yaml",
+  "aliases": [],
+  "slug": "convert/to-yaml",
+  "title": "To YAML",
+  "description": "Convert an object to a YAML representation.",
+  "status": "active",
+  "visibility": "public",
+  "tags": [
+    "convert",
+    "to-yaml"
+  ],
+  "runtime": {
+    "package": "wrangles",
+    "symbol": "wrangles.recipe_wrangles.convert.to_yaml",
+    "contract_status": "verified"
+  },
+  "access": {
+    "ai_powered": false,
+    "requires_account": false,
+    "requires_subscription": false,
+    "requires_external_api_key": false
+  },
+  "capabilities": {
+    "if": true,
+    "where": true,
+    "where_params": true
+  },
+  "parameters": [
+    {
+      "name": "input",
+      "description": "Name of the input column.",
+      "required": true,
+      "role": "column-selector",
+      "schema": {
+        "type": [
+          "string",
+          "integer",
+          "array"
+        ]
+      }
+    },
+    {
+      "name": "output",
+      "description": "Name of the output column. If omitted, the input column will be overwritten.",
+      "required": false,
+      "role": "column-output",
+      "runtime_default": null,
+      "schema": {
+        "type": [
+          "string",
+          "array",
+          "null"
+        ]
+      }
+    },
+    {
+      "name": "sort_keys",
+      "description": "If sort_keys is true (default: False), then the output of dictionaries will be sorted by key.",
+      "required": false,
+      "role": "option",
+      "runtime_default": false,
+      "schema": {
+        "type": "boolean"
+      }
+    },
+    {
+      "name": "allow_unicode",
+      "description": "Allow Unicode value accepted by the runtime.",
+      "required": false,
+      "role": "option",
+      "runtime_default": true,
+      "schema": {
+        "type": "boolean"
+      }
+    },
+    {
+      "name": "indent",
+      "description": "Specify the number of spaces for indentation to specify nested elements.",
+      "required": false,
+      "role": "option",
+      "schema": {
+        "type": "integer"
+      }
+    },
+    {
+      "name": "if",
+      "description": "Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`.",
+      "required": false,
+      "schema": {
+        "type": "string"
+      },
+      "role": "common-control"
+    },
+    {
+      "name": "where",
+      "description": "Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`.",
+      "required": false,
+      "schema": {
+        "type": "string"
+      },
+      "role": "common-control"
+    },
+    {
+      "name": "where_params",
+      "description": "Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`.",
+      "required": false,
+      "schema": {
+        "type": [
+          "array",
+          "object"
+        ]
+      },
+      "role": "common-control"
+    }
+  ],
+  "examples": [],
+  "guidance": "Convert an object to a YAML representation.\n\n## Migrated examples\n#### Convert a Dictionary to YAML\n\n##### Recipe\n\n```yaml\nwrangles:\n  - convert.to_yaml:\n      input: column 1\n      indent: 2\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n```python\n{\n  'Product Specs': {\n    'length': '6 inch',\n    'voltage': '24V',\n    'weight': '3lb'\n  }\n}\n```\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n```yaml\nProduct Specs:\n  length: 6 inch\n  voltage: 24V\n  weight: 3lb\n```\n\n</div>\n\n</div>",
+  "sources": [
+    {
+      "id": "runtime",
+      "resource": "https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/convert.py",
+      "title": "WranglesPY convert.to_yaml implementation"
+    },
+    {
+      "id": "quasi-registry",
+      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/convert/_sources/to-yaml.md",
+      "title": "Existing convert.to_yaml Markdown"
+    }
+  ]
+}

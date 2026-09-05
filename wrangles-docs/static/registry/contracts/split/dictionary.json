@@ -1,0 +1,136 @@
+{
+  "format": "wrangles-registry-entry",
+  "registry_version": "0.1.0-pilot",
+  "schema_version": "0.1",
+  "type": "wrangle",
+  "id": "06ca98e4-d026-43f7-84eb-af246d401ba9",
+  "wrangle_name": "dictionary",
+  "namespace": "split",
+  "wrangle_key": "split.dictionary",
+  "aliases": [],
+  "slug": "split/dictionary",
+  "title": "Dictionary",
+  "description": "Split one or more dictionaries into columns. The dictionary keys will be returned as the new column headers. If the dictionaries contain overlapping values, the last value will be returned.",
+  "status": "active",
+  "visibility": "public",
+  "tags": [
+    "split",
+    "dictionary"
+  ],
+  "runtime": {
+    "package": "wrangles",
+    "symbol": "wrangles.recipe_wrangles.split.dictionary",
+    "contract_status": "verified"
+  },
+  "access": {
+    "ai_powered": false,
+    "requires_account": false,
+    "requires_subscription": false,
+    "requires_external_api_key": false
+  },
+  "capabilities": {
+    "if": true,
+    "where": true,
+    "where_params": true
+  },
+  "parameters": [
+    {
+      "name": "input",
+      "description": "Name or lists of the column(s) containing dictionaries to be split. If providing multiple dictionaries and the dictionaries contain overlapping values, the last value will be returned.",
+      "required": true,
+      "role": "column-selector",
+      "schema": {
+        "type": [
+          "string",
+          "integer",
+          "array"
+        ]
+      }
+    },
+    {
+      "name": "output",
+      "description": "In columns output_format, this is an optional subset of keys to extract from the dictionary. If not provided, all keys will be returned. Columns can be renamed with the following syntax: output: - key1: new_column_name1 - key2: new_column_name2 In to_lists output_format, this must be two output columns for the keys and values lists. If not provided, Keys and Values will be used.",
+      "required": false,
+      "role": "column-output",
+      "runtime_default": null,
+      "schema": {
+        "type": [
+          "string",
+          "array",
+          "null"
+        ]
+      }
+    },
+    {
+      "name": "default",
+      "description": "Provide a set of default headings and values if they are not found within the input.",
+      "required": false,
+      "role": "fallback-value",
+      "runtime_default": null,
+      "schema": {
+        "type": [
+          "object",
+          "null"
+        ]
+      }
+    },
+    {
+      "name": "output_format",
+      "description": "How to split the dictionary. columns creates one output column for each dictionary key. to_lists creates two output columns containing lists of keys and values.",
+      "required": false,
+      "role": "column-output",
+      "runtime_default": "columns",
+      "schema": {
+        "type": "string",
+        "enum": [
+          "columns",
+          "to_lists"
+        ]
+      }
+    },
+    {
+      "name": "if",
+      "description": "Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`.",
+      "required": false,
+      "schema": {
+        "type": "string"
+      },
+      "role": "common-control"
+    },
+    {
+      "name": "where",
+      "description": "Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`.",
+      "required": false,
+      "schema": {
+        "type": "string"
+      },
+      "role": "common-control"
+    },
+    {
+      "name": "where_params",
+      "description": "Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`.",
+      "required": false,
+      "schema": {
+        "type": [
+          "array",
+          "object"
+        ]
+      },
+      "role": "common-control"
+    }
+  ],
+  "examples": [],
+  "guidance": "Split a dictionary into columns. The dictionary keys are used as the new column headers.\n\n## Migrated examples\n#### Splitting an Entire Dictionary\n\n##### Recipe\n\n```yaml\nwrangles:\n  - split.dictionary:\n      input: Column\n      # Output not required\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n| Column |\n| --- |\n| \\{'Col1': 'A', 'Col2': 'B', 'Col3': 'C'\\} |\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| Col1 | Col2 | Col3 |\n| --- | --- | --- |\n| A | B | C |\n\n</div>\n\n</div>\n\n#### Choosing Specific Keys by Name\n\n##### Recipe\n\n```yaml\nwrangles:\n  - split.dictionary:\n      input: Column\n      output: Col2\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n| Column |\n| --- |\n| \\{'Col1': 'A', 'Col2': 'B', 'Col3': 'C'\\} |\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| Col2 |\n| --- |\n| B |\n\n</div>\n\n</div>\n\n#### Using a Wildcard Output to Choose Specific Keys\n\n##### Recipe\n\n```yaml\nwrangles:\n  - split.dictionary:\n      input: Column\n      output: Col*\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n| Column |\n| --- |\n| \\{'Col1': 'A', 'Col2': 'B', 'Other': 'C'\\} |\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| Col1 | Col2 |\n| --- | --- |\n| A | B |\n\n</div>\n\n</div>\n\n#### Using Regular Expressions to Choose Specific Keys\n\n##### Recipe\n\n```yaml\nwrangles:\n  - split.dictionary:\n      input: Column\n      output: \"regex: .*3\"\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n| Column |\n| --- |\n| \\{'Col1': 'A', 'Col2': 'B', 'Col3': 'C'\\} |\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| Col3 |\n| --- |\n| C |\n\n</div>\n\n</div>\n\n#### Choosing Specific Keys While Renaming the Output\n\n##### Recipe\n\n```yaml\nwrangles:\n  - split.dictionary:\n      input: Column\n      output:\n        - Col1: Column 1\n        - Col2: Column 2\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n| Column |\n| --- |\n| \\{'Col1': 'A', 'Col2': 'B', 'Col3': 'C'\\} |\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| Column 1 | Column 2 |\n| --- | --- |\n| A | B |\n\n</div>\n\n</div>\n\n#### Using a Wildcard While Renaming\n\n##### Recipe\n\n```yaml\nwrangles:\n  - split.dictionary:\n      input: Column\n      output:\n        - Col*: Column *\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n| Column |\n| --- |\n| \\{'Col1': 'A', 'Col2': 'B', 'Col3': 'C'\\} |\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| Column 1 | Column 2 | Column 3 |\n| --- | --- | --- |\n| A | B | C |\n\n</div>\n\n</div>",
+  "sources": [
+    {
+      "id": "runtime",
+      "resource": "https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/split.py",
+      "title": "WranglesPY split.dictionary implementation"
+    },
+    {
+      "id": "quasi-registry",
+      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/split/_sources/dictionary.md",
+      "title": "Existing split.dictionary Markdown"
+    }
+  ]
+}

@@ -51,53 +51,53 @@
   "frontMatter.preview.host": "http://localhost:3000",
   "frontMatter.content.pageFolders": [
     {
-      "path": "[[workspace]]/my-docs-site/docs",
+      "path": "[[workspace]]/wrangles-docs/docs",
       "title": "docs"
     },
     {
-      "path": "[[workspace]]/my-docs-site/docs/waas"
+      "path": "[[workspace]]/wrangles-docs/docs/waas"
     },
     {
-      "path": "[[workspace]]/my-docs-site/docs/tutorials"
+      "path": "[[workspace]]/wrangles-docs/docs/tutorials"
     },
     {
-      "path": "[[workspace]]/my-docs-site/docs/python"
+      "path": "[[workspace]]/wrangles-docs/docs/python"
     },
     {
-      "path": "[[workspace]]/my-docs-site/docs/excel"
+      "path": "[[workspace]]/wrangles-docs/docs/excel"
     },
     {
-      "path": "[[workspace]]/my-docs-site/docs/account"
+      "path": "[[workspace]]/wrangles-docs/docs/account"
     },
     {
-      "path": "[[workspace]]/my-docs-site/docs/ADI"
+      "path": "[[workspace]]/wrangles-docs/docs/ADI"
     },
     {
-      "path": "[[workspace]]/my-docs-site/docs/python/connectors"
+      "path": "[[workspace]]/wrangles-docs/docs/python/connectors"
     },
     {
-      "path": "[[workspace]]/my-docs-site/docs/python/recipes"
+      "path": "[[workspace]]/wrangles-docs/docs/python/recipes"
     },
     {
-      "path": "[[workspace]]/my-docs-site/docs/excel/my_wrangles"
+      "path": "[[workspace]]/wrangles-docs/docs/excel/my_wrangles"
     },
     {
-      "path": "[[workspace]]/my-docs-site/docs/excel/in-depth-examples"
+      "path": "[[workspace]]/wrangles-docs/docs/excel/in-depth-examples"
     },
     {
-      "path": "[[workspace]]/my-docs-site/docs/excel/Let's-Get-Ready-To-Wrangle"
+      "path": "[[workspace]]/wrangles-docs/docs/excel/Let's-Get-Ready-To-Wrangle"
     },
     {
-      "path": "[[workspace]]/my-docs-site/docs/python/recipes/wrangles"
+      "path": "[[workspace]]/wrangles-docs/docs/python/recipes/wrangles"
     },
     {
-      "path": "[[workspace]]/my-docs-site/docs/python/recipes/custom-functions"
+      "path": "[[workspace]]/wrangles-docs/docs/python/recipes/custom-functions"
     },
     {
-      "path": "[[workspace]]/my-docs-site/docs/python/connectors/notification"
+      "path": "[[workspace]]/wrangles-docs/docs/python/connectors/notification"
     },
     {
-      "path": "[[workspace]]/my-docs-site/docs/excel/in-depth-examples/example-1"
+      "path": "[[workspace]]/wrangles-docs/docs/excel/in-depth-examples/example-1"
     }
   ],
   "frontMatter.git.enabled": true
