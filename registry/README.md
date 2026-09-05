@@ -14,6 +14,31 @@ The generated outputs are intentionally committed so changes to public docs,
 the agent-facing bundle, and recipe hinting can be reviewed in the same pull
 request as their source records.
 
+## Source and generated directories
+
+The similarly named Registry directories have different responsibilities:
+
+| Directory | Responsibility | Edit directly? |
+| --- | --- | --- |
+| `registry/wrangles/` | Authoritative Markdown records for wrangle metadata, parameters, guidance, examples, and lifecycle | Yes |
+| `wrangles-docs/registry-docs/` | Docusaurus pages generated from the authoritative records | No |
+| `wrangles-docs/static/registry/` | Public machine-readable Markdown, JSON contracts, schemas, fixtures, and discovery metadata | No |
+
+The normal flow is therefore:
+
+```text
+registry/wrangles/
+        -> npm run compile:registry
+wrangles-docs/registry-docs/     (human-facing pages)
+wrangles-docs/static/registry/   (machine-facing artifacts)
+```
+
+The files under `wrangles-docs/wrangle-docs/**/_sources/` belong to the previous
+documentation implementation. They are retained temporarily as migration input
+and reconciliation evidence while the Registry content is completed. After the
+Registry-based pages replace that implementation, `_sources` will be retired
+and must not remain an ongoing authoring path.
+
 `runtime/wranglespy.json` is the pinned mechanical contract exported from the
 WranglesPY recipe namespace. Its producer-owned schema is copied alongside the
 Registry schema under `schema/`. The compiler reconciles the manifest with the
