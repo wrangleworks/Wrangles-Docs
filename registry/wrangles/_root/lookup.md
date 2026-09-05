@@ -30,7 +30,7 @@ parameters:
   - name: input
     description: Name of the column(s) to lookup.
     required: true
-    role: column-selector
+    param_group: I/O
     schema:
       type: string
   - name: output
@@ -39,7 +39,7 @@ parameters:
       output column receives the corresponding match. A single output containing a wildcard (*) is
       expanded into n columns, e.g. "Top *" with n: 3 becomes "Top 1", "Top 2", "Top 3".
     required: false
-    role: column-output
+    param_group: I/O
     runtime_default: null
     schema:
       type:
@@ -49,7 +49,7 @@ parameters:
   - name: model_id
     description: The model_id to use lookup against.
     required: false
-    role: model-reference
+    param_group: Details
     runtime_default: null
     schema:
       type:
@@ -61,7 +61,7 @@ parameters:
       lookup unique values once, copy results to all rows. 'by_matrix': lookup once per matrix
       permutation.
     required: false
-    role: option
+    param_group: Options
     runtime_default: by_row
     schema:
       type: string
@@ -75,7 +75,7 @@ parameters:
       column receives the corresponding match. Otherwise all n matches are stored as a list in each
       output column.
     required: false
-    role: option
+    param_group: Options
     runtime_default: null
     schema:
       type:

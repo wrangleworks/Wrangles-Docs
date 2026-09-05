@@ -31,19 +31,19 @@ parameters:
   - name: input
     description: List of input columns.
     required: true
-    role: column-selector
+    param_group: I/O
     schema:
       type: array
   - name: output
     description: Name of the output column.
     required: true
-    role: column-output
+    param_group: I/O
     schema:
       type: string
   - name: include_empty
     description: Whether to include empty columns in the created list.
     required: false
-    role: option
+    param_group: Options
     runtime_default: false
     schema:
       type: boolean

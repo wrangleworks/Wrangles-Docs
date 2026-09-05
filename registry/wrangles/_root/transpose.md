@@ -33,7 +33,7 @@ parameters:
       Name or position of the column that will be used as the column headings for the transposed
       DataFrame. Default 0 (first column). Use header_column = null to not use any column as header.
     required: false
-    role: column-selector
+    param_group: I/O
     runtime_default: 0
     schema:
       type:

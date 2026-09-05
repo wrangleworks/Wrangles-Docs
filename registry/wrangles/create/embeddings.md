@@ -31,19 +31,19 @@ parameters:
   - name: input
     description: The column of text to create the embeddings for.
     required: true
-    role: column-selector
+    param_group: I/O
     schema:
       type: string
   - name: api_key
     description: The API key.
     required: true
-    role: credential
+    param_group: Details
     schema:
       type: string
   - name: output
     description: The output column the embeddings will be saved as.
     required: false
-    role: column-output
+    param_group: I/O
     runtime_default: null
     schema:
       type:
@@ -52,7 +52,7 @@ parameters:
   - name: batch_size
     description: The number of rows to submit per individual request.
     required: false
-    role: option
+    param_group: Execution
     runtime_default: 100
     schema:
       type: integer
@@ -61,14 +61,14 @@ parameters:
       The number of requests to submit in parallel. Each request contains the number of rows set as
       batch_size.
     required: false
-    role: option
+    param_group: Execution
     runtime_default: 10
     schema:
       type: integer
   - name: output_type
     description: Output the embeddings as a numpy array or a python list Default - python list.
     required: false
-    role: column-output
+    param_group: Formatting
     runtime_default: python list
     schema:
       type: string
@@ -78,7 +78,7 @@ parameters:
   - name: model
     description: The specific model to use to generate the embeddings.
     required: false
-    role: option
+    param_group: Details
     runtime_default: text-embedding-3-small
     schema:
       type: string
@@ -87,7 +87,7 @@ parameters:
       The number of times to retry if the request fails. This will apply exponential backoff to help
       with rate limiting.
     required: false
-    role: option
+    param_group: Errors
     runtime_default: 0
     schema:
       type: integer
@@ -97,7 +97,7 @@ parameters:
       provider. Setting a Jina URL without an explicit provider will automatically use Jina's
       request/response format.
     required: false
-    role: option
+    param_group: Details
     runtime_default: https://api.openai.com/v1/embeddings
     schema:
       type: string
@@ -106,7 +106,7 @@ parameters:
       The precision of the embeddings. Default is float32. This should be used with output_type
       numpy array.
     required: false
-    role: option
+    param_group: Formatting
     runtime_default: float32
     schema:
       type: string
@@ -121,7 +121,7 @@ parameters:
       only when pointing to a custom endpoint that uses a non-default provider's API format (e.g. a
       Jina-compatible proxy).
     required: false
-    role: option
+    param_group: Details
     runtime_default: null
     schema:
       type:
@@ -135,7 +135,7 @@ parameters:
       The task type for the embedding model. Only applicable for the Jina provider. Selects the
       appropriate task-specific adapter.
     required: false
-    role: option
+    param_group: Options
     runtime_default: null
     schema:
       type:

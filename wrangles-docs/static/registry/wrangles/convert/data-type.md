@@ -32,7 +32,7 @@ parameters:
   - name: input
     description: Name, index, or list of input columns.
     required: true
-    role: column-selector
+    param_group: I/O
     schema:
       type: [string, integer, array]
       items:
@@ -40,7 +40,7 @@ parameters:
   - name: output
     description: Name or list of output columns. If omitted, each input column is overwritten.
     required: false
-    role: column-output
+    param_group: I/O
     runtime_default: null
     schema:
       type: [string, array]
@@ -49,7 +49,7 @@ parameters:
   - name: data_type
     description: Data type to produce.
     required: false
-    role: option
+    param_group: Options
     runtime_default: str
     schema:
       type: string
@@ -57,7 +57,7 @@ parameters:
   - name: default
     description: Value returned when conversion fails. If omitted, the original value is retained.
     required: false
-    role: fallback-value
+    param_group: Errors
     runtime_default: null
     schema:
       type: [string, number, array, object, boolean, "null"]

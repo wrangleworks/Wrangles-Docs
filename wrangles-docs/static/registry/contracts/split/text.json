@@ -38,7 +38,7 @@
       "name": "input",
       "description": "Name of the column to be split.",
       "required": true,
-      "role": "column-selector",
+      "param_group": "I/O",
       "schema": {
         "type": "string"
       }
@@ -47,7 +47,7 @@
       "name": "output",
       "description": "Name of the output column(s) If a single column is provided, the results will be returned as a list If multiple columns are listed, the results will be separated into the columns. If omitted, will overwrite the input.",
       "required": false,
-      "role": "column-output",
+      "param_group": "I/O",
       "runtime_default": null,
       "schema": {
         "type": [
@@ -61,7 +61,7 @@
       "name": "char",
       "description": "Set the character(s) to split on. Default comma (,) Can also prefix with \"regex:\" to split on a pattern.",
       "required": false,
-      "role": "option",
+      "param_group": "Options",
       "runtime_default": ",",
       "schema": {
         "type": "string"
@@ -71,7 +71,7 @@
       "name": "pad",
       "description": "Choose whether to pad to ensure a consistent length. Default true if outputting to columns, false for lists.",
       "required": false,
-      "role": "option",
+      "param_group": "Formatting",
       "runtime_default": null,
       "schema": {
         "type": [
@@ -84,7 +84,7 @@
       "name": "element",
       "description": "Select a specific element or range after splitting using slicing syntax. e.g. 0, \":5\", \"5:\", \"2:8:2\".",
       "required": false,
-      "role": "option",
+      "param_group": "Options",
       "runtime_default": null,
       "schema": {
         "type": [
@@ -98,7 +98,7 @@
       "name": "inclusive",
       "description": "If true, include the split character in the output. Default False.",
       "required": false,
-      "role": "option",
+      "param_group": "Options",
       "runtime_default": false,
       "schema": {
         "type": "boolean"
@@ -108,7 +108,7 @@
       "name": "skip_empty",
       "description": "Whether to skip empty values.",
       "required": false,
-      "role": "option",
+      "param_group": "Options",
       "runtime_default": false,
       "schema": {
         "type": "boolean"
@@ -118,31 +118,31 @@
       "name": "if",
       "description": "Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`.",
       "required": false,
+      "param_group": "Conditions",
       "schema": {
         "type": "string"
-      },
-      "role": "common-control"
+      }
     },
     {
       "name": "where",
       "description": "Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`.",
       "required": false,
+      "param_group": "Conditions",
       "schema": {
         "type": "string"
-      },
-      "role": "common-control"
+      }
     },
     {
       "name": "where_params",
       "description": "Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`.",
       "required": false,
+      "param_group": "Conditions",
       "schema": {
         "type": [
           "array",
           "object"
         ]
-      },
-      "role": "common-control"
+      }
     }
   ],
   "examples": [],

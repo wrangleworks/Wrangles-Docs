@@ -31,7 +31,7 @@ parameters:
   - name: input
     description: Name of the column(s) to edit.
     required: true
-    role: column-selector
+    param_group: I/O
     schema:
       type:
         - string
@@ -42,7 +42,7 @@ parameters:
       The position of the first character to select. If ommited will start from the beginning and
       length must be provided.
     required: false
-    role: option
+    param_group: Options
     runtime_default: null
     schema:
       type:
@@ -54,7 +54,7 @@ parameters:
       The length of the string to select. If ommited will select to the end of the string and start
       must be provided.
     required: false
-    role: option
+    param_group: Options
     runtime_default: null
     schema:
       type:
@@ -64,7 +64,7 @@ parameters:
   - name: output
     description: Name of the output column(s).
     required: false
-    role: column-output
+    param_group: I/O
     runtime_default: null
     schema:
       type:

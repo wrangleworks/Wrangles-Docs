@@ -31,7 +31,7 @@ parameters:
   - name: input
     description: Name of the input column.
     required: true
-    role: column-selector
+    param_group: I/O
     schema:
       type:
         - string
@@ -40,19 +40,19 @@ parameters:
   - name: api_token
     description: Huggingface API Token.
     required: true
-    role: option
+    param_group: Details
     schema:
       type: string
   - name: model
     description: Name of the model to use. e.g. facebook/bart-large-cnn.
     required: true
-    role: option
+    param_group: Details
     schema:
       type: string
   - name: output
     description: Name of the output column. If not provided, will overwrite the input column.
     required: false
-    role: column-output
+    param_group: I/O
     runtime_default: null
     schema:
       type:
@@ -62,7 +62,7 @@ parameters:
   - name: parameters
     description: Optionally, provide additional parameters to define the model behaviour.
     required: false
-    role: option
+    param_group: Options
     runtime_default: null
     schema:
       type:

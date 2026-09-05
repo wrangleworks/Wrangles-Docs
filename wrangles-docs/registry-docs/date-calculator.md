@@ -3,48 +3,38 @@ title: "Date Calculator"
 description: "Add or Subtract time from a date."
 sidebar_label: "Date Calculator"
 slug: "/date-calculator"
+registry_entry: true
+toc_min_heading_level: 2
+toc_max_heading_level: 3
 ---
 
 # Date Calculator
 
 Add or Subtract time from a date.
 
-> Pilot Registry entry. Runtime contract status: `verified`.
+Add or subtract time from a date.
 
 ## Parameters
 
-| Parameter | Required | Accepted value | Description | Runtime default |
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
 | --- | --- | --- | --- | --- |
-| `input` | Yes | string | Name of the dates column. | — |
-| `operation` | No | string; one of: add, subtract | Date operation. | `"add"` |
-| `output` | No | string, null | Name of the output column of dates. | `null` |
-| `time_unit` | No | string, null; one of: years, months, weeks, days, hours, minutes, seconds, milliseconds | Time unit for operation. | `null` |
-| `time_value` | No | number, null | Time unit value for operation. | `null` |
-| `if` | No | string | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | — |
-| `where` | No | string | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | — |
-| `where_params` | No | array, object | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | — |
+| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
+| `input` | Name of the dates column. | string | — | Yes |
+| `output` | Name of the output column of dates. | string, null | `null` | No |
+| <span className="ww-param-group-label">Options</span> |  |  |  |  |
+| `operation` | Date operation. | string; one of:<ul className="ww-param-enum-values"><li>add</li><li>subtract</li></ul> | `"add"` | No |
+| `time_unit` | Time unit for operation. | string, null; one of:<ul className="ww-param-enum-values"><li>years</li><li>months</li><li>weeks</li><li>days</li><li>hours</li><li>minutes</li><li>seconds</li><li>milliseconds</li></ul> | `null` | No |
+| `time_value` | Time unit value for operation. | number, null | `null` | No |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
 
-## Verified examples
+</div>
 
-_No fixture-backed examples are currently available. See migrated examples under Guidance where present._
-
-## Access
-
-| Requirement | Value |
-| --- | --- |
-| ai powered | No |
-| requires account | No |
-| requires subscription | No |
-| requires external api key | No |
-
-## Guidance
-
-Add or subtract time from a date.
-
-## Migrated examples
-#### Calculating a Future Date
-
-##### Recipe
+## Examples
 
 ```yaml
 wrangles:
@@ -58,9 +48,7 @@ wrangles:
 
 <div className="ww-sample-grid">
 
-<div className="ww-sample-panel">
-
-##### Input Sample
+<div className="ww-sample-panel ww-sample-panel--input" data-sample-role="input">
 
 | Date |
 | --- |
@@ -68,9 +56,7 @@ wrangles:
 
 </div>
 
-<div className="ww-sample-panel">
-
-##### Output Sample
+<div className="ww-sample-panel ww-sample-panel--output" data-sample-role="output">
 
 | New Date |
 | --- |
@@ -80,17 +66,35 @@ wrangles:
 
 </div>
 
-## Provenance
+<details className="ww-field-disclosure">
+
+<summary>Access</summary>
+
+| Requirement | Value |
+| --- | --- |
+| AI-powered | No |
+| Requires WrangleWorks account | No |
+| Requires subscription | No |
+| Requires external API key | No |
+
+</details>
+
+<details className="ww-field-disclosure">
+
+<summary>Technical details</summary>
+
+| Field | Value |
+| --- | --- |
+| Recipe key | `date_calculator` |
+| Lifecycle status | active |
+| Namespace | Root-level |
+| Documentation group | `date` |
+| Aliases | None |
+| Runtime symbol | `wrangles.recipe_wrangles.main.date_calculator` |
+
+**Sources**
 
 - [WranglesPY date_calculator implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/main.py)
 - [Existing date_calculator Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/date/_sources/date-calculator.md)
 
-## Registry metadata
-
-- Registry ID: `19cfeb4f-02af-4ab2-895c-0ff2bb5cce19`
-- Namespace: root-level runtime key
-- Recipe key: `date_calculator`
-- Aliases: none
-- Runtime symbol: `wrangles.recipe_wrangles.main.date_calculator`
-- Status: `active`
-- Registry version: `0.1.0-pilot`
+</details>

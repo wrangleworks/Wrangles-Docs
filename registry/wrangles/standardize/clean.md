@@ -33,7 +33,7 @@ parameters:
   - name: input
     description: Name or list of input columns.
     required: true
-    role: column-selector
+    param_group: I/O
     schema:
       type:
         - string
@@ -42,7 +42,7 @@ parameters:
   - name: output
     description: Name or list of output columns. Defaults to overwriting input.
     required: false
-    role: column-output
+    param_group: I/O
     runtime_default: null
     schema:
       type:
@@ -53,7 +53,7 @@ parameters:
   - name: fix_encoding
     description: Repair mojibake and other reversible encoding errors.
     required: false
-    role: option
+    param_group: Options
     runtime_default: true
     schema:
       type: boolean
@@ -62,7 +62,7 @@ parameters:
       Decode HTML character references. Auto avoids decoding text that appears to contain HTML
       markup.
     required: false
-    role: option
+    param_group: Options
     runtime_default: auto
     schema:
       anyOf:
@@ -73,7 +73,7 @@ parameters:
   - name: normalization
     description: Unicode normalization form.
     required: false
-    role: option
+    param_group: Options
     runtime_default: NFC
     schema:
       type: string
@@ -86,49 +86,49 @@ parameters:
   - name: fix_character_width
     description: Normalize fullwidth and halfwidth characters.
     required: false
-    role: option
+    param_group: Options
     runtime_default: true
     schema:
       type: boolean
   - name: uncurl_quotes
     description: Replace typographic quotes with straight quotes.
     required: false
-    role: option
+    param_group: Options
     runtime_default: true
     schema:
       type: boolean
   - name: remove_control_chars
     description: Remove C0 and C1 control characters.
     required: false
-    role: option
+    param_group: Options
     runtime_default: true
     schema:
       type: boolean
   - name: collapse_whitespace
     description: Collapse runs of Unicode whitespace.
     required: false
-    role: option
+    param_group: Options
     runtime_default: true
     schema:
       type: boolean
   - name: preserve_line_breaks
     description: Preserve line breaks while collapsing other whitespace.
     required: false
-    role: option
+    param_group: Options
     runtime_default: false
     schema:
       type: boolean
   - name: trim
     description: Remove leading and trailing whitespace.
     required: false
-    role: option
+    param_group: Options
     runtime_default: true
     schema:
       type: boolean
   - name: separator
     description: Text used to join multiple input columns into one output.
     required: false
-    role: option
+    param_group: Formatting
     runtime_default: ' '
     schema:
       type: string

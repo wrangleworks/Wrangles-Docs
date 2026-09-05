@@ -31,7 +31,7 @@ parameters:
   - name: input
     description: Name of the column to be split.
     required: true
-    role: column-selector
+    param_group: I/O
     schema:
       type: string
   - name: output
@@ -40,7 +40,7 @@ parameters:
       list If multiple columns are listed, the results will be separated into the columns. If
       omitted, will overwrite the input.
     required: false
-    role: column-output
+    param_group: I/O
     runtime_default: null
     schema:
       type:
@@ -52,7 +52,7 @@ parameters:
       Set the character(s) to split on. Default comma (,) Can also prefix with "regex:" to split on
       a pattern.
     required: false
-    role: option
+    param_group: Options
     runtime_default: ','
     schema:
       type: string
@@ -61,7 +61,7 @@ parameters:
       Choose whether to pad to ensure a consistent length. Default true if outputting to columns,
       false for lists.
     required: false
-    role: option
+    param_group: Formatting
     runtime_default: null
     schema:
       type:
@@ -72,7 +72,7 @@ parameters:
       Select a specific element or range after splitting using slicing syntax. e.g. 0, ":5", "5:",
       "2:8:2".
     required: false
-    role: option
+    param_group: Options
     runtime_default: null
     schema:
       type:
@@ -82,14 +82,14 @@ parameters:
   - name: inclusive
     description: If true, include the split character in the output. Default False.
     required: false
-    role: option
+    param_group: Options
     runtime_default: false
     schema:
       type: boolean
   - name: skip_empty
     description: Whether to skip empty values.
     required: false
-    role: option
+    param_group: Options
     runtime_default: false
     schema:
       type: boolean

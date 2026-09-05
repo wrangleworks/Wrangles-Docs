@@ -3,42 +3,31 @@ title: "Drop"
 description: "Drop (Delete) selected column(s)."
 sidebar_label: "Drop"
 slug: "/drop"
+registry_entry: true
+toc_min_heading_level: 2
+toc_max_heading_level: 3
 ---
 
 # Drop
 
 Drop (Delete) selected column(s).
 
-> Pilot Registry entry. Runtime contract status: `verified`.
+Drop (Delete) selected column(s)
 
 ## Parameters
 
-| Parameter | Required | Accepted value | Description | Runtime default |
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
 | --- | --- | --- | --- | --- |
-| `columns` | Yes | string, array | Name of the column(s) to drop. | — |
-| `if` | No | string | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | — |
+| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
+| `columns` | Name of the column(s) to drop. | string, array | — | Yes |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
 
-## Verified examples
+</div>
 
-_No fixture-backed examples are currently available. See migrated examples under Guidance where present._
-
-## Access
-
-| Requirement | Value |
-| --- | --- |
-| ai powered | No |
-| requires account | No |
-| requires subscription | No |
-| requires external api key | No |
-
-## Guidance
-
-Drop (Delete) selected column(s)
-
-## Migrated examples
-#### Dropping a Column
-
-##### Recipe
+## Examples
 
 ```yaml
 wrangles:
@@ -49,9 +38,7 @@ wrangles:
 
 <div className="ww-sample-grid">
 
-<div className="ww-sample-panel">
-
-##### Input Sample
+<div className="ww-sample-panel ww-sample-panel--input" data-sample-role="input">
 
 | Material | Product Data |
 | --- | --- |
@@ -60,9 +47,7 @@ wrangles:
 
 </div>
 
-<div className="ww-sample-panel">
-
-##### Output Sample
+<div className="ww-sample-panel ww-sample-panel--output" data-sample-role="output">
 
 | Product Data |
 | --- |
@@ -73,17 +58,35 @@ wrangles:
 
 </div>
 
-## Provenance
+<details className="ww-field-disclosure">
+
+<summary>Access</summary>
+
+| Requirement | Value |
+| --- | --- |
+| AI-powered | No |
+| Requires WrangleWorks account | No |
+| Requires subscription | No |
+| Requires external API key | No |
+
+</details>
+
+<details className="ww-field-disclosure">
+
+<summary>Technical details</summary>
+
+| Field | Value |
+| --- | --- |
+| Recipe key | `drop` |
+| Lifecycle status | active |
+| Namespace | Root-level |
+| Documentation group | `select` |
+| Aliases | None |
+| Runtime symbol | `wrangles.recipe_wrangles.pandas.drop` |
+
+**Sources**
 
 - [WranglesPY drop implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/pandas.py)
 - [Existing drop Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/select/_sources/drop.md)
 
-## Registry metadata
-
-- Registry ID: `363bffbf-397e-4975-8382-e9efa5e9eed6`
-- Namespace: root-level runtime key
-- Recipe key: `drop`
-- Aliases: none
-- Runtime symbol: `wrangles.recipe_wrangles.pandas.drop`
-- Status: `active`
-- Registry version: `0.1.0-pilot`
+</details>

@@ -31,7 +31,7 @@ parameters:
   - name: input
     description: Name of input column.
     required: true
-    role: column-selector
+    param_group: I/O
     schema:
       type:
         - string
@@ -40,7 +40,7 @@ parameters:
   - name: output
     description: Name of new column.
     required: true
-    role: column-output
+    param_group: I/O
     schema:
       type:
         - string
@@ -48,7 +48,7 @@ parameters:
   - name: method
     description: 'The method to use to hash the input (Default: md5).'
     required: false
-    role: option
+    param_group: Options
     runtime_default: md5
     schema:
       type: string

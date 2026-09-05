@@ -38,7 +38,7 @@
       "name": "columns",
       "description": "Name of the column(s) to drop.",
       "required": true,
-      "role": "option",
+      "param_group": "I/O",
       "schema": {
         "type": [
           "string",
@@ -50,10 +50,10 @@
       "name": "if",
       "description": "Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`.",
       "required": false,
+      "param_group": "Conditions",
       "schema": {
         "type": "string"
-      },
-      "role": "common-control"
+      }
     }
   ],
   "examples": [],

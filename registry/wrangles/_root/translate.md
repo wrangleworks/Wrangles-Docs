@@ -33,7 +33,7 @@ parameters:
   - name: input
     description: Name of the column to translate.
     required: true
-    role: column-selector
+    param_group: I/O
     schema:
       type:
         - string
@@ -42,7 +42,7 @@ parameters:
   - name: output
     description: Name of the output column.
     required: true
-    role: column-output
+    param_group: I/O
     schema:
       type:
         - string
@@ -50,7 +50,7 @@ parameters:
   - name: target_language
     description: Code of the language to translate to.
     required: true
-    role: option
+    param_group: Options
     schema:
       type: string
       enum:
@@ -83,7 +83,7 @@ parameters:
   - name: source_language
     description: Code of the language to translate from. If omitted, automatically detects the input language.
     required: false
-    role: option
+    param_group: Options
     runtime_default: AUTO
     schema:
       type: string
@@ -116,7 +116,7 @@ parameters:
   - name: case
     description: Allow changing the case of the input prior to translation.
     required: false
-    role: option
+    param_group: Options
     runtime_default: null
     schema:
       type:

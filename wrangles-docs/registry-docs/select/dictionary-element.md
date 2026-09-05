@@ -3,47 +3,38 @@ title: "Dictionary Element"
 description: "Select one or more element of a dictionary."
 sidebar_label: "Dictionary Element"
 slug: "/select/dictionary-element"
+registry_entry: true
+toc_min_heading_level: 2
+toc_max_heading_level: 3
 ---
 
 # Dictionary Element
 
 Select one or more element of a dictionary.
 
-> Pilot Registry entry. Runtime contract status: `verified`.
+
 
 ## Parameters
 
-| Parameter | Required | Accepted value | Description | Runtime default |
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
 | --- | --- | --- | --- | --- |
-| `input` | Yes | string, integer, array | Name of the input column. | — |
-| `element` | Yes | string | The key or keys from the dictionary to select. If a single key is provided, the value will be returned If a lists of keys are selected, the result will be a new dictionary. | — |
-| `output` | No | string, array, null | Name of the output column. If omitted, the input column will be replaced. | `null` |
-| `default` | No | string, number, array, object, boolean, null | Set the default value to return if the specified element doesn't exist. If selecting multiple elements, a dict of defaults can be set. | `""` |
-| `if` | No | string | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | — |
-| `where` | No | string | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | — |
-| `where_params` | No | array, object | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | — |
+| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
+| `input` | Name of the input column. | string, integer, array | — | Yes |
+| `output` | Name of the output column. If omitted, the input column will be replaced. | string, array, null | `null` | No |
+| <span className="ww-param-group-label">Options</span> |  |  |  |  |
+| `element` | The key or keys from the dictionary to select. If a single key is provided, the value will be returned If a lists of keys are selected, the result will be a new dictionary. | string | — | Yes |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
+| <span className="ww-param-group-label">Errors</span> |  |  |  |  |
+| `default` | Set the default value to return if the specified element doesn't exist. If selecting multiple elements, a dict of defaults can be set. | string, number, array, object, boolean, null | `""` | No |
 
-## Verified examples
+</div>
 
-_No fixture-backed examples are currently available. See migrated examples under Guidance where present._
-
-## Access
-
-| Requirement | Value |
-| --- | --- |
-| ai powered | No |
-| requires account | No |
-| requires subscription | No |
-| requires external api key | No |
-
-## Guidance
-
-Select one or more element of a dictionary.
-
-## Migrated examples
-#### Selecting Dictionary Element Using Where
-
-##### Recipe
+## Examples
 
 ```yaml
 wrangles:
@@ -57,9 +48,7 @@ wrangles:
 
 <div className="ww-sample-grid">
 
-<div className="ww-sample-panel">
-
-##### Input Sample
+<div className="ww-sample-panel ww-sample-panel--input" data-sample-role="input">
 
 | Properties | Part Number |
 | --- | --- |
@@ -68,9 +57,7 @@ wrangles:
 
 </div>
 
-<div className="ww-sample-panel">
-
-##### Output Sample
+<div className="ww-sample-panel ww-sample-panel--output" data-sample-role="output">
 
 | Shapes |
 | --- |
@@ -81,9 +68,9 @@ wrangles:
 
 </div>
 
-#### Selecting Multiple Dictionary Elements
 
-##### Recipe
+
+
 
 ```yaml
 wrangles:
@@ -96,9 +83,7 @@ wrangles:
 
 <div className="ww-sample-grid">
 
-<div className="ww-sample-panel">
-
-##### Input Sample
+<div className="ww-sample-panel ww-sample-panel--input" data-sample-role="input">
 
 | Properties |
 | --- |
@@ -107,9 +92,7 @@ wrangles:
 
 </div>
 
-<div className="ww-sample-panel">
-
-##### Output Sample
+<div className="ww-sample-panel ww-sample-panel--output" data-sample-role="output">
 
 | Properties |
 | --- |
@@ -120,9 +103,9 @@ wrangles:
 
 </div>
 
-#### Selecting Multiple Dictionary Elements Using a Wildcard
 
-##### Recipe
+
+
 
 ```yaml
 wrangles:
@@ -135,9 +118,7 @@ wrangles:
 
 <div className="ww-sample-grid">
 
-<div className="ww-sample-panel">
-
-##### Input Sample
+<div className="ww-sample-panel ww-sample-panel--input" data-sample-role="input">
 
 | Column |
 | --- |
@@ -145,9 +126,7 @@ wrangles:
 
 </div>
 
-<div className="ww-sample-panel">
-
-##### Output Sample
+<div className="ww-sample-panel ww-sample-panel--output" data-sample-role="output">
 
 | Column | Output Dict |
 | --- | --- |
@@ -157,9 +136,9 @@ wrangles:
 
 </div>
 
-#### Selecting Multiple Dictionary Elements Using Regex
 
-##### Recipe
+
+
 
 ```yaml
 wrangles:
@@ -172,9 +151,7 @@ wrangles:
 
 <div className="ww-sample-grid">
 
-<div className="ww-sample-panel">
-
-##### Input Sample
+<div className="ww-sample-panel ww-sample-panel--input" data-sample-role="input">
 
 | Column |
 | --- |
@@ -182,21 +159,19 @@ wrangles:
 
 </div>
 
-<div className="ww-sample-panel">
+<div className="ww-sample-panel ww-sample-panel--output" data-sample-role="output">
 
-##### Output Sample
-
-| Column | Output Dict |
-| --- | --- |
-| \{'Col1': 'A', 'Col2': 'B', 'Col3': 'C'\} | \{'Col2': 'B'\} |
+| Output Dict |
+| --- |
+| \{'Col2': 'B'\} |
 
 </div>
 
 </div>
 
-#### Selecting Elements While Renaming
 
-##### Recipe
+
+
 
 ```yaml
 wrangles:
@@ -210,9 +185,7 @@ wrangles:
 
 <div className="ww-sample-grid">
 
-<div className="ww-sample-panel">
-
-##### Input Sample
+<div className="ww-sample-panel ww-sample-panel--input" data-sample-role="input">
 
 | Column |
 | --- |
@@ -220,21 +193,19 @@ wrangles:
 
 </div>
 
-<div className="ww-sample-panel">
+<div className="ww-sample-panel ww-sample-panel--output" data-sample-role="output">
 
-##### Output Sample
-
-| Column | Output Dict |
-| --- | --- |
-| \{'Col1': 'A', 'Col2': 'B', 'Col3': 'C'\} | \{'Column 1': 'A', 'Column 2': 'B'\} |
+| Output Dict |
+| --- |
+| \{'Column 1': 'A', 'Column 2': 'B'\} |
 
 </div>
 
 </div>
 
-#### Using Default to Fill Missing Elements
 
-##### Recipe
+
+
 
 ```yaml
 wrangles:
@@ -251,9 +222,7 @@ wrangles:
 
 <div className="ww-sample-grid">
 
-<div className="ww-sample-panel">
-
-##### Input Sample
+<div className="ww-sample-panel ww-sample-panel--input" data-sample-role="input">
 
 | Column |
 | --- |
@@ -262,30 +231,46 @@ wrangles:
 
 </div>
 
-<div className="ww-sample-panel">
+<div className="ww-sample-panel ww-sample-panel--output" data-sample-role="output">
 
-##### Output Sample
+| Output Dict |
+| --- |
+| \{'Col1': 'A', 'Col3': 'C'\} |
+| \{'Col1': 'D', 'Col3': 'Y'\} |
 
-| Column | Output Dict |
+</div>
+
+</div>
+
+<details className="ww-field-disclosure">
+
+<summary>Access</summary>
+
+| Requirement | Value |
 | --- | --- |
-| \{'Col1': 'A', 'Col2': 'B', 'Col3': 'C'\} | \{'Col1': 'A', 'Col3': 'C'\} |
-| \{'Col1': 'D', 'Col2': 'E'\} | \{'Col1': 'D', 'Col3': 'Y'\} |
+| AI-powered | No |
+| Requires WrangleWorks account | No |
+| Requires subscription | No |
+| Requires external API key | No |
 
-</div>
+</details>
 
-</div>
+<details className="ww-field-disclosure">
 
-## Provenance
+<summary>Technical details</summary>
+
+| Field | Value |
+| --- | --- |
+| Recipe key | `select.dictionary_element` |
+| Lifecycle status | active |
+| Namespace | `select` |
+| Documentation group | `select` |
+| Aliases | None |
+| Runtime symbol | `wrangles.recipe_wrangles.select.dictionary_element` |
+
+**Sources**
 
 - [WranglesPY select.dictionary_element implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/select.py)
 - [Existing select.dictionary_element Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/select/_sources/dictionary-element.md)
 
-## Registry metadata
-
-- Registry ID: `5adaeada-6da8-464f-84cb-9fb5ecc17e48`
-- Namespace: `select`
-- Recipe key: `select.dictionary_element`
-- Aliases: none
-- Runtime symbol: `wrangles.recipe_wrangles.select.dictionary_element`
-- Status: `active`
-- Registry version: `0.1.0-pilot`
+</details>

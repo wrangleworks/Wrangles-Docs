@@ -31,7 +31,7 @@ parameters:
   - name: input
     description: Name of the column to be split.
     required: true
-    role: column-selector
+    param_group: I/O
     schema:
       type:
         - string
@@ -41,7 +41,7 @@ parameters:
       Name of column(s) for the results. If providing a single column, use a wildcard (*) to
       indicate a incrementing integer.
     required: true
-    role: column-output
+    param_group: I/O
     schema:
       type:
         - string

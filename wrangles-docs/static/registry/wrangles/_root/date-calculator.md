@@ -31,13 +31,13 @@ parameters:
   - name: input
     description: Name of the dates column.
     required: true
-    role: column-selector
+    param_group: I/O
     schema:
       type: string
   - name: operation
     description: Date operation.
     required: false
-    role: option
+    param_group: Options
     runtime_default: add
     schema:
       type: string
@@ -47,7 +47,7 @@ parameters:
   - name: output
     description: Name of the output column of dates.
     required: false
-    role: column-output
+    param_group: I/O
     runtime_default: null
     schema:
       type:
@@ -56,7 +56,7 @@ parameters:
   - name: time_unit
     description: Time unit for operation.
     required: false
-    role: option
+    param_group: Options
     runtime_default: null
     schema:
       type:
@@ -74,7 +74,7 @@ parameters:
   - name: time_value
     description: Time unit value for operation.
     required: false
-    role: option
+    param_group: Options
     runtime_default: null
     schema:
       type:

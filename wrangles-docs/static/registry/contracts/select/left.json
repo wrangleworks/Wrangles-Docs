@@ -38,7 +38,7 @@
       "name": "input",
       "description": "Name of the column(s) to edit.",
       "required": true,
-      "role": "column-selector",
+      "param_group": "I/O",
       "schema": {
         "type": [
           "string",
@@ -51,7 +51,7 @@
       "name": "length",
       "description": "Number of characters to include from the left. If negative, this will remove the specified number of characters from the left. May not equal 0.",
       "required": true,
-      "role": "option",
+      "param_group": "Options",
       "schema": {
         "type": "integer"
       }
@@ -60,7 +60,7 @@
       "name": "output",
       "description": "Name of the output column(s).",
       "required": false,
-      "role": "column-output",
+      "param_group": "I/O",
       "runtime_default": null,
       "schema": {
         "type": [
@@ -74,31 +74,31 @@
       "name": "if",
       "description": "Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`.",
       "required": false,
+      "param_group": "Conditions",
       "schema": {
         "type": "string"
-      },
-      "role": "common-control"
+      }
     },
     {
       "name": "where",
       "description": "Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`.",
       "required": false,
+      "param_group": "Conditions",
       "schema": {
         "type": "string"
-      },
-      "role": "common-control"
+      }
     },
     {
       "name": "where_params",
       "description": "Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`.",
       "required": false,
+      "param_group": "Conditions",
       "schema": {
         "type": [
           "array",
           "object"
         ]
-      },
-      "role": "common-control"
+      }
     }
   ],
   "examples": [],

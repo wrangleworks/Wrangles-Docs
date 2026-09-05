@@ -31,13 +31,13 @@ parameters:
   - name: output
     description: Name of the output column.
     required: true
-    role: column-output
+    param_group: I/O
     schema:
       type: string
   - name: cases
     description: List of conditions and corresponding values.
     required: true
-    role: option
+    param_group: Options
     schema:
       type: array
       minItems: 1
@@ -58,7 +58,7 @@ parameters:
   - name: default
     description: Value to assign if no conditions are met. Default None.
     required: false
-    role: fallback-value
+    param_group: Options
     runtime_default: null
     schema:
       type:

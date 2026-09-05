@@ -31,13 +31,13 @@ parameters:
   - name: api_key
     description: OpenAI-compatible API key.
     required: true
-    role: credential
+    param_group: Details
     schema:
       type: string
   - name: output
     description: Target schema; string/array shorthands are expanded automatically.
     required: true
-    role: column-output
+    param_group: I/O
     schema:
       type:
         - string
@@ -46,7 +46,7 @@ parameters:
   - name: input
     description: Column(s) to concatenate into the prompt (defaults to all columns).
     required: false
-    role: column-selector
+    param_group: I/O
     runtime_default: null
     schema:
       type:
@@ -56,35 +56,35 @@ parameters:
   - name: model
     description: Responses model name (e.g. gpt-5-mini).
     required: false
-    role: option
+    param_group: Details
     runtime_default: gpt-5
     schema:
       type: string
   - name: threads
     description: Maximum concurrent requests (default 20).
     required: false
-    role: option
+    param_group: Execution
     runtime_default: 20
     schema:
       type: integer
   - name: timeout
     description: Per-request timeout in seconds.
     required: false
-    role: option
+    param_group: Execution
     runtime_default: 90
     schema:
       type: integer
   - name: retries
     description: Number of retry attempts on failure.
     required: false
-    role: option
+    param_group: Errors
     runtime_default: 0
     schema:
       type: integer
   - name: messages
     description: Optional extra messages forwarded to the inner generate helper.
     required: false
-    role: option
+    param_group: Options
     runtime_default: null
     schema:
       type:
@@ -94,28 +94,28 @@ parameters:
   - name: url
     description: Override for the OpenAI-compatible endpoint.
     required: false
-    role: option
+    param_group: Details
     runtime_default: https://api.openai.com/v1/responses
     schema:
       type: string
   - name: strict
     description: Enforce JSON-schema validation on the response.
     required: false
-    role: option
+    param_group: Details
     runtime_default: false
     schema:
       type: boolean
   - name: web_search
     description: Enable DuckDuckGo context lookup per row.
     required: false
-    role: option
+    param_group: Options
     runtime_default: false
     schema:
       type: boolean
   - name: reasoning
     description: Responses API reasoning options (forwarded verbatim).
     required: false
-    role: option
+    param_group: Details
     runtime_default:
       effort: low
     schema:
@@ -125,14 +125,14 @@ parameters:
   - name: previous_response
     description: Chain responses by reusing previous_response_id for field-by-field calls.
     required: false
-    role: option
+    param_group: Details
     runtime_default: false
     schema:
       type: boolean
   - name: summary
     description: Request summary text to be merged into the output.
     required: false
-    role: option
+    param_group: Options
     runtime_default: false
     schema:
       type: boolean

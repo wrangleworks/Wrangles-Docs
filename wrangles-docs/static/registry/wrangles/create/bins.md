@@ -31,7 +31,7 @@ parameters:
   - name: input
     description: Name of input column.
     required: true
-    role: column-selector
+    param_group: I/O
     schema:
       type:
         - string
@@ -40,7 +40,7 @@ parameters:
   - name: output
     description: Name of new column.
     required: true
-    role: column-output
+    param_group: I/O
     schema:
       type:
         - string
@@ -48,7 +48,7 @@ parameters:
   - name: bins
     description: Defines the number of equal-width bins in the range.
     required: true
-    role: option
+    param_group: Options
     schema:
       type:
         - integer
@@ -56,7 +56,7 @@ parameters:
   - name: labels
     description: Labels for the returned bins.
     required: false
-    role: option
+    param_group: Options
     runtime_default: null
     schema:
       type:

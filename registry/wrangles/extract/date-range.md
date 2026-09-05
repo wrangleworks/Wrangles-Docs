@@ -31,25 +31,25 @@ parameters:
   - name: start_time
     description: Name of the start date column.
     required: true
-    role: option
+    param_group: I/O
     schema:
       type: string
   - name: end_time
     description: Name of the end date column.
     required: true
-    role: option
+    param_group: I/O
     schema:
       type: string
   - name: output
     description: Name of the output column.
     required: true
-    role: column-output
+    param_group: I/O
     schema:
       type: string
   - name: range
     description: Type of frequency to count.
     required: false
-    role: option
+    param_group: Options
     runtime_default: day
     schema:
       type: string

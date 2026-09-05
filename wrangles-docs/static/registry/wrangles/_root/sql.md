@@ -33,7 +33,7 @@ parameters:
   - name: command
     description: SQL Command. The table is called df. For specific SQL syntax, this uses the SQLite dialect.
     required: true
-    role: option
+    param_group: Options
     schema:
       type: string
   - name: params
@@ -41,7 +41,7 @@ parameters:
       Variables to use in conjunctions with query. This allows the query to be parameterized. This
       uses sqlite syntax (? or :name).
     required: false
-    role: option
+    param_group: Options
     runtime_default: null
     schema:
       type:
@@ -51,14 +51,14 @@ parameters:
   - name: preserve_index
     description: Preserve Index value accepted by the runtime.
     required: false
-    role: option
+    param_group: Formatting
     runtime_default: false
     schema:
       type: boolean
   - name: preserve_data_types
     description: Preserve Data Types value accepted by the runtime.
     required: false
-    role: option
+    param_group: Options
     runtime_default: true
     schema:
       type: boolean

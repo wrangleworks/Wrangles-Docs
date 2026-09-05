@@ -84,6 +84,11 @@
         "removed"
       ]
     },
+    "replaced_by": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]*(\\.[a-z][a-z0-9_]*)*$",
+      "description": "Canonical wrangle_key that replaces a deprecated or removed entry."
+    },
     "visibility": {
       "enum": [
         "public",
@@ -174,6 +179,25 @@
       }
     }
   },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "deprecated"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {
+        "required": [
+          "replaced_by"
+        ]
+      }
+    }
+  ],
   "$defs": {
     "parameter": {
       "type": "object",
@@ -182,7 +206,7 @@
         "name",
         "description",
         "required",
-        "role",
+        "param_group",
         "schema"
       ],
       "properties": {
@@ -202,9 +226,17 @@
         "required": {
           "type": "boolean"
         },
-        "role": {
+        "param_group": {
           "type": "string",
-          "minLength": 1
+          "enum": [
+            "I/O",
+            "Options",
+            "Formatting",
+            "Conditions",
+            "Execution",
+            "Errors",
+            "Details"
+          ]
         },
         "runtime_default": {},
         "schema": {

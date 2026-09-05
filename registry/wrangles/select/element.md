@@ -33,7 +33,7 @@ parameters:
       Name of the input column and sub elements This permits by index for lists or dict and by key
       for dicts e.g. col[0]['key'] // [{"key":"val"}] -> "val".
     required: true
-    role: column-selector
+    param_group: I/O
     schema:
       type:
         - string
@@ -42,7 +42,7 @@ parameters:
   - name: output
     description: Name of the output column(s).
     required: false
-    role: column-output
+    param_group: I/O
     runtime_default: null
     schema:
       type:
@@ -52,7 +52,7 @@ parameters:
   - name: default
     description: Set the default value to return if the specified element doesn't exist.
     required: false
-    role: fallback-value
+    param_group: Errors
     runtime_default: null
     schema:
       type:

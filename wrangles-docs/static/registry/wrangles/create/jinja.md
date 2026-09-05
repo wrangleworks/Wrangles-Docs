@@ -34,7 +34,7 @@ parameters:
       input. If any keys use a space, they must be replaced with an underscore. Note: spaces within
       column names are replaced by underscores (_).
     required: true
-    role: option
+    param_group: Options
     schema:
       type: object
       additionalProperties: false
@@ -48,7 +48,7 @@ parameters:
   - name: output
     description: Name of the column to be output to.
     required: true
-    role: column-output
+    param_group: I/O
     schema:
       type: array
   - name: input
@@ -56,7 +56,7 @@ parameters:
       Specify a name of column containing a dictionary of elements to be used in jinja template.
       Otherwise, the column headers will be used as keys.
     required: false
-    role: column-selector
+    param_group: I/O
     runtime_default: null
     schema:
       type:

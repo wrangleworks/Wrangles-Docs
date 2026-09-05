@@ -31,13 +31,13 @@ parameters:
   - name: input
     description: List of input columns or a single column containing lists.
     required: true
-    role: column-selector
+    param_group: I/O
     schema:
       type: array
   - name: output
     description: Name of the output columns. This is required if multiple input columns are provided.
     required: false
-    role: column-output
+    param_group: I/O
     runtime_default: null
     schema:
       type:

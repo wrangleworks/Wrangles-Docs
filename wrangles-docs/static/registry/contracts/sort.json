@@ -38,7 +38,7 @@
       "name": "ignore_index",
       "description": "Ignore Index value accepted by the runtime.",
       "required": false,
-      "role": "option",
+      "param_group": "Formatting",
       "runtime_default": true,
       "schema": {
         "type": "boolean"
@@ -48,7 +48,7 @@
       "name": "by",
       "description": "Name or list of the column(s) to sort by.",
       "required": true,
-      "role": "column-selector",
+      "param_group": "I/O",
       "schema": {
         "type": [
           "string",
@@ -60,7 +60,7 @@
       "name": "ascending",
       "description": "Sort ascending vs. descending. Specify a list to sort multiple columns in different orders. If this is a list of bools then it must match the length of the by.",
       "required": false,
-      "role": "option",
+      "param_group": "Options",
       "schema": {
         "type": [
           "boolean",
@@ -75,31 +75,31 @@
       "name": "if",
       "description": "Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`.",
       "required": false,
+      "param_group": "Conditions",
       "schema": {
         "type": "string"
-      },
-      "role": "common-control"
+      }
     },
     {
       "name": "where",
       "description": "Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`.",
       "required": false,
+      "param_group": "Conditions",
       "schema": {
         "type": "string"
-      },
-      "role": "common-control"
+      }
     },
     {
       "name": "where_params",
       "description": "Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`.",
       "required": false,
+      "param_group": "Conditions",
       "schema": {
         "type": [
           "array",
           "object"
         ]
-      },
-      "role": "common-control"
+      }
     }
   ],
   "examples": [],

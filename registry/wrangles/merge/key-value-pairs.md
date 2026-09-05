@@ -33,19 +33,19 @@ parameters:
   - name: input
     description: Matched pairs of key and value columns.
     required: true
-    role: column-selector
+    param_group: I/O
     schema:
       type: object
   - name: output
     description: Name of the output column.
     required: true
-    role: column-output
+    param_group: I/O
     schema:
       type: string
   - name: skip_empty
     description: Whether to skip empty keys or values when creating the dictionary.
     required: false
-    role: option
+    param_group: Options
     runtime_default: false
     schema:
       type: boolean

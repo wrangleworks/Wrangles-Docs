@@ -3,40 +3,14 @@ title: "Recipe"
 description: "Run another recipe as a wrangle against the current dataframe."
 sidebar_label: "Recipe"
 slug: "/recipe"
+registry_entry: true
+toc_min_heading_level: 2
+toc_max_heading_level: 3
 ---
 
 # Recipe
 
 Run another recipe as a wrangle against the current dataframe.
-
-> Pilot Registry entry. Runtime contract status: `verified`.
-
-## Parameters
-
-| Parameter | Required | Accepted value | Description | Runtime default |
-| --- | --- | --- | --- | --- |
-| `input` | No | string, integer, array, null | Name, index, or list of input columns. | `null` |
-| `output` | No | string, array, null | Name or list of output columns. | `null` |
-| `name` | No | string, null | File name of the recipe. | `null` |
-| `variables` | No | object, null | A dictionary of variables to pass to the recipe. | `null` |
-| `if` | No | string | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | — |
-| `where` | No | string | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | — |
-| `where_params` | No | array, object | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | — |
-
-## Verified examples
-
-_No fixture-backed examples are currently available. See migrated examples under Guidance where present._
-
-## Access
-
-| Requirement | Value |
-| --- | --- |
-| ai powered | No |
-| requires account | No |
-| requires subscription | No |
-| requires external api key | No |
-
-## Guidance
 
 ## Behavior
 
@@ -44,16 +18,56 @@ Run another recipe as a wrangle against the current dataframe.
 
 This first-pass guidance is derived from the callable signature and its embedded Python schema docstring.
 
-## Provenance
+## Parameters
+
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
+| --- | --- | --- | --- | --- |
+| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
+| `input` | Name, index, or list of input columns. | string, integer, array, null | `null` | No |
+| `output` | Name or list of output columns. | string, array, null | `null` | No |
+| <span className="ww-param-group-label">Options</span> |  |  |  |  |
+| `name` | File name of the recipe. | string, null | `null` | No |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
+| <span className="ww-param-group-label">Execution</span> |  |  |  |  |
+| `variables` | A dictionary of variables to pass to the recipe. | object, null | `null` | No |
+
+</div>
+
+
+
+<details className="ww-field-disclosure">
+
+<summary>Access</summary>
+
+| Requirement | Value |
+| --- | --- |
+| AI-powered | No |
+| Requires WrangleWorks account | No |
+| Requires subscription | No |
+| Requires external API key | No |
+
+</details>
+
+<details className="ww-field-disclosure">
+
+<summary>Technical details</summary>
+
+| Field | Value |
+| --- | --- |
+| Recipe key | `recipe` |
+| Lifecycle status | active |
+| Namespace | Root-level |
+| Documentation group | `utility` |
+| Aliases | None |
+| Runtime symbol | `wrangles.recipe_wrangles.main.recipe` |
+
+**Sources**
 
 - [WranglesPY recipe implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/main.py)
 
-## Registry metadata
-
-- Registry ID: pending database assignment
-- Namespace: root-level runtime key
-- Recipe key: `recipe`
-- Aliases: none
-- Runtime symbol: `wrangles.recipe_wrangles.main.recipe`
-- Status: `active`
-- Registry version: `0.1.0-pilot`
+</details>

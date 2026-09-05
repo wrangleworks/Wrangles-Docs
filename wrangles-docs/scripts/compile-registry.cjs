@@ -25,8 +25,42 @@ const runtimeManifestPath = path.join(registryRoot, 'runtime', 'wranglespy.json'
 const reportsOutputRoot = path.join(registryRoot, 'reports');
 
 const docsOutputRoot = path.join(siteRoot, 'registry-docs');
+const registrySidebarPath = path.join(siteRoot, 'sidebarsRegistry.js');
 const rawOutputRoot = path.join(siteRoot, 'static', 'registry');
 const schemaOutputRoot = path.join(siteRoot, 'static', 'schemas', 'recipes', 'pilot');
+
+const LEGACY_GROUP_OVERRIDES = {
+  maths: 'compute',
+  recipe: 'utility',
+};
+const GROUP_ORDER = [
+  'convert',
+  'merge',
+  'split',
+  'select',
+  'format',
+  'create',
+  'extract',
+  'compare',
+  'compute',
+  'search',
+  'ai',
+  'generate',
+  'lookup',
+  'standardize',
+  'transform',
+  'utility',
+  'date',
+];
+const PARAM_GROUP_ORDER = [
+  'I/O',
+  'Options',
+  'Formatting',
+  'Conditions',
+  'Execution',
+  'Errors',
+  'Details',
+];
 
 const generatedFiles = new Map();
 const errors = [];
@@ -422,6 +456,16 @@ function validateTopLevel(metadata, source, entrySchema) {
   if (!['draft', 'active', 'deprecated', 'removed'].includes(metadata.status)) {
     fail(source, 'status is invalid');
   }
+  if (metadata.status === 'deprecated' && typeof metadata.replaced_by !== 'string') {
+    fail(source, 'deprecated entries must declare replaced_by');
+  }
+  if (hasOwn(metadata, 'replaced_by')) {
+    if (!/^[a-z][a-z0-9_]*(\.[a-z][a-z0-9_]*)*$/.test(metadata.replaced_by || '')) {
+      fail(source, 'replaced_by must be a valid recipe key');
+    } else if (metadata.replaced_by === metadata.wrangle_key) {
+      fail(source, 'replaced_by must not reference the same wrangle');
+    }
+  }
   if (!['public', 'internal'].includes(metadata.visibility)) {
     fail(source, 'visibility is invalid');
   }
@@ -481,14 +525,14 @@ function validateParameters(metadata, source) {
       'name_pattern',
       'description',
       'required',
-      'role',
+      'param_group',
       'runtime_default',
       'schema',
     ]);
     for (const key of Object.keys(parameter)) {
       if (!allowed.has(key)) fail(source, `${label} has unknown field ${key}`);
     }
-    for (const key of ['name', 'description', 'required', 'role', 'schema']) {
+    for (const key of ['name', 'description', 'required', 'param_group', 'schema']) {
       if (!hasOwn(parameter, key)) fail(source, `${label}.${key} is required`);
     }
     if (typeof parameter.name_pattern === 'string') {
@@ -513,8 +557,8 @@ function validateParameters(metadata, source) {
     if (typeof parameter.required !== 'boolean') {
       fail(source, `${label}.required must be a boolean`);
     }
-    if (typeof parameter.role !== 'string' || !parameter.role.trim()) {
-      fail(source, `${label}.role must be a non-empty string`);
+    if (!PARAM_GROUP_ORDER.includes(parameter.param_group)) {
+      fail(source, `${label}.param_group must be one of: ${PARAM_GROUP_ORDER.join(', ')}`);
     }
     validateSchemaFragment(parameter.schema, source, label);
   }
@@ -605,17 +649,21 @@ function escapeCell(value) {
     .replace(/\r?\n/g, '<br />');
 }
 
-function schemaSummary(schema) {
+function acceptedValueSummary(schema) {
   for (const keyword of ['anyOf', 'oneOf']) {
     if (Array.isArray(schema[keyword])) {
-      return schema[keyword].map(schemaSummary).filter(Boolean).join(' or ');
+      return schema[keyword].map(acceptedValueSummary).filter(Boolean).join(' or ');
     }
   }
-  if (typeof schema.$ref === 'string') return `reference: ${schema.$ref}`;
+  if (typeof schema.$ref === 'string') return escapeCell(`reference: ${schema.$ref}`);
   const types = Array.isArray(schema.type) ? schema.type : [schema.type];
-  const typeLabel = types.filter(Boolean).join(', ');
+  const typeLabel = escapeCell(types.filter(Boolean).join(', '));
   if (Array.isArray(schema.enum)) {
-    return `${typeLabel}; one of: ${schema.enum.map(String).join(', ')}`;
+    const values = schema.enum.map((value) => {
+      const label = typeof value === 'string' ? value : JSON.stringify(value);
+      return `<li>${escapeCell(label)}</li>`;
+    }).join('');
+    return `${typeLabel}; one of:<ul className="ww-param-enum-values">${values}</ul>`;
   }
   return typeLabel;
 }
@@ -624,8 +672,249 @@ function jsonValue(value) {
   return value === undefined ? '—' : `\`${JSON.stringify(value)}\``;
 }
 
+function sampleValue(value) {
+  if (value === null || value === undefined) return '';
+  if (typeof value === 'object') return escapeCell(JSON.stringify(value));
+  return escapeCell(String(value));
+}
+
+function fixtureTable(fixture) {
+  if (!Array.isArray(fixture) || !fixture.length || !fixture.every(isObject)) {
+    return null;
+  }
+
+  const columns = [...new Set(fixture.flatMap((record) => Object.keys(record)))];
+  if (!columns.length) return null;
+
+  const header = `| ${columns.map(escapeCell).join(' | ')} |`;
+  const separator = `| ${columns.map(() => '---').join(' | ')} |`;
+  const rows = fixture.map((record) =>
+    `| ${columns.map((column) => sampleValue(record[column])).join(' | ')} |`,
+  );
+  return [header, separator, ...rows].join('\n');
+}
+
+function parseSampleTable(source) {
+  const lines = String(source || '').trim().split(/\r?\n/);
+  if (lines.length < 2) return null;
+
+  const headers = splitMarkdownRow(lines[0]);
+  const separator = splitMarkdownRow(lines[1]);
+  if (
+    !headers.length ||
+    separator.length !== headers.length ||
+    separator.some((cell) => !/^:?-{3,}:?$/.test(cell))
+  ) {
+    return null;
+  }
+
+  const rows = lines.slice(2).map(splitMarkdownRow);
+  if (!rows.length || rows.some((row) => row.length !== headers.length)) return null;
+  return {headers, rows};
+}
+
+function renderSampleTable(table) {
+  const preserveCell = (value) => String(value ?? '').replace(/\|/g, '\\|');
+  return [
+    `| ${table.headers.map(preserveCell).join(' | ')} |`,
+    `| ${table.headers.map(() => '---').join(' | ')} |`,
+    ...table.rows.map((row) => `| ${row.map(preserveCell).join(' | ')} |`),
+  ].join('\n');
+}
+
+function selectSampleColumns(table, indexes) {
+  return {
+    headers: indexes.map((index) => table.headers[index]),
+    rows: table.rows.map((row) => indexes.map((index) => row[index] ?? '')),
+  };
+}
+
+function normalizedSampleColumn(value) {
+  return String(value || '')
+    .replace(/`/g, '')
+    .replace(/\s*\([^)]*\b(?:input|output)\b[^)]*\)\s*$/i, '')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .toLowerCase();
+}
+
+function recipeParameterValues(recipeSource, parameter) {
+  try {
+    const document = yaml.load(recipeSource);
+    const wrangle = Array.isArray(document?.wrangles) ?
+      document.wrangles.find(isObject) : null;
+    const configuration = wrangle ? Object.values(wrangle)[0] : null;
+    const value = isObject(configuration) ? configuration[parameter] : null;
+    const values = Array.isArray(value) ? value : [value];
+    return values
+      .filter((item) => typeof item === 'string' || typeof item === 'number')
+      .map(String);
+  } catch {
+    return [];
+  }
+}
+
+function inferInputTable(recipeSource, outputTable) {
+  const inputColumns = recipeParameterValues(recipeSource, 'input');
+  if (!inputColumns.length || !outputTable) return null;
+
+  const indexes = inputColumns.map((column) =>
+    outputTable.headers.findIndex((header) =>
+      normalizedSampleColumn(header) === normalizedSampleColumn(column)),
+  );
+  if (indexes.some((index) => index < 0) || new Set(indexes).size !== indexes.length) {
+    return null;
+  }
+  return selectSampleColumns(outputTable, indexes);
+}
+
+function resultOnlyTable(inputTable, outputTable) {
+  if (!inputTable || !outputTable) return outputTable;
+
+  const retainedIndexes = outputTable.headers.map((header, outputIndex) => {
+    const inputIndex = inputTable.headers.findIndex((inputHeader) =>
+      normalizedSampleColumn(inputHeader) === normalizedSampleColumn(header));
+    if (inputIndex < 0) return outputIndex;
+
+    const inputValues = inputTable.rows.map((row) => row[inputIndex] ?? '');
+    const outputValues = outputTable.rows.map((row) => row[outputIndex] ?? '');
+    return valuesEqual(inputValues, outputValues) ? null : outputIndex;
+  }).filter((index) => index !== null);
+
+  // Structural wrangles such as select/drop can return only unchanged columns.
+  // Retain their full result so the changed table shape remains visible.
+  return retainedIndexes.length ? selectSampleColumns(outputTable, retainedIndexes) : outputTable;
+}
+
+function rewriteSampleGrids(content) {
+  const pattern = /```yaml\r?\n([\s\S]*?)\r?\n```\r?\n\r?\n<div className="ww-sample-grid">\r?\n\r?\n<div className="ww-sample-panel">\r?\n\r?\n##### Input Sample\r?\n\r?\n([\s\S]*?)\r?\n\r?\n<\/div>\r?\n\r?\n<div className="ww-sample-panel">\r?\n\r?\n##### Output Sample\r?\n\r?\n([\s\S]*?)\r?\n\r?\n<\/div>\r?\n\r?\n<\/div>/g;
+
+  return content.replace(pattern, (match, recipeSource, inputSource, outputSource) => {
+    let inputTable = parseSampleTable(inputSource);
+    let outputTable = parseSampleTable(outputSource);
+    if (!inputTable && /No sample available/i.test(inputSource)) {
+      inputTable = inferInputTable(recipeSource, outputTable);
+    }
+    if (inputTable && outputTable) outputTable = resultOnlyTable(inputTable, outputTable);
+
+    const normalizedInput = inputTable ? renderSampleTable(inputTable) : inputSource.trim();
+    const normalizedOutput = outputTable ? renderSampleTable(outputTable) : outputSource.trim();
+    return `\`\`\`yaml
+${recipeSource}
+\`\`\`
+
+<div className="ww-sample-grid">
+
+<div className="ww-sample-panel ww-sample-panel--input" data-sample-role="input">
+
+${normalizedInput}
+
+</div>
+
+<div className="ww-sample-panel ww-sample-panel--output" data-sample-role="output">
+
+${normalizedOutput}
+
+</div>
+
+</div>`;
+  });
+}
+
+function renderFixturePanel(role, fixture, normalizedTable = null) {
+  const table = normalizedTable ? renderSampleTable(normalizedTable) : fixtureTable(fixture);
+  const content = table || [
+    '```json',
+    JSON.stringify(fixture, null, 2),
+    '```',
+  ].join('\n');
+
+  return `<div className="ww-sample-panel ww-sample-panel--${role}" data-sample-role="${role}">
+
+${content}
+
+</div>`;
+}
+
+function renderPublicExample(example, grouped = false) {
+  const inputTable = parseSampleTable(fixtureTable(example._input_fixture));
+  const originalOutputTable = parseSampleTable(fixtureTable(example._output_fixture));
+  const outputTable = resultOnlyTable(inputTable, originalOutputTable);
+
+  return `\`\`\`yaml
+${example.recipe.trim()}
+\`\`\`
+
+<div className="ww-sample-grid">
+
+${renderFixturePanel('input', example._input_fixture, inputTable)}
+
+${renderFixturePanel('output', example._output_fixture, outputTable)}
+
+</div>`;
+}
+
+function normalizePublicBody(body, description, grouped = false) {
+  let content = rewriteSampleGrids(stripLeadingTitle(body));
+  const blocks = content.split(/\r?\n\r?\n/);
+  const normalizeText = (value) => value.replace(/\s+/g, ' ').trim();
+  if (blocks.length && normalizeText(blocks[0]) === normalizeText(description)) {
+    content = blocks.slice(1).join('\n\n').trim();
+  }
+
+  let inMigratedExamples = false;
+  return content.split(/\r?\n/).map((line) => {
+    if (/^## Migrated examples\s*$/.test(line)) {
+      inMigratedExamples = true;
+      return grouped ? '### Examples' : '## Examples';
+    }
+    if (inMigratedExamples && /^##\s+/.test(line)) {
+      inMigratedExamples = false;
+    }
+    if (inMigratedExamples && (
+      /^####\s+/.test(line) ||
+      /^#####\s+(?:Recipe|Input Sample|Output Sample)\s*$/.test(line)
+    )) {
+      return '';
+    }
+    return grouped ? line.replace(/^##(\s+)/, '###$1') : line;
+  }).join('\n');
+}
+
+function legacyDocumentationGroup(entry) {
+  for (const source of entry.metadata.sources) {
+    const match = source.resource.match(/\/wrangle-docs\/([^/]+)\/_sources\//);
+    if (match) return match[1];
+  }
+  return null;
+}
+
+function entryGroup(entry) {
+  return entry.metadata.namespace ||
+    legacyDocumentationGroup(entry) ||
+    LEGACY_GROUP_OVERRIDES[entry.metadata.wrangle_key] ||
+    'other';
+}
+
+function groupLabel(group) {
+  if (group === 'ai') return 'AI';
+  return group
+    .split(/[-_]/)
+    .filter(Boolean)
+    .map((part) => part[0].toUpperCase() + part.slice(1))
+    .join(' ');
+}
+
+function groupRoute(group) {
+  return `/wrangles/namespaces/${group}`;
+}
+
+function entryAnchor(entry) {
+  return entry.metadata.slug.split('/').at(-1);
+}
+
 function entryRoute(entry) {
-  return `/wrangles/${entry.metadata.slug}`;
+  return `${groupRoute(entryGroup(entry))}#${entryAnchor(entry)}`;
 }
 
 function entryOutputRelativePath(entry) {
@@ -650,7 +939,7 @@ function combinedParameters(entry, controls) {
       fail(entry.sourceFile, `capability ${name} duplicates an entry parameter`);
       continue;
     }
-    parameters.push({name, ...controls[name], role: 'common-control'});
+    parameters.push({name, ...controls[name]});
   }
   return parameters;
 }
@@ -659,115 +948,237 @@ function stripLeadingTitle(body) {
   return body.replace(/^#\s+[^\r\n]+\r?\n*/, '').trim();
 }
 
-function renderEntryPage(entry, controls) {
-  const metadata = entry.metadata;
-  const parameters = combinedParameters(entry, controls);
-  const parameterRows = parameters.map((parameter) => [
-    `\`${parameter.name}\``,
-    parameter.required ? 'Yes' : 'No',
-    escapeCell(schemaSummary(parameter.schema)),
-    escapeCell(parameter.description),
-    hasOwn(parameter, 'runtime_default') ? jsonValue(parameter.runtime_default) : '—',
-  ]);
+function splitExamplesSection(content, sectionHeading) {
+  const lines = content.split(/\r?\n/);
+  const heading = `${sectionHeading} Examples`;
+  const index = lines.findIndex((line) => line.trim() === heading);
+  if (index === -1) return {guidance: content.trim(), examples: ''};
+  return {
+    guidance: lines.slice(0, index).join('\n').trim(),
+    examples: lines.slice(index + 1).join('\n').trim(),
+  };
+}
 
-  const examples = metadata.examples.map((example) => [
-    `### ${example.title}`,
-    '',
-    `Verification: \`${example.verification}\``,
-    '',
-    '```yaml',
-    example.recipe.trim(),
-    '```',
-    '',
-    '#### Input',
-    '',
-    '```json',
-    JSON.stringify(example._input_fixture, null, 2),
-    '```',
-    '',
-    '#### Output',
-    '',
-    '```json',
-    JSON.stringify(example._output_fixture, null, 2),
-    '```',
-  ].join('\n')).join('\n\n');
+function renderEntryContent(entry, controls, {grouped = false, entriesByKey = new Map()} = {}) {
+  const metadata = entry.metadata;
+  const sectionHeading = grouped ? '###' : '##';
+  const parameters = combinedParameters(entry, controls);
+  const parameterRows = PARAM_GROUP_ORDER.flatMap((paramGroup) => {
+    const groupedParameters = parameters.filter(
+      (parameter) => parameter.param_group === paramGroup,
+    );
+    if (!groupedParameters.length) return [];
+    return [
+      [`<span className="ww-param-group-label">${paramGroup}</span>`, '', '', '', ''],
+      ...groupedParameters.map((parameter) => [
+        `\`${parameter.name}\``,
+        escapeCell(parameter.description),
+        acceptedValueSummary(parameter.schema),
+        hasOwn(parameter, 'runtime_default') ? jsonValue(parameter.runtime_default) : '—',
+        parameter.required ? 'Yes' : 'No',
+      ]),
+    ];
+  });
+
+  const fixtureExamples = metadata.examples
+    .map((example) => renderPublicExample(example, grouped))
+    .join('\n\n');
 
   const sourceRows = metadata.sources.map((source) =>
     `- [${source.title || source.id}](${source.resource})`,
   ).join('\n');
 
+  const accessLabels = {
+    ai_powered: 'AI-powered',
+    requires_account: 'Requires WrangleWorks account',
+    requires_subscription: 'Requires subscription',
+    requires_external_api_key: 'Requires external API key',
+  };
   const accessRows = Object.entries(metadata.access).map(([key, value]) =>
-    `| ${escapeCell(key.replaceAll('_', ' '))} | ${value ? 'Yes' : 'No'} |`,
+    `| ${accessLabels[key] || escapeCell(key.replaceAll('_', ' '))} | ${value ? 'Yes' : 'No'} |`,
   ).join('\n');
 
-  const guidance = stripLeadingTitle(entry.body);
-  return `---
-title: "${metadata.title.replaceAll('"', '\\"')}"
-description: "${metadata.description.replaceAll('"', '\\"')}"
-sidebar_label: "${metadata.title.replaceAll('"', '\\"')}"
-slug: "/${metadata.slug}"
----
+  const normalizedBody = normalizePublicBody(entry.body, metadata.description, grouped);
+  const {guidance, examples: migratedExamples} = splitExamplesSection(
+    normalizedBody,
+    sectionHeading,
+  );
+  const examples = [migratedExamples, fixtureExamples].filter(Boolean).join('\n\n');
+  const examplesSection = examples ? `${sectionHeading} Examples\n\n${examples}` : '';
+  const namespace = metadata.namespace || 'Root-level';
+  const documentationGroup = entryGroup(entry);
+  const aliases = metadata.aliases.length ?
+    metadata.aliases.map((alias) => `\`${alias}\``).join(', ') : 'None';
+  const lifecycleSuffix = metadata.status === 'deprecated' ? ' (Deprecated)' :
+    metadata.status === 'removed' ? ' (Removed)' : '';
+  const displayTitle = `${metadata.title}${lifecycleSuffix}`;
+  const replacement = metadata.replaced_by ? entriesByKey.get(metadata.replaced_by) : null;
+  const replacementLink = replacement ?
+    `[\`${metadata.replaced_by}\`](${entryRoute(replacement)})` :
+    metadata.replaced_by ? `\`${metadata.replaced_by}\`` : '';
+  const lifecycleNotice = metadata.status === 'deprecated' ? `:::warning Deprecated
+This compatibility wrangle remains available for existing recipes. Use ${replacementLink} for new recipes.
+:::
 
-# ${metadata.title}
+` : metadata.status === 'removed' ? `:::danger Removed
+This wrangle is retained only to document historical recipes.${replacementLink ? ` Use ${replacementLink} instead.` : ''}
+:::
 
-${escapeMdxText(metadata.description)}
+` : '';
+  const entryHeading = grouped ?
+    `## ${displayTitle} {#${entryAnchor(entry)}}\n\n` : '';
+  return `${entryHeading}${lifecycleNotice}${escapeMdxText(metadata.description)}
 
-> Pilot Registry entry. Runtime contract status: \`${metadata.runtime.contract_status}\`.
+${guidance}
 
-## Parameters
+${sectionHeading} Parameters
 
-| Parameter | Required | Accepted value | Description | Runtime default |
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
 | --- | --- | --- | --- | --- |
 ${parameterRows.map((row) => `| ${row.join(' | ')} |`).join('\n')}
 
-## Verified examples
+</div>
 
-${examples || '_No fixture-backed examples are currently available. See migrated examples under Guidance where present._'}
+${examplesSection}
 
-## Access
+<details className="ww-field-disclosure">
+
+<summary>Access</summary>
 
 | Requirement | Value |
 | --- | --- |
 ${accessRows}
 
-## Guidance
+</details>
 
-${guidance || '_No additional guidance._'}
+<details className="ww-field-disclosure">
 
-## Provenance
+<summary>Technical details</summary>
+
+| Field | Value |
+| --- | --- |
+| Recipe key | \`${metadata.wrangle_key}\` |
+| Lifecycle status | ${metadata.status} |
+${metadata.replaced_by ? `| Replaced by | ${replacementLink} |\n` : ''}| Namespace | ${namespace === 'Root-level' ? namespace : `\`${namespace}\``} |
+| Documentation group | \`${documentationGroup}\` |
+| Aliases | ${aliases} |
+| Runtime symbol | \`${metadata.runtime.symbol}\` |
+
+**Sources**
 
 ${sourceRows}
 
-## Registry metadata
-
-- Registry ID: ${metadata.id ? `\`${metadata.id}\`` : 'pending database assignment'}
-- Namespace: ${metadata.namespace ? `\`${metadata.namespace}\`` : 'root-level runtime key'}
-- Recipe key: \`${metadata.wrangle_key}\`
-- Aliases: ${metadata.aliases.length ? metadata.aliases.map((alias) => `\`${alias}\``).join(', ') : 'none'}
-- Runtime symbol: \`${metadata.runtime.symbol}\`
-- Status: \`${metadata.status}\`
-- Registry version: \`${REGISTRY_VERSION}\`
+</details>
 `;
 }
 
-function renderDocsIndex(entries) {
-  const rows = entries.map((entry) =>
-    `| [\`${entry.metadata.wrangle_key}\`](${entryRoute(entry)}) | ${escapeCell(entry.metadata.description)} | \`${entry.metadata.runtime.contract_status}\` |`,
+function renderEntryPage(entry, controls, entriesByKey) {
+  const metadata = entry.metadata;
+  const lifecycleSuffix = metadata.status === 'deprecated' ? ' (Deprecated)' :
+    metadata.status === 'removed' ? ' (Removed)' : '';
+  const displayTitle = `${metadata.title}${lifecycleSuffix}`;
+  return `---
+title: "${displayTitle.replaceAll('"', '\\"')}"
+description: "${metadata.description.replaceAll('"', '\\"')}"
+sidebar_label: "${displayTitle.replaceAll('"', '\\"')}"
+slug: "/${metadata.slug}"
+registry_entry: true
+toc_min_heading_level: 2
+toc_max_heading_level: 3
+---
+
+# ${displayTitle}
+
+${renderEntryContent(entry, controls, {entriesByKey})}`;
+}
+
+function groupedEntries(entries) {
+  const statusRank = {active: 0, draft: 1, deprecated: 2, removed: 3};
+  const groupsByName = new Map();
+  for (const entry of entries) {
+    const group = entryGroup(entry);
+    if (!groupsByName.has(group)) groupsByName.set(group, []);
+    groupsByName.get(group).push(entry);
+  }
+
+  const orderOf = (group) => {
+    const index = GROUP_ORDER.indexOf(group);
+    return index < 0 ? Number.MAX_SAFE_INTEGER : index;
+  };
+  return [...groupsByName.entries()]
+    .map(([group, groupItems]) => ({
+      group,
+      entries: groupItems.sort((left, right) =>
+        (statusRank[left.metadata.status] ?? 99) - (statusRank[right.metadata.status] ?? 99) ||
+        left.metadata.wrangle_key.localeCompare(right.metadata.wrangle_key),
+      ),
+    }))
+    .sort((left, right) =>
+      orderOf(left.group) - orderOf(right.group) || left.group.localeCompare(right.group),
+    );
+}
+
+function renderNamespacePage(grouped, controls, entriesByKey) {
+  const label = groupLabel(grouped.group);
+  const description = `${label} wrangles, with recipe examples, parameters, and behavior.`;
+  const sections = grouped.entries.map((entry) =>
+    renderEntryContent(entry, controls, {grouped: true, entriesByKey}),
+  ).join('\n\n---\n\n');
+  return `---
+title: "${label} Wrangles"
+description: "${description}"
+sidebar_label: "${label}"
+slug: "/namespaces/${grouped.group}"
+registry_entry: true
+toc_min_heading_level: 2
+toc_max_heading_level: 3
+---
+
+# ${label} Wrangles
+
+${description}
+
+${sections}`;
+}
+
+function renderRegistrySidebar(groups) {
+  const items = groups.map(({group}) =>
+    `    {type: 'doc', id: 'namespaces/${group}', label: '${groupLabel(group)}'},`,
+  ).join('\n');
+  return `/** @type {import('@docusaurus/plugin-content-docs').SidebarsConfig} */
+const sidebarsRegistry = {
+  registrySidebar: [
+    {type: 'doc', id: 'index', label: 'Registry Pilot'},
+${items}
+  ],
+};
+
+export default sidebarsRegistry;
+`;
+}
+
+function renderDocsIndex(groups) {
+  const rows = groups.map(({group, entries}) =>
+    `| [${groupLabel(group)}](${groupRoute(group)}) | ${entries.length} | ${groupLabel(group)} wrangles and compatibility entries. |`,
   ).join('\n');
   return `---
 title: Wrangles Registry Pilot
 description: Pilot of the versioned Wrangles recipe knowledge registry.
 slug: /
+registry_entry: true
 ---
 
 # Wrangles Registry Pilot
 
 This preview contains the first Registry records compiled from the new
 Markdown contract. These pages are not yet the production replacement for the
-existing wrangle reference.
+existing wrangle reference. Wrangles are grouped using their Registry namespace;
+root-level compatibility keys remain in their existing documentation group.
 
-| Wrangle | Description | Runtime contract |
-| --- | --- | --- |
+| Namespace or group | Wrangles | Description |
+| --- | ---: | --- |
 ${rows}
 `;
 }
@@ -928,6 +1339,7 @@ function buildEntryContract(entry, controls) {
     title: metadata.title,
     description: metadata.description,
     status: metadata.status,
+    ...(metadata.replaced_by ? {replaced_by: metadata.replaced_by} : {}),
     visibility: metadata.visibility,
     tags: metadata.tags,
     runtime: metadata.runtime,
@@ -1518,7 +1930,11 @@ async function readInputs() {
     throw new Error('registry/common/wrangle-controls.yaml is invalid');
   }
   for (const [name, control] of Object.entries(commonDocument.controls)) {
-    if (!isObject(control) || typeof control.description !== 'string') {
+    if (
+      !isObject(control) ||
+      typeof control.description !== 'string' ||
+      !PARAM_GROUP_ORDER.includes(control.param_group)
+    ) {
       throw new Error(`Common control ${name} is invalid`);
     }
     validateSchemaFragment(control.schema, commonControlsPath, `controls.${name}`);
@@ -1553,6 +1969,11 @@ async function readInputs() {
       recipeKeys.add(recipeKey);
     }
   }
+  for (const entry of entries) {
+    if (entry.metadata.replaced_by && !recipeKeys.has(entry.metadata.replaced_by)) {
+      fail(entry.sourceFile, `replaced_by references unknown recipe key ${entry.metadata.replaced_by}`);
+    }
+  }
 
   return {
     entries,
@@ -1571,11 +1992,21 @@ function buildOutputs(entries, controls, reconciliation, registrySchemas, runtim
     .filter((entry) => entry.metadata.visibility === 'public')
     .sort((left, right) => left.metadata.wrangle_key.localeCompare(right.metadata.wrangle_key));
 
-  addGeneratedFile(path.join(docsOutputRoot, 'index.md'), renderDocsIndex(publicEntries));
+  const groups = groupedEntries(publicEntries);
+  const entriesByKey = new Map(publicEntries.map((entry) => [entry.metadata.wrangle_key, entry]));
+
+  addGeneratedFile(path.join(docsOutputRoot, 'index.md'), renderDocsIndex(groups));
+  addGeneratedFile(registrySidebarPath, renderRegistrySidebar(groups));
+  for (const group of groups) {
+    addGeneratedFile(
+      path.join(docsOutputRoot, 'namespaces', `${group.group}.md`),
+      renderNamespacePage(group, controls, entriesByKey),
+    );
+  }
   for (const entry of publicEntries) {
     addGeneratedFile(
       path.join(docsOutputRoot, entryOutputRelativePath(entry)),
-      renderEntryPage(entry, controls),
+      renderEntryPage(entry, controls, entriesByKey),
     );
     const rawRelative = path.relative(registryRoot, entry.sourceFile);
     addGeneratedFile(path.join(rawOutputRoot, rawRelative), entry.source);
@@ -1613,6 +2044,7 @@ function buildOutputs(entries, controls, reconciliation, registrySchemas, runtim
       title: entry.metadata.title,
       description: entry.metadata.description,
       status: entry.metadata.status,
+      ...(entry.metadata.replaced_by ? {replaced_by: entry.metadata.replaced_by} : {}),
       tags: entry.metadata.tags,
       route: entryRoute(entry),
       contract_json: `/registry/${posixPath(entryContractRelativePath(entry))}`,

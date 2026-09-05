@@ -31,7 +31,7 @@ parameters:
   - name: input
     description: Name of the input column.
     required: true
-    role: column-selector
+    param_group: I/O
     schema:
       type:
         - string
@@ -40,7 +40,7 @@ parameters:
   - name: property
     description: Property to extract from date.
     required: true
-    role: option
+    param_group: Options
     schema:
       type: string
       enum:
@@ -55,7 +55,7 @@ parameters:
   - name: output
     description: Name of the output columns.
     required: false
-    role: column-output
+    param_group: I/O
     runtime_default: null
     schema:
       type:

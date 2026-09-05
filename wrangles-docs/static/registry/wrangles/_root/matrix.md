@@ -35,7 +35,7 @@ parameters:
       A dictionary of variables to pass to the wrangle. The key is the variable name and the value
       is a list of values.
     required: true
-    role: variables
+    param_group: Execution
     schema:
       type: object
   - name: wrangles
@@ -43,7 +43,7 @@ parameters:
       The wrangles to apply to the dataframe. Each wrangle will be run for each combination of the
       variables.
     required: true
-    role: nested-wrangles
+    param_group: Execution
     schema:
       type: array
       minItems: 1
@@ -55,7 +55,7 @@ parameters:
       set of variables, repeating shorter lists until the longest is completed. permutations uses
       the combination of all variables against all other variables.
     required: false
-    role: option
+    param_group: Options
     runtime_default: loop
     schema:
       type: string

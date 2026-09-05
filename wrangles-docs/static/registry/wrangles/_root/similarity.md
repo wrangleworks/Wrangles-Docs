@@ -31,7 +31,7 @@ parameters:
   - name: input
     description: Two columns of vectors to compare the similarity of.
     required: true
-    role: column-selector
+    param_group: I/O
     schema:
       type: array
       minItems: 2
@@ -39,7 +39,7 @@ parameters:
   - name: output
     description: Name of the output column.
     required: true
-    role: column-output
+    param_group: I/O
     schema:
       type: string
   - name: method
@@ -47,7 +47,7 @@ parameters:
       The type of similarity to calculate (cosine or euclidean). Adjusted cosine adjusts the default
       cosine calculation to cover a range of 0-1 for typical comparisons.
     required: false
-    role: option
+    param_group: Options
     runtime_default: cosine
     schema:
       type: string

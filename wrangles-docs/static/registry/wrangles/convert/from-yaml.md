@@ -31,7 +31,7 @@ parameters:
   - name: input
     description: Name of the input column.
     required: true
-    role: column-selector
+    param_group: I/O
     schema:
       type:
         - string
@@ -40,7 +40,7 @@ parameters:
   - name: output
     description: Name of the output column. If omitted, the input column will be overwritten.
     required: false
-    role: column-output
+    param_group: I/O
     runtime_default: null
     schema:
       type:
@@ -53,7 +53,7 @@ parameters:
       may also be a list - either a single value to apply to all columns, or one value per input
       column.
     required: false
-    role: fallback-value
+    param_group: Errors
     runtime_default: null
     schema:
       type:

@@ -30,7 +30,7 @@ parameters:
   - name: input
     description: Name, index, or list of input columns.
     required: false
-    role: column-selector
+    param_group: I/O
     runtime_default: null
     schema:
       type:
@@ -41,7 +41,7 @@ parameters:
   - name: output
     description: Name or list of output columns.
     required: false
-    role: column-output
+    param_group: I/O
     runtime_default: null
     schema:
       type:
@@ -51,7 +51,7 @@ parameters:
   - name: name
     description: File name of the recipe.
     required: false
-    role: option
+    param_group: Options
     runtime_default: null
     schema:
       type:
@@ -60,7 +60,7 @@ parameters:
   - name: variables
     description: A dictionary of variables to pass to the recipe.
     required: false
-    role: variables
+    param_group: Execution
     runtime_default: null
     schema:
       type:

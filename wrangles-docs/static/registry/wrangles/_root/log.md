@@ -31,7 +31,7 @@ parameters:
   - name: columns
     description: (Optional, default all columns) List of specific columns to log.
     required: false
-    role: option
+    param_group: I/O
     runtime_default: null
     schema:
       type:
@@ -40,7 +40,7 @@ parameters:
   - name: write
     description: (Optional) Allows for an intermediate output to a file/dataframe/database etc.
     required: false
-    role: option
+    param_group: Options
     runtime_default: null
     schema:
       type:
@@ -52,7 +52,7 @@ parameters:
   - name: warning
     description: Log a warning to the console.
     required: false
-    role: option
+    param_group: Options
     runtime_default: null
     schema:
       type:
@@ -61,7 +61,7 @@ parameters:
   - name: info
     description: Log info to the console.
     required: false
-    role: option
+    param_group: Options
     runtime_default: null
     schema:
       type:
@@ -72,7 +72,7 @@ parameters:
       Whether to log a sample of the contents of the dataframe. Default True if not logging to a
       write, error, warning or info. Default False otherwise.
     required: false
-    role: option
+    param_group: Options
     runtime_default: null
     schema:
       type:
@@ -81,7 +81,7 @@ parameters:
   - name: error
     description: Log an error to the console.
     required: false
-    role: option
+    param_group: Options
     schema:
       type: string
 examples: []

@@ -35,7 +35,7 @@ parameters:
       Name or lists of the column(s) containing dictionaries to be split. If providing multiple
       dictionaries and the dictionaries contain overlapping values, the last value will be returned.
     required: true
-    role: column-selector
+    param_group: I/O
     schema:
       type:
         - string
@@ -49,7 +49,7 @@ parameters:
       be two output columns for the keys and values lists. If not provided, Keys and Values will be
       used.
     required: false
-    role: column-output
+    param_group: I/O
     runtime_default: null
     schema:
       type:
@@ -59,7 +59,7 @@ parameters:
   - name: default
     description: Provide a set of default headings and values if they are not found within the input.
     required: false
-    role: fallback-value
+    param_group: Errors
     runtime_default: null
     schema:
       type:
@@ -70,7 +70,7 @@ parameters:
       How to split the dictionary. columns creates one output column for each dictionary key.
       to_lists creates two output columns containing lists of keys and values.
     required: false
-    role: column-output
+    param_group: Formatting
     runtime_default: columns
     schema:
       type: string

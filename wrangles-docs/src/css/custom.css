@@ -338,12 +338,12 @@ body {
 
 /* Wrangle pages use explicit panels to keep sample labels attached to their data. */
 .ww-wrangle-doc-scope .theme-doc-markdown > h2:not([id^="metadata"]) {
-  background: #e9f3fb;
-  border: 1px solid #c7dceb;
-  border-bottom: 1px solid #c7dceb;
-  border-left: 6px solid #ecbf5d;
+  background: #4472c4;
+  border: 1px solid #4472c4;
+  border-bottom: 1px solid #4472c4;
+  border-left: 6px solid #4472c4;
   border-radius: 4px;
-  color: #124f78;
+  color: #ffffff;
   margin-top: 3.25rem;
   padding: 0.72rem 0.9rem;
 }
@@ -354,43 +354,121 @@ body {
 
 .ww-wrangle-doc-scope .ww-sample-grid {
   align-items: stretch;
+  background: #ffffff;
+  border: 1px solid #aeb9c6;
+  border-radius: 5px;
   display: grid;
-  gap: 2.5rem;
+  gap: 0;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   margin: 1.25rem 0;
+  overflow: hidden;
   position: relative;
 }
 
 .ww-wrangle-doc-scope .ww-sample-grid::before {
-  background: #cbd5df;
-  bottom: 0;
-  content: "";
-  left: 50%;
-  position: absolute;
-  top: 0;
-  transform: translateX(-50%);
-  width: 1px;
+  display: none;
 }
 
 .ww-wrangle-doc-scope .ww-sample-panel {
-  background: #f8fafc;
-  border: 1px solid #d6dde8;
-  border-radius: 4px;
+  background: #ffffff;
+  border: 0;
+  border-radius: 0;
   min-width: 0;
   overflow-x: auto;
-  padding: 1rem;
+  padding: 0;
 }
 
-.ww-wrangle-doc-scope .ww-sample-panel > h5:first-child {
-  color: #234263;
-  margin: 0 0 0.8rem;
+.ww-wrangle-doc-scope .ww-sample-panel + .ww-sample-panel {
+  border-left: 4px solid #8795a5;
 }
 
 .ww-wrangle-doc-scope .ww-sample-panel > table {
+  border-collapse: collapse;
+  border-spacing: 0;
   display: table;
   margin: 0;
   min-width: 100%;
   width: 100%;
+}
+
+.ww-wrangle-doc-scope .ww-sample-panel > table th,
+.ww-wrangle-doc-scope .ww-sample-panel > table td {
+  border: 1px solid #c8d0d9;
+  padding: 0.48rem 0.62rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+.ww-wrangle-doc-scope .ww-sample-panel > table thead th {
+  background: #294d6b;
+  color: #ffffff;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.ww-wrangle-doc-scope .ww-sample-panel + .ww-sample-panel > table thead th {
+  background: #548235;
+}
+
+.ww-wrangle-doc-scope .ww-sample-panel > table tbody tr:nth-child(even) td {
+  background: #f3f6f9;
+}
+
+.ww-wrangle-doc-scope .ww-sample-panel > table tbody tr:hover td {
+  background: #fff8d9;
+}
+
+.ww-wrangle-doc-scope .ww-parameters-table {
+  overflow-x: auto;
+}
+
+.ww-wrangle-doc-scope .ww-parameters-table > table {
+  display: table;
+  min-width: 100%;
+  width: 100%;
+}
+
+.ww-wrangle-doc-scope .ww-parameters-table tbody tr:has(.ww-param-group-label) td {
+  background: #294d6b;
+  border-bottom-color: #294d6b;
+  border-top: 2px solid #1f3b53;
+  color: #ffffff;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.045em;
+  padding-bottom: 0.42rem;
+  padding-top: 0.42rem;
+  text-transform: uppercase;
+}
+
+.ww-wrangle-doc-scope .ww-parameters-table tbody tr:has(.ww-param-group-label) td:not(:first-child) {
+  border-left-color: #294d6b;
+}
+
+.ww-wrangle-doc-scope .ww-parameters-table tbody td:first-child code {
+  background: #dbeafe;
+  border: 1px solid #93c5fd;
+  color: #0b4f84;
+  font-weight: 700;
+  padding: 0.18rem 0.38rem;
+}
+
+.ww-wrangle-doc-scope .ww-parameters-table tbody td:nth-child(4) code {
+  background: #f0f3f6;
+  border: 1px solid #d4dbe2;
+  color: #465563;
+  font-weight: 600;
+  padding: 0.14rem 0.32rem;
+  white-space: nowrap;
+}
+
+.ww-wrangle-doc-scope .ww-param-enum-values {
+  margin: 0.32rem 0 0;
+  padding-left: 1.15rem;
+}
+
+.ww-wrangle-doc-scope .ww-param-enum-values > li {
+  margin: 0.08rem 0;
 }
 
 .ww-wrangle-doc-scope .ww-editable-sample-cell {
@@ -430,12 +508,12 @@ body {
 
 @media (max-width: 760px) {
   .ww-wrangle-doc-scope .ww-sample-grid {
-    gap: 1rem;
     grid-template-columns: minmax(0, 1fr);
   }
 
-  .ww-wrangle-doc-scope .ww-sample-grid::before {
-    display: none;
+  .ww-wrangle-doc-scope .ww-sample-panel + .ww-sample-panel {
+    border-left: 0;
+    border-top: 4px solid #8795a5;
   }
 
   .ww-wrangle-doc-scope .theme-doc-markdown > h2:not([id^="metadata"]) {

@@ -104,7 +104,7 @@ structured discovery.
 - [`split.text`](wrangles/split/text.md): Split a string to multiple columns or a list.
 - [`split.tokenize`](wrangles/split/tokenize.md): Split text into tokens. A variety of methods are available. The default method is to split on spaces.
 - [`sql`](wrangles/_root/sql.md): Apply a SQL command to the current dataframe. Only SELECT statements are supported - the result will be the output.
-- [`standardize`](wrangles/_root/standardize.md): Standardize data using a DIY or bespoke standardization wrangle. Requires WrangleWorks Account and Subscription.
+- [`standardize`](wrangles/_root/standardize.md): Deprecated compatibility key for `standardize.custom`, which standardizes data using a trained DIY or bespoke model.
 - [`standardize.clean`](wrangles/standardize/clean.md): Repair common encoding, Unicode, HTML character reference, control character, and whitespace problems locally.
 - [`standardize.custom`](wrangles/standardize/custom.md): Standardize data using a DIY or bespoke standardization wrangle. Requires WrangleWorks Account and Subscription.
 - [`translate`](wrangles/_root/translate.md): Translate the input to a different language. Requires WrangleWorks Account and DeepL API Key (A free account for up to 500,000 characters per month is available).

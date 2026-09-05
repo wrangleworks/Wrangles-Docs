@@ -38,7 +38,7 @@
       "name": "header_column",
       "description": "Name or position of the column that will be used as the column headings for the transposed DataFrame. Default 0 (first column). Use header_column = null to not use any column as header.",
       "required": false,
-      "role": "column-selector",
+      "param_group": "I/O",
       "runtime_default": 0,
       "schema": {
         "type": [
@@ -52,31 +52,31 @@
       "name": "if",
       "description": "Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`.",
       "required": false,
+      "param_group": "Conditions",
       "schema": {
         "type": "string"
-      },
-      "role": "common-control"
+      }
     },
     {
       "name": "where",
       "description": "Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`.",
       "required": false,
+      "param_group": "Conditions",
       "schema": {
         "type": "string"
-      },
-      "role": "common-control"
+      }
     },
     {
       "name": "where_params",
       "description": "Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`.",
       "required": false,
+      "param_group": "Conditions",
       "schema": {
         "type": [
           "array",
           "object"
         ]
-      },
-      "role": "common-control"
+      }
     }
   ],
   "examples": [],

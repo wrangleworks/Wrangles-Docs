@@ -31,7 +31,7 @@ parameters:
   - name: input
     description: Name of the input column.
     required: true
-    role: column-selector
+    param_group: I/O
     schema:
       type:
         - string
@@ -40,14 +40,14 @@ parameters:
   - name: significant_figures
     description: Number of significant figures to format to. Default is 3.
     required: false
-    role: option
+    param_group: Formatting
     runtime_default: 3
     schema:
       type: integer
   - name: output
     description: Name of the output column.
     required: false
-    role: column-output
+    param_group: I/O
     runtime_default: null
     schema:
       type:

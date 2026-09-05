@@ -31,7 +31,7 @@ parameters:
   - name: input
     description: Name or list of input columns.
     required: true
-    role: column-selector
+    param_group: I/O
     schema:
       type:
         - string
@@ -40,7 +40,7 @@ parameters:
   - name: data_type
     description: The type of data to extract.
     required: true
-    role: option
+    param_group: Options
     schema:
       type: string
       enum:
@@ -49,7 +49,7 @@ parameters:
   - name: output
     description: Name or list of output columns.
     required: false
-    role: column-output
+    param_group: I/O
     runtime_default: null
     schema:
       type:
@@ -59,7 +59,7 @@ parameters:
   - name: output_format
     description: Format of the extract output.
     required: false
-    role: column-output
+    param_group: Formatting
     runtime_default: null
     schema:
       type:
@@ -72,7 +72,7 @@ parameters:
   - name: char
     description: Character to use when output_format is concatenate.
     required: false
-    role: option
+    param_group: Formatting
     runtime_default: ', '
     schema:
       type: string

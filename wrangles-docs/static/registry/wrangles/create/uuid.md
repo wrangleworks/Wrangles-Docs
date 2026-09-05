@@ -31,7 +31,7 @@ parameters:
   - name: output
     description: Name or list of names of new columns.
     required: true
-    role: column-output
+    param_group: I/O
     schema:
       type:
         - string

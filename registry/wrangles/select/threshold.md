@@ -31,19 +31,19 @@ parameters:
   - name: input
     description: List of the input columns to select from.
     required: true
-    role: column-selector
+    param_group: I/O
     schema:
       type: array
   - name: output
     description: Name of the output column.
     required: true
-    role: column-output
+    param_group: I/O
     schema:
       type: string
   - name: threshold
     description: Threshold above which to choose the first option, otherwise the second.
     required: true
-    role: option
+    param_group: Options
     schema:
       type: number
       minimum: 0

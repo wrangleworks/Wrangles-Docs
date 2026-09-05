@@ -3,49 +3,41 @@ title: "Accordion"
 description: "Apply a series of wrangles to column(s) containing lists. The wrangles will be applied to each element in the list and the results will be returned back as a list."
 sidebar_label: "Accordion"
 slug: "/accordion"
+registry_entry: true
+toc_min_heading_level: 2
+toc_max_heading_level: 3
 ---
 
 # Accordion
 
 Apply a series of wrangles to column(s) containing lists. The wrangles will be applied to each element in the list and the results will be returned back as a list.
 
-> Pilot Registry entry. Runtime contract status: `verified`.
+Apply a series of wrangles to the individual elements of one or more lists.
 
 ## Parameters
 
-| Parameter | Required | Accepted value | Description | Runtime default |
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
 | --- | --- | --- | --- | --- |
-| `wrangles` | Yes | array | List of wrangles to apply. | — |
-| `input` | Yes | string, integer, array | The column(s) containing the list(s) that the wrangles will be applied to the elements of. | — |
-| `output` | No | string, array, null | Output of the wrangles to save back to the dataframe. | `null` |
-| `propagate` | No | string, array, null | Limit the column(s) that will be available to the wrangles and replicated for each element. If not specified, all columns will be propogated. This may be useful to limit the memory use for large datasets. | `null` |
-| `if` | No | string | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | — |
-| `where` | No | string | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | — |
-| `where_params` | No | array, object | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | — |
+| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
+| `input` | The column(s) containing the list(s) that the wrangles will be applied to the elements of. | string, integer, array | — | Yes |
+| `output` | Output of the wrangles to save back to the dataframe. | string, array, null | `null` | No |
+| `propagate` | Limit the column(s) that will be available to the wrangles and replicated for each element. If not specified, all columns will be propogated. This may be useful to limit the memory use for large datasets. | string, array, null | `null` | No |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
+| <span className="ww-param-group-label">Execution</span> |  |  |  |  |
+| `wrangles` | List of wrangles to apply. | array | — | Yes |
 
-## Verified examples
+</div>
 
-_No fixture-backed examples are currently available. See migrated examples under Guidance where present._
-
-## Access
-
-| Requirement | Value |
-| --- | --- |
-| ai powered | No |
-| requires account | No |
-| requires subscription | No |
-| requires external api key | No |
-
-## Guidance
-
-Apply a series of wrangles to the individual elements of one or more lists.
-
-## Migrated examples
-#### Apply Convert Case to List Elements
+## Examples
 
 This example applies `convert.case` to each string in a list, where the wrangle would not normally operate on the list as a whole.
 
-##### Recipe
+
 
 ```yaml
 wrangles:
@@ -61,9 +53,7 @@ wrangles:
 
 <div className="ww-sample-grid">
 
-<div className="ww-sample-panel">
-
-##### Input Sample
+<div className="ww-sample-panel ww-sample-panel--input" data-sample-role="input">
 
 | list_column |
 | --- |
@@ -72,30 +62,46 @@ wrangles:
 
 </div>
 
-<div className="ww-sample-panel">
+<div className="ww-sample-panel ww-sample-panel--output" data-sample-role="output">
 
-##### Output Sample
+| modified_lists |
+| --- |
+| ["A", "B", "C"] |
+| ["E", "F", "G"] |
 
-| list_column | modified_lists |
+</div>
+
+</div>
+
+<details className="ww-field-disclosure">
+
+<summary>Access</summary>
+
+| Requirement | Value |
 | --- | --- |
-| ["a", "b", "c"] | ["A", "B", "C"] |
-| ["e", "f", "g"] | ["E", "F", "G"] |
+| AI-powered | No |
+| Requires WrangleWorks account | No |
+| Requires subscription | No |
+| Requires external API key | No |
 
-</div>
+</details>
 
-</div>
+<details className="ww-field-disclosure">
 
-## Provenance
+<summary>Technical details</summary>
+
+| Field | Value |
+| --- | --- |
+| Recipe key | `accordion` |
+| Lifecycle status | active |
+| Namespace | Root-level |
+| Documentation group | `utility` |
+| Aliases | None |
+| Runtime symbol | `wrangles.recipe_wrangles.main.accordion` |
+
+**Sources**
 
 - [WranglesPY accordion implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/main.py)
 - [Existing accordion Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/utility/_sources/accordion.md)
 
-## Registry metadata
-
-- Registry ID: pending database assignment
-- Namespace: root-level runtime key
-- Recipe key: `accordion`
-- Aliases: none
-- Runtime symbol: `wrangles.recipe_wrangles.main.accordion`
-- Status: `active`
-- Registry version: `0.1.0-pilot`
+</details>

@@ -13,6 +13,10 @@ const quasiRegistryRoot = path.join(siteRoot, 'wrangle-docs');
 const COMMON_CONTROLS = new Set(['if', 'where', 'where_params']);
 const CURATED_KEYS = new Set(['convert.case', 'convert.data_type', 'convert.from_json']);
 const ALL_JSON_TYPES = ['string', 'number', 'integer', 'boolean', 'array', 'object', 'null'];
+const DEPRECATED_REPLACEMENTS = {
+  maths: 'math',
+  standardize: 'standardize.custom',
+};
 
 function posixPath(value) {
   return value.split(path.sep).join('/');
@@ -230,6 +234,7 @@ const DESCRIPTION_OVERRIDES = {
   'format.price_breaks': 'Expand non-empty price-break cells into paired category and value columns.',
   maths: 'Deprecated alias for `math`; evaluate an expression and write its result to an output column.',
   recipe: 'Run another recipe as a wrangle against the current dataframe.',
+  standardize: 'Deprecated compatibility key for `standardize.custom`, which standardizes data using a trained DIY or bespoke model.',
 };
 
 function parameterDescription(name, embedded, quasi) {
@@ -241,15 +246,56 @@ function parameterDescription(name, embedded, quasi) {
   );
 }
 
-function parameterRole(name) {
-  if (name === 'input' || name === 'by' || name.endsWith('_column')) return 'column-selector';
-  if (name === 'output' || name.startsWith('output_')) return 'column-output';
-  if (name === 'model_id') return 'model-reference';
-  if (name.includes('api_key') || name.includes('secret')) return 'credential';
-  if (name === 'wrangles') return 'nested-wrangles';
-  if (name === 'variables') return 'variables';
-  if (name === 'default' || name === 'on_error') return 'fallback-value';
-  return 'option';
+const FORMATTING_PARAMETERS = new Set([
+  'allow_unicode', 'auto_rename_columns', 'categoryLabel', 'char', 'decimal_places',
+  'decimals', 'ensure_ascii', 'first_element', 'format', 'ignore_index',
+  'include_confidence', 'include_empty_labels', 'include_ratio', 'indent',
+  'non_match_char', 'output_format', 'output_pattern', 'output_type', 'pad',
+  'pad_length', 'precision', 'preserve_index', 'reset_index', 'return_data_type',
+  'separator', 'significant_figures', 'sort_keys', 'sort_order', 'use_labels',
+  'valueLabel',
+]);
+const EXECUTION_PARAMETERS = new Set([
+  'batch_size', 'deadline', 'max_concurrency', 'threads', 'timeout',
+  'use_multiprocessing', 'variables', 'wrangles',
+]);
+const ERROR_PARAMETERS = new Set(['default', 'except', 'on_error', 'retries']);
+const DETAIL_PARAMETERS = new Set([
+  'api_key', 'api_token', 'cache', 'cache_ttl', 'client', 'model', 'model_id',
+  'previous_response', 'protocol', 'provider', 'reasoning', 'store', 'strict',
+  'url', 'verbosity',
+]);
+const PARAM_GROUP_OVERRIDES = new Map([
+  ['accordion.propagate', 'I/O'],
+  ['compute.case_when.default', 'Options'],
+  ['extract.date_range.end_time', 'I/O'],
+  ['extract.date_range.start_time', 'I/O'],
+  ['log.error', 'Options'],
+  ['remove_words.to_remove', 'I/O'],
+  ['search.find_links.device', 'Options'],
+  ['search.find_links.id', 'I/O'],
+  ['search.find_links.queries', 'I/O'],
+]);
+
+function parameterGroup(runtimeKey, name) {
+  const override = PARAM_GROUP_OVERRIDES.get(`${runtimeKey}.${name}`);
+  if (override) return override;
+  if (COMMON_CONTROLS.has(name)) return 'Conditions';
+  if (
+    name === 'input' ||
+    name === 'output' ||
+    name === 'by' ||
+    name === 'columns' ||
+    name.endsWith('_column')
+  ) return 'I/O';
+  if (name === 'char' && ['compare.text', 'split.text'].includes(runtimeKey)) {
+    return 'Options';
+  }
+  if (FORMATTING_PARAMETERS.has(name)) return 'Formatting';
+  if (EXECUTION_PARAMETERS.has(name)) return 'Execution';
+  if (ERROR_PARAMETERS.has(name)) return 'Errors';
+  if (DETAIL_PARAMETERS.has(name)) return 'Details';
+  return 'Options';
 }
 
 function dynamicParameter(name) {
@@ -330,7 +376,7 @@ function buildParameters(runtime, quasi) {
       name: runtimeParameter.name,
       description: parameterDescription(runtimeParameter.name, embedded, quasiParameter),
       required: runtimeParameter.required,
-      role: parameterRole(runtimeParameter.name),
+      param_group: parameterGroup(runtime.runtime_key, runtimeParameter.name),
     };
     if (hasOwn(runtimeParameter, 'default')) parameter.runtime_default = runtimeParameter.default;
     parameter.schema = withCodeTypes(embedded, runtimeParameter);
@@ -345,7 +391,7 @@ function buildParameters(runtime, quasi) {
         ...dynamicParameter(name),
         description: parameterDescription(name, embedded, quasi?.parameters.get(name)),
         required: embeddedRequired.has(name),
-        role: parameterRole(name),
+        param_group: parameterGroup(runtime.runtime_key, name),
         schema: withCodeTypes(embedded, null),
       };
       parameters.push(parameter);
@@ -413,11 +459,14 @@ function buildMetadata(runtime, manifest, quasi) {
     slug: namespace
       ? `${namespace.split('.').map(kebab).join('/')}/${kebab(wrangleName)}`
       : kebab(wrangleName),
-    status: runtime.runtime_key === 'maths' ? 'deprecated' : (
+    status: DEPRECATED_REPLACEMENTS[runtime.runtime_key] ? 'deprecated' : (
       ['draft', 'active', 'deprecated', 'removed'].includes(quasi?.status)
         ? quasi.status
         : 'active'
     ),
+    ...(DEPRECATED_REPLACEMENTS[runtime.runtime_key]
+      ? {replaced_by: DEPRECATED_REPLACEMENTS[runtime.runtime_key]}
+      : {}),
     visibility: 'public',
     tags,
     runtime: {

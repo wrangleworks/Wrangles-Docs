@@ -5707,7 +5707,7 @@
           },
           "standardize": {
             "type": "object",
-            "description": "Standardize data using a DIY or bespoke standardization wrangle. Requires WrangleWorks Account and Subscription.",
+            "description": "Deprecated compatibility key for `standardize.custom`, which standardizes data using a trained DIY or bespoke model.",
             "additionalProperties": false,
             "properties": {
               "input": {

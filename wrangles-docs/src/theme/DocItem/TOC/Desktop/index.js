@@ -124,7 +124,7 @@ function WrangleTOC({toc, minHeadingLevel, maxHeadingLevel}) {
 export default function DocItemTOCDesktop() {
   const {toc, frontMatter} = useDoc();
 
-  if (!frontMatter.wrangle_type) {
+  if (!frontMatter.wrangle_type && !frontMatter.registry_entry) {
     return (
       <TOC
         toc={toc}

@@ -1,49 +1,44 @@
 ---
-title: "Standardize"
-description: "Standardize data using a DIY or bespoke standardization wrangle. Requires WrangleWorks Account and Subscription."
-sidebar_label: "Standardize"
+title: "Standardize (Deprecated)"
+description: "Deprecated compatibility key for `standardize.custom`, which standardizes data using a trained DIY or bespoke model."
+sidebar_label: "Standardize (Deprecated)"
 slug: "/standardize"
+registry_entry: true
+toc_min_heading_level: 2
+toc_max_heading_level: 3
 ---
 
-# Standardize
+# Standardize (Deprecated)
 
-Standardize data using a DIY or bespoke standardization wrangle. Requires WrangleWorks Account and Subscription.
+:::warning Deprecated
+This compatibility wrangle remains available for existing recipes. Use [`standardize.custom`](/wrangles/namespaces/standardize#custom) for new recipes.
+:::
 
-> Pilot Registry entry. Runtime contract status: `verified`.
-
-## Parameters
-
-| Parameter | Required | Accepted value | Description | Runtime default |
-| --- | --- | --- | --- | --- |
-| `input` | Yes | string, integer, array | Name or list of input columns. | — |
-| `model_id` | Yes | string, array | The ID of the wrangle to use (do not include 'find' and 'replace'). | — |
-| `output` | No | string, array, null | Name or list of output columns. | `null` |
-| `case_sensitive` | No | boolean | Allows the wrangle to be case sensitive if set to True, default is False. | `false` |
-| `if` | No | string | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | — |
-| `where` | No | string | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | — |
-| `where_params` | No | array, object | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | — |
-
-## Verified examples
-
-_No fixture-backed examples are currently available. See migrated examples under Guidance where present._
-
-## Access
-
-| Requirement | Value |
-| --- | --- |
-| ai powered | No |
-| requires account | Yes |
-| requires subscription | No |
-| requires external api key | No |
-
-## Guidance
+Deprecated compatibility key for `standardize.custom`, which standardizes data using a trained DIY or bespoke model.
 
 Run a standardize wrangle, such as one that expands abbreviations. A standardization wrangle must be trained first.
 
-## Migrated examples
-#### Replacing Abbreviations
+## Parameters
 
-##### Recipe
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
+| --- | --- | --- | --- | --- |
+| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
+| `input` | Name or list of input columns. | string, integer, array | — | Yes |
+| `output` | Name or list of output columns. | string, array, null | `null` | No |
+| <span className="ww-param-group-label">Options</span> |  |  |  |  |
+| `case_sensitive` | Allows the wrangle to be case sensitive if set to True, default is False. | boolean | `false` | No |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
+| <span className="ww-param-group-label">Details</span> |  |  |  |  |
+| `model_id` | The ID of the wrangle to use (do not include 'find' and 'replace'). | string, array | — | Yes |
+
+</div>
+
+## Examples
 
 ```yaml
 wrangles:
@@ -55,9 +50,7 @@ wrangles:
 
 <div className="ww-sample-grid">
 
-<div className="ww-sample-panel">
-
-##### Input Sample
+<div className="ww-sample-panel ww-sample-panel--input" data-sample-role="input">
 
 | Abbrev |
 | --- |
@@ -66,9 +59,7 @@ wrangles:
 
 </div>
 
-<div className="ww-sample-panel">
-
-##### Output Sample
+<div className="ww-sample-panel ww-sample-panel--output" data-sample-role="output">
 
 | Abbreviations |
 | --- |
@@ -79,17 +70,36 @@ wrangles:
 
 </div>
 
-## Provenance
+<details className="ww-field-disclosure">
+
+<summary>Access</summary>
+
+| Requirement | Value |
+| --- | --- |
+| AI-powered | No |
+| Requires WrangleWorks account | Yes |
+| Requires subscription | No |
+| Requires external API key | No |
+
+</details>
+
+<details className="ww-field-disclosure">
+
+<summary>Technical details</summary>
+
+| Field | Value |
+| --- | --- |
+| Recipe key | `standardize` |
+| Lifecycle status | deprecated |
+| Replaced by | [`standardize.custom`](/wrangles/namespaces/standardize#custom) |
+| Namespace | Root-level |
+| Documentation group | `format` |
+| Aliases | None |
+| Runtime symbol | `wrangles.recipe_wrangles.main.standardize` |
+
+**Sources**
 
 - [WranglesPY standardize implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/main.py)
 - [Existing standardize Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/format/_sources/standardize.md)
 
-## Registry metadata
-
-- Registry ID: `53cd3fdd-24e2-4411-8655-6014b92a3f3a`
-- Namespace: root-level runtime key
-- Recipe key: `standardize`
-- Aliases: none
-- Runtime symbol: `wrangles.recipe_wrangles.main.standardize`
-- Status: `active`
-- Registry version: `0.1.0-pilot`
+</details>

@@ -31,7 +31,7 @@ parameters:
   - name: input
     description: Name of the input column.
     required: true
-    role: column-selector
+    param_group: I/O
     schema:
       type:
         - string
@@ -42,13 +42,13 @@ parameters:
       The key or keys from the dictionary to select. If a single key is provided, the value will be
       returned If a lists of keys are selected, the result will be a new dictionary.
     required: true
-    role: option
+    param_group: Options
     schema:
       type: string
   - name: output
     description: Name of the output column. If omitted, the input column will be replaced.
     required: false
-    role: column-output
+    param_group: I/O
     runtime_default: null
     schema:
       type:
@@ -60,7 +60,7 @@ parameters:
       Set the default value to return if the specified element doesn't exist. If selecting multiple
       elements, a dict of defaults can be set.
     required: false
-    role: fallback-value
+    param_group: Errors
     runtime_default: ''
     schema:
       type:

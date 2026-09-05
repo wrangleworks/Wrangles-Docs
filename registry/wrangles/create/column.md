@@ -31,7 +31,7 @@ parameters:
   - name: output
     description: 'Name or list of names of new columns or column_name: value pairs.'
     required: true
-    role: column-output
+    param_group: I/O
     schema:
       type:
         - string
@@ -41,7 +41,7 @@ parameters:
       (Optional) Value(s) to add in the new column(s). If using a dictionary in output, value can
       only be a string.
     required: false
-    role: option
+    param_group: Options
     runtime_default: null
     schema:
       type:
@@ -57,7 +57,7 @@ parameters:
       column unchanged. coalesce: fill empty/null cells with the new value, keeping non-null cells.
       new: overwrite the entire column with the new value.
     required: false
-    role: option
+    param_group: Options
     runtime_default: existing
     schema:
       type: string
@@ -72,7 +72,7 @@ parameters:
       empty/null cells with the new value. new: keep the new value, only fall back to the existing
       value where the new value is empty/null.
     required: false
-    role: option
+    param_group: Options
     runtime_default: existing
     schema:
       type: string

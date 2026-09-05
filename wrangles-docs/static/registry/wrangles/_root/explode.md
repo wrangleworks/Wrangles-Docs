@@ -33,7 +33,7 @@ parameters:
       Name of the column(s) to explode. If multiple columns are included they must contain lists of
       the same length.
     required: true
-    role: column-selector
+    param_group: I/O
     schema:
       type:
         - string
@@ -42,7 +42,7 @@ parameters:
   - name: reset_index
     description: Reset the index after exploding. Default True.
     required: false
-    role: option
+    param_group: Formatting
     runtime_default: true
     schema:
       type: boolean
@@ -51,7 +51,7 @@ parameters:
       If true, any rows that contain an empty list will be dropped. If false, rows that contain
       empty lists will keep 1 row with an empty value. Default False.
     required: false
-    role: option
+    param_group: Options
     runtime_default: false
     schema:
       type: boolean

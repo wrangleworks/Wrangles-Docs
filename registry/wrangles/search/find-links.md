@@ -33,7 +33,7 @@ parameters:
   - name: queries
     description: Name or list of input columns containing search queries.
     required: true
-    role: option
+    param_group: I/O
     schema:
       type:
         - string
@@ -41,7 +41,7 @@ parameters:
   - name: id
     description: Name of the column containing the row ID to append to each search result.
     required: true
-    role: option
+    param_group: I/O
     schema:
       type: string
   - name: output
@@ -49,7 +49,7 @@ parameters:
       Output column for the dictionaries. If a list of 2 is provided, outputs [dicts_column,
       pretty_strings_column].
     required: false
-    role: column-output
+    param_group: I/O
     runtime_default: null
     schema:
       type:
@@ -59,7 +59,7 @@ parameters:
   - name: client
     description: The search provider to use.
     required: false
-    role: option
+    param_group: Details
     runtime_default: serpapi
     schema:
       type: string
@@ -70,7 +70,7 @@ parameters:
       API key for the search client. Can also be set as an environment variable (e.g.,
       SERPAPI_API_KEY).
     required: false
-    role: credential
+    param_group: Details
     runtime_default: null
     schema:
       type:
@@ -79,39 +79,39 @@ parameters:
   - name: n_results
     description: Number of search results to return per query (default 10, max 100).
     required: false
-    role: option
+    param_group: Options
     runtime_default: 10
     schema:
       type: integer
   - name: threads
     description: Number of concurrent threads for parallel processing (default 10).
     required: false
-    role: option
+    param_group: Execution
     runtime_default: 10
     schema:
       type: integer
   - name: country
     description: 'Country code for search results (default ''us''). Alias: gl.'
     required: false
-    role: option
+    param_group: Options
     schema:
       type: string
   - name: language
     description: 'Language code for search results (default ''en''). Alias: hl.'
     required: false
-    role: option
+    param_group: Options
     schema:
       type: string
   - name: location
     description: Location for search results (e.g., 'Austin, Texas').
     required: false
-    role: option
+    param_group: Options
     schema:
       type: string
   - name: device
     description: Device type for search results.
     required: false
-    role: option
+    param_group: Options
     schema:
       type: string
       enum:

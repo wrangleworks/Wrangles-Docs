@@ -38,7 +38,7 @@
       "name": "input",
       "description": "Name of the input column.",
       "required": true,
-      "role": "column-selector",
+      "param_group": "I/O",
       "schema": {
         "type": [
           "string",
@@ -51,7 +51,7 @@
       "name": "output",
       "description": "Name of the output column. If omitted, the input column will be overwritten.",
       "required": false,
-      "role": "column-output",
+      "param_group": "I/O",
       "runtime_default": null,
       "schema": {
         "type": [
@@ -65,7 +65,7 @@
       "name": "ensure_ascii",
       "description": "If true, non-ASCII characters will be escaped. Default is false.",
       "required": false,
-      "role": "option",
+      "param_group": "Formatting",
       "runtime_default": false,
       "schema": {
         "type": "boolean"
@@ -75,7 +75,7 @@
       "name": "indent",
       "description": "If indent is a non-negative integer or string, then JSON array elements and object members will be pretty-printed with that indent level. An indent level of 0, negative, or \"\" will only insert newlines. None (the default) selects the most compact representation. Using a positive integer indent indents that many spaces per level. If indent is a string (such as '\\t'), that string is used to indent each level.",
       "required": false,
-      "role": "option",
+      "param_group": "Formatting",
       "schema": {
         "type": [
           "string",
@@ -87,7 +87,7 @@
       "name": "sort_keys",
       "description": "If sort_keys is true (defaults to False), then the output of dictionaries will be sorted by key.",
       "required": false,
-      "role": "option",
+      "param_group": "Formatting",
       "schema": {
         "type": "boolean"
       }
@@ -96,31 +96,31 @@
       "name": "if",
       "description": "Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`.",
       "required": false,
+      "param_group": "Conditions",
       "schema": {
         "type": "string"
-      },
-      "role": "common-control"
+      }
     },
     {
       "name": "where",
       "description": "Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`.",
       "required": false,
+      "param_group": "Conditions",
       "schema": {
         "type": "string"
-      },
-      "role": "common-control"
+      }
     },
     {
       "name": "where_params",
       "description": "Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`.",
       "required": false,
+      "param_group": "Conditions",
       "schema": {
         "type": [
           "array",
           "object"
         ]
-      },
-      "role": "common-control"
+      }
     }
   ],
   "examples": [],

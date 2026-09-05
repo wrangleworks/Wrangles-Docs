@@ -33,7 +33,7 @@ parameters:
   - name: input
     description: Name or list of input columns.
     required: true
-    role: column-selector
+    param_group: I/O
     schema:
       type:
         - string
@@ -42,7 +42,7 @@ parameters:
   - name: model_id
     description: The ID of the wrangle to use (do not include 'find' and 'replace').
     required: true
-    role: model-reference
+    param_group: Details
     schema:
       type:
         - string
@@ -50,7 +50,7 @@ parameters:
   - name: output
     description: Name or list of output columns.
     required: false
-    role: column-output
+    param_group: I/O
     runtime_default: null
     schema:
       type:
@@ -60,7 +60,7 @@ parameters:
   - name: case_sensitive
     description: Allows the wrangle to be case sensitive if set to True, default is False.
     required: false
-    role: option
+    param_group: Options
     runtime_default: false
     schema:
       type: boolean

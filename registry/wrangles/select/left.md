@@ -33,7 +33,7 @@ parameters:
   - name: input
     description: Name of the column(s) to edit.
     required: true
-    role: column-selector
+    param_group: I/O
     schema:
       type:
         - string
@@ -44,13 +44,13 @@ parameters:
       Number of characters to include from the left. If negative, this will remove the specified
       number of characters from the left. May not equal 0.
     required: true
-    role: option
+    param_group: Options
     schema:
       type: integer
   - name: output
     description: Name of the output column(s).
     required: false
-    role: column-output
+    param_group: I/O
     runtime_default: null
     schema:
       type:

@@ -31,7 +31,7 @@ parameters:
   - name: output
     description: Name or list of names of new columns.
     required: true
-    role: column-output
+    param_group: I/O
     schema:
       type:
         - string
@@ -39,21 +39,21 @@ parameters:
   - name: start
     description: (Optional; default 1) Starting number for the index.
     required: false
-    role: option
+    param_group: Options
     runtime_default: 1
     schema:
       type: integer
   - name: step
     description: (Optional; default 1) Step between successive rows.
     required: false
-    role: option
+    param_group: Options
     runtime_default: 1
     schema:
       type: integer
   - name: by
     description: Optional. Cluster the created indexes by one or more columns.
     required: false
-    role: column-selector
+    param_group: I/O
     runtime_default: null
     schema:
       type:

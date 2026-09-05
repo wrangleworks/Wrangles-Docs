@@ -3,46 +3,36 @@ title: "Date Properties"
 description: "Extract date properties from a date (day, month, year, etc...)."
 sidebar_label: "Date Properties"
 slug: "/extract/date-properties"
+registry_entry: true
+toc_min_heading_level: 2
+toc_max_heading_level: 3
 ---
 
 # Date Properties
 
 Extract date properties from a date (day, month, year, etc...).
 
-> Pilot Registry entry. Runtime contract status: `verified`.
+Extract date properties from a date, such as day, month, year, weekday, or quarter.
 
 ## Parameters
 
-| Parameter | Required | Accepted value | Description | Runtime default |
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
 | --- | --- | --- | --- | --- |
-| `input` | Yes | string, integer, array | Name of the input column. | — |
-| `property` | Yes | string; one of: day, day_of_year, month, month_name, weekday, week_day_name, week_year, quarter | Property to extract from date. | — |
-| `output` | No | string, null | Name of the output columns. | `null` |
-| `if` | No | string | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | — |
-| `where` | No | string | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | — |
-| `where_params` | No | array, object | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | — |
+| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
+| `input` | Name of the input column. | string, integer, array | — | Yes |
+| `output` | Name of the output columns. | string, null | `null` | No |
+| <span className="ww-param-group-label">Options</span> |  |  |  |  |
+| `property` | Property to extract from date. | string; one of:<ul className="ww-param-enum-values"><li>day</li><li>day_of_year</li><li>month</li><li>month_name</li><li>weekday</li><li>week_day_name</li><li>week_year</li><li>quarter</li></ul> | — | Yes |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
 
-## Verified examples
+</div>
 
-_No fixture-backed examples are currently available. See migrated examples under Guidance where present._
-
-## Access
-
-| Requirement | Value |
-| --- | --- |
-| ai powered | No |
-| requires account | No |
-| requires subscription | No |
-| requires external api key | No |
-
-## Guidance
-
-Extract date properties from a date, such as day, month, year, weekday, or quarter.
-
-## Migrated examples
-#### Extracting Month From Date
-
-##### Recipe
+## Examples
 
 ```yaml
 wrangles:
@@ -54,37 +44,53 @@ wrangles:
 
 <div className="ww-sample-grid">
 
-<div className="ww-sample-panel">
+<div className="ww-sample-panel ww-sample-panel--input" data-sample-role="input">
 
-##### Input Sample
-
-_No sample available._
+| Date |
+| --- |
+| 1992-08-13 00:00:00 |
 
 </div>
 
-<div className="ww-sample-panel">
+<div className="ww-sample-panel ww-sample-panel--output" data-sample-role="output">
 
-##### Output Sample
+| Output |
+| --- |
+| August |
 
-| Date | Output |
+</div>
+
+</div>
+
+<details className="ww-field-disclosure">
+
+<summary>Access</summary>
+
+| Requirement | Value |
 | --- | --- |
-| 1992-08-13 00:00:00 | August |
+| AI-powered | No |
+| Requires WrangleWorks account | No |
+| Requires subscription | No |
+| Requires external API key | No |
 
-</div>
+</details>
 
-</div>
+<details className="ww-field-disclosure">
 
-## Provenance
+<summary>Technical details</summary>
+
+| Field | Value |
+| --- | --- |
+| Recipe key | `extract.date_properties` |
+| Lifecycle status | active |
+| Namespace | `extract` |
+| Documentation group | `extract` |
+| Aliases | None |
+| Runtime symbol | `wrangles.recipe_wrangles.extract.date_properties` |
+
+**Sources**
 
 - [WranglesPY extract.date_properties implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/extract.py)
 - [Existing extract.date_properties Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/extract/_sources/date-properties.md)
 
-## Registry metadata
-
-- Registry ID: `a346de62-93cd-44ba-8d30-a6305629c6d7`
-- Namespace: `extract`
-- Recipe key: `extract.date_properties`
-- Aliases: none
-- Runtime symbol: `wrangles.recipe_wrangles.extract.date_properties`
-- Status: `active`
-- Registry version: `0.1.0-pilot`
+</details>

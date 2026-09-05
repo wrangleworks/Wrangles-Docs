@@ -35,7 +35,7 @@ parameters:
       The wrangles to execute on the data. Each series of wrangles will be run against the data in
       batches of the size defined by batch_size.
     required: true
-    role: nested-wrangles
+    param_group: Execution
     schema:
       type: array
       minItems: 1
@@ -44,14 +44,14 @@ parameters:
   - name: batch_size
     description: The number of rows to split each batch into.
     required: false
-    role: option
+    param_group: Execution
     runtime_default: 1000
     schema:
       type: integer
   - name: threads
     description: The number of threads to use for parallel processing. Default 1.
     required: false
-    role: option
+    param_group: Execution
     runtime_default: 1
     schema:
       type: integer
@@ -60,7 +60,7 @@ parameters:
       A dictionary of column_name: value to return if an error occurs while attempting to run a
       batch.
     required: false
-    role: fallback-value
+    param_group: Errors
     runtime_default: null
     schema:
       type:
@@ -69,7 +69,7 @@ parameters:
   - name: timeout
     description: The number of seconds to wait for a batch to complete before raising an error.
     required: false
-    role: option
+    param_group: Execution
     runtime_default: null
     schema:
       type:
@@ -78,7 +78,7 @@ parameters:
   - name: use_multiprocessing
     description: Use process-based workers instead of threads. This is an advanced runtime option.
     required: false
-    role: option
+    param_group: Execution
     runtime_default: false
     schema:
       type: boolean

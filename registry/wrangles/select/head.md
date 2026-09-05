@@ -31,7 +31,7 @@ parameters:
   - name: n
     description: Number of rows to return.
     required: true
-    role: option
+    param_group: Options
     schema:
       type: integer
 examples: []

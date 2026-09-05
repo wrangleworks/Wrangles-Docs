@@ -31,7 +31,7 @@ parameters:
   - name: input
     description: Name of the input column.
     required: true
-    role: column-selector
+    param_group: I/O
     schema:
       type:
         - string
@@ -40,7 +40,7 @@ parameters:
   - name: output
     description: Name of the output column. If omitted, the input column will be overwritten.
     required: false
-    role: column-output
+    param_group: I/O
     runtime_default: null
     schema:
       type:
@@ -50,7 +50,7 @@ parameters:
   - name: ensure_ascii
     description: If true, non-ASCII characters will be escaped. Default is false.
     required: false
-    role: option
+    param_group: Formatting
     runtime_default: false
     schema:
       type: boolean
@@ -62,7 +62,7 @@ parameters:
       integer indent indents that many spaces per level. If indent is a string (such as '\t'), that
       string is used to indent each level.
     required: false
-    role: option
+    param_group: Formatting
     schema:
       type:
         - string
@@ -72,7 +72,7 @@ parameters:
       If sort_keys is true (defaults to False), then the output of dictionaries will be sorted by
       key.
     required: false
-    role: option
+    param_group: Formatting
     schema:
       type: boolean
 examples: []

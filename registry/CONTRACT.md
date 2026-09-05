@@ -83,10 +83,10 @@ required for Registry inclusion. Its signature and tests may be used for parity
 checks, but the Registry pipeline must not depend on finding one.
 
 Registry Markdown keeps the full parameter records, including descriptions,
-roles, accepted-value constraints that cannot be inferred reliably from Python
-annotations, and examples. The compiler merges those records with the runtime
-manifest, rejects name/required/default drift, and generates the recipe JSON
-Schema from the merged result.
+presentation groups, accepted-value constraints that cannot be inferred
+reliably from Python annotations, and examples. The compiler merges those
+records with the runtime manifest, rejects name/required/default drift, and
+generates the recipe JSON Schema from the merged result.
 
 The current embedded JSON Schema docstrings in `recipe_wrangles` are migration
 input, not a second permanent authoring source. Their complete overview and
@@ -197,6 +197,22 @@ Parameter records contain human guidance plus a JSON Schema fragment. Every
 runtime-owned parameter fact must reconcile with the pinned manifest and be
 traceable to the named runtime symbol.
 
+Every parameter also declares one `param_group` from a small shared vocabulary:
+
+- `I/O` identifies input and output columns or structures.
+- `Options` contains wrangle-specific settings users need to achieve the
+  desired behavior.
+- `Formatting` controls the shape or presentation of results.
+- `Conditions` contains the shared `if`, `where`, and `where_params` controls.
+- `Execution` controls batching, concurrency, time limits, and nested execution.
+- `Errors` controls fallbacks, retries, and failure handling.
+- `Details` contains model, provider, connection, credential, cache, and other
+  supporting technical settings.
+
+The groups are intentionally fixed rather than specialized by wrangle. They
+organize the human documentation and remain available to agent and product
+consumers in the compiled JSON contracts.
+
 `runtime_default` means the value used when the argument is omitted. It is not
 a playground placeholder. Example or UI starter values belong in examples,
 not in `runtime_default`.
@@ -265,8 +281,12 @@ The pilot Registry version is `0.1.0-pilot`. A production release will contain:
 - a convenience `latest` alias that is not used for reproducible execution
 
 Wrangles progress through `draft`, `active`, `deprecated`, and `removed`.
-Deprecated records stay discoverable and identify their replacement. Removed
-records remain in versioned artifacts needed to understand historical recipes.
+Deprecated records stay discoverable and must identify their canonical
+replacement with `replaced_by`. The compiler rejects a missing, self-referential,
+or unknown replacement key and generates a visible migration notice in the
+human documentation. Deprecated entries sort after active entries within their
+documentation group. Removed records remain in versioned artifacts needed to
+understand historical recipes.
 
 ## Change workflow
 

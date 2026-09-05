@@ -31,7 +31,7 @@ parameters:
   - name: input
     description: Name of the input columns or columns.
     required: false
-    role: column-selector
+    param_group: I/O
     runtime_default: null
     schema:
       type:
@@ -42,7 +42,7 @@ parameters:
   - name: output
     description: Name of the output columns or columns.
     required: false
-    role: column-output
+    param_group: I/O
     runtime_default: null
     schema:
       type:

@@ -38,7 +38,7 @@
       "name": "variables",
       "description": "A dictionary of variables to pass to the wrangle. The key is the variable name and the value is a list of values.",
       "required": true,
-      "role": "variables",
+      "param_group": "Execution",
       "schema": {
         "type": "object"
       }
@@ -47,7 +47,7 @@
       "name": "wrangles",
       "description": "The wrangles to apply to the dataframe. Each wrangle will be run for each combination of the variables.",
       "required": true,
-      "role": "nested-wrangles",
+      "param_group": "Execution",
       "schema": {
         "type": "array",
         "minItems": 1,
@@ -60,7 +60,7 @@
       "name": "strategy",
       "description": "Determines how to combine variables when there are multiple. loop (default) iterates over each set of variables, repeating shorter lists until the longest is completed. permutations uses the combination of all variables against all other variables.",
       "required": false,
-      "role": "option",
+      "param_group": "Options",
       "runtime_default": "loop",
       "schema": {
         "type": "string",
@@ -74,31 +74,31 @@
       "name": "if",
       "description": "Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`.",
       "required": false,
+      "param_group": "Conditions",
       "schema": {
         "type": "string"
-      },
-      "role": "common-control"
+      }
     },
     {
       "name": "where",
       "description": "Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`.",
       "required": false,
+      "param_group": "Conditions",
       "schema": {
         "type": "string"
-      },
-      "role": "common-control"
+      }
     },
     {
       "name": "where_params",
       "description": "Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`.",
       "required": false,
+      "param_group": "Conditions",
       "schema": {
         "type": [
           "array",
           "object"
         ]
-      },
-      "role": "common-control"
+      }
     }
   ],
   "examples": [],

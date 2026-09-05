@@ -26,6 +26,9 @@ function useDocTOC() {
   const windowSize = useWindowSize();
   const hidden = frontMatter.hide_table_of_contents;
   const canRender = !hidden && toc.length > 0;
+  const isWrangleDoc = Boolean(
+    frontMatter.wrangle_type || frontMatter.registry_entry,
+  );
   const mobile = canRender ? <DocItemTOCMobile /> : undefined;
   const desktop =
     canRender && (windowSize === 'desktop' || windowSize === 'ssr') ? (
@@ -35,7 +38,7 @@ function useDocTOC() {
     hidden,
     mobile,
     desktop,
-    collapsible: Boolean(frontMatter.wrangle_type),
+    collapsible: isWrangleDoc,
   };
 }
 function TocToggle({collapsed, onClick}) {

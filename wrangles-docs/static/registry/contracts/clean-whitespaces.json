@@ -38,7 +38,7 @@
       "name": "input",
       "description": "Name or list of input columns.",
       "required": true,
-      "role": "column-selector",
+      "param_group": "I/O",
       "schema": {
         "type": [
           "string",
@@ -51,7 +51,7 @@
       "name": "output",
       "description": "Name or list of output columns.",
       "required": false,
-      "role": "column-output",
+      "param_group": "I/O",
       "runtime_default": null,
       "schema": {
         "type": [
@@ -65,7 +65,7 @@
       "name": "trim",
       "description": "Whether to trim leading and trailing spaces. Default True.",
       "required": false,
-      "role": "option",
+      "param_group": "Options",
       "runtime_default": true,
       "schema": {
         "type": "boolean"
@@ -75,7 +75,7 @@
       "name": "remove_literals",
       "description": "Whether to remove special space characters such as new lines etc. Default True.",
       "required": false,
-      "role": "option",
+      "param_group": "Options",
       "runtime_default": true,
       "schema": {
         "type": "boolean"
@@ -85,31 +85,31 @@
       "name": "if",
       "description": "Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`.",
       "required": false,
+      "param_group": "Conditions",
       "schema": {
         "type": "string"
-      },
-      "role": "common-control"
+      }
     },
     {
       "name": "where",
       "description": "Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`.",
       "required": false,
+      "param_group": "Conditions",
       "schema": {
         "type": "string"
-      },
-      "role": "common-control"
+      }
     },
     {
       "name": "where_params",
       "description": "Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`.",
       "required": false,
+      "param_group": "Conditions",
       "schema": {
         "type": [
           "array",
           "object"
         ]
-      },
-      "role": "common-control"
+      }
     }
   ],
   "examples": [],

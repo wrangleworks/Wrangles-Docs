@@ -43,6 +43,20 @@ after updating the pinned runtime manifest or migration logic.
 artifacts. `check:registry` fails when the source is invalid or the committed
 generated files are stale.
 
+## Retiring a wrangle
+
+1. Add or verify the canonical replacement in WranglesPY, retain the old key
+   for the supported compatibility period, and test that both paths behave as
+   intended.
+2. Export the refreshed WranglesPY runtime manifest, then set the old Registry
+   record to `status: deprecated` and add `replaced_by: <canonical wrangle_key>`.
+3. Run `compile:registry`, `check:registry`, and `build`. The compiler validates
+   the replacement and automatically labels, links, and sorts the deprecated
+   entry in both human and machine artifacts.
+
+Do not model a deprecated callable as an alias of its replacement: keeping its
+own Registry record preserves compatibility and historical recipe discovery.
+
 Do not edit these generated directories by hand:
 
 - `wrangles-docs/registry-docs/`

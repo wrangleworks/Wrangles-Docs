@@ -31,14 +31,14 @@ parameters:
   - name: ignore_index
     description: Ignore Index value accepted by the runtime.
     required: false
-    role: option
+    param_group: Formatting
     runtime_default: true
     schema:
       type: boolean
   - name: by
     description: Name or list of the column(s) to sort by.
     required: true
-    role: column-selector
+    param_group: I/O
     schema:
       type:
         - string
@@ -48,7 +48,7 @@ parameters:
       Sort ascending vs. descending. Specify a list to sort multiple columns in different orders. If
       this is a list of bools then it must match the length of the by.
     required: false
-    role: option
+    param_group: Options
     schema:
       type:
         - boolean

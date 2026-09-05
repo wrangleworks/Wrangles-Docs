@@ -38,7 +38,7 @@
       "name": "input",
       "description": "Two columns of vectors to compare the similarity of.",
       "required": true,
-      "role": "column-selector",
+      "param_group": "I/O",
       "schema": {
         "type": "array",
         "minItems": 2,
@@ -49,7 +49,7 @@
       "name": "output",
       "description": "Name of the output column.",
       "required": true,
-      "role": "column-output",
+      "param_group": "I/O",
       "schema": {
         "type": "string"
       }
@@ -58,7 +58,7 @@
       "name": "method",
       "description": "The type of similarity to calculate (cosine or euclidean). Adjusted cosine adjusts the default cosine calculation to cover a range of 0-1 for typical comparisons.",
       "required": false,
-      "role": "option",
+      "param_group": "Options",
       "runtime_default": "cosine",
       "schema": {
         "type": "string",
@@ -73,31 +73,31 @@
       "name": "if",
       "description": "Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`.",
       "required": false,
+      "param_group": "Conditions",
       "schema": {
         "type": "string"
-      },
-      "role": "common-control"
+      }
     },
     {
       "name": "where",
       "description": "Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`.",
       "required": false,
+      "param_group": "Conditions",
       "schema": {
         "type": "string"
-      },
-      "role": "common-control"
+      }
     },
     {
       "name": "where_params",
       "description": "Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`.",
       "required": false,
+      "param_group": "Conditions",
       "schema": {
         "type": [
           "array",
           "object"
         ]
-      },
-      "role": "common-control"
+      }
     }
   ],
   "examples": [],
