@@ -1,7 +1,8 @@
 {
+  "$schema": "https://docs.wrangles.com/registry/schema/wrangle-contract.schema.json",
   "format": "wrangles-registry-entry",
-  "registry_version": "0.1.0",
-  "schema_version": "0.1",
+  "registry_version": "0.2.0",
+  "schema_version": "0.2",
   "type": "wrangle",
   "id": "e3242acf-d204-433f-8373-205b77481131",
   "wrangle_name": "filter",
@@ -13,6 +14,9 @@
   "description": "Filter the dataframe based on the contents. If multiple filters are specified, all must be correct. For complex filters, use the where parameter.",
   "status": "active",
   "visibility": "public",
+  "recipe_writer": {
+    "eligible": true
+  },
   "tags": [
     "select",
     "filter"

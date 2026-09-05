@@ -1,7 +1,8 @@
 {
+  "$schema": "https://docs.wrangles.com/registry/schema/wrangle-contract.schema.json",
   "format": "wrangles-registry-entry",
-  "registry_version": "0.1.0",
-  "schema_version": "0.1",
+  "registry_version": "0.2.0",
+  "schema_version": "0.2",
   "type": "wrangle",
   "id": "a359f72a-5250-4dd8-84f6-8a8173bee0f6",
   "wrangle_name": "significant_figures",
@@ -13,6 +14,9 @@
   "description": "Format a value to a specific number of significant figures.",
   "status": "active",
   "visibility": "public",
+  "recipe_writer": {
+    "eligible": true
+  },
   "tags": [
     "format",
     "significant-figures"

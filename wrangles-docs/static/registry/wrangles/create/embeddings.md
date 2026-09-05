@@ -1,5 +1,5 @@
 ---
-schema_version: '0.1'
+schema_version: '0.2'
 type: wrangle
 id: e3518afd-a819-40ec-8b49-eb25690220c1
 wrangle_name: embeddings
@@ -11,6 +11,8 @@ aliases: []
 slug: create/embeddings
 status: active
 visibility: public
+recipe_writer:
+  eligible: true
 tags:
   - create
   - embeddings

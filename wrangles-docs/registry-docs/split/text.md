@@ -223,6 +223,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `split.text` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `split` |
 | Documentation group | `split` |
 | Aliases | None |

@@ -61,6 +61,8 @@ This guidance was derived from the callable signature and its embedded Python sc
 | --- | --- |
 | Recipe key | `recipe` |
 | Lifecycle status | active |
+| Recipe Writer eligible | No |
+| Recipe Writer exclusion | Nested recipe composition is outside the baseline. |
 | Namespace | Root-level |
 | Documentation group | `utility` |
 | Aliases | None |

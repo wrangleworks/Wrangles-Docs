@@ -83,6 +83,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `drop` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | Root-level |
 | Documentation group | `select` |
 | Aliases | None |
@@ -188,6 +189,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `filter` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | Root-level |
 | Documentation group | `select` |
 | Aliases | None |
@@ -275,6 +277,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `select.columns` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `select` |
 | Documentation group | `select` |
 | Aliases | None |
@@ -545,6 +548,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `select.dictionary_element` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `select` |
 | Documentation group | `select` |
 | Aliases | None |
@@ -636,6 +640,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `select.element` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `select` |
 | Documentation group | `select` |
 | Aliases | None |
@@ -782,6 +787,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `select.group_by` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `select` |
 | Documentation group | `select` |
 | Aliases | None |
@@ -871,6 +877,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `select.head` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `select` |
 | Documentation group | `select` |
 | Aliases | None |
@@ -997,6 +1004,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `select.highest_confidence` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `select` |
 | Documentation group | `select` |
 | Aliases | None |
@@ -1087,6 +1095,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `select.left` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `select` |
 | Documentation group | `select` |
 | Aliases | None |
@@ -1174,6 +1183,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `select.length` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `select` |
 | Documentation group | `select` |
 | Aliases | None |
@@ -1269,6 +1279,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `select.list_element` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `select` |
 | Documentation group | `select` |
 | Aliases | None |
@@ -1359,6 +1370,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `select.right` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `select` |
 | Documentation group | `select` |
 | Aliases | None |
@@ -1481,6 +1493,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `select.sample` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `select` |
 | Documentation group | `select` |
 | Aliases | None |
@@ -1637,6 +1650,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `select.substring` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `select` |
 | Documentation group | `select` |
 | Aliases | None |
@@ -1726,6 +1740,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `select.tail` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `select` |
 | Documentation group | `select` |
 | Aliases | None |
@@ -1818,6 +1833,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `select.threshold` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `select` |
 | Documentation group | `select` |
 | Aliases | None |
@@ -1916,6 +1932,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `sort` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | Root-level |
 | Documentation group | `select` |
 | Aliases | None |

@@ -1,0 +1,26 @@
+{
+  "format": "wrangles-runtime-reconciliation-summary",
+  "registry_version": "0.2.0",
+  "runtime_source": {
+    "repository": "https://github.com/wrangleworks/WranglesPY",
+    "version": "1.20.2",
+    "revision": "7916bf158e8b7e561270a1bea7b808f88956edc4"
+  },
+  "summary": {
+    "runtime_entries": 98,
+    "embedded_schema_entries": 96,
+    "quasi_registry_entries": 93,
+    "normalized_registry_entries": 98,
+    "normalized_verified_entries": 98,
+    "normalized_conflicting_entries": 0,
+    "normalized_entries_with_embedded_schema_differences": 90,
+    "runtime_entries_without_embedded_schema": 2,
+    "normalized_and_quasi_entries": 93,
+    "quasi_entries_awaiting_normalization": 0,
+    "runtime_entries_without_normalized_registry": 0,
+    "runtime_entries_without_quasi_registry": 5,
+    "quasi_entries_without_runtime": 0,
+    "quasi_entries_without_id": 5,
+    "supporting_markdown_files": 17
+  }
+}

@@ -1,5 +1,5 @@
 ---
-schema_version: '0.1'
+schema_version: '0.2'
 type: wrangle
 id: a393225e-7ccf-4708-83f8-d5abd6ba9b1e
 wrangle_name: lists
@@ -11,6 +11,8 @@ aliases: []
 slug: compare/lists
 status: active
 visibility: public
+recipe_writer:
+  eligible: true
 tags:
   - compare
   - lists

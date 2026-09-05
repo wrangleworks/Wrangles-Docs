@@ -1,5 +1,5 @@
 ---
-schema_version: '0.1'
+schema_version: '0.2'
 type: wrangle
 id: 06669ef8-cdd1-42f7-8078-98e0b7a42c30
 wrangle_name: classify
@@ -11,6 +11,8 @@ aliases: []
 slug: classify
 status: active
 visibility: public
+recipe_writer:
+  eligible: true
 tags:
   - ai
   - classify

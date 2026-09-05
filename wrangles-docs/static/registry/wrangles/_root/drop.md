@@ -1,5 +1,5 @@
 ---
-schema_version: '0.1'
+schema_version: '0.2'
 type: wrangle
 id: 363bffbf-397e-4975-8382-e9efa5e9eed6
 wrangle_name: drop
@@ -11,6 +11,8 @@ aliases: []
 slug: drop
 status: active
 visibility: public
+recipe_writer:
+  eligible: true
 tags:
   - select
   - drop

@@ -1,5 +1,5 @@
 ---
-schema_version: '0.1'
+schema_version: '0.2'
 type: wrangle
 id: null
 wrangle_name: price_breaks
@@ -11,6 +11,9 @@ aliases: []
 slug: format/price-breaks
 status: active
 visibility: public
+recipe_writer:
+  eligible: false
+  reason: This newer wrangle is outside the pinned baseline.
 tags:
   - format
   - price-breaks

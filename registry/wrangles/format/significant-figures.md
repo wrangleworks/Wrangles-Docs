@@ -1,5 +1,5 @@
 ---
-schema_version: '0.1'
+schema_version: '0.2'
 type: wrangle
 id: a359f72a-5250-4dd8-84f6-8a8173bee0f6
 wrangle_name: significant_figures
@@ -11,6 +11,8 @@ aliases: []
 slug: format/significant-figures
 status: active
 visibility: public
+recipe_writer:
+  eligible: true
 tags:
   - format
   - significant-figures

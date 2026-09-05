@@ -82,6 +82,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `select.head` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `select` |
 | Documentation group | `select` |
 | Aliases | None |

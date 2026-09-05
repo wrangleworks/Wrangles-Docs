@@ -1,7 +1,8 @@
 {
+  "$schema": "https://docs.wrangles.com/registry/schema/wrangle-contract.schema.json",
   "format": "wrangles-registry-entry",
-  "registry_version": "0.1.0",
-  "schema_version": "0.1",
+  "registry_version": "0.2.0",
+  "schema_version": "0.2",
   "type": "wrangle",
   "id": "543b96c3-f354-48be-8046-bf0cb9fbaf56",
   "wrangle_name": "remove_words",
@@ -13,6 +14,9 @@
   "description": "Remove all the elements that occur in one list from another.",
   "status": "active",
   "visibility": "public",
+  "recipe_writer": {
+    "eligible": true
+  },
   "tags": [
     "format",
     "remove-words"

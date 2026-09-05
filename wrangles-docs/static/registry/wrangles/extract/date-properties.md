@@ -1,5 +1,5 @@
 ---
-schema_version: '0.1'
+schema_version: '0.2'
 type: wrangle
 id: a346de62-93cd-44ba-8d30-a6305629c6d7
 wrangle_name: date_properties
@@ -11,6 +11,8 @@ aliases: []
 slug: extract/date-properties
 status: active
 visibility: public
+recipe_writer:
+  eligible: true
 tags:
   - extract
   - date-properties

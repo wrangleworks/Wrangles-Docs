@@ -87,6 +87,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `date_calculator` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | Root-level |
 | Documentation group | `date` |
 | Aliases | None |

@@ -139,6 +139,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `select.group_by` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `select` |
 | Documentation group | `select` |
 | Aliases | None |

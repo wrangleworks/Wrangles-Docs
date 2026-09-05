@@ -82,6 +82,7 @@ _No sample available._
 | --- | --- |
 | Recipe key | `create.guid` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `create` |
 | Documentation group | `create` |
 | Aliases | None |

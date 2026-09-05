@@ -1,7 +1,8 @@
 {
+  "$schema": "https://docs.wrangles.com/registry/schema/wrangle-contract.schema.json",
   "format": "wrangles-registry-entry",
-  "registry_version": "0.1.0",
-  "schema_version": "0.1",
+  "registry_version": "0.2.0",
+  "schema_version": "0.2",
   "type": "wrangle",
   "id": "e8e96b76-86bf-41dc-8d16-825dcff9688b",
   "wrangle_name": "custom",
@@ -13,6 +14,9 @@
   "description": "Extract data from the input using a DIY or bespoke extraction wrangle. Requires WrangleWorks Account and Subscription.",
   "status": "active",
   "visibility": "public",
+  "recipe_writer": {
+    "eligible": true
+  },
   "tags": [
     "extract",
     "custom"

@@ -1,4 +1,4 @@
-schema_version: "0.1"
+schema_version: "0.2"
 controls:
   where:
     description: Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`.

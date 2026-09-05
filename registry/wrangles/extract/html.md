@@ -1,5 +1,5 @@
 ---
-schema_version: '0.1'
+schema_version: '0.2'
 type: wrangle
 id: 728fc87a-a20d-4efa-833a-612e0b5eadc3
 wrangle_name: html
@@ -11,6 +11,8 @@ aliases: []
 slug: extract/html
 status: active
 visibility: public
+recipe_writer:
+  eligible: true
 tags:
   - extract
   - html

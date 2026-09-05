@@ -1,5 +1,5 @@
 ---
-schema_version: '0.1'
+schema_version: '0.2'
 type: wrangle
 id: 25c1a60d-fa48-4b9a-8c03-0921d5b31049
 wrangle_name: coalesce
@@ -11,6 +11,8 @@ aliases: []
 slug: merge/coalesce
 status: active
 visibility: public
+recipe_writer:
+  eligible: true
 tags:
   - merge
   - coalesce

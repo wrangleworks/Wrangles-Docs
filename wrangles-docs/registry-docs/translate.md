@@ -86,6 +86,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `translate` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | Root-level |
 | Documentation group | `format` |
 | Aliases | None |

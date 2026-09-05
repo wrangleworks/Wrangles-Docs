@@ -92,6 +92,8 @@ wrangles:
 | --- | --- |
 | Recipe key | `concurrent` |
 | Lifecycle status | active |
+| Recipe Writer eligible | No |
+| Recipe Writer exclusion | Concurrent orchestration is not supported in the baseline. |
 | Namespace | Root-level |
 | Documentation group | `utility` |
 | Aliases | None |

@@ -1,5 +1,5 @@
 ---
-schema_version: '0.1'
+schema_version: '0.2'
 type: wrangle
 id: 06ca98e4-d026-43f7-84eb-af246d401ba9
 wrangle_name: dictionary
@@ -13,6 +13,8 @@ aliases: []
 slug: split/dictionary
 status: active
 visibility: public
+recipe_writer:
+  eligible: true
 tags:
   - split
   - dictionary

@@ -1,5 +1,5 @@
 ---
-schema_version: '0.1'
+schema_version: '0.2'
 type: wrangle
 id: null
 wrangle_name: maths
@@ -12,6 +12,9 @@ slug: maths
 status: deprecated
 replaced_by: math
 visibility: public
+recipe_writer:
+  eligible: false
+  reason: Deprecated compatibility key; use math.
 tags:
   - maths
 runtime:

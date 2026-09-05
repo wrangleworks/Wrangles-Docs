@@ -1,5 +1,5 @@
 ---
-schema_version: '0.1'
+schema_version: '0.2'
 type: wrangle
 id: c0398a11-7731-4e47-8df0-b07eea0b1d6c
 wrangle_name: python
@@ -17,6 +17,8 @@ aliases: []
 slug: python
 status: active
 visibility: public
+recipe_writer:
+  eligible: true
 tags:
   - compute
   - python

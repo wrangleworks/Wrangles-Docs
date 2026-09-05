@@ -108,6 +108,7 @@ _Template based on the documented parameters; no published source example is cur
 | --- | --- |
 | Recipe key | `generate.ai` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `generate` |
 | Documentation group | `generate` |
 | Aliases | None |

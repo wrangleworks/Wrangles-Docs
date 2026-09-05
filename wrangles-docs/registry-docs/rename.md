@@ -162,6 +162,8 @@ wrangles:
 | --- | --- |
 | Recipe key | `rename` |
 | Lifecycle status | active |
+| Recipe Writer eligible | No |
+| Recipe Writer exclusion | Structural rename steps are not supported in the baseline. |
 | Namespace | Root-level |
 | Documentation group | `transform` |
 | Aliases | None |

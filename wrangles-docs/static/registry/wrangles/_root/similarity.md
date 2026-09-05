@@ -1,5 +1,5 @@
 ---
-schema_version: '0.1'
+schema_version: '0.2'
 type: wrangle
 id: 7c733344-4cce-4938-8013-53742fb46a90
 wrangle_name: similarity
@@ -11,6 +11,8 @@ aliases: []
 slug: similarity
 status: active
 visibility: public
+recipe_writer:
+  eligible: true
 tags:
   - compare
   - similarity

@@ -83,6 +83,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `extract.date_properties` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `extract` |
 | Documentation group | `extract` |
 | Aliases | None |

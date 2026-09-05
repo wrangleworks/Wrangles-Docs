@@ -152,6 +152,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `create.bins` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `create` |
 | Documentation group | `create` |
 | Aliases | None |
@@ -324,6 +325,7 @@ Columns of empty lists can also be created by passing an empty list (`[]`) as th
 | --- | --- |
 | Recipe key | `create.column` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `create` |
 | Documentation group | `create` |
 | Aliases | None |
@@ -429,6 +431,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `create.embeddings` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `create` |
 | Documentation group | `create` |
 | Aliases | None |
@@ -518,6 +521,7 @@ _No sample available._
 | --- | --- |
 | Recipe key | `create.guid` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `create` |
 | Documentation group | `create` |
 | Aliases | None |
@@ -610,6 +614,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `create.hash` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `create` |
 | Documentation group | `create` |
 | Aliases | None |
@@ -700,6 +705,7 @@ _No sample available._
 | --- | --- |
 | Recipe key | `create.index` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `create` |
 | Documentation group | `create` |
 | Aliases | None |
@@ -799,6 +805,7 @@ Using `|` in YAML denotes a multi-line string that preserves line breaks. Use `>
 | --- | --- |
 | Recipe key | `create.jinja` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `create` |
 | Documentation group | `create` |
 | Aliases | None |
@@ -888,6 +895,7 @@ _No sample available._
 | --- | --- |
 | Recipe key | `create.uuid` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `create` |
 | Documentation group | `create` |
 | Aliases | None |

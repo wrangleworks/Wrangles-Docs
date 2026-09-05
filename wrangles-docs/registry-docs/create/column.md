@@ -165,6 +165,7 @@ Columns of empty lists can also be created by passing an empty list (`[]`) as th
 | --- | --- |
 | Recipe key | `create.column` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `create` |
 | Documentation group | `create` |
 | Aliases | None |

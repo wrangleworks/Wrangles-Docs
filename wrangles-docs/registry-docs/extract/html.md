@@ -118,6 +118,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `extract.html` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `extract` |
 | Documentation group | `extract` |
 | Aliases | None |

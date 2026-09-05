@@ -1,5 +1,5 @@
 ---
-schema_version: '0.1'
+schema_version: '0.2'
 type: wrangle
 id: 4cd6252f-ce47-4a9d-8272-3d87e875b72a
 wrangle_name: to_yaml
@@ -11,6 +11,8 @@ aliases: []
 slug: convert/to-yaml
 status: active
 visibility: public
+recipe_writer:
+  eligible: true
 tags:
   - convert
   - to-yaml

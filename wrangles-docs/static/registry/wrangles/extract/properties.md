@@ -1,5 +1,5 @@
 ---
-schema_version: '0.1'
+schema_version: '0.2'
 type: wrangle
 id: 23bbdb86-fd13-4b78-8fff-a7a76769ab63
 wrangle_name: properties
@@ -11,6 +11,8 @@ aliases: []
 slug: extract/properties
 status: active
 visibility: public
+recipe_writer:
+  eligible: true
 tags:
   - extract
   - properties

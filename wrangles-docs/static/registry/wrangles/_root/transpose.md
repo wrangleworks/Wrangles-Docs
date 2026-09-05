@@ -1,5 +1,5 @@
 ---
-schema_version: '0.1'
+schema_version: '0.2'
 type: wrangle
 id: 8716347f-f286-49b2-8a0b-cb73292e7475
 wrangle_name: transpose
@@ -11,6 +11,8 @@ aliases: []
 slug: transpose
 status: active
 visibility: public
+recipe_writer:
+  eligible: true
 tags:
   - transform
   - transpose

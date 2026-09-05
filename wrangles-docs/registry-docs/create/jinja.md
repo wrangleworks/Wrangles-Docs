@@ -92,6 +92,7 @@ Using `|` in YAML denotes a multi-line string that preserves line breaks. Use `>
 | --- | --- |
 | Recipe key | `create.jinja` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `create` |
 | Documentation group | `create` |
 | Aliases | None |

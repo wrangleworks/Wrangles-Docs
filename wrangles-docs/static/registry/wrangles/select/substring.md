@@ -1,5 +1,5 @@
 ---
-schema_version: '0.1'
+schema_version: '0.2'
 type: wrangle
 id: 8befddf8-602e-4fa9-8f16-4c547210ebec
 wrangle_name: substring
@@ -11,6 +11,8 @@ aliases: []
 slug: select/substring
 status: active
 visibility: public
+recipe_writer:
+  eligible: true
 tags:
   - select
   - substring

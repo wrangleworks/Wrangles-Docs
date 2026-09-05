@@ -148,6 +148,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `create.bins` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `create` |
 | Documentation group | `create` |
 | Aliases | None |

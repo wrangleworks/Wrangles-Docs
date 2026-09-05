@@ -1,5 +1,5 @@
 ---
-schema_version: '0.1'
+schema_version: '0.2'
 type: wrangle
 id: 1dcf06ad-898a-4d83-862c-4774be37a687
 wrangle_name: sort
@@ -11,6 +11,8 @@ aliases: []
 slug: sort
 status: active
 visibility: public
+recipe_writer:
+  eligible: true
 tags:
   - select
   - sort

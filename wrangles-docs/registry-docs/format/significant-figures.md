@@ -87,6 +87,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `format.significant_figures` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `format` |
 | Documentation group | `format` |
 | Aliases | None |

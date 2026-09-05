@@ -1,5 +1,5 @@
 ---
-schema_version: '0.1'
+schema_version: '0.2'
 type: wrangle
 id: 19cfeb4f-02af-4ab2-895c-0ff2bb5cce19
 wrangle_name: date_calculator
@@ -11,6 +11,8 @@ aliases: []
 slug: date-calculator
 status: active
 visibility: public
+recipe_writer:
+  eligible: true
 tags:
   - date
   - date-calculator

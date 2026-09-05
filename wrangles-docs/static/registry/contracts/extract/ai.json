@@ -1,7 +1,8 @@
 {
+  "$schema": "https://docs.wrangles.com/registry/schema/wrangle-contract.schema.json",
   "format": "wrangles-registry-entry",
-  "registry_version": "0.1.0",
-  "schema_version": "0.1",
+  "registry_version": "0.2.0",
+  "schema_version": "0.2",
   "type": "wrangle",
   "id": "d9f89b00-fda3-4f4c-826c-6417b9390607",
   "wrangle_name": "ai",
@@ -13,6 +14,9 @@
   "description": "Extract structured data from each input row using an AI model. Define the desired fields with output, or reuse a saved definition with model_id.",
   "status": "active",
   "visibility": "public",
+  "recipe_writer": {
+    "eligible": true
+  },
   "tags": [
     "ai",
     "extract"

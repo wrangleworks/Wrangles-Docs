@@ -107,6 +107,7 @@ _Template based on the documented parameters; no published source example is cur
 | --- | --- |
 | Recipe key | `compute.score_search_results` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `compute` |
 | Documentation group | `compute` |
 | Aliases | None |

@@ -1,5 +1,5 @@
 ---
-schema_version: '0.1'
+schema_version: '0.2'
 type: wrangle
 id: 0a4909ca-6e14-4da7-8a70-a7fd106d6944
 wrangle_name: index
@@ -11,6 +11,8 @@ aliases: []
 slug: create/index
 status: active
 visibility: public
+recipe_writer:
+  eligible: true
 tags:
   - create
   - index

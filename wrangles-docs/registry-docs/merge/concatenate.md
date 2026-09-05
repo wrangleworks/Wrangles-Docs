@@ -122,6 +122,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `merge.concatenate` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `merge` |
 | Documentation group | `merge` |
 | Aliases | None |

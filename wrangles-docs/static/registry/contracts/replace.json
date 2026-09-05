@@ -1,7 +1,8 @@
 {
+  "$schema": "https://docs.wrangles.com/registry/schema/wrangle-contract.schema.json",
   "format": "wrangles-registry-entry",
-  "registry_version": "0.1.0",
-  "schema_version": "0.1",
+  "registry_version": "0.2.0",
+  "schema_version": "0.2",
   "type": "wrangle",
   "id": "f0ab715e-9e0e-4614-83e4-5cd8ea08a09f",
   "wrangle_name": "replace",
@@ -13,6 +14,9 @@
   "description": "Quick find and replace for simple values. Can use regex if 'input' in params and isinstance(params['input'], list):in the find field.",
   "status": "active",
   "visibility": "public",
+  "recipe_writer": {
+    "eligible": true
+  },
   "tags": [
     "format",
     "replace"

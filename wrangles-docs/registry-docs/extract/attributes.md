@@ -151,6 +151,7 @@ _No sample available._
 | --- | --- |
 | Recipe key | `extract.attributes` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `extract` |
 | Documentation group | `extract` |
 | Aliases | None |

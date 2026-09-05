@@ -1,5 +1,5 @@
 ---
-schema_version: '0.1'
+schema_version: '0.2'
 type: wrangle
 id: e8e96b76-86bf-41dc-8d16-825dcff9688b
 wrangle_name: custom
@@ -13,6 +13,8 @@ aliases: []
 slug: extract/custom
 status: active
 visibility: public
+recipe_writer:
+  eligible: true
 tags:
   - extract
   - custom

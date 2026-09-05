@@ -1,5 +1,5 @@
 ---
-schema_version: "0.1"
+schema_version: "0.2"
 type: wrangle
 id: 12ff4120-3613-4801-8653-99c793477fbc
 wrangle_name: case
@@ -11,6 +11,8 @@ aliases: []
 slug: convert/case
 status: active
 visibility: public
+recipe_writer:
+  eligible: true
 tags:
   - convert
   - text

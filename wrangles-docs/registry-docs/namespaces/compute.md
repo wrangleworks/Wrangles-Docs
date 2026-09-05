@@ -147,6 +147,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `compute.case_when` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `compute` |
 | Documentation group | `compute` |
 | Aliases | None |
@@ -261,6 +262,7 @@ _Template based on the documented parameters; no published source example is cur
 | --- | --- |
 | Recipe key | `compute.score_search_results` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `compute` |
 | Documentation group | `compute` |
 | Aliases | None |
@@ -356,6 +358,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `math` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | Root-level |
 | Documentation group | `compute` |
 | Aliases | None |
@@ -481,6 +484,7 @@ _No sample available._
 | --- | --- |
 | Recipe key | `python` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | Root-level |
 | Documentation group | `compute` |
 | Aliases | None |
@@ -580,6 +584,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `sql` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | Root-level |
 | Documentation group | `compute` |
 | Aliases | None |
@@ -648,6 +653,8 @@ This guidance was derived from the callable signature.
 | --- | --- |
 | Recipe key | `maths` |
 | Lifecycle status | deprecated |
+| Recipe Writer eligible | No |
+| Recipe Writer exclusion | Deprecated compatibility key; use math. |
 | Replaced by | [`math`](/wrangles/namespaces/compute#math) |
 | Namespace | Root-level |
 | Documentation group | `compute` |

@@ -1,7 +1,8 @@
 {
+  "$schema": "https://docs.wrangles.com/registry/schema/wrangle-contract.schema.json",
   "format": "wrangles-registry-entry",
-  "registry_version": "0.1.0",
-  "schema_version": "0.1",
+  "registry_version": "0.2.0",
+  "schema_version": "0.2",
   "type": "wrangle",
   "id": "5a18e2c8-ec7c-45f5-88fd-bb5c358a8b40",
   "wrangle_name": "column",
@@ -13,6 +14,9 @@
   "description": "Create column(s) with a user defined value. Defaults to None (empty).",
   "status": "active",
   "visibility": "public",
+  "recipe_writer": {
+    "eligible": true
+  },
   "tags": [
     "create",
     "column"

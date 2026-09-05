@@ -80,6 +80,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `select.columns` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `select` |
 | Documentation group | `select` |
 | Aliases | None |

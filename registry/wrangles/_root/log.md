@@ -1,5 +1,5 @@
 ---
-schema_version: '0.1'
+schema_version: '0.2'
 type: wrangle
 id: 6177808e-aa2d-4d0b-8385-858b16948a5d
 wrangle_name: log
@@ -11,6 +11,9 @@ aliases: []
 slug: log
 status: active
 visibility: public
+recipe_writer:
+  eligible: false
+  reason: Operational logging steps are not authored in the baseline.
 tags:
   - utility
   - log

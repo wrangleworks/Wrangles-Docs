@@ -1,5 +1,5 @@
 ---
-schema_version: '0.1'
+schema_version: '0.2'
 type: wrangle
 id: 7c55752e-70ab-4809-8298-c59436127457
 wrangle_name: fraction_to_decimal
@@ -11,6 +11,8 @@ aliases: []
 slug: convert/fraction-to-decimal
 status: active
 visibility: public
+recipe_writer:
+  eligible: true
 tags:
   - convert
   - fraction-to-decimal

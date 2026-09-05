@@ -93,6 +93,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `convert.case` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `convert` |
 | Documentation group | `convert` |
 | Aliases | None |

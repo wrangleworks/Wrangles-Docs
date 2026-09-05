@@ -5,9 +5,13 @@ const path = require('node:path');
 const crypto = require('node:crypto');
 const yaml = require('js-yaml');
 
-const REGISTRY_VERSION = '0.1.0';
-const ENTRY_SCHEMA_VERSION = '0.1';
+const REGISTRY_VERSION = '0.2.0';
+const ENTRY_SCHEMA_VERSION = '0.2';
 const PUBLIC_ORIGIN = 'https://docs.wrangles.com';
+const RECIPE_WRITER_BASELINE_COUNT = 88;
+const RECIPE_WRITER_KEYS_CHECKSUM =
+  'e25c2eede15434c7987082fc15f9fea0f2904939f109304de1495bf3749c5c07';
+const RECIPE_WRITER_KEYS_CHECKSUM_FRAMING = 'utf8-newline-separated-sorted-v1';
 
 const siteRoot = path.resolve(__dirname, '..');
 const repositoryRoot = path.resolve(siteRoot, '..');
@@ -89,6 +93,10 @@ function sha256(value) {
   return crypto.createHash('sha256').update(value).digest('hex');
 }
 
+function sortedLineChecksum(values) {
+  return sha256(`${[...values].sort().join('\n')}\n`);
+}
+
 function canonicalizeSchema(value) {
   if (Array.isArray(value)) return value.map(canonicalizeSchema);
   if (!isObject(value)) return value;
@@ -160,6 +168,9 @@ function validateRuntimeManifest(manifest) {
   } else {
     if (manifest.source.repository !== 'https://github.com/wrangleworks/WranglesPY') {
       fail(runtimeManifestPath, 'source.repository must identify WranglesPY');
+    }
+    if (!/^[0-9]+\.[0-9]+\.[0-9]+(?:[-+][0-9A-Za-z.-]+)?$/.test(manifest.source.version || '')) {
+      fail(runtimeManifestPath, 'source.version must be an exact package version');
     }
     if (!/^[0-9a-f]{40}$/i.test(manifest.source.revision || '')) {
       fail(runtimeManifestPath, 'source.revision must be a pinned 40-character Git commit');
@@ -469,6 +480,34 @@ function validateTopLevel(metadata, source, entrySchema) {
   if (!['public', 'internal'].includes(metadata.visibility)) {
     fail(source, 'visibility is invalid');
   }
+  if (!isObject(metadata.recipe_writer)) {
+    fail(source, 'recipe_writer must be an object');
+  } else {
+    const allowedRecipeWriterKeys = new Set(['eligible', 'reason']);
+    for (const key of Object.keys(metadata.recipe_writer)) {
+      if (!allowedRecipeWriterKeys.has(key)) {
+        fail(source, `recipe_writer has unknown field ${key}`);
+      }
+    }
+    if (typeof metadata.recipe_writer.eligible !== 'boolean') {
+      fail(source, 'recipe_writer.eligible must be a boolean');
+    } else if (metadata.recipe_writer.eligible) {
+      if (hasOwn(metadata.recipe_writer, 'reason')) {
+        fail(source, 'eligible Recipe Writer entries must not declare recipe_writer.reason');
+      }
+      if (metadata.status !== 'active') {
+        fail(source, 'Recipe Writer eligible entries must have active lifecycle status');
+      }
+      if (metadata.visibility !== 'public') {
+        fail(source, 'Recipe Writer eligible entries must be public');
+      }
+    } else if (
+      typeof metadata.recipe_writer.reason !== 'string' ||
+      !metadata.recipe_writer.reason.trim()
+    ) {
+      fail(source, 'ineligible Recipe Writer entries must declare a non-empty reason');
+    }
+  }
   if (!Array.isArray(metadata.tags) || metadata.tags.length === 0) {
     fail(source, 'tags must be a non-empty array');
   } else if (new Set(metadata.tags).size !== metadata.tags.length) {
@@ -483,6 +522,12 @@ function validateTopLevel(metadata, source, entrySchema) {
     }
     if (!['awaiting-manifest', 'verified'].includes(metadata.runtime.contract_status)) {
       fail(source, 'runtime.contract_status is invalid');
+    }
+    if (
+      metadata.recipe_writer?.eligible === true &&
+      metadata.runtime.contract_status !== 'verified'
+    ) {
+      fail(source, 'Recipe Writer eligible entries must have a verified runtime contract');
     }
   }
 
@@ -1061,7 +1106,8 @@ ${accessRows}
 | --- | --- |
 | Recipe key | \`${metadata.wrangle_key}\` |
 | Lifecycle status | ${metadata.status} |
-${metadata.replaced_by ? `| Replaced by | ${replacementLink} |\n` : ''}| Namespace | ${namespace === 'Root-level' ? namespace : `\`${namespace}\``} |
+| Recipe Writer eligible | ${metadata.recipe_writer.eligible ? 'Yes' : 'No'} |
+${metadata.recipe_writer.reason ? `| Recipe Writer exclusion | ${escapeCell(metadata.recipe_writer.reason)} |\n` : ''}${metadata.replaced_by ? `| Replaced by | ${replacementLink} |\n` : ''}| Namespace | ${namespace === 'Root-level' ? namespace : `\`${namespace}\``} |
 | Documentation group | \`${documentationGroup}\` |
 | Aliases | ${aliases} |
 | Runtime symbol | \`${metadata.runtime.symbol}\` |
@@ -1237,7 +1283,17 @@ function buildParameterSchema(parameter) {
   return result;
 }
 
-function buildRecipeSchema(entries, controls) {
+function buildRecipeSchema(
+  entries,
+  controls,
+  {
+    schemaFilename = 'schema.json',
+    title = 'Wrangles Recipe Schema - Registry',
+    description = 'Pre-production schema generated from the Docs Registry.',
+    comment = 'Pre-production artifact. See the Registry contract for production-readiness criteria.',
+    allowExtensionWrangles = true,
+  } = {},
+) {
   const wrangleProperties = {};
   for (const entry of entries) {
     const parameters = combinedParameters(entry, controls);
@@ -1269,10 +1325,10 @@ function buildRecipeSchema(entries, controls) {
 
   return {
     $schema: 'http://json-schema.org/draft-07/schema#',
-    $id: `${PUBLIC_ORIGIN}/schemas/recipes/registry/schema.json`,
-    title: 'Wrangles Recipe Schema - Registry',
-    description: 'Pre-production schema generated from the Docs Registry.',
-    $comment: 'Pre-production artifact. See the Registry contract for production-readiness criteria.',
+    $id: `${PUBLIC_ORIGIN}/schemas/recipes/registry/${schemaFilename}`,
+    title,
+    description,
+    $comment: comment,
     type: 'object',
     additionalProperties: false,
     required: ['wrangles'],
@@ -1291,10 +1347,12 @@ function buildRecipeSchema(entries, controls) {
           minProperties: 1,
           maxProperties: 1,
           additionalProperties: false,
-          patternProperties: {
-            '^custom\\..*': {type: 'object'},
-            '^pandas\\..*': {type: 'object'},
-          },
+          ...(allowExtensionWrangles ? {
+            patternProperties: {
+              '^custom\\..*': {type: 'object'},
+              '^pandas\\..*': {type: 'object'},
+            },
+          } : {}),
           properties: wrangleProperties,
         },
       },
@@ -1307,6 +1365,40 @@ function buildRecipeSchema(entries, controls) {
         },
       },
     },
+  };
+}
+
+function recipeSchemaAcceptsWrangleKey(schema, key) {
+  const items = schema?.$defs?.wrangles?.items;
+  if (!isObject(items)) return false;
+  if (hasOwn(items.properties || {}, key)) return true;
+  return Object.keys(items.patternProperties || {}).some((pattern) => new RegExp(pattern).test(key));
+}
+
+function buildCompiledContractSchema(entrySchema) {
+  const contractSchemaUrl = `${PUBLIC_ORIGIN}/registry/schema/wrangle-contract.schema.json`;
+  return {
+    $schema: entrySchema.$schema,
+    $id: contractSchemaUrl,
+    title: 'Compiled Wrangles Registry contract',
+    description: 'Machine-facing contract generated from one authoritative Registry entry.',
+    type: 'object',
+    additionalProperties: false,
+    required: [
+      '$schema',
+      'format',
+      'registry_version',
+      ...entrySchema.required,
+      'guidance',
+    ],
+    properties: {
+      $schema: {const: contractSchemaUrl},
+      format: {const: 'wrangles-registry-entry'},
+      registry_version: {const: REGISTRY_VERSION},
+      ...JSON.parse(JSON.stringify(entrySchema.properties)),
+      guidance: {type: 'string'},
+    },
+    $defs: JSON.parse(JSON.stringify(entrySchema.$defs || {})),
   };
 }
 
@@ -1326,6 +1418,7 @@ function buildEntryContract(entry, controls) {
   });
 
   return {
+    $schema: `${PUBLIC_ORIGIN}/registry/schema/wrangle-contract.schema.json`,
     format: 'wrangles-registry-entry',
     registry_version: REGISTRY_VERSION,
     schema_version: metadata.schema_version,
@@ -1341,6 +1434,7 @@ function buildEntryContract(entry, controls) {
     status: metadata.status,
     ...(metadata.replaced_by ? {replaced_by: metadata.replaced_by} : {}),
     visibility: metadata.visibility,
+    recipe_writer: metadata.recipe_writer,
     tags: metadata.tags,
     runtime: metadata.runtime,
     access: metadata.access,
@@ -1849,6 +1943,7 @@ function renderReconciliationReport(report) {
 
 Generated file. Do not edit directly.
 
+- Runtime version: \`${report.runtime_source.version}\`
 - Runtime source: [\`${report.runtime_source.revision}\`](${report.runtime_source.repository}/commit/${report.runtime_source.revision})
 - Registry version: \`${report.registry_version}\`
 - Runtime entries: ${report.summary.runtime_entries}
@@ -1908,6 +2003,44 @@ ${supportingRows}
 
 function addGeneratedFile(filename, content) {
   generatedFiles.set(path.resolve(filename), content.endsWith('\n') ? content : `${content}\n`);
+}
+
+function addBundleArtifact(bundleMembers, publicPath, filename, content) {
+  addGeneratedFile(filename, content);
+  bundleMembers.push({publicPath, filename: path.resolve(filename)});
+}
+
+function buildBundleIntegrity(bundleMembers) {
+  const members = [...bundleMembers].sort((left, right) =>
+    left.publicPath.localeCompare(right.publicPath));
+  const files = {};
+  const digest = crypto.createHash('sha256');
+
+  for (const member of members) {
+    const content = generatedFiles.get(member.filename);
+    if (typeof content !== 'string') {
+      throw new Error(`Bundle member was not generated: ${member.publicPath}`);
+    }
+    files[member.publicPath] = sha256(content);
+    digest.update(member.publicPath, 'utf8');
+    digest.update('\0', 'utf8');
+    digest.update(content, 'utf8');
+    digest.update('\0', 'utf8');
+  }
+
+  return {
+    artifactChecksums: {
+      algorithm: 'sha256',
+      files,
+    },
+    bundleChecksum: {
+      algorithm: 'sha256',
+      framing: 'utf8-path-null-content-null-v1',
+      value: digest.digest('hex'),
+      member_count: members.length,
+      manifest_included: false,
+    },
+  };
 }
 
 async function readInputs() {
@@ -1975,6 +2108,24 @@ async function readInputs() {
     }
   }
 
+  const recipeWriterKeys = entries
+    .filter((entry) => entry.metadata.recipe_writer?.eligible === true)
+    .map((entry) => entry.metadata.wrangle_key)
+    .sort();
+  if (recipeWriterKeys.length !== RECIPE_WRITER_BASELINE_COUNT) {
+    fail(
+      registryRoot,
+      `Recipe Writer eligibility must contain exactly ${RECIPE_WRITER_BASELINE_COUNT} entries; found ${recipeWriterKeys.length}`,
+    );
+  }
+  const recipeWriterChecksum = sortedLineChecksum(recipeWriterKeys);
+  if (recipeWriterChecksum !== RECIPE_WRITER_KEYS_CHECKSUM) {
+    fail(
+      registryRoot,
+      `Recipe Writer eligible-key checksum is ${recipeWriterChecksum}; expected ${RECIPE_WRITER_KEYS_CHECKSUM}`,
+    );
+  }
+
   return {
     entries,
     controls: commonDocument.controls,
@@ -1991,9 +2142,14 @@ function buildOutputs(entries, controls, reconciliation, registrySchemas, runtim
   const publicEntries = entries
     .filter((entry) => entry.metadata.visibility === 'public')
     .sort((left, right) => left.metadata.wrangle_key.localeCompare(right.metadata.wrangle_key));
+  const recipeWriterEntries = publicEntries.filter(
+    (entry) => entry.metadata.recipe_writer.eligible,
+  );
+  const recipeWriterKeys = recipeWriterEntries.map((entry) => entry.metadata.wrangle_key);
 
   const groups = groupedEntries(publicEntries);
   const entriesByKey = new Map(publicEntries.map((entry) => [entry.metadata.wrangle_key, entry]));
+  const bundleMembers = [];
 
   addGeneratedFile(path.join(docsOutputRoot, 'index.md'), renderDocsIndex(groups));
   addGeneratedFile(registrySidebarPath, renderRegistrySidebar(groups));
@@ -2010,8 +2166,11 @@ function buildOutputs(entries, controls, reconciliation, registrySchemas, runtim
     );
     const rawRelative = path.relative(registryRoot, entry.sourceFile);
     addGeneratedFile(path.join(rawOutputRoot, rawRelative), entry.source);
-    addGeneratedFile(
-      path.join(rawOutputRoot, entryContractRelativePath(entry)),
+    const contractRelative = entryContractRelativePath(entry);
+    addBundleArtifact(
+      bundleMembers,
+      `/registry/${posixPath(contractRelative)}`,
+      path.join(rawOutputRoot, contractRelative),
       JSON.stringify(buildEntryContract(entry, controls), null, 2),
     );
     for (const example of entry.metadata.examples) {
@@ -2027,11 +2186,87 @@ function buildOutputs(entries, controls, reconciliation, registrySchemas, runtim
   }
 
   addGeneratedFile(path.join(rawOutputRoot, 'index.md'), renderRawIndex(publicEntries));
+
+  addBundleArtifact(
+    bundleMembers,
+    '/schemas/recipes/registry/schema.json',
+    path.join(schemaOutputRoot, 'schema.json'),
+    JSON.stringify(buildRecipeSchema(publicEntries, controls), null, 2),
+  );
+  const recipeWriterSchema = buildRecipeSchema(recipeWriterEntries, controls, {
+    schemaFilename: 'recipe-writer.schema.json',
+    title: 'Wrangles Recipe Schema - Recipe Writer',
+    description: 'Pre-production stock-wrangle schema generated from explicit Recipe Writer eligibility in the Docs Registry.',
+    comment: 'Contains only the pinned Recipe Writer baseline and rejects custom.* and pandas.* extension names. See the Registry manifest for eligibility and checksum evidence.',
+    allowExtensionWrangles: false,
+  });
+  for (const key of ['custom.undocumented', 'pandas.anything']) {
+    if (recipeSchemaAcceptsWrangleKey(recipeWriterSchema, key)) {
+      fail(
+        path.join(schemaOutputRoot, 'recipe-writer.schema.json'),
+        `closed Recipe Writer schema unexpectedly accepts ${key}`,
+      );
+    }
+  }
+  addBundleArtifact(
+    bundleMembers,
+    '/schemas/recipes/registry/recipe-writer.schema.json',
+    path.join(schemaOutputRoot, 'recipe-writer.schema.json'),
+    JSON.stringify(recipeWriterSchema, null, 2),
+  );
+  addBundleArtifact(
+    bundleMembers,
+    '/registry/schema/wrangle-entry.schema.json',
+    path.join(rawOutputRoot, 'schema', 'wrangle-entry.schema.json'),
+    JSON.stringify(registrySchemas.entry, null, 2),
+  );
+  addBundleArtifact(
+    bundleMembers,
+    '/registry/schema/wrangle-contract.schema.json',
+    path.join(rawOutputRoot, 'schema', 'wrangle-contract.schema.json'),
+    JSON.stringify(buildCompiledContractSchema(registrySchemas.entry), null, 2),
+  );
+  addBundleArtifact(
+    bundleMembers,
+    '/registry/schema/wrangles-runtime-manifest.schema.json',
+    path.join(rawOutputRoot, 'schema', 'wrangles-runtime-manifest.schema.json'),
+    JSON.stringify(registrySchemas.runtimeManifest, null, 2),
+  );
+  addBundleArtifact(
+    bundleMembers,
+    '/registry/runtime/wranglespy.json',
+    path.join(rawOutputRoot, 'runtime', 'wranglespy.json'),
+    JSON.stringify(runtimeManifest, null, 2),
+  );
+  const reconciliationSummary = {
+    format: 'wrangles-runtime-reconciliation-summary',
+    registry_version: REGISTRY_VERSION,
+    runtime_source: reconciliation.runtime_source,
+    summary: reconciliation.summary,
+  };
+  addBundleArtifact(
+    bundleMembers,
+    '/registry/runtime/reconciliation.json',
+    path.join(rawOutputRoot, 'runtime', 'reconciliation.json'),
+    JSON.stringify(reconciliationSummary, null, 2),
+  );
+
+  const integrity = buildBundleIntegrity(bundleMembers);
   const manifest = {
     format: 'wrangles-registry',
     registry_version: REGISTRY_VERSION,
     contract_version: ENTRY_SCHEMA_VERSION,
     status: 'pre-production',
+    compatibility: {
+      wranglespy_version: runtimeManifest.source.version,
+      wranglespy_revision: runtimeManifest.source.revision,
+      compatible_wranglespy: `==${runtimeManifest.source.version}`,
+    },
+    recipe_writer: {
+      eligible_entry_count: recipeWriterEntries.length,
+      eligible_keys_sha256: sortedLineChecksum(recipeWriterKeys),
+      eligible_keys_framing: RECIPE_WRITER_KEYS_CHECKSUM_FRAMING,
+    },
     entry_count: publicEntries.length,
     entries: publicEntries.map((entry) => ({
       type: entry.metadata.type,
@@ -2045,6 +2280,7 @@ function buildOutputs(entries, controls, reconciliation, registrySchemas, runtim
       description: entry.metadata.description,
       status: entry.metadata.status,
       ...(entry.metadata.replaced_by ? {replaced_by: entry.metadata.replaced_by} : {}),
+      recipe_writer: entry.metadata.recipe_writer,
       tags: entry.metadata.tags,
       route: entryRoute(entry),
       contract_json: `/registry/${posixPath(entryContractRelativePath(entry))}`,
@@ -2056,30 +2292,19 @@ function buildOutputs(entries, controls, reconciliation, registrySchemas, runtim
     artifacts: {
       index: '/registry/index.md',
       recipe_schema: '/schemas/recipes/registry/schema.json',
+      recipe_writer_schema: '/schemas/recipes/registry/recipe-writer.schema.json',
       entry_schema: '/registry/schema/wrangle-entry.schema.json',
+      compiled_contract_schema: '/registry/schema/wrangle-contract.schema.json',
       runtime_manifest: '/registry/runtime/wranglespy.json',
       runtime_manifest_schema: '/registry/schema/wrangles-runtime-manifest.schema.json',
+      runtime_reconciliation: '/registry/runtime/reconciliation.json',
     },
+    artifact_checksums: integrity.artifactChecksums,
+    bundle_checksum: integrity.bundleChecksum,
   };
   addGeneratedFile(
     path.join(rawOutputRoot, 'manifest.json'),
     JSON.stringify(manifest, null, 2),
-  );
-  addGeneratedFile(
-    path.join(schemaOutputRoot, 'schema.json'),
-    JSON.stringify(buildRecipeSchema(publicEntries, controls), null, 2),
-  );
-  addGeneratedFile(
-    path.join(rawOutputRoot, 'schema', 'wrangle-entry.schema.json'),
-    JSON.stringify(registrySchemas.entry, null, 2),
-  );
-  addGeneratedFile(
-    path.join(rawOutputRoot, 'schema', 'wrangles-runtime-manifest.schema.json'),
-    JSON.stringify(registrySchemas.runtimeManifest, null, 2),
-  );
-  addGeneratedFile(
-    path.join(rawOutputRoot, 'runtime', 'wranglespy.json'),
-    JSON.stringify(runtimeManifest, null, 2),
   );
   addGeneratedFile(
     path.join(reportsOutputRoot, 'runtime-reconciliation.json'),

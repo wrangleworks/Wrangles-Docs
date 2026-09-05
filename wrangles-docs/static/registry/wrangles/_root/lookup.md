@@ -1,5 +1,5 @@
 ---
-schema_version: '0.1'
+schema_version: '0.2'
 type: wrangle
 id: b3339193-d1cc-4c89-8ed6-901efa6d81be
 wrangle_name: lookup
@@ -11,6 +11,8 @@ aliases: []
 slug: lookup
 status: active
 visibility: public
+recipe_writer:
+  eligible: true
 tags:
   - lookup
 runtime:

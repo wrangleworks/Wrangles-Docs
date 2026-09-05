@@ -1,5 +1,5 @@
 ---
-schema_version: '0.1'
+schema_version: '0.2'
 type: wrangle
 id: 223d2f4e-3247-4189-8b6c-e73fe44c4266
 wrangle_name: element
@@ -11,6 +11,8 @@ aliases: []
 slug: select/element
 status: active
 visibility: public
+recipe_writer:
+  eligible: true
 tags:
   - select
   - element

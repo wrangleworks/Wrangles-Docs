@@ -1,5 +1,5 @@
 ---
-schema_version: '0.1'
+schema_version: '0.2'
 type: wrangle
 id: e3242acf-d204-433f-8373-205b77481131
 wrangle_name: filter
@@ -13,6 +13,8 @@ aliases: []
 slug: filter
 status: active
 visibility: public
+recipe_writer:
+  eligible: true
 tags:
   - select
   - filter

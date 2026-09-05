@@ -84,6 +84,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `merge.to_dict` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `merge` |
 | Documentation group | `merge` |
 | Aliases | None |

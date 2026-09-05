@@ -1,5 +1,5 @@
 ---
-schema_version: '0.1'
+schema_version: '0.2'
 type: wrangle
 id: 93e27737-e966-4ba9-8777-4e96724ebfc4
 wrangle_name: dictionaries
@@ -11,6 +11,8 @@ aliases: []
 slug: merge/dictionaries
 status: active
 visibility: public
+recipe_writer:
+  eligible: true
 tags:
   - merge
   - dictionaries

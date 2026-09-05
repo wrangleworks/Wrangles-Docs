@@ -1,5 +1,5 @@
 ---
-schema_version: '0.1'
+schema_version: '0.2'
 type: wrangle
 id: null
 wrangle_name: recipe
@@ -11,6 +11,9 @@ aliases: []
 slug: recipe
 status: active
 visibility: public
+recipe_writer:
+  eligible: false
+  reason: Nested recipe composition is outside the baseline.
 tags:
   - recipe
 runtime:

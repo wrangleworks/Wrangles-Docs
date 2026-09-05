@@ -1,7 +1,8 @@
 {
+  "$schema": "https://docs.wrangles.com/registry/schema/wrangle-contract.schema.json",
   "format": "wrangles-registry-entry",
-  "registry_version": "0.1.0",
-  "schema_version": "0.1",
+  "registry_version": "0.2.0",
+  "schema_version": "0.2",
   "type": "wrangle",
   "id": "728fc87a-a20d-4efa-833a-612e0b5eadc3",
   "wrangle_name": "html",
@@ -13,6 +14,9 @@
   "description": "Extract elements from strings containing html. Requires WrangleWorks Account.",
   "status": "active",
   "visibility": "public",
+  "recipe_writer": {
+    "eligible": true
+  },
   "tags": [
     "extract",
     "html"

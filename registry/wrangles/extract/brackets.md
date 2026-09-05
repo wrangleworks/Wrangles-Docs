@@ -1,5 +1,5 @@
 ---
-schema_version: '0.1'
+schema_version: '0.2'
 type: wrangle
 id: 9b4c15fa-2aaa-40c8-8834-6e835760bee5
 wrangle_name: brackets
@@ -11,6 +11,8 @@ aliases: []
 slug: extract/brackets
 status: active
 visibility: public
+recipe_writer:
+  eligible: true
 tags:
   - extract
   - brackets

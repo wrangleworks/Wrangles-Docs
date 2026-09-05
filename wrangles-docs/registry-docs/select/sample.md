@@ -115,6 +115,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `select.sample` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `select` |
 | Documentation group | `select` |
 | Aliases | None |

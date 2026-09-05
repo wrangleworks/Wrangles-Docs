@@ -1,5 +1,5 @@
 ---
-schema_version: '0.1'
+schema_version: '0.2'
 type: wrangle
 id: 12c31c6c-cade-484d-84ba-7f302bf6af52
 wrangle_name: ai
@@ -11,6 +11,8 @@ aliases: []
 slug: generate/ai
 status: active
 visibility: public
+recipe_writer:
+  eligible: true
 tags:
   - ai
   - generate

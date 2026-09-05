@@ -95,6 +95,7 @@ _Template based on the documented parameters; no published source example is cur
 | --- | --- |
 | Recipe key | `huggingface` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | Root-level |
 | Documentation group | `ai` |
 | Aliases | None |

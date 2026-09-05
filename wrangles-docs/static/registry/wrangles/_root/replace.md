@@ -1,5 +1,5 @@
 ---
-schema_version: '0.1'
+schema_version: '0.2'
 type: wrangle
 id: f0ab715e-9e0e-4614-83e4-5cd8ea08a09f
 wrangle_name: replace
@@ -13,6 +13,8 @@ aliases: []
 slug: replace
 status: active
 visibility: public
+recipe_writer:
+  eligible: true
 tags:
   - format
   - replace

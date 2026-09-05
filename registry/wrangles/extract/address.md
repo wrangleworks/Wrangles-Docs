@@ -1,5 +1,5 @@
 ---
-schema_version: '0.1'
+schema_version: '0.2'
 type: wrangle
 id: 44153f95-4581-4cee-898e-b3b4714045fd
 wrangle_name: address
@@ -11,6 +11,8 @@ aliases: []
 slug: extract/address
 status: active
 visibility: public
+recipe_writer:
+  eligible: true
 tags:
   - extract
   - address

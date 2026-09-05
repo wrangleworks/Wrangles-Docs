@@ -1,7 +1,8 @@
 {
+  "$schema": "https://docs.wrangles.com/registry/schema/wrangle-contract.schema.json",
   "format": "wrangles-registry-entry",
-  "registry_version": "0.1.0",
-  "schema_version": "0.1",
+  "registry_version": "0.2.0",
+  "schema_version": "0.2",
   "type": "wrangle",
   "id": "467a06b1-a697-4d31-8061-7d83a719fd79",
   "wrangle_name": "sql",
@@ -13,6 +14,9 @@
   "description": "Apply a SQL command to the current dataframe. Only SELECT statements are supported - the result will be the output.",
   "status": "active",
   "visibility": "public",
+  "recipe_writer": {
+    "eligible": true
+  },
   "tags": [
     "compute",
     "sql"

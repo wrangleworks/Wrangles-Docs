@@ -1,5 +1,5 @@
 ---
-schema_version: '0.1'
+schema_version: '0.2'
 type: wrangle
 id: 31905b74-ce58-45cd-8add-821cc04ab946
 wrangle_name: text
@@ -13,6 +13,8 @@ aliases: []
 slug: compare/text
 status: active
 visibility: public
+recipe_writer:
+  eligible: true
 tags:
   - compare
   - text

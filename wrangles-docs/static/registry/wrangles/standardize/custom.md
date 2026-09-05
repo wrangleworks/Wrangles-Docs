@@ -1,5 +1,5 @@
 ---
-schema_version: '0.1'
+schema_version: '0.2'
 type: wrangle
 id: null
 wrangle_name: custom
@@ -13,6 +13,8 @@ aliases: []
 slug: standardize/custom
 status: active
 visibility: public
+recipe_writer:
+  eligible: true
 tags:
   - standardize
   - custom

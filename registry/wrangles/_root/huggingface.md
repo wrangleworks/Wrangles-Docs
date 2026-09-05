@@ -1,5 +1,5 @@
 ---
-schema_version: '0.1'
+schema_version: '0.2'
 type: wrangle
 id: ae12cf20-4934-428f-84a9-a6898cb7ffe0
 wrangle_name: huggingface
@@ -11,6 +11,8 @@ aliases: []
 slug: huggingface
 status: active
 visibility: public
+recipe_writer:
+  eligible: true
 tags:
   - ai
   - huggingface

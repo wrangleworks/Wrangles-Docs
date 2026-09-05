@@ -94,6 +94,8 @@ wrangles:
 | --- | --- |
 | Recipe key | `accordion` |
 | Lifecycle status | active |
+| Recipe Writer eligible | No |
+| Recipe Writer exclusion | Nested-list orchestration is not supported in the baseline. |
 | Namespace | Root-level |
 | Documentation group | `utility` |
 | Aliases | None |

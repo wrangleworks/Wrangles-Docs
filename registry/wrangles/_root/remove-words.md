@@ -1,5 +1,5 @@
 ---
-schema_version: '0.1'
+schema_version: '0.2'
 type: wrangle
 id: 543b96c3-f354-48be-8046-bf0cb9fbaf56
 wrangle_name: remove_words
@@ -11,6 +11,8 @@ aliases: []
 slug: remove-words
 status: active
 visibility: public
+recipe_writer:
+  eligible: true
 tags:
   - format
   - remove-words

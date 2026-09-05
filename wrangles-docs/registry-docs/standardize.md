@@ -91,6 +91,8 @@ wrangles:
 | --- | --- |
 | Recipe key | `standardize` |
 | Lifecycle status | deprecated |
+| Recipe Writer eligible | No |
+| Recipe Writer exclusion | Deprecated compatibility key; use standardize.custom. |
 | Replaced by | [`standardize.custom`](/wrangles/namespaces/standardize#custom) |
 | Namespace | Root-level |
 | Documentation group | `format` |

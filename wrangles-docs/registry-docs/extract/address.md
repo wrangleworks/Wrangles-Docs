@@ -89,6 +89,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `extract.address` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `extract` |
 | Documentation group | `extract` |
 | Aliases | None |

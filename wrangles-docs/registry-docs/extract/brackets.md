@@ -92,6 +92,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `extract.brackets` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `extract` |
 | Documentation group | `extract` |
 | Aliases | None |

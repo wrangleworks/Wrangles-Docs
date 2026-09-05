@@ -88,6 +88,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `clean_whitespaces` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | Root-level |
 | Documentation group | `format` |
 | Aliases | None |
@@ -178,6 +179,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `format.dates` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `format` |
 | Documentation group | `format` |
 | Aliases | None |
@@ -279,6 +281,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `format.pad` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `format` |
 | Documentation group | `format` |
 | Aliases | None |
@@ -374,6 +377,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `format.prefix` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `format` |
 | Documentation group | `format` |
 | Aliases | None |
@@ -440,6 +444,8 @@ This guidance was derived from the callable signature.
 | --- | --- |
 | Recipe key | `format.price_breaks` |
 | Lifecycle status | active |
+| Recipe Writer eligible | No |
+| Recipe Writer exclusion | This newer wrangle is outside the pinned baseline. |
 | Namespace | `format` |
 | Documentation group | `format` |
 | Aliases | None |
@@ -531,6 +537,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `format.remove_duplicates` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `format` |
 | Documentation group | `format` |
 | Aliases | None |
@@ -625,6 +632,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `format.significant_figures` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `format` |
 | Documentation group | `format` |
 | Aliases | None |
@@ -720,6 +728,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `format.suffix` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `format` |
 | Documentation group | `format` |
 | Aliases | None |
@@ -812,6 +821,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `format.trim` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `format` |
 | Documentation group | `format` |
 | Aliases | None |
@@ -910,6 +920,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `remove_words` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | Root-level |
 | Documentation group | `format` |
 | Aliases | None |
@@ -1007,6 +1018,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `replace` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | Root-level |
 | Documentation group | `format` |
 | Aliases | None |
@@ -1099,6 +1111,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `round` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | Root-level |
 | Documentation group | `format` |
 | Aliases | None |
@@ -1192,6 +1205,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `translate` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | Root-level |
 | Documentation group | `format` |
 | Aliases | None |
@@ -1290,6 +1304,8 @@ wrangles:
 | --- | --- |
 | Recipe key | `standardize` |
 | Lifecycle status | deprecated |
+| Recipe Writer eligible | No |
+| Recipe Writer exclusion | Deprecated compatibility key; use standardize.custom. |
 | Replaced by | [`standardize.custom`](/wrangles/namespaces/standardize#custom) |
 | Namespace | Root-level |
 | Documentation group | `format` |

@@ -1,5 +1,5 @@
 ---
-schema_version: '0.1'
+schema_version: '0.2'
 type: wrangle
 id: af16b3c1-c230-4868-8ebe-f574904a0c76
 wrangle_name: trim
@@ -11,6 +11,8 @@ aliases: []
 slug: format/trim
 status: active
 visibility: public
+recipe_writer:
+  eligible: true
 tags:
   - format
   - trim

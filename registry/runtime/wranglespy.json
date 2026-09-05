@@ -4,6 +4,7 @@
   "format_version": "0.1",
   "source": {
     "repository": "https://github.com/wrangleworks/WranglesPY",
+    "version": "1.20.2",
     "revision": "7916bf158e8b7e561270a1bea7b808f88956edc4"
   },
   "entry_count": 98,

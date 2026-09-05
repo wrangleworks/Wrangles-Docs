@@ -1,5 +1,5 @@
 ---
-schema_version: '0.1'
+schema_version: '0.2'
 type: wrangle
 id: 73c3ceb6-ffd8-4d74-8389-c83b99d33bb0
 wrangle_name: translate
@@ -13,6 +13,8 @@ aliases: []
 slug: translate
 status: active
 visibility: public
+recipe_writer:
+  eligible: true
 tags:
   - format
   - translate

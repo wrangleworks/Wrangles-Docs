@@ -1,5 +1,5 @@
 ---
-schema_version: '0.1'
+schema_version: '0.2'
 type: wrangle
 id: 12f3111b-8511-4e42-8d3f-b5302dc3b4e4
 wrangle_name: round
@@ -11,6 +11,8 @@ aliases: []
 slug: round
 status: active
 visibility: public
+recipe_writer:
+  eligible: true
 tags:
   - format
   - round

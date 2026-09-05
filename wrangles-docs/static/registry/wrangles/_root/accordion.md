@@ -1,5 +1,5 @@
 ---
-schema_version: '0.1'
+schema_version: '0.2'
 type: wrangle
 id: null
 wrangle_name: accordion
@@ -13,6 +13,9 @@ aliases: []
 slug: accordion
 status: active
 visibility: public
+recipe_writer:
+  eligible: false
+  reason: Nested-list orchestration is not supported in the baseline.
 tags:
   - utility
   - accordion

@@ -1,5 +1,5 @@
 ---
-schema_version: '0.1'
+schema_version: '0.2'
 type: wrangle
 id: e36e15c4-f0ad-43f8-8555-ef683a8ab892
 wrangle_name: clean_whitespaces
@@ -13,6 +13,8 @@ aliases: []
 slug: clean-whitespaces
 status: active
 visibility: public
+recipe_writer:
+  eligible: true
 tags:
   - format
   - clean-whitespaces

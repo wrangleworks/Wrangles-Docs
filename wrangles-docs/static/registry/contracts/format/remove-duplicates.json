@@ -1,7 +1,8 @@
 {
+  "$schema": "https://docs.wrangles.com/registry/schema/wrangle-contract.schema.json",
   "format": "wrangles-registry-entry",
-  "registry_version": "0.1.0",
-  "schema_version": "0.1",
+  "registry_version": "0.2.0",
+  "schema_version": "0.2",
   "type": "wrangle",
   "id": "283b9e78-b2b2-43d0-844f-9842c33120aa",
   "wrangle_name": "remove_duplicates",
@@ -13,6 +14,9 @@
   "description": "Remove duplicates from a list. Preserves input order.",
   "status": "active",
   "visibility": "public",
+  "recipe_writer": {
+    "eligible": true
+  },
   "tags": [
     "format",
     "remove-duplicates"

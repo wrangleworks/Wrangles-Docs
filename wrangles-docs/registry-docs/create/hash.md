@@ -85,6 +85,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `create.hash` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `create` |
 | Documentation group | `create` |
 | Aliases | None |

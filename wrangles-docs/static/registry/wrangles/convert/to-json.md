@@ -1,5 +1,5 @@
 ---
-schema_version: '0.1'
+schema_version: '0.2'
 type: wrangle
 id: 94e54eb7-2b8c-4047-89d0-fb5d16baf396
 wrangle_name: to_json
@@ -11,6 +11,8 @@ aliases: []
 slug: convert/to-json
 status: active
 visibility: public
+recipe_writer:
+  eligible: true
 tags:
   - convert
   - to-json

@@ -1,5 +1,5 @@
 ---
-schema_version: '0.1'
+schema_version: '0.2'
 type: wrangle
 id: da591387-0fca-4842-8bcb-d19f561f0292
 wrangle_name: codes
@@ -11,6 +11,8 @@ aliases: []
 slug: extract/codes
 status: active
 visibility: public
+recipe_writer:
+  eligible: true
 tags:
   - extract
   - codes

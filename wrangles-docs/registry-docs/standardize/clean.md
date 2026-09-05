@@ -69,6 +69,7 @@ This guidance was derived from the callable signature and its embedded Python sc
 | --- | --- |
 | Recipe key | `standardize.clean` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `standardize` |
 | Documentation group | `standardize` |
 | Aliases | None |
