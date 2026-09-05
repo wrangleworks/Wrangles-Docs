@@ -103,6 +103,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `batch` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | Root-level |
 | Documentation group | `utility` |
 | Aliases | None |

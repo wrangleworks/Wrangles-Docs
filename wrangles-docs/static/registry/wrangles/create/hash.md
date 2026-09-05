@@ -1,5 +1,5 @@
 ---
-schema_version: '0.1'
+schema_version: '0.2'
 type: wrangle
 id: 11e8fc13-00d2-4779-8d87-6288b07de7e7
 wrangle_name: hash
@@ -11,6 +11,8 @@ aliases: []
 slug: create/hash
 status: active
 visibility: public
+recipe_writer:
+  eligible: true
 tags:
   - create
   - hash

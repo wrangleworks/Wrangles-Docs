@@ -85,6 +85,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `convert.fraction_to_decimal` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `convert` |
 | Documentation group | `convert` |
 | Aliases | None |

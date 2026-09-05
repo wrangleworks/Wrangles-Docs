@@ -98,6 +98,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `create.embeddings` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `create` |
 | Documentation group | `create` |
 | Aliases | None |

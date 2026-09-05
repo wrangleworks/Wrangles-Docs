@@ -1,5 +1,5 @@
 ---
-schema_version: '0.1'
+schema_version: '0.2'
 type: wrangle
 id: 283b9e78-b2b2-43d0-844f-9842c33120aa
 wrangle_name: remove_duplicates
@@ -11,6 +11,8 @@ aliases: []
 slug: format/remove-duplicates
 status: active
 visibility: public
+recipe_writer:
+  eligible: true
 tags:
   - format
   - remove-duplicates

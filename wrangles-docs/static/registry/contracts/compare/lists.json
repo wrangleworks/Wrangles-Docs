@@ -1,7 +1,8 @@
 {
+  "$schema": "https://docs.wrangles.com/registry/schema/wrangle-contract.schema.json",
   "format": "wrangles-registry-entry",
-  "registry_version": "0.1.0",
-  "schema_version": "0.1",
+  "registry_version": "0.2.0",
+  "schema_version": "0.2",
   "type": "wrangle",
   "id": "a393225e-7ccf-4708-83f8-d5abd6ba9b1e",
   "wrangle_name": "lists",
@@ -13,6 +14,9 @@
   "description": "Compare multiple lists and return the intersection, difference, or union.",
   "status": "active",
   "visibility": "public",
+  "recipe_writer": {
+    "eligible": true
+  },
   "tags": [
     "compare",
     "lists"

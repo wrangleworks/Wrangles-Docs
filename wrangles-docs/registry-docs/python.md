@@ -118,6 +118,7 @@ _No sample available._
 | --- | --- |
 | Recipe key | `python` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | Root-level |
 | Documentation group | `compute` |
 | Aliases | None |

@@ -1,5 +1,5 @@
 ---
-schema_version: '0.1'
+schema_version: '0.2'
 type: wrangle
 id: 9b869210-0d89-403b-8409-7cecdb5f9c7c
 wrangle_name: to_dict
@@ -13,6 +13,8 @@ aliases: []
 slug: merge/to-dict
 status: active
 visibility: public
+recipe_writer:
+  eligible: true
 tags:
   - merge
   - to-dict

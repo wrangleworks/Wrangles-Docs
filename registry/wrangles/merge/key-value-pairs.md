@@ -1,5 +1,5 @@
 ---
-schema_version: '0.1'
+schema_version: '0.2'
 type: wrangle
 id: 8a2cd37c-8ef7-4b05-8264-36512f5dd837
 wrangle_name: key_value_pairs
@@ -13,6 +13,8 @@ aliases: []
 slug: merge/key-value-pairs
 status: active
 visibility: public
+recipe_writer:
+  eligible: true
 tags:
   - merge
   - key-value-pairs

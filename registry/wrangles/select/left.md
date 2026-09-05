@@ -1,5 +1,5 @@
 ---
-schema_version: '0.1'
+schema_version: '0.2'
 type: wrangle
 id: 5cdd9857-0c77-43bf-80d7-d0a8cb6f980b
 wrangle_name: left
@@ -13,6 +13,8 @@ aliases: []
 slug: select/left
 status: active
 visibility: public
+recipe_writer:
+  eligible: true
 tags:
   - select
   - left

@@ -1,5 +1,5 @@
 ---
-schema_version: '0.1'
+schema_version: '0.2'
 type: wrangle
 id: 53cd3fdd-24e2-4411-8655-6014b92a3f3a
 wrangle_name: standardize
@@ -14,6 +14,9 @@ slug: standardize
 status: deprecated
 replaced_by: standardize.custom
 visibility: public
+recipe_writer:
+  eligible: false
+  reason: Deprecated compatibility key; use standardize.custom.
 tags:
   - format
   - standardize

@@ -1,5 +1,5 @@
 ---
-schema_version: '0.1'
+schema_version: '0.2'
 type: wrangle
 id: 76c19378-38f4-45aa-85d1-3cdf8f8aae29
 wrangle_name: pad
@@ -11,6 +11,8 @@ aliases: []
 slug: format/pad
 status: active
 visibility: public
+recipe_writer:
+  eligible: true
 tags:
   - format
   - pad

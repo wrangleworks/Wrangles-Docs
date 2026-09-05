@@ -176,6 +176,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `compare.text` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `compare` |
 | Documentation group | `compare` |
 | Aliases | None |

@@ -1,5 +1,5 @@
 ---
-schema_version: '0.1'
+schema_version: '0.2'
 type: wrangle
 id: 10fc6709-16d4-4eab-8f56-6cb5d170ea66
 wrangle_name: jinja
@@ -11,6 +11,8 @@ aliases: []
 slug: create/jinja
 status: active
 visibility: public
+recipe_writer:
+  eligible: true
 tags:
   - create
   - jinja

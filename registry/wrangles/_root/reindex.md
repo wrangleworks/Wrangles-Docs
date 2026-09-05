@@ -1,5 +1,5 @@
 ---
-schema_version: '0.1'
+schema_version: '0.2'
 type: wrangle
 id: def87df8-72da-4e34-83c1-1fde25126257
 wrangle_name: reindex
@@ -11,6 +11,8 @@ aliases: []
 slug: reindex
 status: active
 visibility: public
+recipe_writer:
+  eligible: true
 tags:
   - transform
   - reindex

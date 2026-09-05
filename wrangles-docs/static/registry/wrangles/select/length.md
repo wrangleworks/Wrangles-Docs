@@ -1,5 +1,5 @@
 ---
-schema_version: '0.1'
+schema_version: '0.2'
 type: wrangle
 id: 4d7a5f66-0a4a-40e0-8298-d5c55754423d
 wrangle_name: length
@@ -13,6 +13,8 @@ aliases: []
 slug: select/length
 status: active
 visibility: public
+recipe_writer:
+  eligible: true
 tags:
   - select
   - length

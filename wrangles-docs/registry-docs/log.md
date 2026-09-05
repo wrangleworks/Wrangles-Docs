@@ -147,6 +147,8 @@ _Logs a sample of rows or status information to the configured destination._
 | --- | --- |
 | Recipe key | `log` |
 | Lifecycle status | active |
+| Recipe Writer eligible | No |
+| Recipe Writer exclusion | Operational logging steps are not authored in the baseline. |
 | Namespace | Root-level |
 | Documentation group | `utility` |
 | Aliases | None |

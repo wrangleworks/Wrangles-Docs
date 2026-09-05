@@ -1,5 +1,5 @@
 ---
-schema_version: '0.1'
+schema_version: '0.2'
 type: wrangle
 id: b002fbdc-92c0-4347-889d-0f4bfeec99fa
 wrangle_name: copy
@@ -11,6 +11,8 @@ aliases: []
 slug: copy
 status: active
 visibility: public
+recipe_writer:
+  eligible: true
 tags:
   - transform
   - copy

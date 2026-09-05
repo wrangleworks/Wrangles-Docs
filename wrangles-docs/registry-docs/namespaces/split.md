@@ -93,6 +93,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `explode` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | Root-level |
 | Documentation group | `split` |
 | Aliases | None |
@@ -342,6 +343,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `split.dictionary` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `split` |
 | Documentation group | `split` |
 | Aliases | None |
@@ -463,6 +465,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `split.list` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `split` |
 | Documentation group | `split` |
 | Aliases | None |
@@ -693,6 +696,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `split.text` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `split` |
 | Documentation group | `split` |
 | Aliases | None |
@@ -814,6 +818,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `split.tokenize` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `split` |
 | Documentation group | `split` |
 | Aliases | None |

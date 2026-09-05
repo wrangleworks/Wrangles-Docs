@@ -83,6 +83,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `select.left` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `select` |
 | Documentation group | `select` |
 | Aliases | None |

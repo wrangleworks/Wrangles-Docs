@@ -93,6 +93,7 @@ Product Specs:
 | --- | --- |
 | Recipe key | `convert.to_yaml` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `convert` |
 | Documentation group | `convert` |
 | Aliases | None |

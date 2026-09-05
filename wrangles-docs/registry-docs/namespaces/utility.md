@@ -98,6 +98,8 @@ wrangles:
 | --- | --- |
 | Recipe key | `accordion` |
 | Lifecycle status | active |
+| Recipe Writer eligible | No |
+| Recipe Writer exclusion | Nested-list orchestration is not supported in the baseline. |
 | Namespace | Root-level |
 | Documentation group | `utility` |
 | Aliases | None |
@@ -208,6 +210,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `batch` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | Root-level |
 | Documentation group | `utility` |
 | Aliases | None |
@@ -307,6 +310,8 @@ wrangles:
 | --- | --- |
 | Recipe key | `concurrent` |
 | Lifecycle status | active |
+| Recipe Writer eligible | No |
+| Recipe Writer exclusion | Concurrent orchestration is not supported in the baseline. |
 | Namespace | Root-level |
 | Documentation group | `utility` |
 | Aliases | None |
@@ -461,6 +466,8 @@ _Logs a sample of rows or status information to the configured destination._
 | --- | --- |
 | Recipe key | `log` |
 | Lifecycle status | active |
+| Recipe Writer eligible | No |
+| Recipe Writer exclusion | Operational logging steps are not authored in the baseline. |
 | Namespace | Root-level |
 | Documentation group | `utility` |
 | Aliases | None |
@@ -626,6 +633,8 @@ wrangles:
 | --- | --- |
 | Recipe key | `matrix` |
 | Lifecycle status | active |
+| Recipe Writer eligible | No |
+| Recipe Writer exclusion | Matrix orchestration is not supported in the baseline. |
 | Namespace | Root-level |
 | Documentation group | `utility` |
 | Aliases | None |
@@ -694,6 +703,8 @@ This guidance was derived from the callable signature and its embedded Python sc
 | --- | --- |
 | Recipe key | `recipe` |
 | Lifecycle status | active |
+| Recipe Writer eligible | No |
+| Recipe Writer exclusion | Nested recipe composition is outside the baseline. |
 | Namespace | Root-level |
 | Documentation group | `utility` |
 | Aliases | None |
@@ -782,6 +793,8 @@ _The primary result is returned on success; the `except` result is returned afte
 | --- | --- |
 | Recipe key | `try` |
 | Lifecycle status | active |
+| Recipe Writer eligible | No |
+| Recipe Writer exclusion | Error-control orchestration is not supported in the baseline. |
 | Namespace | Root-level |
 | Documentation group | `utility` |
 | Aliases | None |

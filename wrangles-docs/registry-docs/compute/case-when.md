@@ -143,6 +143,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `compute.case_when` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `compute` |
 | Documentation group | `compute` |
 | Aliases | None |

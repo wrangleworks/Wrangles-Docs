@@ -127,6 +127,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `extract.codes` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `extract` |
 | Documentation group | `extract` |
 | Aliases | None |

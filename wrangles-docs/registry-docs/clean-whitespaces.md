@@ -84,6 +84,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `clean_whitespaces` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | Root-level |
 | Documentation group | `format` |
 | Aliases | None |

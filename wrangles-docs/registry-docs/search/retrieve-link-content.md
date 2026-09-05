@@ -102,6 +102,7 @@ _Template based on the documented parameters; no published source example is cur
 | --- | --- |
 | Recipe key | `search.retrieve_link_content` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `search` |
 | Documentation group | `search` |
 | Aliases | None |

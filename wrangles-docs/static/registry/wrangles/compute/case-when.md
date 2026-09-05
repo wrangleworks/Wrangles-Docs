@@ -1,5 +1,5 @@
 ---
-schema_version: '0.1'
+schema_version: '0.2'
 type: wrangle
 id: 9a9662e4-53d1-4932-8adf-bc3e7aa364ad
 wrangle_name: case_when
@@ -11,6 +11,8 @@ aliases: []
 slug: compute/case-when
 status: active
 visibility: public
+recipe_writer:
+  eligible: true
 tags:
   - compute
   - case-when

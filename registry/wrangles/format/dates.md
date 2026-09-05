@@ -1,5 +1,5 @@
 ---
-schema_version: '0.1'
+schema_version: '0.2'
 type: wrangle
 id: a3c15135-4f7a-4659-83fd-f657afa603c9
 wrangle_name: dates
@@ -11,6 +11,8 @@ aliases: []
 slug: format/dates
 status: active
 visibility: public
+recipe_writer:
+  eligible: true
 tags:
   - format
   - dates

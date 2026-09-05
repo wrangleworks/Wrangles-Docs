@@ -59,6 +59,8 @@ This guidance was derived from the callable signature.
 | --- | --- |
 | Recipe key | `format.price_breaks` |
 | Lifecycle status | active |
+| Recipe Writer eligible | No |
+| Recipe Writer exclusion | This newer wrangle is outside the pinned baseline. |
 | Namespace | `format` |
 | Documentation group | `format` |
 | Aliases | None |

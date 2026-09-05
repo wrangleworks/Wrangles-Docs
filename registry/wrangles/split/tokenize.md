@@ -1,5 +1,5 @@
 ---
-schema_version: '0.1'
+schema_version: '0.2'
 type: wrangle
 id: 6cc88418-ae0c-43f6-84ee-31e0d5f838c3
 wrangle_name: tokenize
@@ -13,6 +13,8 @@ aliases: []
 slug: split/tokenize
 status: active
 visibility: public
+recipe_writer:
+  eligible: true
 tags:
   - split
   - tokenize

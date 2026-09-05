@@ -92,6 +92,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `sql` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | Root-level |
 | Documentation group | `compute` |
 | Aliases | None |

@@ -2,7 +2,7 @@
 
 Status: pre-production
 
-Contract version: 0.1
+Contract version: 0.2
 
 ## Purpose
 
@@ -29,6 +29,7 @@ Each fact has one authoring authority:
 | Purpose, guidance, parameter meaning, and relationships | Registry Markdown                   |
 | Curated examples and expected outcomes                  | Registry Markdown and fixtures      |
 | Lifecycle, visibility, access, and provenance           | Registry Markdown                   |
+| Recipe Writer eligibility and exclusion reason          | Registry Markdown                   |
 | Recipe JSON Schema                                      | Generated output                    |
 | Docusaurus pages                                        | Generated output                    |
 | Database/search records                                 | Generated projection                |
@@ -186,6 +187,8 @@ Every wrangle entry must declare:
   public `slug`, and compatibility `aliases`
 - `title` and `description`
 - `status` and `visibility`
+- an explicit `recipe_writer.eligible` decision; ineligible entries also
+  require a concise `recipe_writer.reason`
 - `tags`
 - a runtime package and Python symbol
 - access flags
@@ -227,6 +230,23 @@ The shared `if`, `where`, and `where_params` definitions live in
 `common/wrangle-controls.yaml`. Entries opt into them through `capabilities`.
 They must not duplicate the common definitions in each wrangle file.
 
+## Recipe Writer eligibility
+
+Recipe Writer discovery is a consumer-specific, fail-closed Registry view.
+Every entry must declare `recipe_writer.eligible`; omission is invalid rather
+than an implicit opt-in. Eligible entries must be public, active, and reconciled
+to a verified runtime contract. Ineligible entries must state a concise reason,
+and that reason is emitted in the manifest and compiled contract so clients do
+not need an Agent-owned exception list.
+
+The initial view preserves the existing 88-key Recipe Writer baseline. The
+compiler verifies both the count and a checksum of the sorted eligible keys, so
+changing which wrangles are available requires an explicit reviewed update.
+This initial schema is stock-only: it omits the full recipe schema's permissive
+`custom.*` and `pandas.*` extension patterns. An extension wrangle therefore
+cannot enter Recipe Writer merely because its name matches a broad pattern; it
+needs a future explicit Registry-backed eligibility contract.
+
 ## Examples and verification
 
 Each example has a stable ID, recipe YAML, input fixture, output fixture, and
@@ -256,9 +276,15 @@ The compiler produces:
 - `manifest.json`, containing lightweight discovery metadata and links
 - one comprehensive JSON contract per wrangle under
   `wrangles-docs/static/registry/contracts/`, including all parameters
+- a JSON Schema for those compiled contracts under
+  `wrangles-docs/static/registry/schema/wrangle-contract.schema.json`
 - raw source Markdown and sanitized example fixtures
 - a pre-production recipe JSON Schema under
   `wrangles-docs/static/schemas/recipes/registry/schema.json`
+- a Recipe Writer-specific schema containing only explicitly eligible entries
+  under `wrangles-docs/static/schemas/recipes/registry/recipe-writer.schema.json`
+- a compact runtime-reconciliation summary under
+  `wrangles-docs/static/registry/runtime/reconciliation.json`
 - deterministic JSON and Markdown reconciliation reports under
   `registry/reports/`
 
@@ -270,9 +296,23 @@ Generated artifacts are deterministic: timestamps, local paths, credentials,
 and environment-specific values are excluded. A clean compile followed by
 `check:registry` must produce no Git diff.
 
+The manifest records SHA-256 for every machine-facing bundle member and a
+bundle checksum. Bundle members are ordered by their public path and framed as
+the UTF-8 path, a NUL byte, the exact generated UTF-8 content, and a final NUL
+byte. `manifest.json` is deliberately excluded from the bundle digest because
+it contains the digest; a deployment can pin the manifest itself by source
+commit or an external lock-file checksum without circular hashing.
+
+The Recipe Writer eligible-key checksum uses the framing named by
+`recipe_writer.eligible_keys_framing`: sorted keys encoded as UTF-8, each
+terminated by one newline (`utf8-newline-separated-sorted-v1`).
+
 ## Versioning and lifecycle
 
-The pre-production Registry version is `0.1.0`. A production release will
+The pre-production Registry version is `0.2.0`. Version `0.2.0` makes the
+fail-closed Recipe Writer eligibility decision required for every entry and
+adds the compiled-contract and integrity metadata consumed by Registry clients.
+A production release will
 contain:
 
 - an immutable Registry version
@@ -280,6 +320,11 @@ contain:
 - the source commit
 - immutable recipe-schema and Registry URLs
 - a convenience `latest` alias that is not used for reproducible execution
+
+The current runtime manifest records both the exact WranglesPY package version
+and the pinned source revision used for reconciliation. The public manifest
+exposes that evidence plus an exact compatible-version specifier so consumers
+can fail closed before loading an incompatible runtime.
 
 Wrangles progress through `draft`, `active`, `deprecated`, and `removed`.
 Deprecated records stay discoverable and must identify their canonical

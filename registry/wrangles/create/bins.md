@@ -1,5 +1,5 @@
 ---
-schema_version: '0.1'
+schema_version: '0.2'
 type: wrangle
 id: 232e3ba0-4735-4934-88aa-0163181abb3f
 wrangle_name: bins
@@ -11,6 +11,8 @@ aliases: []
 slug: create/bins
 status: active
 visibility: public
+recipe_writer:
+  eligible: true
 tags:
   - create
   - bins

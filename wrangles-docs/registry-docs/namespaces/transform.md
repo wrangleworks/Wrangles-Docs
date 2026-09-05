@@ -118,6 +118,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `copy` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | Root-level |
 | Documentation group | `transform` |
 | Aliases | None |
@@ -226,6 +227,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `reindex` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | Root-level |
 | Documentation group | `transform` |
 | Aliases | None |
@@ -395,6 +397,8 @@ wrangles:
 | --- | --- |
 | Recipe key | `rename` |
 | Lifecycle status | active |
+| Recipe Writer eligible | No |
+| Recipe Writer exclusion | Structural rename steps are not supported in the baseline. |
 | Namespace | Root-level |
 | Documentation group | `transform` |
 | Aliases | None |
@@ -489,6 +493,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `transpose` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | Root-level |
 | Documentation group | `transform` |
 | Aliases | None |

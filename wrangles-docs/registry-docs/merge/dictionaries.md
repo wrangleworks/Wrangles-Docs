@@ -158,6 +158,7 @@ Note the extra dash in front of `Dict 2` excludes that column from the wildcard 
 | --- | --- |
 | Recipe key | `merge.dictionaries` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `merge` |
 | Documentation group | `merge` |
 | Aliases | None |

@@ -92,6 +92,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `merge.coalesce` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `merge` |
 | Documentation group | `merge` |
 | Aliases | None |
@@ -221,6 +222,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `merge.concatenate` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `merge` |
 | Documentation group | `merge` |
 | Aliases | None |
@@ -386,6 +388,7 @@ Note the extra dash in front of `Dict 2` excludes that column from the wildcard 
 | --- | --- |
 | Recipe key | `merge.dictionaries` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `merge` |
 | Documentation group | `merge` |
 | Aliases | None |
@@ -517,6 +520,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `merge.key_value_pairs` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `merge` |
 | Documentation group | `merge` |
 | Aliases | None |
@@ -611,6 +615,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `merge.lists` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `merge` |
 | Documentation group | `merge` |
 | Aliases | None |
@@ -702,6 +707,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `merge.to_dict` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `merge` |
 | Documentation group | `merge` |
 | Aliases | None |
@@ -794,6 +800,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `merge.to_list` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `merge` |
 | Documentation group | `merge` |
 | Aliases | None |

@@ -1,5 +1,5 @@
 ---
-schema_version: '0.1'
+schema_version: '0.2'
 type: wrangle
 id: 4e4b13ac-8d50-4b2c-85c8-2c31de1e817d
 wrangle_name: explode
@@ -11,6 +11,8 @@ aliases: []
 slug: explode
 status: active
 visibility: public
+recipe_writer:
+  eligible: true
 tags:
   - split
   - explode

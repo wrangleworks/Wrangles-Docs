@@ -1,5 +1,5 @@
 ---
-schema_version: '0.1'
+schema_version: '0.2'
 type: wrangle
 id: e76e43f7-d129-4bf8-87b4-a304a378b130
 wrangle_name: text
@@ -11,6 +11,8 @@ aliases: []
 slug: split/text
 status: active
 visibility: public
+recipe_writer:
+  eligible: true
 tags:
   - split
   - text

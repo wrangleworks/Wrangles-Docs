@@ -1,5 +1,5 @@
 ---
-schema_version: '0.1'
+schema_version: '0.2'
 type: wrangle
 id: c0af10b1-423a-416c-8cb5-7e7fe1164964
 wrangle_name: group_by
@@ -11,6 +11,8 @@ aliases: []
 slug: select/group-by
 status: active
 visibility: public
+recipe_writer:
+  eligible: true
 tags:
   - select
   - group-by

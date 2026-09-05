@@ -1,5 +1,5 @@
 ---
-schema_version: '0.1'
+schema_version: '0.2'
 type: wrangle
 id: 03ccedef-c938-41f1-8980-280f1a91542e
 wrangle_name: attributes
@@ -13,6 +13,8 @@ aliases: []
 slug: extract/attributes
 status: active
 visibility: public
+recipe_writer:
+  eligible: true
 tags:
   - extract
   - attributes

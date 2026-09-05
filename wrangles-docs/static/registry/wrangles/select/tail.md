@@ -1,5 +1,5 @@
 ---
-schema_version: '0.1'
+schema_version: '0.2'
 type: wrangle
 id: 60853759-c160-49a4-87eb-036516a9d823
 wrangle_name: tail
@@ -11,6 +11,8 @@ aliases: []
 slug: select/tail
 status: active
 visibility: public
+recipe_writer:
+  eligible: true
 tags:
   - select
   - tail

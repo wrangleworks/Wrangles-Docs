@@ -1,5 +1,5 @@
 ---
-schema_version: '0.1'
+schema_version: '0.2'
 type: wrangle
 id: d5300fe7-c8a4-4a41-8f12-f2c1698678cc
 wrangle_name: to_list
@@ -11,6 +11,8 @@ aliases: []
 slug: merge/to-list
 status: active
 visibility: public
+recipe_writer:
+  eligible: true
 tags:
   - merge
   - to-list

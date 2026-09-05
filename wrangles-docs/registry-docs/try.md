@@ -82,6 +82,8 @@ _The primary result is returned on success; the `except` result is returned afte
 | --- | --- |
 | Recipe key | `try` |
 | Lifecycle status | active |
+| Recipe Writer eligible | No |
+| Recipe Writer exclusion | Error-control orchestration is not supported in the baseline. |
 | Namespace | Root-level |
 | Documentation group | `utility` |
 | Aliases | None |

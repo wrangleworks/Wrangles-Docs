@@ -28,12 +28,18 @@
       "additionalProperties": false,
       "required": [
         "repository",
+        "version",
         "revision"
       ],
       "properties": {
         "repository": {
           "type": "string",
           "format": "uri"
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+(?:[-+][0-9A-Za-z.-]+)?$",
+          "description": "Exact WranglesPY package version whose callable surface was exported."
         },
         "revision": {
           "type": "string",

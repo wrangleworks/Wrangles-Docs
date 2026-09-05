@@ -1,5 +1,5 @@
 ---
-schema_version: '0.1'
+schema_version: '0.2'
 type: wrangle
 id: c376f3ff-2283-4c4c-8d7f-70db6f53ed19
 wrangle_name: uuid
@@ -11,6 +11,8 @@ aliases: []
 slug: create/uuid
 status: active
 visibility: public
+recipe_writer:
+  eligible: true
 tags:
   - create
   - uuid

@@ -171,6 +171,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `compare.lists` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `compare` |
 | Documentation group | `compare` |
 | Aliases | None |
@@ -354,6 +355,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `compare.text` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `compare` |
 | Documentation group | `compare` |
 | Aliases | None |
@@ -462,6 +464,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `similarity` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | Root-level |
 | Documentation group | `compare` |
 | Aliases | None |

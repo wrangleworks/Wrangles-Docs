@@ -1,5 +1,5 @@
 ---
-schema_version: '0.1'
+schema_version: '0.2'
 type: wrangle
 id: 313a8ec0-cf13-4956-8d3b-5362b8641d0f
 wrangle_name: score_search_results
@@ -13,6 +13,8 @@ aliases: []
 slug: compute/score-search-results
 status: active
 visibility: public
+recipe_writer:
+  eligible: true
 tags:
   - compute
   - score-search-results

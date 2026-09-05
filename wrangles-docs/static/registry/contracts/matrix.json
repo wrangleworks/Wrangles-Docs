@@ -1,7 +1,8 @@
 {
+  "$schema": "https://docs.wrangles.com/registry/schema/wrangle-contract.schema.json",
   "format": "wrangles-registry-entry",
-  "registry_version": "0.1.0",
-  "schema_version": "0.1",
+  "registry_version": "0.2.0",
+  "schema_version": "0.2",
   "type": "wrangle",
   "id": null,
   "wrangle_name": "matrix",
@@ -13,6 +14,10 @@
   "description": "Apply a matrix of wrangles to the dataframe. This will run the wrangles for each combination of the variables.",
   "status": "active",
   "visibility": "public",
+  "recipe_writer": {
+    "eligible": false,
+    "reason": "Matrix orchestration is not supported in the baseline."
+  },
   "tags": [
     "utility",
     "matrix"

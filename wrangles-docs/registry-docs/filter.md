@@ -98,6 +98,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `filter` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | Root-level |
 | Documentation group | `select` |
 | Aliases | None |

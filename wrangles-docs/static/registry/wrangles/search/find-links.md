@@ -1,5 +1,5 @@
 ---
-schema_version: '0.1'
+schema_version: '0.2'
 type: wrangle
 id: ec1f661b-2cbc-4a47-88e3-646179104376
 wrangle_name: find_links
@@ -13,6 +13,8 @@ aliases: []
 slug: search/find-links
 status: active
 visibility: public
+recipe_writer:
+  eligible: true
 tags:
   - search
   - find-links

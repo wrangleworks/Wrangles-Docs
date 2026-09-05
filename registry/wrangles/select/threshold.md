@@ -1,5 +1,5 @@
 ---
-schema_version: '0.1'
+schema_version: '0.2'
 type: wrangle
 id: af2a5dcc-0ec0-48d7-8fb4-f58d9c5391d2
 wrangle_name: threshold
@@ -11,6 +11,8 @@ aliases: []
 slug: select/threshold
 status: active
 visibility: public
+recipe_writer:
+  eligible: true
 tags:
   - select
   - threshold

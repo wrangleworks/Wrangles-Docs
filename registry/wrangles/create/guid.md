@@ -1,5 +1,5 @@
 ---
-schema_version: '0.1'
+schema_version: '0.2'
 type: wrangle
 id: cf3aaab2-3d5b-4c9b-826e-7af7510521c9
 wrangle_name: guid
@@ -11,6 +11,8 @@ aliases: []
 slug: create/guid
 status: active
 visibility: public
+recipe_writer:
+  eligible: true
 tags:
   - create
   - guid

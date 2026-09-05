@@ -93,6 +93,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `extract.address` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `extract` |
 | Documentation group | `extract` |
 | Aliases | None |
@@ -298,6 +299,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `extract.ai` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `extract` |
 | Documentation group | `extract` |
 | Aliases | None |
@@ -456,6 +458,7 @@ _No sample available._
 | --- | --- |
 | Recipe key | `extract.attributes` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `extract` |
 | Documentation group | `extract` |
 | Aliases | None |
@@ -555,6 +558,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `extract.brackets` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `extract` |
 | Documentation group | `extract` |
 | Aliases | None |
@@ -689,6 +693,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `extract.codes` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `extract` |
 | Documentation group | `extract` |
 | Aliases | None |
@@ -870,6 +875,7 @@ _No sample available._
 | --- | --- |
 | Recipe key | `extract.custom` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `extract` |
 | Documentation group | `extract` |
 | Aliases | None |
@@ -960,6 +966,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `extract.date_properties` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `extract` |
 | Documentation group | `extract` |
 | Aliases | None |
@@ -1050,6 +1057,7 @@ _No sample available._
 | --- | --- |
 | Recipe key | `extract.date_range` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `extract` |
 | Documentation group | `extract` |
 | Aliases | None |
@@ -1175,6 +1183,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `extract.html` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `extract` |
 | Documentation group | `extract` |
 | Aliases | None |
@@ -1299,6 +1308,7 @@ _No sample available._
 | --- | --- |
 | Recipe key | `extract.properties` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `extract` |
 | Documentation group | `extract` |
 | Aliases | None |
@@ -1431,6 +1441,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `extract.regex` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `extract` |
 | Documentation group | `extract` |
 | Aliases | None |

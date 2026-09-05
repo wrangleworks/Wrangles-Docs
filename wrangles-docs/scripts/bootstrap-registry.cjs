@@ -446,7 +446,7 @@ function buildMetadata(runtime, manifest, quasi) {
     normalizeTag(wrangleName),
   ].filter(Boolean))];
   return {
-    schema_version: '0.1',
+    schema_version: '0.2',
     type: 'wrangle',
     id: quasi?.id || null,
     wrangle_name: wrangleName,

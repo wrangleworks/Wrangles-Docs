@@ -84,6 +84,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `select.element` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `select` |
 | Documentation group | `select` |
 | Aliases | None |

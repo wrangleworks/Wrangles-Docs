@@ -1,5 +1,5 @@
 ---
-schema_version: '0.1'
+schema_version: '0.2'
 type: wrangle
 id: 00aad85d-8cc8-42e5-86f3-e4ff916e8ac2
 wrangle_name: highest_confidence
@@ -13,6 +13,8 @@ aliases: []
 slug: select/highest-confidence
 status: active
 visibility: public
+recipe_writer:
+  eligible: true
 tags:
   - select
   - highest-confidence

@@ -1,5 +1,5 @@
 ---
-schema_version: '0.1'
+schema_version: '0.2'
 type: wrangle
 id: null
 wrangle_name: try
@@ -11,6 +11,9 @@ aliases: []
 slug: try
 status: active
 visibility: public
+recipe_writer:
+  eligible: false
+  reason: Error-control orchestration is not supported in the baseline.
 tags:
   - utility
   - try

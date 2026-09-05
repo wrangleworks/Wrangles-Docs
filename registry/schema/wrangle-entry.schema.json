@@ -17,6 +17,7 @@
     "slug",
     "status",
     "visibility",
+    "recipe_writer",
     "tags",
     "runtime",
     "access",
@@ -26,7 +27,7 @@
     "sources"
   ],
   "properties": {
-    "schema_version": {"const": "0.1"},
+    "schema_version": {"const": "0.2"},
     "type": {"const": "wrangle"},
     "id": {
       "type": ["string", "null"],
@@ -70,6 +71,32 @@
     },
     "visibility": {
       "enum": ["public", "internal"]
+    },
+    "recipe_writer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["eligible"],
+      "properties": {
+        "eligible": {
+          "type": "boolean",
+          "description": "Whether this wrangle is eligible for Recipe Writer discovery and authoring. Missing eligibility fails closed."
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Required concise explanation when the wrangle is not eligible."
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {"eligible": {"const": false}},
+            "required": ["eligible"]
+          },
+          "then": {"required": ["reason"]},
+          "else": {"not": {"required": ["reason"]}}
+        }
+      ]
     },
     "tags": {
       "type": "array",

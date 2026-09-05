@@ -1,5 +1,5 @@
 ---
-schema_version: "0.1"
+schema_version: "0.2"
 type: wrangle
 id: 52384f01-7164-404f-8615-063e7677a588
 wrangle_name: data_type
@@ -11,6 +11,8 @@ aliases: []
 slug: convert/data-type
 status: active
 visibility: public
+recipe_writer:
+  eligible: true
 tags:
   - convert
   - data-type

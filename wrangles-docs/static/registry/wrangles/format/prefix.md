@@ -1,5 +1,5 @@
 ---
-schema_version: '0.1'
+schema_version: '0.2'
 type: wrangle
 id: c12f99b9-2363-4da7-8405-7c73b87906e5
 wrangle_name: prefix
@@ -11,6 +11,8 @@ aliases: []
 slug: format/prefix
 status: active
 visibility: public
+recipe_writer:
+  eligible: true
 tags:
   - format
   - prefix

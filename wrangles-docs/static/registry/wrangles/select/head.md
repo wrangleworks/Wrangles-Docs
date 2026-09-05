@@ -1,5 +1,5 @@
 ---
-schema_version: '0.1'
+schema_version: '0.2'
 type: wrangle
 id: 237af1ec-db7d-415a-88b7-70586a2191fb
 wrangle_name: head
@@ -11,6 +11,8 @@ aliases: []
 slug: select/head
 status: active
 visibility: public
+recipe_writer:
+  eligible: true
 tags:
   - select
   - head

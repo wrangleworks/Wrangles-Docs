@@ -61,6 +61,8 @@ This guidance was derived from the callable signature.
 | --- | --- |
 | Recipe key | `maths` |
 | Lifecycle status | deprecated |
+| Recipe Writer eligible | No |
+| Recipe Writer exclusion | Deprecated compatibility key; use math. |
 | Replaced by | [`math`](/wrangles/namespaces/compute#math) |
 | Namespace | Root-level |
 | Documentation group | `compute` |

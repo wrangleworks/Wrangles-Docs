@@ -89,6 +89,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `explode` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | Root-level |
 | Documentation group | `split` |
 | Aliases | None |

@@ -101,6 +101,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `reindex` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | Root-level |
 | Documentation group | `transform` |
 | Aliases | None |

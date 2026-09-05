@@ -1,5 +1,5 @@
 ---
-schema_version: '0.1'
+schema_version: '0.2'
 type: wrangle
 id: 9cebfa6f-a524-4aec-84a7-02d77b792843
 wrangle_name: date_range
@@ -11,6 +11,8 @@ aliases: []
 slug: extract/date-range
 status: active
 visibility: public
+recipe_writer:
+  eligible: true
 tags:
   - extract
   - date-range

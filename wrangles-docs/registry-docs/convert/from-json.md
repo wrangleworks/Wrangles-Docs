@@ -94,6 +94,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `convert.from_json` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `convert` |
 | Documentation group | `convert` |
 | Aliases | None |

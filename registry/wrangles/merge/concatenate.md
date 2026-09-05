@@ -1,5 +1,5 @@
 ---
-schema_version: '0.1'
+schema_version: '0.2'
 type: wrangle
 id: 6ff76728-e1f6-4d3d-8946-6aa3b7524b3f
 wrangle_name: concatenate
@@ -11,6 +11,8 @@ aliases: []
 slug: merge/concatenate
 status: active
 visibility: public
+recipe_writer:
+  eligible: true
 tags:
   - merge
   - concatenate

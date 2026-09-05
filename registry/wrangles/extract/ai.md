@@ -1,5 +1,5 @@
 ---
-schema_version: '0.1'
+schema_version: '0.2'
 type: wrangle
 id: d9f89b00-fda3-4f4c-826c-6417b9390607
 wrangle_name: ai
@@ -13,6 +13,8 @@ aliases: []
 slug: extract/ai
 status: active
 visibility: public
+recipe_writer:
+  eligible: true
 tags:
   - ai
   - extract

@@ -97,6 +97,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `convert.case` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `convert` |
 | Documentation group | `convert` |
 | Aliases | None |
@@ -202,6 +203,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `convert.data_type` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `convert` |
 | Documentation group | `convert` |
 | Aliases | None |
@@ -294,6 +296,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `convert.fraction_to_decimal` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `convert` |
 | Documentation group | `convert` |
 | Aliases | None |
@@ -395,6 +398,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `convert.from_json` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `convert` |
 | Documentation group | `convert` |
 | Aliases | None |
@@ -492,6 +496,7 @@ Product Specs:
 | --- | --- |
 | Recipe key | `convert.from_yaml` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `convert` |
 | Documentation group | `convert` |
 | Aliases | None |
@@ -585,6 +590,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `convert.to_json` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `convert` |
 | Documentation group | `convert` |
 | Aliases | None |
@@ -685,6 +691,7 @@ Product Specs:
 | --- | --- |
 | Recipe key | `convert.to_yaml` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `convert` |
 | Documentation group | `convert` |
 | Aliases | None |

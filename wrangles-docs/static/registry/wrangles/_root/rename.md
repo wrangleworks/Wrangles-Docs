@@ -1,5 +1,5 @@
 ---
-schema_version: '0.1'
+schema_version: '0.2'
 type: wrangle
 id: ab06898f-faf7-42e7-8275-5e3034a4d727
 wrangle_name: rename
@@ -11,6 +11,9 @@ aliases: []
 slug: rename
 status: active
 visibility: public
+recipe_writer:
+  eligible: false
+  reason: Structural rename steps are not supported in the baseline.
 tags:
   - transform
   - rename

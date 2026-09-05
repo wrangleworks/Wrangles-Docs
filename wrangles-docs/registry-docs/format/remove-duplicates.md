@@ -85,6 +85,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `format.remove_duplicates` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `format` |
 | Documentation group | `format` |
 | Aliases | None |

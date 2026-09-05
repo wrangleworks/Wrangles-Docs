@@ -95,6 +95,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `lookup` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | Root-level |
 | Documentation group | `lookup` |
 | Aliases | None |

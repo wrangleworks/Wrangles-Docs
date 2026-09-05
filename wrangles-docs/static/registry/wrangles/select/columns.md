@@ -1,5 +1,5 @@
 ---
-schema_version: '0.1'
+schema_version: '0.2'
 type: wrangle
 id: bca12c60-3957-4dc5-83f7-5ee460df2a11
 wrangle_name: columns
@@ -11,6 +11,8 @@ aliases: []
 slug: select/columns
 status: active
 visibility: public
+recipe_writer:
+  eligible: true
 tags:
   - select
   - columns

@@ -34,7 +34,8 @@ wrangles-docs/static/registry/   (machine-facing artifacts)
 ```
 
 `runtime/wranglespy.json` is the pinned mechanical contract exported from the
-WranglesPY recipe namespace. Its producer-owned schema is copied alongside the
+WranglesPY recipe namespace. It records both the exact package version and
+source revision. Its producer-owned schema is copied alongside the
 Registry schema under `schema/`. The compiler reconciles the manifest with the
 curated Markdown and writes the reviewable result to `reports/`. It also reads
 all existing `wrangles-docs/wrangle-docs/**/_sources/*.md` quasi-registry
@@ -42,6 +43,12 @@ records and accounts for the remaining aggregate and template Markdown files.
 Runtime names, required status, defaults, symbols, and common controls must
 agree; embedded Python schema and quasi-registry differences are retained as
 migration evidence.
+
+Each Registry entry also makes an explicit, fail-closed Recipe Writer
+eligibility decision. The compiler publishes the eligible view, verifies it
+against the pinned 88-key baseline, and emits checksums for every machine-facing
+artifact plus a non-circular bundle checksum. The Recipe Writer schema is
+stock-only and rejects broad `custom.*` and `pandas.*` extension names.
 
 ## Commands
 

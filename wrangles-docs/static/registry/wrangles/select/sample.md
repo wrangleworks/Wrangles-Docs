@@ -1,5 +1,5 @@
 ---
-schema_version: '0.1'
+schema_version: '0.2'
 type: wrangle
 id: 95a84ab6-a66e-450f-8a4a-7a87e3a77932
 wrangle_name: sample
@@ -11,6 +11,8 @@ aliases: []
 slug: select/sample
 status: active
 visibility: public
+recipe_writer:
+  eligible: true
 tags:
   - select
   - sample

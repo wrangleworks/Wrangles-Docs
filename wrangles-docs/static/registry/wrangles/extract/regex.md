@@ -1,5 +1,5 @@
 ---
-schema_version: '0.1'
+schema_version: '0.2'
 type: wrangle
 id: 9aa0253a-4b70-4737-832c-964e15967289
 wrangle_name: regex
@@ -11,6 +11,8 @@ aliases: []
 slug: extract/regex
 status: active
 visibility: public
+recipe_writer:
+  eligible: true
 tags:
   - extract
   - regex

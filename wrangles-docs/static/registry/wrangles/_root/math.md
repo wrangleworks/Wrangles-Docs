@@ -1,5 +1,5 @@
 ---
-schema_version: '0.1'
+schema_version: '0.2'
 type: wrangle
 id: 494b11ad-00c1-4748-8b93-6bec982f4fec
 wrangle_name: math
@@ -11,6 +11,8 @@ aliases: []
 slug: math
 status: active
 visibility: public
+recipe_writer:
+  eligible: true
 tags:
   - compute
   - math

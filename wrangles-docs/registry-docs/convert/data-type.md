@@ -98,6 +98,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `convert.data_type` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | `convert` |
 | Documentation group | `convert` |
 | Aliases | None |

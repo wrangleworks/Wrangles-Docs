@@ -1,5 +1,5 @@
 ---
-schema_version: '0.1'
+schema_version: '0.2'
 type: wrangle
 id: 8d127060-ba2d-4934-897f-07662e01e40b
 wrangle_name: suffix
@@ -11,6 +11,8 @@ aliases: []
 slug: format/suffix
 status: active
 visibility: public
+recipe_writer:
+  eligible: true
 tags:
   - format
   - suffix

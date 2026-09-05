@@ -1,0 +1,355 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://docs.wrangles.com/registry/schema/wrangle-contract.schema.json",
+  "title": "Compiled Wrangles Registry contract",
+  "description": "Machine-facing contract generated from one authoritative Registry entry.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "$schema",
+    "format",
+    "registry_version",
+    "schema_version",
+    "type",
+    "id",
+    "wrangle_name",
+    "namespace",
+    "title",
+    "description",
+    "wrangle_key",
+    "aliases",
+    "slug",
+    "status",
+    "visibility",
+    "recipe_writer",
+    "tags",
+    "runtime",
+    "access",
+    "capabilities",
+    "parameters",
+    "examples",
+    "sources",
+    "guidance"
+  ],
+  "properties": {
+    "$schema": {
+      "const": "https://docs.wrangles.com/registry/schema/wrangle-contract.schema.json"
+    },
+    "format": {
+      "const": "wrangles-registry-entry"
+    },
+    "registry_version": {
+      "const": "0.2.0"
+    },
+    "schema_version": {
+      "const": "0.2"
+    },
+    "type": {
+      "const": "wrangle"
+    },
+    "id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "uuid",
+      "description": "Canonical UUID allocated by the Wrangles catalog database. Null is allowed only while an existing wrangle awaits database identity reconciliation."
+    },
+    "wrangle_name": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]*$"
+    },
+    "namespace": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^[a-z][a-z0-9_]*$",
+      "description": "Executable prefix of a dotted recipe key, or null for a current root-level runtime key."
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "wrangle_key": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]*(\\.[a-z][a-z0-9_]*)*$"
+    },
+    "aliases": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9_]*(\\.[a-z][a-z0-9_]*)*$"
+      }
+    },
+    "slug": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:[a-z0-9_-]*[a-z0-9])?(?:/[a-z0-9]+(?:[a-z0-9_-]*[a-z0-9])?)*$"
+    },
+    "status": {
+      "enum": [
+        "draft",
+        "active",
+        "deprecated",
+        "removed"
+      ]
+    },
+    "replaced_by": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]*(\\.[a-z][a-z0-9_]*)*$",
+      "description": "Canonical wrangle_key that replaces a deprecated or removed entry."
+    },
+    "visibility": {
+      "enum": [
+        "public",
+        "internal"
+      ]
+    },
+    "recipe_writer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "eligible"
+      ],
+      "properties": {
+        "eligible": {
+          "type": "boolean",
+          "description": "Whether this wrangle is eligible for Recipe Writer discovery and authoring. Missing eligibility fails closed."
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Required concise explanation when the wrangle is not eligible."
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "eligible": {
+                "const": false
+              }
+            },
+            "required": [
+              "eligible"
+            ]
+          },
+          "then": {
+            "required": [
+              "reason"
+            ]
+          },
+          "else": {
+            "not": {
+              "required": [
+                "reason"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "tags": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "runtime": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "package",
+        "symbol",
+        "contract_status"
+      ],
+      "properties": {
+        "package": {
+          "type": "string",
+          "minLength": 1
+        },
+        "symbol": {
+          "type": "string",
+          "minLength": 1
+        },
+        "contract_status": {
+          "enum": [
+            "awaiting-manifest",
+            "verified"
+          ]
+        }
+      }
+    },
+    "access": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "ai_powered",
+        "requires_account",
+        "requires_subscription",
+        "requires_external_api_key"
+      ],
+      "properties": {
+        "ai_powered": {
+          "type": "boolean"
+        },
+        "requires_account": {
+          "type": "boolean"
+        },
+        "requires_subscription": {
+          "type": "boolean"
+        },
+        "requires_external_api_key": {
+          "type": "boolean"
+        }
+      }
+    },
+    "capabilities": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "boolean"
+      }
+    },
+    "parameters": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/parameter"
+      }
+    },
+    "examples": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/example"
+      }
+    },
+    "sources": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/source"
+      }
+    },
+    "guidance": {
+      "type": "string"
+    }
+  },
+  "$defs": {
+    "parameter": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "description",
+        "required",
+        "param_group",
+        "schema"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "name_pattern": {
+          "type": "string",
+          "minLength": 1,
+          "description": "JSON Schema regular expression for a documented family of dynamic keyword names."
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "required": {
+          "type": "boolean"
+        },
+        "param_group": {
+          "type": "string",
+          "enum": [
+            "I/O",
+            "Options",
+            "Formatting",
+            "Conditions",
+            "Execution",
+            "Errors",
+            "Details"
+          ]
+        },
+        "runtime_default": {},
+        "schema": {
+          "type": "object",
+          "minProperties": 1
+        }
+      }
+    },
+    "example": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "title",
+        "recipe",
+        "input_fixture",
+        "output_fixture",
+        "verification"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "recipe": {
+          "type": "string",
+          "minLength": 1
+        },
+        "input_fixture": {
+          "type": "string",
+          "minLength": 1
+        },
+        "output_fixture": {
+          "type": "string",
+          "minLength": 1
+        },
+        "verification": {
+          "enum": [
+            "static",
+            "offline",
+            "live",
+            "manual"
+          ]
+        }
+      }
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "resource"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "resource": {
+          "type": "string",
+          "minLength": 1
+        },
+        "title": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

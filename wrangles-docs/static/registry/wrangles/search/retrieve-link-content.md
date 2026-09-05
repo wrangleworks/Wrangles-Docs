@@ -1,5 +1,5 @@
 ---
-schema_version: '0.1'
+schema_version: '0.2'
 type: wrangle
 id: 3d5faa87-9e96-48c0-8226-5ae566e8d76c
 wrangle_name: retrieve_link_content
@@ -13,6 +13,8 @@ aliases: []
 slug: search/retrieve-link-content
 status: active
 visibility: public
+recipe_writer:
+  eligible: true
 tags:
   - search
   - retrieve-link-content

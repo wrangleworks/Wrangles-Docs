@@ -1,7 +1,8 @@
 {
+  "$schema": "https://docs.wrangles.com/registry/schema/wrangle-contract.schema.json",
   "format": "wrangles-registry-entry",
-  "registry_version": "0.1.0",
-  "schema_version": "0.1",
+  "registry_version": "0.2.0",
+  "schema_version": "0.2",
   "type": "wrangle",
   "id": "9a9662e4-53d1-4932-8adf-bc3e7aa364ad",
   "wrangle_name": "case_when",
@@ -13,6 +14,9 @@
   "description": "Assign values to a column based on conditional logic.",
   "status": "active",
   "visibility": "public",
+  "recipe_writer": {
+    "eligible": true
+  },
   "tags": [
     "compute",
     "case-when"

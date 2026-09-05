@@ -114,6 +114,7 @@ wrangles:
 | --- | --- |
 | Recipe key | `copy` |
 | Lifecycle status | active |
+| Recipe Writer eligible | Yes |
 | Namespace | Root-level |
 | Documentation group | `transform` |
 | Aliases | None |

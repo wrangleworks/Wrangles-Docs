@@ -1,5 +1,5 @@
 ---
-schema_version: '0.1'
+schema_version: '0.2'
 type: wrangle
 id: 467a06b1-a697-4d31-8061-7d83a719fd79
 wrangle_name: sql
@@ -13,6 +13,8 @@ aliases: []
 slug: sql
 status: active
 visibility: public
+recipe_writer:
+  eligible: true
 tags:
   - compute
   - sql

@@ -1,5 +1,5 @@
 ---
-schema_version: '0.1'
+schema_version: '0.2'
 type: wrangle
 id: 5adaeada-6da8-464f-84cb-9fb5ecc17e48
 wrangle_name: dictionary_element
@@ -11,6 +11,8 @@ aliases: []
 slug: select/dictionary-element
 status: active
 visibility: public
+recipe_writer:
+  eligible: true
 tags:
   - select
   - dictionary-element
