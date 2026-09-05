@@ -31,7 +31,7 @@ parameters:
   - name: wrangles
     description: List of wrangles to apply.
     required: true
-    role: nested-wrangles
+    param_group: Execution
     schema:
       type: array
       minItems: 1
@@ -40,7 +40,7 @@ parameters:
   - name: retries
     description: Number of times to retry the wrangles if an error occurs. Default 0.
     required: false
-    role: option
+    param_group: Errors
     runtime_default: 0
     schema:
       type: integer
@@ -51,7 +51,7 @@ parameters:
       dictionary of column names and values. If except is not provided, the error will be logged and
       the recipe will continue.
     required: false
-    role: option
+    param_group: Errors
     schema:
       type: object
       minItems: 1

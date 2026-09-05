@@ -31,19 +31,19 @@ parameters:
   - name: input
     description: Name, index, or list of input columns.
     required: true
-    role: column-selector
+    param_group: I/O
     schema:
       type: array
   - name: categoryLabel
     description: Prefix for output columns that identify the source price-break category.
     required: true
-    role: option
+    param_group: Formatting
     schema:
       type: string
   - name: valueLabel
     description: Prefix for output columns that contain the corresponding price-break value.
     required: true
-    role: option
+    param_group: Formatting
     schema:
       type: string
 examples: []
@@ -60,4 +60,4 @@ sources:
 
 Expand non-empty price-break cells into paired category and value columns.
 
-This first-pass guidance is derived from the callable signature.
+This guidance was derived from the callable signature.

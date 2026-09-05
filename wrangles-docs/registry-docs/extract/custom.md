@@ -3,48 +3,14 @@ title: "Custom"
 description: "Extract data from the input using a DIY or bespoke extraction wrangle. Requires WrangleWorks Account and Subscription."
 sidebar_label: "Custom"
 slug: "/extract/custom"
+registry_entry: true
+toc_min_heading_level: 2
+toc_max_heading_level: 3
 ---
 
 # Custom
 
 Extract data from the input using a DIY or bespoke extraction wrangle. Requires WrangleWorks Account and Subscription.
-
-> Pilot Registry entry. Runtime contract status: `verified`.
-
-## Parameters
-
-| Parameter | Required | Accepted value | Description | Runtime default |
-| --- | --- | --- | --- | --- |
-| `input` | Yes | string, integer, array | Name or list of input columns. | — |
-| `model_id` | Yes | string, array | The ID of the wrangle to use. | — |
-| `output` | No | string, array, null | Name or list of output columns. | `null` |
-| `use_labels` | No | boolean | Use Labels in the extract output &#123;label: value&#125;. | `false` |
-| `first_element` | No | boolean | Get the first element from results. | `false` |
-| `case_sensitive` | No | boolean | Allows the wrangle to be case sensitive if set to True, default is False. | `false` |
-| `extract_raw` | No | boolean | Extract the raw data from the wrangle. | `false` |
-| `use_spellcheck` | No | boolean | Use spellcheck to also find minor mispellings compared to the reference data. | `false` |
-| `include_empty_labels` | No | boolean | Include labels with no found values in the output when using use_labels=True. | `true` |
-| `sort` | No | string; one of: training_order, input_order, longest, shortest, alphabetical, reverse_alphabetical, ascending, descending | Sort the results. | `"training_order"` |
-| `output_format` | No | string, null; one of: list, dictionary, columns, concatenate | Format of the extract output. | `null` |
-| `char` | No | string | Character to use when output_format is concatenate. | `", "` |
-| `if` | No | string | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | — |
-| `where` | No | string | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | — |
-| `where_params` | No | array, object | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | — |
-
-## Verified examples
-
-_No fixture-backed examples are currently available. See migrated examples under Guidance where present._
-
-## Access
-
-| Requirement | Value |
-| --- | --- |
-| ai powered | No |
-| requires account | Yes |
-| requires subscription | No |
-| requires external api key | No |
-
-## Guidance
 
 Extract data from the input using a DIY or bespoke extraction wrangle. Can be performed on one column or multiple columns. Requires WrangleWorks Account and Subscription.
 
@@ -52,10 +18,36 @@ Extract data from the input using a DIY or bespoke extraction wrangle. Can be pe
 Non-regex pattern matching extracts whole-word matches separated by word boundaries. Word boundaries include anything that is not a letter, number, or underscore.
 :::
 
-## Migrated examples
-#### Extracting Wood Types From Single Column
+## Parameters
 
-##### Recipe
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
+| --- | --- | --- | --- | --- |
+| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
+| `input` | Name or list of input columns. | string, integer, array | — | Yes |
+| `output` | Name or list of output columns. | string, array, null | `null` | No |
+| <span className="ww-param-group-label">Options</span> |  |  |  |  |
+| `case_sensitive` | Allows the wrangle to be case sensitive if set to True, default is False. | boolean | `false` | No |
+| `extract_raw` | Extract the raw data from the wrangle. | boolean | `false` | No |
+| `use_spellcheck` | Use spellcheck to also find minor mispellings compared to the reference data. | boolean | `false` | No |
+| `sort` | Sort the results. | string; one of:<ul className="ww-param-enum-values"><li>training_order</li><li>input_order</li><li>longest</li><li>shortest</li><li>alphabetical</li><li>reverse_alphabetical</li><li>ascending</li><li>descending</li></ul> | `"training_order"` | No |
+| <span className="ww-param-group-label">Formatting</span> |  |  |  |  |
+| `use_labels` | Use Labels in the extract output &#123;label: value&#125;. | boolean | `false` | No |
+| `first_element` | Get the first element from results. | boolean | `false` | No |
+| `include_empty_labels` | Include labels with no found values in the output when using use_labels=True. | boolean | `true` | No |
+| `output_format` | Format of the extract output. | string, null; one of:<ul className="ww-param-enum-values"><li>list</li><li>dictionary</li><li>columns</li><li>concatenate</li></ul> | `null` | No |
+| `char` | Character to use when output_format is concatenate. | string | `", "` | No |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
+| <span className="ww-param-group-label">Details</span> |  |  |  |  |
+| `model_id` | The ID of the wrangle to use. | string, array | — | Yes |
+
+</div>
+
+## Examples
 
 ```yaml
 # One column input
@@ -68,30 +60,29 @@ wrangles:
 
 <div className="ww-sample-grid">
 
-<div className="ww-sample-panel">
+<div className="ww-sample-panel ww-sample-panel--input" data-sample-role="input">
 
-##### Input Sample
-
-_No sample available._
-
-</div>
-
-<div className="ww-sample-panel">
-
-##### Output Sample
-
-| Product | Wood Types |
-| --- | --- |
-| Dining Oakwood Chair | Oakwood |
-| Living Room Teakwood Frame Mirror | Teakwood |
+| Product |
+| --- |
+| Dining Oakwood Chair |
+| Living Room Teakwood Frame Mirror |
 
 </div>
 
+<div className="ww-sample-panel ww-sample-panel--output" data-sample-role="output">
+
+| Wood Types |
+| --- |
+| Oakwood |
+| Teakwood |
+
 </div>
 
-#### Extracting Wood Types From Multiple Columns
+</div>
 
-##### Recipe
+
+
+
 
 ```yaml
 # Multi column input
@@ -106,29 +97,27 @@ wrangles:
 
 <div className="ww-sample-grid">
 
-<div className="ww-sample-panel">
+<div className="ww-sample-panel ww-sample-panel--input" data-sample-role="input">
 
-##### Input Sample
-
-_No sample available._
-
-</div>
-
-<div className="ww-sample-panel">
-
-##### Output Sample
-
-| Wood Types | Part 1 of 2 | Part 2 of 2 |
-| --- | --- | --- |
-| ['Acacia Wood', 'Imitation Wood'] | Dining Acacia Wood Table | Imitation Wood Table Chairs |
+| Part 1 of 2 | Part 2 of 2 |
+| --- | --- |
+| Dining Acacia Wood Table | Imitation Wood Table Chairs |
 
 </div>
 
+<div className="ww-sample-panel ww-sample-panel--output" data-sample-role="output">
+
+| Wood Types |
+| --- |
+| ['Acacia Wood', 'Imitation Wood'] |
+
 </div>
 
-#### Using Multiple Extract Models
+</div>
 
-##### Recipe
+
+
+
 
 ```yaml
 # Multiple Models
@@ -147,17 +136,13 @@ wrangles:
 
 <div className="ww-sample-grid">
 
-<div className="ww-sample-panel">
-
-##### Input Sample
+<div className="ww-sample-panel ww-sample-panel--input" data-sample-role="input">
 
 _No sample available._
 
 </div>
 
-<div className="ww-sample-panel">
-
-##### Output Sample
+<div className="ww-sample-panel ww-sample-panel--output" data-sample-role="output">
 
 | Product | Item Type | Wood Types |
 | --- | --- | --- |
@@ -168,17 +153,35 @@ _No sample available._
 
 </div>
 
-## Provenance
+<details className="ww-field-disclosure">
+
+<summary>Access</summary>
+
+| Requirement | Value |
+| --- | --- |
+| AI-powered | No |
+| Requires WrangleWorks account | Yes |
+| Requires subscription | No |
+| Requires external API key | No |
+
+</details>
+
+<details className="ww-field-disclosure">
+
+<summary>Technical details</summary>
+
+| Field | Value |
+| --- | --- |
+| Recipe key | `extract.custom` |
+| Lifecycle status | active |
+| Namespace | `extract` |
+| Documentation group | `extract` |
+| Aliases | None |
+| Runtime symbol | `wrangles.recipe_wrangles.extract.custom` |
+
+**Sources**
 
 - [WranglesPY extract.custom implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/extract.py)
 - [Existing extract.custom Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/extract/_sources/custom.md)
 
-## Registry metadata
-
-- Registry ID: `e8e96b76-86bf-41dc-8d16-825dcff9688b`
-- Namespace: `extract`
-- Recipe key: `extract.custom`
-- Aliases: none
-- Runtime symbol: `wrangles.recipe_wrangles.extract.custom`
-- Status: `active`
-- Registry version: `0.1.0-pilot`
+</details>

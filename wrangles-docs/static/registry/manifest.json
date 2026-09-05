@@ -1,8 +1,8 @@
 {
   "format": "wrangles-registry",
-  "registry_version": "0.1.0-pilot",
+  "registry_version": "0.1.0",
   "contract_version": "0.1",
-  "status": "pilot",
+  "status": "pre-production",
   "entry_count": 98,
   "entries": [
     {
@@ -20,7 +20,7 @@
         "utility",
         "accordion"
       ],
-      "route": "/wrangles/accordion",
+      "route": "/wrangles/namespaces/utility#accordion",
       "contract_json": "/registry/contracts/accordion.json",
       "raw_markdown": "/registry/wrangles/_root/accordion.md",
       "runtime_symbol": "wrangles.recipe_wrangles.main.accordion",
@@ -42,7 +42,7 @@
         "utility",
         "batch"
       ],
-      "route": "/wrangles/batch",
+      "route": "/wrangles/namespaces/utility#batch",
       "contract_json": "/registry/contracts/batch.json",
       "raw_markdown": "/registry/wrangles/_root/batch.md",
       "runtime_symbol": "wrangles.recipe_wrangles.main.batch",
@@ -64,7 +64,7 @@
         "ai",
         "classify"
       ],
-      "route": "/wrangles/classify",
+      "route": "/wrangles/namespaces/ai#classify",
       "contract_json": "/registry/contracts/classify.json",
       "raw_markdown": "/registry/wrangles/_root/classify.md",
       "runtime_symbol": "wrangles.recipe_wrangles.main.classify",
@@ -86,7 +86,7 @@
         "format",
         "clean-whitespaces"
       ],
-      "route": "/wrangles/clean-whitespaces",
+      "route": "/wrangles/namespaces/format#clean-whitespaces",
       "contract_json": "/registry/contracts/clean-whitespaces.json",
       "raw_markdown": "/registry/wrangles/_root/clean-whitespaces.md",
       "runtime_symbol": "wrangles.recipe_wrangles.main.clean_whitespaces",
@@ -108,7 +108,7 @@
         "compare",
         "lists"
       ],
-      "route": "/wrangles/compare/lists",
+      "route": "/wrangles/namespaces/compare#lists",
       "contract_json": "/registry/contracts/compare/lists.json",
       "raw_markdown": "/registry/wrangles/compare/lists.md",
       "runtime_symbol": "wrangles.recipe_wrangles.compare.lists",
@@ -130,7 +130,7 @@
         "compare",
         "text"
       ],
-      "route": "/wrangles/compare/text",
+      "route": "/wrangles/namespaces/compare#text",
       "contract_json": "/registry/contracts/compare/text.json",
       "raw_markdown": "/registry/wrangles/compare/text.md",
       "runtime_symbol": "wrangles.recipe_wrangles.compare.text",
@@ -152,7 +152,7 @@
         "compute",
         "case-when"
       ],
-      "route": "/wrangles/compute/case-when",
+      "route": "/wrangles/namespaces/compute#case-when",
       "contract_json": "/registry/contracts/compute/case-when.json",
       "raw_markdown": "/registry/wrangles/compute/case-when.md",
       "runtime_symbol": "wrangles.recipe_wrangles.compute.case_when",
@@ -174,7 +174,7 @@
         "compute",
         "score-search-results"
       ],
-      "route": "/wrangles/compute/score-search-results",
+      "route": "/wrangles/namespaces/compute#score-search-results",
       "contract_json": "/registry/contracts/compute/score-search-results.json",
       "raw_markdown": "/registry/wrangles/compute/score-search-results.md",
       "runtime_symbol": "wrangles.recipe_wrangles.compute.score_search_results",
@@ -196,7 +196,7 @@
         "utility",
         "concurrent"
       ],
-      "route": "/wrangles/concurrent",
+      "route": "/wrangles/namespaces/utility#concurrent",
       "contract_json": "/registry/contracts/concurrent.json",
       "raw_markdown": "/registry/wrangles/_root/concurrent.md",
       "runtime_symbol": "wrangles.recipe_wrangles.main.concurrent",
@@ -219,7 +219,7 @@
         "text",
         "case"
       ],
-      "route": "/wrangles/convert/case",
+      "route": "/wrangles/namespaces/convert#case",
       "contract_json": "/registry/contracts/convert/case.json",
       "raw_markdown": "/registry/wrangles/convert/case.md",
       "runtime_symbol": "wrangles.recipe_wrangles.convert.case",
@@ -242,7 +242,7 @@
         "data-type",
         "validation"
       ],
-      "route": "/wrangles/convert/data-type",
+      "route": "/wrangles/namespaces/convert#data-type",
       "contract_json": "/registry/contracts/convert/data-type.json",
       "raw_markdown": "/registry/wrangles/convert/data-type.md",
       "runtime_symbol": "wrangles.recipe_wrangles.convert.data_type",
@@ -264,7 +264,7 @@
         "convert",
         "fraction-to-decimal"
       ],
-      "route": "/wrangles/convert/fraction-to-decimal",
+      "route": "/wrangles/namespaces/convert#fraction-to-decimal",
       "contract_json": "/registry/contracts/convert/fraction-to-decimal.json",
       "raw_markdown": "/registry/wrangles/convert/fraction-to-decimal.md",
       "runtime_symbol": "wrangles.recipe_wrangles.convert.fraction_to_decimal",
@@ -287,7 +287,7 @@
         "json",
         "structured-data"
       ],
-      "route": "/wrangles/convert/from-json",
+      "route": "/wrangles/namespaces/convert#from-json",
       "contract_json": "/registry/contracts/convert/from-json.json",
       "raw_markdown": "/registry/wrangles/convert/from-json.md",
       "runtime_symbol": "wrangles.recipe_wrangles.convert.from_json",
@@ -309,7 +309,7 @@
         "convert",
         "from-yaml"
       ],
-      "route": "/wrangles/convert/from-yaml",
+      "route": "/wrangles/namespaces/convert#from-yaml",
       "contract_json": "/registry/contracts/convert/from-yaml.json",
       "raw_markdown": "/registry/wrangles/convert/from-yaml.md",
       "runtime_symbol": "wrangles.recipe_wrangles.convert.from_yaml",
@@ -331,7 +331,7 @@
         "convert",
         "to-json"
       ],
-      "route": "/wrangles/convert/to-json",
+      "route": "/wrangles/namespaces/convert#to-json",
       "contract_json": "/registry/contracts/convert/to-json.json",
       "raw_markdown": "/registry/wrangles/convert/to-json.md",
       "runtime_symbol": "wrangles.recipe_wrangles.convert.to_json",
@@ -353,7 +353,7 @@
         "convert",
         "to-yaml"
       ],
-      "route": "/wrangles/convert/to-yaml",
+      "route": "/wrangles/namespaces/convert#to-yaml",
       "contract_json": "/registry/contracts/convert/to-yaml.json",
       "raw_markdown": "/registry/wrangles/convert/to-yaml.md",
       "runtime_symbol": "wrangles.recipe_wrangles.convert.to_yaml",
@@ -375,7 +375,7 @@
         "transform",
         "copy"
       ],
-      "route": "/wrangles/copy",
+      "route": "/wrangles/namespaces/transform#copy",
       "contract_json": "/registry/contracts/copy.json",
       "raw_markdown": "/registry/wrangles/_root/copy.md",
       "runtime_symbol": "wrangles.recipe_wrangles.pandas.copy",
@@ -397,7 +397,7 @@
         "create",
         "bins"
       ],
-      "route": "/wrangles/create/bins",
+      "route": "/wrangles/namespaces/create#bins",
       "contract_json": "/registry/contracts/create/bins.json",
       "raw_markdown": "/registry/wrangles/create/bins.md",
       "runtime_symbol": "wrangles.recipe_wrangles.create.bins",
@@ -419,7 +419,7 @@
         "create",
         "column"
       ],
-      "route": "/wrangles/create/column",
+      "route": "/wrangles/namespaces/create#column",
       "contract_json": "/registry/contracts/create/column.json",
       "raw_markdown": "/registry/wrangles/create/column.md",
       "runtime_symbol": "wrangles.recipe_wrangles.create.column",
@@ -441,7 +441,7 @@
         "create",
         "embeddings"
       ],
-      "route": "/wrangles/create/embeddings",
+      "route": "/wrangles/namespaces/create#embeddings",
       "contract_json": "/registry/contracts/create/embeddings.json",
       "raw_markdown": "/registry/wrangles/create/embeddings.md",
       "runtime_symbol": "wrangles.recipe_wrangles.create.embeddings",
@@ -463,7 +463,7 @@
         "create",
         "guid"
       ],
-      "route": "/wrangles/create/guid",
+      "route": "/wrangles/namespaces/create#guid",
       "contract_json": "/registry/contracts/create/guid.json",
       "raw_markdown": "/registry/wrangles/create/guid.md",
       "runtime_symbol": "wrangles.recipe_wrangles.create.guid",
@@ -485,7 +485,7 @@
         "create",
         "hash"
       ],
-      "route": "/wrangles/create/hash",
+      "route": "/wrangles/namespaces/create#hash",
       "contract_json": "/registry/contracts/create/hash.json",
       "raw_markdown": "/registry/wrangles/create/hash.md",
       "runtime_symbol": "wrangles.recipe_wrangles.create.hash",
@@ -507,7 +507,7 @@
         "create",
         "index"
       ],
-      "route": "/wrangles/create/index",
+      "route": "/wrangles/namespaces/create#index",
       "contract_json": "/registry/contracts/create/index.json",
       "raw_markdown": "/registry/wrangles/create/index.md",
       "runtime_symbol": "wrangles.recipe_wrangles.create.index",
@@ -529,7 +529,7 @@
         "create",
         "jinja"
       ],
-      "route": "/wrangles/create/jinja",
+      "route": "/wrangles/namespaces/create#jinja",
       "contract_json": "/registry/contracts/create/jinja.json",
       "raw_markdown": "/registry/wrangles/create/jinja.md",
       "runtime_symbol": "wrangles.recipe_wrangles.create.jinja",
@@ -551,7 +551,7 @@
         "create",
         "uuid"
       ],
-      "route": "/wrangles/create/uuid",
+      "route": "/wrangles/namespaces/create#uuid",
       "contract_json": "/registry/contracts/create/uuid.json",
       "raw_markdown": "/registry/wrangles/create/uuid.md",
       "runtime_symbol": "wrangles.recipe_wrangles.create.uuid",
@@ -573,7 +573,7 @@
         "date",
         "date-calculator"
       ],
-      "route": "/wrangles/date-calculator",
+      "route": "/wrangles/namespaces/date#date-calculator",
       "contract_json": "/registry/contracts/date-calculator.json",
       "raw_markdown": "/registry/wrangles/_root/date-calculator.md",
       "runtime_symbol": "wrangles.recipe_wrangles.main.date_calculator",
@@ -595,7 +595,7 @@
         "select",
         "drop"
       ],
-      "route": "/wrangles/drop",
+      "route": "/wrangles/namespaces/select#drop",
       "contract_json": "/registry/contracts/drop.json",
       "raw_markdown": "/registry/wrangles/_root/drop.md",
       "runtime_symbol": "wrangles.recipe_wrangles.pandas.drop",
@@ -617,7 +617,7 @@
         "split",
         "explode"
       ],
-      "route": "/wrangles/explode",
+      "route": "/wrangles/namespaces/split#explode",
       "contract_json": "/registry/contracts/explode.json",
       "raw_markdown": "/registry/wrangles/_root/explode.md",
       "runtime_symbol": "wrangles.recipe_wrangles.pandas.explode",
@@ -639,7 +639,7 @@
         "extract",
         "address"
       ],
-      "route": "/wrangles/extract/address",
+      "route": "/wrangles/namespaces/extract#address",
       "contract_json": "/registry/contracts/extract/address.json",
       "raw_markdown": "/registry/wrangles/extract/address.md",
       "runtime_symbol": "wrangles.recipe_wrangles.extract.address",
@@ -661,7 +661,7 @@
         "ai",
         "extract"
       ],
-      "route": "/wrangles/extract/ai",
+      "route": "/wrangles/namespaces/extract#ai",
       "contract_json": "/registry/contracts/extract/ai.json",
       "raw_markdown": "/registry/wrangles/extract/ai.md",
       "runtime_symbol": "wrangles.recipe_wrangles.extract.ai",
@@ -683,7 +683,7 @@
         "extract",
         "attributes"
       ],
-      "route": "/wrangles/extract/attributes",
+      "route": "/wrangles/namespaces/extract#attributes",
       "contract_json": "/registry/contracts/extract/attributes.json",
       "raw_markdown": "/registry/wrangles/extract/attributes.md",
       "runtime_symbol": "wrangles.recipe_wrangles.extract.attributes",
@@ -705,7 +705,7 @@
         "extract",
         "brackets"
       ],
-      "route": "/wrangles/extract/brackets",
+      "route": "/wrangles/namespaces/extract#brackets",
       "contract_json": "/registry/contracts/extract/brackets.json",
       "raw_markdown": "/registry/wrangles/extract/brackets.md",
       "runtime_symbol": "wrangles.recipe_wrangles.extract.brackets",
@@ -727,7 +727,7 @@
         "extract",
         "codes"
       ],
-      "route": "/wrangles/extract/codes",
+      "route": "/wrangles/namespaces/extract#codes",
       "contract_json": "/registry/contracts/extract/codes.json",
       "raw_markdown": "/registry/wrangles/extract/codes.md",
       "runtime_symbol": "wrangles.recipe_wrangles.extract.codes",
@@ -749,7 +749,7 @@
         "extract",
         "custom"
       ],
-      "route": "/wrangles/extract/custom",
+      "route": "/wrangles/namespaces/extract#custom",
       "contract_json": "/registry/contracts/extract/custom.json",
       "raw_markdown": "/registry/wrangles/extract/custom.md",
       "runtime_symbol": "wrangles.recipe_wrangles.extract.custom",
@@ -771,7 +771,7 @@
         "extract",
         "date-properties"
       ],
-      "route": "/wrangles/extract/date-properties",
+      "route": "/wrangles/namespaces/extract#date-properties",
       "contract_json": "/registry/contracts/extract/date-properties.json",
       "raw_markdown": "/registry/wrangles/extract/date-properties.md",
       "runtime_symbol": "wrangles.recipe_wrangles.extract.date_properties",
@@ -793,7 +793,7 @@
         "extract",
         "date-range"
       ],
-      "route": "/wrangles/extract/date-range",
+      "route": "/wrangles/namespaces/extract#date-range",
       "contract_json": "/registry/contracts/extract/date-range.json",
       "raw_markdown": "/registry/wrangles/extract/date-range.md",
       "runtime_symbol": "wrangles.recipe_wrangles.extract.date_range",
@@ -815,7 +815,7 @@
         "extract",
         "html"
       ],
-      "route": "/wrangles/extract/html",
+      "route": "/wrangles/namespaces/extract#html",
       "contract_json": "/registry/contracts/extract/html.json",
       "raw_markdown": "/registry/wrangles/extract/html.md",
       "runtime_symbol": "wrangles.recipe_wrangles.extract.html",
@@ -837,7 +837,7 @@
         "extract",
         "properties"
       ],
-      "route": "/wrangles/extract/properties",
+      "route": "/wrangles/namespaces/extract#properties",
       "contract_json": "/registry/contracts/extract/properties.json",
       "raw_markdown": "/registry/wrangles/extract/properties.md",
       "runtime_symbol": "wrangles.recipe_wrangles.extract.properties",
@@ -859,7 +859,7 @@
         "extract",
         "regex"
       ],
-      "route": "/wrangles/extract/regex",
+      "route": "/wrangles/namespaces/extract#regex",
       "contract_json": "/registry/contracts/extract/regex.json",
       "raw_markdown": "/registry/wrangles/extract/regex.md",
       "runtime_symbol": "wrangles.recipe_wrangles.extract.regex",
@@ -881,7 +881,7 @@
         "select",
         "filter"
       ],
-      "route": "/wrangles/filter",
+      "route": "/wrangles/namespaces/select#filter",
       "contract_json": "/registry/contracts/filter.json",
       "raw_markdown": "/registry/wrangles/_root/filter.md",
       "runtime_symbol": "wrangles.recipe_wrangles.main.filter",
@@ -903,7 +903,7 @@
         "format",
         "dates"
       ],
-      "route": "/wrangles/format/dates",
+      "route": "/wrangles/namespaces/format#dates",
       "contract_json": "/registry/contracts/format/dates.json",
       "raw_markdown": "/registry/wrangles/format/dates.md",
       "runtime_symbol": "wrangles.recipe_wrangles.format.dates",
@@ -925,7 +925,7 @@
         "format",
         "pad"
       ],
-      "route": "/wrangles/format/pad",
+      "route": "/wrangles/namespaces/format#pad",
       "contract_json": "/registry/contracts/format/pad.json",
       "raw_markdown": "/registry/wrangles/format/pad.md",
       "runtime_symbol": "wrangles.recipe_wrangles.format.pad",
@@ -947,7 +947,7 @@
         "format",
         "prefix"
       ],
-      "route": "/wrangles/format/prefix",
+      "route": "/wrangles/namespaces/format#prefix",
       "contract_json": "/registry/contracts/format/prefix.json",
       "raw_markdown": "/registry/wrangles/format/prefix.md",
       "runtime_symbol": "wrangles.recipe_wrangles.format.prefix",
@@ -969,7 +969,7 @@
         "format",
         "price-breaks"
       ],
-      "route": "/wrangles/format/price-breaks",
+      "route": "/wrangles/namespaces/format#price-breaks",
       "contract_json": "/registry/contracts/format/price-breaks.json",
       "raw_markdown": "/registry/wrangles/format/price-breaks.md",
       "runtime_symbol": "wrangles.recipe_wrangles.format.price_breaks",
@@ -991,7 +991,7 @@
         "format",
         "remove-duplicates"
       ],
-      "route": "/wrangles/format/remove-duplicates",
+      "route": "/wrangles/namespaces/format#remove-duplicates",
       "contract_json": "/registry/contracts/format/remove-duplicates.json",
       "raw_markdown": "/registry/wrangles/format/remove-duplicates.md",
       "runtime_symbol": "wrangles.recipe_wrangles.format.remove_duplicates",
@@ -1013,7 +1013,7 @@
         "format",
         "significant-figures"
       ],
-      "route": "/wrangles/format/significant-figures",
+      "route": "/wrangles/namespaces/format#significant-figures",
       "contract_json": "/registry/contracts/format/significant-figures.json",
       "raw_markdown": "/registry/wrangles/format/significant-figures.md",
       "runtime_symbol": "wrangles.recipe_wrangles.format.significant_figures",
@@ -1035,7 +1035,7 @@
         "format",
         "suffix"
       ],
-      "route": "/wrangles/format/suffix",
+      "route": "/wrangles/namespaces/format#suffix",
       "contract_json": "/registry/contracts/format/suffix.json",
       "raw_markdown": "/registry/wrangles/format/suffix.md",
       "runtime_symbol": "wrangles.recipe_wrangles.format.suffix",
@@ -1057,7 +1057,7 @@
         "format",
         "trim"
       ],
-      "route": "/wrangles/format/trim",
+      "route": "/wrangles/namespaces/format#trim",
       "contract_json": "/registry/contracts/format/trim.json",
       "raw_markdown": "/registry/wrangles/format/trim.md",
       "runtime_symbol": "wrangles.recipe_wrangles.format.trim",
@@ -1079,7 +1079,7 @@
         "ai",
         "generate"
       ],
-      "route": "/wrangles/generate/ai",
+      "route": "/wrangles/namespaces/generate#ai",
       "contract_json": "/registry/contracts/generate/ai.json",
       "raw_markdown": "/registry/wrangles/generate/ai.md",
       "runtime_symbol": "wrangles.recipe_wrangles.generate.ai",
@@ -1101,7 +1101,7 @@
         "ai",
         "huggingface"
       ],
-      "route": "/wrangles/huggingface",
+      "route": "/wrangles/namespaces/ai#huggingface",
       "contract_json": "/registry/contracts/huggingface.json",
       "raw_markdown": "/registry/wrangles/_root/huggingface.md",
       "runtime_symbol": "wrangles.recipe_wrangles.main.huggingface",
@@ -1123,7 +1123,7 @@
         "utility",
         "log"
       ],
-      "route": "/wrangles/log",
+      "route": "/wrangles/namespaces/utility#log",
       "contract_json": "/registry/contracts/log.json",
       "raw_markdown": "/registry/wrangles/_root/log.md",
       "runtime_symbol": "wrangles.recipe_wrangles.main.log",
@@ -1144,7 +1144,7 @@
       "tags": [
         "lookup"
       ],
-      "route": "/wrangles/lookup",
+      "route": "/wrangles/namespaces/lookup#lookup",
       "contract_json": "/registry/contracts/lookup.json",
       "raw_markdown": "/registry/wrangles/_root/lookup.md",
       "runtime_symbol": "wrangles.recipe_wrangles.main.lookup",
@@ -1166,7 +1166,7 @@
         "compute",
         "math"
       ],
-      "route": "/wrangles/math",
+      "route": "/wrangles/namespaces/compute#math",
       "contract_json": "/registry/contracts/math.json",
       "raw_markdown": "/registry/wrangles/_root/math.md",
       "runtime_symbol": "wrangles.recipe_wrangles.main.math",
@@ -1184,10 +1184,11 @@
       "title": "Maths",
       "description": "Deprecated alias for `math`; evaluate an expression and write its result to an output column.",
       "status": "deprecated",
+      "replaced_by": "math",
       "tags": [
         "maths"
       ],
-      "route": "/wrangles/maths",
+      "route": "/wrangles/namespaces/compute#maths",
       "contract_json": "/registry/contracts/maths.json",
       "raw_markdown": "/registry/wrangles/_root/maths.md",
       "runtime_symbol": "wrangles.recipe_wrangles.main.maths",
@@ -1209,7 +1210,7 @@
         "utility",
         "matrix"
       ],
-      "route": "/wrangles/matrix",
+      "route": "/wrangles/namespaces/utility#matrix",
       "contract_json": "/registry/contracts/matrix.json",
       "raw_markdown": "/registry/wrangles/_root/matrix.md",
       "runtime_symbol": "wrangles.recipe_wrangles.main.matrix",
@@ -1231,7 +1232,7 @@
         "merge",
         "coalesce"
       ],
-      "route": "/wrangles/merge/coalesce",
+      "route": "/wrangles/namespaces/merge#coalesce",
       "contract_json": "/registry/contracts/merge/coalesce.json",
       "raw_markdown": "/registry/wrangles/merge/coalesce.md",
       "runtime_symbol": "wrangles.recipe_wrangles.merge.coalesce",
@@ -1253,7 +1254,7 @@
         "merge",
         "concatenate"
       ],
-      "route": "/wrangles/merge/concatenate",
+      "route": "/wrangles/namespaces/merge#concatenate",
       "contract_json": "/registry/contracts/merge/concatenate.json",
       "raw_markdown": "/registry/wrangles/merge/concatenate.md",
       "runtime_symbol": "wrangles.recipe_wrangles.merge.concatenate",
@@ -1275,7 +1276,7 @@
         "merge",
         "dictionaries"
       ],
-      "route": "/wrangles/merge/dictionaries",
+      "route": "/wrangles/namespaces/merge#dictionaries",
       "contract_json": "/registry/contracts/merge/dictionaries.json",
       "raw_markdown": "/registry/wrangles/merge/dictionaries.md",
       "runtime_symbol": "wrangles.recipe_wrangles.merge.dictionaries",
@@ -1297,7 +1298,7 @@
         "merge",
         "key-value-pairs"
       ],
-      "route": "/wrangles/merge/key-value-pairs",
+      "route": "/wrangles/namespaces/merge#key-value-pairs",
       "contract_json": "/registry/contracts/merge/key-value-pairs.json",
       "raw_markdown": "/registry/wrangles/merge/key-value-pairs.md",
       "runtime_symbol": "wrangles.recipe_wrangles.merge.key_value_pairs",
@@ -1319,7 +1320,7 @@
         "merge",
         "lists"
       ],
-      "route": "/wrangles/merge/lists",
+      "route": "/wrangles/namespaces/merge#lists",
       "contract_json": "/registry/contracts/merge/lists.json",
       "raw_markdown": "/registry/wrangles/merge/lists.md",
       "runtime_symbol": "wrangles.recipe_wrangles.merge.lists",
@@ -1341,7 +1342,7 @@
         "merge",
         "to-dict"
       ],
-      "route": "/wrangles/merge/to-dict",
+      "route": "/wrangles/namespaces/merge#to-dict",
       "contract_json": "/registry/contracts/merge/to-dict.json",
       "raw_markdown": "/registry/wrangles/merge/to-dict.md",
       "runtime_symbol": "wrangles.recipe_wrangles.merge.to_dict",
@@ -1363,7 +1364,7 @@
         "merge",
         "to-list"
       ],
-      "route": "/wrangles/merge/to-list",
+      "route": "/wrangles/namespaces/merge#to-list",
       "contract_json": "/registry/contracts/merge/to-list.json",
       "raw_markdown": "/registry/wrangles/merge/to-list.md",
       "runtime_symbol": "wrangles.recipe_wrangles.merge.to_list",
@@ -1385,7 +1386,7 @@
         "compute",
         "python"
       ],
-      "route": "/wrangles/python",
+      "route": "/wrangles/namespaces/compute#python",
       "contract_json": "/registry/contracts/python.json",
       "raw_markdown": "/registry/wrangles/_root/python.md",
       "runtime_symbol": "wrangles.recipe_wrangles.main.python",
@@ -1406,7 +1407,7 @@
       "tags": [
         "recipe"
       ],
-      "route": "/wrangles/recipe",
+      "route": "/wrangles/namespaces/utility#recipe",
       "contract_json": "/registry/contracts/recipe.json",
       "raw_markdown": "/registry/wrangles/_root/recipe.md",
       "runtime_symbol": "wrangles.recipe_wrangles.main.recipe",
@@ -1428,7 +1429,7 @@
         "transform",
         "reindex"
       ],
-      "route": "/wrangles/reindex",
+      "route": "/wrangles/namespaces/transform#reindex",
       "contract_json": "/registry/contracts/reindex.json",
       "raw_markdown": "/registry/wrangles/_root/reindex.md",
       "runtime_symbol": "wrangles.recipe_wrangles.pandas.reindex",
@@ -1450,7 +1451,7 @@
         "format",
         "remove-words"
       ],
-      "route": "/wrangles/remove-words",
+      "route": "/wrangles/namespaces/format#remove-words",
       "contract_json": "/registry/contracts/remove-words.json",
       "raw_markdown": "/registry/wrangles/_root/remove-words.md",
       "runtime_symbol": "wrangles.recipe_wrangles.main.remove_words",
@@ -1472,7 +1473,7 @@
         "transform",
         "rename"
       ],
-      "route": "/wrangles/rename",
+      "route": "/wrangles/namespaces/transform#rename",
       "contract_json": "/registry/contracts/rename.json",
       "raw_markdown": "/registry/wrangles/_root/rename.md",
       "runtime_symbol": "wrangles.recipe_wrangles.main.rename",
@@ -1494,7 +1495,7 @@
         "format",
         "replace"
       ],
-      "route": "/wrangles/replace",
+      "route": "/wrangles/namespaces/format#replace",
       "contract_json": "/registry/contracts/replace.json",
       "raw_markdown": "/registry/wrangles/_root/replace.md",
       "runtime_symbol": "wrangles.recipe_wrangles.main.replace",
@@ -1516,7 +1517,7 @@
         "format",
         "round"
       ],
-      "route": "/wrangles/round",
+      "route": "/wrangles/namespaces/format#round",
       "contract_json": "/registry/contracts/round.json",
       "raw_markdown": "/registry/wrangles/_root/round.md",
       "runtime_symbol": "wrangles.recipe_wrangles.pandas.round",
@@ -1538,7 +1539,7 @@
         "search",
         "find-links"
       ],
-      "route": "/wrangles/search/find-links",
+      "route": "/wrangles/namespaces/search#find-links",
       "contract_json": "/registry/contracts/search/find-links.json",
       "raw_markdown": "/registry/wrangles/search/find-links.md",
       "runtime_symbol": "wrangles.recipe_wrangles.search.find_links",
@@ -1560,7 +1561,7 @@
         "search",
         "retrieve-link-content"
       ],
-      "route": "/wrangles/search/retrieve-link-content",
+      "route": "/wrangles/namespaces/search#retrieve-link-content",
       "contract_json": "/registry/contracts/search/retrieve-link-content.json",
       "raw_markdown": "/registry/wrangles/search/retrieve-link-content.md",
       "runtime_symbol": "wrangles.recipe_wrangles.search.retrieve_link_content",
@@ -1582,7 +1583,7 @@
         "select",
         "columns"
       ],
-      "route": "/wrangles/select/columns",
+      "route": "/wrangles/namespaces/select#columns",
       "contract_json": "/registry/contracts/select/columns.json",
       "raw_markdown": "/registry/wrangles/select/columns.md",
       "runtime_symbol": "wrangles.recipe_wrangles.select.columns",
@@ -1604,7 +1605,7 @@
         "select",
         "dictionary-element"
       ],
-      "route": "/wrangles/select/dictionary-element",
+      "route": "/wrangles/namespaces/select#dictionary-element",
       "contract_json": "/registry/contracts/select/dictionary-element.json",
       "raw_markdown": "/registry/wrangles/select/dictionary-element.md",
       "runtime_symbol": "wrangles.recipe_wrangles.select.dictionary_element",
@@ -1626,7 +1627,7 @@
         "select",
         "element"
       ],
-      "route": "/wrangles/select/element",
+      "route": "/wrangles/namespaces/select#element",
       "contract_json": "/registry/contracts/select/element.json",
       "raw_markdown": "/registry/wrangles/select/element.md",
       "runtime_symbol": "wrangles.recipe_wrangles.select.element",
@@ -1648,7 +1649,7 @@
         "select",
         "group-by"
       ],
-      "route": "/wrangles/select/group-by",
+      "route": "/wrangles/namespaces/select#group-by",
       "contract_json": "/registry/contracts/select/group-by.json",
       "raw_markdown": "/registry/wrangles/select/group-by.md",
       "runtime_symbol": "wrangles.recipe_wrangles.select.group_by",
@@ -1670,7 +1671,7 @@
         "select",
         "head"
       ],
-      "route": "/wrangles/select/head",
+      "route": "/wrangles/namespaces/select#head",
       "contract_json": "/registry/contracts/select/head.json",
       "raw_markdown": "/registry/wrangles/select/head.md",
       "runtime_symbol": "wrangles.recipe_wrangles.select.head",
@@ -1692,7 +1693,7 @@
         "select",
         "highest-confidence"
       ],
-      "route": "/wrangles/select/highest-confidence",
+      "route": "/wrangles/namespaces/select#highest-confidence",
       "contract_json": "/registry/contracts/select/highest-confidence.json",
       "raw_markdown": "/registry/wrangles/select/highest-confidence.md",
       "runtime_symbol": "wrangles.recipe_wrangles.select.highest_confidence",
@@ -1714,7 +1715,7 @@
         "select",
         "left"
       ],
-      "route": "/wrangles/select/left",
+      "route": "/wrangles/namespaces/select#left",
       "contract_json": "/registry/contracts/select/left.json",
       "raw_markdown": "/registry/wrangles/select/left.md",
       "runtime_symbol": "wrangles.recipe_wrangles.select.left",
@@ -1736,7 +1737,7 @@
         "select",
         "length"
       ],
-      "route": "/wrangles/select/length",
+      "route": "/wrangles/namespaces/select#length",
       "contract_json": "/registry/contracts/select/length.json",
       "raw_markdown": "/registry/wrangles/select/length.md",
       "runtime_symbol": "wrangles.recipe_wrangles.select.length",
@@ -1758,7 +1759,7 @@
         "select",
         "list-element"
       ],
-      "route": "/wrangles/select/list-element",
+      "route": "/wrangles/namespaces/select#list-element",
       "contract_json": "/registry/contracts/select/list-element.json",
       "raw_markdown": "/registry/wrangles/select/list-element.md",
       "runtime_symbol": "wrangles.recipe_wrangles.select.list_element",
@@ -1780,7 +1781,7 @@
         "select",
         "right"
       ],
-      "route": "/wrangles/select/right",
+      "route": "/wrangles/namespaces/select#right",
       "contract_json": "/registry/contracts/select/right.json",
       "raw_markdown": "/registry/wrangles/select/right.md",
       "runtime_symbol": "wrangles.recipe_wrangles.select.right",
@@ -1802,7 +1803,7 @@
         "select",
         "sample"
       ],
-      "route": "/wrangles/select/sample",
+      "route": "/wrangles/namespaces/select#sample",
       "contract_json": "/registry/contracts/select/sample.json",
       "raw_markdown": "/registry/wrangles/select/sample.md",
       "runtime_symbol": "wrangles.recipe_wrangles.select.sample",
@@ -1824,7 +1825,7 @@
         "select",
         "substring"
       ],
-      "route": "/wrangles/select/substring",
+      "route": "/wrangles/namespaces/select#substring",
       "contract_json": "/registry/contracts/select/substring.json",
       "raw_markdown": "/registry/wrangles/select/substring.md",
       "runtime_symbol": "wrangles.recipe_wrangles.select.substring",
@@ -1846,7 +1847,7 @@
         "select",
         "tail"
       ],
-      "route": "/wrangles/select/tail",
+      "route": "/wrangles/namespaces/select#tail",
       "contract_json": "/registry/contracts/select/tail.json",
       "raw_markdown": "/registry/wrangles/select/tail.md",
       "runtime_symbol": "wrangles.recipe_wrangles.select.tail",
@@ -1868,7 +1869,7 @@
         "select",
         "threshold"
       ],
-      "route": "/wrangles/select/threshold",
+      "route": "/wrangles/namespaces/select#threshold",
       "contract_json": "/registry/contracts/select/threshold.json",
       "raw_markdown": "/registry/wrangles/select/threshold.md",
       "runtime_symbol": "wrangles.recipe_wrangles.select.threshold",
@@ -1890,7 +1891,7 @@
         "compare",
         "similarity"
       ],
-      "route": "/wrangles/similarity",
+      "route": "/wrangles/namespaces/compare#similarity",
       "contract_json": "/registry/contracts/similarity.json",
       "raw_markdown": "/registry/wrangles/_root/similarity.md",
       "runtime_symbol": "wrangles.recipe_wrangles.main.similarity",
@@ -1912,7 +1913,7 @@
         "select",
         "sort"
       ],
-      "route": "/wrangles/sort",
+      "route": "/wrangles/namespaces/select#sort",
       "contract_json": "/registry/contracts/sort.json",
       "raw_markdown": "/registry/wrangles/_root/sort.md",
       "runtime_symbol": "wrangles.recipe_wrangles.pandas.sort",
@@ -1934,7 +1935,7 @@
         "split",
         "dictionary"
       ],
-      "route": "/wrangles/split/dictionary",
+      "route": "/wrangles/namespaces/split#dictionary",
       "contract_json": "/registry/contracts/split/dictionary.json",
       "raw_markdown": "/registry/wrangles/split/dictionary.md",
       "runtime_symbol": "wrangles.recipe_wrangles.split.dictionary",
@@ -1956,7 +1957,7 @@
         "split",
         "list"
       ],
-      "route": "/wrangles/split/list",
+      "route": "/wrangles/namespaces/split#list",
       "contract_json": "/registry/contracts/split/list.json",
       "raw_markdown": "/registry/wrangles/split/list.md",
       "runtime_symbol": "wrangles.recipe_wrangles.split.list",
@@ -1978,7 +1979,7 @@
         "split",
         "text"
       ],
-      "route": "/wrangles/split/text",
+      "route": "/wrangles/namespaces/split#text",
       "contract_json": "/registry/contracts/split/text.json",
       "raw_markdown": "/registry/wrangles/split/text.md",
       "runtime_symbol": "wrangles.recipe_wrangles.split.text",
@@ -2000,7 +2001,7 @@
         "split",
         "tokenize"
       ],
-      "route": "/wrangles/split/tokenize",
+      "route": "/wrangles/namespaces/split#tokenize",
       "contract_json": "/registry/contracts/split/tokenize.json",
       "raw_markdown": "/registry/wrangles/split/tokenize.md",
       "runtime_symbol": "wrangles.recipe_wrangles.split.tokenize",
@@ -2022,7 +2023,7 @@
         "compute",
         "sql"
       ],
-      "route": "/wrangles/sql",
+      "route": "/wrangles/namespaces/compute#sql",
       "contract_json": "/registry/contracts/sql.json",
       "raw_markdown": "/registry/wrangles/_root/sql.md",
       "runtime_symbol": "wrangles.recipe_wrangles.main.sql",
@@ -2038,13 +2039,14 @@
       "aliases": [],
       "slug": "standardize",
       "title": "Standardize",
-      "description": "Standardize data using a DIY or bespoke standardization wrangle. Requires WrangleWorks Account and Subscription.",
-      "status": "active",
+      "description": "Deprecated compatibility key for `standardize.custom`, which standardizes data using a trained DIY or bespoke model.",
+      "status": "deprecated",
+      "replaced_by": "standardize.custom",
       "tags": [
         "format",
         "standardize"
       ],
-      "route": "/wrangles/standardize",
+      "route": "/wrangles/namespaces/format#standardize",
       "contract_json": "/registry/contracts/standardize.json",
       "raw_markdown": "/registry/wrangles/_root/standardize.md",
       "runtime_symbol": "wrangles.recipe_wrangles.main.standardize",
@@ -2066,7 +2068,7 @@
         "standardize",
         "clean"
       ],
-      "route": "/wrangles/standardize/clean",
+      "route": "/wrangles/namespaces/standardize#clean",
       "contract_json": "/registry/contracts/standardize/clean.json",
       "raw_markdown": "/registry/wrangles/standardize/clean.md",
       "runtime_symbol": "wrangles.recipe_wrangles.standardize.clean",
@@ -2088,7 +2090,7 @@
         "standardize",
         "custom"
       ],
-      "route": "/wrangles/standardize/custom",
+      "route": "/wrangles/namespaces/standardize#custom",
       "contract_json": "/registry/contracts/standardize/custom.json",
       "raw_markdown": "/registry/wrangles/standardize/custom.md",
       "runtime_symbol": "wrangles.recipe_wrangles.standardize.custom",
@@ -2110,7 +2112,7 @@
         "format",
         "translate"
       ],
-      "route": "/wrangles/translate",
+      "route": "/wrangles/namespaces/format#translate",
       "contract_json": "/registry/contracts/translate.json",
       "raw_markdown": "/registry/wrangles/_root/translate.md",
       "runtime_symbol": "wrangles.recipe_wrangles.main.translate",
@@ -2132,7 +2134,7 @@
         "transform",
         "transpose"
       ],
-      "route": "/wrangles/transpose",
+      "route": "/wrangles/namespaces/transform#transpose",
       "contract_json": "/registry/contracts/transpose.json",
       "raw_markdown": "/registry/wrangles/_root/transpose.md",
       "runtime_symbol": "wrangles.recipe_wrangles.pandas.transpose",
@@ -2154,7 +2156,7 @@
         "utility",
         "try"
       ],
-      "route": "/wrangles/try",
+      "route": "/wrangles/namespaces/utility#try",
       "contract_json": "/registry/contracts/try.json",
       "raw_markdown": "/registry/wrangles/_root/try.md",
       "runtime_symbol": "wrangles.recipe_wrangles.main.Try",
@@ -2164,7 +2166,7 @@
   ],
   "artifacts": {
     "index": "/registry/index.md",
-    "recipe_schema": "/schemas/recipes/pilot/schema.json",
+    "recipe_schema": "/schemas/recipes/registry/schema.json",
     "entry_schema": "/registry/schema/wrangle-entry.schema.json",
     "runtime_manifest": "/registry/runtime/wranglespy.json",
     "runtime_manifest_schema": "/registry/schema/wrangles-runtime-manifest.schema.json"

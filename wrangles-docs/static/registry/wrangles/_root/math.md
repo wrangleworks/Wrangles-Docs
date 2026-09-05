@@ -33,13 +33,13 @@ parameters:
       The mathematical expression using column names. e.g. column1 * column2 + column3. Note: spaces
       within column names are replaced by underscores (_).
     required: true
-    role: column-selector
+    param_group: I/O
     schema:
       type: string
   - name: output
     description: The column to output the results to.
     required: true
-    role: column-output
+    param_group: I/O
     schema:
       type: string
 examples: []

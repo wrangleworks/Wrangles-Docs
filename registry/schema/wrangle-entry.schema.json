@@ -63,6 +63,11 @@
     "status": {
       "enum": ["draft", "active", "deprecated", "removed"]
     },
+    "replaced_by": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]*(\\.[a-z][a-z0-9_]*)*$",
+      "description": "Canonical wrangle_key that replaces a deprecated or removed entry."
+    },
     "visibility": {
       "enum": ["public", "internal"]
     },
@@ -118,11 +123,20 @@
       "items": {"$ref": "#/$defs/source"}
     }
   },
+  "allOf": [
+    {
+      "if": {
+        "properties": {"status": {"const": "deprecated"}},
+        "required": ["status"]
+      },
+      "then": {"required": ["replaced_by"]}
+    }
+  ],
   "$defs": {
     "parameter": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["name", "description", "required", "role", "schema"],
+      "required": ["name", "description", "required", "param_group", "schema"],
       "properties": {
         "name": {
           "type": "string",
@@ -135,7 +149,18 @@
         },
         "description": {"type": "string", "minLength": 1},
         "required": {"type": "boolean"},
-        "role": {"type": "string", "minLength": 1},
+        "param_group": {
+          "type": "string",
+          "enum": [
+            "I/O",
+            "Options",
+            "Formatting",
+            "Conditions",
+            "Execution",
+            "Errors",
+            "Details"
+          ]
+        },
         "runtime_default": {},
         "schema": {"type": "object", "minProperties": 1}
       }

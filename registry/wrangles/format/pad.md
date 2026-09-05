@@ -31,7 +31,7 @@ parameters:
   - name: input
     description: Name of the input column.
     required: true
-    role: column-selector
+    param_group: I/O
     schema:
       type:
         - string
@@ -40,25 +40,25 @@ parameters:
   - name: pad_length
     description: Length for the output.
     required: true
-    role: option
+    param_group: Formatting
     schema:
       type: integer
   - name: side
     description: Side from which to fill resulting string.
     required: true
-    role: option
+    param_group: Options
     schema:
       type: string
   - name: char
     description: The character to pad the input with.
     required: true
-    role: option
+    param_group: Formatting
     schema:
       type: string
   - name: output
     description: Name of the output column.
     required: false
-    role: column-output
+    param_group: I/O
     runtime_default: null
     schema:
       type:
@@ -68,7 +68,7 @@ parameters:
   - name: skip_empty
     description: If true, skip padding for empty or whitespace-only values.
     required: false
-    role: option
+    param_group: Options
     runtime_default: false
     schema:
       type: boolean

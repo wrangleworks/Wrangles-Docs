@@ -33,7 +33,7 @@ parameters:
   - name: input
     description: Name or list of input columns.
     required: true
-    role: column-selector
+    param_group: I/O
     schema:
       type:
         - string
@@ -42,7 +42,7 @@ parameters:
   - name: model_id
     description: The ID of the wrangle to use.
     required: true
-    role: model-reference
+    param_group: Details
     schema:
       type:
         - string
@@ -50,7 +50,7 @@ parameters:
   - name: output
     description: Name or list of output columns.
     required: false
-    role: column-output
+    param_group: I/O
     runtime_default: null
     schema:
       type:
@@ -60,49 +60,49 @@ parameters:
   - name: use_labels
     description: 'Use Labels in the extract output {label: value}.'
     required: false
-    role: option
+    param_group: Formatting
     runtime_default: false
     schema:
       type: boolean
   - name: first_element
     description: Get the first element from results.
     required: false
-    role: option
+    param_group: Formatting
     runtime_default: false
     schema:
       type: boolean
   - name: case_sensitive
     description: Allows the wrangle to be case sensitive if set to True, default is False.
     required: false
-    role: option
+    param_group: Options
     runtime_default: false
     schema:
       type: boolean
   - name: extract_raw
     description: Extract the raw data from the wrangle.
     required: false
-    role: option
+    param_group: Options
     runtime_default: false
     schema:
       type: boolean
   - name: use_spellcheck
     description: Use spellcheck to also find minor mispellings compared to the reference data.
     required: false
-    role: option
+    param_group: Options
     runtime_default: false
     schema:
       type: boolean
   - name: include_empty_labels
     description: Include labels with no found values in the output when using use_labels=True.
     required: false
-    role: option
+    param_group: Formatting
     runtime_default: true
     schema:
       type: boolean
   - name: sort
     description: Sort the results.
     required: false
-    role: option
+    param_group: Options
     runtime_default: training_order
     schema:
       type: string
@@ -118,7 +118,7 @@ parameters:
   - name: output_format
     description: Format of the extract output.
     required: false
-    role: column-output
+    param_group: Formatting
     runtime_default: null
     schema:
       type:
@@ -132,7 +132,7 @@ parameters:
   - name: char
     description: Character to use when output_format is concatenate.
     required: false
-    role: option
+    param_group: Formatting
     runtime_default: ', '
     schema:
       type: string

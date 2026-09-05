@@ -97,11 +97,20 @@ function findSampleGrid(control) {
 }
 
 function findSamplePanel(grid, label) {
-  return [...(grid?.querySelectorAll('.ww-sample-panel') ?? [])].find((panel) => {
+  const panels = [...(grid?.querySelectorAll('.ww-sample-panel') ?? [])];
+  const role = label.startsWith('input') ? 'input' : 'output';
+  const explicitPanel = grid?.querySelector(
+    `[data-sample-role="${role}"], .ww-sample-panel--${role}`,
+  );
+  if (explicitPanel) return explicitPanel;
+
+  const labelledPanel = panels.find((panel) => {
     const heading = panel.querySelector('h5');
     const headingLabel = heading?.firstChild?.textContent.trim().toLowerCase();
     return headingLabel === label;
   });
+  if (labelledPanel) return labelledPanel;
+  return role === 'input' ? panels[0] : panels.at(-1);
 }
 
 function findInputTable(control, recipe) {
@@ -162,7 +171,8 @@ function setRunError(control, message) {
 function replaceOutputTable(control, payload, documentedColumns) {
   const grid = findSampleGrid(control);
   const outputPanel = findSamplePanel(grid, 'output sample');
-  const columns = payload.columns?.length ? payload.columns : documentedColumns;
+  const payloadColumns = Array.isArray(payload.columns) ? payload.columns : [];
+  const columns = documentedColumns.length ? documentedColumns : payloadColumns;
   const rows = Array.isArray(payload.rows) ? payload.rows : [];
 
   if (!outputPanel || !columns.length) {
@@ -186,11 +196,15 @@ function replaceOutputTable(control, payload, documentedColumns) {
   thead.appendChild(headingRow);
 
   const tbody = document.createElement('tbody');
+  const columnIndexes = columns.map((column, index) => {
+    const payloadIndex = payloadColumns.indexOf(column);
+    return payloadIndex >= 0 ? payloadIndex : index;
+  });
   rows.forEach((row) => {
     const tableRow = document.createElement('tr');
-    columns.forEach((_, columnIndex) => {
+    columnIndexes.forEach((sourceIndex) => {
       const cell = document.createElement('td');
-      cell.textContent = String(row?.[columnIndex] ?? '');
+      cell.textContent = String(row?.[sourceIndex] ?? '');
       tableRow.appendChild(cell);
     });
     tbody.appendChild(tableRow);

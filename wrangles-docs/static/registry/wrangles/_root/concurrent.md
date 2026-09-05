@@ -34,7 +34,7 @@ parameters:
   - name: wrangles
     description: The wrangles section of a recipe to execute for each combination of variables.
     required: true
-    role: nested-wrangles
+    param_group: Execution
     schema:
       type: array
       minItems: 1
@@ -43,7 +43,7 @@ parameters:
   - name: max_concurrency
     description: The maximum number of wrangles to execute in parallel.
     required: false
-    role: option
+    param_group: Execution
     runtime_default: 10
     schema:
       type: integer
@@ -51,7 +51,7 @@ parameters:
   - name: use_multiprocessing
     description: Use process-based workers instead of threads. This is an advanced runtime option.
     required: false
-    role: option
+    param_group: Execution
     runtime_default: false
     schema:
       type: boolean

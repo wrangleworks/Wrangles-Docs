@@ -33,7 +33,7 @@ parameters:
   - name: input
     description: Column(s) to be split into tokens.
     required: true
-    role: column-selector
+    param_group: I/O
     schema:
       type:
         - string
@@ -42,7 +42,7 @@ parameters:
   - name: output
     description: Name of the output column.
     required: false
-    role: column-output
+    param_group: I/O
     runtime_default: null
     schema:
       type:
@@ -54,7 +54,7 @@ parameters:
       Method to split the list. Options include `space`, `boundary`, `boundary_ignore_space`, custom
       functions as `custom.<function>`, or regex patterns as `regex:<pattern>`.
     required: false
-    role: option
+    param_group: Options
     runtime_default: space
     schema:
       anyOf:

@@ -39,7 +39,7 @@ parameters:
       Python command. This must return a value. Note: any non-alphanumeric characters in variable
       names are replaced by underscores (_).
     required: true
-    role: option
+    param_group: Options
     schema:
       type: string
   - name: output
@@ -47,7 +47,7 @@ parameters:
       Name or list of output column(s). To output multiple columns, return a list of the
       corresponding length.
     required: true
-    role: column-output
+    param_group: I/O
     schema:
       type:
         - string
@@ -58,7 +58,7 @@ parameters:
       conjunction with kwargs to target a variable range of columns. If not specified, all columns
       will be available.
     required: false
-    role: column-selector
+    param_group: I/O
     runtime_default: null
     schema:
       type:
@@ -72,7 +72,7 @@ parameters:
       exception will be raised as normal. If multiple output columns are specified, this must match
       the length.
     required: false
-    role: option
+    param_group: Errors
     schema:
       type:
         - string

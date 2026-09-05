@@ -31,7 +31,7 @@ parameters:
   - name: input
     description: Name of the input column.
     required: true
-    role: column-selector
+    param_group: I/O
     schema:
       type:
         - string
@@ -40,7 +40,7 @@ parameters:
   - name: output
     description: Name of the output columns.
     required: true
-    role: column-output
+    param_group: I/O
     schema:
       type:
         - string
@@ -50,7 +50,7 @@ parameters:
       (Optional) The type of brackets to find (round '()', square '[]', curly '{}', angled '<>').
       Default is all brackets.
     required: false
-    role: option
+    param_group: Options
     runtime_default: all
     schema:
       type:
@@ -59,14 +59,14 @@ parameters:
   - name: include_brackets
     description: (Optional) Include the brackets in the output.
     required: false
-    role: option
+    param_group: Options
     runtime_default: false
     schema:
       type: boolean
   - name: output_format
     description: Format of the extract output.
     required: false
-    role: column-output
+    param_group: Formatting
     runtime_default: null
     schema:
       type:
@@ -79,7 +79,7 @@ parameters:
   - name: char
     description: Character to use when output_format is concatenate.
     required: false
-    role: option
+    param_group: Formatting
     runtime_default: ', '
     schema:
       type: string

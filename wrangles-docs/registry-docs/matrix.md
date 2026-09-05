@@ -3,50 +3,42 @@ title: "Matrix"
 description: "Apply a matrix of wrangles to the dataframe. This will run the wrangles for each combination of the variables."
 sidebar_label: "Matrix"
 slug: "/matrix"
+registry_entry: true
+toc_min_heading_level: 2
+toc_max_heading_level: 3
 ---
 
 # Matrix
 
 Apply a matrix of wrangles to the dataframe. This will run the wrangles for each combination of the variables.
 
-> Pilot Registry entry. Runtime contract status: `verified`.
-
-## Parameters
-
-| Parameter | Required | Accepted value | Description | Runtime default |
-| --- | --- | --- | --- | --- |
-| `variables` | Yes | object | A dictionary of variables to pass to the wrangle. The key is the variable name and the value is a list of values. | — |
-| `wrangles` | Yes | array | The wrangles to apply to the dataframe. Each wrangle will be run for each combination of the variables. | — |
-| `strategy` | No | string; one of: permutations, loop | Determines how to combine variables when there are multiple. loop (default) iterates over each set of variables, repeating shorter lists until the longest is completed. permutations uses the combination of all variables against all other variables. | `"loop"` |
-| `if` | No | string | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | — |
-| `where` | No | string | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | — |
-| `where_params` | No | array, object | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | — |
-
-## Verified examples
-
-_No fixture-backed examples are currently available. See migrated examples under Guidance where present._
-
-## Access
-
-| Requirement | Value |
-| --- | --- |
-| ai powered | No |
-| requires account | No |
-| requires subscription | No |
-| requires external api key | No |
-
-## Guidance
-
 Apply a matrix of wrangles to the dataframe. Each wrangle runs for the configured combinations of variables, including recipe variables and variables declared by the `variables` parameter.
 
 See the [Matrix connector](/python/connectors/matrix) for the connector equivalent.
 
-## Migrated examples
-#### Use Hardcoded Variables
+## Parameters
+
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
+| --- | --- | --- | --- | --- |
+| <span className="ww-param-group-label">Options</span> |  |  |  |  |
+| `strategy` | Determines how to combine variables when there are multiple. loop (default) iterates over each set of variables, repeating shorter lists until the longest is completed. permutations uses the combination of all variables against all other variables. | string; one of:<ul className="ww-param-enum-values"><li>permutations</li><li>loop</li></ul> | `"loop"` | No |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
+| <span className="ww-param-group-label">Execution</span> |  |  |  |  |
+| `variables` | A dictionary of variables to pass to the wrangle. The key is the variable name and the value is a list of values. | object | — | Yes |
+| `wrangles` | The wrangles to apply to the dataframe. Each wrangle will be run for each combination of the variables. | array | — | Yes |
+
+</div>
+
+## Examples
 
 Run a custom function once for each configured variable value.
 
-##### Recipe
+
 
 ```yaml
 wrangles:
@@ -67,9 +59,7 @@ def test_fn(part_code, value):
 
 <div className="ww-sample-grid">
 
-<div className="ww-sample-panel">
-
-##### Input Sample
+<div className="ww-sample-panel ww-sample-panel--input" data-sample-role="input">
 
 | Part Code |
 | --- |
@@ -80,26 +70,24 @@ def test_fn(part_code, value):
 
 </div>
 
-<div className="ww-sample-panel">
+<div className="ww-sample-panel ww-sample-panel--output" data-sample-role="output">
 
-##### Output Sample
-
-| Part Code | Part Code A | Part Code B | Part Code C |
-| --- | --- | --- | --- |
-| 6202 | 6202A | 6202B | 6202C |
-| br549 | br549A | br549B | br549C |
-| 554-114 | 554-114A | 554-114B | 554-114C |
-| 554-112 | 554-112A | 554-112B | 554-112C |
+| Part Code A | Part Code B | Part Code C |
+| --- | --- | --- |
+| 6202A | 6202B | 6202C |
+| br549A | br549B | br549C |
+| 554-114A | 554-114B | 554-114C |
+| 554-112A | 554-112B | 554-112C |
 
 </div>
 
 </div>
 
-#### Use Unique Variables Per Row
+
 
 This example runs `extract.custom` once for each unique model ID.
 
-##### Recipe
+
 
 ```yaml
 wrangles:
@@ -118,9 +106,7 @@ wrangles:
 
 <div className="ww-sample-grid">
 
-<div className="ww-sample-panel">
-
-##### Input Sample
+<div className="ww-sample-panel ww-sample-panel--input" data-sample-role="input">
 
 | Description | Model ID |
 | --- | --- |
@@ -130,21 +116,19 @@ wrangles:
 
 </div>
 
-<div className="ww-sample-panel">
+<div className="ww-sample-panel ww-sample-panel--output" data-sample-role="output">
 
-##### Output Sample
-
-| Description | Model ID | Extracted Values |
-| --- | --- | --- |
-| The SKF 6202 bearing is the best bearing in the world | xxxxxxxx-xxxx-xxxx | 6202 |
-| The Timken 6102 bearing is indestructible | yyyyyyyy-yyyy-yyyy | indestructible |
-| The Milwaukee impact has 1200ft-lbs of torque | zzzzzzzz-zzzz-zzzz | 1200ft-lbs |
+| Extracted Values |
+| --- |
+| 6202 |
+| indestructible |
+| 1200ft-lbs |
 
 </div>
 
 </div>
 
-#### Native Variables
+
 
 | Variable | Function |
 | --- | --- |
@@ -153,17 +137,35 @@ wrangles:
 | `${df}` | Current dataframe. |
 | `${row_count}` | Number of visible rows processed in each batch. |
 
-## Provenance
+<details className="ww-field-disclosure">
+
+<summary>Access</summary>
+
+| Requirement | Value |
+| --- | --- |
+| AI-powered | No |
+| Requires WrangleWorks account | No |
+| Requires subscription | No |
+| Requires external API key | No |
+
+</details>
+
+<details className="ww-field-disclosure">
+
+<summary>Technical details</summary>
+
+| Field | Value |
+| --- | --- |
+| Recipe key | `matrix` |
+| Lifecycle status | active |
+| Namespace | Root-level |
+| Documentation group | `utility` |
+| Aliases | None |
+| Runtime symbol | `wrangles.recipe_wrangles.main.matrix` |
+
+**Sources**
 
 - [WranglesPY matrix implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/main.py)
 - [Existing matrix Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/utility/_sources/matrix.md)
 
-## Registry metadata
-
-- Registry ID: pending database assignment
-- Namespace: root-level runtime key
-- Recipe key: `matrix`
-- Aliases: none
-- Runtime symbol: `wrangles.recipe_wrangles.main.matrix`
-- Status: `active`
-- Registry version: `0.1.0-pilot`
+</details>

@@ -1,6 +1,6 @@
 {
   "format": "wrangles-registry-entry",
-  "registry_version": "0.1.0-pilot",
+  "registry_version": "0.1.0",
   "schema_version": "0.1",
   "type": "wrangle",
   "id": "e3242acf-d204-433f-8373-205b77481131",
@@ -38,7 +38,7 @@
       "name": "input",
       "description": "Name of the column to filter on. If multiple are provided, all must match the criteria.",
       "required": false,
-      "role": "column-selector",
+      "param_group": "I/O",
       "runtime_default": [],
       "schema": {
         "type": [
@@ -52,7 +52,7 @@
       "name": "equal",
       "description": "Select rows where the values equal a given value.",
       "required": false,
-      "role": "option",
+      "param_group": "Options",
       "runtime_default": null,
       "schema": {
         "type": [
@@ -66,7 +66,7 @@
       "name": "not_equal",
       "description": "Select rows where the values do not equal a given value.",
       "required": false,
-      "role": "option",
+      "param_group": "Options",
       "runtime_default": null,
       "schema": {
         "type": [
@@ -80,7 +80,7 @@
       "name": "is_in",
       "description": "Select rows where the values are in a given list.",
       "required": false,
-      "role": "option",
+      "param_group": "Options",
       "runtime_default": null,
       "schema": {
         "type": [
@@ -94,7 +94,7 @@
       "name": "not_in",
       "description": "Select rows where the values are not in a given list.",
       "required": false,
-      "role": "option",
+      "param_group": "Options",
       "runtime_default": null,
       "schema": {
         "type": [
@@ -108,7 +108,7 @@
       "name": "greater_than",
       "description": "Select rows where the values are greater than a specified value. Does include the value itself.",
       "required": false,
-      "role": "option",
+      "param_group": "Options",
       "runtime_default": null,
       "schema": {
         "type": [
@@ -122,7 +122,7 @@
       "name": "greater_than_equal_to",
       "description": "Select rows where the values are greater than a specified value. Does include the value itself.",
       "required": false,
-      "role": "option",
+      "param_group": "Options",
       "runtime_default": null,
       "schema": {
         "type": [
@@ -136,7 +136,7 @@
       "name": "less_than",
       "description": "Select rows where the values are less than a specified value. Does not include the value itself.",
       "required": false,
-      "role": "option",
+      "param_group": "Options",
       "runtime_default": null,
       "schema": {
         "type": [
@@ -150,7 +150,7 @@
       "name": "less_than_equal_to",
       "description": "Select rows where the values are less than a specified value. Does include the value itself.",
       "required": false,
-      "role": "option",
+      "param_group": "Options",
       "runtime_default": null,
       "schema": {
         "type": [
@@ -164,7 +164,7 @@
       "name": "between",
       "description": "Value or list of values to filter that are in between two parameter values.",
       "required": false,
-      "role": "option",
+      "param_group": "Options",
       "runtime_default": null,
       "schema": {
         "type": [
@@ -177,7 +177,7 @@
       "name": "contains",
       "description": "Select rows where the input contains the value. Allows regular expressions.",
       "required": false,
-      "role": "option",
+      "param_group": "Options",
       "runtime_default": null,
       "schema": {
         "type": [
@@ -190,7 +190,7 @@
       "name": "not_contains",
       "description": "Select rows where the input does not contain the value. Allows regular expressions.",
       "required": false,
-      "role": "option",
+      "param_group": "Options",
       "runtime_default": null,
       "schema": {
         "type": [
@@ -203,7 +203,7 @@
       "name": "is_null",
       "description": "If true, select all rows where the value is NULL. If false, where is not NULL.",
       "required": false,
-      "role": "option",
+      "param_group": "Options",
       "runtime_default": null,
       "schema": {
         "type": [
@@ -216,31 +216,31 @@
       "name": "if",
       "description": "Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`.",
       "required": false,
+      "param_group": "Conditions",
       "schema": {
         "type": "string"
-      },
-      "role": "common-control"
+      }
     },
     {
       "name": "where",
       "description": "Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`.",
       "required": false,
+      "param_group": "Conditions",
       "schema": {
         "type": "string"
-      },
-      "role": "common-control"
+      }
     },
     {
       "name": "where_params",
       "description": "Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`.",
       "required": false,
+      "param_group": "Conditions",
       "schema": {
         "type": [
           "array",
           "object"
         ]
-      },
-      "role": "common-control"
+      }
     }
   ],
   "examples": [],

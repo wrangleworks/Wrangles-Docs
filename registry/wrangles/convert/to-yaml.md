@@ -31,7 +31,7 @@ parameters:
   - name: input
     description: Name of the input column.
     required: true
-    role: column-selector
+    param_group: I/O
     schema:
       type:
         - string
@@ -40,7 +40,7 @@ parameters:
   - name: output
     description: Name of the output column. If omitted, the input column will be overwritten.
     required: false
-    role: column-output
+    param_group: I/O
     runtime_default: null
     schema:
       type:
@@ -50,21 +50,21 @@ parameters:
   - name: sort_keys
     description: 'If sort_keys is true (default: False), then the output of dictionaries will be sorted by key.'
     required: false
-    role: option
+    param_group: Formatting
     runtime_default: false
     schema:
       type: boolean
   - name: allow_unicode
     description: Allow Unicode value accepted by the runtime.
     required: false
-    role: option
+    param_group: Formatting
     runtime_default: true
     schema:
       type: boolean
   - name: indent
     description: Specify the number of spaces for indentation to specify nested elements.
     required: false
-    role: option
+    param_group: Formatting
     schema:
       type: integer
 examples: []

@@ -1,6 +1,6 @@
 {
   "format": "wrangles-registry-entry",
-  "registry_version": "0.1.0-pilot",
+  "registry_version": "0.1.0",
   "schema_version": "0.1",
   "type": "wrangle",
   "id": "ab06898f-faf7-42e7-8275-5e3034a4d727",
@@ -38,7 +38,7 @@
       "name": "input",
       "description": "Name or list of input columns.",
       "required": false,
-      "role": "column-selector",
+      "param_group": "I/O",
       "runtime_default": null,
       "schema": {
         "type": [
@@ -53,7 +53,7 @@
       "name": "output",
       "description": "Name or list of output columns.",
       "required": false,
-      "role": "column-output",
+      "param_group": "I/O",
       "runtime_default": null,
       "schema": {
         "type": [
@@ -67,7 +67,7 @@
       "name": "wrangles",
       "description": "Use wrangles to transform the column names. The input is named 'columns' and the final result must also include the column named 'columns'. This can only be used instead of the standard rename.",
       "required": false,
-      "role": "nested-wrangles",
+      "param_group": "Execution",
       "runtime_default": null,
       "schema": {
         "type": [
@@ -84,10 +84,10 @@
       "name": "if",
       "description": "Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`.",
       "required": false,
+      "param_group": "Conditions",
       "schema": {
         "type": "string"
-      },
-      "role": "common-control"
+      }
     }
   ],
   "examples": [],

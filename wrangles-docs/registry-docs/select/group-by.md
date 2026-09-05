@@ -3,61 +3,52 @@ title: "Group By"
 description: "Group and aggregate the data."
 sidebar_label: "Group By"
 slug: "/select/group-by"
+registry_entry: true
+toc_min_heading_level: 2
+toc_max_heading_level: 3
 ---
 
 # Group By
 
 Group and aggregate the data.
 
-> Pilot Registry entry. Runtime contract status: `verified`.
+Group and aggregate the data
 
 ## Parameters
 
-| Parameter | Required | Accepted value | Description | Runtime default |
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
 | --- | --- | --- | --- | --- |
-| `by` | No | string, array | List of the input columns to group on. | `[]` |
-| `auto_rename_columns` | No | boolean | If true (default), aggregated column names include the operation as a suffix (e.g. Value.sum). If false, column names are left as-is; use a dictionary entry to supply a custom output name (e.g. - Value: Total). | `true` |
-| `list` | No | string, array | Group and return all values for these column(s) as a list. | — |
-| `first` | No | string, array | The first value for these column(s). | — |
-| `last` | No | string, array | The last value for these column(s). | — |
-| `min` | No | string, array | The minimum value for these column(s). | — |
-| `max` | No | string, array | The maximum value for these column(s). | — |
-| `mean` | No | string, array | The mean (average) value for these column(s). | — |
-| `median` | No | string, array | The median value for these column(s). | — |
-| `nunique` | No | string, array | The count of unique values for these column(s). | — |
-| `count` | No | string, array | The count of values for these column(s). | — |
-| `counts` | No | string, array | Return a dictionary containing the count of each distinct value for these column(s). Keys are converted to JSON-safe strings; missing values use the key "null" and booleans use lowercase "true"/"false". | — |
-| `std` | No | string, array | The standard deviation of values for these column(s). | — |
-| `sum` | No | string, array | The total of values for these column(s). | — |
-| `any` | No | string, array | Return true if any of the values for these column(s) are true. | — |
-| `all` | No | string, array | Return true if all of the values for these column(s) are true. | — |
-| `p75` | No | string, array | Get a percentile. Note, you can use any integer here for the corresponding percentile. | — |
-| `custom.*` | No | string, array | Placeholder for custom functions. Replace 'placeholder' with the name of the function. | — |
-| `if` | No | string | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | — |
-| `where` | No | string | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | — |
-| `where_params` | No | array, object | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | — |
+| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
+| `by` | List of the input columns to group on. | string, array | `[]` | No |
+| <span className="ww-param-group-label">Options</span> |  |  |  |  |
+| `list` | Group and return all values for these column(s) as a list. | string, array | — | No |
+| `first` | The first value for these column(s). | string, array | — | No |
+| `last` | The last value for these column(s). | string, array | — | No |
+| `min` | The minimum value for these column(s). | string, array | — | No |
+| `max` | The maximum value for these column(s). | string, array | — | No |
+| `mean` | The mean (average) value for these column(s). | string, array | — | No |
+| `median` | The median value for these column(s). | string, array | — | No |
+| `nunique` | The count of unique values for these column(s). | string, array | — | No |
+| `count` | The count of values for these column(s). | string, array | — | No |
+| `counts` | Return a dictionary containing the count of each distinct value for these column(s). Keys are converted to JSON-safe strings; missing values use the key "null" and booleans use lowercase "true"/"false". | string, array | — | No |
+| `std` | The standard deviation of values for these column(s). | string, array | — | No |
+| `sum` | The total of values for these column(s). | string, array | — | No |
+| `any` | Return true if any of the values for these column(s) are true. | string, array | — | No |
+| `all` | Return true if all of the values for these column(s) are true. | string, array | — | No |
+| `p75` | Get a percentile. Note, you can use any integer here for the corresponding percentile. | string, array | — | No |
+| `custom.*` | Placeholder for custom functions. Replace 'placeholder' with the name of the function. | string, array | — | No |
+| <span className="ww-param-group-label">Formatting</span> |  |  |  |  |
+| `auto_rename_columns` | If true (default), aggregated column names include the operation as a suffix (e.g. Value.sum). If false, column names are left as-is; use a dictionary entry to supply a custom output name (e.g. - Value: Total). | boolean | `true` | No |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
 
-## Verified examples
+</div>
 
-_No fixture-backed examples are currently available. See migrated examples under Guidance where present._
-
-## Access
-
-| Requirement | Value |
-| --- | --- |
-| ai powered | No |
-| requires account | No |
-| requires subscription | No |
-| requires external api key | No |
-
-## Guidance
-
-Group and aggregate the data
-
-## Migrated examples
-#### Grouping By One Column
-
-##### Recipe
+## Examples
 
 ```yaml
 wrangles:
@@ -70,9 +61,7 @@ wrangles:
 
 <div className="ww-sample-grid">
 
-<div className="ww-sample-panel">
-
-##### Input Sample
+<div className="ww-sample-panel ww-sample-panel--input" data-sample-role="input">
 
 | Product | Quantity | Price ($) | Product Type |
 | --- | --- | --- | --- |
@@ -83,9 +72,7 @@ wrangles:
 
 </div>
 
-<div className="ww-sample-panel">
-
-##### Output Sample
+<div className="ww-sample-panel ww-sample-panel--output" data-sample-role="output">
 
 | Product Type | Quantity.sum | Price ($).mean |
 | --- | --- | --- |
@@ -96,9 +83,9 @@ wrangles:
 
 </div>
 
-#### Grouping With Custom Function Aggregation
 
-##### Recipe
+
+
 
 ```yaml
 wrangles:
@@ -109,9 +96,7 @@ wrangles:
 
 <div className="ww-sample-grid">
 
-<div className="ww-sample-panel">
-
-##### Input Sample
+<div className="ww-sample-panel ww-sample-panel--input" data-sample-role="input">
 
 | Category | Quantity |
 | --- | --- |
@@ -122,9 +107,7 @@ wrangles:
 
 </div>
 
-<div className="ww-sample-panel">
-
-##### Output Sample
+<div className="ww-sample-panel ww-sample-panel--output" data-sample-role="output">
 
 | Category | Quantity.sum_times_two |
 | --- | --- |
@@ -135,17 +118,35 @@ wrangles:
 
 </div>
 
-## Provenance
+<details className="ww-field-disclosure">
+
+<summary>Access</summary>
+
+| Requirement | Value |
+| --- | --- |
+| AI-powered | No |
+| Requires WrangleWorks account | No |
+| Requires subscription | No |
+| Requires external API key | No |
+
+</details>
+
+<details className="ww-field-disclosure">
+
+<summary>Technical details</summary>
+
+| Field | Value |
+| --- | --- |
+| Recipe key | `select.group_by` |
+| Lifecycle status | active |
+| Namespace | `select` |
+| Documentation group | `select` |
+| Aliases | None |
+| Runtime symbol | `wrangles.recipe_wrangles.select.group_by` |
+
+**Sources**
 
 - [WranglesPY select.group_by implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/select.py)
 - [Existing select.group_by Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/select/_sources/group-by.md)
 
-## Registry metadata
-
-- Registry ID: `c0af10b1-423a-416c-8cb5-7e7fe1164964`
-- Namespace: `select`
-- Recipe key: `select.group_by`
-- Aliases: none
-- Runtime symbol: `wrangles.recipe_wrangles.select.group_by`
-- Status: `active`
-- Registry version: `0.1.0-pilot`
+</details>

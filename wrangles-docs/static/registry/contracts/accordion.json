@@ -1,6 +1,6 @@
 {
   "format": "wrangles-registry-entry",
-  "registry_version": "0.1.0-pilot",
+  "registry_version": "0.1.0",
   "schema_version": "0.1",
   "type": "wrangle",
   "id": null,
@@ -38,7 +38,7 @@
       "name": "wrangles",
       "description": "List of wrangles to apply.",
       "required": true,
-      "role": "nested-wrangles",
+      "param_group": "Execution",
       "schema": {
         "type": "array",
         "minItems": 1,
@@ -51,7 +51,7 @@
       "name": "input",
       "description": "The column(s) containing the list(s) that the wrangles will be applied to the elements of.",
       "required": true,
-      "role": "column-selector",
+      "param_group": "I/O",
       "schema": {
         "type": [
           "string",
@@ -64,7 +64,7 @@
       "name": "output",
       "description": "Output of the wrangles to save back to the dataframe.",
       "required": false,
-      "role": "column-output",
+      "param_group": "I/O",
       "runtime_default": null,
       "schema": {
         "type": [
@@ -78,7 +78,7 @@
       "name": "propagate",
       "description": "Limit the column(s) that will be available to the wrangles and replicated for each element. If not specified, all columns will be propogated. This may be useful to limit the memory use for large datasets.",
       "required": false,
-      "role": "option",
+      "param_group": "I/O",
       "runtime_default": null,
       "schema": {
         "type": [
@@ -92,31 +92,31 @@
       "name": "if",
       "description": "Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`.",
       "required": false,
+      "param_group": "Conditions",
       "schema": {
         "type": "string"
-      },
-      "role": "common-control"
+      }
     },
     {
       "name": "where",
       "description": "Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`.",
       "required": false,
+      "param_group": "Conditions",
       "schema": {
         "type": "string"
-      },
-      "role": "common-control"
+      }
     },
     {
       "name": "where_params",
       "description": "Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`.",
       "required": false,
+      "param_group": "Conditions",
       "schema": {
         "type": [
           "array",
           "object"
         ]
-      },
-      "role": "common-control"
+      }
     }
   ],
   "examples": [],

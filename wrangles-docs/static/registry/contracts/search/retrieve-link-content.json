@@ -1,6 +1,6 @@
 {
   "format": "wrangles-registry-entry",
-  "registry_version": "0.1.0-pilot",
+  "registry_version": "0.1.0",
   "schema_version": "0.1",
   "type": "wrangle",
   "id": "3d5faa87-9e96-48c0-8226-5ae566e8d76c",
@@ -38,7 +38,7 @@
       "name": "input",
       "description": "Name or list of input columns containing URLs or Scored Search Result dictionaries.",
       "required": true,
-      "role": "column-selector",
+      "param_group": "I/O",
       "schema": {
         "type": [
           "string",
@@ -50,7 +50,7 @@
       "name": "output",
       "description": "Name of the output column for the raw dictionaries. To output BOTH the raw dictionaries and the formatted text, provide a list of exactly two column names (e.g., [page_data, page_text]).",
       "required": false,
-      "role": "column-output",
+      "param_group": "I/O",
       "runtime_default": null,
       "schema": {
         "type": [
@@ -64,7 +64,7 @@
       "name": "client",
       "description": "The retrieval provider to use.",
       "required": false,
-      "role": "option",
+      "param_group": "Details",
       "runtime_default": "google_url_context",
       "schema": {
         "type": "string",
@@ -77,7 +77,7 @@
       "name": "api_key",
       "description": "API key for the provider. Can also be set as an environment variable (e.g., GOOGLE_API_KEY).",
       "required": false,
-      "role": "credential",
+      "param_group": "Details",
       "runtime_default": null,
       "schema": {
         "type": [
@@ -90,7 +90,7 @@
       "name": "prompt",
       "description": "Optional custom system prompt to guide the extraction behavior and output format.",
       "required": false,
-      "role": "option",
+      "param_group": "Options",
       "runtime_default": null,
       "schema": {
         "type": [
@@ -103,7 +103,7 @@
       "name": "model_id",
       "description": "The specific model ID to use (default models/gemini-3-flash-preview).",
       "required": false,
-      "role": "model-reference",
+      "param_group": "Details",
       "runtime_default": "models/gemini-3-flash-preview",
       "schema": {
         "type": "string"
@@ -113,7 +113,7 @@
       "name": "output_format",
       "description": "The desired format for the extracted content.",
       "required": false,
-      "role": "column-output",
+      "param_group": "Formatting",
       "runtime_default": "json",
       "schema": {
         "type": "string",
@@ -127,7 +127,7 @@
       "name": "threads",
       "description": "Number of concurrent threads for parallel processing (default 10).",
       "required": false,
-      "role": "option",
+      "param_group": "Execution",
       "runtime_default": 10,
       "schema": {
         "type": "integer"
@@ -137,31 +137,31 @@
       "name": "if",
       "description": "Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`.",
       "required": false,
+      "param_group": "Conditions",
       "schema": {
         "type": "string"
-      },
-      "role": "common-control"
+      }
     },
     {
       "name": "where",
       "description": "Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`.",
       "required": false,
+      "param_group": "Conditions",
       "schema": {
         "type": "string"
-      },
-      "role": "common-control"
+      }
     },
     {
       "name": "where_params",
       "description": "Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`.",
       "required": false,
+      "param_group": "Conditions",
       "schema": {
         "type": [
           "array",
           "object"
         ]
-      },
-      "role": "common-control"
+      }
     }
   ],
   "examples": [],

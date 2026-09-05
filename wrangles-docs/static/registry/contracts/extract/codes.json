@@ -1,6 +1,6 @@
 {
   "format": "wrangles-registry-entry",
-  "registry_version": "0.1.0-pilot",
+  "registry_version": "0.1.0",
   "schema_version": "0.1",
   "type": "wrangle",
   "id": "da591387-0fca-4842-8bcb-d19f561f0292",
@@ -38,7 +38,7 @@
       "name": "input",
       "description": "Name or list of input columns.",
       "required": true,
-      "role": "column-selector",
+      "param_group": "I/O",
       "schema": {
         "type": [
           "string",
@@ -51,7 +51,7 @@
       "name": "output",
       "description": "Name or list of output columns.",
       "required": true,
-      "role": "column-output",
+      "param_group": "I/O",
       "schema": {
         "type": [
           "string",
@@ -63,7 +63,7 @@
       "name": "first_element",
       "description": "Get the first element from results.",
       "required": false,
-      "role": "option",
+      "param_group": "Formatting",
       "runtime_default": false,
       "schema": {
         "type": "boolean"
@@ -73,7 +73,7 @@
       "name": "output_format",
       "description": "Format of the extract output.",
       "required": false,
-      "role": "column-output",
+      "param_group": "Formatting",
       "runtime_default": null,
       "schema": {
         "type": [
@@ -91,7 +91,7 @@
       "name": "char",
       "description": "Character to use when output_format is concatenate.",
       "required": false,
-      "role": "option",
+      "param_group": "Formatting",
       "runtime_default": ", ",
       "schema": {
         "type": "string"
@@ -101,7 +101,7 @@
       "name": "min_length",
       "description": "Minimum length of allowed results.",
       "required": false,
-      "role": "option",
+      "param_group": "Options",
       "schema": {
         "type": [
           "integer",
@@ -113,7 +113,7 @@
       "name": "max_length",
       "description": "Maximum length of allowed results.",
       "required": false,
-      "role": "option",
+      "param_group": "Options",
       "schema": {
         "type": [
           "integer",
@@ -125,7 +125,7 @@
       "name": "strategy",
       "description": "Controls filtering of likely false positives such as measurements. Lenient skips this filter; balanced and strict currently apply the same filter. Default is balanced. Unless min_length is provided, minimum lengths default to 3 for lenient, 4 for balanced, and 5 for strict.",
       "required": false,
-      "role": "option",
+      "param_group": "Options",
       "schema": {
         "type": "string",
         "enum": [
@@ -139,7 +139,7 @@
       "name": "sort_order",
       "description": "Default is input order. Also allows longest or shortest.",
       "required": false,
-      "role": "option",
+      "param_group": "Formatting",
       "schema": {
         "type": "string",
         "enum": [
@@ -153,7 +153,7 @@
       "name": "disallowed_patterns",
       "description": "A pattern or JSON array of regex patterns to not include in the found codes.",
       "required": false,
-      "role": "option",
+      "param_group": "Options",
       "schema": {
         "type": "string"
       }
@@ -162,7 +162,7 @@
       "name": "include_multi_part_tokens",
       "description": "Whether to include multi-part tokens that have a space. Default True.",
       "required": false,
-      "role": "option",
+      "param_group": "Options",
       "schema": {
         "type": "boolean"
       }
@@ -171,7 +171,7 @@
       "name": "extract_raw",
       "description": "Whether to return tokens with their adjacent non-whitespace characters included, rather than the cleaned token. Default False.",
       "required": false,
-      "role": "option",
+      "param_group": "Options",
       "schema": {
         "type": "boolean"
       }
@@ -180,31 +180,31 @@
       "name": "if",
       "description": "Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`.",
       "required": false,
+      "param_group": "Conditions",
       "schema": {
         "type": "string"
-      },
-      "role": "common-control"
+      }
     },
     {
       "name": "where",
       "description": "Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`.",
       "required": false,
+      "param_group": "Conditions",
       "schema": {
         "type": "string"
-      },
-      "role": "common-control"
+      }
     },
     {
       "name": "where_params",
       "description": "Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`.",
       "required": false,
+      "param_group": "Conditions",
       "schema": {
         "type": [
           "array",
           "object"
         ]
-      },
-      "role": "common-control"
+      }
     }
   ],
   "examples": [],

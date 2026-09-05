@@ -1,6 +1,6 @@
 {
   "format": "wrangles-registry-entry",
-  "registry_version": "0.1.0-pilot",
+  "registry_version": "0.1.0",
   "schema_version": "0.1",
   "type": "wrangle",
   "id": "12c31c6c-cade-484d-84ba-7f302bf6af52",
@@ -38,7 +38,7 @@
       "name": "api_key",
       "description": "OpenAI-compatible API key.",
       "required": true,
-      "role": "credential",
+      "param_group": "Details",
       "schema": {
         "type": "string"
       }
@@ -47,7 +47,7 @@
       "name": "output",
       "description": "Target schema; string/array shorthands are expanded automatically.",
       "required": true,
-      "role": "column-output",
+      "param_group": "I/O",
       "schema": {
         "type": [
           "string",
@@ -60,7 +60,7 @@
       "name": "input",
       "description": "Column(s) to concatenate into the prompt (defaults to all columns).",
       "required": false,
-      "role": "column-selector",
+      "param_group": "I/O",
       "runtime_default": null,
       "schema": {
         "type": [
@@ -74,7 +74,7 @@
       "name": "model",
       "description": "Responses model name (e.g. gpt-5-mini).",
       "required": false,
-      "role": "option",
+      "param_group": "Details",
       "runtime_default": "gpt-5",
       "schema": {
         "type": "string"
@@ -84,7 +84,7 @@
       "name": "threads",
       "description": "Maximum concurrent requests (default 20).",
       "required": false,
-      "role": "option",
+      "param_group": "Execution",
       "runtime_default": 20,
       "schema": {
         "type": "integer"
@@ -94,7 +94,7 @@
       "name": "timeout",
       "description": "Per-request timeout in seconds.",
       "required": false,
-      "role": "option",
+      "param_group": "Execution",
       "runtime_default": 90,
       "schema": {
         "type": "integer"
@@ -104,7 +104,7 @@
       "name": "retries",
       "description": "Number of retry attempts on failure.",
       "required": false,
-      "role": "option",
+      "param_group": "Errors",
       "runtime_default": 0,
       "schema": {
         "type": "integer"
@@ -114,7 +114,7 @@
       "name": "messages",
       "description": "Optional extra messages forwarded to the inner generate helper.",
       "required": false,
-      "role": "option",
+      "param_group": "Options",
       "runtime_default": null,
       "schema": {
         "type": [
@@ -128,7 +128,7 @@
       "name": "url",
       "description": "Override for the OpenAI-compatible endpoint.",
       "required": false,
-      "role": "option",
+      "param_group": "Details",
       "runtime_default": "https://api.openai.com/v1/responses",
       "schema": {
         "type": "string"
@@ -138,7 +138,7 @@
       "name": "strict",
       "description": "Enforce JSON-schema validation on the response.",
       "required": false,
-      "role": "option",
+      "param_group": "Details",
       "runtime_default": false,
       "schema": {
         "type": "boolean"
@@ -148,7 +148,7 @@
       "name": "web_search",
       "description": "Enable DuckDuckGo context lookup per row.",
       "required": false,
-      "role": "option",
+      "param_group": "Options",
       "runtime_default": false,
       "schema": {
         "type": "boolean"
@@ -158,7 +158,7 @@
       "name": "reasoning",
       "description": "Responses API reasoning options (forwarded verbatim).",
       "required": false,
-      "role": "option",
+      "param_group": "Details",
       "runtime_default": {
         "effort": "low"
       },
@@ -173,7 +173,7 @@
       "name": "previous_response",
       "description": "Chain responses by reusing previous_response_id for field-by-field calls.",
       "required": false,
-      "role": "option",
+      "param_group": "Details",
       "runtime_default": false,
       "schema": {
         "type": "boolean"
@@ -183,7 +183,7 @@
       "name": "summary",
       "description": "Request summary text to be merged into the output.",
       "required": false,
-      "role": "option",
+      "param_group": "Options",
       "runtime_default": false,
       "schema": {
         "type": "boolean"
@@ -193,31 +193,31 @@
       "name": "if",
       "description": "Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`.",
       "required": false,
+      "param_group": "Conditions",
       "schema": {
         "type": "string"
-      },
-      "role": "common-control"
+      }
     },
     {
       "name": "where",
       "description": "Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`.",
       "required": false,
+      "param_group": "Conditions",
       "schema": {
         "type": "string"
-      },
-      "role": "common-control"
+      }
     },
     {
       "name": "where_params",
       "description": "Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`.",
       "required": false,
+      "param_group": "Conditions",
       "schema": {
         "type": [
           "array",
           "object"
         ]
-      },
-      "role": "common-control"
+      }
     }
   ],
   "examples": [],

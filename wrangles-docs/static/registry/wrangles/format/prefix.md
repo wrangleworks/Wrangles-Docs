@@ -31,7 +31,7 @@ parameters:
   - name: input
     description: Name of the input column.
     required: true
-    role: column-selector
+    param_group: I/O
     schema:
       type:
         - string
@@ -40,7 +40,7 @@ parameters:
   - name: value
     description: Prefix value to add.
     required: true
-    role: option
+    param_group: Options
     schema:
       type:
         - string
@@ -49,7 +49,7 @@ parameters:
   - name: output
     description: (Optional) Name of the output column.
     required: false
-    role: column-output
+    param_group: I/O
     runtime_default: null
     schema:
       type:
@@ -59,7 +59,7 @@ parameters:
   - name: skip_empty
     description: Whether to skip empty values.
     required: false
-    role: option
+    param_group: Options
     runtime_default: false
     schema:
       type: boolean

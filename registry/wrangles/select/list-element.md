@@ -31,7 +31,7 @@ parameters:
   - name: input
     description: Name of the input column.
     required: true
-    role: column-selector
+    param_group: I/O
     schema:
       type:
         - string
@@ -40,7 +40,7 @@ parameters:
   - name: output
     description: Name of the output column.
     required: false
-    role: column-output
+    param_group: I/O
     runtime_default: null
     schema:
       type:
@@ -52,14 +52,14 @@ parameters:
       The numbered element of the list to select. Starts from zero. This may use python slicing
       syntax to select a subset of the list.
     required: false
-    role: option
+    param_group: Options
     runtime_default: 0
     schema:
       type: integer
   - name: default
     description: Set the default value to return if the specified element doesn't exist.
     required: false
-    role: fallback-value
+    param_group: Errors
     runtime_default: ''
     schema:
       type:

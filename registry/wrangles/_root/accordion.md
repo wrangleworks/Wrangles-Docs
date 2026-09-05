@@ -33,7 +33,7 @@ parameters:
   - name: wrangles
     description: List of wrangles to apply.
     required: true
-    role: nested-wrangles
+    param_group: Execution
     schema:
       type: array
       minItems: 1
@@ -42,7 +42,7 @@ parameters:
   - name: input
     description: The column(s) containing the list(s) that the wrangles will be applied to the elements of.
     required: true
-    role: column-selector
+    param_group: I/O
     schema:
       type:
         - string
@@ -51,7 +51,7 @@ parameters:
   - name: output
     description: Output of the wrangles to save back to the dataframe.
     required: false
-    role: column-output
+    param_group: I/O
     runtime_default: null
     schema:
       type:
@@ -64,7 +64,7 @@ parameters:
       not specified, all columns will be propogated. This may be useful to limit the memory use for
       large datasets.
     required: false
-    role: option
+    param_group: I/O
     runtime_default: null
     schema:
       type:

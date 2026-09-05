@@ -33,7 +33,7 @@ parameters:
   - name: input
     description: Name of the input column.
     required: true
-    role: column-selector
+    param_group: I/O
     schema:
       type:
         - string
@@ -42,7 +42,7 @@ parameters:
   - name: output
     description: Name of the output column.
     required: true
-    role: column-output
+    param_group: I/O
     schema:
       type:
         - string
@@ -50,7 +50,7 @@ parameters:
   - name: responseContent
     description: Span - returns the text found. object - returns an object with the value and unit.
     required: false
-    role: option
+    param_group: Options
     runtime_default: span
     schema:
       type: string
@@ -60,7 +60,7 @@ parameters:
   - name: attribute_type
     description: Request only a specific type of attribute.
     required: false
-    role: option
+    param_group: Options
     runtime_default: null
     schema:
       type:
@@ -95,7 +95,7 @@ parameters:
   - name: desired_unit
     description: Convert the extracted unit to the desired unit.
     required: false
-    role: option
+    param_group: Options
     runtime_default: null
     schema:
       type:
@@ -106,7 +106,7 @@ parameters:
       When returning an object, if the input is a range (e.g. 10-20mm) set the value to return. min,
       mid or max. Default mid.
     required: false
-    role: option
+    param_group: Options
     runtime_default: mid
     schema:
       type: string
@@ -117,14 +117,14 @@ parameters:
   - name: first_element
     description: Get the first element from results.
     required: false
-    role: option
+    param_group: Formatting
     runtime_default: false
     schema:
       type: boolean
   - name: output_format
     description: Format of the extract output.
     required: false
-    role: column-output
+    param_group: Formatting
     runtime_default: null
     schema:
       type:
@@ -138,7 +138,7 @@ parameters:
   - name: char
     description: Character to use when output_format is concatenate.
     required: false
-    role: option
+    param_group: Formatting
     runtime_default: ', '
     schema:
       type: string

@@ -31,19 +31,19 @@ parameters:
   - name: input
     description: List of input columns containing lists to compare.
     required: true
-    role: column-selector
+    param_group: I/O
     schema:
       type: array
   - name: output
     description: Name of the output column.
     required: true
-    role: column-output
+    param_group: I/O
     schema:
       type: string
   - name: method
     description: Type of comparison to perform.
     required: false
-    role: option
+    param_group: Options
     runtime_default: intersection
     schema:
       type: string
@@ -54,14 +54,14 @@ parameters:
   - name: remove_duplicates
     description: Remove duplicates from the result.
     required: false
-    role: option
+    param_group: Options
     runtime_default: false
     schema:
       type: boolean
   - name: ignore_case
     description: Ignore case when comparing string items.
     required: false
-    role: option
+    param_group: Options
     runtime_default: false
     schema:
       type: boolean

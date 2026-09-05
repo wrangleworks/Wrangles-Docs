@@ -1,6 +1,6 @@
 {
   "format": "wrangles-registry-entry",
-  "registry_version": "0.1.0-pilot",
+  "registry_version": "0.1.0",
   "schema_version": "0.1",
   "type": "wrangle",
   "id": null,
@@ -38,7 +38,7 @@
       "name": "wrangles",
       "description": "The wrangles section of a recipe to execute for each combination of variables.",
       "required": true,
-      "role": "nested-wrangles",
+      "param_group": "Execution",
       "schema": {
         "type": "array",
         "minItems": 1,
@@ -51,7 +51,7 @@
       "name": "max_concurrency",
       "description": "The maximum number of wrangles to execute in parallel.",
       "required": false,
-      "role": "option",
+      "param_group": "Execution",
       "runtime_default": 10,
       "schema": {
         "type": "integer",
@@ -62,7 +62,7 @@
       "name": "use_multiprocessing",
       "description": "Use process-based workers instead of threads. This is an advanced runtime option.",
       "required": false,
-      "role": "option",
+      "param_group": "Execution",
       "runtime_default": false,
       "schema": {
         "type": "boolean"
@@ -72,31 +72,31 @@
       "name": "if",
       "description": "Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`.",
       "required": false,
+      "param_group": "Conditions",
       "schema": {
         "type": "string"
-      },
-      "role": "common-control"
+      }
     },
     {
       "name": "where",
       "description": "Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`.",
       "required": false,
+      "param_group": "Conditions",
       "schema": {
         "type": "string"
-      },
-      "role": "common-control"
+      }
     },
     {
       "name": "where_params",
       "description": "Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`.",
       "required": false,
+      "param_group": "Conditions",
       "schema": {
         "type": [
           "array",
           "object"
         ]
-      },
-      "role": "common-control"
+      }
     }
   ],
   "examples": [],

@@ -10,6 +10,7 @@ wrangle_key: maths
 aliases: []
 slug: maths
 status: deprecated
+replaced_by: math
 visibility: public
 tags:
   - maths
@@ -30,13 +31,13 @@ parameters:
   - name: input
     description: Name, index, or list of input columns.
     required: true
-    role: column-selector
+    param_group: I/O
     schema:
       type: string
   - name: output
     description: Name or list of output columns.
     required: true
-    role: column-output
+    param_group: I/O
     schema:
       type: string
 examples: []
@@ -53,4 +54,4 @@ sources:
 
 Deprecated alias for `math`; evaluate an expression and write its result to an output column.
 
-This first-pass guidance is derived from the callable signature.
+This guidance was derived from the callable signature.

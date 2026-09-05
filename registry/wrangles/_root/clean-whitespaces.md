@@ -33,7 +33,7 @@ parameters:
   - name: input
     description: Name or list of input columns.
     required: true
-    role: column-selector
+    param_group: I/O
     schema:
       type:
         - string
@@ -42,7 +42,7 @@ parameters:
   - name: output
     description: Name or list of output columns.
     required: false
-    role: column-output
+    param_group: I/O
     runtime_default: null
     schema:
       type:
@@ -52,14 +52,14 @@ parameters:
   - name: trim
     description: Whether to trim leading and trailing spaces. Default True.
     required: false
-    role: option
+    param_group: Options
     runtime_default: true
     schema:
       type: boolean
   - name: remove_literals
     description: Whether to remove special space characters such as new lines etc. Default True.
     required: false
-    role: option
+    param_group: Options
     runtime_default: true
     schema:
       type: boolean

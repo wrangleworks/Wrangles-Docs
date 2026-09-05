@@ -33,7 +33,7 @@ parameters:
   - name: input
     description: Name of the column to filter on. If multiple are provided, all must match the criteria.
     required: false
-    role: column-selector
+    param_group: I/O
     runtime_default: []
     schema:
       type:
@@ -43,7 +43,7 @@ parameters:
   - name: equal
     description: Select rows where the values equal a given value.
     required: false
-    role: option
+    param_group: Options
     runtime_default: null
     schema:
       type:
@@ -53,7 +53,7 @@ parameters:
   - name: not_equal
     description: Select rows where the values do not equal a given value.
     required: false
-    role: option
+    param_group: Options
     runtime_default: null
     schema:
       type:
@@ -63,7 +63,7 @@ parameters:
   - name: is_in
     description: Select rows where the values are in a given list.
     required: false
-    role: option
+    param_group: Options
     runtime_default: null
     schema:
       type:
@@ -73,7 +73,7 @@ parameters:
   - name: not_in
     description: Select rows where the values are not in a given list.
     required: false
-    role: option
+    param_group: Options
     runtime_default: null
     schema:
       type:
@@ -85,7 +85,7 @@ parameters:
       Select rows where the values are greater than a specified value. Does include the value
       itself.
     required: false
-    role: option
+    param_group: Options
     runtime_default: null
     schema:
       type:
@@ -97,7 +97,7 @@ parameters:
       Select rows where the values are greater than a specified value. Does include the value
       itself.
     required: false
-    role: option
+    param_group: Options
     runtime_default: null
     schema:
       type:
@@ -109,7 +109,7 @@ parameters:
       Select rows where the values are less than a specified value. Does not include the value
       itself.
     required: false
-    role: option
+    param_group: Options
     runtime_default: null
     schema:
       type:
@@ -119,7 +119,7 @@ parameters:
   - name: less_than_equal_to
     description: Select rows where the values are less than a specified value. Does include the value itself.
     required: false
-    role: option
+    param_group: Options
     runtime_default: null
     schema:
       type:
@@ -129,7 +129,7 @@ parameters:
   - name: between
     description: Value or list of values to filter that are in between two parameter values.
     required: false
-    role: option
+    param_group: Options
     runtime_default: null
     schema:
       type:
@@ -138,7 +138,7 @@ parameters:
   - name: contains
     description: Select rows where the input contains the value. Allows regular expressions.
     required: false
-    role: option
+    param_group: Options
     runtime_default: null
     schema:
       type:
@@ -147,7 +147,7 @@ parameters:
   - name: not_contains
     description: Select rows where the input does not contain the value. Allows regular expressions.
     required: false
-    role: option
+    param_group: Options
     runtime_default: null
     schema:
       type:
@@ -156,7 +156,7 @@ parameters:
   - name: is_null
     description: If true, select all rows where the value is NULL. If false, where is not NULL.
     required: false
-    role: option
+    param_group: Options
     runtime_default: null
     schema:
       type:

@@ -31,7 +31,7 @@ parameters:
   - name: input
     description: Either a single column name or list of columns.
     required: true
-    role: column-selector
+    param_group: I/O
     schema:
       type:
         - string
@@ -40,20 +40,20 @@ parameters:
   - name: output
     description: Name of the output column.
     required: true
-    role: column-output
+    param_group: I/O
     schema:
       type: string
   - name: char
     description: (Optional) Character to add between successive values.
     required: false
-    role: option
+    param_group: Formatting
     runtime_default: ','
     schema:
       type: string
   - name: skip_empty
     description: Whether to skip empty values, defaults to false.
     required: false
-    role: option
+    param_group: Options
     runtime_default: false
     schema:
       type: boolean

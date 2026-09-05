@@ -1,6 +1,6 @@
 {
   "format": "wrangles-registry-entry",
-  "registry_version": "0.1.0-pilot",
+  "registry_version": "0.1.0",
   "schema_version": "0.1",
   "type": "wrangle",
   "id": null,
@@ -38,7 +38,7 @@
       "name": "wrangles",
       "description": "List of wrangles to apply.",
       "required": true,
-      "role": "nested-wrangles",
+      "param_group": "Execution",
       "schema": {
         "type": "array",
         "minItems": 1,
@@ -51,7 +51,7 @@
       "name": "retries",
       "description": "Number of times to retry the wrangles if an error occurs. Default 0.",
       "required": false,
-      "role": "option",
+      "param_group": "Errors",
       "runtime_default": 0,
       "schema": {
         "type": "integer",
@@ -62,7 +62,7 @@
       "name": "except",
       "description": "An action to take if the wrangles encounter an error. This can contain a list of wrangles or a dictionary of column names and values. If except is not provided, the error will be logged and the recipe will continue.",
       "required": false,
-      "role": "option",
+      "param_group": "Errors",
       "schema": {
         "type": "object",
         "minItems": 1,
@@ -75,31 +75,31 @@
       "name": "if",
       "description": "Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`.",
       "required": false,
+      "param_group": "Conditions",
       "schema": {
         "type": "string"
-      },
-      "role": "common-control"
+      }
     },
     {
       "name": "where",
       "description": "Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`.",
       "required": false,
+      "param_group": "Conditions",
       "schema": {
         "type": "string"
-      },
-      "role": "common-control"
+      }
     },
     {
       "name": "where_params",
       "description": "Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`.",
       "required": false,
+      "param_group": "Conditions",
       "schema": {
         "type": [
           "array",
           "object"
         ]
-      },
-      "role": "common-control"
+      }
     }
   ],
   "examples": [],

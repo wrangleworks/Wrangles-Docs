@@ -13,7 +13,6 @@
     "clear": "docusaurus clear",
     "compile:registry": "node ./scripts/compile-registry.cjs",
     "bootstrap:registry": "node ./scripts/bootstrap-registry.cjs",
-    "refresh:registry-bootstrap": "node ./scripts/bootstrap-registry.cjs --refresh-generated",
     "check:registry": "node ./scripts/compile-registry.cjs --check",
     "prebuild": "npm run compile:registry",
     "generate:wrangle-catalog": "node ./scripts/generate-wrangle-catalog.cjs",

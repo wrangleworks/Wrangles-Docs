@@ -33,7 +33,7 @@ parameters:
   - name: input
     description: Name or list of input column.
     required: true
-    role: column-selector
+    param_group: I/O
     schema:
       type:
         - string
@@ -42,19 +42,19 @@ parameters:
   - name: find
     description: Pattern to find using regex.
     required: true
-    role: option
+    param_group: Options
     schema:
       type: string
   - name: replace
     description: Value to replace the pattern found.
     required: true
-    role: option
+    param_group: Options
     schema:
       type: string
   - name: output
     description: Name or list of output column.
     required: false
-    role: column-output
+    param_group: I/O
     runtime_default: null
     schema:
       type:

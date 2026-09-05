@@ -33,7 +33,7 @@ parameters:
   - name: input
     description: The columns to compare. First column is the base column.
     required: true
-    role: column-selector
+    param_group: I/O
     schema:
       type: array
   - name: output
@@ -42,7 +42,7 @@ parameters:
       ratio_column] when method is overlap and include_ratio is true; otherwise a single column
       name.
     required: true
-    role: column-output
+    param_group: I/O
     schema:
       type:
         - string
@@ -50,7 +50,7 @@ parameters:
   - name: method
     description: The type of comparison to perform (difference, intersection, overlap, similarity).
     required: false
-    role: option
+    param_group: Options
     runtime_default: difference
     schema:
       type: string
@@ -62,35 +62,35 @@ parameters:
   - name: char
     description: Character to split strings on for difference and intersection. Defaults to a space.
     required: false
-    role: option
+    param_group: Options
     runtime_default: ' '
     schema:
       type: string
   - name: non_match_char
     description: Character to use for non-matching characters when using overlap.
     required: false
-    role: option
+    param_group: Formatting
     runtime_default: '*'
     schema:
       type: string
   - name: include_ratio
     description: Include the ratio of matching characters when using overlap.
     required: false
-    role: option
+    param_group: Formatting
     runtime_default: false
     schema:
       type: boolean
   - name: decimal_places
     description: Number of decimal places to round the overlap ratio to.
     required: false
-    role: option
+    param_group: Formatting
     runtime_default: 3
     schema:
       type: integer
   - name: exact_match
     description: Value to use for exact matches when using overlap.
     required: false
-    role: option
+    param_group: Options
     runtime_default: null
     schema:
       type:
@@ -99,7 +99,7 @@ parameters:
   - name: empty_a
     description: Value to use when input A is empty when using overlap.
     required: false
-    role: option
+    param_group: Options
     runtime_default: null
     schema:
       type:
@@ -108,7 +108,7 @@ parameters:
   - name: empty_b
     description: Value to use when input B is empty when using overlap.
     required: false
-    role: option
+    param_group: Options
     runtime_default: null
     schema:
       type:
@@ -117,7 +117,7 @@ parameters:
   - name: all_empty
     description: Value to use when both inputs are empty when using overlap.
     required: false
-    role: option
+    param_group: Options
     runtime_default: null
     schema:
       type:
@@ -126,14 +126,14 @@ parameters:
   - name: case_sensitive
     description: Whether the comparison is case sensitive. Defaults to true.
     required: false
-    role: option
+    param_group: Options
     runtime_default: false
     schema:
       type: boolean
   - name: metric
     description: Metric value accepted by the runtime.
     required: false
-    role: option
+    param_group: Options
     runtime_default: token_sort
     schema:
       type: string

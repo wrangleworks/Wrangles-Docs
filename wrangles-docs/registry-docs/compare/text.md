@@ -3,56 +3,47 @@ title: "Text"
 description: "Compare two strings and return the intersection or difference, use overlap to find the matching characters between the two strings, or use similarity to get a numeric similarity score."
 sidebar_label: "Text"
 slug: "/compare/text"
+registry_entry: true
+toc_min_heading_level: 2
+toc_max_heading_level: 3
 ---
 
 # Text
 
 Compare two strings and return the intersection or difference, use overlap to find the matching characters between the two strings, or use similarity to get a numeric similarity score.
 
-> Pilot Registry entry. Runtime contract status: `verified`.
+Compare two strings and return the intersection or difference, or use overlap to find the matching characters between the two strings.
 
 ## Parameters
 
-| Parameter | Required | Accepted value | Description | Runtime default |
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
 | --- | --- | --- | --- | --- |
-| `input` | Yes | array | The columns to compare. First column is the base column. | — |
-| `output` | Yes | string, array | The column to output the results to. Must be a list of two column names [mask_column, ratio_column] when method is overlap and include_ratio is true; otherwise a single column name. | — |
-| `method` | No | string; one of: difference, intersection, overlap, similarity | The type of comparison to perform (difference, intersection, overlap, similarity). | `"difference"` |
-| `char` | No | string | Character to split strings on for difference and intersection. Defaults to a space. | `" "` |
-| `non_match_char` | No | string | Character to use for non-matching characters when using overlap. | `"*"` |
-| `include_ratio` | No | boolean | Include the ratio of matching characters when using overlap. | `false` |
-| `decimal_places` | No | integer | Number of decimal places to round the overlap ratio to. | `3` |
-| `exact_match` | No | string, null | Value to use for exact matches when using overlap. | `null` |
-| `empty_a` | No | string, null | Value to use when input A is empty when using overlap. | `null` |
-| `empty_b` | No | string, null | Value to use when input B is empty when using overlap. | `null` |
-| `all_empty` | No | string, null | Value to use when both inputs are empty when using overlap. | `null` |
-| `case_sensitive` | No | boolean | Whether the comparison is case sensitive. Defaults to true. | `false` |
-| `metric` | No | string | Metric value accepted by the runtime. | `"token_sort"` |
-| `if` | No | string | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | — |
-| `where` | No | string | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | — |
-| `where_params` | No | array, object | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | — |
+| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
+| `input` | The columns to compare. First column is the base column. | array | — | Yes |
+| `output` | The column to output the results to. Must be a list of two column names [mask_column, ratio_column] when method is overlap and include_ratio is true; otherwise a single column name. | string, array | — | Yes |
+| <span className="ww-param-group-label">Options</span> |  |  |  |  |
+| `method` | The type of comparison to perform (difference, intersection, overlap, similarity). | string; one of:<ul className="ww-param-enum-values"><li>difference</li><li>intersection</li><li>overlap</li><li>similarity</li></ul> | `"difference"` | No |
+| `char` | Character to split strings on for difference and intersection. Defaults to a space. | string | `" "` | No |
+| `exact_match` | Value to use for exact matches when using overlap. | string, null | `null` | No |
+| `empty_a` | Value to use when input A is empty when using overlap. | string, null | `null` | No |
+| `empty_b` | Value to use when input B is empty when using overlap. | string, null | `null` | No |
+| `all_empty` | Value to use when both inputs are empty when using overlap. | string, null | `null` | No |
+| `case_sensitive` | Whether the comparison is case sensitive. Defaults to true. | boolean | `false` | No |
+| `metric` | Metric value accepted by the runtime. | string | `"token_sort"` | No |
+| <span className="ww-param-group-label">Formatting</span> |  |  |  |  |
+| `non_match_char` | Character to use for non-matching characters when using overlap. | string | `"*"` | No |
+| `include_ratio` | Include the ratio of matching characters when using overlap. | boolean | `false` | No |
+| `decimal_places` | Number of decimal places to round the overlap ratio to. | integer | `3` | No |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
 
-## Verified examples
+</div>
 
-_No fixture-backed examples are currently available. See migrated examples under Guidance where present._
-
-## Access
-
-| Requirement | Value |
-| --- | --- |
-| ai powered | No |
-| requires account | No |
-| requires subscription | No |
-| requires external api key | No |
-
-## Guidance
-
-Compare two strings and return the intersection or difference, or use overlap to find the matching characters between the two strings.
-
-## Migrated examples
-#### Comparing the difference between two columns of text
-
-##### Recipe
+## Examples
 
 ```yaml
 wrangles:
@@ -66,9 +57,7 @@ wrangles:
 
 <div className="ww-sample-grid">
 
-<div className="ww-sample-panel">
-
-##### Input Sample
+<div className="ww-sample-panel ww-sample-panel--input" data-sample-role="input">
 
 | Col1 | Col2 |
 | --- | --- |
@@ -78,9 +67,7 @@ wrangles:
 
 </div>
 
-<div className="ww-sample-panel">
-
-##### Output Sample
+<div className="ww-sample-panel ww-sample-panel--output" data-sample-role="output">
 
 | Difference |
 | --- |
@@ -92,9 +79,9 @@ wrangles:
 
 </div>
 
-#### Comparing the intersection of two columns of text
 
-##### Recipe
+
+
 
 ```yaml
 wrangles:
@@ -108,9 +95,7 @@ wrangles:
 
 <div className="ww-sample-grid">
 
-<div className="ww-sample-panel">
-
-##### Input Sample
+<div className="ww-sample-panel ww-sample-panel--input" data-sample-role="input">
 
 | Col1 | Col2 |
 | --- | --- |
@@ -120,9 +105,7 @@ wrangles:
 
 </div>
 
-<div className="ww-sample-panel">
-
-##### Output Sample
+<div className="ww-sample-panel ww-sample-panel--output" data-sample-role="output">
 
 | Intersection |
 | --- |
@@ -134,9 +117,9 @@ wrangles:
 
 </div>
 
-#### Comparing the overlap of two columns of text
 
-##### Recipe
+
+
 
 ```yaml
 wrangles:
@@ -150,9 +133,7 @@ wrangles:
 
 <div className="ww-sample-grid">
 
-<div className="ww-sample-panel">
-
-##### Input Sample
+<div className="ww-sample-panel ww-sample-panel--input" data-sample-role="input">
 
 | Part Code1 | Part Code2 |
 | --- | --- |
@@ -162,9 +143,7 @@ wrangles:
 
 </div>
 
-<div className="ww-sample-panel">
-
-##### Output Sample
+<div className="ww-sample-panel ww-sample-panel--output" data-sample-role="output">
 
 | Overlap |
 | --- |
@@ -176,17 +155,35 @@ wrangles:
 
 </div>
 
-## Provenance
+<details className="ww-field-disclosure">
+
+<summary>Access</summary>
+
+| Requirement | Value |
+| --- | --- |
+| AI-powered | No |
+| Requires WrangleWorks account | No |
+| Requires subscription | No |
+| Requires external API key | No |
+
+</details>
+
+<details className="ww-field-disclosure">
+
+<summary>Technical details</summary>
+
+| Field | Value |
+| --- | --- |
+| Recipe key | `compare.text` |
+| Lifecycle status | active |
+| Namespace | `compare` |
+| Documentation group | `compare` |
+| Aliases | None |
+| Runtime symbol | `wrangles.recipe_wrangles.compare.text` |
+
+**Sources**
 
 - [WranglesPY compare.text implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/compare.py)
 - [Existing compare.text Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/compare/_sources/text.md)
 
-## Registry metadata
-
-- Registry ID: `31905b74-ce58-45cd-8add-821cc04ab946`
-- Namespace: `compare`
-- Recipe key: `compare.text`
-- Aliases: none
-- Runtime symbol: `wrangles.recipe_wrangles.compare.text`
-- Status: `active`
-- Registry version: `0.1.0-pilot`
+</details>

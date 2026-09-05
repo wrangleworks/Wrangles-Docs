@@ -1,6 +1,6 @@
 {
   "format": "wrangles-registry-entry",
-  "registry_version": "0.1.0-pilot",
+  "registry_version": "0.1.0",
   "schema_version": "0.1",
   "type": "wrangle",
   "id": "363bffbf-397e-4975-8382-e9efa5e9eed6",
@@ -38,7 +38,7 @@
       "name": "columns",
       "description": "Name of the column(s) to drop.",
       "required": true,
-      "role": "option",
+      "param_group": "I/O",
       "schema": {
         "type": [
           "string",
@@ -50,10 +50,10 @@
       "name": "if",
       "description": "Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`.",
       "required": false,
+      "param_group": "Conditions",
       "schema": {
         "type": "string"
-      },
-      "role": "common-control"
+      }
     }
   ],
   "examples": [],

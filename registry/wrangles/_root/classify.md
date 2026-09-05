@@ -31,7 +31,7 @@ parameters:
   - name: input
     description: Name of the input column.
     required: true
-    role: column-selector
+    param_group: I/O
     schema:
       type:
         - string
@@ -40,7 +40,7 @@ parameters:
   - name: output
     description: Name of the output column.
     required: true
-    role: column-output
+    param_group: I/O
     schema:
       type:
         - string
@@ -48,13 +48,13 @@ parameters:
   - name: model_id
     description: ID of the classification model to be used.
     required: true
-    role: model-reference
+    param_group: Details
     schema:
       type: string
   - name: include_confidence
     description: For models that support it, include the confidence level in the output.
     required: false
-    role: option
+    param_group: Formatting
     schema:
       type: boolean
 examples: []

@@ -31,33 +31,33 @@ parameters:
   - name: input
     description: List of input columns.
     required: true
-    role: column-selector
+    param_group: I/O
     schema:
       type: array
   - name: output
     description: Name of the output column.
     required: true
-    role: column-output
+    param_group: I/O
     schema:
       type: string
   - name: remove_duplicates
     description: Whether to remove duplicates from the created list.
     required: false
-    role: option
+    param_group: Options
     runtime_default: false
     schema:
       type: boolean
   - name: ignore_case
     description: Ignore case when removing duplicates.
     required: false
-    role: option
+    param_group: Options
     runtime_default: false
     schema:
       type: boolean
   - name: include_empty
     description: Whether to include empty values in the created list.
     required: false
-    role: option
+    param_group: Options
     runtime_default: true
     schema:
       type: boolean

@@ -1,6 +1,6 @@
 {
   "format": "wrangles-registry-entry",
-  "registry_version": "0.1.0-pilot",
+  "registry_version": "0.1.0",
   "schema_version": "0.1",
   "type": "wrangle",
   "id": "b3339193-d1cc-4c89-8ed6-901efa6d81be",
@@ -37,7 +37,7 @@
       "name": "input",
       "description": "Name of the column(s) to lookup.",
       "required": true,
-      "role": "column-selector",
+      "param_group": "I/O",
       "schema": {
         "type": "string"
       }
@@ -46,7 +46,7 @@
       "name": "output",
       "description": "Name of the output column(s). When n is provided and the output list length equals n, each output column receives the corresponding match. A single output containing a wildcard (*) is expanded into n columns, e.g. \"Top *\" with n: 3 becomes \"Top 1\", \"Top 2\", \"Top 3\".",
       "required": false,
-      "role": "column-output",
+      "param_group": "I/O",
       "runtime_default": null,
       "schema": {
         "type": [
@@ -60,7 +60,7 @@
       "name": "model_id",
       "description": "The model_id to use lookup against.",
       "required": false,
-      "role": "model-reference",
+      "param_group": "Details",
       "runtime_default": null,
       "schema": {
         "type": [
@@ -73,7 +73,7 @@
       "name": "lookup_mode",
       "description": "How to perform lookups. 'by_row' (default): lookup each row individually. 'by_dataframe': lookup unique values once, copy results to all rows. 'by_matrix': lookup once per matrix permutation.",
       "required": false,
-      "role": "option",
+      "param_group": "Options",
       "runtime_default": "by_row",
       "schema": {
         "type": "string",
@@ -88,7 +88,7 @@
       "name": "n",
       "description": "Number of matches to return per input value. When the output list length equals n, each output column receives the corresponding match. Otherwise all n matches are stored as a list in each output column.",
       "required": false,
-      "role": "option",
+      "param_group": "Options",
       "runtime_default": null,
       "schema": {
         "type": [
@@ -101,31 +101,31 @@
       "name": "if",
       "description": "Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`.",
       "required": false,
+      "param_group": "Conditions",
       "schema": {
         "type": "string"
-      },
-      "role": "common-control"
+      }
     },
     {
       "name": "where",
       "description": "Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`.",
       "required": false,
+      "param_group": "Conditions",
       "schema": {
         "type": "string"
-      },
-      "role": "common-control"
+      }
     },
     {
       "name": "where_params",
       "description": "Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`.",
       "required": false,
+      "param_group": "Conditions",
       "schema": {
         "type": [
           "array",
           "object"
         ]
-      },
-      "role": "common-control"
+      }
     }
   ],
   "examples": [],

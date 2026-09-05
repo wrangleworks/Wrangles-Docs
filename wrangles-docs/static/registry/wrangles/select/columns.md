@@ -31,7 +31,7 @@ parameters:
   - name: input
     description: Name of the column(s) to select.
     required: true
-    role: column-selector
+    param_group: I/O
     schema:
       type:
         - string

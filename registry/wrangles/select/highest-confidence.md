@@ -33,13 +33,13 @@ parameters:
   - name: input
     description: List of the input columns to select from.
     required: true
-    role: column-selector
+    param_group: I/O
     schema:
       type: array
   - name: output
     description: If two columns; the result and confidence. If one column; [result, confidence].
     required: true
-    role: column-output
+    param_group: I/O
     schema:
       type:
         - string

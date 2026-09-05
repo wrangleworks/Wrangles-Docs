@@ -1,6 +1,6 @@
 {
   "format": "wrangles-registry-entry",
-  "registry_version": "0.1.0-pilot",
+  "registry_version": "0.1.0",
   "schema_version": "0.1",
   "type": "wrangle",
   "id": "d9f89b00-fda3-4f4c-826c-6417b9390607",
@@ -38,7 +38,7 @@
       "name": "api_key",
       "description": "OpenAI API key used for this wrangle, normally supplied through a recipe variable.",
       "required": true,
-      "role": "credential",
+      "param_group": "Details",
       "schema": {
         "type": "string"
       }
@@ -47,7 +47,7 @@
       "name": "input",
       "description": "Input column name, column index, or list of columns supplied together as DATA for each row. If omitted, all dataframe columns are supplied.",
       "required": false,
-      "role": "column-selector",
+      "param_group": "I/O",
       "runtime_default": null,
       "schema": {
         "type": [
@@ -66,7 +66,7 @@
       "name": "output",
       "description": "Desired extraction. Use an object keyed by output column name for structured fields, a string for one prompted value, or an array of field names/definitions. Each field may use the schema options below.",
       "required": false,
-      "role": "column-output",
+      "param_group": "I/O",
       "runtime_default": null,
       "schema": {
         "type": [
@@ -175,7 +175,7 @@
       "name": "model_id",
       "description": "ID of a saved extract.ai definition. Use it instead of defining an output schema. When output is also supplied with model_id in a recipe, output names the destination column or columns for the saved fields.",
       "required": false,
-      "role": "model-reference",
+      "param_group": "Details",
       "runtime_default": null,
       "schema": {
         "type": [
@@ -188,7 +188,7 @@
       "name": "record_examples",
       "description": "Whole-record examples. Each example has a separate input value or record and the complete expected output record. Optional name and notes provide model-visible context. Use {name: ..., notes: ..., input: ..., output: ...}. Omitted nullable output fields are completed with null. Required non-null nested properties must be supplied. This differs from examples nested under one output field, which teach only that field.",
       "required": false,
-      "role": "option",
+      "param_group": "Options",
       "runtime_default": null,
       "schema": {
         "type": [
@@ -233,7 +233,7 @@
       "name": "output_format",
       "description": "How extracted fields are written. columns writes one dataframe column per field (default); dictionary keeps one object; concatenate joins fields into one string using char.",
       "required": false,
-      "role": "column-output",
+      "param_group": "Formatting",
       "runtime_default": null,
       "schema": {
         "type": [
@@ -251,7 +251,7 @@
       "name": "char",
       "description": "Separator used only when output_format is concatenate. Defaults to comma-space.",
       "required": false,
-      "role": "option",
+      "param_group": "Formatting",
       "runtime_default": ", ",
       "schema": {
         "type": "string"
@@ -261,7 +261,7 @@
       "name": "web_search",
       "description": "Enable OpenAI Responses web search; the model decides when searching helps. When true, every row also receives web_search_sources: a deduplicated list of {title, url} objects in source order, or an empty list when no source was used. This reserved column is automatic. Requires protocol responses. Defaults to false.",
       "required": false,
-      "role": "option",
+      "param_group": "Options",
       "runtime_default": false,
       "schema": {
         "type": "boolean"
@@ -271,7 +271,7 @@
       "name": "instructions",
       "description": "Additional guidance applied to every input row. Use this for decision rules, evidence priorities, normalization requirements, or other behavior that applies to the complete extraction.",
       "required": false,
-      "role": "option",
+      "param_group": "Options",
       "runtime_default": null,
       "schema": {
         "type": [
@@ -288,7 +288,7 @@
       "name": "model",
       "description": "OpenAI model ID for this call. If omitted, uses the configured extract.ai default; a saved model definition may supply its own model.",
       "required": false,
-      "role": "option",
+      "param_group": "Details",
       "schema": {
         "type": "string"
       }
@@ -297,7 +297,7 @@
       "name": "threads",
       "description": "Maximum number of row-level requests sent in parallel. The configured default is 32.",
       "required": false,
-      "role": "option",
+      "param_group": "Execution",
       "schema": {
         "type": "integer",
         "minimum": 1
@@ -307,7 +307,7 @@
       "name": "timeout",
       "description": "Maximum seconds for one HTTP attempt. The configured default is 12; deadline can end the overall call sooner.",
       "required": false,
-      "role": "option",
+      "param_group": "Execution",
       "schema": {
         "type": "number",
         "exclusiveMinimum": 0
@@ -317,7 +317,7 @@
       "name": "retries",
       "description": "Number of additional attempts after a retryable failure. The configured default is 1. Backoff and request timeouts remain bounded by deadline.",
       "required": false,
-      "role": "option",
+      "param_group": "Errors",
       "schema": {
         "type": "integer",
         "minimum": 0
@@ -327,7 +327,7 @@
       "name": "url",
       "description": "Override the endpoint for the selected protocol. A chat/completions URL selects the legacy protocol only when protocol is omitted; new recipes should use the configured Responses endpoint.",
       "required": false,
-      "role": "option",
+      "param_group": "Details",
       "schema": {
         "type": "string"
       }
@@ -336,7 +336,7 @@
       "name": "provider",
       "description": "AI service provider. Currently only OpenAI is supported.",
       "required": false,
-      "role": "option",
+      "param_group": "Details",
       "schema": {
         "type": "string",
         "enum": [
@@ -348,7 +348,7 @@
       "name": "protocol",
       "description": "OpenAI API protocol. Responses is the configured default and is required for web_search; chat_completions remains available for legacy definitions.",
       "required": false,
-      "role": "option",
+      "param_group": "Details",
       "schema": {
         "type": "string",
         "enum": [
@@ -361,7 +361,7 @@
       "name": "deadline",
       "description": "Total seconds allowed for the entire wrangle call, including queued work, retries, and backoff. The configured default is 15.",
       "required": false,
-      "role": "option",
+      "param_group": "Execution",
       "schema": {
         "type": "number",
         "exclusiveMinimum": 0
@@ -371,7 +371,7 @@
       "name": "store",
       "description": "Whether OpenAI may store Responses API results. Defaults to false.",
       "required": false,
-      "role": "option",
+      "param_group": "Details",
       "schema": {
         "type": "boolean"
       }
@@ -380,7 +380,7 @@
       "name": "cache",
       "description": "Reuse identical successful results from the bounded warm-instance cache. Defaults to true. Set false when fresh model or web results are required.",
       "required": false,
-      "role": "option",
+      "param_group": "Details",
       "schema": {
         "type": "boolean"
       }
@@ -389,7 +389,7 @@
       "name": "cache_ttl",
       "description": "Maximum age in seconds for a cached result used by this call. Applies to extracted values and web_search_sources together.",
       "required": false,
-      "role": "option",
+      "param_group": "Details",
       "schema": {
         "type": "number",
         "exclusiveMinimum": 0
@@ -399,7 +399,7 @@
       "name": "strict",
       "description": "Require OpenAI structured-output strict mode. Defaults to true. Definitions with dynamic dictionary keys automatically switch to non-strict provider mode and are still validated locally.",
       "required": false,
-      "role": "option",
+      "param_group": "Details",
       "schema": {
         "type": "boolean"
       }
@@ -408,7 +408,7 @@
       "name": "reasoning",
       "description": "Responses API reasoning controls. Set effort for reasoning-capable models. The configured default is none when that model supports it; otherwise the provider default applies.",
       "required": false,
-      "role": "option",
+      "param_group": "Details",
       "schema": {
         "type": "object",
         "properties": {
@@ -430,7 +430,7 @@
       "name": "verbosity",
       "description": "Responses API text verbosity for compatible models. Defaults to low when supported; ignored with a warning for incompatible models.",
       "required": false,
-      "role": "option",
+      "param_group": "Details",
       "schema": {
         "type": "string",
         "enum": [
@@ -444,31 +444,31 @@
       "name": "if",
       "description": "Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`.",
       "required": false,
+      "param_group": "Conditions",
       "schema": {
         "type": "string"
-      },
-      "role": "common-control"
+      }
     },
     {
       "name": "where",
       "description": "Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`.",
       "required": false,
+      "param_group": "Conditions",
       "schema": {
         "type": "string"
-      },
-      "role": "common-control"
+      }
     },
     {
       "name": "where_params",
       "description": "Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`.",
       "required": false,
+      "param_group": "Conditions",
       "schema": {
         "type": [
           "array",
           "object"
         ]
-      },
-      "role": "common-control"
+      }
     }
   ],
   "examples": [],

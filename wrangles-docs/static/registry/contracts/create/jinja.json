@@ -1,6 +1,6 @@
 {
   "format": "wrangles-registry-entry",
-  "registry_version": "0.1.0-pilot",
+  "registry_version": "0.1.0",
   "schema_version": "0.1",
   "type": "wrangle",
   "id": "10fc6709-16d4-4eab-8f56-6cb5d170ea66",
@@ -38,7 +38,7 @@
       "name": "template",
       "description": "A dictionary which defines the template/location as well as the form which the template is input. If any keys use a space, they must be replaced with an underscore. Note: spaces within column names are replaced by underscores (_).",
       "required": true,
-      "role": "option",
+      "param_group": "Options",
       "schema": {
         "type": "object",
         "additionalProperties": false,
@@ -59,7 +59,7 @@
       "name": "output",
       "description": "Name of the column to be output to.",
       "required": true,
-      "role": "column-output",
+      "param_group": "I/O",
       "schema": {
         "type": "array"
       }
@@ -68,7 +68,7 @@
       "name": "input",
       "description": "Specify a name of column containing a dictionary of elements to be used in jinja template. Otherwise, the column headers will be used as keys.",
       "required": false,
-      "role": "column-selector",
+      "param_group": "I/O",
       "runtime_default": null,
       "schema": {
         "type": [
@@ -81,31 +81,31 @@
       "name": "if",
       "description": "Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`.",
       "required": false,
+      "param_group": "Conditions",
       "schema": {
         "type": "string"
-      },
-      "role": "common-control"
+      }
     },
     {
       "name": "where",
       "description": "Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`.",
       "required": false,
+      "param_group": "Conditions",
       "schema": {
         "type": "string"
-      },
-      "role": "common-control"
+      }
     },
     {
       "name": "where_params",
       "description": "Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`.",
       "required": false,
+      "param_group": "Conditions",
       "schema": {
         "type": [
           "array",
           "object"
         ]
-      },
-      "role": "common-control"
+      }
     }
   ],
   "examples": [],

@@ -1,6 +1,6 @@
 {
   "format": "wrangles-registry-entry",
-  "registry_version": "0.1.0-pilot",
+  "registry_version": "0.1.0",
   "schema_version": "0.1",
   "type": "wrangle",
   "id": "def87df8-72da-4e34-83c1-1fde25126257",
@@ -38,7 +38,7 @@
       "name": "labels",
       "description": "New labels / index to conform the axis specified by ‘axis’ to.",
       "required": false,
-      "role": "option",
+      "param_group": "Options",
       "runtime_default": null,
       "schema": {
         "type": [
@@ -51,7 +51,7 @@
       "name": "index",
       "description": "New labels for the index. Preferably an Index object to avoid duplicating data.",
       "required": false,
-      "role": "option",
+      "param_group": "Options",
       "runtime_default": null,
       "schema": {
         "type": [
@@ -64,7 +64,7 @@
       "name": "columns",
       "description": "New labels for the columns. Preferably an Index object to avoid duplicating data.",
       "required": false,
-      "role": "option",
+      "param_group": "I/O",
       "runtime_default": null,
       "schema": {
         "type": [
@@ -77,7 +77,7 @@
       "name": "axis",
       "description": "Axis to target. Can be either the axis name (‘index’, ‘columns’) or number (0, 1).",
       "required": false,
-      "role": "option",
+      "param_group": "Options",
       "runtime_default": null,
       "schema": {
         "type": [
@@ -91,10 +91,10 @@
       "name": "if",
       "description": "Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`.",
       "required": false,
+      "param_group": "Conditions",
       "schema": {
         "type": "string"
-      },
-      "role": "common-control"
+      }
     }
   ],
   "examples": [],

@@ -31,7 +31,7 @@ parameters:
   - name: input
     description: Name of column to remove words from.
     required: true
-    role: column-selector
+    param_group: I/O
     schema:
       type:
         - string
@@ -40,13 +40,13 @@ parameters:
   - name: to_remove
     description: Column or list of columns with a list of words to be removed.
     required: true
-    role: option
+    param_group: I/O
     schema:
       type: string
   - name: output
     description: Name of the output columns.
     required: false
-    role: column-output
+    param_group: I/O
     runtime_default: null
     schema:
       type:
@@ -56,14 +56,14 @@ parameters:
   - name: tokenize_to_remove
     description: Tokenize all to_remove inputs.
     required: false
-    role: option
+    param_group: Options
     runtime_default: false
     schema:
       type: boolean
   - name: ignore_case
     description: Ignore input and to_remove case.
     required: false
-    role: option
+    param_group: Options
     runtime_default: true
     schema:
       type: boolean

@@ -1,6 +1,6 @@
 # Wrangles Registry Contract
 
-Status: pilot
+Status: pre-production
 
 Contract version: 0.1
 
@@ -45,7 +45,7 @@ manifest and any normalized Registry entry. Aggregate category pages, the
 index, and the template are inventoried separately as supporting Markdown;
 they are not treated as one-to-one wrangle records.
 
-For the first migration pass, conflicting or incomplete source content is
+During the initial migration, conflicting or incomplete source content is
 resolved in this order:
 
 1. WranglesPY callable signature, implementation, and tests
@@ -83,10 +83,10 @@ required for Registry inclusion. Its signature and tests may be used for parity
 checks, but the Registry pipeline must not depend on finding one.
 
 Registry Markdown keeps the full parameter records, including descriptions,
-roles, accepted-value constraints that cannot be inferred reliably from Python
-annotations, and examples. The compiler merges those records with the runtime
-manifest, rejects name/required/default drift, and generates the recipe JSON
-Schema from the merged result.
+presentation groups, accepted-value constraints that cannot be inferred
+reliably from Python annotations, and examples. The compiler merges those
+records with the runtime manifest, rejects name/required/default drift, and
+generates the recipe JSON Schema from the merged result.
 
 The current embedded JSON Schema docstrings in `recipe_wrangles` are migration
 input, not a second permanent authoring source. Their complete overview and
@@ -157,7 +157,7 @@ Each entry separates identity, executable naming, compatibility, and routing:
 - `slug` is the public documentation path below `/wrangles/`. Changing it
   requires a redirect.
 
-`aliases` contains still-supported legacy recipe keys. The first-pass Registry
+`aliases` contains still-supported legacy recipe keys. The initial Registry
 keeps `classify`, `lookup`, and other ungrouped keys exactly as the current code
 exposes them. When the dotted migration is implemented, the new key can become
 canonical without changing `id`, and the former key can move to `aliases` for
@@ -197,6 +197,22 @@ Parameter records contain human guidance plus a JSON Schema fragment. Every
 runtime-owned parameter fact must reconcile with the pinned manifest and be
 traceable to the named runtime symbol.
 
+Every parameter also declares one `param_group` from a small shared vocabulary:
+
+- `I/O` identifies input and output columns or structures.
+- `Options` contains wrangle-specific settings users need to achieve the
+  desired behavior.
+- `Formatting` controls the shape or presentation of results.
+- `Conditions` contains the shared `if`, `where`, and `where_params` controls.
+- `Execution` controls batching, concurrency, time limits, and nested execution.
+- `Errors` controls fallbacks, retries, and failure handling.
+- `Details` contains model, provider, connection, credential, cache, and other
+  supporting technical settings.
+
+The groups are intentionally fixed rather than specialized by wrangle. They
+organize the human documentation and remain available to agent and product
+consumers in the compiled JSON contracts.
+
 `runtime_default` means the value used when the argument is omitted. It is not
 a playground placeholder. Example or UI starter values belong in examples,
 not in `runtime_default`.
@@ -222,7 +238,7 @@ verification level:
 - `live`: a separate controlled job executes an external service.
 - `manual`: the example requires a documented human check.
 
-The pilot compiler implements `static` verification. The entries remain
+The compiler currently implements `static` verification. The entries remain
 `static` until an automated WranglesPY execution check is added; output
 fixtures do not by themselves constitute execution evidence.
 
@@ -241,8 +257,8 @@ The compiler produces:
 - one comprehensive JSON contract per wrangle under
   `wrangles-docs/static/registry/contracts/`, including all parameters
 - raw source Markdown and sanitized example fixtures
-- a pilot recipe JSON Schema under
-  `wrangles-docs/static/schemas/recipes/pilot/schema.json`
+- a pre-production recipe JSON Schema under
+  `wrangles-docs/static/schemas/recipes/registry/schema.json`
 - deterministic JSON and Markdown reconciliation reports under
   `registry/reports/`
 
@@ -256,7 +272,8 @@ and environment-specific values are excluded. A clean compile followed by
 
 ## Versioning and lifecycle
 
-The pilot Registry version is `0.1.0-pilot`. A production release will contain:
+The pre-production Registry version is `0.1.0`. A production release will
+contain:
 
 - an immutable Registry version
 - the compatible WranglesPY version or version range
@@ -265,8 +282,12 @@ The pilot Registry version is `0.1.0-pilot`. A production release will contain:
 - a convenience `latest` alias that is not used for reproducible execution
 
 Wrangles progress through `draft`, `active`, `deprecated`, and `removed`.
-Deprecated records stay discoverable and identify their replacement. Removed
-records remain in versioned artifacts needed to understand historical recipes.
+Deprecated records stay discoverable and must identify their canonical
+replacement with `replaced_by`. The compiler rejects a missing, self-referential,
+or unknown replacement key and generates a visible migration notice in the
+human documentation. Deprecated entries sort after active entries within their
+documentation group. Removed records remain in versioned artifacts needed to
+understand historical recipes.
 
 ## Change workflow
 
@@ -277,17 +298,31 @@ the database projection are invalid.
 The current wiki and database extraction scripts are migration inputs. Once
 the cutover is complete, they must not remain ongoing authoring paths.
 
-## Pilot exit criteria
+## Production readiness
 
-The pilot is complete when:
+The contract remains `pre-production`. The detailed migration sequence is in
+[README.md](README.md#migration-plan), and production requires all of the
+following outcomes:
 
-1. All callable recipe wrangles compile into deterministic Markdown, manifest,
-   and recipe-schema artifacts; curated entries are preserved during bootstrap.
-2. Invalid frontmatter, duplicate keys, invalid recipes, missing fixtures, and
-   stale generated outputs fail CI.
-3. The pages build successfully in Docusaurus at stable per-wrangle routes.
-4. A pinned WranglesPY contract manifest is reconciled with all existing
-   per-wrangle quasi-registry Markdown and the normalized pilot entries. The
-   report distinguishes records awaiting normalization from runtime wrangles
-   that genuinely lack Markdown, and preserves embedded-schema differences.
-5. An offline example runner is designed for the next implementation slice.
+1. Every callable recipe wrangle and public parameter reconciles with a pinned
+   WranglesPY runtime manifest, with no unexplained key, required-state,
+   default, common-control, or accepted-value conflicts.
+2. Registry records contain reviewed descriptions, constraints, examples,
+   access and lifecycle metadata, provenance, and canonical database UUIDs.
+3. The entry schema, compiled contract, recipe-schema URLs, compatibility
+   policy, and change-management rules are stable and versioned.
+4. Recipe JSON Schema and any temporary WranglesPY `_schema` compatibility view
+   are generated from the Registry and protected by deterministic parity checks.
+5. WranglesXL, VS Code, APIs, the docs site, and Recipe Writer clients consume
+   the Registry-generated contracts instead of hand-maintained schema copies.
+6. Hand-maintained `_schema` docstrings have been removed, or only a generated
+   compatibility view remains for explicitly supported legacy readers.
+7. Local examples have offline execution verification, and service-backed
+   examples have controlled live verification.
+8. Invalid source, duplicate keys, invalid recipes, missing fixtures, runtime
+   drift, and stale generated outputs fail CI.
+9. Registry pages build at stable routes, and immutable public artifacts have
+   been deployed and verified at canonical URLs.
+10. Ownership, release, rollback, and deprecation procedures are documented;
+    the first production Registry version is tagged before this status changes
+    to `production`.

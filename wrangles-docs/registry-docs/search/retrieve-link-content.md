@@ -3,53 +3,48 @@ title: "Retrieve Link Content"
 description: "Retrieves targeted content from web pages using LLM URL extraction. Can optionally output a second column containing a clean, human-readable text summary of the retrieved data."
 sidebar_label: "Retrieve Link Content"
 slug: "/search/retrieve-link-content"
+registry_entry: true
+toc_min_heading_level: 2
+toc_max_heading_level: 3
 ---
 
 # Retrieve Link Content
 
 Retrieves targeted content from web pages using LLM URL extraction. Can optionally output a second column containing a clean, human-readable text summary of the retrieved data.
 
-> Pilot Registry entry. Runtime contract status: `verified`.
+
 
 ## Parameters
 
-| Parameter | Required | Accepted value | Description | Runtime default |
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
 | --- | --- | --- | --- | --- |
-| `input` | Yes | string, array | Name or list of input columns containing URLs or Scored Search Result dictionaries. | — |
-| `output` | No | string, array, null | Name of the output column for the raw dictionaries. To output BOTH the raw dictionaries and the formatted text, provide a list of exactly two column names (e.g., [page_data, page_text]). | `null` |
-| `client` | No | string; one of: google_url_context | The retrieval provider to use. | `"google_url_context"` |
-| `api_key` | No | string, null | API key for the provider. Can also be set as an environment variable (e.g., GOOGLE_API_KEY). | `null` |
-| `prompt` | No | string, null | Optional custom system prompt to guide the extraction behavior and output format. | `null` |
-| `model_id` | No | string | The specific model ID to use (default models/gemini-3-flash-preview). | `"models/gemini-3-flash-preview"` |
-| `output_format` | No | string; one of: markdown, json | The desired format for the extracted content. | `"json"` |
-| `threads` | No | integer | Number of concurrent threads for parallel processing (default 10). | `10` |
-| `if` | No | string | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | — |
-| `where` | No | string | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | — |
-| `where_params` | No | array, object | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | — |
+| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
+| `input` | Name or list of input columns containing URLs or Scored Search Result dictionaries. | string, array | — | Yes |
+| `output` | Name of the output column for the raw dictionaries. To output BOTH the raw dictionaries and the formatted text, provide a list of exactly two column names (e.g., [page_data, page_text]). | string, array, null | `null` | No |
+| <span className="ww-param-group-label">Options</span> |  |  |  |  |
+| `prompt` | Optional custom system prompt to guide the extraction behavior and output format. | string, null | `null` | No |
+| <span className="ww-param-group-label">Formatting</span> |  |  |  |  |
+| `output_format` | The desired format for the extracted content. | string; one of:<ul className="ww-param-enum-values"><li>markdown</li><li>json</li></ul> | `"json"` | No |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
+| <span className="ww-param-group-label">Execution</span> |  |  |  |  |
+| `threads` | Number of concurrent threads for parallel processing (default 10). | integer | `10` | No |
+| <span className="ww-param-group-label">Details</span> |  |  |  |  |
+| `client` | The retrieval provider to use. | string; one of:<ul className="ww-param-enum-values"><li>google_url_context</li></ul> | `"google_url_context"` | No |
+| `api_key` | API key for the provider. Can also be set as an environment variable (e.g., GOOGLE_API_KEY). | string, null | `null` | No |
+| `model_id` | The specific model ID to use (default models/gemini-3-flash-preview). | string | `"models/gemini-3-flash-preview"` | No |
 
-## Verified examples
+</div>
 
-_No fixture-backed examples are currently available. See migrated examples under Guidance where present._
-
-## Access
-
-| Requirement | Value |
-| --- | --- |
-| ai powered | No |
-| requires account | No |
-| requires subscription | No |
-| requires external api key | No |
-
-## Guidance
-
-Retrieves targeted content from web pages using LLM URL extraction. Can optionally output a second column containing a clean, human-readable text summary of the retrieved data.
-
-## Migrated examples
-#### Retrieve Structured Page Content
+## Examples
 
 This template extracts JSON content from a URL. Returned fields depend on the page, prompt, and retrieval model.
 
-##### Recipe
+
 
 ```yaml
 wrangles:
@@ -66,9 +61,7 @@ wrangles:
 
 <div className="ww-sample-grid">
 
-<div className="ww-sample-panel">
-
-##### Input Sample
+<div className="ww-sample-panel ww-sample-panel--input" data-sample-role="input">
 
 | Product URL |
 | --- |
@@ -76,13 +69,11 @@ wrangles:
 
 </div>
 
-<div className="ww-sample-panel">
+<div className="ww-sample-panel ww-sample-panel--output" data-sample-role="output">
 
-##### Output Sample
-
-| Product URL | Page Data |
-| --- | --- |
-| https://example.com/products/6202 | `{"title": "6202 Bearing", "manufacturer": "SKF"}` |
+| Page Data |
+| --- |
+| `{"title": "6202 Bearing", "manufacturer": "SKF"}` |
 
 </div>
 
@@ -90,17 +81,35 @@ wrangles:
 
 _Template based on the documented parameters; no published source example is currently available._
 
-## Provenance
+<details className="ww-field-disclosure">
+
+<summary>Access</summary>
+
+| Requirement | Value |
+| --- | --- |
+| AI-powered | No |
+| Requires WrangleWorks account | No |
+| Requires subscription | No |
+| Requires external API key | No |
+
+</details>
+
+<details className="ww-field-disclosure">
+
+<summary>Technical details</summary>
+
+| Field | Value |
+| --- | --- |
+| Recipe key | `search.retrieve_link_content` |
+| Lifecycle status | active |
+| Namespace | `search` |
+| Documentation group | `search` |
+| Aliases | None |
+| Runtime symbol | `wrangles.recipe_wrangles.search.retrieve_link_content` |
+
+**Sources**
 
 - [WranglesPY search.retrieve_link_content implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/search.py)
 - [Existing search.retrieve_link_content Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/search/_sources/retrieve-link-content.md)
 
-## Registry metadata
-
-- Registry ID: `3d5faa87-9e96-48c0-8226-5ae566e8d76c`
-- Namespace: `search`
-- Recipe key: `search.retrieve_link_content`
-- Aliases: none
-- Runtime symbol: `wrangles.recipe_wrangles.search.retrieve_link_content`
-- Status: `active`
-- Registry version: `0.1.0-pilot`
+</details>

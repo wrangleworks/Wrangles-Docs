@@ -3,45 +3,34 @@ title: "Highest Confidence"
 description: "Select the option with the highest confidence from multiple columns. Inputs are expected to be of the form [<<value>>, <<confidence_score>>]."
 sidebar_label: "Highest Confidence"
 slug: "/select/highest-confidence"
+registry_entry: true
+toc_min_heading_level: 2
+toc_max_heading_level: 3
 ---
 
 # Highest Confidence
 
 Select the option with the highest confidence from multiple columns. Inputs are expected to be of the form [&lt;&lt;value&gt;&gt;, &lt;&lt;confidence_score&gt;&gt;].
 
-> Pilot Registry entry. Runtime contract status: `verified`.
+Select the option with the highest confidence from multiple columns. Inputs are expected to be of the form `[value, confidence_score]`.
 
 ## Parameters
 
-| Parameter | Required | Accepted value | Description | Runtime default |
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
 | --- | --- | --- | --- | --- |
-| `input` | Yes | array | List of the input columns to select from. | — |
-| `output` | Yes | string, array | If two columns; the result and confidence. If one column; [result, confidence]. | — |
-| `if` | No | string | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | — |
-| `where` | No | string | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | — |
-| `where_params` | No | array, object | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | — |
+| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
+| `input` | List of the input columns to select from. | array | — | Yes |
+| `output` | If two columns; the result and confidence. If one column; [result, confidence]. | string, array | — | Yes |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
 
-## Verified examples
+</div>
 
-_No fixture-backed examples are currently available. See migrated examples under Guidance where present._
-
-## Access
-
-| Requirement | Value |
-| --- | --- |
-| ai powered | No |
-| requires account | No |
-| requires subscription | No |
-| requires external api key | No |
-
-## Guidance
-
-Select the option with the highest confidence from multiple columns. Inputs are expected to be of the form `[value, confidence_score]`.
-
-## Migrated examples
-#### Selecting Highest Confidence Single Output
-
-##### Recipe
+## Examples
 
 ```yaml
 wrangles:
@@ -55,9 +44,7 @@ wrangles:
 
 <div className="ww-sample-grid">
 
-<div className="ww-sample-panel">
-
-##### Input Sample
+<div className="ww-sample-panel ww-sample-panel--input" data-sample-role="input">
 
 | Col1 | Col2 | Col3 |
 | --- | --- | --- |
@@ -65,9 +52,7 @@ wrangles:
 
 </div>
 
-<div className="ww-sample-panel">
-
-##### Output Sample
+<div className="ww-sample-panel ww-sample-panel--output" data-sample-role="output">
 
 | Highest Confidence |
 | --- |
@@ -77,9 +62,9 @@ wrangles:
 
 </div>
 
-#### Selecting Highest Confidence Two Outputs
 
-##### Recipe
+
+
 
 ```yaml
 wrangles:
@@ -95,9 +80,7 @@ wrangles:
 
 <div className="ww-sample-grid">
 
-<div className="ww-sample-panel">
-
-##### Input Sample
+<div className="ww-sample-panel ww-sample-panel--input" data-sample-role="input">
 
 | Col1 | Col2 | Col3 |
 | --- | --- | --- |
@@ -105,9 +88,7 @@ wrangles:
 
 </div>
 
-<div className="ww-sample-panel">
-
-##### Output Sample
+<div className="ww-sample-panel ww-sample-panel--output" data-sample-role="output">
 
 | Item | Confidence |
 | --- | --- |
@@ -117,17 +98,35 @@ wrangles:
 
 </div>
 
-## Provenance
+<details className="ww-field-disclosure">
+
+<summary>Access</summary>
+
+| Requirement | Value |
+| --- | --- |
+| AI-powered | No |
+| Requires WrangleWorks account | No |
+| Requires subscription | No |
+| Requires external API key | No |
+
+</details>
+
+<details className="ww-field-disclosure">
+
+<summary>Technical details</summary>
+
+| Field | Value |
+| --- | --- |
+| Recipe key | `select.highest_confidence` |
+| Lifecycle status | active |
+| Namespace | `select` |
+| Documentation group | `select` |
+| Aliases | None |
+| Runtime symbol | `wrangles.recipe_wrangles.select.highest_confidence` |
+
+**Sources**
 
 - [WranglesPY select.highest_confidence implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/select.py)
 - [Existing select.highest_confidence Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/select/_sources/highest-confidence.md)
 
-## Registry metadata
-
-- Registry ID: `00aad85d-8cc8-42e5-86f3-e4ff916e8ac2`
-- Namespace: `select`
-- Recipe key: `select.highest_confidence`
-- Aliases: none
-- Runtime symbol: `wrangles.recipe_wrangles.select.highest_confidence`
-- Status: `active`
-- Registry version: `0.1.0-pilot`
+</details>

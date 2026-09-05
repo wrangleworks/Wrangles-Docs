@@ -31,7 +31,7 @@ parameters:
   - name: by
     description: List of the input columns to group on.
     required: false
-    role: column-selector
+    param_group: I/O
     runtime_default: []
     schema:
       type:
@@ -43,14 +43,14 @@ parameters:
       If false, column names are left as-is; use a dictionary entry to supply a custom output name
       (e.g. - Value: Total).
     required: false
-    role: option
+    param_group: Formatting
     runtime_default: true
     schema:
       type: boolean
   - name: list
     description: Group and return all values for these column(s) as a list.
     required: false
-    role: option
+    param_group: Options
     schema:
       type:
         - string
@@ -58,7 +58,7 @@ parameters:
   - name: first
     description: The first value for these column(s).
     required: false
-    role: option
+    param_group: Options
     schema:
       type:
         - string
@@ -66,7 +66,7 @@ parameters:
   - name: last
     description: The last value for these column(s).
     required: false
-    role: option
+    param_group: Options
     schema:
       type:
         - string
@@ -74,7 +74,7 @@ parameters:
   - name: min
     description: The minimum value for these column(s).
     required: false
-    role: option
+    param_group: Options
     schema:
       type:
         - string
@@ -82,7 +82,7 @@ parameters:
   - name: max
     description: The maximum value for these column(s).
     required: false
-    role: option
+    param_group: Options
     schema:
       type:
         - string
@@ -90,7 +90,7 @@ parameters:
   - name: mean
     description: The mean (average) value for these column(s).
     required: false
-    role: option
+    param_group: Options
     schema:
       type:
         - string
@@ -98,7 +98,7 @@ parameters:
   - name: median
     description: The median value for these column(s).
     required: false
-    role: option
+    param_group: Options
     schema:
       type:
         - string
@@ -106,7 +106,7 @@ parameters:
   - name: nunique
     description: The count of unique values for these column(s).
     required: false
-    role: option
+    param_group: Options
     schema:
       type:
         - string
@@ -114,7 +114,7 @@ parameters:
   - name: count
     description: The count of values for these column(s).
     required: false
-    role: option
+    param_group: Options
     schema:
       type:
         - string
@@ -125,7 +125,7 @@ parameters:
       converted to JSON-safe strings; missing values use the key "null" and booleans use lowercase
       "true"/"false".
     required: false
-    role: option
+    param_group: Options
     schema:
       type:
         - string
@@ -133,7 +133,7 @@ parameters:
   - name: std
     description: The standard deviation of values for these column(s).
     required: false
-    role: option
+    param_group: Options
     schema:
       type:
         - string
@@ -141,7 +141,7 @@ parameters:
   - name: sum
     description: The total of values for these column(s).
     required: false
-    role: option
+    param_group: Options
     schema:
       type:
         - string
@@ -149,7 +149,7 @@ parameters:
   - name: any
     description: Return true if any of the values for these column(s) are true.
     required: false
-    role: option
+    param_group: Options
     schema:
       type:
         - string
@@ -157,7 +157,7 @@ parameters:
   - name: all
     description: Return true if all of the values for these column(s) are true.
     required: false
-    role: option
+    param_group: Options
     schema:
       type:
         - string
@@ -165,7 +165,7 @@ parameters:
   - name: p75
     description: Get a percentile. Note, you can use any integer here for the corresponding percentile.
     required: false
-    role: option
+    param_group: Options
     schema:
       type:
         - string
@@ -174,7 +174,7 @@ parameters:
     name_pattern: ^custom\.[A-Za-z_][A-Za-z0-9_]*$
     description: Placeholder for custom functions. Replace 'placeholder' with the name of the function.
     required: false
-    role: option
+    param_group: Options
     schema:
       type:
         - string

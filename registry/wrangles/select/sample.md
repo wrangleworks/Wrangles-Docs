@@ -33,7 +33,7 @@ parameters:
       If a whole number, will select that number of rows. If a decimal between 0 and 1 will select
       that fraction of the rows e.g. 0.1 => 10% of rows will be returned.
     required: true
-    role: option
+    param_group: Options
     schema:
       type:
         - integer

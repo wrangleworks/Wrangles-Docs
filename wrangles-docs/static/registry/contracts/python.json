@@ -1,6 +1,6 @@
 {
   "format": "wrangles-registry-entry",
-  "registry_version": "0.1.0-pilot",
+  "registry_version": "0.1.0",
   "schema_version": "0.1",
   "type": "wrangle",
   "id": "c0398a11-7731-4e47-8df0-b07eea0b1d6c",
@@ -38,7 +38,7 @@
       "name": "command",
       "description": "Python command. This must return a value. Note: any non-alphanumeric characters in variable names are replaced by underscores (_).",
       "required": true,
-      "role": "option",
+      "param_group": "Options",
       "schema": {
         "type": "string"
       }
@@ -47,7 +47,7 @@
       "name": "output",
       "description": "Name or list of output column(s). To output multiple columns, return a list of the corresponding length.",
       "required": true,
-      "role": "column-output",
+      "param_group": "I/O",
       "schema": {
         "type": [
           "string",
@@ -59,7 +59,7 @@
       "name": "input",
       "description": "Name or list of input column(s) to filter the data available to the command. Useful in conjunction with kwargs to target a variable range of columns. If not specified, all columns will be available.",
       "required": false,
-      "role": "column-selector",
+      "param_group": "I/O",
       "runtime_default": null,
       "schema": {
         "type": [
@@ -74,7 +74,7 @@
       "name": "except",
       "description": "Value to return for the row if an exception occurs during the evaluation. If not provided, an exception will be raised as normal. If multiple output columns are specified, this must match the length.",
       "required": false,
-      "role": "option",
+      "param_group": "Errors",
       "schema": {
         "type": [
           "string",
@@ -90,31 +90,31 @@
       "name": "if",
       "description": "Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`.",
       "required": false,
+      "param_group": "Conditions",
       "schema": {
         "type": "string"
-      },
-      "role": "common-control"
+      }
     },
     {
       "name": "where",
       "description": "Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`.",
       "required": false,
+      "param_group": "Conditions",
       "schema": {
         "type": "string"
-      },
-      "role": "common-control"
+      }
     },
     {
       "name": "where_params",
       "description": "Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`.",
       "required": false,
+      "param_group": "Conditions",
       "schema": {
         "type": [
           "array",
           "object"
         ]
-      },
-      "role": "common-control"
+      }
     }
   ],
   "examples": [],

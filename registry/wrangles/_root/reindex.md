@@ -31,7 +31,7 @@ parameters:
   - name: labels
     description: New labels / index to conform the axis specified by ‘axis’ to.
     required: false
-    role: option
+    param_group: Options
     runtime_default: null
     schema:
       type:
@@ -40,7 +40,7 @@ parameters:
   - name: index
     description: New labels for the index. Preferably an Index object to avoid duplicating data.
     required: false
-    role: option
+    param_group: Options
     runtime_default: null
     schema:
       type:
@@ -49,7 +49,7 @@ parameters:
   - name: columns
     description: New labels for the columns. Preferably an Index object to avoid duplicating data.
     required: false
-    role: option
+    param_group: I/O
     runtime_default: null
     schema:
       type:
@@ -58,7 +58,7 @@ parameters:
   - name: axis
     description: Axis to target. Can be either the axis name (‘index’, ‘columns’) or number (0, 1).
     required: false
-    role: option
+    param_group: Options
     runtime_default: null
     schema:
       type:

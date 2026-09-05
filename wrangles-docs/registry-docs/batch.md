@@ -3,51 +3,43 @@ title: "Batch"
 description: "Split the data into batches for executing a list of wrangles. Use this in situations such as where the intermediate data is too large to fit in memory."
 sidebar_label: "Batch"
 slug: "/batch"
+registry_entry: true
+toc_min_heading_level: 2
+toc_max_heading_level: 3
 ---
 
 # Batch
 
 Split the data into batches for executing a list of wrangles. Use this in situations such as where the intermediate data is too large to fit in memory.
 
-> Pilot Registry entry. Runtime contract status: `verified`.
+Execute a series of wrangles in batches. Batches can run in parallel with `threads` and can provide fallback output when an error occurs.
 
 ## Parameters
 
-| Parameter | Required | Accepted value | Description | Runtime default |
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
 | --- | --- | --- | --- | --- |
-| `wrangles` | Yes | array | The wrangles to execute on the data. Each series of wrangles will be run against the data in batches of the size defined by batch_size. | — |
-| `batch_size` | No | integer | The number of rows to split each batch into. | `1000` |
-| `threads` | No | integer | The number of threads to use for parallel processing. Default 1. | `1` |
-| `on_error` | No | object, null | A dictionary of column_name: value to return if an error occurs while attempting to run a batch. | `null` |
-| `timeout` | No | number, null | The number of seconds to wait for a batch to complete before raising an error. | `null` |
-| `use_multiprocessing` | No | boolean | Use process-based workers instead of threads. This is an advanced runtime option. | `false` |
-| `if` | No | string | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | — |
-| `where` | No | string | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | — |
-| `where_params` | No | array, object | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | — |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
+| <span className="ww-param-group-label">Execution</span> |  |  |  |  |
+| `wrangles` | The wrangles to execute on the data. Each series of wrangles will be run against the data in batches of the size defined by batch_size. | array | — | Yes |
+| `batch_size` | The number of rows to split each batch into. | integer | `1000` | No |
+| `threads` | The number of threads to use for parallel processing. Default 1. | integer | `1` | No |
+| `timeout` | The number of seconds to wait for a batch to complete before raising an error. | number, null | `null` | No |
+| `use_multiprocessing` | Use process-based workers instead of threads. This is an advanced runtime option. | boolean | `false` | No |
+| <span className="ww-param-group-label">Errors</span> |  |  |  |  |
+| `on_error` | A dictionary of column_name: value to return if an error occurs while attempting to run a batch. | object, null | `null` | No |
 
-## Verified examples
+</div>
 
-_No fixture-backed examples are currently available. See migrated examples under Guidance where present._
-
-## Access
-
-| Requirement | Value |
-| --- | --- |
-| ai powered | No |
-| requires account | No |
-| requires subscription | No |
-| requires external api key | No |
-
-## Guidance
-
-Execute a series of wrangles in batches. Batches can run in parallel with `threads` and can provide fallback output when an error occurs.
-
-## Migrated examples
-#### Batch an Extract AI Wrangle
+## Examples
 
 This example processes product descriptions in batches of two rows.
 
-##### Recipe
+
 
 ```yaml
 wrangles:
@@ -66,9 +58,7 @@ wrangles:
 
 <div className="ww-sample-grid">
 
-<div className="ww-sample-panel">
-
-##### Input Sample
+<div className="ww-sample-panel ww-sample-panel--input" data-sample-role="input">
 
 | Product Description |
 | --- |
@@ -79,32 +69,48 @@ wrangles:
 
 </div>
 
-<div className="ww-sample-panel">
+<div className="ww-sample-panel ww-sample-panel--output" data-sample-role="output">
 
-##### Output Sample
+| Title |
+| --- |
+| Memory Foam Pillow |
+| Organic Cotton T-Shirt |
+| Stainless Steel Water Bottle |
+| Wireless Bluetooth Earbuds |
 
-| Product Description | Title |
+</div>
+
+</div>
+
+<details className="ww-field-disclosure">
+
+<summary>Access</summary>
+
+| Requirement | Value |
 | --- | --- |
-| Sleep better with our Memory Foam Pillow, designed to contour to your head and neck. | Memory Foam Pillow |
-| Stay comfortable and stylish with our Organic Cotton T-Shirt, made from soft, breathable fabric. | Organic Cotton T-Shirt |
-| Keep drinks hot or cold with our Stainless Steel Water Bottle, featuring durable insulation. | Stainless Steel Water Bottle |
-| Enjoy crisp sound and long battery life with our Wireless Bluetooth Earbuds. | Wireless Bluetooth Earbuds |
+| AI-powered | No |
+| Requires WrangleWorks account | No |
+| Requires subscription | No |
+| Requires external API key | No |
 
-</div>
+</details>
 
-</div>
+<details className="ww-field-disclosure">
 
-## Provenance
+<summary>Technical details</summary>
+
+| Field | Value |
+| --- | --- |
+| Recipe key | `batch` |
+| Lifecycle status | active |
+| Namespace | Root-level |
+| Documentation group | `utility` |
+| Aliases | None |
+| Runtime symbol | `wrangles.recipe_wrangles.main.batch` |
+
+**Sources**
 
 - [WranglesPY batch implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/main.py)
 - [Existing batch Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/utility/_sources/batch.md)
 
-## Registry metadata
-
-- Registry ID: pending database assignment
-- Namespace: root-level runtime key
-- Recipe key: `batch`
-- Aliases: none
-- Runtime symbol: `wrangles.recipe_wrangles.main.batch`
-- Status: `active`
-- Registry version: `0.1.0-pilot`
+</details>

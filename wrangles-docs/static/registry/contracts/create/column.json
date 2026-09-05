@@ -1,6 +1,6 @@
 {
   "format": "wrangles-registry-entry",
-  "registry_version": "0.1.0-pilot",
+  "registry_version": "0.1.0",
   "schema_version": "0.1",
   "type": "wrangle",
   "id": "5a18e2c8-ec7c-45f5-88fd-bb5c358a8b40",
@@ -38,7 +38,7 @@
       "name": "output",
       "description": "Name or list of names of new columns or column_name: value pairs.",
       "required": true,
-      "role": "column-output",
+      "param_group": "I/O",
       "schema": {
         "type": [
           "string",
@@ -50,7 +50,7 @@
       "name": "value",
       "description": "(Optional) Value(s) to add in the new column(s). If using a dictionary in output, value can only be a string.",
       "required": false,
-      "role": "option",
+      "param_group": "Options",
       "runtime_default": null,
       "schema": {
         "type": [
@@ -67,7 +67,7 @@
       "name": "value_if_exists",
       "description": "Determines behaviour when the output column already exists. existing (default): leave the column unchanged. coalesce: fill empty/null cells with the new value, keeping non-null cells. new: overwrite the entire column with the new value.",
       "required": false,
-      "role": "option",
+      "param_group": "Options",
       "runtime_default": "existing",
       "schema": {
         "type": "string",
@@ -82,7 +82,7 @@
       "name": "coalesce_value",
       "description": "Only used when value_if_exists is coalesce. Determines which side is preferred when both the existing and new values are non-empty. existing (default): keep the existing value, only fill empty/null cells with the new value. new: keep the new value, only fall back to the existing value where the new value is empty/null.",
       "required": false,
-      "role": "option",
+      "param_group": "Options",
       "runtime_default": "existing",
       "schema": {
         "type": "string",
@@ -96,31 +96,31 @@
       "name": "if",
       "description": "Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`.",
       "required": false,
+      "param_group": "Conditions",
       "schema": {
         "type": "string"
-      },
-      "role": "common-control"
+      }
     },
     {
       "name": "where",
       "description": "Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`.",
       "required": false,
+      "param_group": "Conditions",
       "schema": {
         "type": "string"
-      },
-      "role": "common-control"
+      }
     },
     {
       "name": "where_params",
       "description": "Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`.",
       "required": false,
+      "param_group": "Conditions",
       "schema": {
         "type": [
           "array",
           "object"
         ]
-      },
-      "role": "common-control"
+      }
     }
   ],
   "examples": [],

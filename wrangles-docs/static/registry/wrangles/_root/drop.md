@@ -31,7 +31,7 @@ parameters:
   - name: columns
     description: Name of the column(s) to drop.
     required: true
-    role: option
+    param_group: I/O
     schema:
       type:
         - string

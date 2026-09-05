@@ -33,7 +33,7 @@ parameters:
   - name: input
     description: Name or list of input columns containing URLs or Scored Search Result dictionaries.
     required: true
-    role: column-selector
+    param_group: I/O
     schema:
       type:
         - string
@@ -43,7 +43,7 @@ parameters:
       Name of the output column for the raw dictionaries. To output BOTH the raw dictionaries and
       the formatted text, provide a list of exactly two column names (e.g., [page_data, page_text]).
     required: false
-    role: column-output
+    param_group: I/O
     runtime_default: null
     schema:
       type:
@@ -53,7 +53,7 @@ parameters:
   - name: client
     description: The retrieval provider to use.
     required: false
-    role: option
+    param_group: Details
     runtime_default: google_url_context
     schema:
       type: string
@@ -62,7 +62,7 @@ parameters:
   - name: api_key
     description: API key for the provider. Can also be set as an environment variable (e.g., GOOGLE_API_KEY).
     required: false
-    role: credential
+    param_group: Details
     runtime_default: null
     schema:
       type:
@@ -71,7 +71,7 @@ parameters:
   - name: prompt
     description: Optional custom system prompt to guide the extraction behavior and output format.
     required: false
-    role: option
+    param_group: Options
     runtime_default: null
     schema:
       type:
@@ -80,14 +80,14 @@ parameters:
   - name: model_id
     description: The specific model ID to use (default models/gemini-3-flash-preview).
     required: false
-    role: model-reference
+    param_group: Details
     runtime_default: models/gemini-3-flash-preview
     schema:
       type: string
   - name: output_format
     description: The desired format for the extracted content.
     required: false
-    role: column-output
+    param_group: Formatting
     runtime_default: json
     schema:
       type: string
@@ -97,7 +97,7 @@ parameters:
   - name: threads
     description: Number of concurrent threads for parallel processing (default 10).
     required: false
-    role: option
+    param_group: Execution
     runtime_default: 10
     schema:
       type: integer

@@ -33,7 +33,7 @@ parameters:
   - name: api_key
     description: OpenAI API key used for this wrangle, normally supplied through a recipe variable.
     required: true
-    role: credential
+    param_group: Details
     schema:
       type: string
   - name: input
@@ -41,7 +41,7 @@ parameters:
       Input column name, column index, or list of columns supplied together as DATA for each row. If
       omitted, all dataframe columns are supplied.
     required: false
-    role: column-selector
+    param_group: I/O
     runtime_default: null
     schema:
       type:
@@ -57,7 +57,7 @@ parameters:
       for one prompted value, or an array of field names/definitions. Each field may use the schema
       options below.
     required: false
-    role: column-output
+    param_group: I/O
     runtime_default: null
     schema:
       type:
@@ -139,7 +139,7 @@ parameters:
       is also supplied with model_id in a recipe, output names the destination column or columns for
       the saved fields.
     required: false
-    role: model-reference
+    param_group: Details
     runtime_default: null
     schema:
       type:
@@ -153,7 +153,7 @@ parameters:
       Required non-null nested properties must be supplied. This differs from examples nested under
       one output field, which teach only that field.
     required: false
-    role: option
+    param_group: Options
     runtime_default: null
     schema:
       type:
@@ -187,7 +187,7 @@ parameters:
       How extracted fields are written. columns writes one dataframe column per field (default);
       dictionary keeps one object; concatenate joins fields into one string using char.
     required: false
-    role: column-output
+    param_group: Formatting
     runtime_default: null
     schema:
       type:
@@ -200,7 +200,7 @@ parameters:
   - name: char
     description: Separator used only when output_format is concatenate. Defaults to comma-space.
     required: false
-    role: option
+    param_group: Formatting
     runtime_default: ', '
     schema:
       type: string
@@ -211,7 +211,7 @@ parameters:
       order, or an empty list when no source was used. This reserved column is automatic. Requires
       protocol responses. Defaults to false.
     required: false
-    role: option
+    param_group: Options
     runtime_default: false
     schema:
       type: boolean
@@ -221,7 +221,7 @@ parameters:
       priorities, normalization requirements, or other behavior that applies to the complete
       extraction.
     required: false
-    role: option
+    param_group: Options
     runtime_default: null
     schema:
       type:
@@ -235,13 +235,13 @@ parameters:
       OpenAI model ID for this call. If omitted, uses the configured extract.ai default; a saved
       model definition may supply its own model.
     required: false
-    role: option
+    param_group: Details
     schema:
       type: string
   - name: threads
     description: Maximum number of row-level requests sent in parallel. The configured default is 32.
     required: false
-    role: option
+    param_group: Execution
     schema:
       type: integer
       minimum: 1
@@ -250,7 +250,7 @@ parameters:
       Maximum seconds for one HTTP attempt. The configured default is 12; deadline can end the
       overall call sooner.
     required: false
-    role: option
+    param_group: Execution
     schema:
       type: number
       exclusiveMinimum: 0
@@ -259,7 +259,7 @@ parameters:
       Number of additional attempts after a retryable failure. The configured default is 1. Backoff
       and request timeouts remain bounded by deadline.
     required: false
-    role: option
+    param_group: Errors
     schema:
       type: integer
       minimum: 0
@@ -269,13 +269,13 @@ parameters:
       protocol only when protocol is omitted; new recipes should use the configured Responses
       endpoint.
     required: false
-    role: option
+    param_group: Details
     schema:
       type: string
   - name: provider
     description: AI service provider. Currently only OpenAI is supported.
     required: false
-    role: option
+    param_group: Details
     schema:
       type: string
       enum:
@@ -285,7 +285,7 @@ parameters:
       OpenAI API protocol. Responses is the configured default and is required for web_search;
       chat_completions remains available for legacy definitions.
     required: false
-    role: option
+    param_group: Details
     schema:
       type: string
       enum:
@@ -296,14 +296,14 @@ parameters:
       Total seconds allowed for the entire wrangle call, including queued work, retries, and
       backoff. The configured default is 15.
     required: false
-    role: option
+    param_group: Execution
     schema:
       type: number
       exclusiveMinimum: 0
   - name: store
     description: Whether OpenAI may store Responses API results. Defaults to false.
     required: false
-    role: option
+    param_group: Details
     schema:
       type: boolean
   - name: cache
@@ -311,7 +311,7 @@ parameters:
       Reuse identical successful results from the bounded warm-instance cache. Defaults to true. Set
       false when fresh model or web results are required.
     required: false
-    role: option
+    param_group: Details
     schema:
       type: boolean
   - name: cache_ttl
@@ -319,7 +319,7 @@ parameters:
       Maximum age in seconds for a cached result used by this call. Applies to extracted values and
       web_search_sources together.
     required: false
-    role: option
+    param_group: Details
     schema:
       type: number
       exclusiveMinimum: 0
@@ -329,7 +329,7 @@ parameters:
       dictionary keys automatically switch to non-strict provider mode and are still validated
       locally.
     required: false
-    role: option
+    param_group: Details
     schema:
       type: boolean
   - name: reasoning
@@ -337,7 +337,7 @@ parameters:
       Responses API reasoning controls. Set effort for reasoning-capable models. The configured
       default is none when that model supports it; otherwise the provider default applies.
     required: false
-    role: option
+    param_group: Details
     schema:
       type: object
       properties:
@@ -355,7 +355,7 @@ parameters:
       Responses API text verbosity for compatible models. Defaults to low when supported; ignored
       with a warning for incompatible models.
     required: false
-    role: option
+    param_group: Details
     schema:
       type: string
       enum:

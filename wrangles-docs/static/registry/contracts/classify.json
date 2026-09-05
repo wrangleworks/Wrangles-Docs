@@ -1,6 +1,6 @@
 {
   "format": "wrangles-registry-entry",
-  "registry_version": "0.1.0-pilot",
+  "registry_version": "0.1.0",
   "schema_version": "0.1",
   "type": "wrangle",
   "id": "06669ef8-cdd1-42f7-8078-98e0b7a42c30",
@@ -38,7 +38,7 @@
       "name": "input",
       "description": "Name of the input column.",
       "required": true,
-      "role": "column-selector",
+      "param_group": "I/O",
       "schema": {
         "type": [
           "string",
@@ -51,7 +51,7 @@
       "name": "output",
       "description": "Name of the output column.",
       "required": true,
-      "role": "column-output",
+      "param_group": "I/O",
       "schema": {
         "type": [
           "string",
@@ -63,7 +63,7 @@
       "name": "model_id",
       "description": "ID of the classification model to be used.",
       "required": true,
-      "role": "model-reference",
+      "param_group": "Details",
       "schema": {
         "type": "string"
       }
@@ -72,7 +72,7 @@
       "name": "include_confidence",
       "description": "For models that support it, include the confidence level in the output.",
       "required": false,
-      "role": "option",
+      "param_group": "Formatting",
       "schema": {
         "type": "boolean"
       }
@@ -81,31 +81,31 @@
       "name": "if",
       "description": "Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`.",
       "required": false,
+      "param_group": "Conditions",
       "schema": {
         "type": "string"
-      },
-      "role": "common-control"
+      }
     },
     {
       "name": "where",
       "description": "Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`.",
       "required": false,
+      "param_group": "Conditions",
       "schema": {
         "type": "string"
-      },
-      "role": "common-control"
+      }
     },
     {
       "name": "where_params",
       "description": "Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`.",
       "required": false,
+      "param_group": "Conditions",
       "schema": {
         "type": [
           "array",
           "object"
         ]
-      },
-      "role": "common-control"
+      }
     }
   ],
   "examples": [],

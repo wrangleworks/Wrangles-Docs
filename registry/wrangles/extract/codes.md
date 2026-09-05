@@ -31,7 +31,7 @@ parameters:
   - name: input
     description: Name or list of input columns.
     required: true
-    role: column-selector
+    param_group: I/O
     schema:
       type:
         - string
@@ -40,7 +40,7 @@ parameters:
   - name: output
     description: Name or list of output columns.
     required: true
-    role: column-output
+    param_group: I/O
     schema:
       type:
         - string
@@ -48,14 +48,14 @@ parameters:
   - name: first_element
     description: Get the first element from results.
     required: false
-    role: option
+    param_group: Formatting
     runtime_default: false
     schema:
       type: boolean
   - name: output_format
     description: Format of the extract output.
     required: false
-    role: column-output
+    param_group: Formatting
     runtime_default: null
     schema:
       type:
@@ -68,14 +68,14 @@ parameters:
   - name: char
     description: Character to use when output_format is concatenate.
     required: false
-    role: option
+    param_group: Formatting
     runtime_default: ', '
     schema:
       type: string
   - name: min_length
     description: Minimum length of allowed results.
     required: false
-    role: option
+    param_group: Options
     schema:
       type:
         - integer
@@ -83,7 +83,7 @@ parameters:
   - name: max_length
     description: Maximum length of allowed results.
     required: false
-    role: option
+    param_group: Options
     schema:
       type:
         - integer
@@ -94,7 +94,7 @@ parameters:
       balanced and strict currently apply the same filter. Default is balanced. Unless min_length is
       provided, minimum lengths default to 3 for lenient, 4 for balanced, and 5 for strict.
     required: false
-    role: option
+    param_group: Options
     schema:
       type: string
       enum:
@@ -104,7 +104,7 @@ parameters:
   - name: sort_order
     description: Default is input order. Also allows longest or shortest.
     required: false
-    role: option
+    param_group: Formatting
     schema:
       type: string
       enum:
@@ -114,13 +114,13 @@ parameters:
   - name: disallowed_patterns
     description: A pattern or JSON array of regex patterns to not include in the found codes.
     required: false
-    role: option
+    param_group: Options
     schema:
       type: string
   - name: include_multi_part_tokens
     description: Whether to include multi-part tokens that have a space. Default True.
     required: false
-    role: option
+    param_group: Options
     schema:
       type: boolean
   - name: extract_raw
@@ -128,7 +128,7 @@ parameters:
       Whether to return tokens with their adjacent non-whitespace characters included, rather than
       the cleaned token. Default False.
     required: false
-    role: option
+    param_group: Options
     schema:
       type: boolean
 examples: []

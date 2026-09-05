@@ -31,7 +31,7 @@ parameters:
   - name: input
     description: Name of the input column.
     required: true
-    role: column-selector
+    param_group: I/O
     schema:
       type:
         - string
@@ -40,7 +40,7 @@ parameters:
   - name: output
     description: Name of the output columns.
     required: true
-    role: column-output
+    param_group: I/O
     schema:
       type:
         - string
@@ -48,7 +48,7 @@ parameters:
   - name: property_type
     description: The specific type of properties to extract.
     required: false
-    role: option
+    param_group: Options
     runtime_default: null
     schema:
       type:
@@ -62,7 +62,7 @@ parameters:
   - name: return_data_type
     description: Legacy format option. Prefer output_format.
     required: false
-    role: option
+    param_group: Formatting
     runtime_default: list
     schema:
       type: string
@@ -72,14 +72,14 @@ parameters:
   - name: first_element
     description: Get the first element from results.
     required: false
-    role: option
+    param_group: Formatting
     runtime_default: false
     schema:
       type: boolean
   - name: output_format
     description: Format of the extract output.
     required: false
-    role: column-output
+    param_group: Formatting
     runtime_default: null
     schema:
       type:
@@ -93,7 +93,7 @@ parameters:
   - name: char
     description: Character to use when output_format is concatenate.
     required: false
-    role: option
+    param_group: Formatting
     runtime_default: ', '
     schema:
       type: string

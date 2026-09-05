@@ -3,46 +3,36 @@ title: "Hash"
 description: "Create a hash of a column."
 sidebar_label: "Hash"
 slug: "/create/hash"
+registry_entry: true
+toc_min_heading_level: 2
+toc_max_heading_level: 3
 ---
 
 # Hash
 
 Create a hash of a column.
 
-> Pilot Registry entry. Runtime contract status: `verified`.
+
 
 ## Parameters
 
-| Parameter | Required | Accepted value | Description | Runtime default |
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
 | --- | --- | --- | --- | --- |
-| `input` | Yes | string, integer, array | Name of input column. | — |
-| `output` | Yes | string, array | Name of new column. | — |
-| `method` | No | string; one of: md5, sha1, sha256, sha512 | The method to use to hash the input (Default: md5). | `"md5"` |
-| `if` | No | string | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | — |
-| `where` | No | string | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | — |
-| `where_params` | No | array, object | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | — |
+| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
+| `input` | Name of input column. | string, integer, array | — | Yes |
+| `output` | Name of new column. | string, array | — | Yes |
+| <span className="ww-param-group-label">Options</span> |  |  |  |  |
+| `method` | The method to use to hash the input (Default: md5). | string; one of:<ul className="ww-param-enum-values"><li>md5</li><li>sha1</li><li>sha256</li><li>sha512</li></ul> | `"md5"` | No |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
 
-## Verified examples
+</div>
 
-_No fixture-backed examples are currently available. See migrated examples under Guidance where present._
-
-## Access
-
-| Requirement | Value |
-| --- | --- |
-| ai powered | No |
-| requires account | No |
-| requires subscription | No |
-| requires external api key | No |
-
-## Guidance
-
-Create a hash of a column.
-
-## Migrated examples
-#### Creating a New Hash Column
-
-##### Recipe
+## Examples
 
 ```yaml
 wrangles:
@@ -54,9 +44,7 @@ wrangles:
 
 <div className="ww-sample-grid">
 
-<div className="ww-sample-panel">
-
-##### Input Sample
+<div className="ww-sample-panel ww-sample-panel--input" data-sample-role="input">
 
 | Description |
 | --- |
@@ -65,9 +53,7 @@ wrangles:
 
 </div>
 
-<div className="ww-sample-panel">
-
-##### Output Sample
+<div className="ww-sample-panel ww-sample-panel--output" data-sample-role="output">
 
 | New Column |
 | --- |
@@ -78,17 +64,35 @@ wrangles:
 
 </div>
 
-## Provenance
+<details className="ww-field-disclosure">
+
+<summary>Access</summary>
+
+| Requirement | Value |
+| --- | --- |
+| AI-powered | No |
+| Requires WrangleWorks account | No |
+| Requires subscription | No |
+| Requires external API key | No |
+
+</details>
+
+<details className="ww-field-disclosure">
+
+<summary>Technical details</summary>
+
+| Field | Value |
+| --- | --- |
+| Recipe key | `create.hash` |
+| Lifecycle status | active |
+| Namespace | `create` |
+| Documentation group | `create` |
+| Aliases | None |
+| Runtime symbol | `wrangles.recipe_wrangles.create.hash` |
+
+**Sources**
 
 - [WranglesPY create.hash implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/create.py)
 - [Existing create.hash Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/create/_sources/hash.md)
 
-## Registry metadata
-
-- Registry ID: `11e8fc13-00d2-4779-8d87-6288b07de7e7`
-- Namespace: `create`
-- Recipe key: `create.hash`
-- Aliases: none
-- Runtime symbol: `wrangles.recipe_wrangles.create.hash`
-- Status: `active`
-- Registry version: `0.1.0-pilot`
+</details>
