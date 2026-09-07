@@ -1,7 +1,7 @@
 {
   "format": "wrangles-registry-reconciliation",
   "format_version": "0.2",
-  "registry_version": "0.2.0",
+  "registry_version": "0.2.1",
   "runtime_source": {
     "repository": "https://github.com/wrangleworks/WranglesPY",
     "version": "1.20.2",
@@ -1089,6 +1089,9 @@
           "code": "schema_constraint_difference",
           "parameter": "columns",
           "registry_schema": {
+            "items": {
+              "type": "string"
+            },
             "type": [
               "string",
               "array"
@@ -3254,6 +3257,12 @@
           "code": "schema_constraint_difference",
           "parameter": "input",
           "registry_schema": {
+            "items": {
+              "type": [
+                "string",
+                "integer"
+              ]
+            },
             "type": [
               "string",
               "integer",
@@ -3273,6 +3282,9 @@
           "code": "schema_constraint_difference",
           "parameter": "output",
           "registry_schema": {
+            "items": {
+              "type": "string"
+            },
             "type": [
               "string",
               "array",
@@ -4263,6 +4275,30 @@
         },
         {
           "code": "schema_constraint_difference",
+          "parameter": "input",
+          "registry_schema": {
+            "items": {
+              "type": [
+                "string",
+                "integer"
+              ]
+            },
+            "type": [
+              "string",
+              "integer",
+              "array"
+            ]
+          },
+          "docstring_schema": {
+            "type": [
+              "string",
+              "integer",
+              "array"
+            ]
+          }
+        },
+        {
+          "code": "schema_constraint_difference",
           "parameter": "normalization",
           "registry_schema": {
             "enum": [
@@ -4293,6 +4329,12 @@
           "code": "schema_constraint_difference",
           "parameter": "output",
           "registry_schema": {
+            "items": {
+              "type": [
+                "string",
+                "integer"
+              ]
+            },
             "type": [
               "string",
               "integer",

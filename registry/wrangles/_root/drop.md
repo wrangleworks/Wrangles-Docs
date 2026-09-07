@@ -34,10 +34,15 @@ parameters:
     description: Name of the column(s) to drop.
     required: true
     param_group: I/O
+    column_semantics:
+      role: reference
+      cardinality: scalar_or_list
     schema:
       type:
         - string
         - array
+      items:
+        type: string
 examples: []
 sources:
   - id: runtime

@@ -1,7 +1,7 @@
 {
   "$schema": "https://docs.wrangles.com/registry/schema/wrangle-contract.schema.json",
   "format": "wrangles-registry-entry",
-  "registry_version": "0.2.0",
+  "registry_version": "0.2.1",
   "schema_version": "0.2",
   "type": "wrangle",
   "id": "ab06898f-faf7-42e7-8275-5e3034a4d727",
@@ -44,6 +44,10 @@
       "description": "Name or list of input columns.",
       "required": false,
       "param_group": "I/O",
+      "column_semantics": {
+        "role": "reference",
+        "cardinality": "scalar_or_list"
+      },
       "runtime_default": null,
       "schema": {
         "type": [
@@ -51,7 +55,13 @@
           "integer",
           "array",
           "null"
-        ]
+        ],
+        "items": {
+          "type": [
+            "string",
+            "integer"
+          ]
+        }
       }
     },
     {
@@ -59,13 +69,20 @@
       "description": "Name or list of output columns.",
       "required": false,
       "param_group": "I/O",
+      "column_semantics": {
+        "role": "destination",
+        "cardinality": "scalar_or_list"
+      },
       "runtime_default": null,
       "schema": {
         "type": [
           "string",
           "array",
           "null"
-        ]
+        ],
+        "items": {
+          "type": "string"
+        }
       }
     },
     {

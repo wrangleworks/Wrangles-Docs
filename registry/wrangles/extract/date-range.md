@@ -34,18 +34,27 @@ parameters:
     description: Name of the start date column.
     required: true
     param_group: I/O
+    column_semantics:
+      role: reference
+      cardinality: scalar
     schema:
       type: string
   - name: end_time
     description: Name of the end date column.
     required: true
     param_group: I/O
+    column_semantics:
+      role: reference
+      cardinality: scalar
     schema:
       type: string
   - name: output
     description: Name of the output column.
     required: true
     param_group: I/O
+    column_semantics:
+      role: destination
+      cardinality: scalar
     schema:
       type: string
   - name: range

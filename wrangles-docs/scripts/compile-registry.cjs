@@ -5,7 +5,7 @@ const path = require('node:path');
 const crypto = require('node:crypto');
 const yaml = require('js-yaml');
 
-const REGISTRY_VERSION = '0.2.0';
+const REGISTRY_VERSION = '0.2.1';
 const ENTRY_SCHEMA_VERSION = '0.2';
 const PUBLIC_ORIGIN = 'https://docs.wrangles.com';
 const RECIPE_WRITER_BASELINE_COUNT = 88;
@@ -65,6 +65,8 @@ const PARAM_GROUP_ORDER = [
   'Errors',
   'Details',
 ];
+const COLUMN_ROLES = ['reference', 'destination'];
+const COLUMN_CARDINALITIES = ['scalar', 'list', 'scalar_or_list'];
 
 const generatedFiles = new Map();
 const errors = [];
@@ -403,6 +405,125 @@ function validateSchemaFragment(fragment, source, label) {
   }
 }
 
+function directColumnSchemaShapes(fragment) {
+  const shapes = new Set();
+  const messages = [];
+
+  function visit(value, location, listItem = false) {
+    if (!isObject(value)) {
+      messages.push(`${location} must be an object schema`);
+      return;
+    }
+    if (typeof value.$ref === 'string') {
+      messages.push(
+        `${location} uses $ref; indirect column locations require a future locator vocabulary`,
+      );
+      return;
+    }
+    if (hasOwn(value, 'allOf')) {
+      messages.push(
+        `${location} uses allOf; indirect column locations require a future locator vocabulary`,
+      );
+      return;
+    }
+
+    const unions = ['anyOf', 'oneOf'].filter((keyword) => hasOwn(value, keyword));
+    if (unions.length > 1 || (unions.length === 1 && hasOwn(value, 'type'))) {
+      messages.push(`${location} must use either type or one anyOf/oneOf union`);
+      return;
+    }
+    if (unions.length === 1) {
+      const keyword = unions[0];
+      if (!Array.isArray(value[keyword])) {
+        messages.push(`${location}.${keyword} must be an array`);
+        return;
+      }
+      value[keyword].forEach((option, index) =>
+        visit(option, `${location}.${keyword}[${index}]`, listItem));
+      return;
+    }
+
+    const declaredTypes = Array.isArray(value.type) ? value.type : [value.type];
+    for (const type of declaredTypes) {
+      if (type === 'null' && !listItem) continue;
+      if (type === 'string' || type === 'integer') {
+        shapes.add(listItem ? 'list' : 'scalar');
+        continue;
+      }
+      if (type === 'array' && !listItem) {
+        if (!isObject(value.items)) {
+          messages.push(
+            `${location} array items must be explicitly limited to string/integer column identifiers`,
+          );
+        } else {
+          visit(value.items, `${location}.items`, true);
+        }
+        continue;
+      }
+
+      const valueLocation = listItem ? 'array item' : 'parameter value';
+      messages.push(
+        `${location} accepts unsupported ${valueLocation} type ${String(type)}; ` +
+          'object, mapping, nested-list, and other indirect locations require a future locator vocabulary',
+      );
+    }
+  }
+
+  visit(fragment, 'schema');
+  return {shapes, messages};
+}
+
+function validateColumnSemantics(parameter) {
+  if (!hasOwn(parameter, 'column_semantics')) return [];
+
+  const semantics = parameter.column_semantics;
+  if (!isObject(semantics)) return ['column_semantics must be an object'];
+
+  const messages = [];
+  const allowed = new Set(['role', 'cardinality']);
+  for (const key of Object.keys(semantics)) {
+    if (!allowed.has(key)) messages.push(`column_semantics has unknown field ${key}`);
+  }
+  for (const key of allowed) {
+    if (!hasOwn(semantics, key)) messages.push(`column_semantics.${key} is required`);
+  }
+  if (!COLUMN_ROLES.includes(semantics.role)) {
+    messages.push(`column_semantics.role must be one of: ${COLUMN_ROLES.join(', ')}`);
+  }
+  if (!COLUMN_CARDINALITIES.includes(semantics.cardinality)) {
+    messages.push(
+      `column_semantics.cardinality must be one of: ${COLUMN_CARDINALITIES.join(', ')}`,
+    );
+    return messages;
+  }
+
+  const schemaAnalysis = directColumnSchemaShapes(parameter.schema);
+  messages.push(...schemaAnalysis.messages);
+  if (schemaAnalysis.messages.length) return messages;
+
+  const acceptsScalar = schemaAnalysis.shapes.has('scalar');
+  const acceptsList = schemaAnalysis.shapes.has('list');
+  const schemaCardinality = acceptsScalar && acceptsList
+    ? 'scalar_or_list'
+    : acceptsScalar
+      ? 'scalar'
+      : acceptsList
+        ? 'list'
+        : null;
+
+  if (schemaCardinality === null) {
+    messages.push(
+      'column_semantics requires schema to accept a string/integer column identifier or array',
+    );
+  } else if (semantics.cardinality !== schemaCardinality) {
+    messages.push(
+      `column_semantics.cardinality ${semantics.cardinality} does not match schema shape ${schemaCardinality}`,
+    );
+  }
+
+  return messages;
+}
+
 function validateTopLevel(metadata, source, entrySchema) {
   const allowed = new Set(Object.keys(entrySchema.properties));
   for (const required of entrySchema.required) {
@@ -571,6 +692,7 @@ function validateParameters(metadata, source) {
       'description',
       'required',
       'param_group',
+      'column_semantics',
       'runtime_default',
       'schema',
     ]);
@@ -606,6 +728,9 @@ function validateParameters(metadata, source) {
       fail(source, `${label}.param_group must be one of: ${PARAM_GROUP_ORDER.join(', ')}`);
     }
     validateSchemaFragment(parameter.schema, source, label);
+    for (const message of validateColumnSemantics(parameter)) {
+      fail(source, `${label}.${message}`);
+    }
   }
 }
 
@@ -1274,6 +1399,9 @@ function schemaAcceptsValue(schema, value) {
 function buildParameterSchema(parameter) {
   const result = JSON.parse(JSON.stringify(parameter.schema));
   result.description = parameter.description;
+  if (parameter.column_semantics) {
+    result['x-wrangles-column'] = JSON.parse(JSON.stringify(parameter.column_semantics));
+  }
   if (
     hasOwn(parameter, 'runtime_default') &&
     schemaAcceptsValue(parameter.schema, parameter.runtime_default)
@@ -2374,7 +2502,11 @@ async function main() {
   );
 }
 
-main().catch((error) => {
-  console.error(error.message);
-  process.exitCode = 1;
-});
+if (require.main === module) {
+  main().catch((error) => {
+    console.error(error.message);
+    process.exitCode = 1;
+  });
+}
+
+module.exports = {validateColumnSemantics};

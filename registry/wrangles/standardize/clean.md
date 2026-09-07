@@ -36,15 +36,25 @@ parameters:
     description: Name or list of input columns.
     required: true
     param_group: I/O
+    column_semantics:
+      role: reference
+      cardinality: scalar_or_list
     schema:
       type:
         - string
         - integer
         - array
+      items:
+        type:
+          - string
+          - integer
   - name: output
     description: Name or list of output columns. Defaults to overwriting input.
     required: false
     param_group: I/O
+    column_semantics:
+      role: destination
+      cardinality: scalar_or_list
     runtime_default: null
     schema:
       type:
@@ -52,6 +62,10 @@ parameters:
         - integer
         - array
         - 'null'
+      items:
+        type:
+          - string
+          - integer
   - name: fix_encoding
     description: Repair mojibake and other reversible encoding errors.
     required: false
