@@ -200,6 +200,28 @@ Parameter records contain human guidance plus a JSON Schema fragment. Every
 runtime-owned parameter fact must reconcile with the pinned manifest and be
 traceable to the named runtime symbol.
 
+Parameters whose values directly identify dataframe columns may also declare
+optional `column_semantics`. Its `role` is `reference` when the value selects a
+column that must exist before the step and `destination` when the value names a
+column where the step writes results. Its `cardinality` is `scalar`, `list`, or
+`scalar_or_list`, matching the accepted JSON Schema shape; nullability remains
+part of the parameter's `schema` and does not change cardinality. The compiler
+copies this object into each per-wrangle contract and emits it as the
+`x-wrangles-column` annotation on the corresponding generated recipe-schema
+property.
+
+Column semantics are valid only when every non-null value shape exposes column
+identifiers directly: a scalar is a string or integer, and a list is an array
+whose `items` schema accepts only strings or integers. Unconstrained arrays,
+nested arrays, objects, mappings, and `$ref`/`allOf` shapes are not annotated.
+Those forms require a future locator vocabulary that can say where within the
+value the column identifier appears (for example, in a mapping key).
+
+This metadata describes column-name syntax, not dataframe state transitions. A
+destination may create, overwrite, or conditionally reuse a column. The current
+Registry has no validated effect vocabulary for add, rename, or remove, so
+consumers must not infer those effects from `role` or parameter names.
+
 Every parameter also declares one `param_group` from a small shared vocabulary:
 
 - `I/O` identifies input and output columns or structures.
@@ -309,9 +331,12 @@ terminated by one newline (`utf8-newline-separated-sorted-v1`).
 
 ## Versioning and lifecycle
 
-The pre-production Registry version is `0.2.0`. Version `0.2.0` makes the
+The pre-production Registry version is `0.2.1`. Version `0.2.0` makes the
 fail-closed Recipe Writer eligibility decision required for every entry and
 adds the compiled-contract and integrity metadata consumed by Registry clients.
+Version `0.2.1` introduces optional column-role and cardinality metadata plus
+explicit direct-item schemas for its representative list parameters, while
+retaining the `0.2` entry schema compatibility series.
 A production release will
 contain:
 

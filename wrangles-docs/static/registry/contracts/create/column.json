@@ -1,7 +1,7 @@
 {
   "$schema": "https://docs.wrangles.com/registry/schema/wrangle-contract.schema.json",
   "format": "wrangles-registry-entry",
-  "registry_version": "0.2.0",
+  "registry_version": "0.2.1",
   "schema_version": "0.2",
   "type": "wrangle",
   "id": "5a18e2c8-ec7c-45f5-88fd-bb5c358a8b40",

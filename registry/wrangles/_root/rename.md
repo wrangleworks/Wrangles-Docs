@@ -35,6 +35,9 @@ parameters:
     description: Name or list of input columns.
     required: false
     param_group: I/O
+    column_semantics:
+      role: reference
+      cardinality: scalar_or_list
     runtime_default: null
     schema:
       type:
@@ -42,16 +45,25 @@ parameters:
         - integer
         - array
         - 'null'
+      items:
+        type:
+          - string
+          - integer
   - name: output
     description: Name or list of output columns.
     required: false
     param_group: I/O
+    column_semantics:
+      role: destination
+      cardinality: scalar_or_list
     runtime_default: null
     schema:
       type:
         - string
         - array
         - 'null'
+      items:
+        type: string
   - name: wrangles
     description: >-
       Use wrangles to transform the column names. The input is named 'columns' and the final result

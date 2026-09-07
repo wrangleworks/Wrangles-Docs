@@ -1628,7 +1628,14 @@
                   "string",
                   "array"
                 ],
-                "description": "Name of the column(s) to drop."
+                "items": {
+                  "type": "string"
+                },
+                "description": "Name of the column(s) to drop.",
+                "x-wrangles-column": {
+                  "role": "reference",
+                  "cardinality": "scalar_or_list"
+                }
               },
               "if": {
                 "type": "string",
@@ -2552,15 +2559,27 @@
             "properties": {
               "start_time": {
                 "type": "string",
-                "description": "Name of the start date column."
+                "description": "Name of the start date column.",
+                "x-wrangles-column": {
+                  "role": "reference",
+                  "cardinality": "scalar"
+                }
               },
               "end_time": {
                 "type": "string",
-                "description": "Name of the end date column."
+                "description": "Name of the end date column.",
+                "x-wrangles-column": {
+                  "role": "reference",
+                  "cardinality": "scalar"
+                }
               },
               "output": {
                 "type": "string",
-                "description": "Name of the output column."
+                "description": "Name of the output column.",
+                "x-wrangles-column": {
+                  "role": "destination",
+                  "cardinality": "scalar"
+                }
               },
               "range": {
                 "type": "string",
@@ -4311,7 +4330,17 @@
                   "array",
                   "null"
                 ],
+                "items": {
+                  "type": [
+                    "string",
+                    "integer"
+                  ]
+                },
                 "description": "Name or list of input columns.",
+                "x-wrangles-column": {
+                  "role": "reference",
+                  "cardinality": "scalar_or_list"
+                },
                 "default": null
               },
               "output": {
@@ -4320,7 +4349,14 @@
                   "array",
                   "null"
                 ],
+                "items": {
+                  "type": "string"
+                },
                 "description": "Name or list of output columns.",
+                "x-wrangles-column": {
+                  "role": "destination",
+                  "cardinality": "scalar_or_list"
+                },
                 "default": null
               },
               "wrangles": {
@@ -5771,7 +5807,17 @@
                   "integer",
                   "array"
                 ],
-                "description": "Name or list of input columns."
+                "items": {
+                  "type": [
+                    "string",
+                    "integer"
+                  ]
+                },
+                "description": "Name or list of input columns.",
+                "x-wrangles-column": {
+                  "role": "reference",
+                  "cardinality": "scalar_or_list"
+                }
               },
               "output": {
                 "type": [
@@ -5780,7 +5826,17 @@
                   "array",
                   "null"
                 ],
+                "items": {
+                  "type": [
+                    "string",
+                    "integer"
+                  ]
+                },
                 "description": "Name or list of output columns. Defaults to overwriting input.",
+                "x-wrangles-column": {
+                  "role": "destination",
+                  "cardinality": "scalar_or_list"
+                },
                 "default": null
               },
               "fix_encoding": {

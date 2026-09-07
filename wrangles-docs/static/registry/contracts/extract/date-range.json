@@ -1,7 +1,7 @@
 {
   "$schema": "https://docs.wrangles.com/registry/schema/wrangle-contract.schema.json",
   "format": "wrangles-registry-entry",
-  "registry_version": "0.2.0",
+  "registry_version": "0.2.1",
   "schema_version": "0.2",
   "type": "wrangle",
   "id": "9cebfa6f-a524-4aec-84a7-02d77b792843",
@@ -43,6 +43,10 @@
       "description": "Name of the start date column.",
       "required": true,
       "param_group": "I/O",
+      "column_semantics": {
+        "role": "reference",
+        "cardinality": "scalar"
+      },
       "schema": {
         "type": "string"
       }
@@ -52,6 +56,10 @@
       "description": "Name of the end date column.",
       "required": true,
       "param_group": "I/O",
+      "column_semantics": {
+        "role": "reference",
+        "cardinality": "scalar"
+      },
       "schema": {
         "type": "string"
       }
@@ -61,6 +69,10 @@
       "description": "Name of the output column.",
       "required": true,
       "param_group": "I/O",
+      "column_semantics": {
+        "role": "destination",
+        "cardinality": "scalar"
+      },
       "schema": {
         "type": "string"
       }

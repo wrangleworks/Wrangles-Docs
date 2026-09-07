@@ -188,8 +188,26 @@
             "Details"
           ]
         },
+        "column_semantics": {
+          "$ref": "#/$defs/column_semantics"
+        },
         "runtime_default": {},
         "schema": {"type": "object", "minProperties": 1}
+      }
+    },
+    "column_semantics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["role", "cardinality"],
+      "properties": {
+        "role": {
+          "enum": ["reference", "destination"],
+          "description": "Whether the parameter selects columns that exist before the step or names columns where the step writes results."
+        },
+        "cardinality": {
+          "enum": ["scalar", "list", "scalar_or_list"],
+          "description": "Whether the parameter accepts one direct string/integer column identifier, an array whose direct items are string/integer identifiers, or either shape. Nullability is defined separately by the parameter schema; object and mapping-key locations require a future locator vocabulary."
+        }
       }
     },
     "example": {

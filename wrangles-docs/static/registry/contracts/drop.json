@@ -1,7 +1,7 @@
 {
   "$schema": "https://docs.wrangles.com/registry/schema/wrangle-contract.schema.json",
   "format": "wrangles-registry-entry",
-  "registry_version": "0.2.0",
+  "registry_version": "0.2.1",
   "schema_version": "0.2",
   "type": "wrangle",
   "id": "363bffbf-397e-4975-8382-e9efa5e9eed6",
@@ -43,11 +43,18 @@
       "description": "Name of the column(s) to drop.",
       "required": true,
       "param_group": "I/O",
+      "column_semantics": {
+        "role": "reference",
+        "cardinality": "scalar_or_list"
+      },
       "schema": {
         "type": [
           "string",
           "array"
-        ]
+        ],
+        "items": {
+          "type": "string"
+        }
       }
     },
     {

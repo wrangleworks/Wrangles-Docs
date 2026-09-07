@@ -4,7 +4,7 @@ Generated file. Do not edit directly.
 
 - Runtime version: `1.20.2`
 - Runtime source: [`7916bf158e8b7e561270a1bea7b808f88956edc4`](https://github.com/wrangleworks/WranglesPY/commit/7916bf158e8b7e561270a1bea7b808f88956edc4)
-- Registry version: `0.2.0`
+- Registry version: `0.2.1`
 - Runtime entries: 98
 - Embedded Python schema docstrings: 96
 - Existing quasi-registry records: 93
@@ -119,7 +119,7 @@ capabilities must reconcile; individual records can be curated in place later.
 | `split.tokenize` | `split.tokenize` | verified | 0 | 1 |
 | `sql` | `sql` | verified | 0 | 3 |
 | `standardize` | `standardize` | verified | 0 | 3 |
-| `standardize.clean` | `standardize.clean` | verified | 0 | 12 |
+| `standardize.clean` | `standardize.clean` | verified | 0 | 13 |
 | `standardize.custom` | `standardize.custom` | verified | 0 | 3 |
 | `translate` | `translate` | verified | 0 | 1 |
 | `transpose` | `transpose` | verified | 0 | 1 |
@@ -365,6 +365,7 @@ capabilities must reconcile; individual records can be curated in place later.
 | `standardize.clean` | schema_constraint_difference | `collapse_whitespace` | See the JSON report for both schema fragments. |
 | `standardize.clean` | schema_constraint_difference | `fix_character_width` | See the JSON report for both schema fragments. |
 | `standardize.clean` | schema_constraint_difference | `fix_encoding` | See the JSON report for both schema fragments. |
+| `standardize.clean` | schema_constraint_difference | `input` | See the JSON report for both schema fragments. |
 | `standardize.clean` | schema_constraint_difference | `normalization` | See the JSON report for both schema fragments. |
 | `standardize.clean` | schema_constraint_difference | `output` | See the JSON report for both schema fragments. |
 | `standardize.clean` | schema_constraint_difference | `preserve_line_breaks` | See the JSON report for both schema fragments. |
