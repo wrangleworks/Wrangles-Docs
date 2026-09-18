@@ -1,10 +1,13 @@
 {
   "$schema": "https://docs.wrangles.com/registry/schema/wrangle-contract.schema.json",
   "format": "wrangles-registry-entry",
-  "registry_version": "0.2.1",
-  "schema_version": "0.2",
+  "registry_version": "0.3.0",
+  "schema_version": "0.3",
   "type": "wrangle",
-  "id": "def87df8-72da-4e34-83c1-1fde25126257",
+  "catalog_id": "87",
+  "catalog_key": "reindex",
+  "catalog_status": "active",
+  "legacy_id": "def87df8-72da-4e34-83c1-1fde25126257",
   "wrangle_name": "reindex",
   "namespace": null,
   "wrangle_key": "reindex",
@@ -110,9 +113,9 @@
       "title": "WranglesPY reindex implementation"
     },
     {
-      "id": "quasi-registry",
-      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/transform/_sources/reindex.md",
-      "title": "Existing reindex Markdown"
+      "id": "legacy-docs-archive",
+      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/transform/_sources/reindex.md",
+      "title": "Archived reindex Markdown"
     }
   ]
 }

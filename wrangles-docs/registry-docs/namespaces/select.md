@@ -81,18 +81,22 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `76` |
+| Catalog key | `drop` |
 | Recipe key | `drop` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | Root-level |
 | Documentation group | `select` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.pandas.drop` |
+| Legacy UUID | `363bffbf-397e-4975-8382-e9efa5e9eed6` |
 
 **Sources**
 
 - [WranglesPY drop implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/pandas.py)
-- [Existing drop Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/select/_sources/drop.md)
+- [Archived drop Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/select/_sources/drop.md)
 
 </details>
 
@@ -187,18 +191,22 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `78` |
+| Catalog key | `filter` |
 | Recipe key | `filter` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | Root-level |
 | Documentation group | `select` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.filter` |
+| Legacy UUID | `e3242acf-d204-433f-8373-205b77481131` |
 
 **Sources**
 
 - [WranglesPY filter implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/main.py)
-- [Existing filter Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/select/_sources/filter.md)
+- [Archived filter Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/select/_sources/filter.md)
 
 </details>
 
@@ -275,18 +283,22 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `49` |
+| Catalog key | `select.columns` |
 | Recipe key | `select.columns` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `select` |
 | Documentation group | `select` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.select.columns` |
+| Legacy UUID | `bca12c60-3957-4dc5-83f7-5ee460df2a11` |
 
 **Sources**
 
 - [WranglesPY select.columns implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/select.py)
-- [Existing select.columns Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/select/_sources/columns.md)
+- [Archived select.columns Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/select/_sources/columns.md)
 
 </details>
 
@@ -546,18 +558,22 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `50` |
+| Catalog key | `select.dictionary_element` |
 | Recipe key | `select.dictionary_element` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `select` |
 | Documentation group | `select` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.select.dictionary_element` |
+| Legacy UUID | `5adaeada-6da8-464f-84cb-9fb5ecc17e48` |
 
 **Sources**
 
 - [WranglesPY select.dictionary_element implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/select.py)
-- [Existing select.dictionary_element Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/select/_sources/dictionary-element.md)
+- [Archived select.dictionary_element Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/select/_sources/dictionary-element.md)
 
 </details>
 
@@ -638,18 +654,22 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `51` |
+| Catalog key | `select.element` |
 | Recipe key | `select.element` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `select` |
 | Documentation group | `select` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.select.element` |
+| Legacy UUID | `223d2f4e-3247-4189-8b6c-e73fe44c4266` |
 
 **Sources**
 
 - [WranglesPY select.element implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/select.py)
-- [Existing select.element Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/select/_sources/element.md)
+- [Archived select.element Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/select/_sources/element.md)
 
 </details>
 
@@ -785,18 +805,22 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `52` |
+| Catalog key | `select.group_by` |
 | Recipe key | `select.group_by` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `select` |
 | Documentation group | `select` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.select.group_by` |
+| Legacy UUID | `c0af10b1-423a-416c-8cb5-7e7fe1164964` |
 
 **Sources**
 
 - [WranglesPY select.group_by implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/select.py)
-- [Existing select.group_by Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/select/_sources/group-by.md)
+- [Archived select.group_by Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/select/_sources/group-by.md)
 
 </details>
 
@@ -875,18 +899,22 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `53` |
+| Catalog key | `select.head` |
 | Recipe key | `select.head` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `select` |
 | Documentation group | `select` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.select.head` |
+| Legacy UUID | `237af1ec-db7d-415a-88b7-70586a2191fb` |
 
 **Sources**
 
 - [WranglesPY select.head implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/select.py)
-- [Existing select.head Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/select/_sources/head.md)
+- [Archived select.head Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/select/_sources/head.md)
 
 </details>
 
@@ -1002,18 +1030,22 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `54` |
+| Catalog key | `select.highest_confidence` |
 | Recipe key | `select.highest_confidence` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `select` |
 | Documentation group | `select` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.select.highest_confidence` |
+| Legacy UUID | `00aad85d-8cc8-42e5-86f3-e4ff916e8ac2` |
 
 **Sources**
 
 - [WranglesPY select.highest_confidence implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/select.py)
-- [Existing select.highest_confidence Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/select/_sources/highest-confidence.md)
+- [Archived select.highest_confidence Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/select/_sources/highest-confidence.md)
 
 </details>
 
@@ -1093,18 +1125,22 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `55` |
+| Catalog key | `select.left` |
 | Recipe key | `select.left` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `select` |
 | Documentation group | `select` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.select.left` |
+| Legacy UUID | `5cdd9857-0c77-43bf-80d7-d0a8cb6f980b` |
 
 **Sources**
 
 - [WranglesPY select.left implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/select.py)
-- [Existing select.left Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/select/_sources/left.md)
+- [Archived select.left Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/select/_sources/left.md)
 
 </details>
 
@@ -1181,18 +1217,22 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `56` |
+| Catalog key | `select.length` |
 | Recipe key | `select.length` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `select` |
 | Documentation group | `select` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.select.length` |
+| Legacy UUID | `4d7a5f66-0a4a-40e0-8298-d5c55754423d` |
 
 **Sources**
 
 - [WranglesPY select.length implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/select.py)
-- [Existing select.length Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/select/_sources/length.md)
+- [Archived select.length Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/select/_sources/length.md)
 
 </details>
 
@@ -1277,18 +1317,22 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `57` |
+| Catalog key | `select.list_element` |
 | Recipe key | `select.list_element` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `select` |
 | Documentation group | `select` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.select.list_element` |
+| Legacy UUID | `ec40495d-d29a-4f62-86dd-eafa43cf388a` |
 
 **Sources**
 
 - [WranglesPY select.list_element implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/select.py)
-- [Existing select.list_element Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/select/_sources/list-element.md)
+- [Archived select.list_element Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/select/_sources/list-element.md)
 
 </details>
 
@@ -1368,18 +1412,22 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `58` |
+| Catalog key | `select.right` |
 | Recipe key | `select.right` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `select` |
 | Documentation group | `select` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.select.right` |
+| Legacy UUID | `89ee82ec-3bc5-4bfa-899b-7a1260ef9bdb` |
 
 **Sources**
 
 - [WranglesPY select.right implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/select.py)
-- [Existing select.right Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/select/_sources/right.md)
+- [Archived select.right Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/select/_sources/right.md)
 
 </details>
 
@@ -1491,18 +1539,22 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `59` |
+| Catalog key | `select.sample` |
 | Recipe key | `select.sample` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `select` |
 | Documentation group | `select` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.select.sample` |
+| Legacy UUID | `95a84ab6-a66e-450f-8a4a-7a87e3a77932` |
 
 **Sources**
 
 - [WranglesPY select.sample implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/select.py)
-- [Existing select.sample Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/select/_sources/sample.md)
+- [Archived select.sample Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/select/_sources/sample.md)
 
 </details>
 
@@ -1648,18 +1700,22 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `60` |
+| Catalog key | `select.substring` |
 | Recipe key | `select.substring` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `select` |
 | Documentation group | `select` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.select.substring` |
+| Legacy UUID | `8befddf8-602e-4fa9-8f16-4c547210ebec` |
 
 **Sources**
 
 - [WranglesPY select.substring implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/select.py)
-- [Existing select.substring Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/select/_sources/substring.md)
+- [Archived select.substring Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/select/_sources/substring.md)
 
 </details>
 
@@ -1738,18 +1794,22 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `61` |
+| Catalog key | `select.tail` |
 | Recipe key | `select.tail` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `select` |
 | Documentation group | `select` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.select.tail` |
+| Legacy UUID | `60853759-c160-49a4-87eb-036516a9d823` |
 
 **Sources**
 
 - [WranglesPY select.tail implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/select.py)
-- [Existing select.tail Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/select/_sources/tail.md)
+- [Archived select.tail Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/select/_sources/tail.md)
 
 </details>
 
@@ -1831,18 +1891,22 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `62` |
+| Catalog key | `select.threshold` |
 | Recipe key | `select.threshold` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `select` |
 | Documentation group | `select` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.select.threshold` |
+| Legacy UUID | `af2a5dcc-0ec0-48d7-8fb4-f58d9c5391d2` |
 
 **Sources**
 
 - [WranglesPY select.threshold implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/select.py)
-- [Existing select.threshold Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/select/_sources/threshold.md)
+- [Archived select.threshold Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/select/_sources/threshold.md)
 
 </details>
 
@@ -1930,17 +1994,21 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `93` |
+| Catalog key | `sort` |
 | Recipe key | `sort` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | Root-level |
 | Documentation group | `select` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.pandas.sort` |
+| Legacy UUID | `1dcf06ad-898a-4d83-862c-4774be37a687` |
 
 **Sources**
 
 - [WranglesPY sort implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/pandas.py)
-- [Existing sort Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/select/_sources/sort.md)
+- [Archived sort Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/select/_sources/sort.md)
 
 </details>

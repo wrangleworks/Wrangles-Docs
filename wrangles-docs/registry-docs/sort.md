@@ -89,17 +89,21 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `93` |
+| Catalog key | `sort` |
 | Recipe key | `sort` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | Root-level |
 | Documentation group | `select` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.pandas.sort` |
+| Legacy UUID | `1dcf06ad-898a-4d83-862c-4774be37a687` |
 
 **Sources**
 
 - [WranglesPY sort implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/pandas.py)
-- [Existing sort Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/select/_sources/sort.md)
+- [Archived sort Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/select/_sources/sort.md)
 
 </details>

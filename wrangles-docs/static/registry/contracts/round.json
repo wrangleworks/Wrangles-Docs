@@ -1,10 +1,13 @@
 {
   "$schema": "https://docs.wrangles.com/registry/schema/wrangle-contract.schema.json",
   "format": "wrangles-registry-entry",
-  "registry_version": "0.2.1",
-  "schema_version": "0.2",
+  "registry_version": "0.3.0",
+  "schema_version": "0.3",
   "type": "wrangle",
-  "id": "12f3111b-8511-4e42-8d3f-b5302dc3b4e4",
+  "catalog_id": "91",
+  "catalog_key": "round",
+  "catalog_status": "active",
+  "legacy_id": "12f3111b-8511-4e42-8d3f-b5302dc3b4e4",
   "wrangle_name": "round",
   "namespace": null,
   "wrangle_key": "round",
@@ -115,9 +118,9 @@
       "title": "WranglesPY round implementation"
     },
     {
-      "id": "quasi-registry",
-      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/format/_sources/round.md",
-      "title": "Existing round Markdown"
+      "id": "legacy-docs-archive",
+      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/format/_sources/round.md",
+      "title": "Archived round Markdown"
     }
   ]
 }

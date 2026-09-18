@@ -2,7 +2,7 @@
 
 Status: pre-production
 
-Contract version: 0.2
+Contract version: 0.3
 
 ## Purpose
 
@@ -22,50 +22,43 @@ Each fact has one authoring authority:
 
 | Information                                             | Authoring authority                 |
 | ------------------------------------------------------- | ----------------------------------- |
-| Canonical wrangle UUID                                  | Wrangles catalog database           |
+| Canonical `catalog_id`, catalog key, kind, and title    | API Core `wrangles_catalog` table   |
+| Catalog publication status and Registry path binding    | API Core `wrangles_catalog` table   |
+| Legacy documentation UUID                              | Registry Markdown during migration  |
 | Accepted runtime parameter names                        | WranglesPY function signature       |
 | Runtime required/optional status and defaults           | WranglesPY function signature       |
 | Runtime behavior                                        | WranglesPY implementation and tests |
 | Purpose, guidance, parameter meaning, and relationships | Registry Markdown                   |
 | Curated examples and expected outcomes                  | Registry Markdown and fixtures      |
-| Lifecycle, visibility, access, and provenance           | Registry Markdown                   |
+| Documentation lifecycle, visibility, access, provenance | Registry Markdown                   |
 | Recipe Writer eligibility and exclusion reason          | Registry Markdown                   |
 | Recipe JSON Schema                                      | Generated output                    |
 | Docusaurus pages                                        | Generated output                    |
 | Database/search records                                 | Generated projection                |
 
-The compiled Registry Markdown is the complete consumption source for people
-and agents. Runtime-owned facts are supplied by the pinned WranglesPY contract
-manifest at `runtime/wranglespy.json` and reconciled with the Markdown by the
-compiler. The manifest is a versioned input, not another authoring source.
+The compiled Registry bundle is the complete consumption source for people and
+agents. It joins three pinned inputs: API Core catalog identity from
+`catalog/api-core.json`, runtime facts from `runtime/wranglespy.json`, and
+editorial content from `wrangles/`. The compiler validates the joins and emits
+separate reconciliation reports; none of these inputs is silently rewritten.
 
-The existing per-wrangle Markdown under
-`wrangles-docs/wrangle-docs/**/_sources/*.md` is the migration quasi-registry.
-Every file is inventoried, content-hashed, and compared with the runtime
-manifest and any normalized Registry entry. Aggregate category pages, the
-index, and the template are inventoried separately as supporting Markdown;
-they are not treated as one-to-one wrangle records.
-
-During the initial migration, conflicting or incomplete source content is
-resolved in this order:
-
-1. WranglesPY callable signature, implementation, and tests
-2. the callable's embedded Python schema docstring
-3. the matching `_sources/*.md` quasi-registry record
-
+The previous `_sources` Markdown has been retired and is not a compiler input.
 Code determines executable names, accepted explicit parameters, required
-status, defaults, and behavior. The embedded schema supplies public
-`**kwargs`, constraints, and prose that code does not express mechanically.
-The quasi-registry then contributes UUIDs, examples, access metadata, tags,
-and additional guidance. The reconciliation report retains disagreements as
-migration evidence without asking reviewers to adjudicate them one by one.
+status, defaults, and behavior. The embedded schema supplies public `**kwargs`
+and constraints that code does not express mechanically. Registry Markdown is
+the sole editorial source for descriptions, examples, access metadata, tags,
+and additional guidance.
 
-The database allocates `id` using the same UUID mechanism as custom wrangles.
-The assigned UUID is then recorded in the Registry and reused everywhere; the
-Registry compiler must never generate a second identity. Existing records must
-be resolved by their current database ID before a new ID is allocated. During
-this first pass, `id: null` explicitly means that database reconciliation is
-still pending; it is not a generated or temporary identity.
+API Core allocates `catalog_id` as a positive PostgreSQL `BIGINT`. Every JSON
+artifact represents it as a decimal string so JavaScript consumers cannot lose
+integer precision. The compiler joins catalog rows to callable entries by exact
+`wrangle_key`; missing rows, duplicate identities, key conflicts, kind
+conflicts, and title conflicts fail the build. The compiler never allocates or
+changes catalog IDs.
+
+The source Markdown's `id` field is the previous documentation UUID. Contract
+0.3 publishes it as nullable `legacy_id` for migration tracing only. It is not a
+model ID, is not a catalog ID, and must not be used for execution selection.
 
 ## Parameter contract
 
@@ -182,9 +175,9 @@ Every wrangle entry must declare:
 
 - `schema_version`
 - `type: wrangle`, the OKF concept kind
-- database `id` (or explicit `null` while pending), executable `namespace`
-  (or `null` for a root key), specific `wrangle_name`, callable `wrangle_key`,
-  public `slug`, and compatibility `aliases`
+- migration-only legacy `id` (or explicit `null`), executable `namespace` (or
+  `null` for a root key), specific `wrangle_name`, callable `wrangle_key`, public
+  `slug`, and compatibility `aliases`
 - `title` and `description`
 - `status` and `visibility`
 - an explicit `recipe_writer.eligible` decision; ineligible entries also
@@ -296,6 +289,8 @@ The compiler produces:
 - public copies of the Registry entry and WranglesPY runtime-manifest schemas
   under `wrangles-docs/static/registry/schema/`
 - `manifest.json`, containing lightweight discovery metadata and links
+- the sanitized API Core catalog snapshot and catalog reconciliation under
+  `wrangles-docs/static/registry/catalog/`
 - one comprehensive JSON contract per wrangle under
   `wrangles-docs/static/registry/contracts/`, including all parameters
 - a JSON Schema for those compiled contracts under
@@ -331,12 +326,17 @@ terminated by one newline (`utf8-newline-separated-sorted-v1`).
 
 ## Versioning and lifecycle
 
-The pre-production Registry version is `0.2.1`. Version `0.2.0` makes the
+The pre-production Registry version is `0.3.0`. Version `0.2.0` makes the
 fail-closed Recipe Writer eligibility decision required for every entry and
 adds the compiled-contract and integrity metadata consumed by Registry clients.
 Version `0.2.1` introduces optional column-role and cardinality metadata plus
 explicit direct-item schemas for its representative list parameters, while
 retaining the `0.2` entry schema compatibility series.
+Version `0.3.0` joins the API Core catalog snapshot, replaces the compiled
+contract's canonical UUID field with string-valued `catalog_id` and
+`catalog_key`, and retains old UUIDs only as `legacy_id`. It also publishes
+catalog reconciliation as a checksummed bundle artifact. Source Markdown stays
+on schema 0.2 during this migration; generated contracts use contract 0.3.
 A production release will
 contain:
 
@@ -377,8 +377,9 @@ following outcomes:
 1. Every callable recipe wrangle and public parameter reconciles with a pinned
    WranglesPY runtime manifest, with no unexplained key, required-state,
    default, common-control, or accepted-value conflicts.
-2. Registry records contain reviewed descriptions, constraints, examples,
-   access and lifecycle metadata, provenance, and canonical database UUIDs.
+2. Every callable Registry record resolves to one API Core catalog ID, and all
+   catalog-only rows, status differences, and path differences are resolved or
+   explicitly accepted.
 3. The entry schema, compiled contract, recipe-schema URLs, compatibility
    policy, and change-management rules are stable and versioned.
 4. Recipe JSON Schema and any temporary WranglesPY `_schema` compatibility view

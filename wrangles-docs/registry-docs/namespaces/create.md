@@ -150,18 +150,22 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `12` |
+| Catalog key | `create.bins` |
 | Recipe key | `create.bins` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `create` |
 | Documentation group | `create` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.create.bins` |
+| Legacy UUID | `232e3ba0-4735-4934-88aa-0163181abb3f` |
 
 **Sources**
 
 - [WranglesPY create.bins implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/create.py)
-- [Existing create.bins Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/create/_sources/bins.md)
+- [Archived create.bins Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/create/_sources/bins.md)
 
 </details>
 
@@ -323,18 +327,22 @@ Columns of empty lists can also be created by passing an empty list (`[]`) as th
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `13` |
+| Catalog key | `create.column` |
 | Recipe key | `create.column` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `create` |
 | Documentation group | `create` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.create.column` |
+| Legacy UUID | `5a18e2c8-ec7c-45f5-88fd-bb5c358a8b40` |
 
 **Sources**
 
 - [WranglesPY create.column implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/create.py)
-- [Existing create.column Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/create/_sources/column.md)
+- [Archived create.column Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/create/_sources/column.md)
 
 </details>
 
@@ -429,18 +437,22 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `14` |
+| Catalog key | `create.embeddings` |
 | Recipe key | `create.embeddings` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `create` |
 | Documentation group | `create` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.create.embeddings` |
+| Legacy UUID | `e3518afd-a819-40ec-8b49-eb25690220c1` |
 
 **Sources**
 
 - [WranglesPY create.embeddings implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/create.py)
-- [Existing create.embeddings Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/create/_sources/embeddings.md)
+- [Archived create.embeddings Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/create/_sources/embeddings.md)
 
 </details>
 
@@ -519,18 +531,22 @@ _No sample available._
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `15` |
+| Catalog key | `create.guid` |
 | Recipe key | `create.guid` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `create` |
 | Documentation group | `create` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.create.guid` |
+| Legacy UUID | `cf3aaab2-3d5b-4c9b-826e-7af7510521c9` |
 
 **Sources**
 
 - [WranglesPY create.guid implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/create.py)
-- [Existing create.guid Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/create/_sources/guid.md)
+- [Archived create.guid Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/create/_sources/guid.md)
 
 </details>
 
@@ -612,18 +628,22 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `16` |
+| Catalog key | `create.hash` |
 | Recipe key | `create.hash` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `create` |
 | Documentation group | `create` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.create.hash` |
+| Legacy UUID | `11e8fc13-00d2-4779-8d87-6288b07de7e7` |
 
 **Sources**
 
 - [WranglesPY create.hash implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/create.py)
-- [Existing create.hash Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/create/_sources/hash.md)
+- [Archived create.hash Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/create/_sources/hash.md)
 
 </details>
 
@@ -703,18 +723,22 @@ _No sample available._
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `17` |
+| Catalog key | `create.index` |
 | Recipe key | `create.index` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `create` |
 | Documentation group | `create` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.create.index` |
+| Legacy UUID | `0a4909ca-6e14-4da7-8a70-a7fd106d6944` |
 
 **Sources**
 
 - [WranglesPY create.index implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/create.py)
-- [Existing create.index Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/create/_sources/index.md)
+- [Archived create.index Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/create/_sources/index.md)
 
 </details>
 
@@ -803,18 +827,22 @@ Using `|` in YAML denotes a multi-line string that preserves line breaks. Use `>
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `18` |
+| Catalog key | `create.jinja` |
 | Recipe key | `create.jinja` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `create` |
 | Documentation group | `create` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.create.jinja` |
+| Legacy UUID | `10fc6709-16d4-4eab-8f56-6cb5d170ea66` |
 
 **Sources**
 
 - [WranglesPY create.jinja implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/create.py)
-- [Existing create.jinja Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/create/_sources/jinja.md)
+- [Archived create.jinja Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/create/_sources/jinja.md)
 
 </details>
 
@@ -893,17 +921,21 @@ _No sample available._
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `19` |
+| Catalog key | `create.uuid` |
 | Recipe key | `create.uuid` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `create` |
 | Documentation group | `create` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.create.uuid` |
+| Legacy UUID | `c376f3ff-2283-4c4c-8d7f-70db6f53ed19` |
 
 **Sources**
 
 - [WranglesPY create.uuid implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/create.py)
-- [Existing create.uuid Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/create/_sources/uuid.md)
+- [Archived create.uuid Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/create/_sources/uuid.md)
 
 </details>

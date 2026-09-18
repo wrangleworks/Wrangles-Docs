@@ -87,10 +87,10 @@ sources:
     resource: >-
       https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/create.py
     title: WranglesPY create.column implementation
-  - id: quasi-registry
+  - id: legacy-docs-archive
     resource: >-
-      https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/create/_sources/column.md
-    title: Existing create.column Markdown
+      https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/create/_sources/column.md
+    title: Archived create.column Markdown
 ---
 
 # Column

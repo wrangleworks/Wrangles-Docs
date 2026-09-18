@@ -1,10 +1,13 @@
 {
   "$schema": "https://docs.wrangles.com/registry/schema/wrangle-contract.schema.json",
   "format": "wrangles-registry-entry",
-  "registry_version": "0.2.1",
-  "schema_version": "0.2",
+  "registry_version": "0.3.0",
+  "schema_version": "0.3",
   "type": "wrangle",
-  "id": "00aad85d-8cc8-42e5-86f3-e4ff916e8ac2",
+  "catalog_id": "54",
+  "catalog_key": "select.highest_confidence",
+  "catalog_status": "active",
+  "legacy_id": "00aad85d-8cc8-42e5-86f3-e4ff916e8ac2",
   "wrangle_name": "highest_confidence",
   "namespace": "select",
   "wrangle_key": "select.highest_confidence",
@@ -99,9 +102,9 @@
       "title": "WranglesPY select.highest_confidence implementation"
     },
     {
-      "id": "quasi-registry",
-      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/select/_sources/highest-confidence.md",
-      "title": "Existing select.highest_confidence Markdown"
+      "id": "legacy-docs-archive",
+      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/select/_sources/highest-confidence.md",
+      "title": "Archived select.highest_confidence Markdown"
     }
   ]
 }

@@ -81,17 +81,21 @@ _No sample available._
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `17` |
+| Catalog key | `create.index` |
 | Recipe key | `create.index` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `create` |
 | Documentation group | `create` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.create.index` |
+| Legacy UUID | `0a4909ca-6e14-4da7-8a70-a7fd106d6944` |
 
 **Sources**
 
 - [WranglesPY create.index implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/create.py)
-- [Existing create.index Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/create/_sources/index.md)
+- [Archived create.index Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/create/_sources/index.md)
 
 </details>

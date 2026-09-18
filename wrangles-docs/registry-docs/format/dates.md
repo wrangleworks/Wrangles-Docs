@@ -81,17 +81,21 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `31` |
+| Catalog key | `format.dates` |
 | Recipe key | `format.dates` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `format` |
 | Documentation group | `format` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.format.dates` |
+| Legacy UUID | `a3c15135-4f7a-4659-83fd-f657afa603c9` |
 
 **Sources**
 
 - [WranglesPY format.dates implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/format.py)
-- [Existing format.dates Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/format/_sources/dates.md)
+- [Archived format.dates Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/format/_sources/dates.md)
 
 </details>

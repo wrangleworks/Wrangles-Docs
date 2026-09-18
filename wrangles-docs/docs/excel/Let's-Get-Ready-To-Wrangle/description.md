@@ -7,7 +7,7 @@ slug: /excel/Let's-Get-Ready-To-Wrangle/description
 
 This tutorial will show you how to create a customized description from dataframe columns with a jinja template. We will start by using a simple, hard coded, jinja template then show how to create and use a dynamic template.
 
-We will largely be working with the [create.jinja](/wrangle/create#jinja) wrangle if you are unfamiliar with it.
+We will largely be working with the [create.jinja](/wrangles/namespaces/create#jinja) wrangle if you are unfamiliar with it.
 
 ## Hard Coded Template
 

@@ -1,10 +1,13 @@
 {
   "$schema": "https://docs.wrangles.com/registry/schema/wrangle-contract.schema.json",
   "format": "wrangles-registry-entry",
-  "registry_version": "0.2.1",
-  "schema_version": "0.2",
+  "registry_version": "0.3.0",
+  "schema_version": "0.3",
   "type": "wrangle",
-  "id": "f0ab715e-9e0e-4614-83e4-5cd8ea08a09f",
+  "catalog_id": "90",
+  "catalog_key": "replace",
+  "catalog_status": "active",
+  "legacy_id": "f0ab715e-9e0e-4614-83e4-5cd8ea08a09f",
   "wrangle_name": "replace",
   "namespace": null,
   "wrangle_key": "replace",
@@ -123,9 +126,9 @@
       "title": "WranglesPY replace implementation"
     },
     {
-      "id": "quasi-registry",
-      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/format/_sources/replace.md",
-      "title": "Existing replace Markdown"
+      "id": "legacy-docs-archive",
+      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/format/_sources/replace.md",
+      "title": "Archived replace Markdown"
     }
   ]
 }

@@ -91,13 +91,17 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `5` |
+| Catalog key | `convert.case` |
 | Recipe key | `convert.case` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `convert` |
 | Documentation group | `convert` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.convert.case` |
+| Legacy UUID | `12ff4120-3613-4801-8653-99c793477fbc` |
 
 **Sources**
 

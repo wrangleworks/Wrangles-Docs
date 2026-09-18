@@ -1,10 +1,13 @@
 {
   "$schema": "https://docs.wrangles.com/registry/schema/wrangle-contract.schema.json",
   "format": "wrangles-registry-entry",
-  "registry_version": "0.2.1",
-  "schema_version": "0.2",
+  "registry_version": "0.3.0",
+  "schema_version": "0.3",
   "type": "wrangle",
-  "id": "c0af10b1-423a-416c-8cb5-7e7fe1164964",
+  "catalog_id": "52",
+  "catalog_key": "select.group_by",
+  "catalog_status": "active",
+  "legacy_id": "c0af10b1-423a-416c-8cb5-7e7fe1164964",
   "wrangle_name": "group_by",
   "namespace": "select",
   "wrangle_key": "select.group_by",
@@ -294,9 +297,9 @@
       "title": "WranglesPY select.group_by implementation"
     },
     {
-      "id": "quasi-registry",
-      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/select/_sources/group-by.md",
-      "title": "Existing select.group_by Markdown"
+      "id": "legacy-docs-archive",
+      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/select/_sources/group-by.md",
+      "title": "Archived select.group_by Markdown"
     }
   ]
 }

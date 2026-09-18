@@ -221,17 +221,21 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `65` |
+| Catalog key | `split.text` |
 | Recipe key | `split.text` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `split` |
 | Documentation group | `split` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.split.text` |
+| Legacy UUID | `e76e43f7-d129-4bf8-87b4-a304a378b130` |
 
 **Sources**
 
 - [WranglesPY split.text implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/split.py)
-- [Existing split.text Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/split/_sources/text.md)
+- [Archived split.text Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/split/_sources/text.md)
 
 </details>

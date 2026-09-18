@@ -1,10 +1,13 @@
 {
   "$schema": "https://docs.wrangles.com/registry/schema/wrangle-contract.schema.json",
   "format": "wrangles-registry-entry",
-  "registry_version": "0.2.1",
-  "schema_version": "0.2",
+  "registry_version": "0.3.0",
+  "schema_version": "0.3",
   "type": "wrangle",
-  "id": "c376f3ff-2283-4c4c-8d7f-70db6f53ed19",
+  "catalog_id": "19",
+  "catalog_key": "create.uuid",
+  "catalog_status": "active",
+  "legacy_id": "c376f3ff-2283-4c4c-8d7f-70db6f53ed19",
   "wrangle_name": "uuid",
   "namespace": "create",
   "wrangle_key": "create.uuid",
@@ -90,9 +93,9 @@
       "title": "WranglesPY create.uuid implementation"
     },
     {
-      "id": "quasi-registry",
-      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/create/_sources/uuid.md",
-      "title": "Existing create.uuid Markdown"
+      "id": "legacy-docs-archive",
+      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/create/_sources/uuid.md",
+      "title": "Archived create.uuid Markdown"
     }
   ]
 }

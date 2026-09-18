@@ -92,13 +92,17 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `8` |
+| Catalog key | `convert.from_json` |
 | Recipe key | `convert.from_json` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `convert` |
 | Documentation group | `convert` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.convert.from_json` |
+| Legacy UUID | `e370dfcf-b0fe-4c48-8a52-6f34c47e7978` |
 
 **Sources**
 

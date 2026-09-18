@@ -6,7 +6,7 @@ slug: /python/connectors/recipe
 > Added **v0.5**
 \{.is-info\}
 
-This connector allows you to trigger another recipe, from a recipe. Click [here](https://wrangles.io/python/recipes/wrangles/standalone#recipe) for the wrangle equivalent of this connector.
+This connector allows you to trigger another recipe, from a recipe. Click [here](/wrangles/recipe) for the wrangle equivalent of this connector.
 
 
 # Tabset \{.tabset\}

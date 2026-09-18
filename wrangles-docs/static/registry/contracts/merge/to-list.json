@@ -1,10 +1,13 @@
 {
   "$schema": "https://docs.wrangles.com/registry/schema/wrangle-contract.schema.json",
   "format": "wrangles-registry-entry",
-  "registry_version": "0.2.1",
-  "schema_version": "0.2",
+  "registry_version": "0.3.0",
+  "schema_version": "0.3",
   "type": "wrangle",
-  "id": "d5300fe7-c8a4-4a41-8f12-f2c1698678cc",
+  "catalog_id": "46",
+  "catalog_key": "merge.to_list",
+  "catalog_status": "active",
+  "legacy_id": "d5300fe7-c8a4-4a41-8f12-f2c1698678cc",
   "wrangle_name": "to_list",
   "namespace": "merge",
   "wrangle_key": "merge.to_list",
@@ -106,9 +109,9 @@
       "title": "WranglesPY merge.to_list implementation"
     },
     {
-      "id": "quasi-registry",
-      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/merge/_sources/to-list.md",
-      "title": "Existing merge.to_list Markdown"
+      "id": "legacy-docs-archive",
+      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/merge/_sources/to-list.md",
+      "title": "Archived merge.to_list Markdown"
     }
   ]
 }

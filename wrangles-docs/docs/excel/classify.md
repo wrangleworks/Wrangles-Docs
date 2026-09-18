@@ -52,7 +52,7 @@ To update an existing Classify Wrangle, click on the extra menu (...) for the re
 # Use a Classify Wrangle
 <!-- wrangle: {"type":"classify","model_id":"06669ef8-cdd1-42f7-8078-98e0b7a42c30"} -->
 
-> Click [here](/wrangle/ai#classify) to learn how to use Classify Wrangles in a recipe.
+> Click [here](/wrangles/namespaces/ai#classify) to learn how to use Classify Wrangles in a recipe.
 \{.is-success\}
 
 To use your trained Classify Wrangle, select the column of data that you wish to classify and click the run button (⏵). The predicted categories will be inserted as a column to the right of your inputs.

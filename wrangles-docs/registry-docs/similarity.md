@@ -99,17 +99,21 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `92` |
+| Catalog key | `similarity` |
 | Recipe key | `similarity` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | Root-level |
 | Documentation group | `compare` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.similarity` |
+| Legacy UUID | `7c733344-4cce-4938-8013-53742fb46a90` |
 
 **Sources**
 
 - [WranglesPY similarity implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/main.py)
-- [Existing similarity Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/compare/_sources/similarity.md)
+- [Archived similarity Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/compare/_sources/similarity.md)
 
 </details>

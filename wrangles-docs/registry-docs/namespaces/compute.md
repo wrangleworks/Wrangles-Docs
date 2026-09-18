@@ -145,18 +145,22 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `3` |
+| Catalog key | `compute.case_when` |
 | Recipe key | `compute.case_when` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `compute` |
 | Documentation group | `compute` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.compute.case_when` |
+| Legacy UUID | `9a9662e4-53d1-4932-8adf-bc3e7aa364ad` |
 
 **Sources**
 
 - [WranglesPY compute.case_when implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/compute.py)
-- [Existing compute.case_when Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/compute/_sources/case-when.md)
+- [Archived compute.case_when Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/compute/_sources/case-when.md)
 
 </details>
 
@@ -260,18 +264,22 @@ _Template based on the documented parameters; no published source example is cur
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `4` |
+| Catalog key | `compute.score_search_results` |
 | Recipe key | `compute.score_search_results` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `compute` |
 | Documentation group | `compute` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.compute.score_search_results` |
+| Legacy UUID | `313a8ec0-cf13-4956-8d3b-5362b8641d0f` |
 
 **Sources**
 
 - [WranglesPY compute.score_search_results implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/compute.py)
-- [Existing compute.score_search_results Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/compute/_sources/score-search-results.md)
+- [Archived compute.score_search_results Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/compute/_sources/score-search-results.md)
 
 </details>
 
@@ -356,18 +364,22 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `82` |
+| Catalog key | `math` |
 | Recipe key | `math` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | Root-level |
 | Documentation group | `compute` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.math` |
+| Legacy UUID | `494b11ad-00c1-4748-8b93-6bec982f4fec` |
 
 **Sources**
 
 - [WranglesPY math implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/main.py)
-- [Existing math Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/compute/_sources/math.md)
+- [Archived math Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/compute/_sources/math.md)
 
 </details>
 
@@ -482,18 +494,22 @@ _No sample available._
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `85` |
+| Catalog key | `python` |
 | Recipe key | `python` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | Root-level |
 | Documentation group | `compute` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.python` |
+| Legacy UUID | `c0398a11-7731-4e47-8df0-b07eea0b1d6c` |
 
 **Sources**
 
 - [WranglesPY python implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/main.py)
-- [Existing python Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/compute/_sources/python.md)
+- [Archived python Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/compute/_sources/python.md)
 
 </details>
 
@@ -582,18 +598,22 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `94` |
+| Catalog key | `sql` |
 | Recipe key | `sql` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | Root-level |
 | Documentation group | `compute` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.sql` |
+| Legacy UUID | `467a06b1-a697-4d31-8061-7d83a719fd79` |
 
 **Sources**
 
 - [WranglesPY sql implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/main.py)
-- [Existing sql Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/compute/_sources/sql.md)
+- [Archived sql Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/compute/_sources/sql.md)
 
 </details>
 
@@ -651,7 +671,10 @@ This guidance was derived from the callable signature.
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `83` |
+| Catalog key | `maths` |
 | Recipe key | `maths` |
+| Catalog status | active |
 | Lifecycle status | deprecated |
 | Recipe Writer eligible | No |
 | Recipe Writer exclusion | Deprecated compatibility key; use math. |
@@ -660,6 +683,7 @@ This guidance was derived from the callable signature.
 | Documentation group | `compute` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.maths` |
+| Legacy UUID | None |
 
 **Sources**
 

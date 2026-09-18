@@ -123,17 +123,21 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `30` |
+| Catalog key | `extract.regex` |
 | Recipe key | `extract.regex` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `extract` |
 | Documentation group | `extract` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.extract.regex` |
+| Legacy UUID | `9aa0253a-4b70-4737-832c-964e15967289` |
 
 **Sources**
 
 - [WranglesPY extract.regex implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/extract.py)
-- [Existing extract.regex Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/extract/_sources/regex.md)
+- [Archived extract.regex Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/extract/_sources/regex.md)
 
 </details>

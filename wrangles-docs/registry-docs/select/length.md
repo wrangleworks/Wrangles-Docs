@@ -78,17 +78,21 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `56` |
+| Catalog key | `select.length` |
 | Recipe key | `select.length` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `select` |
 | Documentation group | `select` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.select.length` |
+| Legacy UUID | `4d7a5f66-0a4a-40e0-8298-d5c55754423d` |
 
 **Sources**
 
 - [WranglesPY select.length implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/select.py)
-- [Existing select.length Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/select/_sources/length.md)
+- [Archived select.length Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/select/_sources/length.md)
 
 </details>

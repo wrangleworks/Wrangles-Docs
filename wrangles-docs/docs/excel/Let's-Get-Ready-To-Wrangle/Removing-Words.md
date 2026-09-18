@@ -34,7 +34,7 @@ Now, we can plug our regex pattern into the Replace Wrangle and run it.
 
 ## Removing Words in a Recipe
 
-Removing words isn't always as simple as using the [remove_words](/wrangle/format#remove-words) wrangle. There are many cases where an extract wrangle will find a match but the remove wrangle will not. This is because extracts are allowed variants (listed int he "Find" column of the training data). By using an extract wrangle in conjunction with our remove_words wrangle, we can achieve the desired output.
+Removing words isn't always as simple as using the [remove_words](/wrangles/namespaces/format#remove-words) wrangle. There are many cases where an extract wrangle will find a match but the remove wrangle will not. This is because extracts are allowed variants (listed int he "Find" column of the training data). By using an extract wrangle in conjunction with our remove_words wrangle, we can achieve the desired output.
 
 This portion of the tutorial will show you how to build a short recipe that uses both extract and remove_words to remove brand names from our data. 
 
@@ -46,7 +46,7 @@ In this case, we will implement an extract wrangle that was built with the inten
 
 ![demo_brands.png](/in-depth-examples/remove-words/demo_brands.png)
 
-If you are not familiar with extract wrangles, see [here](/wrangle/extract). The particular extract wrangle we are using is Custom.
+If you are not familiar with extract wrangles, see [here](/wrangles/namespaces/extract). The particular extract wrangle we are using is Custom.
 
 Now, let’s add this to a recipe and see what our output is.
 

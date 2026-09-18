@@ -86,17 +86,21 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `33` |
+| Catalog key | `format.prefix` |
 | Recipe key | `format.prefix` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `format` |
 | Documentation group | `format` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.format.prefix` |
+| Legacy UUID | `c12f99b9-2363-4da7-8405-7c73b87906e5` |
 
 **Sources**
 
 - [WranglesPY format.prefix implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/format.py)
-- [Existing format.prefix Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/format/_sources/prefix.md)
+- [Archived format.prefix Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/format/_sources/prefix.md)
 
 </details>

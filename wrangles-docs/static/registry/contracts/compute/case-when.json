@@ -1,10 +1,13 @@
 {
   "$schema": "https://docs.wrangles.com/registry/schema/wrangle-contract.schema.json",
   "format": "wrangles-registry-entry",
-  "registry_version": "0.2.1",
-  "schema_version": "0.2",
+  "registry_version": "0.3.0",
+  "schema_version": "0.3",
   "type": "wrangle",
-  "id": "9a9662e4-53d1-4932-8adf-bc3e7aa364ad",
+  "catalog_id": "3",
+  "catalog_key": "compute.case_when",
+  "catalog_status": "active",
+  "legacy_id": "9a9662e4-53d1-4932-8adf-bc3e7aa364ad",
   "wrangle_name": "case_when",
   "namespace": "compute",
   "wrangle_key": "compute.case_when",
@@ -133,9 +136,9 @@
       "title": "WranglesPY compute.case_when implementation"
     },
     {
-      "id": "quasi-registry",
-      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/compute/_sources/case-when.md",
-      "title": "Existing compute.case_when Markdown"
+      "id": "legacy-docs-archive",
+      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/compute/_sources/case-when.md",
+      "title": "Archived compute.case_when Markdown"
     }
   ]
 }

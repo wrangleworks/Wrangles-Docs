@@ -196,17 +196,21 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `21` |
+| Catalog key | `extract.ai` |
 | Recipe key | `extract.ai` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `extract` |
 | Documentation group | `extract` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.extract.ai` |
+| Legacy UUID | `d9f89b00-fda3-4f4c-826c-6417b9390607` |
 
 **Sources**
 
 - [WranglesPY extract.ai implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/extract.py)
-- [Existing extract.ai Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/extract/_sources/ai.md)
+- [Archived extract.ai Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/extract/_sources/ai.md)
 
 </details>

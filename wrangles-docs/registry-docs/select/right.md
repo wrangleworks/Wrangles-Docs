@@ -81,17 +81,21 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `58` |
+| Catalog key | `select.right` |
 | Recipe key | `select.right` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `select` |
 | Documentation group | `select` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.select.right` |
+| Legacy UUID | `89ee82ec-3bc5-4bfa-899b-7a1260ef9bdb` |
 
 **Sources**
 
 - [WranglesPY select.right implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/select.py)
-- [Existing select.right Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/select/_sources/right.md)
+- [Archived select.right Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/select/_sources/right.md)
 
 </details>

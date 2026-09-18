@@ -110,17 +110,21 @@ _Template based on the documented parameters; no published source example is cur
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `39` |
+| Catalog key | `generate.ai` |
 | Recipe key | `generate.ai` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `generate` |
 | Documentation group | `generate` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.generate.ai` |
+| Legacy UUID | `12c31c6c-cade-484d-84ba-7f302bf6af52` |
 
 **Sources**
 
 - [WranglesPY generate.ai implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/generate.py)
-- [Existing generate.ai Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/ai/_sources/ai.md)
+- [Archived generate.ai Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/ai/_sources/ai.md)
 
 </details>

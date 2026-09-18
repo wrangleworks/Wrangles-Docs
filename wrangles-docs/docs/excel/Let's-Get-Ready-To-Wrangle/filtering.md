@@ -13,7 +13,7 @@ This tutorial will go in depth to show you where (no pun intended) both types of
 
 # The Filter Wrangle
 
-The [filter wrangle](/wrangle/select#filter) is used to filter the entire dataset, and drop all rows which do not match the criteria layed out within the wrangle.
+The [filter wrangle](/wrangles/namespaces/select#filter) is used to filter the entire dataset, and drop all rows which do not match the criteria layed out within the wrangle.
 
 For example, if you are working with a dataset made up of all the products a company has to offer, but you only want to work with a certain category or categories. This is where the filter wrangle should be used. Example code is shown below:
 
@@ -38,7 +38,7 @@ wrangles:
 
 The first example above would output a subset of the original dataset made up of only items that had a Category of "Hand Tools." The second example would output a subset of "Hand Tools," "Power Tools," and "Specialty Tools."
 
-There are many more ways to filter your data set other than using equal. See the parameters tab in the [filter wrangle](/wrangle/select#filter) section for more ways to use the filter wrangle. Multiple parameters can be used at once, but I would suggest against this as it becomes very easy to over filter your data.
+There are many more ways to filter your data set other than using equal. See the parameters tab in the [filter wrangle](/wrangles/namespaces/select#filter) section for more ways to use the filter wrangle. Multiple parameters can be used at once, but I would suggest against this as it becomes very easy to over filter your data.
 
 # The Where Parameter
 
@@ -46,7 +46,7 @@ The where parameter is used to run wrangles on a subset of data without dropping
 
 The where parameters implements [SQLite](https://www.sqlite.org/docs.html) to filter (using a where clause) datasets prior to running the wrangle. Sites like [sqlitetutorial.net](https://www.sqlitetutorial.net/sqlite-where/) can help guide you along the way of writing your where clause. When writing your where clause, keep in mind that you do not need to include "where," the wrangle will add that for you. It is important to write a valid sql statement in order for the where parameter to work. If the where clause is invalid, the wrangle will fail.
 
-While sql is very powerful, and can be used in many ways, he where parameter is only meant to filter the data that the wrangle is meant to be ran on. To implement sql into your recipe, see the [sql wrangle](/wrangle/compute#sql).
+While sql is very powerful, and can be used in many ways, he where parameter is only meant to filter the data that the wrangle is meant to be ran on. To implement sql into your recipe, see the [sql wrangle](/wrangles/namespaces/compute#sql).
 
 # Using Where in a Filter Wrangle
 

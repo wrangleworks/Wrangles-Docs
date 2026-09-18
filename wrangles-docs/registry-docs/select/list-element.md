@@ -86,17 +86,21 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `57` |
+| Catalog key | `select.list_element` |
 | Recipe key | `select.list_element` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `select` |
 | Documentation group | `select` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.select.list_element` |
+| Legacy UUID | `ec40495d-d29a-4f62-86dd-eafa43cf388a` |
 
 **Sources**
 
 - [WranglesPY select.list_element implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/select.py)
-- [Existing select.list_element Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/select/_sources/list-element.md)
+- [Archived select.list_element Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/select/_sources/list-element.md)
 
 </details>

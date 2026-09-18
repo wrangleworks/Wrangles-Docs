@@ -116,17 +116,21 @@ _No sample available._
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `85` |
+| Catalog key | `python` |
 | Recipe key | `python` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | Root-level |
 | Documentation group | `compute` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.python` |
+| Legacy UUID | `c0398a11-7731-4e47-8df0-b07eea0b1d6c` |
 
 **Sources**
 
 - [WranglesPY python implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/main.py)
-- [Existing python Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/compute/_sources/python.md)
+- [Archived python Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/compute/_sources/python.md)
 
 </details>

@@ -85,17 +85,21 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `36` |
+| Catalog key | `format.significant_figures` |
 | Recipe key | `format.significant_figures` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `format` |
 | Documentation group | `format` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.format.significant_figures` |
+| Legacy UUID | `a359f72a-5250-4dd8-84f6-8a8173bee0f6` |
 
 **Sources**
 
 - [WranglesPY format.significant_figures implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/format.py)
-- [Existing format.significant_figures Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/format/_sources/significant-figures.md)
+- [Archived format.significant_figures Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/format/_sources/significant-figures.md)
 
 </details>

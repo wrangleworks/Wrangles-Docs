@@ -84,17 +84,21 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `96` |
+| Catalog key | `translate` |
 | Recipe key | `translate` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | Root-level |
 | Documentation group | `format` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.translate` |
+| Legacy UUID | `73c3ceb6-ffd8-4d74-8389-c83b99d33bb0` |
 
 **Sources**
 
 - [WranglesPY translate implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/main.py)
-- [Existing translate Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/format/_sources/translate.md)
+- [Archived translate Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/format/_sources/translate.md)
 
 </details>

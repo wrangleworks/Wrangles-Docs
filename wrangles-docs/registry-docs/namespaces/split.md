@@ -91,18 +91,22 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `77` |
+| Catalog key | `explode` |
 | Recipe key | `explode` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | Root-level |
 | Documentation group | `split` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.pandas.explode` |
+| Legacy UUID | `4e4b13ac-8d50-4b2c-85c8-2c31de1e817d` |
 
 **Sources**
 
 - [WranglesPY explode implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/pandas.py)
-- [Existing explode Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/split/_sources/explode.md)
+- [Archived explode Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/split/_sources/explode.md)
 
 </details>
 
@@ -341,18 +345,22 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `63` |
+| Catalog key | `split.dictionary` |
 | Recipe key | `split.dictionary` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `split` |
 | Documentation group | `split` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.split.dictionary` |
+| Legacy UUID | `06ca98e4-d026-43f7-84eb-af246d401ba9` |
 
 **Sources**
 
 - [WranglesPY split.dictionary implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/split.py)
-- [Existing split.dictionary Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/split/_sources/dictionary.md)
+- [Archived split.dictionary Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/split/_sources/dictionary.md)
 
 </details>
 
@@ -463,18 +471,22 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `64` |
+| Catalog key | `split.list` |
 | Recipe key | `split.list` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `split` |
 | Documentation group | `split` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.split.list` |
+| Legacy UUID | `3260b9f7-aae2-499f-8004-d211c2cf643e` |
 
 **Sources**
 
 - [WranglesPY split.list implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/split.py)
-- [Existing split.list Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/split/_sources/list.md)
+- [Archived split.list Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/split/_sources/list.md)
 
 </details>
 
@@ -694,18 +706,22 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `65` |
+| Catalog key | `split.text` |
 | Recipe key | `split.text` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `split` |
 | Documentation group | `split` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.split.text` |
+| Legacy UUID | `e76e43f7-d129-4bf8-87b4-a304a378b130` |
 
 **Sources**
 
 - [WranglesPY split.text implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/split.py)
-- [Existing split.text Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/split/_sources/text.md)
+- [Archived split.text Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/split/_sources/text.md)
 
 </details>
 
@@ -816,17 +832,21 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `66` |
+| Catalog key | `split.tokenize` |
 | Recipe key | `split.tokenize` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `split` |
 | Documentation group | `split` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.split.tokenize` |
+| Legacy UUID | `6cc88418-ae0c-43f6-84ee-31e0d5f838c3` |
 
 **Sources**
 
 - [WranglesPY split.tokenize implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/split.py)
-- [Existing split.tokenize Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/split/_sources/tokenize.md)
+- [Archived split.tokenize Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/split/_sources/tokenize.md)
 
 </details>

@@ -80,17 +80,21 @@ _No sample available._
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `15` |
+| Catalog key | `create.guid` |
 | Recipe key | `create.guid` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `create` |
 | Documentation group | `create` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.create.guid` |
+| Legacy UUID | `cf3aaab2-3d5b-4c9b-826e-7af7510521c9` |
 
 **Sources**
 
 - [WranglesPY create.guid implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/create.py)
-- [Existing create.guid Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/create/_sources/guid.md)
+- [Archived create.guid Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/create/_sources/guid.md)
 
 </details>

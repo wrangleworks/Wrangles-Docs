@@ -109,10 +109,10 @@ sources:
     resource: >-
       https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/search.py
     title: WranglesPY search.retrieve_link_content implementation
-  - id: quasi-registry
+  - id: legacy-docs-archive
     resource: >-
-      https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/search/_sources/retrieve-link-content.md
-    title: Existing search.retrieve_link_content Markdown
+      https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/search/_sources/retrieve-link-content.md
+    title: Archived search.retrieve_link_content Markdown
 ---
 
 # Retrieve Link Content

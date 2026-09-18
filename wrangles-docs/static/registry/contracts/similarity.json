@@ -1,10 +1,13 @@
 {
   "$schema": "https://docs.wrangles.com/registry/schema/wrangle-contract.schema.json",
   "format": "wrangles-registry-entry",
-  "registry_version": "0.2.1",
-  "schema_version": "0.2",
+  "registry_version": "0.3.0",
+  "schema_version": "0.3",
   "type": "wrangle",
-  "id": "7c733344-4cce-4938-8013-53742fb46a90",
+  "catalog_id": "92",
+  "catalog_key": "similarity",
+  "catalog_status": "active",
+  "legacy_id": "7c733344-4cce-4938-8013-53742fb46a90",
   "wrangle_name": "similarity",
   "namespace": null,
   "wrangle_key": "similarity",
@@ -113,9 +116,9 @@
       "title": "WranglesPY similarity implementation"
     },
     {
-      "id": "quasi-registry",
-      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/compare/_sources/similarity.md",
-      "title": "Existing similarity Markdown"
+      "id": "legacy-docs-archive",
+      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/compare/_sources/similarity.md",
+      "title": "Archived similarity Markdown"
     }
   ]
 }

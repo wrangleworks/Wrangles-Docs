@@ -39,6 +39,7 @@ function useDocTOC() {
     mobile,
     desktop,
     collapsible: isWrangleDoc,
+    type: frontMatter.wrangle_type,
   };
 }
 function TocToggle({collapsed, onClick}) {
@@ -69,7 +70,12 @@ export default function DocItemLayout({children}) {
   const desktopToc = isTocCollapsed ? undefined : docTOC.desktop;
 
   return (
-    <div className={clsx('row', docTOC.collapsible && 'ww-wrangle-doc-scope')}>
+    <div
+      className={clsx(
+        'row',
+        docTOC.collapsible && 'ww-wrangle-doc-scope',
+        docTOC.type === 'connector' && 'ww-connector-doc-scope',
+      )}>
       <div
         className={clsx(
           'col',

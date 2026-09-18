@@ -4,7 +4,7 @@ type: collection
 title: Wrangles Registry
 description: Public pre-production bundle for Wrangles recipe primitives.
 status: pre-production
-registry_version: 0.2.1
+registry_version: 0.3.0
 ---
 
 # Wrangles Registry

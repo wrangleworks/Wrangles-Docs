@@ -5,8 +5,9 @@ const path = require('node:path');
 const crypto = require('node:crypto');
 const yaml = require('js-yaml');
 
-const REGISTRY_VERSION = '0.2.1';
-const ENTRY_SCHEMA_VERSION = '0.2';
+const REGISTRY_VERSION = '0.3.0';
+const SOURCE_ENTRY_SCHEMA_VERSION = '0.2';
+const CONTRACT_VERSION = '0.3';
 const PUBLIC_ORIGIN = 'https://docs.wrangles.com';
 const RECIPE_WRITER_BASELINE_COUNT = 88;
 const RECIPE_WRITER_KEYS_CHECKSUM =
@@ -17,8 +18,13 @@ const siteRoot = path.resolve(__dirname, '..');
 const repositoryRoot = path.resolve(siteRoot, '..');
 const registryRoot = path.join(repositoryRoot, 'registry');
 const entriesRoot = path.join(registryRoot, 'wrangles');
-const quasiRegistryRoot = path.join(siteRoot, 'wrangle-docs');
 const entrySchemaPath = path.join(registryRoot, 'schema', 'wrangle-entry.schema.json');
+const catalogSnapshotSchemaPath = path.join(
+  registryRoot,
+  'schema',
+  'catalog-snapshot.schema.json',
+);
+const catalogSnapshotPath = path.join(registryRoot, 'catalog', 'api-core.json');
 const runtimeManifestSchemaPath = path.join(
   registryRoot,
   'schema',
@@ -215,6 +221,119 @@ function validateRuntimeManifest(manifest) {
   }
 }
 
+function validateCatalogSnapshot(snapshot, schema) {
+  if (!isObject(snapshot)) {
+    fail(catalogSnapshotPath, 'catalog snapshot must be an object');
+    return;
+  }
+  if (snapshot.$schema !== schema.$id) {
+    fail(catalogSnapshotPath, '$schema does not match the catalog snapshot schema');
+  }
+  const topLevelFields = new Set([
+    '$schema', 'format', 'format_version', 'source', 'entry_count', 'entries',
+  ]);
+  for (const field of Object.keys(snapshot)) {
+    if (!topLevelFields.has(field)) fail(catalogSnapshotPath, `unknown field ${field}`);
+  }
+  if (snapshot.format !== 'wrangles-catalog-snapshot') {
+    fail(catalogSnapshotPath, 'format must be wrangles-catalog-snapshot');
+  }
+  if (snapshot.format_version !== '0.1') {
+    fail(catalogSnapshotPath, 'format_version must be 0.1');
+  }
+  if (!isObject(snapshot.source)) {
+    fail(catalogSnapshotPath, 'source must be an object');
+  } else {
+    const sourceFields = new Set(['system', 'repository', 'table', 'data_updated_through']);
+    for (const field of Object.keys(snapshot.source)) {
+      if (!sourceFields.has(field)) fail(catalogSnapshotPath, `unknown source field ${field}`);
+    }
+    if (snapshot.source.system !== 'API Core') {
+      fail(catalogSnapshotPath, 'source.system must be API Core');
+    }
+    if (snapshot.source.repository !== 'https://github.com/wrangleworks/API-Core') {
+      fail(catalogSnapshotPath, 'source.repository must identify API Core');
+    }
+    if (snapshot.source.table !== 'public.wrangles_catalog') {
+      fail(catalogSnapshotPath, 'source.table must be public.wrangles_catalog');
+    }
+    if (!/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?Z$/.test(
+      snapshot.source.data_updated_through || '',
+    )) {
+      fail(catalogSnapshotPath, 'source.data_updated_through must be an RFC 3339 UTC timestamp');
+    }
+  }
+  if (!Array.isArray(snapshot.entries)) {
+    fail(catalogSnapshotPath, 'entries must be an array');
+    return;
+  }
+  if (snapshot.entry_count !== snapshot.entries.length) {
+    fail(
+      catalogSnapshotPath,
+      `entry_count is ${snapshot.entry_count}; expected ${snapshot.entries.length}`,
+    );
+  }
+
+  const ids = new Set();
+  const catalogKeys = new Set();
+  const wrangleKeys = new Set();
+  const entryFields = new Set([
+    'catalog_id', 'catalog_key', 'kind', 'wrangle_key', 'title', 'registry_path',
+    'status', 'source', 'created_at', 'updated_at',
+  ]);
+  for (const [index, entry] of snapshot.entries.entries()) {
+    const label = `entries[${index}]`;
+    if (!isObject(entry)) {
+      fail(catalogSnapshotPath, `${label} must be an object`);
+      continue;
+    }
+    for (const field of Object.keys(entry)) {
+      if (!entryFields.has(field)) fail(catalogSnapshotPath, `${label} has unknown field ${field}`);
+    }
+    for (const field of [
+      'catalog_id', 'catalog_key', 'kind', 'wrangle_key', 'title', 'registry_path',
+      'status', 'source', 'created_at', 'updated_at',
+    ]) {
+      if (!hasOwn(entry, field)) fail(catalogSnapshotPath, `${label}.${field} is required`);
+    }
+    if (!/^[1-9][0-9]*$/.test(entry.catalog_id || '')) {
+      fail(catalogSnapshotPath, `${label}.catalog_id must be a positive decimal string`);
+    } else if (ids.has(entry.catalog_id)) {
+      fail(catalogSnapshotPath, `duplicate catalog_id ${entry.catalog_id}`);
+    }
+    ids.add(entry.catalog_id);
+    if (!/^[a-z][a-z0-9_]*(\.[a-z][a-z0-9_]*)*$/.test(entry.catalog_key || '')) {
+      fail(catalogSnapshotPath, `${label}.catalog_key is invalid`);
+    } else if (catalogKeys.has(entry.catalog_key)) {
+      fail(catalogSnapshotPath, `duplicate catalog_key ${entry.catalog_key}`);
+    }
+    catalogKeys.add(entry.catalog_key);
+    if (entry.wrangle_key !== null) {
+      if (!/^[a-z][a-z0-9_]*(\.[a-z][a-z0-9_]*)*$/.test(entry.wrangle_key || '')) {
+        fail(catalogSnapshotPath, `${label}.wrangle_key is invalid`);
+      } else if (wrangleKeys.has(entry.wrangle_key)) {
+        fail(catalogSnapshotPath, `duplicate wrangle_key ${entry.wrangle_key}`);
+      }
+      wrangleKeys.add(entry.wrangle_key);
+    }
+    for (const field of ['kind', 'status', 'source', 'created_at', 'updated_at']) {
+      if (typeof entry[field] !== 'string' || !entry[field]) {
+        fail(catalogSnapshotPath, `${label}.${field} must be a non-empty string`);
+      }
+    }
+    for (const field of ['created_at', 'updated_at']) {
+      if (!/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?Z$/.test(entry[field] || '')) {
+        fail(catalogSnapshotPath, `${label}.${field} must be an RFC 3339 UTC timestamp`);
+      }
+    }
+    for (const field of ['title', 'registry_path']) {
+      if (entry[field] !== null && (typeof entry[field] !== 'string' || !entry[field])) {
+        fail(catalogSnapshotPath, `${label}.${field} must be a non-empty string or null`);
+      }
+    }
+  }
+}
+
 function splitMarkdownRow(line) {
   const trimmed = line.trim();
   if (!trimmed.startsWith('|') || !trimmed.endsWith('|')) return [];
@@ -235,135 +354,6 @@ function splitMarkdownRow(line) {
   }
   cells.push(current.trim());
   return cells;
-}
-
-function markdownTableAfter(source, marker) {
-  const lines = source.split(/\r?\n/);
-  const markerIndex = lines.findIndex((line) => line.trim() === marker);
-  if (markerIndex < 0) return [];
-
-  let headerIndex = markerIndex + 1;
-  while (headerIndex < lines.length && !lines[headerIndex].trim()) headerIndex += 1;
-  if (!lines[headerIndex]?.trim().startsWith('|')) return [];
-
-  const headers = splitMarkdownRow(lines[headerIndex]);
-  const rows = [];
-  for (let index = headerIndex + 2; index < lines.length; index += 1) {
-    if (!lines[index].trim().startsWith('|')) break;
-    const cells = splitMarkdownRow(lines[index]);
-    if (cells.length !== headers.length) continue;
-    rows.push(Object.fromEntries(headers.map((header, cellIndex) => [header, cells[cellIndex]])));
-  }
-  return rows;
-}
-
-function fieldTable(rows) {
-  return Object.fromEntries(rows.map((row) => [row.Field, row.Value]));
-}
-
-function stripCode(value) {
-  const text = String(value || '').trim();
-  return text.startsWith('`') && text.endsWith('`') ? text.slice(1, -1) : text;
-}
-
-function yesNo(value) {
-  if (value === 'Yes') return true;
-  if (value === 'No') return false;
-  return null;
-}
-
-function parseQuasiRegistryEntry(source, sourceFile) {
-  const metadata = fieldTable(markdownTableAfter(source, '<summary>Metadata</summary>'));
-  const access = fieldTable(markdownTableAfter(source, '<summary>Access</summary>'));
-  const parameterRows = markdownTableAfter(source, '### Parameters');
-  const wrangleKey = stripCode(metadata['Wrangle Key']);
-
-  if (!wrangleKey) fail(sourceFile, 'quasi-registry record has no Wrangle Key');
-  if (!parameterRows.length) fail(sourceFile, 'quasi-registry record has no parameter table');
-
-  const parameters = parameterRows.map((row) => ({
-    name: stripCode(row.Parameter),
-    required: yesNo(row.Required),
-    label: row.Label || '',
-    ui_type: row['UI Type'] || '',
-    description: row.Description || '',
-    allowed_values: row['Allowed Values'] || '',
-    display_default: row.Default || '',
-  }));
-  const parameterNames = new Set();
-  for (const parameter of parameters) {
-    if (!parameter.name) {
-      fail(sourceFile, 'quasi-registry parameter has no name');
-    } else if (parameterNames.has(parameter.name)) {
-      fail(sourceFile, `duplicate quasi-registry parameter ${parameter.name}`);
-    } else {
-      parameterNames.add(parameter.name);
-    }
-    if (parameter.required === null) {
-      fail(sourceFile, `quasi-registry parameter ${parameter.name} has invalid Required value`);
-    }
-  }
-
-  const id = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(
-    metadata.ID || '',
-  ) ? metadata.ID : null;
-
-  return {
-    source_file: posixPath(path.relative(repositoryRoot, sourceFile)),
-    source_sha256: sha256(source),
-    title: source.match(/^##\s+(.+)$/m)?.[1]?.trim() || wrangleKey,
-    wrangle_key: wrangleKey,
-    id,
-    type: metadata.Type || '',
-    subtype: metadata.Subtype || '',
-    variant: metadata.Variant || '',
-    status: metadata.Status || '',
-    tags: String(metadata.Tags || '').split(',').map((tag) => tag.trim()).filter(Boolean),
-    parameters,
-    access: {
-      ai_powered: yesNo(access['AI-backed']),
-      requires_account: yesNo(access['Requires WrangleWorks account']),
-      requires_subscription: yesNo(access['Requires subscription']),
-      requires_external_api_key: yesNo(access['Requires external API key']),
-    },
-  };
-}
-
-async function readQuasiRegistry() {
-  const allMarkdown = await listFiles(quasiRegistryRoot, '.md');
-  const sourceFiles = allMarkdown.filter(
-    (sourceFile) => path.basename(path.dirname(sourceFile)) === '_sources',
-  );
-  const sourceFileSet = new Set(sourceFiles.map((sourceFile) => path.resolve(sourceFile)));
-  const entries = [];
-  for (const sourceFile of sourceFiles) {
-    const source = await fs.readFile(sourceFile, 'utf8');
-    entries.push(parseQuasiRegistryEntry(source, sourceFile));
-  }
-
-  const keys = new Set();
-  for (const entry of entries) {
-    if (keys.has(entry.wrangle_key)) {
-      fail(path.join(repositoryRoot, entry.source_file), `duplicate quasi-registry key ${entry.wrangle_key}`);
-    }
-    keys.add(entry.wrangle_key);
-  }
-
-  const supportingMarkdown = [];
-  for (const sourceFile of allMarkdown.filter(
-    (filename) => !sourceFileSet.has(path.resolve(filename)))) {
-    const source = await fs.readFile(sourceFile, 'utf8');
-    supportingMarkdown.push({
-      source_file: posixPath(path.relative(repositoryRoot, sourceFile)),
-      source_sha256: sha256(source),
-    });
-  }
-
-  return {
-    entries: entries.sort((left, right) => left.wrangle_key.localeCompare(right.wrangle_key)),
-    supportingMarkdown: supportingMarkdown.sort((left, right) =>
-      left.source_file.localeCompare(right.source_file)),
-  };
 }
 
 function validateSchemaFragment(fragment, source, label) {
@@ -533,8 +523,8 @@ function validateTopLevel(metadata, source, entrySchema) {
     if (!allowed.has(key)) fail(source, `unknown top-level field ${key}`);
   }
 
-  if (metadata.schema_version !== ENTRY_SCHEMA_VERSION) {
-    fail(source, `schema_version must be ${ENTRY_SCHEMA_VERSION}`);
+  if (metadata.schema_version !== SOURCE_ENTRY_SCHEMA_VERSION) {
+    fail(source, `schema_version must be ${SOURCE_ENTRY_SCHEMA_VERSION}`);
   }
   if (metadata.type !== 'wrangle') fail(source, 'type must be wrangle');
   for (const key of [
@@ -1229,13 +1219,17 @@ ${accessRows}
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | \`${entry.catalog.catalog_id}\` |
+| Catalog key | \`${entry.catalog.catalog_key}\` |
 | Recipe key | \`${metadata.wrangle_key}\` |
+| Catalog status | ${entry.catalog.status} |
 | Lifecycle status | ${metadata.status} |
 | Recipe Writer eligible | ${metadata.recipe_writer.eligible ? 'Yes' : 'No'} |
 ${metadata.recipe_writer.reason ? `| Recipe Writer exclusion | ${escapeCell(metadata.recipe_writer.reason)} |\n` : ''}${metadata.replaced_by ? `| Replaced by | ${replacementLink} |\n` : ''}| Namespace | ${namespace === 'Root-level' ? namespace : `\`${namespace}\``} |
 | Documentation group | \`${documentationGroup}\` |
 | Aliases | ${aliases} |
 | Runtime symbol | \`${metadata.runtime.symbol}\` |
+| Legacy UUID | ${metadata.id ? `\`${metadata.id}\`` : 'None'} |
 
 **Sources**
 
@@ -1505,6 +1499,9 @@ function recipeSchemaAcceptsWrangleKey(schema, key) {
 
 function buildCompiledContractSchema(entrySchema) {
   const contractSchemaUrl = `${PUBLIC_ORIGIN}/registry/schema/wrangle-contract.schema.json`;
+  const properties = JSON.parse(JSON.stringify(entrySchema.properties));
+  delete properties.id;
+  properties.schema_version = {const: CONTRACT_VERSION};
   return {
     $schema: entrySchema.$schema,
     $id: contractSchemaUrl,
@@ -1516,14 +1513,33 @@ function buildCompiledContractSchema(entrySchema) {
       '$schema',
       'format',
       'registry_version',
-      ...entrySchema.required,
+      ...entrySchema.required.filter((field) => field !== 'id'),
+      'catalog_id',
+      'catalog_key',
+      'catalog_status',
+      'legacy_id',
       'guidance',
     ],
     properties: {
       $schema: {const: contractSchemaUrl},
       format: {const: 'wrangles-registry-entry'},
       registry_version: {const: REGISTRY_VERSION},
-      ...JSON.parse(JSON.stringify(entrySchema.properties)),
+      ...properties,
+      catalog_id: {
+        type: 'string',
+        pattern: '^[1-9][0-9]*$',
+        description: 'API Core BIGINT identity represented as a decimal string.',
+      },
+      catalog_key: {
+        type: 'string',
+        pattern: '^[a-z][a-z0-9_]*(\\.[a-z][a-z0-9_]*)*$',
+      },
+      catalog_status: {type: 'string', minLength: 1},
+      legacy_id: {
+        type: ['string', 'null'],
+        format: 'uuid',
+        description: 'Previous documentation UUID retained only for migration compatibility.',
+      },
       guidance: {type: 'string'},
     },
     $defs: JSON.parse(JSON.stringify(entrySchema.$defs || {})),
@@ -1549,9 +1565,12 @@ function buildEntryContract(entry, controls) {
     $schema: `${PUBLIC_ORIGIN}/registry/schema/wrangle-contract.schema.json`,
     format: 'wrangles-registry-entry',
     registry_version: REGISTRY_VERSION,
-    schema_version: metadata.schema_version,
+    schema_version: CONTRACT_VERSION,
     type: metadata.type,
-    id: metadata.id,
+    catalog_id: entry.catalog.catalog_id,
+    catalog_key: entry.catalog.catalog_key,
+    catalog_status: entry.catalog.status,
+    legacy_id: metadata.id,
     wrangle_name: metadata.wrangle_name,
     namespace: metadata.namespace,
     wrangle_key: metadata.wrangle_key,
@@ -1689,147 +1708,7 @@ function effectiveRuntimeParameters(runtime) {
   return parameters;
 }
 
-function effectiveEmbeddedParameters(runtime) {
-  if (runtime.docstring_schema_status === 'missing') return null;
-  const properties = docstringProperties(runtime.docstring_schema);
-  const required = new Set(docstringRequired(runtime.docstring_schema));
-  const parameters = new Map(
-    Object.keys(properties).map((name) => [name, {name, required: required.has(name)}]),
-  );
-  for (const control of ['if', 'where', 'where_params']) {
-    if (runtime.capabilities[control]) {
-      parameters.set(control, {name: control, required: false});
-    }
-  }
-  return parameters;
-}
-
-function effectiveNormalizedParameters(entry) {
-  const parameters = new Map(
-    entry.metadata.parameters.map((parameter) => [parameterComparisonName(parameter), {
-      name: parameterComparisonName(parameter),
-      required: parameter.required,
-    }]),
-  );
-  for (const [name, enabled] of Object.entries(entry.metadata.capabilities)) {
-    if (enabled) parameters.set(name, {name, required: false});
-  }
-  return parameters;
-}
-
-function compareQuasiToRuntime(quasi, runtime) {
-  if (!runtime) return [{code: 'missing_runtime_wrangle'}];
-  const differences = [];
-  const quasiParameters = new Map(
-    quasi.parameters.map((parameter) => [parameter.name, parameter]),
-  );
-  const runtimeParameters = effectiveRuntimeParameters(runtime);
-  const names = [...new Set([
-    ...quasiParameters.keys(),
-    ...runtimeParameters.keys(),
-  ])].sort();
-
-  for (const name of names) {
-    const quasiParameter = quasiParameters.get(name);
-    const runtimeParameter = runtimeParameters.get(name);
-    if (!quasiParameter) {
-      differences.push({code: 'runtime_only_parameter', parameter: name});
-    } else if (!runtimeParameter) {
-      differences.push({code: 'quasi_registry_only_parameter', parameter: name});
-    } else if (quasiParameter.required !== runtimeParameter.required) {
-      differences.push({
-        code: 'required_mismatch',
-        parameter: name,
-        quasi_registry_required: quasiParameter.required,
-        runtime_required: runtimeParameter.required,
-      });
-    }
-  }
-  return differences;
-}
-
-function compareQuasiToEmbeddedSchema(quasi, runtime) {
-  if (!runtime) return [];
-  const embeddedParameters = effectiveEmbeddedParameters(runtime);
-  if (!embeddedParameters) return [{code: 'missing_docstring_schema'}];
-
-  const differences = [];
-  const quasiParameters = new Map(
-    quasi.parameters.map((parameter) => [parameter.name, parameter]),
-  );
-  const names = [...new Set([
-    ...quasiParameters.keys(),
-    ...embeddedParameters.keys(),
-  ])].sort();
-  for (const name of names) {
-    const quasiParameter = quasiParameters.get(name);
-    const embeddedParameter = embeddedParameters.get(name);
-    if (!quasiParameter) {
-      differences.push({code: 'embedded_schema_only_parameter', parameter: name});
-    } else if (!embeddedParameter) {
-      differences.push({code: 'quasi_registry_only_parameter', parameter: name});
-    } else if (quasiParameter.required !== embeddedParameter.required) {
-      differences.push({
-        code: 'embedded_required_mismatch',
-        parameter: name,
-        quasi_registry_required: quasiParameter.required,
-        embedded_schema_required: embeddedParameter.required,
-      });
-    }
-  }
-  return differences;
-}
-
-function compareQuasiToNormalized(quasi, normalized) {
-  if (!normalized) return [];
-  const differences = [];
-  if (quasi.id && quasi.id !== normalized.metadata.id) {
-    differences.push({
-      code: 'id_mismatch',
-      quasi_registry: quasi.id,
-      normalized_registry: normalized.metadata.id,
-    });
-  }
-
-  const quasiParameters = new Map(
-    quasi.parameters.map((parameter) => [parameter.name, parameter]),
-  );
-  const normalizedParameters = effectiveNormalizedParameters(normalized);
-  const names = [...new Set([
-    ...quasiParameters.keys(),
-    ...normalizedParameters.keys(),
-  ])].sort();
-  for (const name of names) {
-    const quasiParameter = quasiParameters.get(name);
-    const normalizedParameter = normalizedParameters.get(name);
-    if (!quasiParameter) {
-      differences.push({code: 'normalized_registry_only_parameter', parameter: name});
-    } else if (!normalizedParameter) {
-      differences.push({code: 'quasi_registry_only_parameter', parameter: name});
-    } else if (quasiParameter.required !== normalizedParameter.required) {
-      differences.push({
-        code: 'required_mismatch',
-        parameter: name,
-        quasi_registry_required: quasiParameter.required,
-        normalized_registry_required: normalizedParameter.required,
-      });
-    }
-  }
-
-  for (const [name, normalizedValue] of Object.entries(normalized.metadata.access)) {
-    if (quasi.access[name] !== null && quasi.access[name] !== normalizedValue) {
-      differences.push({
-        code: 'access_mismatch',
-        requirement: name,
-        quasi_registry: quasi.access[name],
-        normalized_registry: normalizedValue,
-      });
-    }
-  }
-  return differences;
-}
-
-function reconcileRegistry(entries, runtimeManifest, quasiRegistry) {
+function reconcileRegistry(entries, runtimeManifest) {
   const runtimeByKey = new Map(
     runtimeManifest.wrangles.map((wrangle) => [wrangle.runtime_key, wrangle]),
   );
@@ -1935,47 +1814,6 @@ function reconcileRegistry(entries, runtimeManifest, quasiRegistry) {
     });
   }
 
-  const quasiByKey = new Map(
-    quasiRegistry.entries.map((entry) => [entry.wrangle_key, entry]),
-  );
-  const quasiResults = quasiRegistry.entries.map((quasi) => {
-    const runtime = runtimeByKey.get(quasi.wrangle_key) || null;
-    const normalized = normalizedByDeclaredKey.get(quasi.wrangle_key) || null;
-    return {
-      wrangle_key: quasi.wrangle_key,
-      source_file: quasi.source_file,
-      source_sha256: quasi.source_sha256,
-      id: quasi.id,
-      runtime_status: runtime ? 'matched' : 'missing',
-      normalized_registry_status: normalized ? 'matched' : 'awaiting-normalization',
-      runtime_parameter_differences: compareQuasiToRuntime(quasi, runtime),
-      embedded_schema_differences: compareQuasiToEmbeddedSchema(quasi, runtime),
-      normalized_registry_differences: compareQuasiToNormalized(quasi, normalized),
-      migration_content: {
-        title: quasi.title,
-        type: quasi.type,
-        subtype: quasi.subtype,
-        variant: quasi.variant,
-        status: quasi.status,
-        tags: quasi.tags,
-        parameters: quasi.parameters,
-        access: quasi.access,
-      },
-    };
-  });
-  const runtimeWithoutQuasi = runtimeManifest.wrangles
-    .filter((wrangle) => !quasiByKey.has(wrangle.runtime_key))
-    .map((wrangle) => ({
-      runtime_key: wrangle.runtime_key,
-      python_symbol: wrangle.python_symbol,
-      docstring_schema_status: wrangle.docstring_schema_status,
-    }));
-  const quasiWithoutRuntime = quasiResults.filter((entry) => entry.runtime_status === 'missing');
-  const normalizedWithoutQuasi = entries
-    .filter((entry) => ![entry.metadata.wrangle_key, ...entry.metadata.aliases]
-      .some((key) => quasiByKey.has(key)))
-    .map((entry) => entry.metadata.wrangle_key)
-    .sort();
   const runtimeWithoutNormalized = runtimeManifest.wrangles
     .filter((runtime) => !normalizedByDeclaredKey.has(runtime.runtime_key))
     .map((runtime) => runtime.runtime_key)
@@ -1983,13 +1821,13 @@ function reconcileRegistry(entries, runtimeManifest, quasiRegistry) {
   for (const runtimeKey of runtimeWithoutNormalized) {
     fail(
       runtimeManifestPath,
-      `runtime key ${runtimeKey} has no normalized Registry entry; run npm run bootstrap:registry`,
+      `runtime key ${runtimeKey} has no Registry entry`,
     );
   }
 
   return {
     format: 'wrangles-registry-reconciliation',
-    format_version: '0.2',
+    format_version: '0.3',
     registry_version: REGISTRY_VERSION,
     runtime_source: runtimeManifest.source,
     summary: {
@@ -1997,7 +1835,6 @@ function reconcileRegistry(entries, runtimeManifest, quasiRegistry) {
       embedded_schema_entries: runtimeManifest.wrangles.filter(
         (wrangle) => wrangle.docstring_schema_status === 'available',
       ).length,
-      quasi_registry_entries: quasiResults.length,
       normalized_registry_entries: entries.length,
       normalized_verified_entries: normalizedResults.filter(
         (result) => result.status === 'verified',
@@ -2011,28 +1848,120 @@ function reconcileRegistry(entries, runtimeManifest, quasiRegistry) {
       runtime_entries_without_embedded_schema: runtimeManifest.wrangles.filter(
         (wrangle) => wrangle.docstring_schema_status === 'missing',
       ).length,
-      normalized_and_quasi_entries: quasiResults.filter(
-        (entry) => entry.normalized_registry_status === 'matched',
-      ).length,
-      quasi_entries_awaiting_normalization: quasiResults.filter(
-        (entry) => entry.normalized_registry_status === 'awaiting-normalization',
-      ).length,
       runtime_entries_without_normalized_registry: runtimeWithoutNormalized.length,
-      runtime_entries_without_quasi_registry: runtimeWithoutQuasi.length,
-      quasi_entries_without_runtime: quasiWithoutRuntime.length,
-      quasi_entries_without_id: quasiResults.filter((entry) => !entry.id).length,
-      supporting_markdown_files: quasiRegistry.supportingMarkdown.length,
     },
     normalized_registry_entries: normalizedResults,
-    quasi_registry_entries: quasiResults,
-    runtime_without_quasi_registry: runtimeWithoutQuasi,
-    quasi_registry_without_runtime: quasiWithoutRuntime.map((entry) => ({
-      wrangle_key: entry.wrangle_key,
-      source_file: entry.source_file,
-    })),
-    normalized_registry_without_quasi: normalizedWithoutQuasi,
     runtime_without_normalized_registry: runtimeWithoutNormalized,
-    supporting_markdown: quasiRegistry.supportingMarkdown,
+  };
+}
+
+function reconcileCatalog(entries, catalogSnapshot) {
+  const catalogByWrangleKey = new Map(
+    catalogSnapshot.entries
+      .filter((entry) => entry.wrangle_key !== null)
+      .map((entry) => [entry.wrangle_key, entry]),
+  );
+  const registryKeys = new Set(entries.map((entry) => entry.metadata.wrangle_key));
+  const matchedEntries = [];
+
+  for (const entry of [...entries].sort((left, right) =>
+    left.metadata.wrangle_key.localeCompare(right.metadata.wrangle_key))) {
+    const key = entry.metadata.wrangle_key;
+    const catalog = catalogByWrangleKey.get(key);
+    if (!catalog) {
+      fail(entry.sourceFile, `API Core catalog has no row for wrangle_key ${key}`);
+      continue;
+    }
+    entry.catalog = catalog;
+
+    const conflicts = [];
+    if (catalog.catalog_key !== key) {
+      conflicts.push({
+        code: 'catalog_key_mismatch',
+        registry: key,
+        catalog: catalog.catalog_key,
+      });
+    }
+    if (catalog.kind !== entry.metadata.type) {
+      conflicts.push({
+        code: 'kind_mismatch',
+        registry: entry.metadata.type,
+        catalog: catalog.kind,
+      });
+    }
+    if (catalog.title !== entry.metadata.title) {
+      conflicts.push({
+        code: 'title_mismatch',
+        registry: entry.metadata.title,
+        catalog: catalog.title,
+      });
+    }
+    for (const conflict of conflicts) {
+      fail(entry.sourceFile, `catalog reconciliation ${conflict.code}: ${JSON.stringify(conflict)}`);
+    }
+
+    const expectedRegistryPath = posixPath(path.relative(repositoryRoot, entry.sourceFile));
+    const differences = [];
+    if (catalog.status !== entry.metadata.status) {
+      differences.push({
+        code: 'status_difference',
+        registry: entry.metadata.status,
+        catalog: catalog.status,
+      });
+    }
+    if (catalog.registry_path !== expectedRegistryPath) {
+      differences.push({
+        code: catalog.registry_path === null ? 'registry_path_missing' : 'registry_path_difference',
+        expected: expectedRegistryPath,
+        catalog: catalog.registry_path,
+      });
+    }
+
+    matchedEntries.push({
+      catalog_id: catalog.catalog_id,
+      catalog_key: catalog.catalog_key,
+      wrangle_key: key,
+      title: catalog.title,
+      catalog_status: catalog.status,
+      registry_status: entry.metadata.status,
+      expected_registry_path: expectedRegistryPath,
+      catalog_registry_path: catalog.registry_path,
+      status: conflicts.length === 0 ? 'matched' : 'conflict',
+      conflicts,
+      differences,
+    });
+  }
+
+  const catalogOnlyEntries = catalogSnapshot.entries
+    .filter((entry) => entry.wrangle_key === null || !registryKeys.has(entry.wrangle_key))
+    .map((entry) => ({
+      catalog_id: entry.catalog_id,
+      catalog_key: entry.catalog_key,
+      kind: entry.kind,
+      wrangle_key: entry.wrangle_key,
+      title: entry.title,
+      status: entry.status,
+      reason: 'No callable entry exists in the pinned WranglesPY runtime and Docs Registry.',
+    }));
+
+  return {
+    format: 'wrangles-catalog-reconciliation',
+    format_version: '0.1',
+    registry_version: REGISTRY_VERSION,
+    catalog_source: catalogSnapshot.source,
+    summary: {
+      catalog_entries: catalogSnapshot.entries.length,
+      registry_entries: entries.length,
+      matched_entries: matchedEntries.filter((entry) => entry.status === 'matched').length,
+      conflicting_entries: matchedEntries.filter((entry) => entry.status === 'conflict').length,
+      entries_with_status_differences: matchedEntries.filter((entry) =>
+        entry.differences.some((difference) => difference.code === 'status_difference')).length,
+      entries_without_catalog_registry_path: matchedEntries.filter((entry) =>
+        entry.catalog_registry_path === null).length,
+      catalog_only_entries: catalogOnlyEntries.length,
+    },
+    matched_entries: matchedEntries,
+    catalog_only_entries: catalogOnlyEntries,
   };
 }
 
@@ -2043,9 +1972,6 @@ function renderReconciliationReport(report) {
       : 'none';
     return `| \`${entry.wrangle_key}\` | ${runtimeKeys} | ${entry.status} | ${entry.runtime_issues.length} | ${entry.embedded_schema_differences.length} |`;
   }).join('\n');
-  const runtimeWithoutQuasiRows = report.runtime_without_quasi_registry.map((entry) =>
-    `| \`${entry.runtime_key}\` | \`${entry.python_symbol}\` | ${entry.docstring_schema_status} |`,
-  ).join('\n');
   const embeddedRows = report.normalized_registry_entries.flatMap((entry) =>
     entry.embedded_schema_differences.map((difference) => {
       let detail = 'See the JSON report for both schema fragments.';
@@ -2060,13 +1986,6 @@ function renderReconciliationReport(report) {
       return `| \`${entry.wrangle_key}\` | ${difference.code} | ${parameter} | ${detail} |`;
     }),
   ).join('\n');
-  const quasiRows = report.quasi_registry_entries.map((entry) =>
-    `| \`${entry.wrangle_key}\` | \`${entry.source_file}\` | ${entry.id ? `\`${entry.id}\`` : 'missing'} | ${entry.runtime_status} | ${entry.normalized_registry_status} | ${entry.runtime_parameter_differences.length} | ${entry.embedded_schema_differences.length} |`,
-  ).join('\n');
-  const supportingRows = report.supporting_markdown.map((entry) =>
-    `- \`${entry.source_file}\` (SHA-256 \`${entry.source_sha256.slice(0, 12)}…\`)`,
-  ).join('\n');
-
   return `# Wrangles Registry Source Reconciliation
 
 Generated file. Do not edit directly.
@@ -2076,20 +1995,14 @@ Generated file. Do not edit directly.
 - Registry version: \`${report.registry_version}\`
 - Runtime entries: ${report.summary.runtime_entries}
 - Embedded Python schema docstrings: ${report.summary.embedded_schema_entries}
-- Existing quasi-registry records: ${report.summary.quasi_registry_entries}
-- Normalized Registry entries: ${report.summary.normalized_registry_entries}
-- Verified normalized entries: ${report.summary.normalized_verified_entries}
-- Quasi-registry records awaiting normalization: ${report.summary.quasi_entries_awaiting_normalization}
-- Runtime entries without quasi-registry Markdown: ${report.summary.runtime_entries_without_quasi_registry}
-- Quasi-registry records without runtime matches: ${report.summary.quasi_entries_without_runtime}
-- Quasi-registry records without UUIDs: ${report.summary.quasi_entries_without_id}
-- Supporting and aggregate Markdown files: ${report.summary.supporting_markdown_files}
+- Registry entries: ${report.summary.normalized_registry_entries}
+- Verified Registry entries: ${report.summary.normalized_verified_entries}
+- Runtime entries without Registry entries: ${report.summary.runtime_entries_without_normalized_registry}
 
-Embedded Python schema differences and quasi-registry differences are migration
-evidence, not runtime contract failures. The first pass resolves runtime facts
-from code, then enriches them from embedded schemas and quasi-registry Markdown.
-Signature-owned names, required status, defaults, symbols, and common-control
-capabilities must reconcile; individual records can be curated in place later.
+The compiler reconciles Registry records directly with the pinned WranglesPY
+runtime manifest. Signature-owned names, required status, defaults, symbols,
+and common-control capabilities must agree. Embedded Python schema differences
+remain migration evidence until the runtime-owned contract migration is complete.
 
 ## Normalized Registry entries
 
@@ -2102,30 +2015,51 @@ ${registryRows}
 | Registry key | Difference | Parameter | Detail |
 | --- | --- | --- | --- |
 ${embeddedRows || '| — | none | — | — |'}
+`;
+}
 
-## Existing quasi-registry inventory
+function renderCatalogReconciliationReport(report) {
+  const statusDifferenceRows = report.matched_entries.flatMap((entry) =>
+    entry.differences
+      .filter((difference) => difference.code === 'status_difference')
+      .map((difference) =>
+        `| \`${entry.catalog_id}\` | \`${entry.wrangle_key}\` | ${difference.catalog} | ${difference.registry} |`,
+      ),
+  ).join('\n');
+  const catalogOnlyRows = report.catalog_only_entries.map((entry) =>
+    `| \`${entry.catalog_id}\` | \`${entry.catalog_key}\` | ${entry.kind} | ${entry.title || '—'} | ${entry.reason} |`,
+  ).join('\n');
 
-Every per-wrangle \`_sources/*.md\` record is included below. Display defaults
-are retained as migration content and are not treated as Python runtime defaults.
-The JSON report records a SHA-256 hash of every source file so changes anywhere
-in the quasi-registry remain reviewable.
+  return `# API Core Catalog Reconciliation
 
-| Wrangle key | Source Markdown | UUID | Runtime | Normalization | Runtime parameter differences | Embedded schema differences |
-| --- | --- | --- | --- | --- | ---: | ---: |
-${quasiRows}
+Generated file. Do not edit directly.
 
-## Runtime entries without quasi-registry Markdown
+- Catalog source: \`${report.catalog_source.table}\`
+- Catalog data updated through: \`${report.catalog_source.data_updated_through}\`
+- Catalog rows: ${report.summary.catalog_entries}
+- Callable Registry entries: ${report.summary.registry_entries}
+- Identity matches: ${report.summary.matched_entries}
+- Identity conflicts: ${report.summary.conflicting_entries}
+- Lifecycle/status differences: ${report.summary.entries_with_status_differences}
+- Missing catalog registry paths: ${report.summary.entries_without_catalog_registry_path}
+- Catalog-only rows: ${report.summary.catalog_only_entries}
 
-| Runtime key | Python symbol | Embedded schema |
-| --- | --- | --- |
-${runtimeWithoutQuasiRows || '| — | none | — |'}
+The compiler joins callable entries to API Core by \`wrangle_key\`. A missing row,
+duplicate identity, key mismatch, kind mismatch, or title mismatch fails the build.
+Status and path differences remain visible migration work and do not silently
+change the executable contract.
 
-## Supporting and aggregate Markdown
+## Status differences
 
-These files are accounted for as context or templates rather than one-to-one
-wrangle records.
+| Catalog ID | Wrangle key | API Core status | Registry lifecycle |
+| --- | --- | --- | --- |
+${statusDifferenceRows || '| — | none | — | — |'}
 
-${supportingRows}
+## Catalog-only rows
+
+| Catalog ID | Catalog key | Kind | Title | Reason excluded from callable Registry |
+| --- | --- | --- | --- | --- |
+${catalogOnlyRows || '| — | none | — | — | — |'}
 `;
 }
 
@@ -2173,11 +2107,14 @@ function buildBundleIntegrity(bundleMembers) {
 
 async function readInputs() {
   const entrySchemaSource = await fs.readFile(entrySchemaPath, 'utf8');
+  const catalogSnapshotSchemaSource = await fs.readFile(catalogSnapshotSchemaPath, 'utf8');
   const runtimeManifestSchemaSource = await fs.readFile(runtimeManifestSchemaPath, 'utf8');
   const entrySchema = JSON.parse(entrySchemaSource);
+  const catalogSnapshotSchema = JSON.parse(catalogSnapshotSchemaSource);
   const runtimeManifestSchema = JSON.parse(runtimeManifestSchemaSource);
+  const catalogSnapshot = JSON.parse(await fs.readFile(catalogSnapshotPath, 'utf8'));
   const runtimeManifest = JSON.parse(await fs.readFile(runtimeManifestPath, 'utf8'));
-  const quasiRegistry = await readQuasiRegistry();
+  validateCatalogSnapshot(catalogSnapshot, catalogSnapshotSchema);
   validateRuntimeManifest(runtimeManifest);
   if (runtimeManifest.$schema !== runtimeManifestSchema.$id) {
     fail(runtimeManifestPath, '$schema does not match the pinned runtime manifest schema');
@@ -2185,7 +2122,7 @@ async function readInputs() {
   const commonDocument = yaml.load(await fs.readFile(commonControlsPath, 'utf8'));
   if (
     !isObject(commonDocument) ||
-    commonDocument.schema_version !== ENTRY_SCHEMA_VERSION ||
+    commonDocument.schema_version !== SOURCE_ENTRY_SCHEMA_VERSION ||
     !isObject(commonDocument.controls)
   ) {
     throw new Error('registry/common/wrangle-controls.yaml is invalid');
@@ -2257,16 +2194,25 @@ async function readInputs() {
   return {
     entries,
     controls: commonDocument.controls,
+    catalogSnapshot,
     runtimeManifest,
-    quasiRegistry,
     registrySchemas: {
       entry: entrySchema,
+      catalogSnapshot: catalogSnapshotSchema,
       runtimeManifest: runtimeManifestSchema,
     },
   };
 }
 
-function buildOutputs(entries, controls, reconciliation, registrySchemas, runtimeManifest) {
+function buildOutputs(
+  entries,
+  controls,
+  reconciliation,
+  catalogReconciliation,
+  registrySchemas,
+  catalogSnapshot,
+  runtimeManifest,
+) {
   const publicEntries = entries
     .filter((entry) => entry.metadata.visibility === 'public')
     .sort((left, right) => left.metadata.wrangle_key.localeCompare(right.metadata.wrangle_key));
@@ -2350,6 +2296,12 @@ function buildOutputs(entries, controls, reconciliation, registrySchemas, runtim
   );
   addBundleArtifact(
     bundleMembers,
+    '/registry/schema/catalog-snapshot.schema.json',
+    path.join(rawOutputRoot, 'schema', 'catalog-snapshot.schema.json'),
+    JSON.stringify(registrySchemas.catalogSnapshot, null, 2),
+  );
+  addBundleArtifact(
+    bundleMembers,
     '/registry/schema/wrangle-contract.schema.json',
     path.join(rawOutputRoot, 'schema', 'wrangle-contract.schema.json'),
     JSON.stringify(buildCompiledContractSchema(registrySchemas.entry), null, 2),
@@ -2365,6 +2317,18 @@ function buildOutputs(entries, controls, reconciliation, registrySchemas, runtim
     '/registry/runtime/wranglespy.json',
     path.join(rawOutputRoot, 'runtime', 'wranglespy.json'),
     JSON.stringify(runtimeManifest, null, 2),
+  );
+  addBundleArtifact(
+    bundleMembers,
+    '/registry/catalog/api-core.json',
+    path.join(rawOutputRoot, 'catalog', 'api-core.json'),
+    JSON.stringify(catalogSnapshot, null, 2),
+  );
+  addBundleArtifact(
+    bundleMembers,
+    '/registry/catalog/reconciliation.json',
+    path.join(rawOutputRoot, 'catalog', 'reconciliation.json'),
+    JSON.stringify(catalogReconciliation, null, 2),
   );
   const reconciliationSummary = {
     format: 'wrangles-runtime-reconciliation-summary',
@@ -2383,7 +2347,8 @@ function buildOutputs(entries, controls, reconciliation, registrySchemas, runtim
   const manifest = {
     format: 'wrangles-registry',
     registry_version: REGISTRY_VERSION,
-    contract_version: ENTRY_SCHEMA_VERSION,
+    contract_version: CONTRACT_VERSION,
+    source_entry_schema_version: SOURCE_ENTRY_SCHEMA_VERSION,
     status: 'pre-production',
     compatibility: {
       wranglespy_version: runtimeManifest.source.version,
@@ -2395,10 +2360,21 @@ function buildOutputs(entries, controls, reconciliation, registrySchemas, runtim
       eligible_keys_sha256: sortedLineChecksum(recipeWriterKeys),
       eligible_keys_framing: RECIPE_WRITER_KEYS_CHECKSUM_FRAMING,
     },
+    catalog: {
+      source: catalogSnapshot.source,
+      entry_count: catalogSnapshot.entry_count,
+      callable_entry_count: catalogReconciliation.summary.matched_entries,
+      catalog_only_entry_count: catalogReconciliation.summary.catalog_only_entries,
+      entries_with_status_differences:
+        catalogReconciliation.summary.entries_with_status_differences,
+    },
     entry_count: publicEntries.length,
     entries: publicEntries.map((entry) => ({
       type: entry.metadata.type,
-      id: entry.metadata.id,
+      catalog_id: entry.catalog.catalog_id,
+      catalog_key: entry.catalog.catalog_key,
+      catalog_status: entry.catalog.status,
+      legacy_id: entry.metadata.id,
       wrangle_name: entry.metadata.wrangle_name,
       namespace: entry.metadata.namespace,
       wrangle_key: entry.metadata.wrangle_key,
@@ -2422,6 +2398,9 @@ function buildOutputs(entries, controls, reconciliation, registrySchemas, runtim
       recipe_schema: '/schemas/recipes/registry/schema.json',
       recipe_writer_schema: '/schemas/recipes/registry/recipe-writer.schema.json',
       entry_schema: '/registry/schema/wrangle-entry.schema.json',
+      catalog_snapshot: '/registry/catalog/api-core.json',
+      catalog_snapshot_schema: '/registry/schema/catalog-snapshot.schema.json',
+      catalog_reconciliation: '/registry/catalog/reconciliation.json',
       compiled_contract_schema: '/registry/schema/wrangle-contract.schema.json',
       runtime_manifest: '/registry/runtime/wranglespy.json',
       runtime_manifest_schema: '/registry/schema/wrangles-runtime-manifest.schema.json',
@@ -2441,6 +2420,14 @@ function buildOutputs(entries, controls, reconciliation, registrySchemas, runtim
   addGeneratedFile(
     path.join(reportsOutputRoot, 'runtime-reconciliation.md'),
     renderReconciliationReport(reconciliation),
+  );
+  addGeneratedFile(
+    path.join(reportsOutputRoot, 'catalog-reconciliation.json'),
+    JSON.stringify(catalogReconciliation, null, 2),
+  );
+  addGeneratedFile(
+    path.join(reportsOutputRoot, 'catalog-reconciliation.md'),
+    renderCatalogReconciliationReport(catalogReconciliation),
   );
 }
 
@@ -2476,9 +2463,27 @@ async function checkOutputs() {
 
 async function main() {
   const checkOnly = process.argv.includes('--check');
-  const {entries, controls, runtimeManifest, quasiRegistry, registrySchemas} = await readInputs();
-  const reconciliation = reconcileRegistry(entries, runtimeManifest, quasiRegistry);
-  buildOutputs(entries, controls, reconciliation, registrySchemas, runtimeManifest);
+  const {
+    entries,
+    controls,
+    catalogSnapshot,
+    runtimeManifest,
+    registrySchemas,
+  } = await readInputs();
+  const reconciliation = reconcileRegistry(entries, runtimeManifest);
+  const catalogReconciliation = reconcileCatalog(entries, catalogSnapshot);
+  if (entries.some((entry) => !entry.catalog)) {
+    throw new Error(`Registry validation failed:\n- ${errors.join('\n- ')}`);
+  }
+  buildOutputs(
+    entries,
+    controls,
+    reconciliation,
+    catalogReconciliation,
+    registrySchemas,
+    catalogSnapshot,
+    runtimeManifest,
+  );
 
   if (errors.length) {
     throw new Error(`Registry validation failed:\n- ${errors.join('\n- ')}`);
@@ -2495,10 +2500,14 @@ async function main() {
     console.log(`Compiled ${entries.length} Registry entries into ${generatedFiles.size} artifacts.`);
   }
   console.log(
-    `Reconciled ${reconciliation.summary.quasi_registry_entries} quasi-registry records and ` +
-    `${reconciliation.summary.normalized_registry_entries} normalized entries against ` +
+    `Reconciled ${reconciliation.summary.normalized_registry_entries} Registry entries against ` +
     `${reconciliation.summary.runtime_entries} runtime wrangles; ` +
-    `${reconciliation.summary.runtime_entries_without_quasi_registry} runtime entries lack quasi-registry Markdown.`,
+    `${reconciliation.summary.runtime_entries_without_normalized_registry} runtime entries lack Registry records.`,
+  );
+  console.log(
+    `Matched ${catalogReconciliation.summary.matched_entries} callable entries to ` +
+    `${catalogReconciliation.summary.catalog_entries} API Core catalog rows; ` +
+    `${catalogReconciliation.summary.catalog_only_entries} catalog-only row remains excluded.`,
   );
 }
 

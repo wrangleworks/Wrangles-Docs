@@ -137,17 +137,21 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `52` |
+| Catalog key | `select.group_by` |
 | Recipe key | `select.group_by` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `select` |
 | Documentation group | `select` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.select.group_by` |
+| Legacy UUID | `c0af10b1-423a-416c-8cb5-7e7fe1164964` |
 
 **Sources**
 
 - [WranglesPY select.group_by implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/select.py)
-- [Existing select.group_by Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/select/_sources/group-by.md)
+- [Archived select.group_by Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/select/_sources/group-by.md)
 
 </details>

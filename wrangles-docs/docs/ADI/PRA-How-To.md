@@ -136,7 +136,7 @@ This is the first place users should look when asking themselves why the final r
 You will also find 2 helpful columns that can be used to sort or filter your results; Validation Metrics and Validation Results. **Validation Results** place results into three buckets: Validated (recieved high scores on all fields), Needs QA (results that should be verified manually), and Failed Validation (results that are likely not the same item). **Validation Metrics** show all the metrics that go into labeling the Validation Results. "PC | MFR | .7&lt;" for example means that the result had a part code match (PC), a manufacturer match (MFR) and an Overall Page Score greater than .7. Results without matches are not reported in the Validation Metrics (ie "MFR | &lt;.5" did not have a matched part code).
 
 ## Step 3: Postprocessing
-The postprocessing step is where all of the attributes, features and descriptions are generated using [extract.ai](/wrangle/extract#ai). This step is meant to be run on the Page results sheet and outputs a file with General Postprocessing and Final Postprocessing sheets.
+The postprocessing step is where all of the attributes, features and descriptions are generated using [extract.ai](/wrangles/namespaces/extract#ai). This step is meant to be run on the Page results sheet and outputs a file with General Postprocessing and Final Postprocessing sheets.
 
 ### General Postprocessing
 The General Postprocessing sheet is an intermediate step between Page Results and Final Postprocessing. It works to narrow down and refine the scraped data in preperation for the final step.

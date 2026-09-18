@@ -8,6 +8,21 @@ const {validateColumnSemantics} = require('./compile-registry.cjs');
 const siteRoot = path.resolve(__dirname, '..');
 const repositoryRoot = path.resolve(siteRoot, '..');
 const contractsRoot = path.join(siteRoot, 'static', 'registry', 'contracts');
+const registryManifestPath = path.join(siteRoot, 'static', 'registry', 'manifest.json');
+const catalogSnapshotPath = path.join(
+  siteRoot,
+  'static',
+  'registry',
+  'catalog',
+  'api-core.json',
+);
+const catalogReconciliationPath = path.join(
+  siteRoot,
+  'static',
+  'registry',
+  'catalog',
+  'reconciliation.json',
+);
 const entrySchemaPath = path.join(
   repositoryRoot,
   'registry',
@@ -208,4 +223,56 @@ test('recipe schema exposes column semantics as JSON Schema annotations', () => 
     assert.equal(wrangles['create.embeddings'].properties.input['x-wrangles-column'], undefined);
     assert.equal(wrangles['merge.coalesce'].properties.input['x-wrangles-column'], undefined);
   }
+});
+
+test('compiled Registry publishes API Core catalog identities as strings', () => {
+  const manifest = JSON.parse(fs.readFileSync(registryManifestPath, 'utf8'));
+  const catalogIds = manifest.entries.map((entry) => entry.catalog_id);
+  const convertCase = manifest.entries.find((entry) => entry.wrangle_key === 'convert.case');
+
+  assert.equal(manifest.registry_version, '0.3.0');
+  assert.equal(manifest.contract_version, '0.3');
+  assert.equal(manifest.entry_count, 98);
+  assert.equal(new Set(catalogIds).size, manifest.entry_count);
+  assert.ok(catalogIds.every((catalogId) => /^[1-9][0-9]*$/.test(catalogId)));
+  assert.equal(convertCase.catalog_id, '5');
+  assert.equal(convertCase.catalog_key, 'convert.case');
+  assert.equal(convertCase.catalog_status, 'active');
+  assert.equal(convertCase.legacy_id, '12ff4120-3613-4801-8653-99c793477fbc');
+  assert.equal('id' in convertCase, false);
+});
+
+test('compiled contracts use catalog identity and retain UUID only as legacy data', () => {
+  const contract = JSON.parse(
+    fs.readFileSync(path.join(contractsRoot, 'convert', 'case.json'), 'utf8'),
+  );
+
+  assert.equal(contract.schema_version, '0.3');
+  assert.equal(contract.catalog_id, '5');
+  assert.equal(contract.catalog_key, 'convert.case');
+  assert.equal(contract.catalog_status, 'active');
+  assert.equal(contract.legacy_id, '12ff4120-3613-4801-8653-99c793477fbc');
+  assert.equal('id' in contract, false);
+});
+
+test('catalog-only records and source differences remain explicit', () => {
+  const snapshot = JSON.parse(fs.readFileSync(catalogSnapshotPath, 'utf8'));
+  const reconciliation = JSON.parse(fs.readFileSync(catalogReconciliationPath, 'utf8'));
+  const map = snapshot.entries.find((entry) => entry.catalog_key === 'map');
+
+  assert.equal(snapshot.entry_count, 99);
+  assert.equal(map.catalog_id, '99');
+  assert.equal(typeof map.catalog_id, 'string');
+  assert.deepEqual(
+    reconciliation.catalog_only_entries.map((entry) => entry.catalog_key),
+    ['map'],
+  );
+  assert.deepEqual(
+    reconciliation.matched_entries
+      .filter((entry) => entry.catalog_status !== entry.registry_status)
+      .map((entry) => entry.wrangle_key),
+    ['maths', 'standardize'],
+  );
+  assert.equal(reconciliation.summary.conflicting_entries, 0);
+  assert.equal(reconciliation.summary.entries_without_catalog_registry_path, 98);
 });

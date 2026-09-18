@@ -1,0 +1,131 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://docs.wrangles.com/registry/schema/catalog-snapshot.schema.json",
+  "title": "Wrangles API Core catalog snapshot",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "$schema",
+    "format",
+    "format_version",
+    "source",
+    "entry_count",
+    "entries"
+  ],
+  "properties": {
+    "$schema": {
+      "const": "https://docs.wrangles.com/registry/schema/catalog-snapshot.schema.json"
+    },
+    "format": {
+      "const": "wrangles-catalog-snapshot"
+    },
+    "format_version": {
+      "const": "0.1"
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "system",
+        "repository",
+        "table",
+        "data_updated_through"
+      ],
+      "properties": {
+        "system": {
+          "const": "API Core"
+        },
+        "repository": {
+          "const": "https://github.com/wrangleworks/API-Core"
+        },
+        "table": {
+          "const": "public.wrangles_catalog"
+        },
+        "data_updated_through": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "entry_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "entries": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/catalog_entry"
+      }
+    }
+  },
+  "$defs": {
+    "catalog_entry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "catalog_id",
+        "catalog_key",
+        "kind",
+        "wrangle_key",
+        "title",
+        "registry_path",
+        "status",
+        "source",
+        "created_at",
+        "updated_at"
+      ],
+      "properties": {
+        "catalog_id": {
+          "type": "string",
+          "pattern": "^[1-9][0-9]*$",
+          "description": "API Core BIGINT identity represented as a decimal string at JSON boundaries."
+        },
+        "catalog_key": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*(\\.[a-z][a-z0-9_]*)*$"
+        },
+        "kind": {
+          "type": "string",
+          "minLength": 1
+        },
+        "wrangle_key": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[a-z][a-z0-9_]*(\\.[a-z][a-z0-9_]*)*$"
+        },
+        "title": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1
+        },
+        "registry_path": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1
+        },
+        "status": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source": {
+          "type": "string",
+          "minLength": 1
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    }
+  }
+}

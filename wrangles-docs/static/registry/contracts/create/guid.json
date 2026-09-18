@@ -1,10 +1,13 @@
 {
   "$schema": "https://docs.wrangles.com/registry/schema/wrangle-contract.schema.json",
   "format": "wrangles-registry-entry",
-  "registry_version": "0.2.1",
-  "schema_version": "0.2",
+  "registry_version": "0.3.0",
+  "schema_version": "0.3",
   "type": "wrangle",
-  "id": "cf3aaab2-3d5b-4c9b-826e-7af7510521c9",
+  "catalog_id": "15",
+  "catalog_key": "create.guid",
+  "catalog_status": "active",
+  "legacy_id": "cf3aaab2-3d5b-4c9b-826e-7af7510521c9",
   "wrangle_name": "guid",
   "namespace": "create",
   "wrangle_key": "create.guid",
@@ -90,9 +93,9 @@
       "title": "WranglesPY create.guid implementation"
     },
     {
-      "id": "quasi-registry",
-      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/create/_sources/guid.md",
-      "title": "Existing create.guid Markdown"
+      "id": "legacy-docs-archive",
+      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/create/_sources/guid.md",
+      "title": "Archived create.guid Markdown"
     }
   ]
 }

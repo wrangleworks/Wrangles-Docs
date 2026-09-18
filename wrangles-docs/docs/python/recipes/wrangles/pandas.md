@@ -27,7 +27,7 @@ Pandas functions within recipes allow users to employ the powerful [pandas](http
 > This example does not use any parameters, see [pandas.drop_duplicates](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.drop_duplicates.html) for function parameters.
 \{.is-note\}
 
-See [format.remove_duplicates](/wrangle/format#remove-duplicates) for the native Wrangle equivalent.
+See [format.remove_duplicates](/wrangles/namespaces/format#remove-duplicates) for the native Wrangle equivalent.
 
 # pandas.groupby
 ## Tabset \{.tabset\}
@@ -56,7 +56,7 @@ See [format.remove_duplicates](/wrangle/format#remove-duplicates) for the native
 > More parameters for this function can be found in the [pandas.groupby](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.groupby.html) documentation.
 \{.is-note\}
 
-See [select.group_by](/wrangle/select#group-by) for the native Wrangles equivalent.
+See [select.group_by](/wrangles/namespaces/select#group-by) for the native Wrangles equivalent.
 
 # pandas.sample
 
@@ -85,7 +85,7 @@ See [select.group_by](/wrangle/select#group-by) for the native Wrangles equivale
 > See [pandas.sample](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.sample.html) for more parameters and information on this function.
 \{.is-note\}
 
-See [select.sample](/wrangle/select#sample) for the native Wrangles equivalent.
+See [select.sample](/wrangles/namespaces/select#sample) for the native Wrangles equivalent.
 
 
 # Restrictions

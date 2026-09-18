@@ -83,17 +83,21 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `38` |
+| Catalog key | `format.trim` |
 | Recipe key | `format.trim` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `format` |
 | Documentation group | `format` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.format.trim` |
+| Legacy UUID | `af16b3c1-c230-4868-8ebe-f574904a0c76` |
 
 **Sources**
 
 - [WranglesPY format.trim implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/format.py)
-- [Existing format.trim Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/format/_sources/trim.md)
+- [Archived format.trim Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/format/_sources/trim.md)
 
 </details>

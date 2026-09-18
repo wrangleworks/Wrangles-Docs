@@ -85,17 +85,21 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `97` |
+| Catalog key | `transpose` |
 | Recipe key | `transpose` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | Root-level |
 | Documentation group | `transform` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.pandas.transpose` |
+| Legacy UUID | `8716347f-f286-49b2-8a0b-cb73292e7475` |
 
 **Sources**
 
 - [WranglesPY transpose implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/pandas.py)
-- [Existing transpose Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/transform/_sources/transpose.md)
+- [Archived transpose Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/transform/_sources/transpose.md)
 
 </details>

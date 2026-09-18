@@ -86,18 +86,22 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `72` |
+| Catalog key | `clean_whitespaces` |
 | Recipe key | `clean_whitespaces` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | Root-level |
 | Documentation group | `format` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.clean_whitespaces` |
+| Legacy UUID | `e36e15c4-f0ad-43f8-8555-ef683a8ab892` |
 
 **Sources**
 
 - [WranglesPY clean_whitespaces implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/main.py)
-- [Existing clean_whitespaces Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/format/_sources/clean-whitespaces.md)
+- [Archived clean_whitespaces Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/format/_sources/clean-whitespaces.md)
 
 </details>
 
@@ -177,18 +181,22 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `31` |
+| Catalog key | `format.dates` |
 | Recipe key | `format.dates` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `format` |
 | Documentation group | `format` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.format.dates` |
+| Legacy UUID | `a3c15135-4f7a-4659-83fd-f657afa603c9` |
 
 **Sources**
 
 - [WranglesPY format.dates implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/format.py)
-- [Existing format.dates Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/format/_sources/dates.md)
+- [Archived format.dates Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/format/_sources/dates.md)
 
 </details>
 
@@ -279,18 +287,22 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `32` |
+| Catalog key | `format.pad` |
 | Recipe key | `format.pad` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `format` |
 | Documentation group | `format` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.format.pad` |
+| Legacy UUID | `76c19378-38f4-45aa-85d1-3cdf8f8aae29` |
 
 **Sources**
 
 - [WranglesPY format.pad implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/format.py)
-- [Existing format.pad Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/format/_sources/pad.md)
+- [Archived format.pad Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/format/_sources/pad.md)
 
 </details>
 
@@ -375,18 +387,22 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `33` |
+| Catalog key | `format.prefix` |
 | Recipe key | `format.prefix` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `format` |
 | Documentation group | `format` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.format.prefix` |
+| Legacy UUID | `c12f99b9-2363-4da7-8405-7c73b87906e5` |
 
 **Sources**
 
 - [WranglesPY format.prefix implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/format.py)
-- [Existing format.prefix Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/format/_sources/prefix.md)
+- [Archived format.prefix Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/format/_sources/prefix.md)
 
 </details>
 
@@ -442,7 +458,10 @@ This guidance was derived from the callable signature.
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `34` |
+| Catalog key | `format.price_breaks` |
 | Recipe key | `format.price_breaks` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | No |
 | Recipe Writer exclusion | This newer wrangle is outside the pinned baseline. |
@@ -450,6 +469,7 @@ This guidance was derived from the callable signature.
 | Documentation group | `format` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.format.price_breaks` |
+| Legacy UUID | None |
 
 **Sources**
 
@@ -535,18 +555,22 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `35` |
+| Catalog key | `format.remove_duplicates` |
 | Recipe key | `format.remove_duplicates` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `format` |
 | Documentation group | `format` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.format.remove_duplicates` |
+| Legacy UUID | `283b9e78-b2b2-43d0-844f-9842c33120aa` |
 
 **Sources**
 
 - [WranglesPY format.remove_duplicates implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/format.py)
-- [Existing format.remove_duplicates Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/format/_sources/remove-duplicates.md)
+- [Archived format.remove_duplicates Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/format/_sources/remove-duplicates.md)
 
 </details>
 
@@ -630,18 +654,22 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `36` |
+| Catalog key | `format.significant_figures` |
 | Recipe key | `format.significant_figures` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `format` |
 | Documentation group | `format` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.format.significant_figures` |
+| Legacy UUID | `a359f72a-5250-4dd8-84f6-8a8173bee0f6` |
 
 **Sources**
 
 - [WranglesPY format.significant_figures implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/format.py)
-- [Existing format.significant_figures Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/format/_sources/significant-figures.md)
+- [Archived format.significant_figures Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/format/_sources/significant-figures.md)
 
 </details>
 
@@ -726,18 +754,22 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `37` |
+| Catalog key | `format.suffix` |
 | Recipe key | `format.suffix` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `format` |
 | Documentation group | `format` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.format.suffix` |
+| Legacy UUID | `8d127060-ba2d-4934-897f-07662e01e40b` |
 
 **Sources**
 
 - [WranglesPY format.suffix implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/format.py)
-- [Existing format.suffix Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/format/_sources/suffix.md)
+- [Archived format.suffix Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/format/_sources/suffix.md)
 
 </details>
 
@@ -819,18 +851,22 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `38` |
+| Catalog key | `format.trim` |
 | Recipe key | `format.trim` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `format` |
 | Documentation group | `format` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.format.trim` |
+| Legacy UUID | `af16b3c1-c230-4868-8ebe-f574904a0c76` |
 
 **Sources**
 
 - [WranglesPY format.trim implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/format.py)
-- [Existing format.trim Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/format/_sources/trim.md)
+- [Archived format.trim Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/format/_sources/trim.md)
 
 </details>
 
@@ -918,18 +954,22 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `88` |
+| Catalog key | `remove_words` |
 | Recipe key | `remove_words` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | Root-level |
 | Documentation group | `format` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.remove_words` |
+| Legacy UUID | `543b96c3-f354-48be-8046-bf0cb9fbaf56` |
 
 **Sources**
 
 - [WranglesPY remove_words implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/main.py)
-- [Existing remove_words Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/format/_sources/remove-words.md)
+- [Archived remove_words Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/format/_sources/remove-words.md)
 
 </details>
 
@@ -1016,18 +1056,22 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `90` |
+| Catalog key | `replace` |
 | Recipe key | `replace` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | Root-level |
 | Documentation group | `format` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.replace` |
+| Legacy UUID | `f0ab715e-9e0e-4614-83e4-5cd8ea08a09f` |
 
 **Sources**
 
 - [WranglesPY replace implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/main.py)
-- [Existing replace Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/format/_sources/replace.md)
+- [Archived replace Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/format/_sources/replace.md)
 
 </details>
 
@@ -1109,18 +1153,22 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `91` |
+| Catalog key | `round` |
 | Recipe key | `round` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | Root-level |
 | Documentation group | `format` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.pandas.round` |
+| Legacy UUID | `12f3111b-8511-4e42-8d3f-b5302dc3b4e4` |
 
 **Sources**
 
 - [WranglesPY round implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/pandas.py)
-- [Existing round Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/format/_sources/round.md)
+- [Archived round Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/format/_sources/round.md)
 
 </details>
 
@@ -1203,18 +1251,22 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `96` |
+| Catalog key | `translate` |
 | Recipe key | `translate` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | Root-level |
 | Documentation group | `format` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.translate` |
+| Legacy UUID | `73c3ceb6-ffd8-4d74-8389-c83b99d33bb0` |
 
 **Sources**
 
 - [WranglesPY translate implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/main.py)
-- [Existing translate Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/format/_sources/translate.md)
+- [Archived translate Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/format/_sources/translate.md)
 
 </details>
 
@@ -1302,7 +1354,10 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `95` |
+| Catalog key | `standardize` |
 | Recipe key | `standardize` |
+| Catalog status | active |
 | Lifecycle status | deprecated |
 | Recipe Writer eligible | No |
 | Recipe Writer exclusion | Deprecated compatibility key; use standardize.custom. |
@@ -1311,10 +1366,11 @@ wrangles:
 | Documentation group | `format` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.standardize` |
+| Legacy UUID | `53cd3fdd-24e2-4411-8655-6014b92a3f3a` |
 
 **Sources**
 
 - [WranglesPY standardize implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/main.py)
-- [Existing standardize Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/format/_sources/standardize.md)
+- [Archived standardize Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/format/_sources/standardize.md)
 
 </details>

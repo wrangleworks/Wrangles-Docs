@@ -160,7 +160,10 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `89` |
+| Catalog key | `rename` |
 | Recipe key | `rename` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | No |
 | Recipe Writer exclusion | Structural rename steps are not supported in the baseline. |
@@ -168,10 +171,11 @@ wrangles:
 | Documentation group | `transform` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.rename` |
+| Legacy UUID | `ab06898f-faf7-42e7-8275-5e3034a4d727` |
 
 **Sources**
 
 - [WranglesPY rename implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/main.py)
-- [Existing rename Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/transform/_sources/rename.md)
+- [Archived rename Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/transform/_sources/rename.md)
 
 </details>

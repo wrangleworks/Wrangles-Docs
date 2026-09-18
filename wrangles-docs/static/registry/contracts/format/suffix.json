@@ -1,10 +1,13 @@
 {
   "$schema": "https://docs.wrangles.com/registry/schema/wrangle-contract.schema.json",
   "format": "wrangles-registry-entry",
-  "registry_version": "0.2.1",
-  "schema_version": "0.2",
+  "registry_version": "0.3.0",
+  "schema_version": "0.3",
   "type": "wrangle",
-  "id": "8d127060-ba2d-4934-897f-07662e01e40b",
+  "catalog_id": "37",
+  "catalog_key": "format.suffix",
+  "catalog_status": "active",
+  "legacy_id": "8d127060-ba2d-4934-897f-07662e01e40b",
   "wrangle_name": "suffix",
   "namespace": "format",
   "wrangle_key": "format.suffix",
@@ -128,9 +131,9 @@
       "title": "WranglesPY format.suffix implementation"
     },
     {
-      "id": "quasi-registry",
-      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/format/_sources/suffix.md",
-      "title": "Existing format.suffix Markdown"
+      "id": "legacy-docs-archive",
+      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/format/_sources/suffix.md",
+      "title": "Archived format.suffix Markdown"
     }
   ]
 }

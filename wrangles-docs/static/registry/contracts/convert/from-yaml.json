@@ -1,10 +1,13 @@
 {
   "$schema": "https://docs.wrangles.com/registry/schema/wrangle-contract.schema.json",
   "format": "wrangles-registry-entry",
-  "registry_version": "0.2.1",
-  "schema_version": "0.2",
+  "registry_version": "0.3.0",
+  "schema_version": "0.3",
   "type": "wrangle",
-  "id": "b1c20004-5f80-41c2-84d2-2d4601a033b5",
+  "catalog_id": "9",
+  "catalog_key": "convert.from_yaml",
+  "catalog_status": "active",
+  "legacy_id": "b1c20004-5f80-41c2-84d2-2d4601a033b5",
   "wrangle_name": "from_yaml",
   "namespace": "convert",
   "wrangle_key": "convert.from_yaml",
@@ -122,9 +125,9 @@
       "title": "WranglesPY convert.from_yaml implementation"
     },
     {
-      "id": "quasi-registry",
-      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/convert/_sources/from-yaml.md",
-      "title": "Existing convert.from_yaml Markdown"
+      "id": "legacy-docs-archive",
+      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/convert/_sources/from-yaml.md",
+      "title": "Archived convert.from_yaml Markdown"
     }
   ]
 }

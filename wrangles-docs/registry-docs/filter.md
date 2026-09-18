@@ -96,17 +96,21 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `78` |
+| Catalog key | `filter` |
 | Recipe key | `filter` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | Root-level |
 | Documentation group | `select` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.filter` |
+| Legacy UUID | `e3242acf-d204-433f-8373-205b77481131` |
 
 **Sources**
 
 - [WranglesPY filter implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/main.py)
-- [Existing filter Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/select/_sources/filter.md)
+- [Archived filter Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/select/_sources/filter.md)
 
 </details>

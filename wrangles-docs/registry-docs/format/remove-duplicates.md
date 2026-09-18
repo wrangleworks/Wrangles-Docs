@@ -83,17 +83,21 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `35` |
+| Catalog key | `format.remove_duplicates` |
 | Recipe key | `format.remove_duplicates` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `format` |
 | Documentation group | `format` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.format.remove_duplicates` |
+| Legacy UUID | `283b9e78-b2b2-43d0-844f-9842c33120aa` |
 
 **Sources**
 
 - [WranglesPY format.remove_duplicates implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/format.py)
-- [Existing format.remove_duplicates Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/format/_sources/remove-duplicates.md)
+- [Archived format.remove_duplicates Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/format/_sources/remove-duplicates.md)
 
 </details>

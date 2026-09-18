@@ -1,7 +1,5 @@
 import GENERATED_WRANGLE_CATALOG from './wrangleCatalog.generated';
-import ADDITIONAL_WRANGLE_CATALOG from './wrangleCatalog.additional';
 import WRANGLE_CATALOG_OVERRIDES from './wrangleCatalog.overrides';
-import WRANGLE_MAPPINGS from './wrangleMappings.json';
 
 function parseListValue(value) {
   return Array.isArray(value)
@@ -75,7 +73,6 @@ function buildConfigFromFields(fields, values) {
 
 function applyOverride(entry) {
   const override = WRANGLE_CATALOG_OVERRIDES[entry.type] ?? {};
-  const mapping = WRANGLE_MAPPINGS[entry.type] ?? {};
   const fieldOverrides = override.fields ?? {};
   const fields = entry.fields.map((field) => ({
     ...field,
@@ -92,16 +89,14 @@ function applyOverride(entry) {
     ...entry,
     ...entryOverride,
     defaults,
-    docs: mapping.docs ?? [],
     fields,
-    modelId: mapping.modelId ?? '',
     buildConfig(values) {
       return buildConfigFromFields(fields, values);
     },
   };
 }
 
-const WRANGLE_CATALOG = [...GENERATED_WRANGLE_CATALOG, ...ADDITIONAL_WRANGLE_CATALOG].map(applyOverride);
+const WRANGLE_CATALOG = GENERATED_WRANGLE_CATALOG.map(applyOverride);
 
 export const WRANGLE_MAP = Object.fromEntries(WRANGLE_CATALOG.map((item) => [item.type, item]));
 

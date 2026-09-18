@@ -1,10 +1,13 @@
 {
   "$schema": "https://docs.wrangles.com/registry/schema/wrangle-contract.schema.json",
   "format": "wrangles-registry-entry",
-  "registry_version": "0.2.1",
-  "schema_version": "0.2",
+  "registry_version": "0.3.0",
+  "schema_version": "0.3",
   "type": "wrangle",
-  "id": "9cebfa6f-a524-4aec-84a7-02d77b792843",
+  "catalog_id": "27",
+  "catalog_key": "extract.date_range",
+  "catalog_status": "active",
+  "legacy_id": "9cebfa6f-a524-4aec-84a7-02d77b792843",
   "wrangle_name": "date_range",
   "namespace": "extract",
   "wrangle_key": "extract.date_range",
@@ -146,9 +149,9 @@
       "title": "WranglesPY extract.date_range implementation"
     },
     {
-      "id": "quasi-registry",
-      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/extract/_sources/date-range.md",
-      "title": "Existing extract.date_range Markdown"
+      "id": "legacy-docs-archive",
+      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/extract/_sources/date-range.md",
+      "title": "Archived extract.date_range Markdown"
     }
   ]
 }

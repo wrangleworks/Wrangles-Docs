@@ -90,18 +90,22 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `71` |
+| Catalog key | `classify` |
 | Recipe key | `classify` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | Root-level |
 | Documentation group | `ai` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.classify` |
+| Legacy UUID | `06669ef8-cdd1-42f7-8078-98e0b7a42c30` |
 
 **Sources**
 
 - [WranglesPY classify implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/main.py)
-- [Existing classify Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/ai/_sources/classify.md)
+- [Archived classify Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/ai/_sources/classify.md)
 
 </details>
 
@@ -193,17 +197,21 @@ _Template based on the documented parameters; no published source example is cur
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `79` |
+| Catalog key | `huggingface` |
 | Recipe key | `huggingface` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | Root-level |
 | Documentation group | `ai` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.huggingface` |
+| Legacy UUID | `ae12cf20-4934-428f-84a9-a6898cb7ffe0` |
 
 **Sources**
 
 - [WranglesPY huggingface implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/main.py)
-- [Existing huggingface Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/ai/_sources/huggingface.md)
+- [Archived huggingface Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/ai/_sources/huggingface.md)
 
 </details>

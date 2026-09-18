@@ -1,10 +1,13 @@
 {
   "$schema": "https://docs.wrangles.com/registry/schema/wrangle-contract.schema.json",
   "format": "wrangles-registry-entry",
-  "registry_version": "0.2.1",
-  "schema_version": "0.2",
+  "registry_version": "0.3.0",
+  "schema_version": "0.3",
   "type": "wrangle",
-  "id": "06ca98e4-d026-43f7-84eb-af246d401ba9",
+  "catalog_id": "63",
+  "catalog_key": "split.dictionary",
+  "catalog_status": "active",
+  "legacy_id": "06ca98e4-d026-43f7-84eb-af246d401ba9",
   "wrangle_name": "dictionary",
   "namespace": "split",
   "wrangle_key": "split.dictionary",
@@ -132,9 +135,9 @@
       "title": "WranglesPY split.dictionary implementation"
     },
     {
-      "id": "quasi-registry",
-      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/split/_sources/dictionary.md",
-      "title": "Existing split.dictionary Markdown"
+      "id": "legacy-docs-archive",
+      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/split/_sources/dictionary.md",
+      "title": "Archived split.dictionary Markdown"
     }
   ]
 }

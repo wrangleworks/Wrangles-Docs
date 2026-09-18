@@ -68,10 +68,10 @@ sources:
     resource: >-
       https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/create.py
     title: WranglesPY create.index implementation
-  - id: quasi-registry
+  - id: legacy-docs-archive
     resource: >-
-      https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/create/_sources/index.md
-    title: Existing create.index Markdown
+      https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/create/_sources/index.md
+    title: Archived create.index Markdown
 ---
 
 # Index

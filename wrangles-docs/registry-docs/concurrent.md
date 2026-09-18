@@ -90,7 +90,10 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `73` |
+| Catalog key | `concurrent` |
 | Recipe key | `concurrent` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | No |
 | Recipe Writer exclusion | Concurrent orchestration is not supported in the baseline. |
@@ -98,10 +101,11 @@ wrangles:
 | Documentation group | `utility` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.concurrent` |
+| Legacy UUID | None |
 
 **Sources**
 
 - [WranglesPY concurrent implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/main.py)
-- [Existing concurrent Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/utility/_sources/concurrent.md)
+- [Archived concurrent Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/utility/_sources/concurrent.md)
 
 </details>

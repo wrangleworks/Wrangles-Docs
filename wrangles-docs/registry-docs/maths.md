@@ -59,7 +59,10 @@ This guidance was derived from the callable signature.
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `83` |
+| Catalog key | `maths` |
 | Recipe key | `maths` |
+| Catalog status | active |
 | Lifecycle status | deprecated |
 | Recipe Writer eligible | No |
 | Recipe Writer exclusion | Deprecated compatibility key; use math. |
@@ -68,6 +71,7 @@ This guidance was derived from the callable signature.
 | Documentation group | `compute` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.maths` |
+| Legacy UUID | None |
 
 **Sources**
 

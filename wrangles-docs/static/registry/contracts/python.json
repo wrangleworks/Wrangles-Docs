@@ -1,10 +1,13 @@
 {
   "$schema": "https://docs.wrangles.com/registry/schema/wrangle-contract.schema.json",
   "format": "wrangles-registry-entry",
-  "registry_version": "0.2.1",
-  "schema_version": "0.2",
+  "registry_version": "0.3.0",
+  "schema_version": "0.3",
   "type": "wrangle",
-  "id": "c0398a11-7731-4e47-8df0-b07eea0b1d6c",
+  "catalog_id": "85",
+  "catalog_key": "python",
+  "catalog_status": "active",
+  "legacy_id": "c0398a11-7731-4e47-8df0-b07eea0b1d6c",
   "wrangle_name": "python",
   "namespace": null,
   "wrangle_key": "python",
@@ -130,9 +133,9 @@
       "title": "WranglesPY python implementation"
     },
     {
-      "id": "quasi-registry",
-      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/compute/_sources/python.md",
-      "title": "Existing python Markdown"
+      "id": "legacy-docs-archive",
+      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/compute/_sources/python.md",
+      "title": "Archived python Markdown"
     }
   ]
 }

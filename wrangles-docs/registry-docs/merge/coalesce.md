@@ -86,17 +86,21 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `40` |
+| Catalog key | `merge.coalesce` |
 | Recipe key | `merge.coalesce` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `merge` |
 | Documentation group | `merge` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.merge.coalesce` |
+| Legacy UUID | `25c1a60d-fa48-4b9a-8c03-0921d5b31049` |
 
 **Sources**
 
 - [WranglesPY merge.coalesce implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/merge.py)
-- [Existing merge.coalesce Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/merge/_sources/coalesce.md)
+- [Archived merge.coalesce Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/merge/_sources/coalesce.md)
 
 </details>

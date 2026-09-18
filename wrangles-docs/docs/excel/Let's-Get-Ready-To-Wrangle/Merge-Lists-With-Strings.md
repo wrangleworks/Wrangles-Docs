@@ -4,7 +4,7 @@ slug: /excel/Let's-Get-Ready-To-Wrangle/Merge-Lists-With-Strings
 ---
 
 # Merging a List With a String
-Merging a list with a string is something that comes up often when working with [extract wrangles](/wrangle/extract) as they can output both a list or a string. For custom extract wrangles, when first_element is set to true, a string is output. Otherwise, the output is returned as a list. This can be troublesome when extracting data from multiple inputs or when trying to merge extracted data with existing data.
+Merging a list with a string is something that comes up often when working with [extract wrangles](/wrangles/namespaces/extract) as they can output both a list or a string. For custom extract wrangles, when first_element is set to true, a string is output. Otherwise, the output is returned as a list. This can be troublesome when extracting data from multiple inputs or when trying to merge extracted data with existing data.
 
 For example, if a given dataset has a "Manufacturer" column and a "Description" column which also contains the manufacturer. In many cases, the "Manufacturer" column is not filled in in entirety, so an extract wrangle can be used to extract manufacturer from the "Description" column. 
 
@@ -76,7 +76,7 @@ And our final output is shown below:
 ## Notes
 You might ask why we didn't use merge.coalesce or merge.concatenate? Stick around and we'll show you.
 
-[Coalesce](/wrangle/merge#coalesce) only keeps data from subsequent columns if there are any empty cells in the previous columns. The recipe below generated the following screen capture.
+[Coalesce](/wrangles/namespaces/merge#coalesce) only keeps data from subsequent columns if there are any empty cells in the previous columns. The recipe below generated the following screen capture.
 
 ```yaml
 wrangles:
@@ -100,7 +100,7 @@ wrangles:
 
 You can see that valuable data from the extract was left out from the coalesce.
 
-[Concatenate](/wrangle/merge#concatenate) merges everything from all columns. Let's see how the output would look using concatenate.
+[Concatenate](/wrangles/namespaces/merge#concatenate) merges everything from all columns. Let's see how the output would look using concatenate.
 
 ```yaml
 wrangles:

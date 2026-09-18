@@ -96,7 +96,10 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `69` |
+| Catalog key | `accordion` |
 | Recipe key | `accordion` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | No |
 | Recipe Writer exclusion | Nested-list orchestration is not supported in the baseline. |
@@ -104,11 +107,12 @@ wrangles:
 | Documentation group | `utility` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.accordion` |
+| Legacy UUID | None |
 
 **Sources**
 
 - [WranglesPY accordion implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/main.py)
-- [Existing accordion Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/utility/_sources/accordion.md)
+- [Archived accordion Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/utility/_sources/accordion.md)
 
 </details>
 
@@ -208,18 +212,22 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `70` |
+| Catalog key | `batch` |
 | Recipe key | `batch` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | Root-level |
 | Documentation group | `utility` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.batch` |
+| Legacy UUID | None |
 
 **Sources**
 
 - [WranglesPY batch implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/main.py)
-- [Existing batch Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/utility/_sources/batch.md)
+- [Archived batch Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/utility/_sources/batch.md)
 
 </details>
 
@@ -308,7 +316,10 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `73` |
+| Catalog key | `concurrent` |
 | Recipe key | `concurrent` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | No |
 | Recipe Writer exclusion | Concurrent orchestration is not supported in the baseline. |
@@ -316,11 +327,12 @@ wrangles:
 | Documentation group | `utility` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.concurrent` |
+| Legacy UUID | None |
 
 **Sources**
 
 - [WranglesPY concurrent implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/main.py)
-- [Existing concurrent Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/utility/_sources/concurrent.md)
+- [Archived concurrent Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/utility/_sources/concurrent.md)
 
 </details>
 
@@ -464,7 +476,10 @@ _Logs a sample of rows or status information to the configured destination._
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `80` |
+| Catalog key | `log` |
 | Recipe key | `log` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | No |
 | Recipe Writer exclusion | Operational logging steps are not authored in the baseline. |
@@ -472,11 +487,12 @@ _Logs a sample of rows or status information to the configured destination._
 | Documentation group | `utility` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.log` |
+| Legacy UUID | `6177808e-aa2d-4d0b-8385-858b16948a5d` |
 
 **Sources**
 
 - [WranglesPY log implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/main.py)
-- [Existing log Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/utility/_sources/log.md)
+- [Archived log Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/utility/_sources/log.md)
 
 </details>
 
@@ -631,7 +647,10 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `84` |
+| Catalog key | `matrix` |
 | Recipe key | `matrix` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | No |
 | Recipe Writer exclusion | Matrix orchestration is not supported in the baseline. |
@@ -639,11 +658,12 @@ wrangles:
 | Documentation group | `utility` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.matrix` |
+| Legacy UUID | None |
 
 **Sources**
 
 - [WranglesPY matrix implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/main.py)
-- [Existing matrix Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/utility/_sources/matrix.md)
+- [Archived matrix Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/utility/_sources/matrix.md)
 
 </details>
 
@@ -701,7 +721,10 @@ This guidance was derived from the callable signature and its embedded Python sc
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `86` |
+| Catalog key | `recipe` |
 | Recipe key | `recipe` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | No |
 | Recipe Writer exclusion | Nested recipe composition is outside the baseline. |
@@ -709,6 +732,7 @@ This guidance was derived from the callable signature and its embedded Python sc
 | Documentation group | `utility` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.recipe` |
+| Legacy UUID | None |
 
 **Sources**
 
@@ -791,7 +815,10 @@ _The primary result is returned on success; the `except` result is returned afte
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `98` |
+| Catalog key | `try` |
 | Recipe key | `try` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | No |
 | Recipe Writer exclusion | Error-control orchestration is not supported in the baseline. |
@@ -799,10 +826,11 @@ _The primary result is returned on success; the `except` result is returned afte
 | Documentation group | `utility` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.Try` |
+| Legacy UUID | None |
 
 **Sources**
 
 - [WranglesPY try implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/main.py)
-- [Existing try Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/utility/_sources/try.md)
+- [Archived try Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/utility/_sources/try.md)
 
 </details>

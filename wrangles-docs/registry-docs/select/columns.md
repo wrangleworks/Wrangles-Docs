@@ -78,17 +78,21 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `49` |
+| Catalog key | `select.columns` |
 | Recipe key | `select.columns` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `select` |
 | Documentation group | `select` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.select.columns` |
+| Legacy UUID | `bca12c60-3957-4dc5-83f7-5ee460df2a11` |
 
 **Sources**
 
 - [WranglesPY select.columns implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/select.py)
-- [Existing select.columns Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/select/_sources/columns.md)
+- [Archived select.columns Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/select/_sources/columns.md)
 
 </details>

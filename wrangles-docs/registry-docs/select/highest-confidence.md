@@ -117,17 +117,21 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `54` |
+| Catalog key | `select.highest_confidence` |
 | Recipe key | `select.highest_confidence` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `select` |
 | Documentation group | `select` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.select.highest_confidence` |
+| Legacy UUID | `00aad85d-8cc8-42e5-86f3-e4ff916e8ac2` |
 
 **Sources**
 
 - [WranglesPY select.highest_confidence implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/select.py)
-- [Existing select.highest_confidence Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/select/_sources/highest-confidence.md)
+- [Archived select.highest_confidence Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/select/_sources/highest-confidence.md)
 
 </details>

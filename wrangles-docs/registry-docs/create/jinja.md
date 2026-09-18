@@ -90,17 +90,21 @@ Using `|` in YAML denotes a multi-line string that preserves line breaks. Use `>
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `18` |
+| Catalog key | `create.jinja` |
 | Recipe key | `create.jinja` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `create` |
 | Documentation group | `create` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.create.jinja` |
+| Legacy UUID | `10fc6709-16d4-4eab-8f56-6cb5d170ea66` |
 
 **Sources**
 
 - [WranglesPY create.jinja implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/create.py)
-- [Existing create.jinja Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/create/_sources/jinja.md)
+- [Archived create.jinja Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/create/_sources/jinja.md)
 
 </details>

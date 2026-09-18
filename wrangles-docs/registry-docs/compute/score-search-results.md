@@ -105,17 +105,21 @@ _Template based on the documented parameters; no published source example is cur
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `4` |
+| Catalog key | `compute.score_search_results` |
 | Recipe key | `compute.score_search_results` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `compute` |
 | Documentation group | `compute` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.compute.score_search_results` |
+| Legacy UUID | `313a8ec0-cf13-4956-8d3b-5362b8641d0f` |
 
 **Sources**
 
 - [WranglesPY compute.score_search_results implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/compute.py)
-- [Existing compute.score_search_results Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/compute/_sources/score-search-results.md)
+- [Archived compute.score_search_results Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/compute/_sources/score-search-results.md)
 
 </details>

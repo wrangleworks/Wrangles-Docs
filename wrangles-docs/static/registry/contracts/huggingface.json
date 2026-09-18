@@ -1,10 +1,13 @@
 {
   "$schema": "https://docs.wrangles.com/registry/schema/wrangle-contract.schema.json",
   "format": "wrangles-registry-entry",
-  "registry_version": "0.2.1",
-  "schema_version": "0.2",
+  "registry_version": "0.3.0",
+  "schema_version": "0.3",
   "type": "wrangle",
-  "id": "ae12cf20-4934-428f-84a9-a6898cb7ffe0",
+  "catalog_id": "79",
+  "catalog_key": "huggingface",
+  "catalog_status": "active",
+  "legacy_id": "ae12cf20-4934-428f-84a9-a6898cb7ffe0",
   "wrangle_name": "huggingface",
   "namespace": null,
   "wrangle_key": "huggingface",
@@ -136,9 +139,9 @@
       "title": "WranglesPY huggingface implementation"
     },
     {
-      "id": "quasi-registry",
-      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/ai/_sources/huggingface.md",
-      "title": "Existing huggingface Markdown"
+      "id": "legacy-docs-archive",
+      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/ai/_sources/huggingface.md",
+      "title": "Archived huggingface Markdown"
     }
   ]
 }

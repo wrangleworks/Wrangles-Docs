@@ -89,17 +89,21 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `81` |
+| Catalog key | `lookup` |
 | Recipe key | `lookup` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | Root-level |
 | Documentation group | `lookup` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.lookup` |
+| Legacy UUID | `b3339193-d1cc-4c89-8ed6-901efa6d81be` |
 
 **Sources**
 
 - [WranglesPY lookup implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/main.py)
-- [Existing lookup Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/lookup/_sources/lookup.md)
+- [Archived lookup Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/lookup/_sources/lookup.md)
 
 </details>

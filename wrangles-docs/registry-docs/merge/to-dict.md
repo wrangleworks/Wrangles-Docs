@@ -82,17 +82,21 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `45` |
+| Catalog key | `merge.to_dict` |
 | Recipe key | `merge.to_dict` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `merge` |
 | Documentation group | `merge` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.merge.to_dict` |
+| Legacy UUID | `9b869210-0d89-403b-8409-7cecdb5f9c7c` |
 
 **Sources**
 
 - [WranglesPY merge.to_dict implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/merge.py)
-- [Existing merge.to_dict Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/merge/_sources/to-dict.md)
+- [Archived merge.to_dict Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/merge/_sources/to-dict.md)
 
 </details>

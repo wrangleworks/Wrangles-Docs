@@ -67,13 +67,17 @@ This guidance was derived from the callable signature and its embedded Python sc
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `67` |
+| Catalog key | `standardize.clean` |
 | Recipe key | `standardize.clean` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `standardize` |
 | Documentation group | `standardize` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.standardize.clean` |
+| Legacy UUID | None |
 
 **Sources**
 

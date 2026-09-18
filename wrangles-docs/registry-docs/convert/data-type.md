@@ -96,13 +96,17 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `6` |
+| Catalog key | `convert.data_type` |
 | Recipe key | `convert.data_type` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `convert` |
 | Documentation group | `convert` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.convert.data_type` |
+| Legacy UUID | `52384f01-7164-404f-8615-063e7677a588` |
 
 **Sources**
 

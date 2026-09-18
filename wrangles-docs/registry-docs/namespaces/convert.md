@@ -95,13 +95,17 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `5` |
+| Catalog key | `convert.case` |
 | Recipe key | `convert.case` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `convert` |
 | Documentation group | `convert` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.convert.case` |
+| Legacy UUID | `12ff4120-3613-4801-8653-99c793477fbc` |
 
 **Sources**
 
@@ -201,13 +205,17 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `6` |
+| Catalog key | `convert.data_type` |
 | Recipe key | `convert.data_type` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `convert` |
 | Documentation group | `convert` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.convert.data_type` |
+| Legacy UUID | `52384f01-7164-404f-8615-063e7677a588` |
 
 **Sources**
 
@@ -294,18 +302,22 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `7` |
+| Catalog key | `convert.fraction_to_decimal` |
 | Recipe key | `convert.fraction_to_decimal` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `convert` |
 | Documentation group | `convert` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.convert.fraction_to_decimal` |
+| Legacy UUID | `7c55752e-70ab-4809-8298-c59436127457` |
 
 **Sources**
 
 - [WranglesPY convert.fraction_to_decimal implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/convert.py)
-- [Existing convert.fraction_to_decimal Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/convert/_sources/fraction-to-decimal.md)
+- [Archived convert.fraction_to_decimal Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/convert/_sources/fraction-to-decimal.md)
 
 </details>
 
@@ -396,13 +408,17 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `8` |
+| Catalog key | `convert.from_json` |
 | Recipe key | `convert.from_json` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `convert` |
 | Documentation group | `convert` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.convert.from_json` |
+| Legacy UUID | `e370dfcf-b0fe-4c48-8a52-6f34c47e7978` |
 
 **Sources**
 
@@ -494,18 +510,22 @@ Product Specs:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `9` |
+| Catalog key | `convert.from_yaml` |
 | Recipe key | `convert.from_yaml` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `convert` |
 | Documentation group | `convert` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.convert.from_yaml` |
+| Legacy UUID | `b1c20004-5f80-41c2-84d2-2d4601a033b5` |
 
 **Sources**
 
 - [WranglesPY convert.from_yaml implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/convert.py)
-- [Existing convert.from_yaml Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/convert/_sources/from-yaml.md)
+- [Archived convert.from_yaml Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/convert/_sources/from-yaml.md)
 
 </details>
 
@@ -588,18 +608,22 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `10` |
+| Catalog key | `convert.to_json` |
 | Recipe key | `convert.to_json` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `convert` |
 | Documentation group | `convert` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.convert.to_json` |
+| Legacy UUID | `94e54eb7-2b8c-4047-89d0-fb5d16baf396` |
 
 **Sources**
 
 - [WranglesPY convert.to_json implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/convert.py)
-- [Existing convert.to_json Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/convert/_sources/to-json.md)
+- [Archived convert.to_json Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/convert/_sources/to-json.md)
 
 </details>
 
@@ -689,17 +713,21 @@ Product Specs:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `11` |
+| Catalog key | `convert.to_yaml` |
 | Recipe key | `convert.to_yaml` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `convert` |
 | Documentation group | `convert` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.convert.to_yaml` |
+| Legacy UUID | `4cd6252f-ce47-4a9d-8272-3d87e875b72a` |
 
 **Sources**
 
 - [WranglesPY convert.to_yaml implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/convert.py)
-- [Existing convert.to_yaml Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/convert/_sources/to-yaml.md)
+- [Archived convert.to_yaml Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/convert/_sources/to-yaml.md)
 
 </details>

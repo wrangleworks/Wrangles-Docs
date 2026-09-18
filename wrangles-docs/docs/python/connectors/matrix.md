@@ -6,7 +6,7 @@ slug: /python/connectors/matrix
 > Added v1.5.0
 \{.is-info\}
 
-The matrix write connector lets you use variables in a single write definition to automatically execute multiple writes that are based on the combinations of the variables. Ie: if you wanted to split your data into categories with a different sheet for each category. Click [here](https://wrangles.io/python/recipes/wrangles/utilities#matrix) for the wrangle equivalent of this connector.
+The matrix write connector lets you use variables in a single write definition to automatically execute multiple writes that are based on the combinations of the variables. Ie: if you wanted to split your data into categories with a different sheet for each category. Click [here](/wrangles/matrix) for the wrangle equivalent of this connector.
 
 # Tabset \{.tabset\}
 

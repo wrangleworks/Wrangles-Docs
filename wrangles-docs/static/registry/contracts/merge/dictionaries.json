@@ -1,10 +1,13 @@
 {
   "$schema": "https://docs.wrangles.com/registry/schema/wrangle-contract.schema.json",
   "format": "wrangles-registry-entry",
-  "registry_version": "0.2.1",
-  "schema_version": "0.2",
+  "registry_version": "0.3.0",
+  "schema_version": "0.3",
   "type": "wrangle",
-  "id": "93e27737-e966-4ba9-8777-4e96724ebfc4",
+  "catalog_id": "42",
+  "catalog_key": "merge.dictionaries",
+  "catalog_status": "active",
+  "legacy_id": "93e27737-e966-4ba9-8777-4e96724ebfc4",
   "wrangle_name": "dictionaries",
   "namespace": "merge",
   "wrangle_key": "merge.dictionaries",
@@ -106,9 +109,9 @@
       "title": "WranglesPY merge.dictionaries implementation"
     },
     {
-      "id": "quasi-registry",
-      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/merge/_sources/dictionaries.md",
-      "title": "Existing merge.dictionaries Markdown"
+      "id": "legacy-docs-archive",
+      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/merge/_sources/dictionaries.md",
+      "title": "Archived merge.dictionaries Markdown"
     }
   ]
 }

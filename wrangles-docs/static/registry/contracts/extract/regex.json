@@ -1,10 +1,13 @@
 {
   "$schema": "https://docs.wrangles.com/registry/schema/wrangle-contract.schema.json",
   "format": "wrangles-registry-entry",
-  "registry_version": "0.2.1",
-  "schema_version": "0.2",
+  "registry_version": "0.3.0",
+  "schema_version": "0.3",
   "type": "wrangle",
-  "id": "9aa0253a-4b70-4737-832c-964e15967289",
+  "catalog_id": "30",
+  "catalog_key": "extract.regex",
+  "catalog_status": "active",
+  "legacy_id": "9aa0253a-4b70-4737-832c-964e15967289",
   "wrangle_name": "regex",
   "namespace": "extract",
   "wrangle_key": "extract.regex",
@@ -163,9 +166,9 @@
       "title": "WranglesPY extract.regex implementation"
     },
     {
-      "id": "quasi-registry",
-      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/extract/_sources/regex.md",
-      "title": "Existing extract.regex Markdown"
+      "id": "legacy-docs-archive",
+      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/extract/_sources/regex.md",
+      "title": "Archived extract.regex Markdown"
     }
   ]
 }

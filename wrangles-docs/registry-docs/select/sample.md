@@ -113,17 +113,21 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `59` |
+| Catalog key | `select.sample` |
 | Recipe key | `select.sample` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `select` |
 | Documentation group | `select` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.select.sample` |
+| Legacy UUID | `95a84ab6-a66e-450f-8a4a-7a87e3a77932` |
 
 **Sources**
 
 - [WranglesPY select.sample implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/select.py)
-- [Existing select.sample Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/select/_sources/sample.md)
+- [Archived select.sample Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/select/_sources/sample.md)
 
 </details>

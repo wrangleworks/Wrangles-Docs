@@ -122,17 +122,21 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `43` |
+| Catalog key | `merge.key_value_pairs` |
 | Recipe key | `merge.key_value_pairs` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `merge` |
 | Documentation group | `merge` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.merge.key_value_pairs` |
+| Legacy UUID | `8a2cd37c-8ef7-4b05-8264-36512f5dd837` |
 
 **Sources**
 
 - [WranglesPY merge.key_value_pairs implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/merge.py)
-- [Existing merge.key_value_pairs Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/merge/_sources/key-value-pairs.md)
+- [Archived merge.key_value_pairs Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/merge/_sources/key-value-pairs.md)
 
 </details>

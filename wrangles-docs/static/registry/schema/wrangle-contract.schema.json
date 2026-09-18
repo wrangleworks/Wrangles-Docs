@@ -11,7 +11,6 @@
     "registry_version",
     "schema_version",
     "type",
-    "id",
     "wrangle_name",
     "namespace",
     "title",
@@ -29,6 +28,10 @@
     "parameters",
     "examples",
     "sources",
+    "catalog_id",
+    "catalog_key",
+    "catalog_status",
+    "legacy_id",
     "guidance"
   ],
   "properties": {
@@ -39,21 +42,13 @@
       "const": "wrangles-registry-entry"
     },
     "registry_version": {
-      "const": "0.2.1"
+      "const": "0.3.0"
     },
     "schema_version": {
-      "const": "0.2"
+      "const": "0.3"
     },
     "type": {
       "const": "wrangle"
-    },
-    "id": {
-      "type": [
-        "string",
-        "null"
-      ],
-      "format": "uuid",
-      "description": "Canonical UUID allocated by the Wrangles catalog database. Null is allowed only while an existing wrangle awaits database identity reconciliation."
     },
     "wrangle_name": {
       "type": "string",
@@ -236,6 +231,27 @@
       "items": {
         "$ref": "#/$defs/source"
       }
+    },
+    "catalog_id": {
+      "type": "string",
+      "pattern": "^[1-9][0-9]*$",
+      "description": "API Core BIGINT identity represented as a decimal string."
+    },
+    "catalog_key": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]*(\\.[a-z][a-z0-9_]*)*$"
+    },
+    "catalog_status": {
+      "type": "string",
+      "minLength": 1
+    },
+    "legacy_id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "uuid",
+      "description": "Previous documentation UUID retained only for migration compatibility."
     },
     "guidance": {
       "type": "string"

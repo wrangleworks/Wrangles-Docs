@@ -83,17 +83,21 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `91` |
+| Catalog key | `round` |
 | Recipe key | `round` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | Root-level |
 | Documentation group | `format` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.pandas.round` |
+| Legacy UUID | `12f3111b-8511-4e42-8d3f-b5302dc3b4e4` |
 
 **Sources**
 
 - [WranglesPY round implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/pandas.py)
-- [Existing round Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/format/_sources/round.md)
+- [Archived round Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/format/_sources/round.md)
 
 </details>

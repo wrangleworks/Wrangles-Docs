@@ -116,17 +116,21 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `28` |
+| Catalog key | `extract.html` |
 | Recipe key | `extract.html` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `extract` |
 | Documentation group | `extract` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.extract.html` |
+| Legacy UUID | `728fc87a-a20d-4efa-833a-612e0b5eadc3` |
 
 **Sources**
 
 - [WranglesPY extract.html implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/extract.py)
-- [Existing extract.html Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/extract/_sources/html.md)
+- [Archived extract.html Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/extract/_sources/html.md)
 
 </details>

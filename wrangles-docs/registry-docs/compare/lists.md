@@ -165,17 +165,21 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `1` |
+| Catalog key | `compare.lists` |
 | Recipe key | `compare.lists` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `compare` |
 | Documentation group | `compare` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.compare.lists` |
+| Legacy UUID | `a393225e-7ccf-4708-83f8-d5abd6ba9b1e` |
 
 **Sources**
 
 - [WranglesPY compare.lists implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/compare.py)
-- [Existing compare.lists Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/compare/_sources/lists.md)
+- [Archived compare.lists Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/compare/_sources/lists.md)
 
 </details>

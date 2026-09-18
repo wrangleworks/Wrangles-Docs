@@ -1,10 +1,13 @@
 {
   "$schema": "https://docs.wrangles.com/registry/schema/wrangle-contract.schema.json",
   "format": "wrangles-registry-entry",
-  "registry_version": "0.2.1",
-  "schema_version": "0.2",
+  "registry_version": "0.3.0",
+  "schema_version": "0.3",
   "type": "wrangle",
-  "id": "31905b74-ce58-45cd-8add-821cc04ab946",
+  "catalog_id": "2",
+  "catalog_key": "compare.text",
+  "catalog_status": "active",
+  "legacy_id": "31905b74-ce58-45cd-8add-821cc04ab946",
   "wrangle_name": "text",
   "namespace": "compare",
   "wrangle_key": "compare.text",
@@ -227,9 +230,9 @@
       "title": "WranglesPY compare.text implementation"
     },
     {
-      "id": "quasi-registry",
-      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/compare/_sources/text.md",
-      "title": "Existing compare.text Markdown"
+      "id": "legacy-docs-archive",
+      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/compare/_sources/text.md",
+      "title": "Archived compare.text Markdown"
     }
   ]
 }

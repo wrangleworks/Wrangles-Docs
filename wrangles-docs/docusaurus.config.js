@@ -31,35 +31,10 @@ const config = {
       '@docusaurus/plugin-content-docs',
       /** @type {import('@docusaurus/plugin-content-docs').Options} */
       ({
-        id: 'wrangles',
-        path: 'wrangle-docs',
-        routeBasePath: 'wrangle',
-        sidebarPath: './sidebarsWrangle.js',
-        exclude: ['**/_sources/**'],
-        remarkPlugins: [
-          require('./src/remark/linksListMarker'),
-          require('./src/remark/scrapedAttributes'),
-        ],
-      }),
-    ],
-    [
-      '@docusaurus/plugin-content-docs',
-      /** @type {import('@docusaurus/plugin-content-docs').Options} */
-      ({
         id: 'registry',
         path: 'registry-docs',
         routeBasePath: 'wrangles',
         sidebarPath: './sidebarsRegistry.js',
-      }),
-    ],
-    [
-      '@docusaurus/plugin-content-docs',
-      /** @type {import('@docusaurus/plugin-content-docs').Options} */
-      ({
-        id: 'utilityPilot',
-        path: 'utility-pilot',
-        routeBasePath: 'python/recipes/wrangles',
-        sidebarPath: false,
       }),
     ],
   ],
@@ -74,7 +49,6 @@ const config = {
           routeBasePath: '/',
           exclude: [
             '**/_sources/**',
-            'python/recipes/wrangles/utilities.md',
           ],
           remarkPlugins: [
             require('./src/remark/linksListMarker'),
@@ -109,11 +83,6 @@ const config = {
             to: '/playground',
             position: 'left',
             label: 'Playground',
-          },
-          {
-            to: '/wrangles/',
-            position: 'left',
-            label: 'Registry',
           },
         ],
       },

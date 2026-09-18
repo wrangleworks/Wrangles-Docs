@@ -92,7 +92,10 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `69` |
+| Catalog key | `accordion` |
 | Recipe key | `accordion` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | No |
 | Recipe Writer exclusion | Nested-list orchestration is not supported in the baseline. |
@@ -100,10 +103,11 @@ wrangles:
 | Documentation group | `utility` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.accordion` |
+| Legacy UUID | None |
 
 **Sources**
 
 - [WranglesPY accordion implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/main.py)
-- [Existing accordion Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/utility/_sources/accordion.md)
+- [Archived accordion Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/utility/_sources/accordion.md)
 
 </details>

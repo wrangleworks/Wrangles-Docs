@@ -95,6 +95,7 @@ function parseArgs(argv) {
     include: null,
     exclude: new Set(DEFAULT_EXCLUDED_TYPES),
     includeAdvancedFields: false,
+    check: false,
   };
 
   for (let index = 0; index < argv.length; index += 1) {
@@ -129,6 +130,8 @@ function parseArgs(argv) {
       args.exclude = new Set([...args.exclude].filter((item) => !DEFAULT_EXCLUDED_TYPES.has(item)));
     } else if (arg === '--include-advanced-fields') {
       args.includeAdvancedFields = true;
+    } else if (arg === '--check') {
+      args.check = true;
     } else if (arg === '--help') {
       printHelp();
       process.exit(0);
@@ -155,6 +158,7 @@ Options:
   --exclude <types>        Comma-separated wrangle types to exclude.
   --include-containers     Include structural wrangles like try, batch, matrix, recipe.
   --include-advanced-fields Include if/where/where_params controls.
+  --check                  Fail instead of writing when the generated catalog is stale.
 `);
 }
 
@@ -450,9 +454,27 @@ async function main() {
   const catalog = generateCatalog(schema, args);
   const outputPath = path.resolve(args.output);
   const sourceLabel = args.schemaFile || args.schemaUrl || 'inline JSON';
+  const rendered = renderCatalog(catalog, sourceLabel);
+
+  if (args.check) {
+    let existing;
+    try {
+      existing = await fs.readFile(outputPath, 'utf8');
+    } catch (error) {
+      if (error.code === 'ENOENT') {
+        throw new Error(`Generated Playground catalog is missing: ${outputPath}`);
+      }
+      throw error;
+    }
+    if (existing !== rendered) {
+      throw new Error('Generated Playground catalog is stale; run npm run generate:wrangle-catalog');
+    }
+    console.log(`Playground catalog is current (${catalog.length} wrangles).`);
+    return;
+  }
 
   await fs.mkdir(path.dirname(outputPath), {recursive: true});
-  await fs.writeFile(outputPath, renderCatalog(catalog, sourceLabel));
+  await fs.writeFile(outputPath, rendered);
   console.log(`Generated ${catalog.length} wrangles -> ${path.relative(process.cwd(), outputPath)}`);
 }
 

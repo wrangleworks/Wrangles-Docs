@@ -92,17 +92,21 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `32` |
+| Catalog key | `format.pad` |
 | Recipe key | `format.pad` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `format` |
 | Documentation group | `format` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.format.pad` |
+| Legacy UUID | `76c19378-38f4-45aa-85d1-3cdf8f8aae29` |
 
 **Sources**
 
 - [WranglesPY format.pad implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/format.py)
-- [Existing format.pad Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/format/_sources/pad.md)
+- [Archived format.pad Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/format/_sources/pad.md)
 
 </details>

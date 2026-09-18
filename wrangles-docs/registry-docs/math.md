@@ -86,17 +86,21 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `82` |
+| Catalog key | `math` |
 | Recipe key | `math` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | Root-level |
 | Documentation group | `compute` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.math` |
+| Legacy UUID | `494b11ad-00c1-4748-8b93-6bec982f4fec` |
 
 **Sources**
 
 - [WranglesPY math implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/main.py)
-- [Existing math Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/compute/_sources/math.md)
+- [Archived math Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/compute/_sources/math.md)
 
 </details>

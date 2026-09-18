@@ -5,7 +5,7 @@ slug: /excel/Let's-Get-Ready-To-Wrangle/Standardizing-Lists
 
 # How to Remove Words 
 
-Removing words isn't always as simple as using the [remove_words](/wrangle/format#remove-words) wrangle. There are many cases where an extract wrangle will find a match but the remove wrangle will not. For example, an extract wrangle can use regex to match patterns whereas the remove_words wrangle removes elements of one list from another (requiring an exact match).
+Removing words isn't always as simple as using the [remove_words](/wrangles/namespaces/format#remove-words) wrangle. There are many cases where an extract wrangle will find a match but the remove wrangle will not. For example, an extract wrangle can use regex to match patterns whereas the remove_words wrangle removes elements of one list from another (requiring an exact match).
 
 Let's start with a dataset that contains a description column that has url's wrapped in parenthesis. The goal is to extract the url and remove it from the description. 
 
@@ -69,7 +69,7 @@ Now our output looks like this:
 
 This is just what we had expected.Our "URL" column is still a list, which is messy. Let's go ahead and clean that up too.
 
-We'll add a [select.list_element](/wrangle/select#list-element) wrangle to select the first url from our url extract. Since these are all a list of one, we don't have to worry about choosing the correct url.
+We'll add a [select.list_element](/wrangles/namespaces/select#list-element) wrangle to select the first url from our url extract. Since these are all a list of one, we don't have to worry about choosing the correct url.
 
 ```yaml
 wrangles:

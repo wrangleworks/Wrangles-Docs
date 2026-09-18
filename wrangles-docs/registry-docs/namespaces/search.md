@@ -106,18 +106,22 @@ _Template based on the documented parameters; no published source example is cur
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `47` |
+| Catalog key | `search.find_links` |
 | Recipe key | `search.find_links` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `search` |
 | Documentation group | `search` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.search.find_links` |
+| Legacy UUID | `ec1f661b-2cbc-4a47-88e3-646179104376` |
 
 **Sources**
 
 - [WranglesPY search.find_links implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/search.py)
-- [Existing search.find_links Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/search/_sources/find-links.md)
+- [Archived search.find_links Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/search/_sources/find-links.md)
 
 </details>
 
@@ -216,17 +220,21 @@ _Template based on the documented parameters; no published source example is cur
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `48` |
+| Catalog key | `search.retrieve_link_content` |
 | Recipe key | `search.retrieve_link_content` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `search` |
 | Documentation group | `search` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.search.retrieve_link_content` |
+| Legacy UUID | `3d5faa87-9e96-48c0-8226-5ae566e8d76c` |
 
 **Sources**
 
 - [WranglesPY search.retrieve_link_content implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/search.py)
-- [Existing search.retrieve_link_content Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/search/_sources/retrieve-link-content.md)
+- [Archived search.retrieve_link_content Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/search/_sources/retrieve-link-content.md)
 
 </details>

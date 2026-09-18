@@ -1,10 +1,13 @@
 {
   "$schema": "https://docs.wrangles.com/registry/schema/wrangle-contract.schema.json",
   "format": "wrangles-registry-entry",
-  "registry_version": "0.2.1",
-  "schema_version": "0.2",
+  "registry_version": "0.3.0",
+  "schema_version": "0.3",
   "type": "wrangle",
-  "id": "313a8ec0-cf13-4956-8d3b-5362b8641d0f",
+  "catalog_id": "4",
+  "catalog_key": "compute.score_search_results",
+  "catalog_status": "active",
+  "legacy_id": "313a8ec0-cf13-4956-8d3b-5362b8641d0f",
   "wrangle_name": "score_search_results",
   "namespace": "compute",
   "wrangle_key": "compute.score_search_results",
@@ -239,9 +242,9 @@
       "title": "WranglesPY compute.score_search_results implementation"
     },
     {
-      "id": "quasi-registry",
-      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/compute/_sources/score-search-results.md",
-      "title": "Existing compute.score_search_results Markdown"
+      "id": "legacy-docs-archive",
+      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/compute/_sources/score-search-results.md",
+      "title": "Archived compute.score_search_results Markdown"
     }
   ]
 }

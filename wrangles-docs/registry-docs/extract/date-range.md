@@ -81,17 +81,21 @@ _No sample available._
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `27` |
+| Catalog key | `extract.date_range` |
 | Recipe key | `extract.date_range` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `extract` |
 | Documentation group | `extract` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.extract.date_range` |
+| Legacy UUID | `9cebfa6f-a524-4aec-84a7-02d77b792843` |
 
 **Sources**
 
 - [WranglesPY extract.date_range implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/extract.py)
-- [Existing extract.date_range Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/extract/_sources/date-range.md)
+- [Archived extract.date_range Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/extract/_sources/date-range.md)
 
 </details>

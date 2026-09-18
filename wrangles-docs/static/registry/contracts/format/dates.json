@@ -1,10 +1,13 @@
 {
   "$schema": "https://docs.wrangles.com/registry/schema/wrangle-contract.schema.json",
   "format": "wrangles-registry-entry",
-  "registry_version": "0.2.1",
-  "schema_version": "0.2",
+  "registry_version": "0.3.0",
+  "schema_version": "0.3",
   "type": "wrangle",
-  "id": "a3c15135-4f7a-4659-83fd-f657afa603c9",
+  "catalog_id": "31",
+  "catalog_key": "format.dates",
+  "catalog_status": "active",
+  "legacy_id": "a3c15135-4f7a-4659-83fd-f657afa603c9",
   "wrangle_name": "dates",
   "namespace": "format",
   "wrangle_key": "format.dates",
@@ -114,9 +117,9 @@
       "title": "WranglesPY format.dates implementation"
     },
     {
-      "id": "quasi-registry",
-      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/format/_sources/dates.md",
-      "title": "Existing format.dates Markdown"
+      "id": "legacy-docs-archive",
+      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/format/_sources/dates.md",
+      "title": "Archived format.dates Markdown"
     }
   ]
 }

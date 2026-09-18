@@ -1,10 +1,13 @@
 {
   "$schema": "https://docs.wrangles.com/registry/schema/wrangle-contract.schema.json",
   "format": "wrangles-registry-entry",
-  "registry_version": "0.2.1",
-  "schema_version": "0.2",
+  "registry_version": "0.3.0",
+  "schema_version": "0.3",
   "type": "wrangle",
-  "id": "c12f99b9-2363-4da7-8405-7c73b87906e5",
+  "catalog_id": "33",
+  "catalog_key": "format.prefix",
+  "catalog_status": "active",
+  "legacy_id": "c12f99b9-2363-4da7-8405-7c73b87906e5",
   "wrangle_name": "prefix",
   "namespace": "format",
   "wrangle_key": "format.prefix",
@@ -128,9 +131,9 @@
       "title": "WranglesPY format.prefix implementation"
     },
     {
-      "id": "quasi-registry",
-      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/format/_sources/prefix.md",
-      "title": "Existing format.prefix Markdown"
+      "id": "legacy-docs-archive",
+      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/format/_sources/prefix.md",
+      "title": "Archived format.prefix Markdown"
     }
   ]
 }

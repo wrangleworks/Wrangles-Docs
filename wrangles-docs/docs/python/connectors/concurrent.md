@@ -6,7 +6,7 @@ slug: /python/connectors/concurrent
 By default, all functions executed by a recipe happen sequentially. The concurrent connector allows functions to be executed in parallel.
 
 
-Click [here](https://wrangles.io/python/recipes/wrangles/utilities#concurrent) to learn about the concurrent wrangle.
+Click [here](/wrangles/concurrent) to learn about the concurrent wrangle.
 
 # Tabset \{.tabset\}
 ## Read

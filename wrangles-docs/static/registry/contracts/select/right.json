@@ -1,10 +1,13 @@
 {
   "$schema": "https://docs.wrangles.com/registry/schema/wrangle-contract.schema.json",
   "format": "wrangles-registry-entry",
-  "registry_version": "0.2.1",
-  "schema_version": "0.2",
+  "registry_version": "0.3.0",
+  "schema_version": "0.3",
   "type": "wrangle",
-  "id": "89ee82ec-3bc5-4bfa-899b-7a1260ef9bdb",
+  "catalog_id": "58",
+  "catalog_key": "select.right",
+  "catalog_status": "active",
+  "legacy_id": "89ee82ec-3bc5-4bfa-899b-7a1260ef9bdb",
   "wrangle_name": "right",
   "namespace": "select",
   "wrangle_key": "select.right",
@@ -114,9 +117,9 @@
       "title": "WranglesPY select.right implementation"
     },
     {
-      "id": "quasi-registry",
-      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/select/_sources/right.md",
-      "title": "Existing select.right Markdown"
+      "id": "legacy-docs-archive",
+      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/select/_sources/right.md",
+      "title": "Archived select.right Markdown"
     }
   ]
 }

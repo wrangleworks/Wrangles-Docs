@@ -1,10 +1,13 @@
 {
   "$schema": "https://docs.wrangles.com/registry/schema/wrangle-contract.schema.json",
   "format": "wrangles-registry-entry",
-  "registry_version": "0.2.1",
-  "schema_version": "0.2",
+  "registry_version": "0.3.0",
+  "schema_version": "0.3",
   "type": "wrangle",
-  "id": "223d2f4e-3247-4189-8b6c-e73fe44c4266",
+  "catalog_id": "51",
+  "catalog_key": "select.element",
+  "catalog_status": "active",
+  "legacy_id": "223d2f4e-3247-4189-8b6c-e73fe44c4266",
   "wrangle_name": "element",
   "namespace": "select",
   "wrangle_key": "select.element",
@@ -122,9 +125,9 @@
       "title": "WranglesPY select.element implementation"
     },
     {
-      "id": "quasi-registry",
-      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/select/_sources/element.md",
-      "title": "Existing select.element Markdown"
+      "id": "legacy-docs-archive",
+      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/select/_sources/element.md",
+      "title": "Archived select.element Markdown"
     }
   ]
 }

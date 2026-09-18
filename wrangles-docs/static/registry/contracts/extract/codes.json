@@ -1,10 +1,13 @@
 {
   "$schema": "https://docs.wrangles.com/registry/schema/wrangle-contract.schema.json",
   "format": "wrangles-registry-entry",
-  "registry_version": "0.2.1",
-  "schema_version": "0.2",
+  "registry_version": "0.3.0",
+  "schema_version": "0.3",
   "type": "wrangle",
-  "id": "da591387-0fca-4842-8bcb-d19f561f0292",
+  "catalog_id": "24",
+  "catalog_key": "extract.codes",
+  "catalog_status": "active",
+  "legacy_id": "da591387-0fca-4842-8bcb-d19f561f0292",
   "wrangle_name": "codes",
   "namespace": "extract",
   "wrangle_key": "extract.codes",
@@ -220,9 +223,9 @@
       "title": "WranglesPY extract.codes implementation"
     },
     {
-      "id": "quasi-registry",
-      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/extract/_sources/codes.md",
-      "title": "Existing extract.codes Markdown"
+      "id": "legacy-docs-archive",
+      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/extract/_sources/codes.md",
+      "title": "Archived extract.codes Markdown"
     }
   ]
 }

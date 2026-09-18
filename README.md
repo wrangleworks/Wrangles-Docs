@@ -1,15 +1,17 @@
 # Wrangles Docs
 
-Documentation and Registry compilation for the Wrangles platform. The planned
+Documentation and Registry compilation for the Wrangles platform. The
 Registry brings together catalog identities, executable contracts and editorial
 content to produce complete, versioned reference material for people and tools.
 
-## Planned Registry design
+## Registry design
 
-**Status: design in review.** [Issue #32](https://github.com/wrangleworks/Wrangles-Docs/issues/32)
-tracks the redesign. The architecture below describes the intended direction;
-it does not indicate that database changes, new APIs or consumer cutover have
-been implemented or deployed.
+**Status: pre-production implementation.** [Issue #32](https://github.com/wrangleworks/Wrangles-Docs/issues/32)
+tracks the redesign. API Core now has `public.wrangles_catalog` and
+`models.catalog_id`; Registry 0.3 imports the sanitized catalog table, joins it
+to the pinned Docs and WranglesPY inputs, and publishes catalog IDs in the
+compiled bundle. Public API publication, connectors, saved-model previews, and
+full consumer cutover remain incomplete.
 
 Each fact has one authoring owner. API Core supplies catalog information,
 WranglesPY supplies the executable contract, and Docs supplies explanations and
@@ -61,7 +63,7 @@ at request time under the caller's authorization.
 
 | Owner | Authored or generated responsibility |
 | --- | --- |
-| API Core | Central `catalog_id`, existing model identities, names, catalog tags, normalized classifications, explicit catalog-to-contract bindings, model notes/status, publication policy and access. The shared-catalog proposal adds `kind` and typed relationships here. |
+| API Core | Central `catalog_id` rows in `wrangles_catalog`, existing model identities and `models.catalog_id` links, names, kinds, status, publication policy and access. Typed relationships remain planned. |
 | WranglesPY | One structured executable contract maintained with the implementation: callable keys, parameters, defaults, enums, nested and conditional constraints, supported forwarded arguments, output semantics, runtime prerequisites and shared controls. |
 | Wrangles Docs | Small catalog references, capability descriptions, explanatory prose, parameter-help supplements, curated recipes and input/output fixtures. |
 | Registry compiler | Reconciled reference pages, recipe schemas, complete machine contracts and discovery artifacts, with source revisions and checksums. These are generated projections, not additional authoring sources. |
@@ -79,15 +81,16 @@ ownership details are design decisions tracked in #32.
 
 ### One catalog, explicit kinds and bindings
 
-The API Core `models` table is the complete wrangle identity catalog, including
-Stock and Recipe Wrangles. The preferred proposal extends the same identity
-namespace to connectors, run capabilities and selected reusable concepts.
-Whether this uses the existing table directly or a small catalog core linked
-to model-specific data remains open.
+API Core now uses `wrangles_catalog` as the central identity table and links
+saved rows through `models.catalog_id`. The current public snapshot contains 99
+wrangle rows: 98 map to callable Registry entries, while `map` remains a
+catalog-only row until it has an explicit executable or concept classification.
+Connectors, run capabilities, typed relationships and selected reusable
+concepts remain later additions to the same catalog design.
 
 - **Catalog identity:** centrally allocate immutable positive 64-bit integer
   `catalog_id` values. Backfill existing entries, never reuse IDs, allow gaps,
-  and preserve identities across imports and environments. The proposed wire
+  and preserve identities across imports and environments. The Registry wire
   format is a canonical decimal string so JavaScript cannot round a BIGINT.
   Other environments must use the central allocator rather than independent
   overlapping counters.
@@ -163,21 +166,17 @@ Adopt the redesign in focused stages:
    isolation, version changes, artifact completeness and rollback. Retain
    compatible readers/bundles during transition; allocated IDs remain stable.
 
-Raw Stock Extract, Recipe Wrangle and current DIY/AI mappings still require
-representative sanitized records. The supplied database sample established
-Bespoke/Classify with technical `v2` only. The training-finalization integration,
-entity taxonomy and physical catalog storage also need review before
-implementation. Temporary database transition scripts are not workflow or
-authoring authorities.
+Saved-model mapping semantics, training-finalization integration, connectors,
+entity taxonomy beyond wrangles, and authorized previews still need review.
+Temporary database transition scripts are not workflow or authoring authorities.
 
 ## Current repository and related work
 
-The existing Registry tooling remains pre-production. See
+The Registry 0.3 tooling remains pre-production. See
 [registry/README.md](registry/README.md) for current directories and commands,
-and [registry/CONTRACT.md](registry/CONTRACT.md) for the current 0.2 contract.
-Those documents retain earlier UUID and schema-ownership migration assumptions;
-they do not describe the revised ownership proposed above. Updating those
-contracts and generators belongs to the implementation stages.
+and [registry/CONTRACT.md](registry/CONTRACT.md) for the current 0.3 contract.
+The generated bundle now carries catalog identities; Agent and other consumer
+cutovers remain separate implementation stages.
 
 - [#32 - Registry redesign](https://github.com/wrangleworks/Wrangles-Docs/issues/32):
   design decisions, evidence gaps and review.

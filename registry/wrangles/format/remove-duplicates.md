@@ -62,10 +62,10 @@ sources:
     resource: >-
       https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/format.py
     title: WranglesPY format.remove_duplicates implementation
-  - id: quasi-registry
+  - id: legacy-docs-archive
     resource: >-
-      https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/format/_sources/remove-duplicates.md
-    title: Existing format.remove_duplicates Markdown
+      https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/format/_sources/remove-duplicates.md
+    title: Archived format.remove_duplicates Markdown
 ---
 
 # Remove Duplicates

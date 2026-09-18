@@ -145,7 +145,10 @@ _Logs a sample of rows or status information to the configured destination._
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `80` |
+| Catalog key | `log` |
 | Recipe key | `log` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | No |
 | Recipe Writer exclusion | Operational logging steps are not authored in the baseline. |
@@ -153,10 +156,11 @@ _Logs a sample of rows or status information to the configured destination._
 | Documentation group | `utility` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.log` |
+| Legacy UUID | `6177808e-aa2d-4d0b-8385-858b16948a5d` |
 
 **Sources**
 
 - [WranglesPY log implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/main.py)
-- [Existing log Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/utility/_sources/log.md)
+- [Archived log Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/utility/_sources/log.md)
 
 </details>

@@ -1,10 +1,13 @@
 {
   "$schema": "https://docs.wrangles.com/registry/schema/wrangle-contract.schema.json",
   "format": "wrangles-registry-entry",
-  "registry_version": "0.2.1",
-  "schema_version": "0.2",
+  "registry_version": "0.3.0",
+  "schema_version": "0.3",
   "type": "wrangle",
-  "id": "0a4909ca-6e14-4da7-8a70-a7fd106d6944",
+  "catalog_id": "17",
+  "catalog_key": "create.index",
+  "catalog_status": "active",
+  "legacy_id": "0a4909ca-6e14-4da7-8a70-a7fd106d6944",
   "wrangle_name": "index",
   "namespace": "create",
   "wrangle_key": "create.index",
@@ -124,9 +127,9 @@
       "title": "WranglesPY create.index implementation"
     },
     {
-      "id": "quasi-registry",
-      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/create/_sources/index.md",
-      "title": "Existing create.index Markdown"
+      "id": "legacy-docs-archive",
+      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/create/_sources/index.md",
+      "title": "Archived create.index Markdown"
     }
   ]
 }

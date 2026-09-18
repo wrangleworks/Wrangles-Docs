@@ -261,17 +261,21 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `50` |
+| Catalog key | `select.dictionary_element` |
 | Recipe key | `select.dictionary_element` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `select` |
 | Documentation group | `select` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.select.dictionary_element` |
+| Legacy UUID | `5adaeada-6da8-464f-84cb-9fb5ecc17e48` |
 
 **Sources**
 
 - [WranglesPY select.dictionary_element implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/select.py)
-- [Existing select.dictionary_element Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/select/_sources/dictionary-element.md)
+- [Archived select.dictionary_element Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/select/_sources/dictionary-element.md)
 
 </details>

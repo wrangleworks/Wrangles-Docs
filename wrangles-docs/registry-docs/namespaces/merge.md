@@ -90,18 +90,22 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `40` |
+| Catalog key | `merge.coalesce` |
 | Recipe key | `merge.coalesce` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `merge` |
 | Documentation group | `merge` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.merge.coalesce` |
+| Legacy UUID | `25c1a60d-fa48-4b9a-8c03-0921d5b31049` |
 
 **Sources**
 
 - [WranglesPY merge.coalesce implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/merge.py)
-- [Existing merge.coalesce Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/merge/_sources/coalesce.md)
+- [Archived merge.coalesce Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/merge/_sources/coalesce.md)
 
 </details>
 
@@ -220,18 +224,22 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `41` |
+| Catalog key | `merge.concatenate` |
 | Recipe key | `merge.concatenate` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `merge` |
 | Documentation group | `merge` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.merge.concatenate` |
+| Legacy UUID | `6ff76728-e1f6-4d3d-8946-6aa3b7524b3f` |
 
 **Sources**
 
 - [WranglesPY merge.concatenate implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/merge.py)
-- [Existing merge.concatenate Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/merge/_sources/concatenate.md)
+- [Archived merge.concatenate Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/merge/_sources/concatenate.md)
 
 </details>
 
@@ -386,18 +394,22 @@ Note the extra dash in front of `Dict 2` excludes that column from the wildcard 
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `42` |
+| Catalog key | `merge.dictionaries` |
 | Recipe key | `merge.dictionaries` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `merge` |
 | Documentation group | `merge` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.merge.dictionaries` |
+| Legacy UUID | `93e27737-e966-4ba9-8777-4e96724ebfc4` |
 
 **Sources**
 
 - [WranglesPY merge.dictionaries implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/merge.py)
-- [Existing merge.dictionaries Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/merge/_sources/dictionaries.md)
+- [Archived merge.dictionaries Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/merge/_sources/dictionaries.md)
 
 </details>
 
@@ -518,18 +530,22 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `43` |
+| Catalog key | `merge.key_value_pairs` |
 | Recipe key | `merge.key_value_pairs` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `merge` |
 | Documentation group | `merge` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.merge.key_value_pairs` |
+| Legacy UUID | `8a2cd37c-8ef7-4b05-8264-36512f5dd837` |
 
 **Sources**
 
 - [WranglesPY merge.key_value_pairs implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/merge.py)
-- [Existing merge.key_value_pairs Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/merge/_sources/key-value-pairs.md)
+- [Archived merge.key_value_pairs Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/merge/_sources/key-value-pairs.md)
 
 </details>
 
@@ -613,18 +629,22 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `44` |
+| Catalog key | `merge.lists` |
 | Recipe key | `merge.lists` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `merge` |
 | Documentation group | `merge` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.merge.lists` |
+| Legacy UUID | `d9978f00-b3d4-4583-884e-a53b98a43e9a` |
 
 **Sources**
 
 - [WranglesPY merge.lists implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/merge.py)
-- [Existing merge.lists Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/merge/_sources/lists.md)
+- [Archived merge.lists Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/merge/_sources/lists.md)
 
 </details>
 
@@ -705,18 +725,22 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `45` |
+| Catalog key | `merge.to_dict` |
 | Recipe key | `merge.to_dict` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `merge` |
 | Documentation group | `merge` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.merge.to_dict` |
+| Legacy UUID | `9b869210-0d89-403b-8409-7cecdb5f9c7c` |
 
 **Sources**
 
 - [WranglesPY merge.to_dict implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/merge.py)
-- [Existing merge.to_dict Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/merge/_sources/to-dict.md)
+- [Archived merge.to_dict Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/merge/_sources/to-dict.md)
 
 </details>
 
@@ -798,17 +822,21 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `46` |
+| Catalog key | `merge.to_list` |
 | Recipe key | `merge.to_list` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `merge` |
 | Documentation group | `merge` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.merge.to_list` |
+| Legacy UUID | `d5300fe7-c8a4-4a41-8f12-f2c1698678cc` |
 
 **Sources**
 
 - [WranglesPY merge.to_list implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/merge.py)
-- [Existing merge.to_list Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/merge/_sources/to-list.md)
+- [Archived merge.to_list Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/merge/_sources/to-list.md)
 
 </details>

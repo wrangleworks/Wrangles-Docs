@@ -82,17 +82,21 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `72` |
+| Catalog key | `clean_whitespaces` |
 | Recipe key | `clean_whitespaces` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | Root-level |
 | Documentation group | `format` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.clean_whitespaces` |
+| Legacy UUID | `e36e15c4-f0ad-43f8-8555-ef683a8ab892` |
 
 **Sources**
 
 - [WranglesPY clean_whitespaces implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/main.py)
-- [Existing clean_whitespaces Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/format/_sources/clean-whitespaces.md)
+- [Archived clean_whitespaces Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/format/_sources/clean-whitespaces.md)
 
 </details>

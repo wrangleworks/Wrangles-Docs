@@ -112,17 +112,21 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `64` |
+| Catalog key | `split.list` |
 | Recipe key | `split.list` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `split` |
 | Documentation group | `split` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.split.list` |
+| Legacy UUID | `3260b9f7-aae2-499f-8004-d211c2cf643e` |
 
 **Sources**
 
 - [WranglesPY split.list implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/split.py)
-- [Existing split.list Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/split/_sources/list.md)
+- [Archived split.list Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/split/_sources/list.md)
 
 </details>

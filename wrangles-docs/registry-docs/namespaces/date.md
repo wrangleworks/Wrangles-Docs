@@ -89,17 +89,21 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `75` |
+| Catalog key | `date_calculator` |
 | Recipe key | `date_calculator` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | Root-level |
 | Documentation group | `date` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.date_calculator` |
+| Legacy UUID | `19cfeb4f-02af-4ab2-895c-0ff2bb5cce19` |
 
 **Sources**
 
 - [WranglesPY date_calculator implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/main.py)
-- [Existing date_calculator Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/date/_sources/date-calculator.md)
+- [Archived date_calculator Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/date/_sources/date-calculator.md)
 
 </details>

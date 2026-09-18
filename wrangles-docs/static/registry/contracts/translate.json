@@ -1,10 +1,13 @@
 {
   "$schema": "https://docs.wrangles.com/registry/schema/wrangle-contract.schema.json",
   "format": "wrangles-registry-entry",
-  "registry_version": "0.2.1",
-  "schema_version": "0.2",
+  "registry_version": "0.3.0",
+  "schema_version": "0.3",
   "type": "wrangle",
-  "id": "73c3ceb6-ffd8-4d74-8389-c83b99d33bb0",
+  "catalog_id": "96",
+  "catalog_key": "translate",
+  "catalog_status": "active",
+  "legacy_id": "73c3ceb6-ffd8-4d74-8389-c83b99d33bb0",
   "wrangle_name": "translate",
   "namespace": null,
   "wrangle_key": "translate",
@@ -190,9 +193,9 @@
       "title": "WranglesPY translate implementation"
     },
     {
-      "id": "quasi-registry",
-      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/format/_sources/translate.md",
-      "title": "Existing translate Markdown"
+      "id": "legacy-docs-archive",
+      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/format/_sources/translate.md",
+      "title": "Archived translate Markdown"
     }
   ]
 }

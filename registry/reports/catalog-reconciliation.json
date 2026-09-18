@@ -1,0 +1,1905 @@
+{
+  "format": "wrangles-catalog-reconciliation",
+  "format_version": "0.1",
+  "registry_version": "0.3.0",
+  "catalog_source": {
+    "system": "API Core",
+    "repository": "https://github.com/wrangleworks/API-Core",
+    "table": "public.wrangles_catalog",
+    "data_updated_through": "2026-09-16T08:44:50.975472Z"
+  },
+  "summary": {
+    "catalog_entries": 99,
+    "registry_entries": 98,
+    "matched_entries": 98,
+    "conflicting_entries": 0,
+    "entries_with_status_differences": 2,
+    "entries_without_catalog_registry_path": 98,
+    "catalog_only_entries": 1
+  },
+  "matched_entries": [
+    {
+      "catalog_id": "69",
+      "catalog_key": "accordion",
+      "wrangle_key": "accordion",
+      "title": "Accordion",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/_root/accordion.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/_root/accordion.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "70",
+      "catalog_key": "batch",
+      "wrangle_key": "batch",
+      "title": "Batch",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/_root/batch.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/_root/batch.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "71",
+      "catalog_key": "classify",
+      "wrangle_key": "classify",
+      "title": "Classify",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/_root/classify.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/_root/classify.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "72",
+      "catalog_key": "clean_whitespaces",
+      "wrangle_key": "clean_whitespaces",
+      "title": "Clean Whitespaces",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/_root/clean-whitespaces.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/_root/clean-whitespaces.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "1",
+      "catalog_key": "compare.lists",
+      "wrangle_key": "compare.lists",
+      "title": "Lists",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/compare/lists.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/compare/lists.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "2",
+      "catalog_key": "compare.text",
+      "wrangle_key": "compare.text",
+      "title": "Text",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/compare/text.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/compare/text.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "3",
+      "catalog_key": "compute.case_when",
+      "wrangle_key": "compute.case_when",
+      "title": "Case When",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/compute/case-when.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/compute/case-when.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "4",
+      "catalog_key": "compute.score_search_results",
+      "wrangle_key": "compute.score_search_results",
+      "title": "Score Search Results",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/compute/score-search-results.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/compute/score-search-results.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "73",
+      "catalog_key": "concurrent",
+      "wrangle_key": "concurrent",
+      "title": "Concurrent",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/_root/concurrent.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/_root/concurrent.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "5",
+      "catalog_key": "convert.case",
+      "wrangle_key": "convert.case",
+      "title": "Convert Case",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/convert/case.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/convert/case.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "6",
+      "catalog_key": "convert.data_type",
+      "wrangle_key": "convert.data_type",
+      "title": "Convert Data Type",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/convert/data-type.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/convert/data-type.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "7",
+      "catalog_key": "convert.fraction_to_decimal",
+      "wrangle_key": "convert.fraction_to_decimal",
+      "title": "Fraction to Decimal",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/convert/fraction-to-decimal.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/convert/fraction-to-decimal.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "8",
+      "catalog_key": "convert.from_json",
+      "wrangle_key": "convert.from_json",
+      "title": "Convert From JSON",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/convert/from-json.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/convert/from-json.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "9",
+      "catalog_key": "convert.from_yaml",
+      "wrangle_key": "convert.from_yaml",
+      "title": "From YAML",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/convert/from-yaml.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/convert/from-yaml.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "10",
+      "catalog_key": "convert.to_json",
+      "wrangle_key": "convert.to_json",
+      "title": "To JSON",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/convert/to-json.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/convert/to-json.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "11",
+      "catalog_key": "convert.to_yaml",
+      "wrangle_key": "convert.to_yaml",
+      "title": "To YAML",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/convert/to-yaml.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/convert/to-yaml.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "74",
+      "catalog_key": "copy",
+      "wrangle_key": "copy",
+      "title": "Copy",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/_root/copy.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/_root/copy.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "12",
+      "catalog_key": "create.bins",
+      "wrangle_key": "create.bins",
+      "title": "Bins",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/create/bins.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/create/bins.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "13",
+      "catalog_key": "create.column",
+      "wrangle_key": "create.column",
+      "title": "Column",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/create/column.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/create/column.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "14",
+      "catalog_key": "create.embeddings",
+      "wrangle_key": "create.embeddings",
+      "title": "Embeddings",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/create/embeddings.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/create/embeddings.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "15",
+      "catalog_key": "create.guid",
+      "wrangle_key": "create.guid",
+      "title": "GUID",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/create/guid.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/create/guid.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "16",
+      "catalog_key": "create.hash",
+      "wrangle_key": "create.hash",
+      "title": "Hash",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/create/hash.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/create/hash.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "17",
+      "catalog_key": "create.index",
+      "wrangle_key": "create.index",
+      "title": "Index",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/create/index.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/create/index.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "18",
+      "catalog_key": "create.jinja",
+      "wrangle_key": "create.jinja",
+      "title": "Jinja",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/create/jinja.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/create/jinja.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "19",
+      "catalog_key": "create.uuid",
+      "wrangle_key": "create.uuid",
+      "title": "UUID",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/create/uuid.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/create/uuid.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "75",
+      "catalog_key": "date_calculator",
+      "wrangle_key": "date_calculator",
+      "title": "Date Calculator",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/_root/date-calculator.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/_root/date-calculator.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "76",
+      "catalog_key": "drop",
+      "wrangle_key": "drop",
+      "title": "Drop",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/_root/drop.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/_root/drop.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "77",
+      "catalog_key": "explode",
+      "wrangle_key": "explode",
+      "title": "Explode",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/_root/explode.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/_root/explode.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "20",
+      "catalog_key": "extract.address",
+      "wrangle_key": "extract.address",
+      "title": "Address",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/extract/address.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/extract/address.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "21",
+      "catalog_key": "extract.ai",
+      "wrangle_key": "extract.ai",
+      "title": "AI",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/extract/ai.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/extract/ai.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "22",
+      "catalog_key": "extract.attributes",
+      "wrangle_key": "extract.attributes",
+      "title": "Attributes",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/extract/attributes.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/extract/attributes.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "23",
+      "catalog_key": "extract.brackets",
+      "wrangle_key": "extract.brackets",
+      "title": "Brackets",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/extract/brackets.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/extract/brackets.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "24",
+      "catalog_key": "extract.codes",
+      "wrangle_key": "extract.codes",
+      "title": "Codes",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/extract/codes.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/extract/codes.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "25",
+      "catalog_key": "extract.custom",
+      "wrangle_key": "extract.custom",
+      "title": "Custom",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/extract/custom.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/extract/custom.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "26",
+      "catalog_key": "extract.date_properties",
+      "wrangle_key": "extract.date_properties",
+      "title": "Date Properties",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/extract/date-properties.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/extract/date-properties.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "27",
+      "catalog_key": "extract.date_range",
+      "wrangle_key": "extract.date_range",
+      "title": "Date Range",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/extract/date-range.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/extract/date-range.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "28",
+      "catalog_key": "extract.html",
+      "wrangle_key": "extract.html",
+      "title": "HTML",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/extract/html.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/extract/html.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "29",
+      "catalog_key": "extract.properties",
+      "wrangle_key": "extract.properties",
+      "title": "Properties",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/extract/properties.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/extract/properties.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "30",
+      "catalog_key": "extract.regex",
+      "wrangle_key": "extract.regex",
+      "title": "Regex",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/extract/regex.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/extract/regex.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "78",
+      "catalog_key": "filter",
+      "wrangle_key": "filter",
+      "title": "Filter",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/_root/filter.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/_root/filter.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "31",
+      "catalog_key": "format.dates",
+      "wrangle_key": "format.dates",
+      "title": "Dates",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/format/dates.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/format/dates.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "32",
+      "catalog_key": "format.pad",
+      "wrangle_key": "format.pad",
+      "title": "Pad",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/format/pad.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/format/pad.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "33",
+      "catalog_key": "format.prefix",
+      "wrangle_key": "format.prefix",
+      "title": "Prefix",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/format/prefix.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/format/prefix.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "34",
+      "catalog_key": "format.price_breaks",
+      "wrangle_key": "format.price_breaks",
+      "title": "Format Price Breaks",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/format/price-breaks.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/format/price-breaks.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "35",
+      "catalog_key": "format.remove_duplicates",
+      "wrangle_key": "format.remove_duplicates",
+      "title": "Remove Duplicates",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/format/remove-duplicates.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/format/remove-duplicates.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "36",
+      "catalog_key": "format.significant_figures",
+      "wrangle_key": "format.significant_figures",
+      "title": "Significant Figures",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/format/significant-figures.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/format/significant-figures.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "37",
+      "catalog_key": "format.suffix",
+      "wrangle_key": "format.suffix",
+      "title": "Suffix",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/format/suffix.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/format/suffix.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "38",
+      "catalog_key": "format.trim",
+      "wrangle_key": "format.trim",
+      "title": "Trim",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/format/trim.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/format/trim.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "39",
+      "catalog_key": "generate.ai",
+      "wrangle_key": "generate.ai",
+      "title": "Ai",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/generate/ai.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/generate/ai.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "79",
+      "catalog_key": "huggingface",
+      "wrangle_key": "huggingface",
+      "title": "Huggingface",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/_root/huggingface.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/_root/huggingface.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "80",
+      "catalog_key": "log",
+      "wrangle_key": "log",
+      "title": "Log",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/_root/log.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/_root/log.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "81",
+      "catalog_key": "lookup",
+      "wrangle_key": "lookup",
+      "title": "Lookup",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/_root/lookup.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/_root/lookup.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "82",
+      "catalog_key": "math",
+      "wrangle_key": "math",
+      "title": "Math",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/_root/math.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/_root/math.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "83",
+      "catalog_key": "maths",
+      "wrangle_key": "maths",
+      "title": "Maths",
+      "catalog_status": "active",
+      "registry_status": "deprecated",
+      "expected_registry_path": "registry/wrangles/_root/maths.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "status_difference",
+          "registry": "deprecated",
+          "catalog": "active"
+        },
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/_root/maths.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "84",
+      "catalog_key": "matrix",
+      "wrangle_key": "matrix",
+      "title": "Matrix",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/_root/matrix.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/_root/matrix.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "40",
+      "catalog_key": "merge.coalesce",
+      "wrangle_key": "merge.coalesce",
+      "title": "Coalesce",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/merge/coalesce.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/merge/coalesce.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "41",
+      "catalog_key": "merge.concatenate",
+      "wrangle_key": "merge.concatenate",
+      "title": "Concatenate",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/merge/concatenate.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/merge/concatenate.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "42",
+      "catalog_key": "merge.dictionaries",
+      "wrangle_key": "merge.dictionaries",
+      "title": "Dictionaries",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/merge/dictionaries.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/merge/dictionaries.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "43",
+      "catalog_key": "merge.key_value_pairs",
+      "wrangle_key": "merge.key_value_pairs",
+      "title": "Key Value Pairs",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/merge/key-value-pairs.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/merge/key-value-pairs.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "44",
+      "catalog_key": "merge.lists",
+      "wrangle_key": "merge.lists",
+      "title": "Lists",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/merge/lists.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/merge/lists.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "45",
+      "catalog_key": "merge.to_dict",
+      "wrangle_key": "merge.to_dict",
+      "title": "To Dict",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/merge/to-dict.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/merge/to-dict.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "46",
+      "catalog_key": "merge.to_list",
+      "wrangle_key": "merge.to_list",
+      "title": "To List",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/merge/to-list.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/merge/to-list.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "85",
+      "catalog_key": "python",
+      "wrangle_key": "python",
+      "title": "Python",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/_root/python.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/_root/python.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "86",
+      "catalog_key": "recipe",
+      "wrangle_key": "recipe",
+      "title": "Recipe",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/_root/recipe.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/_root/recipe.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "87",
+      "catalog_key": "reindex",
+      "wrangle_key": "reindex",
+      "title": "Reindex",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/_root/reindex.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/_root/reindex.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "88",
+      "catalog_key": "remove_words",
+      "wrangle_key": "remove_words",
+      "title": "Remove Words",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/_root/remove-words.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/_root/remove-words.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "89",
+      "catalog_key": "rename",
+      "wrangle_key": "rename",
+      "title": "Rename",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/_root/rename.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/_root/rename.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "90",
+      "catalog_key": "replace",
+      "wrangle_key": "replace",
+      "title": "Replace",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/_root/replace.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/_root/replace.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "91",
+      "catalog_key": "round",
+      "wrangle_key": "round",
+      "title": "Round",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/_root/round.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/_root/round.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "47",
+      "catalog_key": "search.find_links",
+      "wrangle_key": "search.find_links",
+      "title": "Find Links",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/search/find-links.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/search/find-links.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "48",
+      "catalog_key": "search.retrieve_link_content",
+      "wrangle_key": "search.retrieve_link_content",
+      "title": "Retrieve Link Content",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/search/retrieve-link-content.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/search/retrieve-link-content.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "49",
+      "catalog_key": "select.columns",
+      "wrangle_key": "select.columns",
+      "title": "Columns",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/select/columns.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/select/columns.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "50",
+      "catalog_key": "select.dictionary_element",
+      "wrangle_key": "select.dictionary_element",
+      "title": "Dictionary Element",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/select/dictionary-element.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/select/dictionary-element.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "51",
+      "catalog_key": "select.element",
+      "wrangle_key": "select.element",
+      "title": "Element",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/select/element.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/select/element.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "52",
+      "catalog_key": "select.group_by",
+      "wrangle_key": "select.group_by",
+      "title": "Group By",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/select/group-by.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/select/group-by.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "53",
+      "catalog_key": "select.head",
+      "wrangle_key": "select.head",
+      "title": "Head",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/select/head.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/select/head.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "54",
+      "catalog_key": "select.highest_confidence",
+      "wrangle_key": "select.highest_confidence",
+      "title": "Highest Confidence",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/select/highest-confidence.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/select/highest-confidence.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "55",
+      "catalog_key": "select.left",
+      "wrangle_key": "select.left",
+      "title": "Left",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/select/left.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/select/left.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "56",
+      "catalog_key": "select.length",
+      "wrangle_key": "select.length",
+      "title": "Length",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/select/length.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/select/length.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "57",
+      "catalog_key": "select.list_element",
+      "wrangle_key": "select.list_element",
+      "title": "List Element",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/select/list-element.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/select/list-element.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "58",
+      "catalog_key": "select.right",
+      "wrangle_key": "select.right",
+      "title": "Right",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/select/right.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/select/right.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "59",
+      "catalog_key": "select.sample",
+      "wrangle_key": "select.sample",
+      "title": "Sample",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/select/sample.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/select/sample.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "60",
+      "catalog_key": "select.substring",
+      "wrangle_key": "select.substring",
+      "title": "Substring",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/select/substring.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/select/substring.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "61",
+      "catalog_key": "select.tail",
+      "wrangle_key": "select.tail",
+      "title": "Tail",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/select/tail.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/select/tail.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "62",
+      "catalog_key": "select.threshold",
+      "wrangle_key": "select.threshold",
+      "title": "Threshold",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/select/threshold.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/select/threshold.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "92",
+      "catalog_key": "similarity",
+      "wrangle_key": "similarity",
+      "title": "Similarity",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/_root/similarity.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/_root/similarity.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "93",
+      "catalog_key": "sort",
+      "wrangle_key": "sort",
+      "title": "Sort",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/_root/sort.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/_root/sort.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "63",
+      "catalog_key": "split.dictionary",
+      "wrangle_key": "split.dictionary",
+      "title": "Dictionary",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/split/dictionary.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/split/dictionary.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "64",
+      "catalog_key": "split.list",
+      "wrangle_key": "split.list",
+      "title": "List",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/split/list.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/split/list.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "65",
+      "catalog_key": "split.text",
+      "wrangle_key": "split.text",
+      "title": "Text",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/split/text.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/split/text.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "66",
+      "catalog_key": "split.tokenize",
+      "wrangle_key": "split.tokenize",
+      "title": "Tokenize",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/split/tokenize.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/split/tokenize.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "94",
+      "catalog_key": "sql",
+      "wrangle_key": "sql",
+      "title": "SQL",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/_root/sql.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/_root/sql.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "95",
+      "catalog_key": "standardize",
+      "wrangle_key": "standardize",
+      "title": "Standardize",
+      "catalog_status": "active",
+      "registry_status": "deprecated",
+      "expected_registry_path": "registry/wrangles/_root/standardize.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "status_difference",
+          "registry": "deprecated",
+          "catalog": "active"
+        },
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/_root/standardize.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "67",
+      "catalog_key": "standardize.clean",
+      "wrangle_key": "standardize.clean",
+      "title": "Standardize Clean",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/standardize/clean.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/standardize/clean.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "68",
+      "catalog_key": "standardize.custom",
+      "wrangle_key": "standardize.custom",
+      "title": "Standardize Custom",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/standardize/custom.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/standardize/custom.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "96",
+      "catalog_key": "translate",
+      "wrangle_key": "translate",
+      "title": "Translate",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/_root/translate.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/_root/translate.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "97",
+      "catalog_key": "transpose",
+      "wrangle_key": "transpose",
+      "title": "Transpose",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/_root/transpose.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/_root/transpose.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "98",
+      "catalog_key": "try",
+      "wrangle_key": "try",
+      "title": "Try",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/_root/try.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/_root/try.md",
+          "catalog": null
+        }
+      ]
+    }
+  ],
+  "catalog_only_entries": [
+    {
+      "catalog_id": "99",
+      "catalog_key": "map",
+      "kind": "wrangle",
+      "wrangle_key": "map",
+      "title": "Map",
+      "status": "active",
+      "reason": "No callable entry exists in the pinned WranglesPY runtime and Docs Registry."
+    }
+  ]
+}

@@ -1,10 +1,13 @@
 {
   "$schema": "https://docs.wrangles.com/registry/schema/wrangle-contract.schema.json",
   "format": "wrangles-registry-entry",
-  "registry_version": "0.2.1",
-  "schema_version": "0.2",
+  "registry_version": "0.3.0",
+  "schema_version": "0.3",
   "type": "wrangle",
-  "id": "7c55752e-70ab-4809-8298-c59436127457",
+  "catalog_id": "7",
+  "catalog_key": "convert.fraction_to_decimal",
+  "catalog_status": "active",
+  "legacy_id": "7c55752e-70ab-4809-8298-c59436127457",
   "wrangle_name": "fraction_to_decimal",
   "namespace": "convert",
   "wrangle_key": "convert.fraction_to_decimal",
@@ -115,9 +118,9 @@
       "title": "WranglesPY convert.fraction_to_decimal implementation"
     },
     {
-      "id": "quasi-registry",
-      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/convert/_sources/fraction-to-decimal.md",
-      "title": "Existing convert.fraction_to_decimal Markdown"
+      "id": "legacy-docs-archive",
+      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/convert/_sources/fraction-to-decimal.md",
+      "title": "Archived convert.fraction_to_decimal Markdown"
     }
   ]
 }

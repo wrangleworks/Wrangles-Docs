@@ -89,7 +89,10 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `95` |
+| Catalog key | `standardize` |
 | Recipe key | `standardize` |
+| Catalog status | active |
 | Lifecycle status | deprecated |
 | Recipe Writer eligible | No |
 | Recipe Writer exclusion | Deprecated compatibility key; use standardize.custom. |
@@ -98,10 +101,11 @@ wrangles:
 | Documentation group | `format` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.standardize` |
+| Legacy UUID | `53cd3fdd-24e2-4411-8655-6014b92a3f3a` |
 
 **Sources**
 
 - [WranglesPY standardize implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/main.py)
-- [Existing standardize Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/format/_sources/standardize.md)
+- [Archived standardize Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/format/_sources/standardize.md)
 
 </details>

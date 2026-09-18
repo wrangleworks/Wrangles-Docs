@@ -116,18 +116,22 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `74` |
+| Catalog key | `copy` |
 | Recipe key | `copy` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | Root-level |
 | Documentation group | `transform` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.pandas.copy` |
+| Legacy UUID | `b002fbdc-92c0-4347-889d-0f4bfeec99fa` |
 
 **Sources**
 
 - [WranglesPY copy implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/pandas.py)
-- [Existing copy Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/transform/_sources/copy.md)
+- [Archived copy Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/transform/_sources/copy.md)
 
 </details>
 
@@ -225,18 +229,22 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `87` |
+| Catalog key | `reindex` |
 | Recipe key | `reindex` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | Root-level |
 | Documentation group | `transform` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.pandas.reindex` |
+| Legacy UUID | `def87df8-72da-4e34-83c1-1fde25126257` |
 
 **Sources**
 
 - [WranglesPY reindex implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/pandas.py)
-- [Existing reindex Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/transform/_sources/reindex.md)
+- [Archived reindex Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/transform/_sources/reindex.md)
 
 </details>
 
@@ -395,7 +403,10 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `89` |
+| Catalog key | `rename` |
 | Recipe key | `rename` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | No |
 | Recipe Writer exclusion | Structural rename steps are not supported in the baseline. |
@@ -403,11 +414,12 @@ wrangles:
 | Documentation group | `transform` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.rename` |
+| Legacy UUID | `ab06898f-faf7-42e7-8275-5e3034a4d727` |
 
 **Sources**
 
 - [WranglesPY rename implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/main.py)
-- [Existing rename Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/transform/_sources/rename.md)
+- [Archived rename Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/transform/_sources/rename.md)
 
 </details>
 
@@ -491,17 +503,21 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `97` |
+| Catalog key | `transpose` |
 | Recipe key | `transpose` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | Root-level |
 | Documentation group | `transform` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.pandas.transpose` |
+| Legacy UUID | `8716347f-f286-49b2-8a0b-cb73292e7475` |
 
 **Sources**
 
 - [WranglesPY transpose implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/pandas.py)
-- [Existing transpose Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/transform/_sources/transpose.md)
+- [Archived transpose Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/transform/_sources/transpose.md)
 
 </details>

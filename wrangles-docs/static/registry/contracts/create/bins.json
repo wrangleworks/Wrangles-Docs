@@ -1,10 +1,13 @@
 {
   "$schema": "https://docs.wrangles.com/registry/schema/wrangle-contract.schema.json",
   "format": "wrangles-registry-entry",
-  "registry_version": "0.2.1",
-  "schema_version": "0.2",
+  "registry_version": "0.3.0",
+  "schema_version": "0.3",
   "type": "wrangle",
-  "id": "232e3ba0-4735-4934-88aa-0163181abb3f",
+  "catalog_id": "12",
+  "catalog_key": "create.bins",
+  "catalog_status": "active",
+  "legacy_id": "232e3ba0-4735-4934-88aa-0163181abb3f",
   "wrangle_name": "bins",
   "namespace": "create",
   "wrangle_key": "create.bins",
@@ -129,9 +132,9 @@
       "title": "WranglesPY create.bins implementation"
     },
     {
-      "id": "quasi-registry",
-      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/create/_sources/bins.md",
-      "title": "Existing create.bins Markdown"
+      "id": "legacy-docs-archive",
+      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/create/_sources/bins.md",
+      "title": "Archived create.bins Markdown"
     }
   ]
 }

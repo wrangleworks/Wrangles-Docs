@@ -1,10 +1,13 @@
 {
   "$schema": "https://docs.wrangles.com/registry/schema/wrangle-contract.schema.json",
   "format": "wrangles-registry-entry",
-  "registry_version": "0.2.1",
-  "schema_version": "0.2",
+  "registry_version": "0.3.0",
+  "schema_version": "0.3",
   "type": "wrangle",
-  "id": "1dcf06ad-898a-4d83-862c-4774be37a687",
+  "catalog_id": "93",
+  "catalog_key": "sort",
+  "catalog_status": "active",
+  "legacy_id": "1dcf06ad-898a-4d83-862c-4774be37a687",
   "wrangle_name": "sort",
   "namespace": null,
   "wrangle_key": "sort",
@@ -115,9 +118,9 @@
       "title": "WranglesPY sort implementation"
     },
     {
-      "id": "quasi-registry",
-      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/select/_sources/sort.md",
-      "title": "Existing sort Markdown"
+      "id": "legacy-docs-archive",
+      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/select/_sources/sort.md",
+      "title": "Archived sort Markdown"
     }
   ]
 }

@@ -85,17 +85,21 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `44` |
+| Catalog key | `merge.lists` |
 | Recipe key | `merge.lists` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `merge` |
 | Documentation group | `merge` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.merge.lists` |
+| Legacy UUID | `d9978f00-b3d4-4583-884e-a53b98a43e9a` |
 
 **Sources**
 
 - [WranglesPY merge.lists implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/merge.py)
-- [Existing merge.lists Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/merge/_sources/lists.md)
+- [Archived merge.lists Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/merge/_sources/lists.md)
 
 </details>

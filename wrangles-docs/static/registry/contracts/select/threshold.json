@@ -1,10 +1,13 @@
 {
   "$schema": "https://docs.wrangles.com/registry/schema/wrangle-contract.schema.json",
   "format": "wrangles-registry-entry",
-  "registry_version": "0.2.1",
-  "schema_version": "0.2",
+  "registry_version": "0.3.0",
+  "schema_version": "0.3",
   "type": "wrangle",
-  "id": "af2a5dcc-0ec0-48d7-8fb4-f58d9c5391d2",
+  "catalog_id": "62",
+  "catalog_key": "select.threshold",
+  "catalog_status": "active",
+  "legacy_id": "af2a5dcc-0ec0-48d7-8fb4-f58d9c5391d2",
   "wrangle_name": "threshold",
   "namespace": "select",
   "wrangle_key": "select.threshold",
@@ -107,9 +110,9 @@
       "title": "WranglesPY select.threshold implementation"
     },
     {
-      "id": "quasi-registry",
-      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/select/_sources/threshold.md",
-      "title": "Existing select.threshold Markdown"
+      "id": "legacy-docs-archive",
+      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/select/_sources/threshold.md",
+      "title": "Archived select.threshold Markdown"
     }
   ]
 }

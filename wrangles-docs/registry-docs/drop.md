@@ -77,17 +77,21 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `76` |
+| Catalog key | `drop` |
 | Recipe key | `drop` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | Root-level |
 | Documentation group | `select` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.pandas.drop` |
+| Legacy UUID | `363bffbf-397e-4975-8382-e9efa5e9eed6` |
 
 **Sources**
 
 - [WranglesPY drop implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/pandas.py)
-- [Existing drop Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/select/_sources/drop.md)
+- [Archived drop Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/select/_sources/drop.md)
 
 </details>

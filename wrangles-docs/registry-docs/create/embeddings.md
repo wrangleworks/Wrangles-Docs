@@ -96,17 +96,21 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `14` |
+| Catalog key | `create.embeddings` |
 | Recipe key | `create.embeddings` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `create` |
 | Documentation group | `create` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.create.embeddings` |
+| Legacy UUID | `e3518afd-a819-40ec-8b49-eb25690220c1` |
 
 **Sources**
 
 - [WranglesPY create.embeddings implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/create.py)
-- [Existing create.embeddings Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/create/_sources/embeddings.md)
+- [Archived create.embeddings Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/create/_sources/embeddings.md)
 
 </details>

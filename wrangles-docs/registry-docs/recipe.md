@@ -59,7 +59,10 @@ This guidance was derived from the callable signature and its embedded Python sc
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `86` |
+| Catalog key | `recipe` |
 | Recipe key | `recipe` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | No |
 | Recipe Writer exclusion | Nested recipe composition is outside the baseline. |
@@ -67,6 +70,7 @@ This guidance was derived from the callable signature and its embedded Python sc
 | Documentation group | `utility` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.recipe` |
+| Legacy UUID | None |
 
 **Sources**
 

@@ -1,10 +1,13 @@
 {
   "$schema": "https://docs.wrangles.com/registry/schema/wrangle-contract.schema.json",
   "format": "wrangles-registry-entry",
-  "registry_version": "0.2.1",
-  "schema_version": "0.2",
+  "registry_version": "0.3.0",
+  "schema_version": "0.3",
   "type": "wrangle",
-  "id": "728fc87a-a20d-4efa-833a-612e0b5eadc3",
+  "catalog_id": "28",
+  "catalog_key": "extract.html",
+  "catalog_status": "active",
+  "legacy_id": "728fc87a-a20d-4efa-833a-612e0b5eadc3",
   "wrangle_name": "html",
   "namespace": "extract",
   "wrangle_key": "extract.html",
@@ -146,9 +149,9 @@
       "title": "WranglesPY extract.html implementation"
     },
     {
-      "id": "quasi-registry",
-      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/extract/_sources/html.md",
-      "title": "Existing extract.html Markdown"
+      "id": "legacy-docs-archive",
+      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/extract/_sources/html.md",
+      "title": "Archived extract.html Markdown"
     }
   ]
 }

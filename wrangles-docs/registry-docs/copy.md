@@ -112,17 +112,21 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `74` |
+| Catalog key | `copy` |
 | Recipe key | `copy` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | Root-level |
 | Documentation group | `transform` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.pandas.copy` |
+| Legacy UUID | `b002fbdc-92c0-4347-889d-0f4bfeec99fa` |
 
 **Sources**
 
 - [WranglesPY copy implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/pandas.py)
-- [Existing copy Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/transform/_sources/copy.md)
+- [Archived copy Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/transform/_sources/copy.md)
 
 </details>

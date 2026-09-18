@@ -156,17 +156,21 @@ Note the extra dash in front of `Dict 2` excludes that column from the wildcard 
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `42` |
+| Catalog key | `merge.dictionaries` |
 | Recipe key | `merge.dictionaries` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `merge` |
 | Documentation group | `merge` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.merge.dictionaries` |
+| Legacy UUID | `93e27737-e966-4ba9-8777-4e96724ebfc4` |
 
 **Sources**
 
 - [WranglesPY merge.dictionaries implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/merge.py)
-- [Existing merge.dictionaries Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/merge/_sources/dictionaries.md)
+- [Archived merge.dictionaries Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/merge/_sources/dictionaries.md)
 
 </details>

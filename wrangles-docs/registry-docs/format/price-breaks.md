@@ -57,7 +57,10 @@ This guidance was derived from the callable signature.
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `34` |
+| Catalog key | `format.price_breaks` |
 | Recipe key | `format.price_breaks` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | No |
 | Recipe Writer exclusion | This newer wrangle is outside the pinned baseline. |
@@ -65,6 +68,7 @@ This guidance was derived from the callable signature.
 | Documentation group | `format` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.format.price_breaks` |
+| Legacy UUID | None |
 
 **Sources**
 

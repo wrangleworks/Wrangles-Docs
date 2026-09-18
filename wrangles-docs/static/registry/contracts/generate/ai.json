@@ -1,10 +1,13 @@
 {
   "$schema": "https://docs.wrangles.com/registry/schema/wrangle-contract.schema.json",
   "format": "wrangles-registry-entry",
-  "registry_version": "0.2.1",
-  "schema_version": "0.2",
+  "registry_version": "0.3.0",
+  "schema_version": "0.3",
   "type": "wrangle",
-  "id": "12c31c6c-cade-484d-84ba-7f302bf6af52",
+  "catalog_id": "39",
+  "catalog_key": "generate.ai",
+  "catalog_status": "active",
+  "legacy_id": "12c31c6c-cade-484d-84ba-7f302bf6af52",
   "wrangle_name": "ai",
   "namespace": "generate",
   "wrangle_key": "generate.ai",
@@ -233,9 +236,9 @@
       "title": "WranglesPY generate.ai implementation"
     },
     {
-      "id": "quasi-registry",
-      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/ai/_sources/ai.md",
-      "title": "Existing generate.ai Markdown"
+      "id": "legacy-docs-archive",
+      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/ai/_sources/ai.md",
+      "title": "Archived generate.ai Markdown"
     }
   ]
 }

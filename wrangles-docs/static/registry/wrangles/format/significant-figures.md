@@ -62,10 +62,10 @@ sources:
     resource: >-
       https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/format.py
     title: WranglesPY format.significant_figures implementation
-  - id: quasi-registry
+  - id: legacy-docs-archive
     resource: >-
-      https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/format/_sources/significant-figures.md
-    title: Existing format.significant_figures Markdown
+      https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/format/_sources/significant-figures.md
+    title: Archived format.significant_figures Markdown
 ---
 
 # Significant Figures

@@ -6,8 +6,6 @@ export default function Root({children}) {
 
   useEffect(() => {
     const isWrangleMode =
-      location.pathname === '/wrangle' ||
-      location.pathname.startsWith('/wrangle/') ||
       location.pathname === '/wrangles' ||
       location.pathname.startsWith('/wrangles/');
     document.body.classList.toggle('ww-wranglespy-mode', isWrangleMode);

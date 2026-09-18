@@ -352,6 +352,60 @@ body {
   margin-top: 2.4rem;
 }
 
+/* Connectors use the WranglesPy document hierarchy before Registry ingestion. */
+.ww-connector-doc-scope .theme-doc-markdown > h2#available-connectors {
+  background: transparent;
+  border: 0;
+  border-bottom: 2px solid #87bfff;
+  border-radius: 0;
+  color: #175f9c;
+  margin-top: 2.25rem;
+  padding: 0 0 0.25rem;
+}
+
+.ww-connector-index > ul {
+  display: grid;
+  gap: 0;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  list-style: none;
+  margin: 1rem 0 2rem;
+  padding: 0;
+}
+
+.ww-connector-index li {
+  border-bottom: 1px solid #d5dde5;
+  margin: 0;
+  min-width: 0;
+}
+
+.ww-connector-index li:nth-child(odd) {
+  border-right: 1px solid #d5dde5;
+}
+
+.ww-connector-index a {
+  display: block;
+  font-size: 0.93rem;
+  font-weight: 700;
+  height: 100%;
+  padding: 0.7rem 0.85rem;
+  text-decoration: none;
+}
+
+.ww-connector-index a:hover {
+  background: #eaf3fb;
+  text-decoration: underline;
+}
+
+@media (max-width: 760px) {
+  .ww-connector-index > ul {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .ww-connector-index li:nth-child(odd) {
+    border-right: 0;
+  }
+}
+
 .ww-wrangle-doc-scope .ww-sample-grid {
   align-items: stretch;
   background: #ffffff;

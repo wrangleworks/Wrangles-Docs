@@ -112,17 +112,21 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `66` |
+| Catalog key | `split.tokenize` |
 | Recipe key | `split.tokenize` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `split` |
 | Documentation group | `split` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.split.tokenize` |
+| Legacy UUID | `6cc88418-ae0c-43f6-84ee-31e0d5f838c3` |
 
 **Sources**
 
 - [WranglesPY split.tokenize implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/split.py)
-- [Existing split.tokenize Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/split/_sources/tokenize.md)
+- [Archived split.tokenize Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/split/_sources/tokenize.md)
 
 </details>

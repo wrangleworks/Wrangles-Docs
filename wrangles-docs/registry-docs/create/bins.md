@@ -146,17 +146,21 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `12` |
+| Catalog key | `create.bins` |
 | Recipe key | `create.bins` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `create` |
 | Documentation group | `create` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.create.bins` |
+| Legacy UUID | `232e3ba0-4735-4934-88aa-0163181abb3f` |
 
 **Sources**
 
 - [WranglesPY create.bins implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/create.py)
-- [Existing create.bins Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/create/_sources/bins.md)
+- [Archived create.bins Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/create/_sources/bins.md)
 
 </details>

@@ -1,10 +1,13 @@
 {
   "$schema": "https://docs.wrangles.com/registry/schema/wrangle-contract.schema.json",
   "format": "wrangles-registry-entry",
-  "registry_version": "0.2.1",
-  "schema_version": "0.2",
+  "registry_version": "0.3.0",
+  "schema_version": "0.3",
   "type": "wrangle",
-  "id": "5cdd9857-0c77-43bf-80d7-d0a8cb6f980b",
+  "catalog_id": "55",
+  "catalog_key": "select.left",
+  "catalog_status": "active",
+  "legacy_id": "5cdd9857-0c77-43bf-80d7-d0a8cb6f980b",
   "wrangle_name": "left",
   "namespace": "select",
   "wrangle_key": "select.left",
@@ -114,9 +117,9 @@
       "title": "WranglesPY select.left implementation"
     },
     {
-      "id": "quasi-registry",
-      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/select/_sources/left.md",
-      "title": "Existing select.left Markdown"
+      "id": "legacy-docs-archive",
+      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/select/_sources/left.md",
+      "title": "Archived select.left Markdown"
     }
   ]
 }

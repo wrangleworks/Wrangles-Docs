@@ -61,7 +61,7 @@ This is just a small example that uses 2 attributes that have 2 values each, but
 
 **So what good does it do us to have the output as an object?** 
 
-This is where we implement a second wrangle that will really show the advantage of using the use_labels parameter. In Excel, this Wrangle is the [Format Expand JSON Wrangle](https://wrangles.io/excel/format#expand-json), but in a recipe it is [split.dictionary](/wrangle/split#dictionary). Although they have different names, the outcome is still the same.
+This is where we implement a second wrangle that will really show the advantage of using the use_labels parameter. In Excel, this Wrangle is the [Format Expand JSON Wrangle](https://wrangles.io/excel/format#expand-json), but in a recipe it is [split.dictionary](/wrangles/namespaces/split#dictionary). Although they have different names, the outcome is still the same.
 
 After running the previously mentioned Wrangle, our data now looks as follows:
 

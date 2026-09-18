@@ -83,17 +83,21 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `7` |
+| Catalog key | `convert.fraction_to_decimal` |
 | Recipe key | `convert.fraction_to_decimal` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `convert` |
 | Documentation group | `convert` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.convert.fraction_to_decimal` |
+| Legacy UUID | `7c55752e-70ab-4809-8298-c59436127457` |
 
 **Sources**
 
 - [WranglesPY convert.fraction_to_decimal implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/convert.py)
-- [Existing convert.fraction_to_decimal Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/convert/_sources/fraction-to-decimal.md)
+- [Archived convert.fraction_to_decimal Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/convert/_sources/fraction-to-decimal.md)
 
 </details>

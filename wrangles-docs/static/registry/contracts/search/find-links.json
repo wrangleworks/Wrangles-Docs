@@ -1,10 +1,13 @@
 {
   "$schema": "https://docs.wrangles.com/registry/schema/wrangle-contract.schema.json",
   "format": "wrangles-registry-entry",
-  "registry_version": "0.2.1",
-  "schema_version": "0.2",
+  "registry_version": "0.3.0",
+  "schema_version": "0.3",
   "type": "wrangle",
-  "id": "ec1f661b-2cbc-4a47-88e3-646179104376",
+  "catalog_id": "47",
+  "catalog_key": "search.find_links",
+  "catalog_status": "active",
+  "legacy_id": "ec1f661b-2cbc-4a47-88e3-646179104376",
   "wrangle_name": "find_links",
   "namespace": "search",
   "wrangle_key": "search.find_links",
@@ -200,9 +203,9 @@
       "title": "WranglesPY search.find_links implementation"
     },
     {
-      "id": "quasi-registry",
-      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/search/_sources/find-links.md",
-      "title": "Existing search.find_links Markdown"
+      "id": "legacy-docs-archive",
+      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/search/_sources/find-links.md",
+      "title": "Archived search.find_links Markdown"
     }
   ]
 }

@@ -240,17 +240,21 @@ wrangles:
 
 | Field | Value |
 | --- | --- |
+| Catalog ID | `63` |
+| Catalog key | `split.dictionary` |
 | Recipe key | `split.dictionary` |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `split` |
 | Documentation group | `split` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.split.dictionary` |
+| Legacy UUID | `06ca98e4-d026-43f7-84eb-af246d401ba9` |
 
 **Sources**
 
 - [WranglesPY split.dictionary implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/split.py)
-- [Existing split.dictionary Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/split/_sources/dictionary.md)
+- [Archived split.dictionary Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/split/_sources/dictionary.md)
 
 </details>

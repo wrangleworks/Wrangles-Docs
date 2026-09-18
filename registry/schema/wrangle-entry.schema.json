@@ -32,7 +32,7 @@
     "id": {
       "type": ["string", "null"],
       "format": "uuid",
-      "description": "Canonical UUID allocated by the Wrangles catalog database. Null is allowed only while an existing wrangle awaits database identity reconciliation."
+      "description": "Legacy documentation UUID retained in source Markdown during the 0.3 catalog-ID migration. It is published as legacy_id, not as the canonical catalog identity."
     },
     "wrangle_name": {
       "type": "string",

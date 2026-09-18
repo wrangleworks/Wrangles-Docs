@@ -13,7 +13,7 @@ Recipes allow a series of Wrangles to be defined and run as an automated sequenc
 Recipes are written with [YAML](https://en.wikipedia.org/wiki/YAML) and follow a typical [ETL](https://en.wikipedia.org/wiki/Extract,_transform,_load) format. Recipes are divided into four main sections:
 
 - [:book: Read *Import data from different sources*](/python/recipes/read)
-- [:cowboy_hat_face: Wrangles *Manipulate the structure and content of the data*](/wrangle)
+- [:cowboy_hat_face: Wrangles *Manipulate the structure and content of the data*](/wrangles)
 - [:pen: Write *Export data to different targets*](/python/recipes/write)
 - [:runner: Run *Run a recipe or connector at the start, on success or on failure of a recipe.*](/python/recipes/run)
 \{.links-list\}

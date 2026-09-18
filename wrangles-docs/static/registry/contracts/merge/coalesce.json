@@ -1,10 +1,13 @@
 {
   "$schema": "https://docs.wrangles.com/registry/schema/wrangle-contract.schema.json",
   "format": "wrangles-registry-entry",
-  "registry_version": "0.2.1",
-  "schema_version": "0.2",
+  "registry_version": "0.3.0",
+  "schema_version": "0.3",
   "type": "wrangle",
-  "id": "25c1a60d-fa48-4b9a-8c03-0921d5b31049",
+  "catalog_id": "40",
+  "catalog_key": "merge.coalesce",
+  "catalog_status": "active",
+  "legacy_id": "25c1a60d-fa48-4b9a-8c03-0921d5b31049",
   "wrangle_name": "coalesce",
   "namespace": "merge",
   "wrangle_key": "merge.coalesce",
@@ -100,9 +103,9 @@
       "title": "WranglesPY merge.coalesce implementation"
     },
     {
-      "id": "quasi-registry",
-      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/main/wrangles-docs/wrangle-docs/merge/_sources/coalesce.md",
-      "title": "Existing merge.coalesce Markdown"
+      "id": "legacy-docs-archive",
+      "resource": "https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/merge/_sources/coalesce.md",
+      "title": "Archived merge.coalesce Markdown"
     }
   ]
 }
