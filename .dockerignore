@@ -1,0 +1,12 @@
+**
+!registry/
+!registry/**
+!wrangles-docs/
+!wrangles-docs/**
+
+wrangles-docs/.docusaurus
+wrangles-docs/build
+wrangles-docs/node_modules
+wrangles-docs/.env
+wrangles-docs/.git
+wrangles-docs/.github

@@ -1,9 +1,10 @@
 # Stage 1: Build the static Docusaurus site
 FROM node:lts-bookworm-slim AS builder
 WORKDIR /app
-COPY package.json package-lock.json ./
+COPY wrangles-docs/package.json wrangles-docs/package-lock.json ./
 RUN npm ci
-COPY . .
+COPY wrangles-docs/ .
+COPY registry /registry
 RUN npm run build
 
 # Stage 2: Lightweight Python runtime for static serving + recipe execution
@@ -15,11 +16,11 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
     PIP_NO_CACHE_DIR=1 \
     PORT=3000
 
-COPY requirements.txt ./
+COPY wrangles-docs/requirements.txt ./
 RUN python -m pip install --no-cache-dir --disable-pip-version-check --no-compile -r requirements.txt
 
-COPY run_recipe.py ./run_recipe.py
-COPY start_prod.py ./start_prod.py
+COPY wrangles-docs/run_recipe.py ./run_recipe.py
+COPY wrangles-docs/start_prod.py ./start_prod.py
 COPY --from=builder /app/build ./build
 
 EXPOSE 3000
