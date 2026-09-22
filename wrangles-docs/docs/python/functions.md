@@ -18,11 +18,11 @@ Wrangles can be used as functions, directly incorporated into python code.
 
 Wrangles broadly accept a single input string, or a list of strings. If a list is provided, the results will be returned in an equivalent list in the same order and length as the original.
 
-# Classify
+## Classify
 Predict which categories items belong to. A classification wrangle must be created to be able to use this.
 
-## Tabset \{.tabset\}
-### Samples 
+### Tabset \{.tabset\}
+#### Samples
 ```python
 >>> wrangles.classify('ball bearing', '<model id>')
 MechPT
@@ -31,7 +31,7 @@ MechPT
 ['MechPT', 'Tools']
 ```
 
-### Parameters
+#### Parameters
 <div className="table-scroll">
 
 | Parameter | Required | Data Type | Notes |
@@ -40,12 +40,12 @@ MechPT
 | model_id | ✓ | str | ID of the model to run. |
 </div>
 
-# Extract
+## Extract
 
-## Address
+### Address
 
-### Tabset \{.tabset\}
-#### Samples 
+#### Tabset \{.tabset\}
+##### Samples
 Extract features from addresses such as streets or countries.
 ```python
 >>> wrangles.extract.address('1100 Congress Ave, Austin, TX 78701, USA', 'streets')
@@ -54,7 +54,7 @@ Extract features from addresses such as streets or countries.
 >>> wrangles.extract.address(['1100 Congress Ave, Austin, TX 78701, USA'], 'streets')
 [['1100 Congress Ave']]
 ```
-#### Parameters
+##### Parameters
 <div className="table-scroll">
 
 | Parameter | Required | Data Type | Notes |
@@ -63,10 +63,10 @@ Extract features from addresses such as streets or countries.
 | dataType | ✓ | streets / cities / regions / countries | The type of information to return. |
 </div>
 
-## Ai
+### Ai
 
-### Tabset \{.tabset\}
-#### Samples 
+#### Tabset \{.tabset\}
+##### Samples
 Use the power of AI (OpenAI's chatGPT in particular) to extract meaningful data
 ```python
 >>> wrangles.extract.ai('Yellow Submarine', api_key='<api key>', output='The names of any colors found in the input)
@@ -75,7 +75,7 @@ Use the power of AI (OpenAI's chatGPT in particular) to extract meaningful data
 >>> wrangles.extract.ai('Yellow Submarine', api_key='<api key>', output={'type': 'string', 'description': 'The names of any colors found in the input'})
 'Yellow'
 ```
-#### Parameters
+##### Parameters
 <div className="table-scroll">
 
 | Parameter | Required | Data Type | Notes |
@@ -93,11 +93,11 @@ Use the power of AI (OpenAI's chatGPT in particular) to extract meaningful data
 
 </div>
 
-## Attributes
+### Attributes
 Extract numeric attributes such as lengths or voltages.
 
-### Tabset \{.tabset\}
-#### Samples 
+#### Tabset \{.tabset\}
+##### Samples
 ```python
 >>> wrangles.extract.attributes('it is 15mm long')
 {'length': ['15mm']}
@@ -105,7 +105,7 @@ Extract numeric attributes such as lengths or voltages.
 >>> wrangles.extract.attributes(['it is 15mm long', 'the voltage is 15V'])
 [{'length': ['15mm']}, {'electric potential': ['15V']}]
 ```
-#### Parameters
+##### Parameters
 <div className="table-scroll">
 
 | Parameter | Required | Data Type | Notes |
@@ -115,11 +115,11 @@ Extract numeric attributes such as lengths or voltages.
 | type |  | angle / area / current / force / length / power / pressure / electric potential / volume / mass | Specify which types of attributes to find. If omitted, a dictionary of all attributes types is returned |
 </div>
 
-## Codes
+### Codes
 Extract alphanumeric codes.
 
-### Tabset \{.tabset\}
-#### Samples 
+#### Tabset \{.tabset\}
+##### Samples
 ```python
 >>> wrangles.extract.codes('test ABCD1234ZZ test')
 ['ABCD1234ZZ']
@@ -127,7 +127,7 @@ Extract alphanumeric codes.
 >>> wrangles.extract.codes(['test ABCD1234ZZ test', 'NNN555BBB this one has two XYZ789'])
 [['ABCD1234ZZ'], ['NNN555BBB', 'XYZ789']]
 ```
-#### Parameters
+##### Parameters
 <div className="table-scroll">
 
 | Parameter | Required | Data Type | Notes |
@@ -135,11 +135,11 @@ Extract alphanumeric codes.
 | input | ✓ | str, list | The text(s) to be searched for codes. |
 </div>
 
-## Custom
+### Custom
 Extract entities using a custom model. An extraction wrangle must be created to be able to use this.
 
-### Tabset \{.tabset\}
-#### Samples 
+#### Tabset \{.tabset\}
+##### Samples
 ```python
 >>> wrangles.extract.custom('test skf test', '<model id>')
 ['SKF']
@@ -147,7 +147,7 @@ Extract entities using a custom model. An extraction wrangle must be created to 
 >>> wrangles.extract.custom(['test skf test', 'festo is hidden in here'], '<model id>')
 [['SKF'], ['FESTO']]
 ```
-#### Parameters
+##### Parameters
 <div className="table-scroll">
 
 | Parameter | Required | Data Type | Notes |
@@ -156,11 +156,11 @@ Extract entities using a custom model. An extraction wrangle must be created to 
 | model_id | ✓ | str | ID of the model to run. |
 </div>
 
-## Properties
+### Properties
 Extract categorical properties such as colours or materials.
 
-### Tabset \{.tabset\}
-#### Samples 
+#### Tabset \{.tabset\}
+##### Samples
 ```python
 >>> wrangles.extract.properties('yellow submarine')
 {'Colours': ['Yellow']}
@@ -168,7 +168,7 @@ Extract categorical properties such as colours or materials.
 >>> wrangles.extract.properties(['yellow submarine', 'the green mile'])
 [{'Colours': ['Yellow']}, {'Colours': ['Green']}]
 ```
-#### Parameters
+##### Parameters
 <div className="table-scroll">
 
 | Parameter | Required | Data Type | Notes |
@@ -177,14 +177,14 @@ Extract categorical properties such as colours or materials.
 | type |  | colours / materials / shapes / standards | The type of property to return. If omitted, a dictionary with all results will be returned. |
 </div>
 
-# Lookup
+## Lookup
 Lookups can be used to look up data from a saved lookup wrangle. They can either be key (exact) or semantic (most similar meaning) based matches.
 
-## Exact Lookups
+### Exact Lookups
 Exact lookups look up exact matches (from your list of values) in a saved lookup wrangle.
 
-### Tabset \{.tabset\}
-#### Samples 
+#### Tabset \{.tabset\}
+##### Samples
 ```python
 >>> wrangles.lookup(["Key1", "Key2"], "<model id>", "Value1")
 ["Key1's Value1", "Key2's Value1"]
@@ -192,7 +192,7 @@ Exact lookups look up exact matches (from your list of values) in a saved lookup
 >>> wrangles.lookup("Key1", "<model id>")
 {"Value1": "Key1's Value1", "Value2": "Key1's Value2"}
 ```
-#### Parameters
+##### Parameters
 <div className="table-scroll">
 
 | Parameter | Required | Data Type | Notes |
@@ -202,11 +202,11 @@ Exact lookups look up exact matches (from your list of values) in a saved lookup
 | columns |  | str, list | The columns to be returned. If not provided, all columns will be returned as a dict. |
 </div>
   
-## Semantic Lookups
+### Semantic Lookups
 Semantic lookups look up the most similar matches (from your list of values) in a saved lookup wrangle.
 
-### Tabset \{.tabset\}
-#### Samples 
+#### Tabset \{.tabset\}
+##### Samples
 ```python
 >>> wrangles.lookup(["KeyOne", "KeyTwo"], "<model id>", "Value1")
 ["Key1's Value1", "Key2's Value1"]
@@ -214,7 +214,7 @@ Semantic lookups look up the most similar matches (from your list of values) in 
 >>> wrangles.lookup("KeyOne", "<model id>")
 {"Value1": "Key1's Value1", "Value2": "Key1's Value2"}
 ```
-#### Parameters
+##### Parameters
 <div className="table-scroll">
 
 | Parameter | Required | Data Type | Notes |
@@ -224,11 +224,11 @@ Semantic lookups look up the most similar matches (from your list of values) in 
 | columns |  | str, list | The columns to be returned. If not provided, all columns will be returned as a dict. |
 </div>
 
-# Standardize
+## Standardize
 Standardize text data, such as replacing abbreviations. A standardization wrangle must be created to be able to use this.
 
-## Tabset \{.tabset\}
-### Samples 
+### Tabset \{.tabset\}
+#### Samples
 ```python
 >>> wrangles.standardize('It will arrive asap.', '<model id>')
 'It will arrive as soon as possible.'
@@ -237,7 +237,7 @@ Standardize text data, such as replacing abbreviations. A standardization wrangl
 ['It will arrive as soon as possible.', 'I live in the United States']
 ```
 
-### Parameters
+#### Parameters
 <div className="table-scroll">
 
 | Parameter | Required | Data Type | Notes |
@@ -246,13 +246,13 @@ Standardize text data, such as replacing abbreviations. A standardization wrangl
 | model_id | ✓ | str | ID of the model to run. |
 </div>
 
-# Translate
+## Translate
 Translate text between languages.
 
 Requires a WrangleWorks Account and DeepL API Key (A free account for up to 500,000 characters per month is available).
 
-## Tabset \{.tabset\}
-### Samples 
+### Tabset \{.tabset\}
+#### Samples
 ```python
 >>> wrangles.translate('My name is Chris', 'ES')
 Mi nombre es Chris
@@ -261,7 +261,7 @@ Mi nombre es Chris
 ['Mein Name ist Chris', 'Ich wohne in Austin']
 ```
 
-### Parameters
+#### Parameters
 <div className="table-scroll">
 
 | Parameter | Required | Data Type | Notes |

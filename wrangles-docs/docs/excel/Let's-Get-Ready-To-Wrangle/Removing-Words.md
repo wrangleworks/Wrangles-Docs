@@ -5,11 +5,11 @@ slug: /excel/Let's-Get-Ready-To-Wrangle/Removing-Words
 
 # How to Remove Words
 
-Removing words is a common issue that Wranglers face. Sometimes it is as easy as using the built in [Replace](/excel/standardize#replace) Wrangle, but other times our list of words to remove is too long, or we just want to build something that is reusable. This tutorial will teach you how to both use the stock Wrangle as well as how to write a small recipe to remove words.
+Removing words is a common issue that Wranglers face. Sometimes it is as easy as using the built in [Replace](/wrangles/replace) Wrangle, but other times our list of words to remove is too long, or we just want to build something that is reusable. This tutorial will teach you how to both use the stock Wrangle as well as how to write a small recipe to remove words.
 
 ## Stock Remove Words Wrangle
 
-The stock remove words Wrangle works great for making quick, easy, changes to your data. Let's use the data set shown below, and walk through using the stock [Replace](/excel/standardize#replace) Wrangle to remove url's.
+The stock remove words Wrangle works great for making quick, easy, changes to your data. Let's use the data set shown below, and walk through using the stock [Replace](/wrangles/replace) Wrangle to remove url's.
 
 ![original_data.png](/images/remove-words/original_data.png)
 

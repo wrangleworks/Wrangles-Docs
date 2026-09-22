@@ -10,7 +10,7 @@ For example, if a given dataset has a "Manufacturer" column and a "Description" 
 
 ![list_string_data.png](/images/list_string_data.png)
 
-To solve this issue, we will use a [custom extract wrangle](/excel/extract#custom) along with merge.lists to create a recipe.
+To solve this issue, we will use a [custom extract wrangle](/wrangles/extract/custom) along with merge.lists to create a recipe.
 
 Below, you'll find our training data for our extract:
 

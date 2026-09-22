@@ -1317,6 +1317,7 @@ const sidebarsRegistry = {
   registrySidebar: [
     {type: 'doc', id: 'index', label: 'Registry'},
 ${items}
+    {type: 'link', label: 'Connectors', href: '/python/connectors'},
   ],
 };
 

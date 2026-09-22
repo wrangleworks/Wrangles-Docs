@@ -18,7 +18,7 @@ Now, let's get ready to wrangle.
 
 To reformat our data, we will start by creating the "Materials" column. To achieve this, we'll extract all materials from the text using the "Materials" wrangle located under the "Properties" section.
 
-> You can run a Wrangle on the whole column or just a few cells [click here for more info](https://wrangles.io/en/excel/basics). \{.is-info\}
+> You can run a Wrangle on the whole column or just a few cells [click here for more info](/excel). \{.is-info\}
 
 1. First, highlight all the cells containing your data or just select the entire column. 
 2. Navigate to the Data Wrangles Task Pane and click on the Properties button. 

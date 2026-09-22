@@ -19,6 +19,7 @@ const sidebarsRegistry = {
     {type: 'doc', id: 'namespaces/transform', label: 'Transform'},
     {type: 'doc', id: 'namespaces/utility', label: 'Utility'},
     {type: 'doc', id: 'namespaces/date', label: 'Date'},
+    {type: 'link', label: 'Connectors', href: '/python/connectors'},
   ],
 };
 

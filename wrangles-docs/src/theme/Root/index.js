@@ -5,10 +5,14 @@ export default function Root({children}) {
   const location = useLocation();
 
   useEffect(() => {
-    const isWrangleMode =
+    const isPythonMode =
       location.pathname === '/wrangles' ||
-      location.pathname.startsWith('/wrangles/');
-    document.body.classList.toggle('ww-wranglespy-mode', isWrangleMode);
+      location.pathname.startsWith('/wrangles/') ||
+      location.pathname === '/python/connectors' ||
+      location.pathname.startsWith('/python/connectors/') ||
+      location.pathname === '/playground' ||
+      location.pathname.startsWith('/playground/');
+    document.body.classList.toggle('ww-wranglespy-mode', isPythonMode);
     return () => document.body.classList.remove('ww-wranglespy-mode');
   }, [location.pathname]);
 
