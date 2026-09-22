@@ -3,8 +3,8 @@ import CodeBlock from '@theme/CodeBlock';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import clsx from 'clsx';
 import yaml from 'js-yaml';
-import {generateWrangleCatalogRequest, runRecipeRequest} from '../recipeRunnerClient';
-import WRANGLE_CATALOG, {WRANGLE_MAP} from './wrangleCatalog';
+import {runRecipeRequest} from '../recipeRunnerClient';
+import REGISTRY_CATALOG, {WRANGLE_MAP} from './registryCatalog';
 import styles from './styles.module.css';
 
 const MAX_COLUMNS = 10;
@@ -13,7 +13,6 @@ const MIN_COLUMNS = 1;
 const MIN_ROWS = 1;
 const DEFAULT_COLUMNS = 3;
 const DEFAULT_ROWS = 4;
-const CAN_GENERATE_CATALOG = process.env.NODE_ENV !== 'production';
 const WRANGLE_FLOW_TRANSFER_KEY = 'wrangle-flow-playground-transfer';
 
 let nextBlockId = 1;
@@ -66,9 +65,6 @@ function createBlock(type) {
     type,
     values: defaults,
   };
-  // I need to check those defaults again to be sure they are accurate
-  // Static image is not good for updating the catalog
-  // need to look into the model id
 }
 
 function formatFieldValueForControl(field, value) {
@@ -709,7 +705,7 @@ function PipelineCard({block, isActive, index, isLast, onSelect, onMove, onDupli
 function Palette({onAdd}) {
   const [openCategory, setOpenCategory] = useState('Convert');
   const groupRefs = useRef({});
-  const categories = WRANGLE_CATALOG.reduce((grouped, item) => {
+  const categories = REGISTRY_CATALOG.reduce((grouped, item) => {
     grouped[item.category] = grouped[item.category] ?? [];
     grouped[item.category].push(item);
     return grouped;
@@ -785,7 +781,6 @@ export default function WrangleFlowPlayground() {
   const [error, setError] = useState('');
   const [notice, setNotice] = useState('');
   const [isRunning, setIsRunning] = useState(false);
-  const [isUpdatingCatalog, setIsUpdatingCatalog] = useState(false);
 
   useEffect(() => {
     const transfer = consumePlaygroundTransfer();
@@ -1000,22 +995,6 @@ export default function WrangleFlowPlayground() {
     }
   }
 
-  async function updateCatalog() {
-    setError('');
-    setNotice('');
-    setIsUpdatingCatalog(true);
-
-    try {
-      const payload = await generateWrangleCatalogRequest();
-      setNotice(`${payload.message || 'Wrangle catalog regenerated.'} Reload the page if the block list does not refresh automatically.`);
-    } catch (catalogError) {
-      console.error('[wrangle-flow-playground] Catalog update failed:', catalogError);
-      setError(catalogError.message);
-    } finally {
-      setIsUpdatingCatalog(false);
-    }
-  }
-
   return (
     <div className={styles.page}>
       <header className={styles.appBar}>
@@ -1024,11 +1003,6 @@ export default function WrangleFlowPlayground() {
           <span>Interactive recipe workspace</span>
         </div>
         <div className={styles.appActions}>
-          {CAN_GENERATE_CATALOG ? (
-            <button type="button" className={styles.secondaryButton} onClick={updateCatalog} disabled={isUpdatingCatalog}>
-              {isUpdatingCatalog ? 'Updating Catalog...' : 'Update Catalog'}
-            </button>
-          ) : null}
           <button type="button" className={styles.secondaryButton} onClick={resetBoard}>
             Reset Board
           </button>

@@ -20,10 +20,6 @@ function getRunnerHint({rawText}) {
     return `Received HTML "Cannot POST /run-recipe" from ${window.location.origin}. This usually means the page is open on the raw Docusaurus server instead of the dev proxy. Open the site on port 3000, not 3002.`;
   }
 
-  if (rawText.includes('Cannot POST /generate-wrangle-catalog')) {
-    return `Received HTML "Cannot POST /generate-wrangle-catalog" from ${window.location.origin}. Restart npm start so the dev proxy loads the new catalog route, then open the site on port 3000.`;
-  }
-
   return '';
 }
 
@@ -101,38 +97,6 @@ export async function runRecipeRequest({runnerUrl, recipe, input, outputColumns}
   if (!response.ok) {
     const hint = getRunnerHint({rawText});
     throw new Error(hint || payload.error || `Recipe run failed with HTTP ${response.status}.`);
-  }
-
-  return payload;
-}
-
-export async function generateWrangleCatalogRequest({generatorUrl = '/generate-wrangle-catalog'} = {}) {
-  const requestId = createRequestId();
-
-  console.info(`[recipe-runner:${requestId}] Requesting wrangle catalog regeneration`, {
-    generatorUrl,
-    origin: typeof window === 'undefined' ? 'server' : window.location.origin,
-  });
-
-  const response = await fetch(generatorUrl, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'X-Recipe-Request-Id': requestId,
-    },
-  });
-
-  const {payload, rawText, contentType} = await readJsonResponse(response);
-  console.info(`[recipe-runner:${requestId}] Catalog regeneration response received`, {
-    status: response.status,
-    ok: response.ok,
-    contentType,
-    bodyPreview: previewText(rawText),
-  });
-
-  if (!response.ok) {
-    const hint = getRunnerHint({rawText});
-    throw new Error(hint || payload.error || `Catalog generation failed with HTTP ${response.status}.`);
   }
 
   return payload;

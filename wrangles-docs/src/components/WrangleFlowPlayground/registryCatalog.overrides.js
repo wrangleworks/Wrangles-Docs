@@ -1,4 +1,4 @@
-const WRANGLE_CATALOG_OVERRIDES = {
+const REGISTRY_CATALOG_OVERRIDES = {
   'convert.case': {
     label: 'Case Shift',
     description: 'Change text casing in a column.',
@@ -168,4 +168,4 @@ const WRANGLE_CATALOG_OVERRIDES = {
   },
 };
 
-export default WRANGLE_CATALOG_OVERRIDES;
+export default REGISTRY_CATALOG_OVERRIDES;

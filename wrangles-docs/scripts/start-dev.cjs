@@ -50,7 +50,7 @@ const proxy = httpProxy.createProxyServer({
 });
 
 function isBackendRoute(url) {
-  return Boolean(url && (url.startsWith('/run-recipe') || url.startsWith('/generate-wrangle-catalog')));
+  return Boolean(url && url.startsWith('/run-recipe'));
 }
 
 function getForwardedUrl(port, pathname = '/') {

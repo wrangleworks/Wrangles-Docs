@@ -1,5 +1,5 @@
-import GENERATED_WRANGLE_CATALOG from './wrangleCatalog.generated';
-import WRANGLE_CATALOG_OVERRIDES from './wrangleCatalog.overrides';
+import GENERATED_REGISTRY_CATALOG from './registryCatalog.generated';
+import REGISTRY_CATALOG_OVERRIDES from './registryCatalog.overrides';
 
 function parseListValue(value) {
   return Array.isArray(value)
@@ -72,7 +72,7 @@ function buildConfigFromFields(fields, values) {
 }
 
 function applyOverride(entry) {
-  const override = WRANGLE_CATALOG_OVERRIDES[entry.type] ?? {};
+  const override = REGISTRY_CATALOG_OVERRIDES[entry.type] ?? {};
   const fieldOverrides = override.fields ?? {};
   const fields = entry.fields.map((field) => ({
     ...field,
@@ -96,8 +96,8 @@ function applyOverride(entry) {
   };
 }
 
-const WRANGLE_CATALOG = GENERATED_WRANGLE_CATALOG.map(applyOverride);
+const REGISTRY_CATALOG = GENERATED_REGISTRY_CATALOG.map(applyOverride);
 
-export const WRANGLE_MAP = Object.fromEntries(WRANGLE_CATALOG.map((item) => [item.type, item]));
+export const WRANGLE_MAP = Object.fromEntries(REGISTRY_CATALOG.map((item) => [item.type, item]));
 
-export default WRANGLE_CATALOG;
+export default REGISTRY_CATALOG;
