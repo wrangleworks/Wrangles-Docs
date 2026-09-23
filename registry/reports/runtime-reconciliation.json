@@ -1,7 +1,7 @@
 {
   "format": "wrangles-registry-reconciliation",
   "format_version": "0.3",
-  "registry_version": "0.3.0",
+  "registry_version": "0.3.1",
   "runtime_source": {
     "repository": "https://github.com/wrangleworks/WranglesPY",
     "version": "1.20.2",

@@ -65,6 +65,18 @@ npm run build
 and replaces the sanitized snapshot deterministically. It does not read or
 publish the `models` table.
 
+Multiple catalog rows may point to one `wrangle_key`. Keep a canonical row with
+`catalog_key = wrangle_key` (for example `81 / lookup / lookup`) and add subtype
+rows separately (`101 / lookup.key / lookup`, `102 / lookup.semantic / lookup`).
+The compiler retains one callable contract/page and publishes all corresponding
+IDs and keys in the checksummed `catalog/bindings.json` artifact, linked from
+the manifest. These are catalog selections, not additional executable aliases.
+Refresh the snapshot from authorized catalog metadata; do not invent missing
+titles, statuses or timestamps from a partial query result. The checked-in
+snapshot contains the original 99-row export plus the two complete lookup
+rows supplied by the catalog owner, updated on 2026-09-21. This is not evidence
+that every newer row in the live catalog has been exported.
+
 `compile:registry` produces the Docusaurus pages and public raw
 artifacts. `check:registry` fails when the source is invalid or the committed
 generated files are stale.

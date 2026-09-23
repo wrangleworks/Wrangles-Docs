@@ -52,9 +52,33 @@ and additional guidance.
 API Core allocates `catalog_id` as a positive PostgreSQL `BIGINT`. Every JSON
 artifact represents it as a decimal string so JavaScript consumers cannot lose
 integer precision. The compiler joins catalog rows to callable entries by exact
-`wrangle_key`; missing rows, duplicate identities, key conflicts, kind
-conflicts, and title conflicts fail the build. The compiler never allocates or
-changes catalog IDs.
+`wrangle_key`. Each callable requires one canonical row whose `catalog_key`
+equals that callable key. Its ID remains the contract/page identity, independent
+of snapshot order. Additional catalog keys may share the same `wrangle_key`:
+for example, `lookup.key` and `lookup.semantic` both bind to the `lookup` contract.
+Catalog IDs and catalog keys remain unique; duplicate identities/keys, missing
+canonical rows and incompatible kinds fail the build. Canonical titles must
+match Docs; additional bindings retain their own catalog titles and statuses.
+The compiler never allocates or changes catalog IDs.
+
+Registry 0.3.1 exposes these mappings through `manifest.artifacts.catalog_bindings`,
+the checksummed `/registry/catalog/bindings.json` artifact. Its versioned envelope
+contains `format: wrangles-catalog-bindings`, `format_version: 0.1`,
+`registry_version`, `entry_count`, and `entries`. Each binding preserves
+`catalog_id`, `catalog_key`, `catalog_status`, `kind`, and `title`, and provides
+`wrangle_key`, `canonical_catalog_id`, `contract_json`, and `route`.
+Only bindings to public documented callables enter this artifact; catalog-only
+entries remain in the reconciliation report. The pinned snapshot must already
+be approved for public export, as before; this change adds no publication policy.
+
+A consumer preserves the selected binding's catalog ID/key while fetching its
+shared contract. It uses `wrangle_key` in recipe syntax and obtains the saved
+`model_id` separately from authorized model metadata. Bindings contain no model
+ID and do not grant execution or Recipe Writer eligibility. They create neither
+new callable keys nor duplicate contracts/pages. `manifest.entry_count` and
+`catalog.callable_entry_count` count callables; `catalog.binding_count` counts
+published bindings. Existing contract 0.3 readers can still use canonical entries;
+selection by subtype catalog ID requires the new bindings artifact.
 
 The source Markdown's `id` field is the previous documentation UUID. Contract
 0.3 publishes it as nullable `legacy_id` for migration tracing only. It is not a
@@ -326,7 +350,7 @@ terminated by one newline (`utf8-newline-separated-sorted-v1`).
 
 ## Versioning and lifecycle
 
-The pre-production Registry version is `0.3.0`. Version `0.2.0` makes the
+The pre-production Registry version is `0.3.1`. Version `0.2.0` makes the
 fail-closed Recipe Writer eligibility decision required for every entry and
 adds the compiled-contract and integrity metadata consumed by Registry clients.
 Version `0.2.1` introduces optional column-role and cardinality metadata plus
@@ -337,6 +361,10 @@ contract's canonical UUID field with string-valued `catalog_id` and
 `catalog_key`, and retains old UUIDs only as `legacy_id`. It also publishes
 catalog reconciliation as a checksummed bundle artifact. Source Markdown stays
 on schema 0.2 during this migration; generated contracts use contract 0.3.
+Version `0.3.1` adds the checksummed many-to-one catalog bindings artifact while
+preserving canonical contract identities, recipe keys and the 88-key Recipe
+Writer baseline. Catalog reconciliation records additional bindings separately
+from its existing canonical matches, including their status/path differences.
 A production release will
 contain:
 

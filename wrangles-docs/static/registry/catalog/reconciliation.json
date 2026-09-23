@@ -1,18 +1,21 @@
 {
   "format": "wrangles-catalog-reconciliation",
   "format_version": "0.1",
-  "registry_version": "0.3.0",
+  "registry_version": "0.3.1",
   "catalog_source": {
     "system": "API Core",
     "repository": "https://github.com/wrangleworks/API-Core",
     "table": "public.wrangles_catalog",
-    "data_updated_through": "2026-09-16T08:44:50.975472Z"
+    "data_updated_through": "2026-09-21T09:29:40.543681Z"
   },
   "summary": {
-    "catalog_entries": 99,
+    "catalog_entries": 101,
     "registry_entries": 98,
     "matched_entries": 98,
     "conflicting_entries": 0,
+    "additional_binding_count": 2,
+    "conflicting_bindings": 0,
+    "additional_bindings_with_status_differences": 0,
     "entries_with_status_differences": 2,
     "entries_without_catalog_registry_path": 98,
     "catalog_only_entries": 1
@@ -1886,6 +1889,48 @@
         {
           "code": "registry_path_missing",
           "expected": "registry/wrangles/_root/try.md",
+          "catalog": null
+        }
+      ]
+    }
+  ],
+  "additional_bindings": [
+    {
+      "catalog_id": "101",
+      "catalog_key": "lookup.key",
+      "wrangle_key": "lookup",
+      "canonical_catalog_id": "81",
+      "title": "Lookup Key",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/_root/lookup.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/_root/lookup.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "102",
+      "catalog_key": "lookup.semantic",
+      "wrangle_key": "lookup",
+      "canonical_catalog_id": "81",
+      "title": "Lookup Semantic",
+      "catalog_status": "active",
+      "registry_status": "active",
+      "expected_registry_path": "registry/wrangles/_root/lookup.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/wrangles/_root/lookup.md",
           "catalog": null
         }
       ]

@@ -82,8 +82,9 @@ ownership details are design decisions tracked in #32.
 ### One catalog, explicit kinds and bindings
 
 API Core now uses `wrangles_catalog` as the central identity table and links
-saved rows through `models.catalog_id`. The current public snapshot contains 99
-wrangle rows: 98 map to callable Registry entries, while `map` remains a
+saved rows through `models.catalog_id`. The current public snapshot contains 101
+wrangle rows: 100 bind to 98 callable Registry entries (the three lookup catalog
+keys share one `lookup` contract), while `map` remains a
 catalog-only row until it has an explicit executable or concept classification.
 Connectors, run capabilities, typed relationships and selected reusable
 concepts remain later additions to the same catalog design.

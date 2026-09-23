@@ -89,6 +89,7 @@
           "minLength": 1
         },
         "wrangle_key": {
+          "description": "Callable contract key; multiple distinct catalog IDs/keys may share it. The canonical row has catalog_key equal to wrangle_key.",
           "type": [
             "string",
             "null"
