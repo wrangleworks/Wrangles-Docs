@@ -2,6 +2,9 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const test = require('node:test');
+const os = require('node:os');
+const crypto = require('node:crypto');
+const {spawnSync} = require('node:child_process');
 
 const {validateColumnSemantics} = require('./compile-registry.cjs');
 
@@ -230,7 +233,7 @@ test('compiled Registry publishes API Core catalog identities as strings', () =>
   const catalogIds = manifest.entries.map((entry) => entry.catalog_id);
   const convertCase = manifest.entries.find((entry) => entry.wrangle_key === 'convert.case');
 
-  assert.equal(manifest.registry_version, '0.3.0');
+  assert.equal(manifest.registry_version, '0.3.1');
   assert.equal(manifest.contract_version, '0.3');
   assert.equal(manifest.entry_count, 98);
   assert.equal(new Set(catalogIds).size, manifest.entry_count);
@@ -260,7 +263,7 @@ test('catalog-only records and source differences remain explicit', () => {
   const reconciliation = JSON.parse(fs.readFileSync(catalogReconciliationPath, 'utf8'));
   const map = snapshot.entries.find((entry) => entry.catalog_key === 'map');
 
-  assert.equal(snapshot.entry_count, 99);
+  assert.equal(snapshot.entry_count, 101);
   assert.equal(map.catalog_id, '99');
   assert.equal(typeof map.catalog_id, 'string');
   assert.deepEqual(
@@ -276,3 +279,124 @@ test('catalog-only records and source differences remain explicit', () => {
   assert.equal(reconciliation.summary.conflicting_entries, 0);
   assert.equal(reconciliation.summary.entries_without_catalog_registry_path, 98);
 });
+
+// Synthetic metadata: actual IDs/keys reported by the catalog owner, with
+// fixture-only titles and timestamps. Do not use these rows as a DB export.
+function catalogCompilerFixture(t) {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'wrangles-catalog-test-'));
+  t.after(() => {
+    const resolved = path.resolve(root);
+    const tempRoot = path.resolve(os.tmpdir()) + path.sep;
+    assert.ok(resolved.startsWith(tempRoot));
+    assert.ok(path.basename(resolved).startsWith('wrangles-catalog-test-'));
+    fs.rmSync(resolved, {recursive: true, force: true});
+  });
+  fs.cpSync(path.join(repositoryRoot, 'registry'), path.join(root, 'registry'), {recursive: true});
+  const site = path.join(root, 'wrangles-docs');
+  fs.mkdirSync(path.join(site, 'scripts'), {recursive: true});
+  fs.copyFileSync(__dirname + '/compile-registry.cjs', path.join(site, 'scripts', 'compile-registry.cjs'));
+  const snapshotPath = path.join(root, 'registry', 'catalog', 'api-core.json');
+  const snapshot = JSON.parse(fs.readFileSync(snapshotPath, 'utf8'));
+  const lookup = snapshot.entries.find((entry) => entry.catalog_key === 'lookup');
+  snapshot.entries = snapshot.entries.filter((entry) => !['lookup.key', 'lookup.semantic'].includes(entry.catalog_key));
+  snapshot.entries.push(
+    {...lookup, catalog_id: '101', catalog_key: 'lookup.key', title: 'Key lookup fixture'},
+    {...lookup, catalog_id: '102', catalog_key: 'lookup.semantic', title: 'Semantic lookup fixture', status: 'deprecated'},
+  );
+  return {
+    snapshot,
+    read: (relative) => JSON.parse(fs.readFileSync(path.join(site, relative), 'utf8')),
+    exists: (relative) => fs.existsSync(path.join(site, relative)),
+    compile() {
+      snapshot.entry_count = snapshot.entries.length;
+      fs.writeFileSync(snapshotPath, JSON.stringify(snapshot));
+      return spawnSync(process.execPath, [path.join(site, 'scripts', 'compile-registry.cjs')], {
+        cwd: site,
+        encoding: 'utf8',
+        timeout: 30000,
+        maxBuffer: 4 * 1024 * 1024,
+        env: {
+          ...process.env,
+          NODE_PATH: [path.dirname(path.dirname(require.resolve('js-yaml/package.json'))), process.env.NODE_PATH]
+            .filter(Boolean).join(path.delimiter),
+        },
+      });
+    },
+  };
+}
+
+test('catalog variants share one contract and preserve selection identities', (t) => {
+  const fixture = catalogCompilerFixture(t);
+  const result = fixture.compile();
+  assert.equal(result.status, 0, result.stderr || result.error?.message);
+  const manifest = fixture.read('static/registry/manifest.json');
+  const bindingPath = manifest.artifacts.catalog_bindings;
+  const bindings = fixture.read(`static${bindingPath}`);
+  const lookupBindings = bindings.entries.filter((entry) => entry.wrangle_key === 'lookup');
+  assert.deepEqual(lookupBindings.map((entry) => [entry.catalog_id, entry.catalog_key, entry.canonical_catalog_id]), [
+    ['81', 'lookup', '81'], ['101', 'lookup.key', '81'], ['102', 'lookup.semantic', '81'],
+  ]);
+  assert.deepEqual(lookupBindings.map((entry) => entry.contract_json), Array(3).fill('/registry/contracts/lookup.json'));
+  assert.equal(lookupBindings[1].title, 'Key lookup fixture');
+  assert.equal(lookupBindings[2].catalog_status, 'deprecated');
+  assert.ok(lookupBindings.every((entry) => !('model_id' in entry)));
+  assert.equal(bindings.entry_count, 100);
+  assert.equal(manifest.catalog.binding_count, 100);
+  assert.equal(manifest.entry_count, 98);
+  assert.equal(manifest.catalog.callable_entry_count, 98);
+  assert.deepEqual(manifest.entries.filter((entry) => entry.wrangle_key === 'lookup').map((entry) => entry.catalog_id), ['81']);
+  assert.equal(fixture.read('static/registry/contracts/lookup.json').catalog_id, '81');
+  assert.equal(fixture.exists('static/registry/contracts/lookup/key.json'), false);
+  assert.equal(fixture.exists('registry-docs/lookup/key.md'), false);
+  for (const schemaName of ['schema.json', 'recipe-writer.schema.json']) {
+    const properties = fixture.read(`static/schemas/recipes/registry/${schemaName}`).$defs.wrangles.items.properties;
+    assert.equal('lookup' in properties, true);
+    assert.equal('lookup.key' in properties, false);
+    assert.equal('lookup.semantic' in properties, false);
+    assert.equal(properties.lookup.properties.model_id.type.includes('string'), true);
+  }
+  assert.equal(bindings.entries.some((entry) => entry.catalog_key === 'map'), false);
+  assert.equal(manifest.artifact_checksums.files[bindingPath], crypto.createHash('sha256')
+    .update(`${JSON.stringify(bindings, null, 2)}\n`).digest('hex'));
+  const report = fixture.read('static/registry/catalog/reconciliation.json');
+  assert.deepEqual(report.additional_bindings.map((entry) => [entry.catalog_id, entry.wrangle_key]), [
+    ['101', 'lookup'], ['102', 'lookup'],
+  ]);
+  assert.deepEqual(report.additional_bindings[1].differences[0], {
+    code: 'status_difference', registry: 'active', catalog: 'deprecated',
+  });
+
+  fixture.snapshot.entries.reverse();
+  const reversed = fixture.compile();
+  assert.equal(reversed.status, 0, reversed.stderr);
+  assert.deepEqual(fixture.read(`static${bindingPath}`), bindings);
+  assert.equal(fixture.read('static/registry/contracts/lookup.json').catalog_id, '81');
+});
+
+test('catalog binding IDs above the JavaScript safe integer range remain exact', (t) => {
+  const fixture = catalogCompilerFixture(t);
+  fixture.snapshot.entries.find((entry) => entry.catalog_key === 'lookup.semantic').catalog_id = '9007199254740993';
+  const result = fixture.compile();
+  assert.equal(result.status, 0, result.stderr);
+  const bindings = fixture.read('static/registry/catalog/bindings.json').entries;
+  assert.equal(bindings.find((entry) => entry.catalog_key === 'lookup.semantic').catalog_id, '9007199254740993');
+});
+
+for (const [label, mutate, expected] of [
+  ['duplicate IDs', (s) => { s.entries.at(-1).catalog_id = '101'; }, /duplicate catalog_id 101/],
+  ['duplicate keys', (s) => { s.entries.at(-1).catalog_key = 'lookup.key'; }, /duplicate catalog_key lookup.key/],
+  ['missing canonical row', (s) => { s.entries = s.entries.filter((e) => e.catalog_key !== 'lookup'); }, /requires a canonical row.*lookup/],
+  ['wrong canonical target', (s) => { s.entries.find((e) => e.catalog_key === 'lookup').wrangle_key = 'classify'; }, /requires a canonical row.*lookup/],
+  ['incompatible variant kind', (s) => { s.entries.at(-1).kind = 'connector'; }, /lookup.semantic has incompatible kind connector/],
+  ['canonical title drift', (s) => { s.entries.find((e) => e.catalog_key === 'lookup').title = 'Wrong'; }, /title_mismatch/],
+]) {
+  test(`catalog bindings reject ${label} before publishing`, (t) => {
+    const fixture = catalogCompilerFixture(t);
+    mutate(fixture.snapshot);
+    const result = fixture.compile();
+    assert.equal(result.status, 1, result.stderr || result.error?.message);
+    assert.match(result.stderr, expected);
+    assert.equal(fixture.exists('static/registry/manifest.json'), false);
+    assert.equal(fixture.exists('static/registry/catalog/bindings.json'), false);
+  });
+}

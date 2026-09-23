@@ -42,7 +42,7 @@
       "const": "wrangles-registry-entry"
     },
     "registry_version": {
-      "const": "0.3.0"
+      "const": "0.3.1"
     },
     "schema_version": {
       "const": "0.3"

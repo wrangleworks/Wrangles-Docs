@@ -5,7 +5,7 @@ const path = require('node:path');
 const crypto = require('node:crypto');
 const yaml = require('js-yaml');
 
-const REGISTRY_VERSION = '0.3.0';
+const REGISTRY_VERSION = '0.3.1';
 const SOURCE_ENTRY_SCHEMA_VERSION = '0.2';
 const CONTRACT_VERSION = '0.3';
 const PUBLIC_ORIGIN = 'https://docs.wrangles.com';
@@ -276,7 +276,6 @@ function validateCatalogSnapshot(snapshot, schema) {
 
   const ids = new Set();
   const catalogKeys = new Set();
-  const wrangleKeys = new Set();
   const entryFields = new Set([
     'catalog_id', 'catalog_key', 'kind', 'wrangle_key', 'title', 'registry_path',
     'status', 'source', 'created_at', 'updated_at',
@@ -311,10 +310,7 @@ function validateCatalogSnapshot(snapshot, schema) {
     if (entry.wrangle_key !== null) {
       if (!/^[a-z][a-z0-9_]*(\.[a-z][a-z0-9_]*)*$/.test(entry.wrangle_key || '')) {
         fail(catalogSnapshotPath, `${label}.wrangle_key is invalid`);
-      } else if (wrangleKeys.has(entry.wrangle_key)) {
-        fail(catalogSnapshotPath, `duplicate wrangle_key ${entry.wrangle_key}`);
       }
-      wrangleKeys.add(entry.wrangle_key);
     }
     for (const field of ['kind', 'status', 'source', 'created_at', 'updated_at']) {
       if (typeof entry[field] !== 'string' || !entry[field]) {
@@ -1857,32 +1853,29 @@ function reconcileRegistry(entries, runtimeManifest) {
 }
 
 function reconcileCatalog(entries, catalogSnapshot) {
-  const catalogByWrangleKey = new Map(
-    catalogSnapshot.entries
-      .filter((entry) => entry.wrangle_key !== null)
-      .map((entry) => [entry.wrangle_key, entry]),
+  // The exact key owns the canonical contract identity. Never let input order
+  // or a subtype row replace that identity when several rows share a callable.
+  const catalogByKey = new Map(
+    catalogSnapshot.entries.map((entry) => [entry.catalog_key, entry]),
   );
   const registryKeys = new Set(entries.map((entry) => entry.metadata.wrangle_key));
   const matchedEntries = [];
+  const additionalBindings = [];
 
   for (const entry of [...entries].sort((left, right) =>
     left.metadata.wrangle_key.localeCompare(right.metadata.wrangle_key))) {
     const key = entry.metadata.wrangle_key;
-    const catalog = catalogByWrangleKey.get(key);
-    if (!catalog) {
-      fail(entry.sourceFile, `API Core catalog has no row for wrangle_key ${key}`);
+    const catalog = catalogByKey.get(key);
+    if (!catalog || catalog.wrangle_key !== key) {
+      fail(entry.sourceFile, `API Core catalog requires a canonical row with catalog_key and wrangle_key ${key}`);
       continue;
     }
     entry.catalog = catalog;
+    entry.catalogBindings = catalogSnapshot.entries
+      .filter((binding) => binding.wrangle_key === key)
+      .sort((left, right) => left.catalog_key.localeCompare(right.catalog_key));
 
     const conflicts = [];
-    if (catalog.catalog_key !== key) {
-      conflicts.push({
-        code: 'catalog_key_mismatch',
-        registry: key,
-        catalog: catalog.catalog_key,
-      });
-    }
     if (catalog.kind !== entry.metadata.type) {
       conflicts.push({
         code: 'kind_mismatch',
@@ -1931,6 +1924,39 @@ function reconcileCatalog(entries, catalogSnapshot) {
       conflicts,
       differences,
     });
+
+    for (const binding of entry.catalogBindings) {
+      if (binding.catalog_id === catalog.catalog_id) continue;
+      const bindingConflicts = [];
+      if (binding.kind !== entry.metadata.type) {
+        bindingConflicts.push({
+          code: 'kind_mismatch', registry: entry.metadata.type, catalog: binding.kind,
+        });
+        fail(catalogSnapshotPath, `catalog binding ${binding.catalog_key} has incompatible kind ${binding.kind} for ${key}`);
+      }
+      additionalBindings.push({
+        catalog_id: binding.catalog_id,
+        catalog_key: binding.catalog_key,
+        wrangle_key: key,
+        canonical_catalog_id: catalog.catalog_id,
+        title: binding.title,
+        catalog_status: binding.status,
+        registry_status: entry.metadata.status,
+        expected_registry_path: expectedRegistryPath,
+        catalog_registry_path: binding.registry_path,
+        status: bindingConflicts.length ? 'conflict' : 'matched',
+        conflicts: bindingConflicts,
+        differences: [
+          ...(binding.status === entry.metadata.status ? [] : [{
+            code: 'status_difference', registry: entry.metadata.status, catalog: binding.status,
+          }]),
+          ...(binding.registry_path === expectedRegistryPath ? [] : [{
+            code: binding.registry_path === null ? 'registry_path_missing' : 'registry_path_difference',
+            expected: expectedRegistryPath, catalog: binding.registry_path,
+          }]),
+        ],
+      });
+    }
   }
 
   const catalogOnlyEntries = catalogSnapshot.entries
@@ -1955,6 +1981,10 @@ function reconcileCatalog(entries, catalogSnapshot) {
       registry_entries: entries.length,
       matched_entries: matchedEntries.filter((entry) => entry.status === 'matched').length,
       conflicting_entries: matchedEntries.filter((entry) => entry.status === 'conflict').length,
+      additional_binding_count: additionalBindings.length,
+      conflicting_bindings: additionalBindings.filter((entry) => entry.status === 'conflict').length,
+      additional_bindings_with_status_differences: additionalBindings.filter((entry) =>
+        entry.differences.some((difference) => difference.code === 'status_difference')).length,
       entries_with_status_differences: matchedEntries.filter((entry) =>
         entry.differences.some((difference) => difference.code === 'status_difference')).length,
       entries_without_catalog_registry_path: matchedEntries.filter((entry) =>
@@ -1962,6 +1992,7 @@ function reconcileCatalog(entries, catalogSnapshot) {
       catalog_only_entries: catalogOnlyEntries.length,
     },
     matched_entries: matchedEntries,
+    additional_bindings: additionalBindings,
     catalog_only_entries: catalogOnlyEntries,
   };
 }
@@ -2020,7 +2051,7 @@ ${embeddedRows || '| — | none | — | — |'}
 }
 
 function renderCatalogReconciliationReport(report) {
-  const statusDifferenceRows = report.matched_entries.flatMap((entry) =>
+  const statusDifferenceRows = [...report.matched_entries, ...report.additional_bindings].flatMap((entry) =>
     entry.differences
       .filter((difference) => difference.code === 'status_difference')
       .map((difference) =>
@@ -2041,14 +2072,25 @@ Generated file. Do not edit directly.
 - Callable Registry entries: ${report.summary.registry_entries}
 - Identity matches: ${report.summary.matched_entries}
 - Identity conflicts: ${report.summary.conflicting_entries}
-- Lifecycle/status differences: ${report.summary.entries_with_status_differences}
-- Missing catalog registry paths: ${report.summary.entries_without_catalog_registry_path}
+- Additional catalog bindings: ${report.summary.additional_binding_count}
+- Additional binding conflicts: ${report.summary.conflicting_bindings}
+- Canonical lifecycle/status differences: ${report.summary.entries_with_status_differences}
+- Additional binding lifecycle/status differences: ${report.summary.additional_bindings_with_status_differences}
+- Missing canonical catalog registry paths: ${report.summary.entries_without_catalog_registry_path}
 - Catalog-only rows: ${report.summary.catalog_only_entries}
 
-The compiler joins callable entries to API Core by \`wrangle_key\`. A missing row,
-duplicate identity, key mismatch, kind mismatch, or title mismatch fails the build.
+The canonical row has \`catalog_key = wrangle_key\`; additional catalog keys may
+share its callable. Canonical identity never depends on snapshot order. A missing
+canonical row, duplicate identity/key, or incompatible kind fails the build.
+Canonical titles must match Docs; additional bindings retain their own titles.
 Status and path differences remain visible migration work and do not silently
 change the executable contract.
+
+## Additional bindings
+
+| Catalog ID | Catalog key | Wrangle key | Canonical catalog ID |
+| --- | --- | --- | --- |
+${report.additional_bindings.map((binding) => `| \`${binding.catalog_id}\` | \`${binding.catalog_key}\` | \`${binding.wrangle_key}\` | \`${binding.canonical_catalog_id}\` |`).join('\n') || '| — | none | — | — |'}
 
 ## Status differences
 
@@ -2344,6 +2386,32 @@ function buildOutputs(
     JSON.stringify(reconciliationSummary, null, 2),
   );
 
+  const catalogBindings = publicEntries.flatMap((entry) =>
+    entry.catalogBindings.map((binding) => ({
+      catalog_id: binding.catalog_id,
+      catalog_key: binding.catalog_key,
+      catalog_status: binding.status,
+      kind: binding.kind,
+      title: binding.title,
+      wrangle_key: entry.metadata.wrangle_key,
+      canonical_catalog_id: entry.catalog.catalog_id,
+      contract_json: `/registry/${posixPath(entryContractRelativePath(entry))}`,
+      route: entryRoute(entry),
+    })),
+  ).sort((left, right) => left.catalog_key.localeCompare(right.catalog_key));
+  addBundleArtifact(
+    bundleMembers,
+    '/registry/catalog/bindings.json',
+    path.join(rawOutputRoot, 'catalog', 'bindings.json'),
+    JSON.stringify({
+      format: 'wrangles-catalog-bindings',
+      format_version: '0.1',
+      registry_version: REGISTRY_VERSION,
+      entry_count: catalogBindings.length,
+      entries: catalogBindings,
+    }, null, 2),
+  );
+
   const integrity = buildBundleIntegrity(bundleMembers);
   const manifest = {
     format: 'wrangles-registry',
@@ -2365,6 +2433,7 @@ function buildOutputs(
       source: catalogSnapshot.source,
       entry_count: catalogSnapshot.entry_count,
       callable_entry_count: catalogReconciliation.summary.matched_entries,
+      binding_count: catalogBindings.length,
       catalog_only_entry_count: catalogReconciliation.summary.catalog_only_entries,
       entries_with_status_differences:
         catalogReconciliation.summary.entries_with_status_differences,
@@ -2400,6 +2469,7 @@ function buildOutputs(
       recipe_writer_schema: '/schemas/recipes/registry/recipe-writer.schema.json',
       entry_schema: '/registry/schema/wrangle-entry.schema.json',
       catalog_snapshot: '/registry/catalog/api-core.json',
+      catalog_bindings: '/registry/catalog/bindings.json',
       catalog_snapshot_schema: '/registry/schema/catalog-snapshot.schema.json',
       catalog_reconciliation: '/registry/catalog/reconciliation.json',
       compiled_contract_schema: '/registry/schema/wrangle-contract.schema.json',
