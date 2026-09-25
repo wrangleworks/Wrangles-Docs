@@ -14,16 +14,18 @@ The catalog gives every Registry-backed capability a database identity and lets 
 
 Recommended v1 columns:
 
-| Column | Type | Purpose |
+| Column | Data Type | Purpose |
 | --- | --- | --- |
 | `catalog_id` | `bigint` | Database-generated primary key. This is the value stored on `models.catalog_id`. |
-| `catalog_key` | `text` | Stable catalog key, for example `extract.custom`, `extract.ai`, `lookup.key`, `lookup.semantic`, `map`. |
-| `kind` | `text` | Entry category. For Registry wrangles this is usually `wrangle`. |
-| `wrangle_key` | `text` | Registry wrangle key used to locate documentation or execution metadata. Usually same as `catalog_key`, but can differ for aliases such as `lookup.key` mapping to `lookup`. |
-| `title` | `text` | Human-readable title, for example `Custom`, `AI`, `Attributes`, `Map`. |
-| `registry_path` | `text` | Optional path to the Registry docs source. Can be `null` in v1. |
-| `status` | `text` | Catalog entry status, for example `active`. |
-| `source` | `text` | Source system, for example `registry-docs`. |
+| `catalog_kind` | `text` | Catalog entry category. Registry types will be `wrangle`, `connector`, `recipe`, `guide`.|
+| `wrangle_type` | `text` | Types of wrangles. Current list is `extract`, `standardize`, `classify`, `lookup` and `map`. This is `purpose` in models table. More will be added, and wrangles can be moved between types. |
+| `catalog_key` | `text` | Stable catalog path, for example `extract.custom`, `extract.ai`, `lookup.key`, `lookup.semantic`, `map`. Can be mutated. |
+| `wranglesPY_key` | `text` | Generated key (by ?) that provides function execution path. Can differ from `catalog_key` when there are aliases such as `lookup.key` or catlog reorganization. |
+| `title` | `text` | (remove? it will be maintained in md) Human-readable title, for example `Custom`, `AI`, `Attributes`, `Map`. |
+| `okf_path` | `text` | Future path to the public Open Knowledge Format markdown file. |
+| `status` | `text` | Catalog entry status, for example `active`. Other values `deprecated`, `draft`, ... |
+| `notes` | `text` | Comments for reference to status / transitions / updates etc.
+| `source` | `text` | (remove?) Source system, for example `registry-docs`. |
 | `created_at` | `timestamptz` | Creation timestamp. |
 | `updated_at` | `timestamptz` | Last update timestamp. |
 
