@@ -6,7 +6,7 @@ const config = {
   tagline: "There's a process for that!",
   favicon: 'img/favicon.ico',
 
-  url: 'https://wrangles.io',
+  url: 'https://wrangles.com',
   baseUrl: '/',
 
   onBrokenLinks: 'warn',
