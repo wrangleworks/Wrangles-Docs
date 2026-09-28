@@ -47,12 +47,12 @@
 }
 
 .tocToggle:hover {
-  background: #eef6ff;
-  border-color: #1976d2;
+  background: #e8f2f7;
+  border-color: #176c9a;
 }
 
 .tocToggle:focus-visible {
-  outline: 3px solid rgba(25, 118, 210, 0.35);
+  outline: 3px solid rgba(23, 108, 154, 0.35);
   outline-offset: 2px;
 }
 
@@ -77,4 +77,3 @@
 .chevronExpand {
   transform: rotate(135deg);
 }
-
