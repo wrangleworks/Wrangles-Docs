@@ -293,6 +293,23 @@ function WrangleIcon({category}) {
   return <span className={styles.wrangleIcon}>{CATEGORY_ICONS[category] ?? category.slice(0, 2)}</span>;
 }
 
+function RecipeIcon() {
+  return (
+    <svg aria-hidden="true" className={styles.recipeIcon} viewBox="0 0 24 24" fill="none">
+      <path d="m4 20 4.25-1 10.9-10.9a2.15 2.15 0 0 0-3.05-3.04L5.2 15.95 4 20Z" />
+      <path d="m14.75 6.4 3.05 3.05" />
+    </svg>
+  );
+}
+
+function PlayIcon() {
+  return (
+    <svg aria-hidden="true" className={styles.playIcon} viewBox="0 0 24 24">
+      <path d="M7.5 4.75v14.5L19 12 7.5 4.75Z" />
+    </svg>
+  );
+}
+
 function TableEditor({
   table,
   onCellChange,
@@ -998,16 +1015,25 @@ export default function WrangleFlowPlayground() {
   return (
     <div className={styles.page}>
       <header className={styles.appBar}>
-        <div>
-          <h1>Wrangles Sandbox</h1>
-          <span>Interactive recipe workspace</span>
+        <div className={styles.appTitle}>
+          <RecipeIcon />
+          <div>
+            <h1>Recipe Playground</h1>
+            <span>Build, preview, and run a Wrangles recipe</span>
+          </div>
         </div>
         <div className={styles.appActions}>
           <button type="button" className={styles.secondaryButton} onClick={resetBoard}>
-            Reset Board
+            Reset
           </button>
-          <button type="button" className={styles.primaryButton} onClick={runBoard} disabled={isRunning}>
-            {isRunning ? 'Running...' : 'Run Board'}
+          <button
+            type="button"
+            className={styles.runButton}
+            onClick={runBoard}
+            disabled={isRunning}
+            aria-label={isRunning ? 'Recipe is running' : 'Run recipe'}
+            title={isRunning ? 'Recipe is running' : 'Run recipe'}>
+            <PlayIcon />
           </button>
         </div>
       </header>
@@ -1077,12 +1103,12 @@ export default function WrangleFlowPlayground() {
           <div className={styles.recipePanel}>
             <div className={styles.panelHeader}>
               <div>
-                <h2>Generated YAML</h2>
-                <p>Updates as blocks change.</p>
+                <h2>Recipe</h2>
+                <p>Live YAML preview</p>
               </div>
               <span className={styles.recipeMeta}>{blocks.length} wrangles</span>
             </div>
-            <CodeBlock language="yaml">{recipeYaml}</CodeBlock>
+            <CodeBlock language="yaml" showLineNumbers>{recipeYaml}</CodeBlock>
             {notice ? <p className={styles.notice}>{notice}</p> : null}
             {error ? <p className={styles.error}>{error}</p> : null}
           </div>

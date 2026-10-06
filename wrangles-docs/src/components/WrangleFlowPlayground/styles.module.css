@@ -18,27 +18,69 @@
   --focus: #176c9a;
   --danger: #dc2626;
   --shadow: 0 12px 28px rgba(31, 35, 40, 0.08);
+  --recipe-background: #1e1e1e;
+  --recipe-border: #3f3f46;
+  --recipe-foreground: #d4d4d4;
+  --recipe-key: #42d3c1;
+  --recipe-string: #d99a7e;
+  --recipe-constant: #61aeee;
+  --recipe-keyword: #61aeee;
+  --recipe-variable: #e5a171;
+  --recipe-comment: #6a9955;
+  --ww-code-background: var(--recipe-background);
+  --ww-code-border: var(--recipe-border);
+  --ww-code-foreground: var(--recipe-foreground);
+  --ww-code-key: var(--recipe-key);
+  --ww-code-string: var(--recipe-string);
+  --ww-code-constant: var(--recipe-constant);
+  --ww-code-keyword: var(--recipe-keyword);
+  --ww-code-variable: var(--recipe-variable);
+  --ww-code-comment: var(--recipe-comment);
+  align-content: start;
   background: var(--bg);
   border: 1px solid var(--border);
   border-radius: 10px;
   color: var(--ink);
   display: grid;
   font-family: Inter, Roboto, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  grid-template-rows: auto minmax(42rem, calc(100vh - 10rem));
+  grid-template-rows: max-content minmax(42rem, calc(100vh - 10rem));
   margin: -0.5rem calc(50% - 50vw) 2rem;
   min-height: calc(100vh - 8rem);
-  overflow: hidden;
+  overflow: clip;
 }
 
 .appBar {
   align-items: center;
+  align-self: start;
   background: #ffffff;
   border-bottom: 1px solid var(--border);
   display: flex;
   gap: 1rem;
+  height: 4rem;
   justify-content: space-between;
   min-height: 4rem;
   padding: 0.75rem 1rem;
+  position: sticky;
+  top: var(--ifm-navbar-height);
+  z-index: 30;
+  box-shadow: 0 5px 16px rgba(31, 35, 40, 0.12);
+}
+
+.appTitle {
+  align-items: center;
+  display: flex;
+  gap: 0.7rem;
+  min-width: 0;
+}
+
+.recipeIcon {
+  flex: 0 0 auto;
+  height: 1.7rem;
+  stroke: var(--ink);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.7;
+  width: 1.7rem;
 }
 
 .appBar h1 {
@@ -65,6 +107,7 @@
 
 .primaryButton,
 .secondaryButton,
+.runButton,
 .paletteCard button,
 .nodeActions button,
 .addColumnHeader button,
@@ -88,7 +131,8 @@
 }
 
 .primaryButton,
-.secondaryButton {
+.secondaryButton,
+.runButton {
   min-height: 2.25rem;
   padding: 0 0.85rem;
 }
@@ -110,6 +154,30 @@
   color: var(--muted-strong);
 }
 
+.runButton {
+  background: #ffffff;
+  border: 1px solid #aeb3b7;
+  border-radius: 8px;
+  color: #0868a0;
+  height: 2.8rem;
+  min-height: 2.8rem;
+  padding: 0;
+  width: 3.25rem;
+  box-shadow: 0 1px 2px rgba(31, 35, 40, 0.12);
+}
+
+.runButton:hover:not(:disabled) {
+  background: #f4f9fc;
+  border-color: #0868a0;
+  color: #064f7a;
+}
+
+.playIcon {
+  fill: currentColor;
+  height: 1.7rem;
+  width: 1.7rem;
+}
+
 .secondaryButton:hover,
 .paletteCard button:hover,
 .nodeActions button:hover,
@@ -122,6 +190,7 @@
 
 .primaryButton:disabled,
 .secondaryButton:disabled,
+.runButton:disabled,
 .addColumnHeader button:disabled,
 .addRowButton:disabled,
 .inlineDangerButton:disabled {
@@ -131,6 +200,7 @@
 
 .primaryButton:focus-visible,
 .secondaryButton:focus-visible,
+.runButton:focus-visible,
 .paletteCard button:focus-visible,
 .nodeActions button:focus-visible,
 .addColumnHeader button:focus-visible,
@@ -817,14 +887,15 @@
 }
 
 .recipePanel :global(.theme-code-block) {
-  background: var(--ww-code-background) !important;
-  border: 1px solid var(--ww-code-border);
+  background: var(--recipe-background) !important;
+  border: 1px solid var(--recipe-border);
   border-radius: 8px;
   box-shadow: none;
   min-height: 0;
   overflow: auto;
-  --prism-background-color: var(--ww-code-background) !important;
-  --prism-color: var(--ww-code-foreground) !important;
+  --prism-background-color: var(--recipe-background) !important;
+  --prism-color: var(--recipe-foreground) !important;
+  scrollbar-color: #515151 var(--recipe-background);
 }
 
 .recipePanel :global(.codeBlockContent_QJqH),
@@ -834,40 +905,46 @@
 
 .recipePanel :global(.theme-code-block pre),
 .recipePanel :global(.theme-code-block code) {
-  background: var(--ww-code-background) !important;
-  color: var(--ww-code-foreground) !important;
+  background: var(--recipe-background) !important;
+  color: var(--recipe-foreground) !important;
   font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
-  font-size: 0.8rem;
+  font-size: 0.84rem;
+  line-height: 1.62;
 }
 
 .recipePanel :global(.token-line) {
-  color: var(--ww-code-foreground) !important;
+  color: var(--recipe-foreground) !important;
+}
+
+.recipePanel :global([class*='codeLineNumber']) {
+  color: #858585 !important;
+  opacity: 1;
 }
 
 .recipePanel :global(.token.plain) {
-  color: var(--ww-code-string) !important;
+  color: var(--recipe-string) !important;
 }
 
 .recipePanel :global(.token.key),
 .recipePanel :global(.token.atrule),
 .recipePanel :global(.token.property),
 .recipePanel :global(.token.attr-name) {
-  color: var(--ww-code-key) !important;
+  color: var(--recipe-key) !important;
 }
 
 .recipePanel :global(.token.string),
 .recipePanel :global(.token.scalar) {
-  color: var(--ww-code-string) !important;
+  color: var(--recipe-string) !important;
 }
 
 .recipePanel :global(.token.punctuation),
 .recipePanel :global(.token.operator) {
-  color: var(--ww-code-foreground) !important;
+  color: var(--recipe-foreground) !important;
 }
 
 .recipePanel :global(.token.number),
 .recipePanel :global(.token.datetime) {
-  color: var(--ww-code-constant) !important;
+  color: var(--recipe-constant) !important;
 }
 
 .recipePanel :global(.token.keyword),
@@ -875,28 +952,28 @@
 .recipePanel :global(.token.null),
 .recipePanel :global(.token.important),
 .recipePanel :global(.token.tag) {
-  color: var(--ww-code-keyword) !important;
+  color: var(--recipe-keyword) !important;
 }
 
 .recipePanel :global(.token.anchor),
 .recipePanel :global(.token.alias),
 .recipePanel :global(.token.directive) {
-  color: var(--ww-code-variable) !important;
+  color: var(--recipe-variable) !important;
 }
 
 .recipePanel :global(.token.comment) {
-  color: var(--ww-code-comment) !important;
+  color: var(--recipe-comment) !important;
   font-style: italic;
 }
 
 .recipePanel :global(.theme-code-block button) {
-  background: #161b22;
-  border: 1px solid var(--ww-code-border);
-  color: var(--ww-code-foreground);
+  background: #2a2a2a;
+  border: 1px solid var(--recipe-border);
+  color: var(--recipe-foreground);
 }
 
 .recipePanel :global(.theme-code-block button:hover) {
-  background: #21262d;
+  background: #353535;
   color: #ffffff;
 }
 
@@ -1037,10 +1114,17 @@
     margin: 0 0 2rem;
   }
 
-  .appBar,
   .workspace {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
+  }
+
+  .appBar {
+    display: flex;
+    flex-direction: row;
+    height: 4rem;
+    position: sticky;
+    top: var(--ifm-navbar-height);
   }
 
   .leftPane,
@@ -1051,6 +1135,21 @@
 
   .centerPane {
     grid-template-rows: minmax(18rem, auto) minmax(18rem, auto);
+  }
+
+  .runButton {
+    flex: 0 0 3.25rem;
+    padding: 0;
+  }
+}
+
+@media (max-width: 560px) {
+  .appTitle > div > span {
+    display: none;
+  }
+
+  .appActions {
+    margin-left: auto;
   }
 }
 
