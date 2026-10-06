@@ -8,11 +8,13 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
+import CopyableCode from '@site/src/components/CopyableCode';
+
 # Transform Wrangles
 
 Transform wrangles, with recipe examples, parameters, and behavior.
 
-## Copy {#copy}
+## Copy <CopyableCode value="copy" /> {#copy}
 
 Make a copy of a column or a list of columns.
 
@@ -138,7 +140,7 @@ wrangles:
 
 ---
 
-## Reindex {#reindex}
+## Reindex <CopyableCode value="reindex" /> {#reindex}
 
 Changes the row labels and column labels of a DataFrame.
 
@@ -251,7 +253,7 @@ wrangles:
 
 ---
 
-## Rename {#rename}
+## Rename <CopyableCode value="rename" /> {#rename}
 
 Rename a column or list of columns.
 
@@ -266,10 +268,10 @@ Rename a column or list of columns.
 | <span className="ww-param-group-label">I/O</span> |  |  |  |  |
 | `input` | Name or list of input columns. | string, integer, array, null | `null` | No |
 | `output` | Name or list of output columns. | string, array, null | `null` | No |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
 | <span className="ww-param-group-label">Execution</span> |  |  |  |  |
 | `wrangles` | Use wrangles to transform the column names. The input is named 'columns' and the final result must also include the column named 'columns'. This can only be used instead of the standard rename. | array, null | `null` | No |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
 
 </div>
 
@@ -426,7 +428,7 @@ wrangles:
 
 ---
 
-## Transpose {#transpose}
+## Transpose <CopyableCode value="transpose" /> {#transpose}
 
 Transpose the DataFrame (swap columns to rows).
 

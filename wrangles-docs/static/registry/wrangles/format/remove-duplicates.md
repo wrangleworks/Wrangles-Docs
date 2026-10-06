@@ -82,7 +82,7 @@ wrangles:
     - format.remove_duplicates:
         input: Attack of the Clones
         output: Commander
-        where: Rank = Commander
+        where: Rank = 'Commander'
 ```
 
 <div className="ww-sample-grid">

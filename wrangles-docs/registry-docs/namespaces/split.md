@@ -8,11 +8,13 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
+import CopyableCode from '@site/src/components/CopyableCode';
+
 # Split Wrangles
 
 Split wrangles, with recipe examples, parameters, and behavior.
 
-## Explode {#explode}
+## Explode <CopyableCode value="explode" /> {#explode}
 
 Explode a column of lists into rows.
 
@@ -113,7 +115,7 @@ wrangles:
 
 ---
 
-## Dictionary {#dictionary}
+## Dictionary <CopyableCode value="split.dictionary" /> {#dictionary}
 
 Split one or more dictionaries into columns. The dictionary keys will be returned as the new column headers. If the dictionaries contain overlapping values, the last value will be returned.
 
@@ -130,12 +132,12 @@ Split a dictionary into columns. The dictionary keys are used as the new column 
 | `output` | In columns output_format, this is an optional subset of keys to extract from the dictionary. If not provided, all keys will be returned. Columns can be renamed with the following syntax: output: - key1: new_column_name1 - key2: new_column_name2 In to_lists output_format, this must be two output columns for the keys and values lists. If not provided, Keys and Values will be used. | string, array, null | `null` | No |
 | <span className="ww-param-group-label">Formatting</span> |  |  |  |  |
 | `output_format` | How to split the dictionary. columns creates one output column for each dictionary key. to_lists creates two output columns containing lists of keys and values. | string; one of:<ul className="ww-param-enum-values"><li>columns</li><li>to_lists</li></ul> | `"columns"` | No |
+| <span className="ww-param-group-label">Errors</span> |  |  |  |  |
+| `default` | Provide a set of default headings and values if they are not found within the input. | object, null | `null` | No |
 | <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
 | `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
 | `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
 | `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-| <span className="ww-param-group-label">Errors</span> |  |  |  |  |
-| `default` | Provide a set of default headings and values if they are not found within the input. | object, null | `null` | No |
 
 </div>
 
@@ -367,7 +369,7 @@ wrangles:
 
 ---
 
-## List {#list}
+## List <CopyableCode value="split.list" /> {#list}
 
 Split a list in a single column to multiple columns.
 
@@ -493,7 +495,7 @@ wrangles:
 
 ---
 
-## Text {#text}
+## Text <CopyableCode value="split.text" /> {#text}
 
 Split a string to multiple columns or a list.
 
@@ -728,7 +730,7 @@ wrangles:
 
 ---
 
-## Tokenize {#tokenize}
+## Tokenize <CopyableCode value="split.tokenize" /> {#tokenize}
 
 Split text into tokens. A variety of methods are available. The default method is to split on spaces.
 

@@ -8,7 +8,9 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
-# Embeddings
+import CopyableCode from '@site/src/components/CopyableCode';
+
+# Embeddings <CopyableCode value="create.embeddings" />
 
 Create an embedding based on text input.
 
@@ -28,10 +30,6 @@ Create an embedding based on text input.
 | <span className="ww-param-group-label">Formatting</span> |  |  |  |  |
 | `output_type` | Output the embeddings as a numpy array or a python list Default - python list. | string; one of:<ul className="ww-param-enum-values"><li>numpy array</li><li>python list</li></ul> | `"python list"` | No |
 | `precision` | The precision of the embeddings. Default is float32. This should be used with output_type numpy array. | string; one of:<ul className="ww-param-enum-values"><li>float16</li><li>float32</li></ul> | `"float32"` | No |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
-| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
 | <span className="ww-param-group-label">Execution</span> |  |  |  |  |
 | `batch_size` | The number of rows to submit per individual request. | integer | `100` | No |
 | `threads` | The number of requests to submit in parallel. Each request contains the number of rows set as batch_size. | integer | `10` | No |
@@ -42,6 +40,10 @@ Create an embedding based on text input.
 | `model` | The specific model to use to generate the embeddings. | string | `"text-embedding-3-small"` | No |
 | `url` | The endpoint to send embedding requests to. Defaults to the standard endpoint for the resolved provider. Setting a Jina URL without an explicit provider will automatically use Jina's request/response format. | string | `"https://api.openai.com/v1/embeddings"` | No |
 | `provider` | Controls the request/response format for the embedding API. When omitted, inferred from url (jina.ai → jina, otherwise openai). Setting provider also sets the default url for that provider, so you only need one of provider or url for standard endpoints. Use both together only when pointing to a custom endpoint that uses a non-default provider's API format (e.g. a Jina-compatible proxy). | string, null; one of:<ul className="ww-param-enum-values"><li>openai</li><li>jina</li></ul> | `null` | No |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
 
 </div>
 

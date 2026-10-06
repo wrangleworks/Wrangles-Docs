@@ -8,7 +8,9 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
-# Dictionaries
+import CopyableCode from '@site/src/components/CopyableCode';
+
+# Dictionaries <CopyableCode value="merge.dictionaries" />
 
 Take dictionaries in multiple columns and merge them to a single dictionary.
 

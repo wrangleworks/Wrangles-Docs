@@ -8,7 +8,9 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
-# Recipe
+import CopyableCode from '@site/src/components/CopyableCode';
+
+# Recipe <CopyableCode value="recipe" />
 
 Run another recipe as a wrangle against the current dataframe.
 
@@ -29,12 +31,12 @@ This guidance was derived from the callable signature and its embedded Python sc
 | `output` | Name or list of output columns. | string, array, null | `null` | No |
 | <span className="ww-param-group-label">Options</span> |  |  |  |  |
 | `name` | File name of the recipe. | string, null | `null` | No |
+| <span className="ww-param-group-label">Execution</span> |  |  |  |  |
+| `variables` | A dictionary of variables to pass to the recipe. | object, null | `null` | No |
 | <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
 | `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
 | `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
 | `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-| <span className="ww-param-group-label">Execution</span> |  |  |  |  |
-| `variables` | A dictionary of variables to pass to the recipe. | object, null | `null` | No |
 
 </div>
 

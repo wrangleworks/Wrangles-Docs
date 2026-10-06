@@ -8,11 +8,13 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
+import CopyableCode from '@site/src/components/CopyableCode';
+
 # Extract Wrangles
 
 Extract wrangles, with recipe examples, parameters, and behavior.
 
-## Address {#address}
+## Address <CopyableCode value="extract.address" /> {#address}
 
 Extract parts of addresses. Requires WrangleWorks Account.
 
@@ -113,7 +115,7 @@ wrangles:
 
 ---
 
-## AI {#ai}
+## AI <CopyableCode value="extract.ai" /> {#ai}
 
 Extract structured data from each input row using an AI model. Define the desired fields with output, or reuse a saved definition with model_id.
 
@@ -139,10 +141,6 @@ For saved extract.ai models, this is the preferred calling pattern compared with
 | <span className="ww-param-group-label">Formatting</span> |  |  |  |  |
 | `output_format` | How extracted fields are written. columns writes one dataframe column per field (default); dictionary keeps one object; concatenate joins fields into one string using char. | string, null; one of:<ul className="ww-param-enum-values"><li>dictionary</li><li>columns</li><li>concatenate</li></ul> | `null` | No |
 | `char` | Separator used only when output_format is concatenate. Defaults to comma-space. | string | `", "` | No |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
-| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
 | <span className="ww-param-group-label">Execution</span> |  |  |  |  |
 | `threads` | Maximum number of row-level requests sent in parallel. The configured default is 32. | integer | — | No |
 | `timeout` | Maximum seconds for one HTTP attempt. The configured default is 12; deadline can end the overall call sooner. | number | — | No |
@@ -162,6 +160,10 @@ For saved extract.ai models, this is the preferred calling pattern compared with
 | `strict` | Require OpenAI structured-output strict mode. Defaults to true. Definitions with dynamic dictionary keys automatically switch to non-strict provider mode and are still validated locally. | boolean | — | No |
 | `reasoning` | Responses API reasoning controls. Set effort for reasoning-capable models. The configured default is none when that model supports it; otherwise the provider default applies. | object | — | No |
 | `verbosity` | Responses API text verbosity for compatible models. Defaults to low when supported; ignored with a warning for incompatible models. | string; one of:<ul className="ww-param-enum-values"><li>low</li><li>medium</li><li>high</li></ul> | — | No |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
 
 </div>
 
@@ -323,7 +325,7 @@ wrangles:
 
 ---
 
-## Attributes {#attributes}
+## Attributes <CopyableCode value="extract.attributes" /> {#attributes}
 
 Extract numeric attributes from the input such as weights or lengths. Requires WrangleWorks Account.
 
@@ -486,7 +488,7 @@ _No sample available._
 
 ---
 
-## Brackets {#brackets}
+## Brackets <CopyableCode value="extract.brackets" /> {#brackets}
 
 Extract text properties in brackets from the input.
 
@@ -590,7 +592,7 @@ wrangles:
 
 ---
 
-## Codes {#codes}
+## Codes <CopyableCode value="extract.codes" /> {#codes}
 
 Extract alphanumeric codes from the input. Requires WrangleWorks Account.
 
@@ -729,7 +731,7 @@ wrangles:
 
 ---
 
-## Custom {#custom}
+## Custom <CopyableCode value="extract.custom" /> {#custom}
 
 Extract data from the input using a DIY or bespoke extraction wrangle. Requires WrangleWorks Account and Subscription.
 
@@ -759,12 +761,12 @@ Non-regex pattern matching extracts whole-word matches separated by word boundar
 | `include_empty_labels` | Include labels with no found values in the output when using use_labels=True. | boolean | `true` | No |
 | `output_format` | Format of the extract output. | string, null; one of:<ul className="ww-param-enum-values"><li>list</li><li>dictionary</li><li>columns</li><li>concatenate</li></ul> | `null` | No |
 | `char` | Character to use when output_format is concatenate. | string | `", "` | No |
+| <span className="ww-param-group-label">Details</span> |  |  |  |  |
+| `model_id` | The ID of the wrangle to use. | string, array | — | Yes |
 | <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
 | `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
 | `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
 | `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-| <span className="ww-param-group-label">Details</span> |  |  |  |  |
-| `model_id` | The ID of the wrangle to use. | string, array | — | Yes |
 
 </div>
 
@@ -915,7 +917,7 @@ _No sample available._
 
 ---
 
-## Date Properties {#date-properties}
+## Date Properties <CopyableCode value="extract.date_properties" /> {#date-properties}
 
 Extract date properties from a date (day, month, year, etc...).
 
@@ -1010,7 +1012,7 @@ wrangles:
 
 ---
 
-## Date Range {#date-range}
+## Date Range <CopyableCode value="extract.date_range" /> {#date-range}
 
 Extract date range frequency from two dates.
 
@@ -1105,7 +1107,7 @@ _No sample available._
 
 ---
 
-## HTML {#html}
+## HTML <CopyableCode value="extract.html" /> {#html}
 
 Extract elements from strings containing html. Requires WrangleWorks Account.
 
@@ -1235,7 +1237,7 @@ wrangles:
 
 ---
 
-## Properties {#properties}
+## Properties <CopyableCode value="extract.properties" /> {#properties}
 
 Extract text properties from the input. Requires WrangleWorks Account.
 
@@ -1364,7 +1366,7 @@ _No sample available._
 
 ---
 
-## Regex {#regex}
+## Regex <CopyableCode value="extract.regex" /> {#regex}
 
 Extract matches or specific capture groups using regex.
 

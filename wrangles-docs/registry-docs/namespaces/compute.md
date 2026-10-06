@@ -8,11 +8,13 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
+import CopyableCode from '@site/src/components/CopyableCode';
+
 # Compute Wrangles
 
 Compute wrangles, with recipe examples, parameters, and behavior.
 
-## Case When {#case-when}
+## Case When <CopyableCode value="compute.case_when" /> {#case-when}
 
 Assign values to a column based on conditional logic.
 
@@ -167,7 +169,7 @@ wrangles:
 
 ---
 
-## Score Search Results {#score-search-results}
+## Score Search Results <CopyableCode value="compute.score_search_results" /> {#score-search-results}
 
 Scores and filters search results based on progressive partial/exact matching. Can return dictionaries or a parallel list of formatted strings.
 
@@ -286,7 +288,7 @@ _Template based on the documented parameters; no published source example is cur
 
 ---
 
-## Math {#math}
+## Math <CopyableCode value="math" /> {#math}
 
 Apply a mathematical calculation.
 
@@ -386,7 +388,7 @@ wrangles:
 
 ---
 
-## Python {#python}
+## Python <CopyableCode value="python" /> {#python}
 
 Apply a simple single-line python command. For more complex python use a custom function. Note, this evaluates the python command - be especially cautious including variables from untrusted sources within the command string. The python command will be evaluated once for each row and the result returned. Reference column values by using their name. Non-alphanumeric characters within column names are replaced by underscores (_) Additionally, all columns are available as a dict named kwargs. Additional parameters set for the wrangle will also be available to the command.
 
@@ -407,12 +409,12 @@ This wrangle evaluates the Python command. Be cautious when including variables 
 | `input` | Name or list of input column(s) to filter the data available to the command. Useful in conjunction with kwargs to target a variable range of columns. If not specified, all columns will be available. | string, integer, array, null | `null` | No |
 | <span className="ww-param-group-label">Options</span> |  |  |  |  |
 | `command` | Python command. This must return a value. Note: any non-alphanumeric characters in variable names are replaced by underscores (_). | string | — | Yes |
+| <span className="ww-param-group-label">Errors</span> |  |  |  |  |
+| `except` | Value to return for the row if an exception occurs during the evaluation. If not provided, an exception will be raised as normal. If multiple output columns are specified, this must match the length. | string, array, number, integer, boolean, object | — | No |
 | <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
 | `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
 | `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
 | `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-| <span className="ww-param-group-label">Errors</span> |  |  |  |  |
-| `except` | Value to return for the row if an exception occurs during the evaluation. If not provided, an exception will be raised as normal. If multiple output columns are specified, this must match the length. | string, array, number, integer, boolean, object | — | No |
 
 </div>
 
@@ -516,7 +518,7 @@ _No sample available._
 
 ---
 
-## SQL {#sql}
+## SQL <CopyableCode value="sql" /> {#sql}
 
 Apply a SQL command to the current dataframe. Only SELECT statements are supported - the result will be the output.
 
@@ -620,10 +622,10 @@ wrangles:
 
 ---
 
-## Maths (Deprecated) {#maths}
+## Maths (Deprecated) <CopyableCode value="maths" /> {#maths}
 
 :::warning Deprecated
-This compatibility wrangle remains available for existing recipes. Use [`math`](/wrangles/namespaces/compute#math) for new recipes.
+This compatibility wrangle remains available for existing recipes. Use [`math`](/py/namespaces/compute#math) for new recipes.
 :::
 
 Deprecated alias for `math`; evaluate an expression and write its result to an output column.
@@ -678,7 +680,7 @@ This guidance was derived from the callable signature.
 | Lifecycle status | deprecated |
 | Recipe Writer eligible | No |
 | Recipe Writer exclusion | Deprecated compatibility key; use math. |
-| Replaced by | [`math`](/wrangles/namespaces/compute#math) |
+| Replaced by | [`math`](/py/namespaces/compute#math) |
 | Namespace | Root-level |
 | Documentation group | `compute` |
 | Aliases | None |

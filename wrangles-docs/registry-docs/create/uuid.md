@@ -8,7 +8,9 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
-# UUID
+import CopyableCode from '@site/src/components/CopyableCode';
+
+# UUID <CopyableCode value="create.uuid" />
 
 Create column(s) with a UUID.
 

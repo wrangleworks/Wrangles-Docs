@@ -8,11 +8,13 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
+import CopyableCode from '@site/src/components/CopyableCode';
+
 # Select Wrangles
 
 Select wrangles, with recipe examples, parameters, and behavior.
 
-## Drop {#drop}
+## Drop <CopyableCode value="drop" /> {#drop}
 
 Drop (Delete) selected column(s).
 
@@ -103,7 +105,7 @@ wrangles:
 
 ---
 
-## Filter {#filter}
+## Filter <CopyableCode value="filter" /> {#filter}
 
 Filter the dataframe based on the contents. If multiple filters are specified, all must be correct. For complex filters, use the where parameter.
 
@@ -213,7 +215,7 @@ wrangles:
 
 ---
 
-## Columns {#columns}
+## Columns <CopyableCode value="select.columns" /> {#columns}
 
 Select columns from the dataframe.
 
@@ -305,7 +307,7 @@ wrangles:
 
 ---
 
-## Dictionary Element {#dictionary-element}
+## Dictionary Element <CopyableCode value="select.dictionary_element" /> {#dictionary-element}
 
 Select one or more element of a dictionary.
 
@@ -322,12 +324,12 @@ Select one or more element of a dictionary.
 | `output` | Name of the output column. If omitted, the input column will be replaced. | string, array, null | `null` | No |
 | <span className="ww-param-group-label">Options</span> |  |  |  |  |
 | `element` | The key or keys from the dictionary to select. If a single key is provided, the value will be returned If a lists of keys are selected, the result will be a new dictionary. | string | — | Yes |
+| <span className="ww-param-group-label">Errors</span> |  |  |  |  |
+| `default` | Set the default value to return if the specified element doesn't exist. If selecting multiple elements, a dict of defaults can be set. | string, number, array, object, boolean, null | `""` | No |
 | <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
 | `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
 | `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
 | `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-| <span className="ww-param-group-label">Errors</span> |  |  |  |  |
-| `default` | Set the default value to return if the specified element doesn't exist. If selecting multiple elements, a dict of defaults can be set. | string, number, array, object, boolean, null | `""` | No |
 
 </div>
 
@@ -580,7 +582,7 @@ wrangles:
 
 ---
 
-## Element {#element}
+## Element <CopyableCode value="select.element" /> {#element}
 
 Select elements of lists or dicts using python syntax like col[0]['key'].
 
@@ -595,12 +597,12 @@ Select elements of lists or dictionaries using Python syntax like `col[1:3]['key
 | <span className="ww-param-group-label">I/O</span> |  |  |  |  |
 | `input` | Name of the input column and sub elements This permits by index for lists or dict and by key for dicts e.g. col[0]['key'] // [&#123;"key":"val"&#125;] -&gt; "val". | string, integer, array | — | Yes |
 | `output` | Name of the output column(s). | string, array, null | `null` | No |
+| <span className="ww-param-group-label">Errors</span> |  |  |  |  |
+| `default` | Set the default value to return if the specified element doesn't exist. | string, number, array, object, boolean, null | `null` | No |
 | <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
 | `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
 | `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
 | `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-| <span className="ww-param-group-label">Errors</span> |  |  |  |  |
-| `default` | Set the default value to return if the specified element doesn't exist. | string, number, array, object, boolean, null | `null` | No |
 
 </div>
 
@@ -676,7 +678,7 @@ wrangles:
 
 ---
 
-## Group By {#group-by}
+## Group By <CopyableCode value="select.group_by" /> {#group-by}
 
 Group and aggregate the data.
 
@@ -827,7 +829,7 @@ wrangles:
 
 ---
 
-## Head {#head}
+## Head <CopyableCode value="select.head" /> {#head}
 
 Return the first n rows.
 
@@ -921,7 +923,7 @@ wrangles:
 
 ---
 
-## Highest Confidence {#highest-confidence}
+## Highest Confidence <CopyableCode value="select.highest_confidence" /> {#highest-confidence}
 
 Select the option with the highest confidence from multiple columns. Inputs are expected to be of the form [&lt;&lt;value&gt;&gt;, &lt;&lt;confidence_score&gt;&gt;].
 
@@ -1052,7 +1054,7 @@ wrangles:
 
 ---
 
-## Left {#left}
+## Left <CopyableCode value="select.left" /> {#left}
 
 Return characters from the left of text. Strings shorter than the length defined will be unaffected.
 
@@ -1147,7 +1149,7 @@ wrangles:
 
 ---
 
-## Length {#length}
+## Length <CopyableCode value="select.length" /> {#length}
 
 Calculate the lengths of data in a column. The length depends on the data type e.g. text will be the length of the text, lists will be the number of elements in the list.
 
@@ -1184,7 +1186,7 @@ wrangles:
 
 | Part Code |
 | --- |
-| 6202 |
+| '6202' |
 
 </div>
 
@@ -1239,7 +1241,7 @@ wrangles:
 
 ---
 
-## List Element {#list-element}
+## List Element <CopyableCode value="select.list_element" /> {#list-element}
 
 Select a numbered element of a list (zero indexed).
 
@@ -1256,12 +1258,12 @@ Select a numbered element of a list (zero indexed).
 | `output` | Name of the output column. | string, array, null | `null` | No |
 | <span className="ww-param-group-label">Options</span> |  |  |  |  |
 | `element` | The numbered element of the list to select. Starts from zero. This may use python slicing syntax to select a subset of the list. | integer | `0` | No |
+| <span className="ww-param-group-label">Errors</span> |  |  |  |  |
+| `default` | Set the default value to return if the specified element doesn't exist. | string, number, array, object, boolean, null | `""` | No |
 | <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
 | `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
 | `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
 | `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-| <span className="ww-param-group-label">Errors</span> |  |  |  |  |
-| `default` | Set the default value to return if the specified element doesn't exist. | string, number, array, object, boolean, null | `""` | No |
 
 </div>
 
@@ -1339,7 +1341,7 @@ wrangles:
 
 ---
 
-## Right {#right}
+## Right <CopyableCode value="select.right" /> {#right}
 
 Return characters from the right of text. Strings shorter than the length defined will be unaffected.
 
@@ -1434,7 +1436,7 @@ wrangles:
 
 ---
 
-## Sample {#sample}
+## Sample <CopyableCode value="select.sample" /> {#sample}
 
 Return a random sample of the rows.
 
@@ -1561,7 +1563,7 @@ wrangles:
 
 ---
 
-## Substring {#substring}
+## Substring <CopyableCode value="select.substring" /> {#substring}
 
 Return characters from the middle of text.
 
@@ -1722,7 +1724,7 @@ wrangles:
 
 ---
 
-## Tail {#tail}
+## Tail <CopyableCode value="select.tail" /> {#tail}
 
 Return the last n rows.
 
@@ -1816,7 +1818,7 @@ wrangles:
 
 ---
 
-## Threshold {#threshold}
+## Threshold <CopyableCode value="select.threshold" /> {#threshold}
 
 Select the first option if it exceeds a given threshold, else the second option.
 
@@ -1913,7 +1915,7 @@ wrangles:
 
 ---
 
-## Sort {#sort}
+## Sort <CopyableCode value="sort" /> {#sort}
 
 Sort the data.
 

@@ -8,11 +8,13 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
+import CopyableCode from '@site/src/components/CopyableCode';
+
 # Convert Wrangles
 
 Convert wrangles, with recipe examples, parameters, and behavior.
 
-## Convert Case {#case}
+## Convert Case <CopyableCode value="convert.case" /> {#case}
 
 Change the letter case of text values.
 
@@ -117,7 +119,7 @@ wrangles:
 
 ---
 
-## Convert Data Type {#data-type}
+## Convert Data Type <CopyableCode value="convert.data_type" /> {#data-type}
 
 Convert values to strings, numbers, booleans, or datetimes.
 
@@ -144,12 +146,12 @@ values rather than display-only formatting.
 | `output` | Name or list of output columns. If omitted, each input column is overwritten. | string, array | `null` | No |
 | <span className="ww-param-group-label">Options</span> |  |  |  |  |
 | `data_type` | Data type to produce. | string; one of:<ul className="ww-param-enum-values"><li>str</li><li>float</li><li>int</li><li>bool</li><li>datetime</li></ul> | `"str"` | No |
+| <span className="ww-param-group-label">Errors</span> |  |  |  |  |
+| `default` | Value returned when conversion fails. If omitted, the original value is retained. | string, number, array, object, boolean, null | `null` | No |
 | <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
 | `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
 | `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
 | `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-| <span className="ww-param-group-label">Errors</span> |  |  |  |  |
-| `default` | Value returned when conversion fails. If omitted, the original value is retained. | string, number, array, object, boolean, null | `null` | No |
 
 </div>
 
@@ -227,7 +229,7 @@ wrangles:
 
 ---
 
-## Fraction to Decimal {#fraction-to-decimal}
+## Fraction to Decimal <CopyableCode value="convert.fraction_to_decimal" /> {#fraction-to-decimal}
 
 Convert fractions to decimals.
 
@@ -324,7 +326,7 @@ wrangles:
 
 ---
 
-## Convert From JSON {#from-json}
+## Convert From JSON <CopyableCode value="convert.from_json" /> {#from-json}
 
 Parse JSON text into lists, objects, scalars, booleans, or null values.
 
@@ -349,12 +351,12 @@ need to treat as structured values.
 | <span className="ww-param-group-label">I/O</span> |  |  |  |  |
 | `input` | Name, index, or list of columns containing valid JSON text. | string, integer, array | — | Yes |
 | `output` | Name or list of output columns. If omitted, each input column is overwritten. | string, array | `null` | No |
+| <span className="ww-param-group-label">Errors</span> |  |  |  |  |
+| `default` | Value returned for empty or invalid JSON. A list may supply one fallback per input column. | string, number, array, object, boolean, null | `null` | No |
 | <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
 | `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
 | `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
 | `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-| <span className="ww-param-group-label">Errors</span> |  |  |  |  |
-| `default` | Value returned for empty or invalid JSON. A list may supply one fallback per input column. | string, number, array, object, boolean, null | `null` | No |
 
 </div>
 
@@ -373,8 +375,8 @@ wrangles:
 
 | attributes_json |
 | --- |
-| &#123;"material":"steel","voltage":18&#125; |
-| ["corded","variable speed"] |
+| "&#123;\"material\":\"steel\",\"voltage\":18&#125;" |
+| "[\"corded\",\"variable speed\"]" |
 
 </div>
 
@@ -430,7 +432,7 @@ wrangles:
 
 ---
 
-## From YAML {#from-yaml}
+## From YAML <CopyableCode value="convert.from_yaml" /> {#from-yaml}
 
 Convert a YAML representation into an object.
 
@@ -445,12 +447,12 @@ Convert a YAML representation into an object.
 | <span className="ww-param-group-label">I/O</span> |  |  |  |  |
 | `input` | Name of the input column. | string, integer, array | — | Yes |
 | `output` | Name of the output column. If omitted, the input column will be overwritten. | string, array, null | `null` | No |
+| <span className="ww-param-group-label">Errors</span> |  |  |  |  |
+| `default` | Value to return if the row is empty or fails to be parsed as YAML. If input is a list, default may also be a list - either a single value to apply to all columns, or one value per input column. | string, array, object, number, boolean, null | `null` | No |
 | <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
 | `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
 | `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
 | `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-| <span className="ww-param-group-label">Errors</span> |  |  |  |  |
-| `default` | Value to return if the row is empty or fails to be parsed as YAML. If input is a list, default may also be a list - either a single value to apply to all columns, or one value per input column. | string, array, object, number, boolean, null | `null` | No |
 
 </div>
 
@@ -532,7 +534,7 @@ Product Specs:
 
 ---
 
-## To JSON {#to-json}
+## To JSON <CopyableCode value="convert.to_json" /> {#to-json}
 
 Convert an object to a JSON representation.
 
@@ -630,7 +632,7 @@ wrangles:
 
 ---
 
-## To YAML {#to-yaml}
+## To YAML <CopyableCode value="convert.to_yaml" /> {#to-yaml}
 
 Convert an object to a YAML representation.
 

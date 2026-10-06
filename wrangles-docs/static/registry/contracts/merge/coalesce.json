@@ -95,7 +95,7 @@
     }
   ],
   "examples": [],
-  "guidance": "Take the first non-empty value from a series of columns.\n\n## Migrated examples\n#### Coalescing 3 Columns\n\n##### Recipe\n\n```yaml\nwrangles:\n  - merge.coalesce:\n      input:\n        - Col1\n        - Col2\n        - Col3\n      output: Output Col\n      where: Col2 = E\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n| Col1 | Col2 | Col3 |\n| --- | --- | --- |\n| A | B | C |\n| D | E | F |\n| G | H | I |\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| Col1 | Col2 | Col3 | Output Col |\n| --- | --- | --- | --- |\n| A | B | C |  |\n| D | E | F | D |\n| G | H | I |  |\n\n</div>\n\n</div>",
+  "guidance": "Take the first non-empty value from a series of columns.\n\n## Migrated examples\n#### Coalescing 3 Columns\n\n##### Recipe\n\n```yaml\nwrangles:\n  - merge.coalesce:\n      input:\n        - Col1\n        - Col2\n        - Col3\n      output: Output Col\n      where: Col2 = 'E'\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n| Col1 | Col2 | Col3 |\n| --- | --- | --- |\n| A | B | C |\n| D | E | F |\n| G | H | I |\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| Col1 | Col2 | Col3 | Output Col |\n| --- | --- | --- | --- |\n| A | B | C |  |\n| D | E | F | D |\n| G | H | I |  |\n\n</div>\n\n</div>",
   "sources": [
     {
       "id": "runtime",

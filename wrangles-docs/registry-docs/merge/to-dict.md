@@ -8,7 +8,9 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
-# To Dict
+import CopyableCode from '@site/src/components/CopyableCode';
+
+# To Dict <CopyableCode value="merge.to_dict" />
 
 Take multiple columns and merge them to a dictionary (aka object) using the column headers as keys.
 

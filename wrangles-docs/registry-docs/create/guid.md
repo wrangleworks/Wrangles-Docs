@@ -8,7 +8,9 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
-# GUID
+import CopyableCode from '@site/src/components/CopyableCode';
+
+# GUID <CopyableCode value="create.guid" />
 
 Create column(s) with a GUID.
 

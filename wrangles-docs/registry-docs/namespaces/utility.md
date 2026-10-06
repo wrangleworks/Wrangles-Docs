@@ -8,11 +8,13 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
+import CopyableCode from '@site/src/components/CopyableCode';
+
 # Utility Wrangles
 
 Utility wrangles, with recipe examples, parameters, and behavior.
 
-## Accordion {#accordion}
+## Accordion <CopyableCode value="accordion" /> {#accordion}
 
 Apply a series of wrangles to column(s) containing lists. The wrangles will be applied to each element in the list and the results will be returned back as a list.
 
@@ -28,12 +30,12 @@ Apply a series of wrangles to the individual elements of one or more lists.
 | `input` | The column(s) containing the list(s) that the wrangles will be applied to the elements of. | string, integer, array | — | Yes |
 | `output` | Output of the wrangles to save back to the dataframe. | string, array, null | `null` | No |
 | `propagate` | Limit the column(s) that will be available to the wrangles and replicated for each element. If not specified, all columns will be propogated. This may be useful to limit the memory use for large datasets. | string, array, null | `null` | No |
+| <span className="ww-param-group-label">Execution</span> |  |  |  |  |
+| `wrangles` | List of wrangles to apply. | array | — | Yes |
 | <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
 | `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
 | `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
 | `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-| <span className="ww-param-group-label">Execution</span> |  |  |  |  |
-| `wrangles` | List of wrangles to apply. | array | — | Yes |
 
 </div>
 
@@ -119,7 +121,7 @@ wrangles:
 
 ---
 
-## Batch {#batch}
+## Batch <CopyableCode value="batch" /> {#batch}
 
 Split the data into batches for executing a list of wrangles. Use this in situations such as where the intermediate data is too large to fit in memory.
 
@@ -131,10 +133,6 @@ Execute a series of wrangles in batches. Batches can run in parallel with `threa
 
 | Name | Description | Accepted Values | Default | Required |
 | --- | --- | --- | --- | --- |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
-| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
 | <span className="ww-param-group-label">Execution</span> |  |  |  |  |
 | `wrangles` | The wrangles to execute on the data. Each series of wrangles will be run against the data in batches of the size defined by batch_size. | array | — | Yes |
 | `batch_size` | The number of rows to split each batch into. | integer | `1000` | No |
@@ -143,6 +141,10 @@ Execute a series of wrangles in batches. Batches can run in parallel with `threa
 | `use_multiprocessing` | Use process-based workers instead of threads. This is an advanced runtime option. | boolean | `false` | No |
 | <span className="ww-param-group-label">Errors</span> |  |  |  |  |
 | `on_error` | A dictionary of column_name: value to return if an error occurs while attempting to run a batch. | object, null | `null` | No |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
 
 </div>
 
@@ -234,13 +236,13 @@ wrangles:
 
 ---
 
-## Concurrent {#concurrent}
+## Concurrent <CopyableCode value="concurrent" /> {#concurrent}
 
 Run multiple wrangles concurrently rather than sequentially. Wrangles must specify output columns to be used concurrently. When using concurrent, Wrangles may not complete in a predictable order and it is not recommended to update overlapping columns with different wrangles.
 
 Run multiple wrangles concurrently instead of sequentially. Concurrent wrangles must declare output columns, may finish in any order, and should not update overlapping columns.
 
-See the [Concurrent connector](/python/connectors/concurrent) for the connector equivalent.
+See the [Concurrent connector](/py/python/connectors/concurrent) for the connector equivalent.
 
 ### Parameters
 
@@ -248,14 +250,14 @@ See the [Concurrent connector](/python/connectors/concurrent) for the connector 
 
 | Name | Description | Accepted Values | Default | Required |
 | --- | --- | --- | --- | --- |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
-| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
 | <span className="ww-param-group-label">Execution</span> |  |  |  |  |
 | `wrangles` | The wrangles section of a recipe to execute for each combination of variables. | array | — | Yes |
 | `max_concurrency` | The maximum number of wrangles to execute in parallel. | integer | `10` | No |
 | `use_multiprocessing` | Use process-based workers instead of threads. This is an advanced runtime option. | boolean | `false` | No |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
 
 </div>
 
@@ -339,7 +341,7 @@ wrangles:
 
 ---
 
-## Log {#log}
+## Log <CopyableCode value="log" /> {#log}
 
 Log the current status of the dataframe.
 
@@ -499,13 +501,13 @@ _Logs a sample of rows or status information to the configured destination._
 
 ---
 
-## Matrix {#matrix}
+## Matrix <CopyableCode value="matrix" /> {#matrix}
 
 Apply a matrix of wrangles to the dataframe. This will run the wrangles for each combination of the variables.
 
 Apply a matrix of wrangles to the dataframe. Each wrangle runs for the configured combinations of variables, including recipe variables and variables declared by the `variables` parameter.
 
-See the [Matrix connector](/python/connectors/matrix) for the connector equivalent.
+See the [Matrix connector](/py/python/connectors/matrix) for the connector equivalent.
 
 ### Parameters
 
@@ -515,13 +517,13 @@ See the [Matrix connector](/python/connectors/matrix) for the connector equivale
 | --- | --- | --- | --- | --- |
 | <span className="ww-param-group-label">Options</span> |  |  |  |  |
 | `strategy` | Determines how to combine variables when there are multiple. loop (default) iterates over each set of variables, repeating shorter lists until the longest is completed. permutations uses the combination of all variables against all other variables. | string; one of:<ul className="ww-param-enum-values"><li>permutations</li><li>loop</li></ul> | `"loop"` | No |
+| <span className="ww-param-group-label">Execution</span> |  |  |  |  |
+| `variables` | A dictionary of variables to pass to the wrangle. The key is the variable name and the value is a list of values. | object | — | Yes |
+| `wrangles` | The wrangles to apply to the dataframe. Each wrangle will be run for each combination of the variables. | array | — | Yes |
 | <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
 | `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
 | `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
 | `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-| <span className="ww-param-group-label">Execution</span> |  |  |  |  |
-| `variables` | A dictionary of variables to pass to the wrangle. The key is the variable name and the value is a list of values. | object | — | Yes |
-| `wrangles` | The wrangles to apply to the dataframe. Each wrangle will be run for each combination of the variables. | array | — | Yes |
 
 </div>
 
@@ -670,7 +672,7 @@ wrangles:
 
 ---
 
-## Recipe {#recipe}
+## Recipe <CopyableCode value="recipe" /> {#recipe}
 
 Run another recipe as a wrangle against the current dataframe.
 
@@ -691,12 +693,12 @@ This guidance was derived from the callable signature and its embedded Python sc
 | `output` | Name or list of output columns. | string, array, null | `null` | No |
 | <span className="ww-param-group-label">Options</span> |  |  |  |  |
 | `name` | File name of the recipe. | string, null | `null` | No |
+| <span className="ww-param-group-label">Execution</span> |  |  |  |  |
+| `variables` | A dictionary of variables to pass to the recipe. | object, null | `null` | No |
 | <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
 | `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
 | `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
 | `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-| <span className="ww-param-group-label">Execution</span> |  |  |  |  |
-| `variables` | A dictionary of variables to pass to the recipe. | object, null | `null` | No |
 
 </div>
 
@@ -743,7 +745,7 @@ This guidance was derived from the callable signature and its embedded Python sc
 
 ---
 
-## Try {#try}
+## Try <CopyableCode value="try" /> {#try}
 
 Try a list of wrangles and catch any errors that occur.
 
@@ -755,15 +757,15 @@ Run a list of wrangles and catch errors. When `except` is provided, its wrangles
 
 | Name | Description | Accepted Values | Default | Required |
 | --- | --- | --- | --- | --- |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
-| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
 | <span className="ww-param-group-label">Execution</span> |  |  |  |  |
 | `wrangles` | List of wrangles to apply. | array | — | Yes |
 | <span className="ww-param-group-label">Errors</span> |  |  |  |  |
 | `retries` | Number of times to retry the wrangles if an error occurs. Default 0. | integer | `0` | No |
 | `except` | An action to take if the wrangles encounter an error. This can contain a list of wrangles or a dictionary of column names and values. If except is not provided, the error will be logged and the recipe will continue. | object | — | No |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
 
 </div>
 

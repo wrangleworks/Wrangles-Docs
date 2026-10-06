@@ -8,7 +8,9 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
-# Date Properties
+import CopyableCode from '@site/src/components/CopyableCode';
+
+# Date Properties <CopyableCode value="extract.date_properties" />
 
 Extract date properties from a date (day, month, year, etc...).
 

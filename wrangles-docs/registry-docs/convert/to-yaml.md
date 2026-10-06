@@ -8,7 +8,9 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
-# To YAML
+import CopyableCode from '@site/src/components/CopyableCode';
+
+# To YAML <CopyableCode value="convert.to_yaml" />
 
 Convert an object to a YAML representation.
 

@@ -8,7 +8,9 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
-# Fraction to Decimal
+import CopyableCode from '@site/src/components/CopyableCode';
+
+# Fraction to Decimal <CopyableCode value="convert.fraction_to_decimal" />
 
 Convert fractions to decimals.
 

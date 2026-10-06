@@ -8,7 +8,9 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
-# Tail
+import CopyableCode from '@site/src/components/CopyableCode';
+
+# Tail <CopyableCode value="select.tail" />
 
 Return the last n rows.
 

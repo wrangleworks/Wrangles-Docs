@@ -8,7 +8,9 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
-# Pad
+import CopyableCode from '@site/src/components/CopyableCode';
+
+# Pad <CopyableCode value="format.pad" />
 
 Pad a string to a fixed length.
 

@@ -8,7 +8,9 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
-# Highest Confidence
+import CopyableCode from '@site/src/components/CopyableCode';
+
+# Highest Confidence <CopyableCode value="select.highest_confidence" />
 
 Select the option with the highest confidence from multiple columns. Inputs are expected to be of the form [&lt;&lt;value&gt;&gt;, &lt;&lt;confidence_score&gt;&gt;].
 

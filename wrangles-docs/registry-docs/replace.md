@@ -8,7 +8,9 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
-# Replace
+import CopyableCode from '@site/src/components/CopyableCode';
+
+# Replace <CopyableCode value="replace" />
 
 Quick find and replace for simple values. Can use regex if 'input' in params and isinstance(params['input'], list):in the find field.
 

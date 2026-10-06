@@ -8,7 +8,9 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
-# Case When
+import CopyableCode from '@site/src/components/CopyableCode';
+
+# Case When <CopyableCode value="compute.case_when" />
 
 Assign values to a column based on conditional logic.
 

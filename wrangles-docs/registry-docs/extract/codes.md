@@ -8,7 +8,9 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
-# Codes
+import CopyableCode from '@site/src/components/CopyableCode';
+
+# Codes <CopyableCode value="extract.codes" />
 
 Extract alphanumeric codes from the input. Requires WrangleWorks Account.
 

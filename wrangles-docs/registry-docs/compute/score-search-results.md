@@ -8,7 +8,9 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
-# Score Search Results
+import CopyableCode from '@site/src/components/CopyableCode';
+
+# Score Search Results <CopyableCode value="compute.score_search_results" />
 
 Scores and filters search results based on progressive partial/exact matching. Can return dictionaries or a parallel list of formatted strings.
 

@@ -8,7 +8,9 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
-# Clean Whitespaces
+import CopyableCode from '@site/src/components/CopyableCode';
+
+# Clean Whitespaces <CopyableCode value="clean_whitespaces" />
 
 Condense multiple spaces to a single space and convert special space characters to a standard space.
 

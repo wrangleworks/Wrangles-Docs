@@ -8,7 +8,9 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
-# To JSON
+import CopyableCode from '@site/src/components/CopyableCode';
+
+# To JSON <CopyableCode value="convert.to_json" />
 
 Convert an object to a JSON representation.
 

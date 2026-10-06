@@ -8,7 +8,9 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
-# Key Value Pairs
+import CopyableCode from '@site/src/components/CopyableCode';
+
+# Key Value Pairs <CopyableCode value="merge.key_value_pairs" />
 
 Create a dictionary from keys and values in paired columns e.g. COLUMN_NAME_1, COLUMN_VALUE_1, COLUMN_NAME_2, COLUMN_VALUE_2 ...
 

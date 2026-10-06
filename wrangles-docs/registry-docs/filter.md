@@ -8,7 +8,9 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
-# Filter
+import CopyableCode from '@site/src/components/CopyableCode';
+
+# Filter <CopyableCode value="filter" />
 
 Filter the dataframe based on the contents. If multiple filters are specified, all must be correct. For complex filters, use the where parameter.
 

@@ -8,7 +8,9 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
-# Hash
+import CopyableCode from '@site/src/components/CopyableCode';
+
+# Hash <CopyableCode value="create.hash" />
 
 Create a hash of a column.
 

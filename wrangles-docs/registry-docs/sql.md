@@ -8,7 +8,9 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
-# SQL
+import CopyableCode from '@site/src/components/CopyableCode';
+
+# SQL <CopyableCode value="sql" />
 
 Apply a SQL command to the current dataframe. Only SELECT statements are supported - the result will be the output.
 

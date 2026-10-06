@@ -8,7 +8,9 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
-# Try
+import CopyableCode from '@site/src/components/CopyableCode';
+
+# Try <CopyableCode value="try" />
 
 Try a list of wrangles and catch any errors that occur.
 
@@ -20,15 +22,15 @@ Run a list of wrangles and catch errors. When `except` is provided, its wrangles
 
 | Name | Description | Accepted Values | Default | Required |
 | --- | --- | --- | --- | --- |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
-| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
 | <span className="ww-param-group-label">Execution</span> |  |  |  |  |
 | `wrangles` | List of wrangles to apply. | array | — | Yes |
 | <span className="ww-param-group-label">Errors</span> |  |  |  |  |
 | `retries` | Number of times to retry the wrangles if an error occurs. Default 0. | integer | `0` | No |
 | `except` | An action to take if the wrangles encounter an error. This can contain a list of wrangles or a dictionary of column names and values. If except is not provided, the error will be logged and the recipe will continue. | object | — | No |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
 
 </div>
 

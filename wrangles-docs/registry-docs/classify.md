@@ -8,7 +8,9 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
-# Classify
+import CopyableCode from '@site/src/components/CopyableCode';
+
+# Classify <CopyableCode value="classify" />
 
 Run classify wrangles on the specified columns. Requires WrangleWorks Account and Subscription.
 
@@ -25,12 +27,12 @@ Run a custom classification wrangle on the specified column or columns. A classi
 | `output` | Name of the output column. | string, array | — | Yes |
 | <span className="ww-param-group-label">Formatting</span> |  |  |  |  |
 | `include_confidence` | For models that support it, include the confidence level in the output. | boolean | — | No |
+| <span className="ww-param-group-label">Details</span> |  |  |  |  |
+| `model_id` | ID of the classification model to be used. | string | — | Yes |
 | <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
 | `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
 | `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
 | `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-| <span className="ww-param-group-label">Details</span> |  |  |  |  |
-| `model_id` | ID of the classification model to be used. | string | — | Yes |
 
 </div>
 

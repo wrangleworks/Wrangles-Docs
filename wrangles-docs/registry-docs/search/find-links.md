@@ -8,7 +8,9 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
-# Find Links
+import CopyableCode from '@site/src/components/CopyableCode';
+
+# Find Links <CopyableCode value="search.find_links" />
 
 Perform web searches to find links. Returns structured search results with titles, links, snippets, and optional pricing.
 
@@ -30,15 +32,15 @@ Perform web searches to find links. Returns structured search results with title
 | `language` | Language code for search results (default 'en'). Alias: hl. | string | — | No |
 | `location` | Location for search results (e.g., 'Austin, Texas'). | string | — | No |
 | `device` | Device type for search results. | string; one of:<ul className="ww-param-enum-values"><li>desktop</li><li>mobile</li><li>tablet</li></ul> | — | No |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
-| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
 | <span className="ww-param-group-label">Execution</span> |  |  |  |  |
 | `threads` | Number of concurrent threads for parallel processing (default 10). | integer | `10` | No |
 | <span className="ww-param-group-label">Details</span> |  |  |  |  |
 | `client` | The search provider to use. | string; one of:<ul className="ww-param-enum-values"><li>serpapi</li></ul> | `"serpapi"` | No |
 | `api_key` | API key for the search client. Can also be set as an environment variable (e.g., SERPAPI_API_KEY). | string, null | `null` | No |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
 
 </div>
 

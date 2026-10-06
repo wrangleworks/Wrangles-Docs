@@ -8,11 +8,13 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
+import CopyableCode from '@site/src/components/CopyableCode';
+
 # Merge Wrangles
 
 Merge wrangles, with recipe examples, parameters, and behavior.
 
-## Coalesce {#coalesce}
+## Coalesce <CopyableCode value="merge.coalesce" /> {#coalesce}
 
 Take the first non-empty value from a series of columns or lists.
 
@@ -44,7 +46,7 @@ wrangles:
         - Col2
         - Col3
       output: Output Col
-      where: Col2 = E
+      where: Col2 = 'E'
 ```
 
 <div className="ww-sample-grid">
@@ -112,7 +114,7 @@ wrangles:
 
 ---
 
-## Concatenate {#concatenate}
+## Concatenate <CopyableCode value="merge.concatenate" /> {#concatenate}
 
 Concatenate a list of columns or a list within a single column.
 
@@ -246,7 +248,7 @@ wrangles:
 
 ---
 
-## Dictionaries {#dictionaries}
+## Dictionaries <CopyableCode value="merge.dictionaries" /> {#dictionaries}
 
 Take dictionaries in multiple columns and merge them to a single dictionary.
 
@@ -416,7 +418,7 @@ Note the extra dash in front of `Dict 2` excludes that column from the wildcard 
 
 ---
 
-## Key Value Pairs {#key-value-pairs}
+## Key Value Pairs <CopyableCode value="merge.key_value_pairs" /> {#key-value-pairs}
 
 Create a dictionary from keys and values in paired columns e.g. COLUMN_NAME_1, COLUMN_VALUE_1, COLUMN_NAME_2, COLUMN_VALUE_2 ...
 
@@ -552,7 +554,7 @@ wrangles:
 
 ---
 
-## Lists {#lists}
+## Lists <CopyableCode value="merge.lists" /> {#lists}
 
 Take lists in multiple columns and merge them to a single list.
 
@@ -584,8 +586,8 @@ Take lists in multiple columns and merge them to a single list.
 wrangles:
   - merge.lists:
       input:
-        - col1
-        - col2
+        - Col1
+        - Col2
       output: Combined Col
       remove_duplicates: false
 ```
@@ -651,7 +653,7 @@ wrangles:
 
 ---
 
-## To Dict {#to-dict}
+## To Dict <CopyableCode value="merge.to_dict" /> {#to-dict}
 
 Take multiple columns and merge them to a dictionary (aka object) using the column headers as keys.
 
@@ -747,7 +749,7 @@ wrangles:
 
 ---
 
-## To List {#to-list}
+## To List <CopyableCode value="merge.to_list" /> {#to-list}
 
 Take multiple columns and merge them to a list.
 

@@ -8,7 +8,9 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
-# Rename
+import CopyableCode from '@site/src/components/CopyableCode';
+
+# Rename <CopyableCode value="rename" />
 
 Rename a column or list of columns.
 
@@ -23,10 +25,10 @@ Rename a column or list of columns.
 | <span className="ww-param-group-label">I/O</span> |  |  |  |  |
 | `input` | Name or list of input columns. | string, integer, array, null | `null` | No |
 | `output` | Name or list of output columns. | string, array, null | `null` | No |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
 | <span className="ww-param-group-label">Execution</span> |  |  |  |  |
 | `wrangles` | Use wrangles to transform the column names. The input is named 'columns' and the final result must also include the column named 'columns'. This can only be used instead of the standard rename. | array, null | `null` | No |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
 
 </div>
 

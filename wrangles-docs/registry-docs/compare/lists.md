@@ -8,7 +8,9 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
-# Lists
+import CopyableCode from '@site/src/components/CopyableCode';
+
+# Lists <CopyableCode value="compare.lists" />
 
 Compare multiple lists and return the intersection, difference, or union.
 
@@ -40,8 +42,8 @@ Compare multiple lists and return the intersection, difference, or union.
 wrangles:
   - compare.lists:
       input:
-        - col1
-        - col2
+        - Col1
+        - Col2
       output: Difference
       method: difference
 ```
@@ -78,8 +80,8 @@ wrangles:
 wrangles:
   - compare.lists:
       input:
-        - col1
-        - col2
+        - Col1
+        - Col2
       output: Intersection
       method: intersection
 ```
@@ -116,8 +118,8 @@ wrangles:
 wrangles:
   - compare.lists:
       input:
-        - col1
-        - col2
+        - Col1
+        - Col2
       output: Union
       method: union
 ```

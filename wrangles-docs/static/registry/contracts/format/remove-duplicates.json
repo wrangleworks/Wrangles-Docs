@@ -110,7 +110,7 @@
     }
   ],
   "examples": [],
-  "guidance": "Remove duplicate values in a list.\n\n## Migrated examples\n#### Removing Duplicates From a List\n\n##### Recipe\n\n```yaml\nwrangles:\n    - format.remove_duplicates:\n        input: Attack of the Clones\n        output: Commander\n        where: Rank = Commander\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n| Rank | Attack of the Clones |\n| --- | --- |\n| Commander | ['Cody', 'Cody', 'Cody'] |\n| Captain | ['Rex', 'Rex', 'Rex'] |\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| Rank | Commander | Attack of the Clones |\n| --- | --- | --- |\n| Commander | ['Cody'] | ['Cody', 'Cody', 'Cody'] |\n| Captain |  | ['Rex', 'Rex', 'Rex'] |\n\n</div>\n\n</div>",
+  "guidance": "Remove duplicate values in a list.\n\n## Migrated examples\n#### Removing Duplicates From a List\n\n##### Recipe\n\n```yaml\nwrangles:\n    - format.remove_duplicates:\n        input: Attack of the Clones\n        output: Commander\n        where: Rank = 'Commander'\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n| Rank | Attack of the Clones |\n| --- | --- |\n| Commander | ['Cody', 'Cody', 'Cody'] |\n| Captain | ['Rex', 'Rex', 'Rex'] |\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| Rank | Commander | Attack of the Clones |\n| --- | --- | --- |\n| Commander | ['Cody'] | ['Cody', 'Cody', 'Cody'] |\n| Captain |  | ['Rex', 'Rex', 'Rex'] |\n\n</div>\n\n</div>",
   "sources": [
     {
       "id": "runtime",

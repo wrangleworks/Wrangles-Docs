@@ -8,7 +8,9 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
-# Trim
+import CopyableCode from '@site/src/components/CopyableCode';
+
+# Trim <CopyableCode value="format.trim" />
 
 Remove excess whitespace at the start and end of text.
 

@@ -8,7 +8,9 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
-# Text
+import CopyableCode from '@site/src/components/CopyableCode';
+
+# Text <CopyableCode value="compare.text" />
 
 Compare two strings and return the intersection or difference, use overlap to find the matching characters between the two strings, or use similarity to get a numeric similarity score.
 

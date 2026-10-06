@@ -8,11 +8,13 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
+import CopyableCode from '@site/src/components/CopyableCode';
+
 # Date Wrangles
 
 Date wrangles, with recipe examples, parameters, and behavior.
 
-## Date Calculator {#date-calculator}
+## Date Calculator <CopyableCode value="date_calculator" /> {#date-calculator}
 
 Add or Subtract time from a date.
 

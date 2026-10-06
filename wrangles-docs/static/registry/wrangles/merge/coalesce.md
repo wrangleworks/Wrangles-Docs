@@ -74,7 +74,7 @@ wrangles:
         - Col2
         - Col3
       output: Output Col
-      where: Col2 = E
+      where: Col2 = 'E'
 ```
 
 <div className="ww-sample-grid">

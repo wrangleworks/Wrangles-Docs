@@ -8,7 +8,9 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
-# HTML
+import CopyableCode from '@site/src/components/CopyableCode';
+
+# HTML <CopyableCode value="extract.html" />
 
 Extract elements from strings containing html. Requires WrangleWorks Account.
 

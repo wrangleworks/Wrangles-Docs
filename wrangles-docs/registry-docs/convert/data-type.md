@@ -8,7 +8,9 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
-# Convert Data Type
+import CopyableCode from '@site/src/components/CopyableCode';
+
+# Convert Data Type <CopyableCode value="convert.data_type" />
 
 Convert values to strings, numbers, booleans, or datetimes.
 
@@ -35,12 +37,12 @@ values rather than display-only formatting.
 | `output` | Name or list of output columns. If omitted, each input column is overwritten. | string, array | `null` | No |
 | <span className="ww-param-group-label">Options</span> |  |  |  |  |
 | `data_type` | Data type to produce. | string; one of:<ul className="ww-param-enum-values"><li>str</li><li>float</li><li>int</li><li>bool</li><li>datetime</li></ul> | `"str"` | No |
+| <span className="ww-param-group-label">Errors</span> |  |  |  |  |
+| `default` | Value returned when conversion fails. If omitted, the original value is retained. | string, number, array, object, boolean, null | `null` | No |
 | <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
 | `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
 | `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
 | `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-| <span className="ww-param-group-label">Errors</span> |  |  |  |  |
-| `default` | Value returned when conversion fails. If omitted, the original value is retained. | string, number, array, object, boolean, null | `null` | No |
 
 </div>
 

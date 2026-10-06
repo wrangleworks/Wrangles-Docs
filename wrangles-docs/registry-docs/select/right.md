@@ -8,7 +8,9 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
-# Right
+import CopyableCode from '@site/src/components/CopyableCode';
+
+# Right <CopyableCode value="select.right" />
 
 Return characters from the right of text. Strings shorter than the length defined will be unaffected.
 

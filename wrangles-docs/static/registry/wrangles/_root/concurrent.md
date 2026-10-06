@@ -74,7 +74,7 @@ sources:
 
 Run multiple wrangles concurrently instead of sequentially. Concurrent wrangles must declare output columns, may finish in any order, and should not update overlapping columns.
 
-See the [Concurrent connector](/python/connectors/concurrent) for the connector equivalent.
+See the [Concurrent connector](/py/python/connectors/concurrent) for the connector equivalent.
 
 ## Migrated examples
 #### Run Extraction Wrangles Concurrently

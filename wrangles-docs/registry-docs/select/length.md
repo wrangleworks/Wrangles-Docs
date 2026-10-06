@@ -8,7 +8,9 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
-# Length
+import CopyableCode from '@site/src/components/CopyableCode';
+
+# Length <CopyableCode value="select.length" />
 
 Calculate the lengths of data in a column. The length depends on the data type e.g. text will be the length of the text, lists will be the number of elements in the list.
 
@@ -45,7 +47,7 @@ wrangles:
 
 | Part Code |
 | --- |
-| 6202 |
+| '6202' |
 
 </div>
 

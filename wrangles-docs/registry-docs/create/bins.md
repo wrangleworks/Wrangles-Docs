@@ -8,7 +8,9 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
-# Bins
+import CopyableCode from '@site/src/components/CopyableCode';
+
+# Bins <CopyableCode value="create.bins" />
 
 Create a column that groups data into bins.
 

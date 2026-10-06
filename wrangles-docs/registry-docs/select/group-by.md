@@ -8,7 +8,9 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
-# Group By
+import CopyableCode from '@site/src/components/CopyableCode';
+
+# Group By <CopyableCode value="select.group_by" />
 
 Group and aggregate the data.
 

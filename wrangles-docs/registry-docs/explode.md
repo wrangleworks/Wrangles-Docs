@@ -8,7 +8,9 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
-# Explode
+import CopyableCode from '@site/src/components/CopyableCode';
+
+# Explode <CopyableCode value="explode" />
 
 Explode a column of lists into rows.
 

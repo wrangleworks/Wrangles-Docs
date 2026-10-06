@@ -88,8 +88,8 @@ Take lists in multiple columns and merge them to a single list.
 wrangles:
   - merge.lists:
       input:
-        - col1
-        - col2
+        - Col1
+        - Col2
       output: Combined Col
       remove_duplicates: false
 ```

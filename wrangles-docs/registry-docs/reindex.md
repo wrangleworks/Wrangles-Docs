@@ -8,7 +8,9 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
-# Reindex
+import CopyableCode from '@site/src/components/CopyableCode';
+
+# Reindex <CopyableCode value="reindex" />
 
 Changes the row labels and column labels of a DataFrame.
 

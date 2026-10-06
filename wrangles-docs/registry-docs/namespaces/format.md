@@ -8,11 +8,13 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
+import CopyableCode from '@site/src/components/CopyableCode';
+
 # Format Wrangles
 
 Format wrangles, with recipe examples, parameters, and behavior.
 
-## Clean Whitespaces {#clean-whitespaces}
+## Clean Whitespaces <CopyableCode value="clean_whitespaces" /> {#clean-whitespaces}
 
 Condense multiple spaces to a single space and convert special space characters to a standard space.
 
@@ -108,7 +110,7 @@ wrangles:
 
 ---
 
-## Dates {#dates}
+## Dates <CopyableCode value="format.dates" /> {#dates}
 
 Format a date.
 
@@ -203,7 +205,7 @@ wrangles:
 
 ---
 
-## Pad {#pad}
+## Pad <CopyableCode value="format.pad" /> {#pad}
 
 Pad a string to a fixed length.
 
@@ -309,7 +311,7 @@ wrangles:
 
 ---
 
-## Prefix {#prefix}
+## Prefix <CopyableCode value="format.prefix" /> {#prefix}
 
 Add a prefix to a column.
 
@@ -409,7 +411,7 @@ wrangles:
 
 ---
 
-## Format Price Breaks {#price-breaks}
+## Format Price Breaks <CopyableCode value="format.price_breaks" /> {#price-breaks}
 
 Expand non-empty price-break cells into paired category and value columns.
 
@@ -480,7 +482,7 @@ This guidance was derived from the callable signature.
 
 ---
 
-## Remove Duplicates {#remove-duplicates}
+## Remove Duplicates <CopyableCode value="format.remove_duplicates" /> {#remove-duplicates}
 
 Remove duplicates from a list. Preserves input order.
 
@@ -511,7 +513,7 @@ wrangles:
     - format.remove_duplicates:
         input: Attack of the Clones
         output: Commander
-        where: Rank = Commander
+        where: Rank = 'Commander'
 ```
 
 <div className="ww-sample-grid">
@@ -577,7 +579,7 @@ wrangles:
 
 ---
 
-## Significant Figures {#significant-figures}
+## Significant Figures <CopyableCode value="format.significant_figures" /> {#significant-figures}
 
 Format a value to a specific number of significant figures.
 
@@ -676,7 +678,7 @@ wrangles:
 
 ---
 
-## Suffix {#suffix}
+## Suffix <CopyableCode value="format.suffix" /> {#suffix}
 
 Add a suffix to a column.
 
@@ -776,7 +778,7 @@ wrangles:
 
 ---
 
-## Trim {#trim}
+## Trim <CopyableCode value="format.trim" /> {#trim}
 
 Remove excess whitespace at the start and end of text.
 
@@ -873,7 +875,7 @@ wrangles:
 
 ---
 
-## Remove Words {#remove-words}
+## Remove Words <CopyableCode value="remove_words" /> {#remove-words}
 
 Remove all the elements that occur in one list from another.
 
@@ -976,7 +978,7 @@ wrangles:
 
 ---
 
-## Replace {#replace}
+## Replace <CopyableCode value="replace" /> {#replace}
 
 Quick find and replace for simple values. Can use regex if 'input' in params and isinstance(params['input'], list):in the find field.
 
@@ -1078,7 +1080,7 @@ wrangles:
 
 ---
 
-## Round {#round}
+## Round <CopyableCode value="round" /> {#round}
 
 Round column(s) to the specified decimals.
 
@@ -1175,7 +1177,7 @@ wrangles:
 
 ---
 
-## Translate {#translate}
+## Translate <CopyableCode value="translate" /> {#translate}
 
 Translate the input to a different language. Requires WrangleWorks Account and DeepL API Key (A free account for up to 500,000 characters per month is available).
 
@@ -1273,10 +1275,10 @@ wrangles:
 
 ---
 
-## Standardize (Deprecated) {#standardize}
+## Standardize (Deprecated) <CopyableCode value="standardize" /> {#standardize}
 
 :::warning Deprecated
-This compatibility wrangle remains available for existing recipes. Use [`standardize.custom`](/wrangles/namespaces/standardize#custom) for new recipes.
+This compatibility wrangle remains available for existing recipes. Use [`standardize.custom`](/py/namespaces/standardize#custom) for new recipes.
 :::
 
 Deprecated compatibility key for `standardize.custom`, which standardizes data using a trained DIY or bespoke model.
@@ -1294,12 +1296,12 @@ Run a standardize wrangle, such as one that expands abbreviations. A standardiza
 | `output` | Name or list of output columns. | string, array, null | `null` | No |
 | <span className="ww-param-group-label">Options</span> |  |  |  |  |
 | `case_sensitive` | Allows the wrangle to be case sensitive if set to True, default is False. | boolean | `false` | No |
+| <span className="ww-param-group-label">Details</span> |  |  |  |  |
+| `model_id` | The ID of the wrangle to use (do not include 'find' and 'replace'). | string, array | — | Yes |
 | <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
 | `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
 | `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
 | `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-| <span className="ww-param-group-label">Details</span> |  |  |  |  |
-| `model_id` | The ID of the wrangle to use (do not include 'find' and 'replace'). | string, array | — | Yes |
 
 </div>
 
@@ -1361,7 +1363,7 @@ wrangles:
 | Lifecycle status | deprecated |
 | Recipe Writer eligible | No |
 | Recipe Writer exclusion | Deprecated compatibility key; use standardize.custom. |
-| Replaced by | [`standardize.custom`](/wrangles/namespaces/standardize#custom) |
+| Replaced by | [`standardize.custom`](/py/namespaces/standardize#custom) |
 | Namespace | Root-level |
 | Documentation group | `format` |
 | Aliases | None |

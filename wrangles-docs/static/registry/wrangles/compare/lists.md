@@ -92,8 +92,8 @@ Compare multiple lists and return the intersection, difference, or union.
 wrangles:
   - compare.lists:
       input:
-        - col1
-        - col2
+        - Col1
+        - Col2
       output: Difference
       method: difference
 ```
@@ -134,8 +134,8 @@ wrangles:
 wrangles:
   - compare.lists:
       input:
-        - col1
-        - col2
+        - Col1
+        - Col2
       output: Intersection
       method: intersection
 ```
@@ -176,8 +176,8 @@ wrangles:
 wrangles:
   - compare.lists:
       input:
-        - col1
-        - col2
+        - Col1
+        - Col2
       output: Union
       method: union
 ```

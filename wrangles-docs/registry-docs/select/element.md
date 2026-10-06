@@ -8,7 +8,9 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
-# Element
+import CopyableCode from '@site/src/components/CopyableCode';
+
+# Element <CopyableCode value="select.element" />
 
 Select elements of lists or dicts using python syntax like col[0]['key'].
 
@@ -23,12 +25,12 @@ Select elements of lists or dictionaries using Python syntax like `col[1:3]['key
 | <span className="ww-param-group-label">I/O</span> |  |  |  |  |
 | `input` | Name of the input column and sub elements This permits by index for lists or dict and by key for dicts e.g. col[0]['key'] // [&#123;"key":"val"&#125;] -&gt; "val". | string, integer, array | — | Yes |
 | `output` | Name of the output column(s). | string, array, null | `null` | No |
+| <span className="ww-param-group-label">Errors</span> |  |  |  |  |
+| `default` | Set the default value to return if the specified element doesn't exist. | string, number, array, object, boolean, null | `null` | No |
 | <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
 | `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
 | `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
 | `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-| <span className="ww-param-group-label">Errors</span> |  |  |  |  |
-| `default` | Set the default value to return if the specified element doesn't exist. | string, number, array, object, boolean, null | `null` | No |
 
 </div>
 

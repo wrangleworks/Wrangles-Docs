@@ -8,7 +8,9 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
-# Head
+import CopyableCode from '@site/src/components/CopyableCode';
+
+# Head <CopyableCode value="select.head" />
 
 Return the first n rows.
 

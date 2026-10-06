@@ -8,11 +8,13 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
+import CopyableCode from '@site/src/components/CopyableCode';
+
 # Compare Wrangles
 
 Compare wrangles, with recipe examples, parameters, and behavior.
 
-## Lists {#lists}
+## Lists <CopyableCode value="compare.lists" /> {#lists}
 
 Compare multiple lists and return the intersection, difference, or union.
 
@@ -44,8 +46,8 @@ Compare multiple lists and return the intersection, difference, or union.
 wrangles:
   - compare.lists:
       input:
-        - col1
-        - col2
+        - Col1
+        - Col2
       output: Difference
       method: difference
 ```
@@ -82,8 +84,8 @@ wrangles:
 wrangles:
   - compare.lists:
       input:
-        - col1
-        - col2
+        - Col1
+        - Col2
       output: Intersection
       method: intersection
 ```
@@ -120,8 +122,8 @@ wrangles:
 wrangles:
   - compare.lists:
       input:
-        - col1
-        - col2
+        - Col1
+        - Col2
       output: Union
       method: union
 ```
@@ -191,7 +193,7 @@ wrangles:
 
 ---
 
-## Text {#text}
+## Text <CopyableCode value="compare.text" /> {#text}
 
 Compare two strings and return the intersection or difference, use overlap to find the matching characters between the two strings, or use similarity to get a numeric similarity score.
 
@@ -379,7 +381,7 @@ wrangles:
 
 ---
 
-## Similarity {#similarity}
+## Similarity <CopyableCode value="similarity" /> {#similarity}
 
 Calculate the cosine similarity of two vectors.
 

@@ -8,7 +8,9 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
-# Prefix
+import CopyableCode from '@site/src/components/CopyableCode';
+
+# Prefix <CopyableCode value="format.prefix" />
 
 Add a prefix to a column.
 

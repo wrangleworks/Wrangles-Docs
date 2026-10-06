@@ -8,7 +8,9 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
-# Properties
+import CopyableCode from '@site/src/components/CopyableCode';
+
+# Properties <CopyableCode value="extract.properties" />
 
 Extract text properties from the input. Requires WrangleWorks Account.
 

@@ -8,7 +8,9 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
-# Copy
+import CopyableCode from '@site/src/components/CopyableCode';
+
+# Copy <CopyableCode value="copy" />
 
 Make a copy of a column or a list of columns.
 

@@ -8,7 +8,9 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
-# To List
+import CopyableCode from '@site/src/components/CopyableCode';
+
+# To List <CopyableCode value="merge.to_list" />
 
 Take multiple columns and merge them to a list.
 

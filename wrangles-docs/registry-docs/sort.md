@@ -8,7 +8,9 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
-# Sort
+import CopyableCode from '@site/src/components/CopyableCode';
+
+# Sort <CopyableCode value="sort" />
 
 Sort the data.
 

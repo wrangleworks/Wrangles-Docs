@@ -8,7 +8,9 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
-# Sample
+import CopyableCode from '@site/src/components/CopyableCode';
+
+# Sample <CopyableCode value="select.sample" />
 
 Return a random sample of the rows.
 

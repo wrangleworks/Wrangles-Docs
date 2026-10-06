@@ -87,7 +87,7 @@ wrangles:
 
 | Part Code |
 | --- |
-| 6202 |
+| '6202' |
 
 </div>
 

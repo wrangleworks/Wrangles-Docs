@@ -8,7 +8,9 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
-# Left
+import CopyableCode from '@site/src/components/CopyableCode';
+
+# Left <CopyableCode value="select.left" />
 
 Return characters from the left of text. Strings shorter than the length defined will be unaffected.
 

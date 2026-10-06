@@ -8,11 +8,13 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
+import CopyableCode from '@site/src/components/CopyableCode';
+
 # Generate Wrangles
 
 Generate wrangles, with recipe examples, parameters, and behavior.
 
-## Ai {#ai}
+## Ai <CopyableCode value="generate.ai" /> {#ai}
 
 Generate structured AI output for each recipe row.
 
@@ -31,10 +33,6 @@ Generate structured AI output for each recipe row.
 | `messages` | Optional extra messages forwarded to the inner generate helper. | array, object, null | `null` | No |
 | `web_search` | Enable DuckDuckGo context lookup per row. | boolean | `false` | No |
 | `summary` | Request summary text to be merged into the output. | boolean | `false` | No |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
-| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
 | <span className="ww-param-group-label">Execution</span> |  |  |  |  |
 | `threads` | Maximum concurrent requests (default 20). | integer | `20` | No |
 | `timeout` | Per-request timeout in seconds. | integer | `90` | No |
@@ -47,6 +45,10 @@ Generate structured AI output for each recipe row.
 | `strict` | Enforce JSON-schema validation on the response. | boolean | `false` | No |
 | `reasoning` | Responses API reasoning options (forwarded verbatim). | string, object | `{"effort":"low"}` | No |
 | `previous_response` | Chain responses by reusing previous_response_id for field-by-field calls. | boolean | `false` | No |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
 
 </div>
 

@@ -8,7 +8,9 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
-# Accordion
+import CopyableCode from '@site/src/components/CopyableCode';
+
+# Accordion <CopyableCode value="accordion" />
 
 Apply a series of wrangles to column(s) containing lists. The wrangles will be applied to each element in the list and the results will be returned back as a list.
 
@@ -24,12 +26,12 @@ Apply a series of wrangles to the individual elements of one or more lists.
 | `input` | The column(s) containing the list(s) that the wrangles will be applied to the elements of. | string, integer, array | — | Yes |
 | `output` | Output of the wrangles to save back to the dataframe. | string, array, null | `null` | No |
 | `propagate` | Limit the column(s) that will be available to the wrangles and replicated for each element. If not specified, all columns will be propogated. This may be useful to limit the memory use for large datasets. | string, array, null | `null` | No |
+| <span className="ww-param-group-label">Execution</span> |  |  |  |  |
+| `wrangles` | List of wrangles to apply. | array | — | Yes |
 | <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
 | `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
 | `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
 | `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-| <span className="ww-param-group-label">Execution</span> |  |  |  |  |
-| `wrangles` | List of wrangles to apply. | array | — | Yes |
 
 </div>
 

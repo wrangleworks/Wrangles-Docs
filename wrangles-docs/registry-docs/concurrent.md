@@ -8,13 +8,15 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
-# Concurrent
+import CopyableCode from '@site/src/components/CopyableCode';
+
+# Concurrent <CopyableCode value="concurrent" />
 
 Run multiple wrangles concurrently rather than sequentially. Wrangles must specify output columns to be used concurrently. When using concurrent, Wrangles may not complete in a predictable order and it is not recommended to update overlapping columns with different wrangles.
 
 Run multiple wrangles concurrently instead of sequentially. Concurrent wrangles must declare output columns, may finish in any order, and should not update overlapping columns.
 
-See the [Concurrent connector](/python/connectors/concurrent) for the connector equivalent.
+See the [Concurrent connector](/py/python/connectors/concurrent) for the connector equivalent.
 
 ## Parameters
 
@@ -22,14 +24,14 @@ See the [Concurrent connector](/python/connectors/concurrent) for the connector 
 
 | Name | Description | Accepted Values | Default | Required |
 | --- | --- | --- | --- | --- |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
-| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
 | <span className="ww-param-group-label">Execution</span> |  |  |  |  |
 | `wrangles` | The wrangles section of a recipe to execute for each combination of variables. | array | — | Yes |
 | `max_concurrency` | The maximum number of wrangles to execute in parallel. | integer | `10` | No |
 | `use_multiprocessing` | Use process-based workers instead of threads. This is an advanced runtime option. | boolean | `false` | No |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
 
 </div>
 

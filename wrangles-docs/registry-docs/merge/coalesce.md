@@ -8,7 +8,9 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
-# Coalesce
+import CopyableCode from '@site/src/components/CopyableCode';
+
+# Coalesce <CopyableCode value="merge.coalesce" />
 
 Take the first non-empty value from a series of columns or lists.
 
@@ -40,7 +42,7 @@ wrangles:
         - Col2
         - Col3
       output: Output Col
-      where: Col2 = E
+      where: Col2 = 'E'
 ```
 
 <div className="ww-sample-grid">

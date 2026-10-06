@@ -8,7 +8,9 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
-# Standardize Custom
+import CopyableCode from '@site/src/components/CopyableCode';
+
+# Standardize Custom <CopyableCode value="standardize.custom" />
 
 Standardize data using a DIY or bespoke standardization wrangle. Requires WrangleWorks Account and Subscription.
 
@@ -29,12 +31,12 @@ This guidance was derived from the callable signature and its embedded Python sc
 | `output` | Name or list of output columns. | string, array, null | `null` | No |
 | <span className="ww-param-group-label">Options</span> |  |  |  |  |
 | `case_sensitive` | Allows the wrangle to be case sensitive if set to True, default is False. | boolean | `false` | No |
+| <span className="ww-param-group-label">Details</span> |  |  |  |  |
+| `model_id` | The ID of the wrangle to use (do not include 'find' and 'replace'). | string, array | — | Yes |
 | <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
 | `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
 | `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
 | `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-| <span className="ww-param-group-label">Details</span> |  |  |  |  |
-| `model_id` | The ID of the wrangle to use (do not include 'find' and 'replace'). | string, array | — | Yes |
 
 </div>
 

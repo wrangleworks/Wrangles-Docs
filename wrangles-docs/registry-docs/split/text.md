@@ -8,7 +8,9 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
-# Text
+import CopyableCode from '@site/src/components/CopyableCode';
+
+# Text <CopyableCode value="split.text" />
 
 Split a string to multiple columns or a list.
 

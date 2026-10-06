@@ -8,7 +8,9 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
-# Concatenate
+import CopyableCode from '@site/src/components/CopyableCode';
+
+# Concatenate <CopyableCode value="merge.concatenate" />
 
 Concatenate a list of columns or a list within a single column.
 

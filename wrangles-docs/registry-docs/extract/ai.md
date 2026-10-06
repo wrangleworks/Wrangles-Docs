@@ -8,7 +8,9 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
-# AI
+import CopyableCode from '@site/src/components/CopyableCode';
+
+# AI <CopyableCode value="extract.ai" />
 
 Extract structured data from each input row using an AI model. Define the desired fields with output, or reuse a saved definition with model_id.
 
@@ -34,10 +36,6 @@ For saved extract.ai models, this is the preferred calling pattern compared with
 | <span className="ww-param-group-label">Formatting</span> |  |  |  |  |
 | `output_format` | How extracted fields are written. columns writes one dataframe column per field (default); dictionary keeps one object; concatenate joins fields into one string using char. | string, null; one of:<ul className="ww-param-enum-values"><li>dictionary</li><li>columns</li><li>concatenate</li></ul> | `null` | No |
 | `char` | Separator used only when output_format is concatenate. Defaults to comma-space. | string | `", "` | No |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
-| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
 | <span className="ww-param-group-label">Execution</span> |  |  |  |  |
 | `threads` | Maximum number of row-level requests sent in parallel. The configured default is 32. | integer | — | No |
 | `timeout` | Maximum seconds for one HTTP attempt. The configured default is 12; deadline can end the overall call sooner. | number | — | No |
@@ -57,6 +55,10 @@ For saved extract.ai models, this is the preferred calling pattern compared with
 | `strict` | Require OpenAI structured-output strict mode. Defaults to true. Definitions with dynamic dictionary keys automatically switch to non-strict provider mode and are still validated locally. | boolean | — | No |
 | `reasoning` | Responses API reasoning controls. Set effort for reasoning-capable models. The configured default is none when that model supports it; otherwise the provider default applies. | object | — | No |
 | `verbosity` | Responses API text verbosity for compatible models. Defaults to low when supported; ignored with a warning for incompatible models. | string; one of:<ul className="ww-param-enum-values"><li>low</li><li>medium</li><li>high</li></ul> | — | No |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
 
 </div>
 

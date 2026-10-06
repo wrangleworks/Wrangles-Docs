@@ -8,10 +8,12 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
-# Maths (Deprecated)
+import CopyableCode from '@site/src/components/CopyableCode';
+
+# Maths (Deprecated) <CopyableCode value="maths" />
 
 :::warning Deprecated
-This compatibility wrangle remains available for existing recipes. Use [`math`](/wrangles/namespaces/compute#math) for new recipes.
+This compatibility wrangle remains available for existing recipes. Use [`math`](/py/namespaces/compute#math) for new recipes.
 :::
 
 Deprecated alias for `math`; evaluate an expression and write its result to an output column.
@@ -66,7 +68,7 @@ This guidance was derived from the callable signature.
 | Lifecycle status | deprecated |
 | Recipe Writer eligible | No |
 | Recipe Writer exclusion | Deprecated compatibility key; use math. |
-| Replaced by | [`math`](/wrangles/namespaces/compute#math) |
+| Replaced by | [`math`](/py/namespaces/compute#math) |
 | Namespace | Root-level |
 | Documentation group | `compute` |
 | Aliases | None |

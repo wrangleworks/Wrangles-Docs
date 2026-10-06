@@ -121,7 +121,7 @@
     }
   ],
   "examples": [],
-  "guidance": "Take lists in multiple columns and merge them to a single list.\n\n## Migrated examples\n#### Merging Two Lists\n\n##### Recipe\n\n```yaml\nwrangles:\n  - merge.lists:\n      input:\n        - col1\n        - col2\n      output: Combined Col\n      remove_duplicates: false\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n| Col1 | Col2 |\n| --- | --- |\n| ['A', 'B'] | ['D', 'E'] |\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| Combined Col |\n| --- |\n| ['A', 'B', 'D', 'E'] |\n\n</div>\n\n</div>",
+  "guidance": "Take lists in multiple columns and merge them to a single list.\n\n## Migrated examples\n#### Merging Two Lists\n\n##### Recipe\n\n```yaml\nwrangles:\n  - merge.lists:\n      input:\n        - Col1\n        - Col2\n      output: Combined Col\n      remove_duplicates: false\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n| Col1 | Col2 |\n| --- | --- |\n| ['A', 'B'] | ['D', 'E'] |\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| Combined Col |\n| --- |\n| ['A', 'B', 'D', 'E'] |\n\n</div>\n\n</div>",
   "sources": [
     {
       "id": "runtime",

@@ -8,7 +8,9 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
-# Attributes
+import CopyableCode from '@site/src/components/CopyableCode';
+
+# Attributes <CopyableCode value="extract.attributes" />
 
 Extract numeric attributes from the input such as weights or lengths. Requires WrangleWorks Account.
 

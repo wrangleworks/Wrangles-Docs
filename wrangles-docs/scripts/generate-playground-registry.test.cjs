@@ -19,7 +19,7 @@ test('generates every Playground entry from the compiled Registry', () => {
   assert.equal(new Set(result.catalog.map((entry) => entry.catalogId)).size, 98);
   assert.equal(new Set(result.catalog.map((entry) => entry.catalogKey)).size, 98);
   assert.equal(new Set(result.catalog.map((entry) => entry.type)).size, 98);
-  assert.ok(result.catalog.every((entry) => entry.registryRoute.startsWith('/wrangles/')));
+  assert.ok(result.catalog.every((entry) => entry.registryRoute.startsWith('/py/')));
 });
 
 test('uses contract identity, parameters, defaults, and Recipe Writer eligibility', () => {
@@ -39,7 +39,7 @@ test('uses contract identity, parameters, defaults, and Recipe Writer eligibilit
       catalogKey: 'convert.case',
       eligible: true,
       category: 'Convert',
-      route: '/wrangles/namespaces/convert#case',
+      route: '/py/namespaces/convert#case',
     },
   );
   assert.equal(convertCase.defaults.case, 'lower');

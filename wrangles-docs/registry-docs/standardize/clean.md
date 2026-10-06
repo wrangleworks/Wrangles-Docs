@@ -8,7 +8,9 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
-# Standardize Clean
+import CopyableCode from '@site/src/components/CopyableCode';
+
+# Standardize Clean <CopyableCode value="standardize.clean" />
 
 Repair common encoding, Unicode, HTML character reference, control character, and whitespace problems locally.
 

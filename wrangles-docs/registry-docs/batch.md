@@ -8,7 +8,9 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
-# Batch
+import CopyableCode from '@site/src/components/CopyableCode';
+
+# Batch <CopyableCode value="batch" />
 
 Split the data into batches for executing a list of wrangles. Use this in situations such as where the intermediate data is too large to fit in memory.
 
@@ -20,10 +22,6 @@ Execute a series of wrangles in batches. Batches can run in parallel with `threa
 
 | Name | Description | Accepted Values | Default | Required |
 | --- | --- | --- | --- | --- |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
-| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
 | <span className="ww-param-group-label">Execution</span> |  |  |  |  |
 | `wrangles` | The wrangles to execute on the data. Each series of wrangles will be run against the data in batches of the size defined by batch_size. | array | — | Yes |
 | `batch_size` | The number of rows to split each batch into. | integer | `1000` | No |
@@ -32,6 +30,10 @@ Execute a series of wrangles in batches. Batches can run in parallel with `threa
 | `use_multiprocessing` | Use process-based workers instead of threads. This is an advanced runtime option. | boolean | `false` | No |
 | <span className="ww-param-group-label">Errors</span> |  |  |  |  |
 | `on_error` | A dictionary of column_name: value to return if an error occurs while attempting to run a batch. | object, null | `null` | No |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
 
 </div>
 

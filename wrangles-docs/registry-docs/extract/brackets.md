@@ -8,7 +8,9 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
-# Brackets
+import CopyableCode from '@site/src/components/CopyableCode';
+
+# Brackets <CopyableCode value="extract.brackets" />
 
 Extract text properties in brackets from the input.
 

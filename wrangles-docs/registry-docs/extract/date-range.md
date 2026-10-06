@@ -8,7 +8,9 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
-# Date Range
+import CopyableCode from '@site/src/components/CopyableCode';
+
+# Date Range <CopyableCode value="extract.date_range" />
 
 Extract date range frequency from two dates.
 

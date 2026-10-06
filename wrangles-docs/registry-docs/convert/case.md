@@ -8,7 +8,9 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
-# Convert Case
+import CopyableCode from '@site/src/components/CopyableCode';
+
+# Convert Case <CopyableCode value="convert.case" />
 
 Change the letter case of text values.
 

@@ -8,7 +8,9 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
-# Custom
+import CopyableCode from '@site/src/components/CopyableCode';
+
+# Custom <CopyableCode value="extract.custom" />
 
 Extract data from the input using a DIY or bespoke extraction wrangle. Requires WrangleWorks Account and Subscription.
 
@@ -38,12 +40,12 @@ Non-regex pattern matching extracts whole-word matches separated by word boundar
 | `include_empty_labels` | Include labels with no found values in the output when using use_labels=True. | boolean | `true` | No |
 | `output_format` | Format of the extract output. | string, null; one of:<ul className="ww-param-enum-values"><li>list</li><li>dictionary</li><li>columns</li><li>concatenate</li></ul> | `null` | No |
 | `char` | Character to use when output_format is concatenate. | string | `", "` | No |
+| <span className="ww-param-group-label">Details</span> |  |  |  |  |
+| `model_id` | The ID of the wrangle to use. | string, array | — | Yes |
 | <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
 | `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
 | `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
 | `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-| <span className="ww-param-group-label">Details</span> |  |  |  |  |
-| `model_id` | The ID of the wrangle to use. | string, array | — | Yes |
 
 </div>
 

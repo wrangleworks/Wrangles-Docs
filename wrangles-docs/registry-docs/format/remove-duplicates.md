@@ -8,7 +8,9 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
-# Remove Duplicates
+import CopyableCode from '@site/src/components/CopyableCode';
+
+# Remove Duplicates <CopyableCode value="format.remove_duplicates" />
 
 Remove duplicates from a list. Preserves input order.
 
@@ -39,7 +41,7 @@ wrangles:
     - format.remove_duplicates:
         input: Attack of the Clones
         output: Commander
-        where: Rank = Commander
+        where: Rank = 'Commander'
 ```
 
 <div className="ww-sample-grid">

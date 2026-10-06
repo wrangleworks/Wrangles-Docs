@@ -8,7 +8,9 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
-# Address
+import CopyableCode from '@site/src/components/CopyableCode';
+
+# Address <CopyableCode value="extract.address" />
 
 Extract parts of addresses. Requires WrangleWorks Account.
 

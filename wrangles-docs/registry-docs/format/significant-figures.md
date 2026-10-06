@@ -8,7 +8,9 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
-# Significant Figures
+import CopyableCode from '@site/src/components/CopyableCode';
+
+# Significant Figures <CopyableCode value="format.significant_figures" />
 
 Format a value to a specific number of significant figures.
 

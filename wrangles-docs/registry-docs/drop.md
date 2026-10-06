@@ -8,7 +8,9 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
-# Drop
+import CopyableCode from '@site/src/components/CopyableCode';
+
+# Drop <CopyableCode value="drop" />
 
 Drop (Delete) selected column(s).
 

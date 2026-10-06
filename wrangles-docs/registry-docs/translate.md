@@ -8,7 +8,9 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
-# Translate
+import CopyableCode from '@site/src/components/CopyableCode';
+
+# Translate <CopyableCode value="translate" />
 
 Translate the input to a different language. Requires WrangleWorks Account and DeepL API Key (A free account for up to 500,000 characters per month is available).
 

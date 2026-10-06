@@ -8,11 +8,13 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
+import CopyableCode from '@site/src/components/CopyableCode';
+
 # Lookup Wrangles
 
 Lookup wrangles, with recipe examples, parameters, and behavior.
 
-## Lookup {#lookup}
+## Lookup <CopyableCode value="lookup" /> {#lookup}
 
 Lookup values from a saved lookup wrangle.
 
@@ -30,12 +32,12 @@ Look up data from a saved Lookup Wrangle. Data is output as a dictionary if an o
 | <span className="ww-param-group-label">Options</span> |  |  |  |  |
 | `lookup_mode` | How to perform lookups. 'by_row' (default): lookup each row individually. 'by_dataframe': lookup unique values once, copy results to all rows. 'by_matrix': lookup once per matrix permutation. | string; one of:<ul className="ww-param-enum-values"><li>by_row</li><li>by_matrix</li><li>by_dataframe</li></ul> | `"by_row"` | No |
 | `n` | Number of matches to return per input value. When the output list length equals n, each output column receives the corresponding match. Otherwise all n matches are stored as a list in each output column. | integer, null | `null` | No |
+| <span className="ww-param-group-label">Details</span> |  |  |  |  |
+| `model_id` | The model_id to use lookup against. | string, null | `null` | No |
 | <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
 | `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
 | `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
 | `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-| <span className="ww-param-group-label">Details</span> |  |  |  |  |
-| `model_id` | The model_id to use lookup against. | string, null | `null` | No |
 
 </div>
 

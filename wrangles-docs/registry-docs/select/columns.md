@@ -8,7 +8,9 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
-# Columns
+import CopyableCode from '@site/src/components/CopyableCode';
+
+# Columns <CopyableCode value="select.columns" />
 
 Select columns from the dataframe.
 

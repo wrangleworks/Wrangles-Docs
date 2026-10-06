@@ -8,7 +8,9 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
-# Date Calculator
+import CopyableCode from '@site/src/components/CopyableCode';
+
+# Date Calculator <CopyableCode value="date_calculator" />
 
 Add or Subtract time from a date.
 

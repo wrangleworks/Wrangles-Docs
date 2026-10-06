@@ -8,7 +8,9 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
-# Threshold
+import CopyableCode from '@site/src/components/CopyableCode';
+
+# Threshold <CopyableCode value="select.threshold" />
 
 Select the first option if it exceeds a given threshold, else the second option.
 

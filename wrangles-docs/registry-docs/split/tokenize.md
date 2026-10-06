@@ -8,7 +8,9 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
-# Tokenize
+import CopyableCode from '@site/src/components/CopyableCode';
+
+# Tokenize <CopyableCode value="split.tokenize" />
 
 Split text into tokens. A variety of methods are available. The default method is to split on spaces.
 

@@ -8,7 +8,9 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
-# Remove Words
+import CopyableCode from '@site/src/components/CopyableCode';
+
+# Remove Words <CopyableCode value="remove_words" />
 
 Remove all the elements that occur in one list from another.
 

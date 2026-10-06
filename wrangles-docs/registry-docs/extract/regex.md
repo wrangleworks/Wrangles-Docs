@@ -8,7 +8,9 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
-# Regex
+import CopyableCode from '@site/src/components/CopyableCode';
+
+# Regex <CopyableCode value="extract.regex" />
 
 Extract matches or specific capture groups using regex.
 

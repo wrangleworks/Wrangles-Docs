@@ -8,7 +8,9 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
-# List Element
+import CopyableCode from '@site/src/components/CopyableCode';
+
+# List Element <CopyableCode value="select.list_element" />
 
 Select a numbered element of a list (zero indexed).
 
@@ -25,12 +27,12 @@ Select a numbered element of a list (zero indexed).
 | `output` | Name of the output column. | string, array, null | `null` | No |
 | <span className="ww-param-group-label">Options</span> |  |  |  |  |
 | `element` | The numbered element of the list to select. Starts from zero. This may use python slicing syntax to select a subset of the list. | integer | `0` | No |
+| <span className="ww-param-group-label">Errors</span> |  |  |  |  |
+| `default` | Set the default value to return if the specified element doesn't exist. | string, number, array, object, boolean, null | `""` | No |
 | <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
 | `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
 | `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
 | `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-| <span className="ww-param-group-label">Errors</span> |  |  |  |  |
-| `default` | Set the default value to return if the specified element doesn't exist. | string, number, array, object, boolean, null | `""` | No |
 
 </div>
 

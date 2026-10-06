@@ -8,7 +8,9 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
-# Format Price Breaks
+import CopyableCode from '@site/src/components/CopyableCode';
+
+# Format Price Breaks <CopyableCode value="format.price_breaks" />
 
 Expand non-empty price-break cells into paired category and value columns.
 

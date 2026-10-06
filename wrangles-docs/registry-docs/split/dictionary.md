@@ -8,7 +8,9 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
-# Dictionary
+import CopyableCode from '@site/src/components/CopyableCode';
+
+# Dictionary <CopyableCode value="split.dictionary" />
 
 Split one or more dictionaries into columns. The dictionary keys will be returned as the new column headers. If the dictionaries contain overlapping values, the last value will be returned.
 
@@ -25,12 +27,12 @@ Split a dictionary into columns. The dictionary keys are used as the new column 
 | `output` | In columns output_format, this is an optional subset of keys to extract from the dictionary. If not provided, all keys will be returned. Columns can be renamed with the following syntax: output: - key1: new_column_name1 - key2: new_column_name2 In to_lists output_format, this must be two output columns for the keys and values lists. If not provided, Keys and Values will be used. | string, array, null | `null` | No |
 | <span className="ww-param-group-label">Formatting</span> |  |  |  |  |
 | `output_format` | How to split the dictionary. columns creates one output column for each dictionary key. to_lists creates two output columns containing lists of keys and values. | string; one of:<ul className="ww-param-enum-values"><li>columns</li><li>to_lists</li></ul> | `"columns"` | No |
+| <span className="ww-param-group-label">Errors</span> |  |  |  |  |
+| `default` | Provide a set of default headings and values if they are not found within the input. | object, null | `null` | No |
 | <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
 | `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
 | `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
 | `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-| <span className="ww-param-group-label">Errors</span> |  |  |  |  |
-| `default` | Provide a set of default headings and values if they are not found within the input. | object, null | `null` | No |
 
 </div>
 

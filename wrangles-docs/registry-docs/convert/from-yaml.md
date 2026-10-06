@@ -8,7 +8,9 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
-# From YAML
+import CopyableCode from '@site/src/components/CopyableCode';
+
+# From YAML <CopyableCode value="convert.from_yaml" />
 
 Convert a YAML representation into an object.
 
@@ -23,12 +25,12 @@ Convert a YAML representation into an object.
 | <span className="ww-param-group-label">I/O</span> |  |  |  |  |
 | `input` | Name of the input column. | string, integer, array | — | Yes |
 | `output` | Name of the output column. If omitted, the input column will be overwritten. | string, array, null | `null` | No |
+| <span className="ww-param-group-label">Errors</span> |  |  |  |  |
+| `default` | Value to return if the row is empty or fails to be parsed as YAML. If input is a list, default may also be a list - either a single value to apply to all columns, or one value per input column. | string, array, object, number, boolean, null | `null` | No |
 | <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
 | `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
 | `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
 | `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-| <span className="ww-param-group-label">Errors</span> |  |  |  |  |
-| `default` | Value to return if the row is empty or fails to be parsed as YAML. If input is a list, default may also be a list - either a single value to apply to all columns, or one value per input column. | string, array, object, number, boolean, null | `null` | No |
 
 </div>
 

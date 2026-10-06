@@ -8,7 +8,9 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
-# Dates
+import CopyableCode from '@site/src/components/CopyableCode';
+
+# Dates <CopyableCode value="format.dates" />
 
 Format a date.
 

@@ -8,7 +8,9 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
-# Lists
+import CopyableCode from '@site/src/components/CopyableCode';
+
+# Lists <CopyableCode value="merge.lists" />
 
 Take lists in multiple columns and merge them to a single list.
 
@@ -40,8 +42,8 @@ Take lists in multiple columns and merge them to a single list.
 wrangles:
   - merge.lists:
       input:
-        - col1
-        - col2
+        - Col1
+        - Col2
       output: Combined Col
       remove_duplicates: false
 ```

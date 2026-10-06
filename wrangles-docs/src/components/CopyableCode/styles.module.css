@@ -1,0 +1,55 @@
+.wrapper {
+  align-items: center;
+  display: inline-flex;
+  font-size: 0.72em;
+  gap: 0.45rem;
+  margin-left: 0.35rem;
+  vertical-align: 0.08em;
+}
+
+.divider {
+  color: var(--ww-copy-code-muted, #64748b);
+  font-weight: 400;
+}
+
+.wrapper code {
+  background: var(--ww-copy-code-bg, #eef4f7);
+  border: 1px solid var(--ww-copy-code-border, #b8cad5);
+  color: var(--ww-copy-code-color, var(--ww-blue-900));
+  font-size: 0.92em;
+  padding: 0.18rem 0.38rem;
+}
+
+.copyButton {
+  align-items: center;
+  background: transparent;
+  border: 0;
+  border-radius: 3px;
+  color: var(--ww-copy-code-muted, #64748b);
+  cursor: pointer;
+  display: inline-flex;
+  height: 1.65rem;
+  justify-content: center;
+  padding: 0.2rem;
+  width: 1.65rem;
+}
+
+.copyButton:hover {
+  background: var(--ww-copy-code-hover, #e2e8f0);
+  color: var(--ww-copy-code-color, var(--ww-blue-900));
+}
+
+.copyButton:focus-visible {
+  outline: 2px solid var(--ww-gold-500);
+  outline-offset: 2px;
+}
+
+.copyButton svg {
+  fill: none;
+  height: 1rem;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2;
+  width: 1rem;
+}

@@ -8,7 +8,9 @@ toc_min_heading_level: 2
 toc_max_heading_level: 3
 ---
 
-# Retrieve Link Content
+import CopyableCode from '@site/src/components/CopyableCode';
+
+# Retrieve Link Content <CopyableCode value="search.retrieve_link_content" />
 
 Retrieves targeted content from web pages using LLM URL extraction. Can optionally output a second column containing a clean, human-readable text summary of the retrieved data.
 
@@ -27,16 +29,16 @@ Retrieves targeted content from web pages using LLM URL extraction. Can optional
 | `prompt` | Optional custom system prompt to guide the extraction behavior and output format. | string, null | `null` | No |
 | <span className="ww-param-group-label">Formatting</span> |  |  |  |  |
 | `output_format` | The desired format for the extracted content. | string; one of:<ul className="ww-param-enum-values"><li>markdown</li><li>json</li></ul> | `"json"` | No |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
-| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
 | <span className="ww-param-group-label">Execution</span> |  |  |  |  |
 | `threads` | Number of concurrent threads for parallel processing (default 10). | integer | `10` | No |
 | <span className="ww-param-group-label">Details</span> |  |  |  |  |
 | `client` | The retrieval provider to use. | string; one of:<ul className="ww-param-enum-values"><li>google_url_context</li></ul> | `"google_url_context"` | No |
 | `api_key` | API key for the provider. Can also be set as an environment variable (e.g., GOOGLE_API_KEY). | string, null | `null` | No |
 | `model_id` | The specific model ID to use (default models/gemini-3-flash-preview). | string | `"models/gemini-3-flash-preview"` | No |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
 
 </div>
 
