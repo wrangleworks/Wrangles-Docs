@@ -1,6 +1,6 @@
 ---
 title: "Install"
-slug: /excel/install
+slug: /xl/install
 ---
 
 # Prerequisites
@@ -10,7 +10,7 @@ slug: /excel/install
 > Create a Wrangleworks account: [Register](https://sso.wrangle.works/auth/realms/wrwx/protocol/openid-connect/registrations?client_id=account&response_type=code&scope=openid%20email&redirect_uri=https://sso.wrangle.works/auth/realms/wrwx/account/#/)
 \{.is-warning\}
 
-For browser support, click [here](/excel/supported-versions).
+For browser support, click [here](/xl/supported-versions).
 
 # Installation
 
@@ -23,5 +23,5 @@ For browser support, click [here](/excel/supported-versions).
 3. Agree to the T&Cs and the *Data Wrangles* tab will be added.
 
 ---
-> *Successfully added?* [Learn how to Wrangle](/excel)
+> *Successfully added?* [Learn how to Wrangle](/xl)
 \{.is-success\}

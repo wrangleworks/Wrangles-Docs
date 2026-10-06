@@ -39,7 +39,7 @@ df = sftp.read(
 
 ### Parameters
 
-> The SFTP connector also supports the same optional parameters as the file connector. See the [file connector](/python/connectors/file) for more details.
+> The SFTP connector also supports the same optional parameters as the file connector. See the [file connector](/py/python/connectors/file) for more details.
 \{.is-info\}
 
 | Parameter | Required | Data Type | Notes |
@@ -82,7 +82,7 @@ sftp.write(
 
 ### Parameters
 
-> The SFTP connector also supports the same optional parameters as the file connector. See the [file connector](/python/connectors/file) for more details.
+> The SFTP connector also supports the same optional parameters as the file connector. See the [file connector](/py/python/connectors/file) for more details.
 \{.is-info\}
 
 | Parameter | Required | Data Type | Notes |

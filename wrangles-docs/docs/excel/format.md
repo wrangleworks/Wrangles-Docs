@@ -1,16 +1,16 @@
 ---
 title: "Format"
-slug: /excel/format
+slug: /xl/format
 ---
 
-- [Basics *Unsure how to start? Learn how.*](/excel)
+- [Basics *Unsure how to start? Learn how.*](/xl)
 \{.links-list\}
 
 ---
 
 Formatting Wrangles are convenient for transforming data in terms of case, padding, and merge/split.
 
-> Click [here](/wrangles/namespaces/format) to learn how to use Format Wrangles in a recipe.
+> Click [here](/py/namespaces/format) to learn how to use Format Wrangles in a recipe.
 
 # Case
 
@@ -57,7 +57,7 @@ Change the case of the input.
 Merges multiple columns into one, only merging the first non-empty values in the column; "first" being from left to right.
 Useful if you have multiple columns with similar data but only need one column.
 
-> Click [here](/wrangles/namespaces/merge#coalesce) to learn how to use Coalesce Wrangles in a recipe.
+> Click [here](/py/namespaces/merge#coalesce) to learn how to use Coalesce Wrangles in a recipe.
 
  ## Tabset \{.tabset\}
 ### Example
@@ -162,7 +162,7 @@ For objects the column headers will be used as the keys and must be unique.
 
 Merges multiple columns into one. All columns are combined together sequentially.
 
-> Click [here](/wrangles/namespaces/merge#concatenate) to learn how to use Concatenate Wrangles in a recipe.
+> Click [here](/py/namespaces/merge#concatenate) to learn how to use Concatenate Wrangles in a recipe.
 
  ## Tabset \{.tabset\}
 ### Example
@@ -411,7 +411,7 @@ Adds a prefix or suffix to selected columns.
 
 Splits an input into multiple columns.
 
-> Click [here](/wrangles/namespaces/split) to learn how to use Split Wrangles in a recipe.
+> Click [here](/py/namespaces/split) to learn how to use Split Wrangles in a recipe.
 
 ## Tabset \{.tabset\}
 ### Example

@@ -1,9 +1,9 @@
 ---
-title: "Excel"
-slug: /excel
+title: "Basics"
+slug: /xl
 ---
 
--   [Installation Guide *Not installed the add-in yet? Learn how.*](/excel/install)
+-   [Installation Guide *Not installed the add-in yet? Learn how.*](/xl/install)
 
 * * *
 
@@ -40,11 +40,11 @@ Wrangles are grouped into several categories.
 
 Each guide contains additional details for example Wrangles within each Category. They are worth reviewing - often there's more to a Wrangle than meets the eye!
 
--   [Extract *Identify and extract meaningful information from unstructured text*](/excel/extract)
--   [Format *Quickly reformat data*](/excel/format)
--   [Standardize *Replaces words or patterns with anything of your choosing*](/excel/standardize)
--   [Classify *Predict which categories items belong to*](/excel/classify)
--   [Translate *Translate text between languages*](/excel/translate)
+-   [Extract *Identify and extract meaningful information from unstructured text*](/xl/extract)
+-   [Format *Quickly reformat data*](/xl/format)
+-   [Standardize *Replaces words or patterns with anything of your choosing*](/xl/standardize)
+-   [Classify *Predict which categories items belong to*](/xl/classify)
+-   [Translate *Translate text between languages*](/xl/translate)
 
 ## Types of Wrangle
 
@@ -56,4 +56,4 @@ Wrangles come in 3 types:
 
 ## In Depth Examples
 
-[Open the tutorials](/excel/Let's-Get-Ready-To-Wrangle) for in-depth examples showing how to create, use, edit, and share Wrangles.
+[Open the tutorials](/xl/Let's-Get-Ready-To-Wrangle) for in-depth examples showing how to create, use, edit, and share Wrangles.

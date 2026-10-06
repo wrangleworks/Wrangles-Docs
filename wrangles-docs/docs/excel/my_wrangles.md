@@ -1,9 +1,9 @@
 ---
 title: "My Wrangles"
-slug: /excel/my_wrangles
+slug: /xl/my_wrangles
 ---
 
--   [Basics *Unsure how to start? Learn how.*](/excel)
+-   [Basics *Unsure how to start? Learn how.*](/xl)
 
 * * *
 
@@ -13,12 +13,12 @@ The My Wrangles page of the Data Wrangles add-in is where Data Wranglers spend m
 
 ## Types of Custom Wrangles
 
--   [Classify *Predict which categories items belong to*](/excel/classify)
--   [Extract *Identify and extract meaningful information from unstructured text*](/excel/my_wrangles/extract)
--   [Standardize *Wrangles to Standardize text data*](/excel/my_wrangles/standardize)
--   [Lookup *Save data to be looked up later as a Wrangle or in a recipe*](/excel/Lookup)
--   [Map *Map columns from one table/sheet to another where the columns names have been standardized*](/excel/map)
--   [Recipe *A workflow of multiple wrangles*](/excel/recipes)
+-   [Classify *Predict which categories items belong to*](/xl/classify)
+-   [Extract *Identify and extract meaningful information from unstructured text*](/xl/my_wrangles/extract)
+-   [Standardize *Wrangles to Standardize text data*](/xl/my_wrangles/standardize)
+-   [Lookup *Save data to be looked up later as a Wrangle or in a recipe*](/xl/Lookup)
+-   [Map *Map columns from one table/sheet to another where the columns names have been standardized*](/xl/map)
+-   [Recipe *A workflow of multiple wrangles*](/xl/recipes)
 
 ## Creating DIY Wrangles
 
@@ -30,7 +30,7 @@ The Data Wrangles Excel add-in makes it very easy to create your own Wrangle. Si
 
 Do not be worried if you have made an error and wish to change your training data, DIY Wrangles can always be retrained by clicking the edit button in the Wrangles Task Pane.
 
-See the [WranglesXL tutorials](/excel/Let's-Get-Ready-To-Wrangle) for complete examples of building and using Wrangles.
+See the [WranglesXL tutorials](/xl/Let's-Get-Ready-To-Wrangle) for complete examples of building and using Wrangles.
 
 ### Referencing Your Wrangle in a Recipe
 
@@ -201,7 +201,7 @@ If multiple "values" are found, the value will become an array:
 
 Wrangle data must be in the form of **category: value**.
 
-See [here](/excel/Let's-Get-Ready-To-Wrangle/Use-Labels) for a more in depth look at use\_labels.
+See [here](/xl/Let's-Get-Ready-To-Wrangle/Use-Labels) for a more in depth look at use\_labels.
 
 ##### Use Spellcheck
 

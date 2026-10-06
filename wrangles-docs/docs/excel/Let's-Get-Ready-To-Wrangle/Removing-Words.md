@@ -1,15 +1,15 @@
 ---
 title: "Removing Words"
-slug: /excel/Let's-Get-Ready-To-Wrangle/Removing-Words
+slug: /xl/Let's-Get-Ready-To-Wrangle/Removing-Words
 ---
 
 # How to Remove Words
 
-Removing words is a common issue that Wranglers face. Sometimes it is as easy as using the built in [Replace](/wrangles/replace) Wrangle, but other times our list of words to remove is too long, or we just want to build something that is reusable. This tutorial will teach you how to both use the stock Wrangle as well as how to write a small recipe to remove words.
+Removing words is a common issue that Wranglers face. Sometimes it is as easy as using the built in [Replace](/py/replace) Wrangle, but other times our list of words to remove is too long, or we just want to build something that is reusable. This tutorial will teach you how to both use the stock Wrangle as well as how to write a small recipe to remove words.
 
 ## Stock Remove Words Wrangle
 
-The stock remove words Wrangle works great for making quick, easy, changes to your data. Let's use the data set shown below, and walk through using the stock [Replace](/wrangles/replace) Wrangle to remove url's.
+The stock remove words Wrangle works great for making quick, easy, changes to your data. Let's use the data set shown below, and walk through using the stock [Replace](/py/replace) Wrangle to remove url's.
 
 ![original_data.png](/images/remove-words/original_data.png)
 
@@ -34,7 +34,7 @@ Now, we can plug our regex pattern into the Replace Wrangle and run it.
 
 ## Removing Words in a Recipe
 
-Removing words isn't always as simple as using the [remove_words](/wrangles/namespaces/format#remove-words) wrangle. There are many cases where an extract wrangle will find a match but the remove wrangle will not. This is because extracts are allowed variants (listed int he "Find" column of the training data). By using an extract wrangle in conjunction with our remove_words wrangle, we can achieve the desired output.
+Removing words isn't always as simple as using the [remove_words](/py/namespaces/format#remove-words) wrangle. There are many cases where an extract wrangle will find a match but the remove wrangle will not. This is because extracts are allowed variants (listed int he "Find" column of the training data). By using an extract wrangle in conjunction with our remove_words wrangle, we can achieve the desired output.
 
 This portion of the tutorial will show you how to build a short recipe that uses both extract and remove_words to remove brand names from our data. 
 
@@ -46,7 +46,7 @@ In this case, we will implement an extract wrangle that was built with the inten
 
 ![demo_brands.png](/in-depth-examples/remove-words/demo_brands.png)
 
-If you are not familiar with extract wrangles, see [here](/wrangles/namespaces/extract). The particular extract wrangle we are using is Custom.
+If you are not familiar with extract wrangles, see [here](/py/namespaces/extract). The particular extract wrangle we are using is Custom.
 
 Now, let’s add this to a recipe and see what our output is.
 
@@ -93,4 +93,4 @@ wrangles:
 
 ![recipe_step3.png](/in-depth-examples/remove-words/recipe_step3.png)
 
-As you see, we now have three columns with the last column being our goal. If you do not desire to output all columns, you can list the ones you want to output in the "columns" parameter of the [Excel Connector](/python/connectors/excel).
+As you see, we now have three columns with the last column being our goal. If you do not desire to output all columns, you can list the ones you want to output in the "columns" parameter of the [Excel Connector](/py/python/connectors/excel).

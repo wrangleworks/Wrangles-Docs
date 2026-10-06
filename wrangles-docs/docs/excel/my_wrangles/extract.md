@@ -1,6 +1,6 @@
 ---
 title: "Extract"
-slug: /excel/my_wrangles/extract
+slug: /xl/my_wrangles/extract
 ---
 
 DIY extract wrangles can be taylored to your data to identify and extract meaningful information from unstructured text. All custom extract wrangles (both diy and bespoke) can be found under the Extract tab of My Wrangles in the Data Wrangles task pane.

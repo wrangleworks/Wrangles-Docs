@@ -1,33 +1,33 @@
 ---
 title: "Extracting Data"
-slug: /excel/Let's-Get-Ready-To-Wrangle/Extracting-Data
+slug: /xl/Let's-Get-Ready-To-Wrangle/Extracting-Data
 ---
 
 # Extracting Meaningful Data With a Recipe
 
-This tutorial will show you how to extract meaningful data from a set of dirty data using a recipe. The manual version of this tutorial can be found [here](/excel/Let's-Get-Ready-To-Wrangle/Extracting-From-Dirty-Data). Let's get ready to wrangle!
+This tutorial will show you how to extract meaningful data from a set of dirty data using a recipe. The manual version of this tutorial can be found [here](/xl/Let's-Get-Ready-To-Wrangle/Extracting-From-Dirty-Data). Let's get ready to wrangle!
 
 > Recipes are a premium feature of the Data Wrangles add-in. [Contact Us](https://www.wrangleworks.com/contact.html) to get access to this feature.
 \{.is-info\}
 
 ## Introduction
 
-[Recipes](/excel/recipes) allow a series of wrangles to be defined and run as an automated sequence. I this tutorial, we will go over how to take [this](/excel/Let's-Get-Ready-To-Wrangle/Extracting-From-Dirty-Data) series of wrangles and automate the process so that users can accomplish the same thing with just the click of a button.
+[Recipes](/xl/recipes) allow a series of wrangles to be defined and run as an automated sequence. I this tutorial, we will go over how to take [this](/xl/Let's-Get-Ready-To-Wrangle/Extracting-From-Dirty-Data) series of wrangles and automate the process so that users can accomplish the same thing with just the click of a button.
 
 If you recall from the manual excersize, our data is dirty and riddled with noise. This is what we have to start off with:
 
 ![demo_-_products.png](/images/demo_-_products.png)
 
 The wrangles we will be working with can be found here:
-- [extract.properties](/wrangles/namespaces/extract#properties)
-- [select.list_element](/wrangles/namespaces/select#list-element)
-- [extract.attributes](/wrangles/namespaces/extract#attributes)
-- [extract.codes](/wrangles/namespaces/extract#codes)
-- [replace](/wrangles/namespaces/format#replace)
-- [extract.address](/wrangles/namespaces/extract#address)
-- [extract.brackets](/wrangles/namespaces/extract#brackets)
-- [extract.custom](/wrangles/namespaces/extract#custom)
-- [merge.concatenate](/wrangles/namespaces/merge#concatenate)
+- [extract.properties](/py/namespaces/extract#properties)
+- [select.list_element](/py/namespaces/select#list-element)
+- [extract.attributes](/py/namespaces/extract#attributes)
+- [extract.codes](/py/namespaces/extract#codes)
+- [replace](/py/namespaces/format#replace)
+- [extract.address](/py/namespaces/extract#address)
+- [extract.brackets](/py/namespaces/extract#brackets)
+- [extract.custom](/py/namespaces/extract#custom)
+- [merge.concatenate](/py/namespaces/merge#concatenate)
 
 Here is the recipe we will be using, but keep reading to go over it step by step.
 
@@ -192,7 +192,7 @@ Storage is wrapped in curly brackets in our data so the extract.brackets stock w
       first_element: true
 ```
 
-In order to extract brand, we have utilized a custom extract wrangle. You'll notice that extract.custom has a first_element parameter that allows users to specify the first element only when running the wrangle. This gets rid of the need for an additional select wrangle. See [extract.custom](/wrangles/namespaces/extract#custom) to learn how to train your own custom extract wrangle.
+In order to extract brand, we have utilized a custom extract wrangle. You'll notice that extract.custom has a first_element parameter that allows users to specify the first element only when running the wrangle. This gets rid of the need for an additional select wrangle. See [extract.custom](/py/namespaces/extract#custom) to learn how to train your own custom extract wrangle.
 
 Our model is as follows:
 

@@ -1,10 +1,10 @@
 ---
 title: "Extract"
-slug: /excel/extract
+slug: /xl/extract
 ---
 
-- [Basics *Unsure how to start? Learn how.*](/excel)
-- [DIY Extract Wrangles *Build your own customized extract wrangles*](/excel/my_wrangles/extract)
+- [Basics *Unsure how to start? Learn how.*](/xl)
+- [DIY Extract Wrangles *Build your own customized extract wrangles*](/xl/my_wrangles/extract)
 \{.links-list\}
 
 ---

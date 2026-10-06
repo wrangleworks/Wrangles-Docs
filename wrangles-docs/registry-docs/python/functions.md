@@ -3,7 +3,7 @@ title: "Functions"
 slug: /python/functions
 ---
 
-> Some Wrangles require authentication to the WrangleWorks servers to function. See [the installation instructions](/python/install#authentication)
+> Some Wrangles require authentication to the WrangleWorks servers to function. See [the installation instructions](/py/python/install#authentication)
 \{.is-warning\}
 
 

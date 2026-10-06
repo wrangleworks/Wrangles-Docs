@@ -53,15 +53,32 @@ body {
   color: var(--ww-text);
 }
 
+body::after {
+  background: var(--ww-gold-500);
+  bottom: 0;
+  content: "";
+  height: 6px;
+  left: 0;
+  pointer-events: none;
+  position: fixed;
+  right: 0;
+  z-index: var(--ifm-z-index-fixed);
+}
+
 .main-wrapper {
   background: var(--ww-canvas);
 }
 
 .navbar {
   background: var(--ww-blue-900);
-  border-top: 6px solid var(--ww-gold-500);
+  border: 0 !important;
   box-shadow: none;
   padding: 0 1rem;
+}
+
+.navbar--fixed-top {
+  position: sticky;
+  top: 0;
 }
 
 .navbar__inner {
@@ -74,8 +91,9 @@ body {
 }
 
 .navbar__logo {
-  height: 2.65rem;
-  margin-right: 0.45rem;
+  height: 3.35rem;
+  margin-right: 0;
+  width: 3.3rem;
 }
 
 .navbar__title {
@@ -327,6 +345,22 @@ body {
   margin-bottom: 0.65rem;
 }
 
+.ww-wrangle-doc-scope .theme-doc-markdown > header:first-child {
+  background: #ffffff;
+  border-bottom: 2px solid var(--ww-gold-500);
+  box-shadow: 0 5px 10px rgba(15, 23, 42, 0.08);
+  margin-left: -0.5rem;
+  margin-right: -0.5rem;
+  padding: 0.65rem 0.5rem;
+  position: sticky;
+  top: var(--ifm-navbar-height);
+  z-index: 20;
+}
+
+.ww-wrangle-doc-scope .theme-doc-markdown > header:first-child h1 {
+  margin: 0;
+}
+
 .ww-wrangle-doc-scope .theme-doc-markdown h2 {
   border-bottom-width: 2px;
   font-size: 1.45rem;
@@ -362,6 +396,11 @@ body {
 
 /* Wrangle pages use explicit panels to keep sample labels attached to their data. */
 .ww-wrangle-doc-scope .theme-doc-markdown > h2:not([id^="metadata"]) {
+  --ww-copy-code-bg: rgba(255, 255, 255, 0.13);
+  --ww-copy-code-border: rgba(255, 255, 255, 0.26);
+  --ww-copy-code-color: #ffffff;
+  --ww-copy-code-hover: rgba(255, 255, 255, 0.14);
+  --ww-copy-code-muted: rgba(255, 255, 255, 0.78);
   background: var(--ww-blue-900);
   border: 1px solid var(--ww-blue-900);
   border-bottom: 1px solid var(--ww-blue-900);

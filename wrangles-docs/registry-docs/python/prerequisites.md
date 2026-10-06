@@ -32,7 +32,7 @@ Other editors will also work, but we recommend VSCode.
 
 ![install-python-extension.png](/images/install-python-extension.png)
 
-3. To enable recipe validation and code suggestions follow [these instructions](/python/recipes/schema)
+3. To enable recipe validation and code suggestions follow [these instructions](/py/python/recipes/schema)
 
-> Ready to go? [Install the Wrangles package](/python/install)
+> Ready to go? [Install the Wrangles package](/py/python/install)
 \{.is-success\}

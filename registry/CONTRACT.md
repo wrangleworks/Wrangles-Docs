@@ -148,7 +148,7 @@ Each entry separates identity, executable naming, compatibility, and routing:
 - `wrangle_key` is the canonical executable recipe key. It is composed from
   `namespace` and `wrangle_name` for dotted keys and equals `wrangle_name` for
   root-level keys.
-- `slug` is the public documentation path below `/wrangles/`. Changing it
+- `slug` is the public documentation path below `/py/`. Changing it
   requires a redirect.
 
 `aliases` contains still-supported legacy recipe keys. The initial Registry

@@ -47,7 +47,7 @@ notification.run(
 
 A variety of notifications for specific services are also available.
 
-- [Email *Send an email.*](/python/connectors/notification/email)
-- [Telegram *Send telegram messages.*](/python/connectors/notification/telegram)
+- [Email *Send an email.*](/py/python/connectors/notification/email)
+- [Telegram *Send telegram messages.*](/py/python/connectors/notification/telegram)
 - [Slack *Send Slack messages*](https://wrangles.io/en/python/connectors/notification/slack)
 \{.links-list\}

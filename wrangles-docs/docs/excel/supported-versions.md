@@ -1,6 +1,6 @@
 ---
 title: "Supported Versions"
-slug: /excel/supported-versions
+slug: /xl/supported-versions
 ---
 
 # Support

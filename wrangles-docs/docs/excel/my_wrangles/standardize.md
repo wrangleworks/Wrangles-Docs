@@ -1,6 +1,6 @@
 ---
 title: "Standardize"
-slug: /excel/my_wrangles/standardize
+slug: /xl/my_wrangles/standardize
 ---
 
 The Standardize Wrangle can be used to replace words or patterns with their "standardized" form. You can think of this Wrangle as a smart find-and-replace feature. Custom standardize wrangles are much more unique to your use case than stock standardize wrangles.

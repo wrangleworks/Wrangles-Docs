@@ -1,6 +1,6 @@
 ---
 title: Lookup
-slug: /excel/Lookup
+slug: /xl/Lookup
 ---
 
 The Lookup Wrangle can be used to store data to be looked up later. They come in two variants: key and semantic. Key lookups find data using an exact match, such as looking up IDs or names. Semantic lookups find data using a semantic search (aka vector search), such as finding similar descriptions.

@@ -6,10 +6,10 @@ export default function Root({children}) {
 
   useEffect(() => {
     const isPythonMode =
-      location.pathname === '/wrangles' ||
-      location.pathname.startsWith('/wrangles/') ||
-      location.pathname === '/python/connectors' ||
-      location.pathname.startsWith('/python/connectors/') ||
+      location.pathname === '/py' ||
+      location.pathname.startsWith('/py/') ||
+      location.pathname === '/python' ||
+      location.pathname.startsWith('/python/') ||
       location.pathname === '/playground' ||
       location.pathname.startsWith('/playground/');
     document.body.classList.toggle('ww-wranglespy-mode', isPythonMode);

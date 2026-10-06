@@ -1,13 +1,13 @@
 ---
 title: "Recipes"
-slug: /excel/recipes
+slug: /xl/recipes
 ---
 
 > Recipes are a premium feature of the Data Wrangles add-in. [Contact Us](https://www.wrangleworks.com/contact.html) to get access to this feature.
 
 * * *
 
-Recipes are a very powerful function of the Wrangles add-in, they allow a series of Wrangles to be defined and run as an automated sequence. Recipes in Excel work just as they do in [Python Recipes](/python/recipes) with just a few minor exceptions.
+Recipes are a very powerful function of the Wrangles add-in, they allow a series of Wrangles to be defined and run as an automated sequence. Recipes in Excel work just as they do in [Python Recipes](/py/python/recipes) with just a few minor exceptions.
 
 ## Running a Recipe
 
@@ -27,11 +27,11 @@ You can stop a recipe during its run using the escape key.
 
 ## Writing a Recipe in Excel
 
-> Recipes in Excel use the same syntax as in Python. See **[Python Recipes](/python/recipes)** for full documentation.
+> Recipes in Excel use the same syntax as in Python. See **[Python Recipes](/py/python/recipes)** for full documentation.
 
 Writing a recipe in Excel is very similar to writing a recipe in Python, but there are some minor exceptions.
 
-First, recipes in Excel output data next to the selected range of values by default. To output to a new sheet, see the [excel connector](/python/connectors/excel).
+First, recipes in Excel output data next to the selected range of values by default. To output to a new sheet, see the [excel connector](/py/python/connectors/excel).
 
 In Excel there are also tabs called Edit, Secrets, Functions, and Variables as well as a Compare button. The below screen shot shows the Wrangles Task Pane for writing a recipe.
 
@@ -111,7 +111,7 @@ Secrets can also be accessed by right clicking and navigating to the variables s
 
 ### Functions
 
-The functions tab is where all custom functions are stored. [Custom Functions](/python/recipes/custom-functions) allow you to use the power of Python to write custom Wrangles. Although the gif below demonstrates a very simple function, the possibilities are endless.
+The functions tab is where all custom functions are stored. [Custom Functions](/py/python/recipes/custom-functions) allow you to use the power of Python to write custom Wrangles. Although the gif below demonstrates a very simple function, the possibilities are endless.
 
 ![custom_function.gif](/gifs/custom_function.gif)
 
@@ -257,7 +257,7 @@ Version tags can be added by editing the version's metadata or by saving as a ta
 
 Tagged versions can be set as the production version (as seen in the gif above) from the save as tagged version page or the version's metadata page. When a version is set as production, that is the version that will be run by using the play button on the recipe, or when a recipe is called from its model id without using a tag. **However** when running from the edit screen, the latest version is the version which runs. Recipes that do not have a production version will always run the latest version.
 
-> For more information on how to call a recipe using a tagged version and its model id, see the [Recipe wrangle](/wrangles/recipe).
+> For more information on how to call a recipe using a tagged version and its model id, see the [Recipe wrangle](/py/recipe).
 
 ### Settings
 
@@ -271,7 +271,7 @@ The Batch Size setting determines how many rows of data are passed through the r
 
 ### Excel Connector
 
-The **[Excel connector](/python/connectors/excel)** allows users to write to different sheets and much more. Click the link for more details.
+The **[Excel connector](/py/python/connectors/excel)** allows users to write to different sheets and much more. Click the link for more details.
 
 > **Warning**: When setting a sheet name to longer than 31 characters (Excel's limit), the sheet name is cut short. This will causes errors if the recipe is run more than once without deleting prior generated sheets.
 

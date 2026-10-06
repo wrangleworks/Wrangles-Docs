@@ -616,7 +616,7 @@ Example:
 
 Known caveat:
 
-Some docs URLs are generated mechanically from `docs_path`. For Excel-only paths, the current URL may need cleanup. Example: a `docs_path` under `docs/excel/...` should usually map to `/excel/...`, not `/python/recipes/wrangles/...`.
+Some docs URLs are generated mechanically from `docs_path`. For Excel-only paths, the current URL may need cleanup. Example: a `docs_path` under `docs/excel/...` should usually map to `/xl/...`, not `/python/recipes/wrangles/...`.
 
 ### `parameters`
 

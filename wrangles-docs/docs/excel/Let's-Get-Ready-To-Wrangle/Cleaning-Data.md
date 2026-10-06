@@ -1,6 +1,6 @@
 ---
 title: "Cleaning Data"
-slug: /excel/Let's-Get-Ready-To-Wrangle/Cleaning-Data
+slug: /xl/Let's-Get-Ready-To-Wrangle/Cleaning-Data
 ---
 
 # Cleaning Data

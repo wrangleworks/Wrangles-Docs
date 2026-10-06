@@ -20,22 +20,22 @@ Each Wrangle is optimized for a particular job, many of which are backed by soph
 
 
 
-# Data Wrangles [Excel](/excel) Add-In
+# Data Wrangles [Excel](/xl) Add-In
 
 The Data Wrangles Excel add-in allows you to Wrangle data without having to write any code, interactively directly within Excel.
 
 ---
-> Learn more about the [Data Wrangles](/excel) Excel add-in.
+> Learn more about the [Data Wrangles](/xl) Excel add-in.
 \{.is-success\}
 
 ![Easily extract data, create descriptions and more with the WranglesXL add-in.](/gifs/extractai_demo.gif)
 
-# Wrangles in [Python](/python)
+# Wrangles in [Python](/py/python/overview)
 
 With WranglesPY, you can automate your entire Data Wrangling process. Seamlessly blend Wrangles into your python code, or use recipes for a low-code automation platform.
 
 ---
-> Learn more about the [Wrangles Python](/python) package.
+> Learn more about the [Wrangles Python](/py/python/overview) package.
 \{.is-success\}
 
 ![recipe.gif](/gifs/recipe.gif)

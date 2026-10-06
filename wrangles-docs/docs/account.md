@@ -25,7 +25,7 @@ This section allows users to update their password and set up two-factor authent
 
 ## Secrets
 
-The secrets section is where users can store secrets like api keys. These secrets can then be read into recipes. See [here](/excel/recipes#secrets) to learn about using secrets in recipes. See the gif below to learn how to add a secret to your user secrets.
+The secrets section is where users can store secrets like api keys. These secrets can then be read into recipes. See [here](/xl/recipes#secrets) to learn about using secrets in recipes. See the gif below to learn how to add a secret to your user secrets.
 
 ![creating_a_secret.gif](/images/account/creating_a_secret.gif)
 

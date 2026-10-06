@@ -1,6 +1,6 @@
 ---
 title: "Combining Descriptions"
-slug: /excel/Let's-Get-Ready-To-Wrangle/Combining-Descriptions
+slug: /xl/Let's-Get-Ready-To-Wrangle/Combining-Descriptions
 ---
 
 # Combining Descriptions
@@ -76,7 +76,7 @@ write:
 
 ## Custom Wrangles Used
 
-A [custom standardize](/wrangles/standardize/custom) wrangle was used to clean up any punctuation to prepare for the removal of duplicates. It is best practice to remove punctuation in this case becuase remove_duplicates (in merge.lists) will not work if a word is followed by a period or comma etc.
+A [custom standardize](/py/standardize/custom) wrangle was used to clean up any punctuation to prepare for the removal of duplicates. It is best practice to remove punctuation in this case becuase remove_duplicates (in merge.lists) will not work if a word is followed by a period or comma etc.
 
 Below, you'll find the training data for this custom standardize wrangle:
 

@@ -3,7 +3,7 @@ title: "Install"
 slug: /python/install
 ---
 
-> The below presumes you already have Python and a code editor installed. If not, [start here](/python/prerequisites).
+> The below presumes you already have Python and a code editor installed. If not, [start here](/py/python/prerequisites).
 
 ## Installation
 
@@ -76,4 +76,4 @@ Follow these instuctions to enable in VS Code. Once added, any file named \**.re
 
 * * *
 
-> *Successfully installed?* [Learn how to Wrangle](/python)
+> *Successfully installed?* [Learn how to Wrangle](/py/python/overview)

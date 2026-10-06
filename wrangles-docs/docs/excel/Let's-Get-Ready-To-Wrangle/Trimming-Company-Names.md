@@ -1,6 +1,6 @@
 ---
 title: "Trimming Company Names"
-slug: /excel/Let's-Get-Ready-To-Wrangle/Trimming-Company-Names
+slug: /xl/Let's-Get-Ready-To-Wrangle/Trimming-Company-Names
 ---
 
 # How to Trim Company Names
@@ -9,7 +9,7 @@ Many company names are inherently noisy. They tend to not only have suffixes (LL
 
 ## Utilizing a Standardize Wrangle
 
-For this task, we will walk you through creating a standardize wrangle that uses regular expressions (regex) to match suffixes and return nothing in their place. If you are unfamiliar with creating a standardize wrangle, click [here](/excel/my_wrangles/standardize).
+For this task, we will walk you through creating a standardize wrangle that uses regular expressions (regex) to match suffixes and return nothing in their place. If you are unfamiliar with creating a standardize wrangle, click [here](/xl/my_wrangles/standardize).
 
 Below is an example set of typical company names. We will use this as a base for creating our standardize wrangle.
 
@@ -49,7 +49,7 @@ Now, we can add our regex pattern to our standardize wrangle.
 |:----:|:-------:|:-----:|
 | regex: ,?\s?(LLC\|Corp\|Co\|Inc\|GMBH\|Ltd)\.? | | Replaces suffixes in parenthesis (lead by ", " or followed by ".") with nothing. |
 
-I you recall from the [regex](/excel/my_wrangles/standardize#regular-expressions), regex patterns must be lead with "regex:" so that the wrangle knows that it is a regex pattern.
+I you recall from the [regex](/xl/my_wrangles/standardize#regular-expressions), regex patterns must be lead with "regex:" so that the wrangle knows that it is a regex pattern.
 
 ### Adding Noisy Words
 

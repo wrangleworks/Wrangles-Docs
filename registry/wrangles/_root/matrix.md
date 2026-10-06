@@ -81,7 +81,7 @@ sources:
 
 Apply a matrix of wrangles to the dataframe. Each wrangle runs for the configured combinations of variables, including recipe variables and variables declared by the `variables` parameter.
 
-See the [Matrix connector](/python/connectors/matrix) for the connector equivalent.
+See the [Matrix connector](/py/python/connectors/matrix) for the connector equivalent.
 
 ## Migrated examples
 #### Use Hardcoded Variables

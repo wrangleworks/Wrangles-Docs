@@ -26,7 +26,7 @@ wrangles.recipe.run('recipe.wrgl.yml', functions=[my_function])
 
 Custom functions must be structured in a specific way to be used within a recipe. Learn how to structure a function for each section:
 
-- [Read *Read data with custom code*](/python/recipes/custom-functions/read)
-- [Wrangles *Wrangle data with custom code*](/python/recipes/custom-functions/wrangles)
-- [Write *Write data with custom code*](/python/recipes/custom-functions/write)
+- [Read *Read data with custom code*](/py/python/recipes/custom-functions/read)
+- [Wrangles *Wrangle data with custom code*](/py/python/recipes/custom-functions/wrangles)
+- [Write *Write data with custom code*](/py/python/recipes/custom-functions/write)
 \{.links-list\}

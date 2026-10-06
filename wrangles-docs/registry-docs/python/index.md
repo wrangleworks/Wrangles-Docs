@@ -1,10 +1,10 @@
 ---
 title: "Python"
-slug: /python
+slug: /python/overview
 ---
 
--   [Installation Guide *Not installed the package yet? Learn how.*](/python/install)
--   [Prerequisites *Python*](/python/prerequisites)
+-   [Installation Guide *Not installed the package yet? Learn how.*](/py/python/install)
+-   [Prerequisites *Python*](/py/python/prerequisites)
 
 * * *
 
@@ -24,7 +24,7 @@ Wrangles are system independent, and allow you to pull data from one system, tra
 
 ## Functions
 
--   [Functions *Incorporate Wrangles directly into python code*](/python/functions)
+-   [Functions *Incorporate Wrangles directly into python code*](/py/python/functions)
 
 ```python
 >>> wrangles.extract.attributes('it is 15mm long')
@@ -33,7 +33,7 @@ Wrangles are system independent, and allow you to pull data from one system, tra
 
 ## Recipes
 
--   [Recipes *Run a series of Wrangles in an automated sequence*](/python/recipes)
+-   [Recipes *Run a series of Wrangles in an automated sequence*](/py/python/recipes)
 
 ```python
 wrangles.recipe.run('recipe.wrgl.yml')
@@ -41,7 +41,7 @@ wrangles.recipe.run('recipe.wrgl.yml')
 
 ## Connectors
 
--   [Connectors *Connect data from other systems as a function or in a recipe*](/python/connectors)
+-   [Connectors *Connect data from other systems as a function or in a recipe*](/py/python/connectors)
 
 ```yaml
 read:

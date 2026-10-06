@@ -1,6 +1,6 @@
 ---
-title: "WranglesXL Release Notes"
-slug: /excel/releases
+title: "XL Releases"
+slug: /xl/releases
 ---
 
 ## v2.14.2 Highlights (2026-08-30)

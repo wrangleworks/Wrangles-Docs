@@ -1,6 +1,6 @@
 ---
-title: "Organizations"
-slug: /organizations
+title: "Groups"
+slug: /groups
 ---
 
 ## Organizations
@@ -39,7 +39,7 @@ The secrets tab is where members can add or delete organization secrets. These c
 
 ![Add a secret](/add_secret.gif)
 
-See [here](/excel/recipes#secrets) to learn more about how to use secrets in recipes.
+See [here](/xl/recipes#secrets) to learn more about how to use secrets in recipes.
 
 ### Files
 
@@ -47,4 +47,4 @@ The files tab allows users to upload and download files from their organization'
 
 ![Files](/images/account/files.gif)
 
-Files can also be downloaded or uploaded by using the [File Connector](/python/connectors/file).
+Files can also be downloaded or uploaded by using the [File Connector](/py/python/connectors/file).

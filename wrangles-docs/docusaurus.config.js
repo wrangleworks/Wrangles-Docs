@@ -33,7 +33,7 @@ const config = {
       ({
         id: 'registry',
         path: 'registry-docs',
-        routeBasePath: 'wrangles',
+        routeBasePath: 'py',
         sidebarPath: './sidebarsRegistry.js',
       }),
     ],
@@ -78,7 +78,11 @@ const config = {
         respectPrefersColorScheme: false,
       },
       navbar: {
-        title: 'WrangleWorks',
+        logo: {
+          alt: 'WrangleWorks',
+          src: 'img/wrangleworks-logo.svg?v=2',
+          href: '/',
+        },
         items: [
           {
             type: 'custom-wrangleMode',

@@ -12,15 +12,15 @@ Recipes allow a series of Wrangles to be defined and run as an automated sequenc
 
 Recipes are written with [YAML](https://en.wikipedia.org/wiki/YAML) and follow a typical [ETL](https://en.wikipedia.org/wiki/Extract,_transform,_load) format. Recipes are divided into four main sections:
 
-- [:book: Read *Import data from different sources*](/python/recipes/read)
-- [:cowboy_hat_face: Wrangles *Manipulate the structure and content of the data*](/wrangles)
-- [:pen: Write *Export data to different targets*](/python/recipes/write)
-- [:runner: Run *Run a recipe or connector at the start, on success or on failure of a recipe.*](/python/recipes/run)
+- [![](/images/icons/book.svg =20x)\{.mr-1\} Read *Import data from different sources*](/py/python/recipes/read)
+- [🤠 Wrangles *Manipulate the structure and content of the data*](/py)
+- [🖊️ Write *Export data to different targets*](/py/python/recipes/write)
+- [![](/images/icons/runner.svg =20x)\{.mr-1\} Run *Run a recipe or connector at the start, on success or on failure of a recipe.*](/py/python/recipes/run)
 \{.links-list\}
 
 ## Example
 > Autocompletion and validation can be added in many code editors.
-> [Set up Recipe Validation](/python/recipes/schema)
+> [Set up Recipe Validation](/py/python/recipes/schema)
 \{.is-info\}
 
 ### Tabset \{.tabset\}
@@ -69,7 +69,7 @@ write:
       name: file.xlsx
 ```
 
-> To run a recipe from a recipe, see the [recipe connector](/python/connectors/recipe)
+> To run a recipe from a recipe, see the [recipe connector](/py/python/connectors/recipe)
 \{.is-info\}
 
 ### Dynamic Column Selections
@@ -105,7 +105,7 @@ A dash (-) attached to the front of the column name will not include that column
 
 ## Advanced Topics
 
-- [Custom Functions *Incorporate custom python code into a recipe.*](/python/recipes/custom-functions)
-- [Conditions *Use if or where to execute wrangles and connectors only in some circumstances or on subsets of the data*](/python/recipes/conditions)
-- [Variables *Use environment or python variables in recipes. Pass secrets or enable recipes to be reusable.*](/python/recipes/variables)
+- [Custom Functions *Incorporate custom python code into a recipe.*](/py/python/recipes/custom-functions)
+- [Conditions *Use if or where to execute wrangles and connectors only in some circumstances or on subsets of the data*](/py/python/recipes/conditions)
+- [Variables *Use environment or python variables in recipes. Pass secrets or enable recipes to be reusable.*](/py/python/recipes/variables)
 \{.links-list\}

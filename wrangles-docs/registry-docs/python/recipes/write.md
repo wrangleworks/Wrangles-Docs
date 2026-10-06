@@ -3,7 +3,7 @@ title: "Write"
 slug: /python/recipes/write
 ---
 
-- [Connectors *Learn about the available connectors*](/python/connectors)
+- [Connectors *Learn about the available connectors*](/py/python/connectors)
 \{.links-list\}
 
 # Data Frame
