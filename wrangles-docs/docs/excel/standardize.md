@@ -5,7 +5,6 @@ slug: /xl/standardize
 
 - [Basics *Unsure how to start? Learn how.*](/xl)
 - [DIY Standardize Wrangles *Build your own customized standardize wrangles*](/xl/my_wrangles/standardize)
-\{.links-list\}
 
 ---
 This is a testing env
@@ -17,7 +16,6 @@ The Standardize Wrangle can be used to replace words or patterns with their "sta
 # Convert Attributes
 Convert units or standardize if Convert To is set to Standard.
 
-## Tabset \{.tabset\}
 ### Example
 
 <div className="table-scroll">
@@ -85,7 +83,6 @@ Convert units or standardize if Convert To is set to Standard.
 # Fraction to Decimal
 Standardize each fraction into its decimal equivalent.
 
-## Tabset \{.tabset\}
 ### Example
 
 <div className="table-scroll">
@@ -118,7 +115,6 @@ Standardize each fraction into its decimal equivalent.
 Standardize phone numbers to a consistent format by choosing from predefined format options or customizing your own. 
 **Note:** This Wrangle reformats phone numbers starting from the last digit and cuts off any excess digits outside the specified format. It performs the reformatting from right to left.
 
-## Tabset \{.tabset\}
 ### Options
 | Option | Example |
 | :---------------- | :---- |
@@ -132,7 +128,6 @@ Standardize phone numbers to a consistent format by choosing from predefined for
 # Remove Attributes
 Remove attributes from the selected range
 
-## Tabset \{.tabset\}
 ### Example
 <div className="table-scroll">
 <table>
@@ -165,7 +160,6 @@ Standardize your data by removing specific characters.
 
 ![remove_brackets.gif](/gifs/remove_brackets.gif)
 
-## Tabset \{.tabset\}
 ### Example
 <div className="table-scroll">
 <table>
@@ -195,7 +189,6 @@ Standardize your data by removing specific words. The Remove Words wrangle will 
 
 ![remove_words.gif](/gifs/remove_words.gif)
 
-## Tabset \{.tabset\}
 ### Example
 <div className="table-scroll">
 <table>
@@ -227,7 +220,6 @@ Standardize data with our find and replace functionality; optionally utilize reg
 
 > Click [here](/py/namespaces/format#replace) to learn how to use Replace Wrangles in a recipe.
 
-## Tabset \{.tabset\}
 ### Example
 <div className="table-scroll">
 <table>
@@ -294,7 +286,6 @@ Round to a set number of decimal places. Number of decimal places to round to ca
 # Significant Figures
 Standardize the precision of your numerical data by specifying the desired number of significant figures.
 
-## Tabset \{.tabset\}
 ### Example
 <div className="table-scroll">
 <table>
@@ -324,7 +315,6 @@ Standardize the precision of your numerical data by specifying the desired numbe
 Standardize text by eliminating extra spaces and converting special space characters to a single space.
 
 ![extra_spaces.gif](/gifs/extra_spaces.gif)
-## Tabset \{.tabset\}
 ### Example 
 
  

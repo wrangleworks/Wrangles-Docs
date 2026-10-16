@@ -4,12 +4,10 @@ slug: /python/connectors/recipe
 ---
 
 > Added **v0.5**
-\{.is-info\}
 
 This connector allows you to trigger another recipe, from a recipe. Click [here](/py/recipe) for the wrangle equivalent of this connector.
 
 
-# Tabset \{.tabset\}
 ## Read
 ### Recipe
 ```yaml

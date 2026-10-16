@@ -5,7 +5,6 @@ slug: /python/connectors/jinja
 
 Use a Jinja template with a context to create a file.
 
-# Tabset \{.tabset\}
 ## Run
 ### Recipe
 ```yaml

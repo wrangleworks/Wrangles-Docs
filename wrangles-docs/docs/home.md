@@ -15,7 +15,6 @@ Each Wrangle is optimized for a particular job, many of which are backed by soph
 - String together a series of Wrangles as an automated sequence using Recipes.
 - Much more...
 
-\{.grid-list\}
 
 
 
@@ -26,7 +25,6 @@ The Data Wrangles Excel add-in allows you to Wrangle data without having to writ
 
 ---
 > Learn more about the [Data Wrangles](/xl) Excel add-in.
-\{.is-success\}
 
 ![Easily extract data, create descriptions and more with the WranglesXL add-in.](/gifs/extractai_demo.gif)
 
@@ -36,9 +34,7 @@ With WranglesPY, you can automate your entire Data Wrangling process. Seamlessly
 
 ---
 > Learn more about the [Wrangles Python](/py/python/overview) package.
-\{.is-success\}
 
 ![recipe.gif](/gifs/recipe.gif)
 
 > *Want to integrate Wrangles into your own system instead?* [Contact us](https://www.wrangleworks.com/contact.html) to learn how.
-\{.is-info\}

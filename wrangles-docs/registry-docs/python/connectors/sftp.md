@@ -6,7 +6,6 @@ slug: /python/connectors/sftp
 The sftp connector supports reading and writing CSV, Excel and JSON files to & from an SFTP server.
 
 
-# Tabset \{.tabset\}
 ## Read
 ### Recipe
 ```yaml
@@ -40,7 +39,6 @@ df = sftp.read(
 ### Parameters
 
 > The SFTP connector also supports the same optional parameters as the file connector. See the [file connector](/py/python/connectors/file) for more details.
-\{.is-info\}
 
 | Parameter | Required | Data Type | Notes |
 | :-------- | :------: | :-------- | :---- |
@@ -83,7 +81,6 @@ sftp.write(
 ### Parameters
 
 > The SFTP connector also supports the same optional parameters as the file connector. See the [file connector](/py/python/connectors/file) for more details.
-\{.is-info\}
 
 | Parameter | Required | Data Type | Notes |
 | :-------- | :------: | :-------- | :---- |

@@ -6,7 +6,6 @@ slug: /xl/Lookup
 The Lookup Wrangle can be used to store data to be looked up later. They come in two variants: key and semantic. Key lookups find data using an exact match, such as looking up IDs or names. Semantic lookups find data using a semantic search (aka vector search), such as finding similar descriptions.
 
 > Note: Semantic Lookup wrangles are a premium feature. [Contact Us](https://www.wrangleworks.com/contact.html) to get access to this feature.
-\{.is-info\}
 
 ![mywrangleslookup.png](/images/lookup/mywrangleslookup.png)
 
@@ -31,7 +30,6 @@ This is the input data that the Lookup will find. **It is important to note that
 This is the data that the Lookup will return when the corresponding Key is found. The name of the column can be changed, and more Value columns can be added using the "+ Add Column" button or by simply adding new columns by hand. This allows for multiple columns to be returned when the Key is found.
 
 > **Note:** Values are limited to 10 values per lookup.
-\{.is-info\}
 
 # Semantic Lookup Wrangles
 Semantic Lookup Wrangles are a premium feature that allow users to find data similar to the key's value, using a semantic search. Contact us by email or at this [link](https://www.wrangleworks.com/contact.html) to have Semantic Lookup Wrangles enabled for your account.
@@ -59,7 +57,6 @@ To update your Lookup Wrangle, first click on the three dots next to the play bu
 From here, simply update your Wrangle as needed then click submit. Once your Wrangle has been saved, it will be ready for use.
 
 > **Note**: When you retrain your Wrangle, the training sheet is now named after the Wrangle.
-\{.is-info\}
 
 ## Running Semantic Lookups
 When running a semantic lookup, users are prompted to select the Number of Results and the columns to be returned. If only one result is selected, the result columns are output as their own individual columns. If more than one result is output, the results will be output as a YAML dictionary in their respective columns. See the gifs below for examples of each.

@@ -4,7 +4,6 @@ slug: /xl/map
 ---
 
 > Map is a premium feature of the Data Wrangles add-in. [Contact Us](https://www.wrangleworks.com/contact.html) to get access to this feature.
-\{.is-info\}
 
 ---
 

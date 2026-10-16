@@ -337,6 +337,20 @@ body::after {
   font-size: 1.35rem;
 }
 
+.theme-doc-markdown .ww-icon-link {
+  align-items: center;
+  display: inline-flex;
+  gap: 0.35rem;
+}
+
+.theme-doc-markdown .ww-icon-link img {
+  flex: 0 0 auto;
+  height: 1.25rem;
+  margin: 0;
+  object-fit: contain;
+  width: 1.25rem;
+}
+
 .ww-wrangle-doc-scope .theme-doc-markdown h1 {
   color: var(--ww-blue-900);
   font-size: 1.75rem;

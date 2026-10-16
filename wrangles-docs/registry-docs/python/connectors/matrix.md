@@ -4,16 +4,13 @@ slug: /python/connectors/matrix
 ---
 
 > Added v1.5.0
-\{.is-info\}
 
 The matrix write connector lets you use variables in a single write definition to automatically execute multiple writes that are based on the combinations of the variables. Ie: if you wanted to split your data into categories with a different sheet for each category. Click [here](/py/matrix) for the wrangle equivalent of this connector.
 
-# Tabset \{.tabset\}
 
 ## Read
 
 > Added **v1.12.0**
-\{.is-info\}
 
 ### Recipes
 #### Three Ways to Implement Variables
@@ -177,7 +174,6 @@ matrix.write(df = products_dataframe, variables={'category': ['Tools', 'PPE', 'E
 ## Run
 
 > Added **v1.12.0**
-\{.is-info\}
 
 ### Recipes
 #### Three Ways to Implement Variables

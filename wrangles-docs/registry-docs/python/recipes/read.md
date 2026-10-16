@@ -4,7 +4,6 @@ slug: /python/recipes/read
 ---
 
 - [Connectors *Learn about the available connectors*](/py/python/connectors)
-\{.links-list\}
 
 Data can be imported from one or more sources. Data is imported using connectors, which can read data from places such as files or databases.
 
@@ -66,7 +65,6 @@ read:
 </div>
 
 > Union is the default aggregation for multiple reads. 
-\{.is-info\}
 
 # Concatenate
 Combine data from multiple sources, stacked horizontally.
@@ -115,7 +113,6 @@ read:
 # Join
 > Joins can be done using data from any connector, or even custom functions.
 > Want to join a csv to data from a database? Go for it!
-\{.is-info\}
 
 Import data from two sources and merge the data, equivalent to a join in SQL.
 

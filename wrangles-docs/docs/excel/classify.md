@@ -4,7 +4,6 @@ slug: /xl/classify
 ---
 
 - [Basics *Unsure how to start? Learn how.*](/xl)
-\{.links-list\}
 
 ---
 
@@ -53,7 +52,6 @@ To update an existing Classify Wrangle, click on the extra menu (...) for the re
 <!-- wrangle: {"type":"classify","model_id":"06669ef8-cdd1-42f7-8078-98e0b7a42c30"} -->
 
 > Click [here](/py/namespaces/ai#classify) to learn how to use Classify Wrangles in a recipe.
-\{.is-success\}
 
 To use your trained Classify Wrangle, select the column of data that you wish to classify and click the run button (⏵). The predicted categories will be inserted as a column to the right of your inputs.
 
@@ -80,7 +78,6 @@ WrangleWorks can train bespoke models that exceed the limitations of Classificat
 
 > This is an example bespoke model for predicting the UNSPSC for products. 
 [Contact Us](https://www.wrangleworks.com/contact.html) if you'd like to learn more.
-\{.is-info\}
 
 [UNSPSC^®^](https://www.unspsc.org/) is an open, global, multi-level classification for products and services. It is a "multi sector" standard designed to cover all products and services, with more than 100,000 distinct categories.
 

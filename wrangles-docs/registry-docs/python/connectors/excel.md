@@ -4,13 +4,11 @@ slug: /python/connectors/excel
 ---
 
 > Note: The Excel connector is only to be used in recipes within WranglesXL and will not function properly otherwise.
-\{.is-warning\}
 
 The Excel connector allows users to define which sheet and where to write the output, write to multiple sheets, write to sheets dynamically or return data at different stages of the recipe. More configuration options will be added over time.
 
 
 ## Write
-### Tabset \{.tabset\}
 #### Recipe
 ```yml
 write:

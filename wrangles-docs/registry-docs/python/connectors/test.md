@@ -4,12 +4,10 @@ slug: /python/connectors/test
 ---
 
 > Added v0.4
-\{.is-info\}
 
 A useful connector to create test data. Either fixed values can be set or data can be randomly generated.
 
 
-# Tabset \{.tabset\}
 ## Read
 ### Recipe
 ```yaml

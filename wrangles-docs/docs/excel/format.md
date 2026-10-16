@@ -4,7 +4,6 @@ slug: /xl/format
 ---
 
 - [Basics *Unsure how to start? Learn how.*](/xl)
-\{.links-list\}
 
 ---
 
@@ -16,7 +15,6 @@ Formatting Wrangles are convenient for transforming data in terms of case, paddi
 
 Change the case of the input.
 
- ## Tabset \{.tabset\}
 ### Example 
 
 <div className="table-scroll">
@@ -59,7 +57,6 @@ Useful if you have multiple columns with similar data but only need one column.
 
 > Click [here](/py/namespaces/merge#coalesce) to learn how to use Coalesce Wrangles in a recipe.
 
- ## Tabset \{.tabset\}
 ### Example
 
 <div className="table-scroll">
@@ -93,7 +90,6 @@ Useful if you have multiple columns with similar data but only need one column.
 
 Merge multiple columns into JSON strings.
 
- ## Tabset \{.tabset\}
 ### Example
 
 #### To Array
@@ -164,7 +160,6 @@ Merges multiple columns into one. All columns are combined together sequentially
 
 > Click [here](/py/namespaces/merge#concatenate) to learn how to use Concatenate Wrangles in a recipe.
 
- ## Tabset \{.tabset\}
 ### Example
 <div className="table-scroll">
 <table>
@@ -198,7 +193,6 @@ Merges multiple columns into one. All columns are combined together sequentially
 
 Expand JSON strings into multiple columns.
 
- ## Tabset \{.tabset\}
 ### Example
 
 #### From Array
@@ -260,7 +254,6 @@ For objects, the keys will be used as the new column headers.
 
 Merge multiple JSON objects or arrays together into one object or array.
 
- ## Tabset \{.tabset\}
 ### Example
 
 #### Merge Array
@@ -331,7 +324,6 @@ Pad text to a fixed length. Useful for IDs that must follow a specific format. Y
 
 ![format_pad.gif](/gifs/format_pad.gif)
 
- ## Tabset \{.tabset\}
 ### Example
 #### Length = 10 | Char = 0 | Pad = Leading
 
@@ -369,7 +361,6 @@ Adds a prefix or suffix to selected columns.
 
 ![prefix.gif](/gifs/prefix.gif)
 
- ## Tabset \{.tabset\}
 ### Example
 #### Value = DEMO-
 
@@ -413,7 +404,6 @@ Splits an input into multiple columns.
 
 > Click [here](/py/namespaces/split) to learn how to use Split Wrangles in a recipe.
 
-## Tabset \{.tabset\}
 ### Example
 
 <div className="table-scroll">
@@ -448,7 +438,6 @@ Splits an input into multiple columns.
 # Trim
 Removes excess whitespace from the start and end of text.
 
- ## Tabset \{.tabset\}
 ### Example
 
 <div className="table-scroll">
@@ -476,7 +465,6 @@ Removes excess whitespace from the start and end of text.
 # Truncate
 Truncate text to take a snippet from longer text.
 
-## Tabset \{.tabset\}
 ### Example
 
 #### Length = 3 | Trunc = Right
@@ -510,4 +498,3 @@ Truncate text to take a snippet from longer text.
 | Right | Keep the characters starting from the end of the text  |
 
 > Note: Negative numbers can be used to truncate the opposite of the selected direction (Left/Right).
-\{.is-info\}

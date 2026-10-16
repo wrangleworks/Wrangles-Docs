@@ -30,7 +30,6 @@ Now, we can plug our regex pattern into the Replace Wrangle and run it.
 ![stock_replace.gif](/in-depth-examples/remove-words/stock_replace.gif)
 
 > **Note:** When using a regular expression in the Replace Wrangle, the Use Regex toggle must be turned on.
-\{.is-info\}
 
 ## Removing Words in a Recipe
 

@@ -8,7 +8,6 @@ slug: /xl/install
 - [x] Excel 2016 or newer
 
 > Create a Wrangleworks account: [Register](https://sso.wrangle.works/auth/realms/wrwx/protocol/openid-connect/registrations?client_id=account&response_type=code&scope=openid%20email&redirect_uri=https://sso.wrangle.works/auth/realms/wrwx/account/#/)
-\{.is-warning\}
 
 For browser support, click [here](/xl/supported-versions).
 
@@ -24,4 +23,3 @@ For browser support, click [here](/xl/supported-versions).
 
 ---
 > *Successfully added?* [Learn how to Wrangle](/xl)
-\{.is-success\}

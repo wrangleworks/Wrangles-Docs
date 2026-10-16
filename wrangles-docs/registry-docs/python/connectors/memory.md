@@ -5,7 +5,6 @@ slug: /python/connectors/memory
 
 The memory connector allows saving dataframes and variables in memory for communication between successive wrangles and recipes. All contents of the memory connector are lost once the python script finishes executing.
 
-# Tabset \{.tabset\}
 ## Read
 ### Recipe
 ```yaml

@@ -5,7 +5,6 @@ slug: /python/connectors/http
 
 The http connector allows users to issue http(s) requests.
 
-# Tabset \{.tabset\}
 ## Read
 Get data from a HTTP(S) endpoint.
 

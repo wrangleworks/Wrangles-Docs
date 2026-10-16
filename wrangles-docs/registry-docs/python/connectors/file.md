@@ -6,7 +6,6 @@ slug: /python/connectors/file
 The file connector supports CSV, Excel and JSON files.
 
 
-# Tabset \{.tabset\}
 ## Read
 ### Recipe
 ```yaml

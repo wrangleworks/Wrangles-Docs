@@ -14,7 +14,6 @@ Variables are set using the format:
 Variables can either be set as system environment variables, or provided as a dictionary to the recipe.run() function.
 
 > If duplicated, variables passed as an argument will override environment variables.
-\{.is-info\}
 
 
 # Pass to Function

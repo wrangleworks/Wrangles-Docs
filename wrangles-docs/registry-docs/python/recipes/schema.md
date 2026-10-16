@@ -8,7 +8,6 @@ slug: /python/recipes/schema
 >
 > Specific versions can be used by appending the version number.
 > e.g. .../recipes/schema_0.4.json
-\{.is-info\}
 
 This schema can be used to provide validation and auto-complete suggestions in various code editors.
 

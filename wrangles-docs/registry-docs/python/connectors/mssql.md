@@ -6,7 +6,6 @@ slug: /python/connectors/mssql
 The mssql connector supports read and writing to/from a Microsoft SQL Server.
 
 
-# Tabset \{.tabset\}
 ## Read
 ### Recipe
 ```yaml
@@ -105,7 +104,6 @@ mssql.write(
 ## Run
 
 > Added **v0.5**
-\{.is-info\}
 
 
 Run a SQL command. For example, this can be used to trigger a stored procedure or move/transform data before or after the recipe is executed.

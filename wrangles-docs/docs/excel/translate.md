@@ -4,7 +4,6 @@ slug: /xl/translate
 ---
 
 - [Basics *Unsure how to start? Learn how.*](/xl)
-\{.links-list\}
 
 ---
 

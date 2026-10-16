@@ -6,7 +6,6 @@ slug: /python/recipes/custom-functions/wrangles
 Custom functions allow data to be wrangled using python code. With custom functions, anything that can be done with python can be implemented into a recipe. Nested function calls can be used for custom functions if users wish to implement modules or classes in the same way a custom function can be called (custom.module.class.function).
 
 > **Note:** Spaces within column headers are automatically replaced with an underscore, so it is important to keep this in mind when writing your custom function.
-\{.is-info\}
 
 # Python
 
@@ -111,7 +110,6 @@ wrangles:
 ```
 
 > The two examples above have the same outcome but it is important to note the difference in the use of input, output and the dataframe itself.
-\{.is-note\}
 
 # Using **kwargs
 The function variable kwargs is a dictionary that stores wildcard function variables. That is, it allows you to pass variables into functions without explicitly naming them. 

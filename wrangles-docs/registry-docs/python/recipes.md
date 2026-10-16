@@ -12,18 +12,15 @@ Recipes allow a series of Wrangles to be defined and run as an automated sequenc
 
 Recipes are written with [YAML](https://en.wikipedia.org/wiki/YAML) and follow a typical [ETL](https://en.wikipedia.org/wiki/Extract,_transform,_load) format. Recipes are divided into four main sections:
 
-- [![](/images/icons/book.svg =20x)\{.mr-1\} Read *Import data from different sources*](/py/python/recipes/read)
+- <a className="ww-icon-link" href="/py/python/recipes/read"><img src="/images/icons/book.svg" alt="" /> Read <em>Import data from different sources</em></a>
 - [🤠 Wrangles *Manipulate the structure and content of the data*](/py)
 - [🖊️ Write *Export data to different targets*](/py/python/recipes/write)
-- [![](/images/icons/runner.svg =20x)\{.mr-1\} Run *Run a recipe or connector at the start, on success or on failure of a recipe.*](/py/python/recipes/run)
-\{.links-list\}
+- <a className="ww-icon-link" href="/py/python/recipes/run"><img src="/images/icons/runner.svg" alt="" /> Run <em>Run a recipe or connector at the start, on success or on failure of a recipe.</em></a>
 
 ## Example
 > Autocompletion and validation can be added in many code editors.
 > [Set up Recipe Validation](/py/python/recipes/schema)
-\{.is-info\}
 
-### Tabset \{.tabset\}
 #### Sample
 
 ##### Example Run Command
@@ -32,7 +29,6 @@ Recipes are written with [YAML](https://en.wikipedia.org/wiki/YAML) and follow a
 wrangles.recipe.run(recipe = 'my_recipe.wrgl.yml', variables = my_variables, dataframe = my_data, functions = [my_function], timeout = 30)
 ```
 > **Recipes execute code. Be careful running recipes from remote sources. Only run recipes from sources you trust.**
-\{.is-warning\}
 
 #### Parameters
 <div className="table-scroll">
@@ -47,7 +43,6 @@ wrangles.recipe.run(recipe = 'my_recipe.wrgl.yml', variables = my_variables, dat
 </div>
 
 > **Recipes execute code. Be careful running recipes from remote sources. Only run recipes from sources you trust.**
-\{.is-warning\}
 
 ### Example Recipe
 ```yaml
@@ -70,7 +65,6 @@ write:
 ```
 
 > To run a recipe from a recipe, see the [recipe connector](/py/python/connectors/recipe)
-\{.is-info\}
 
 ### Dynamic Column Selections
 
@@ -108,4 +102,3 @@ A dash (-) attached to the front of the column name will not include that column
 - [Custom Functions *Incorporate custom python code into a recipe.*](/py/python/recipes/custom-functions)
 - [Conditions *Use if or where to execute wrangles and connectors only in some circumstances or on subsets of the data*](/py/python/recipes/conditions)
 - [Variables *Use environment or python variables in recipes. Pass secrets or enable recipes to be reusable.*](/py/python/recipes/variables)
-\{.links-list\}

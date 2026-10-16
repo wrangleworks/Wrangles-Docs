@@ -18,7 +18,7 @@ Now, let's get ready to wrangle.
 
 To reformat our data, we will start by creating the "Materials" column. To achieve this, we'll extract all materials from the text using the "Materials" wrangle located under the "Properties" section.
 
-> You can run a Wrangle on the whole column or just a few cells [click here for more info](/xl). \{.is-info\}
+> You can run a Wrangle on the whole column or just a few cells [click here for more info](/xl).
 
 1. First, highlight all the cells containing your data or just select the entire column. 
 2. Navigate to the Data Wrangles Task Pane and click on the Properties button. 
@@ -190,7 +190,6 @@ Now we need to extract the price for each product. But how can we make a wrangle
 
 > [Regex Cheat Sheet](https://www.debuggex.com/cheatsheet/regex/python): A useful reference of regex terms.
 > [Regex101](https://regex101.com/): A useful tool to test regex
-\{.is-info\} 
 
 After heading over to [Regex101](https://regex101.com/) it seems I have come up with a good match for our data.
 
@@ -219,7 +218,6 @@ See the gif below to learn how to build regex into your extract wrangle.
 ![extract_price.gif](/gifs/extract_price.gif)
 
 > **Note**: Regex patterns must be led with "regex:" in order for the model to recognize them as regex patterns
-\{.is-info\}
 
 ## Creating a Description
 

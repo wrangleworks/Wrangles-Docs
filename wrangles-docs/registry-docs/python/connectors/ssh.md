@@ -4,12 +4,10 @@ slug: /python/connectors/ssh
 ---
 
 > Added **v0.5**
-\{.is-info\}
 
 Execute commands via SSH - such as to trigger an action before or after a recipe is run.
 
 
-# Tabset \{.tabset\}
 ## Run
 ### Recipe
 ```yaml

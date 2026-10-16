@@ -40,7 +40,6 @@ write:
 
 
 > Environment variables are always strings. When using variable sourced from an environment variable, False may become 'False', which Python evaluates as a non-zero length string and therefore as True. Consider using an alternative such as: `if: str(${variable}).upper() == 'TRUE'`
-\{.is-warning\}
 
 
 # Where
@@ -59,7 +58,6 @@ write:
 ```
 
 > Column names that contain spaces can be referenced using square brackets (*[example column]*), double quotes (*"example column"*) or backticks (*\`example column\`*).
-\{.is-info\}
 
 ## where_params
 

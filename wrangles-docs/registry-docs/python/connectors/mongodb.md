@@ -7,7 +7,6 @@ The MongoDB connector supports read and writing to/from a collection.
 
 
 
-# Tabset \{.tabset\}
 ## Read
 ### Recipe
 ```yaml

@@ -8,7 +8,6 @@ slug: /xl/Let's-Get-Ready-To-Wrangle/Extracting-Data
 This tutorial will show you how to extract meaningful data from a set of dirty data using a recipe. The manual version of this tutorial can be found [here](/xl/Let's-Get-Ready-To-Wrangle/Extracting-From-Dirty-Data). Let's get ready to wrangle!
 
 > Recipes are a premium feature of the Data Wrangles add-in. [Contact Us](https://www.wrangleworks.com/contact.html) to get access to this feature.
-\{.is-info\}
 
 ## Introduction
 
@@ -234,7 +233,6 @@ In this regex pattern we are matching a dollar sign (\$) followed by one or more
 
 > [Regex Cheat Sheet](https://www.debuggex.com/cheatsheet/regex/python): A useful reference of regex terms.
 > [Regex101](https://regex101.com/): A useful tool to test regex
-\{.is-info\}
 
 ## Creating a Description
 

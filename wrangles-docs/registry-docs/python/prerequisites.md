@@ -35,4 +35,3 @@ Other editors will also work, but we recommend VSCode.
 3. To enable recipe validation and code suggestions follow [these instructions](/py/python/recipes/schema)
 
 > Ready to go? [Install the Wrangles package](/py/python/install)
-\{.is-success\}

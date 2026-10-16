@@ -4,12 +4,10 @@ slug: /python/connectors/notification/email
 ---
 
 > Added **v0.5**
-\{.is-info\}
 
 Send an email - such as to alert someone when a recipe is finished or if it fails.
 
 
-# Tabset \{.tabset\}
 ## Run
 ### Recipe
 ```yaml

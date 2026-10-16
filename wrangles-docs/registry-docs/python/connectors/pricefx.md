@@ -4,13 +4,11 @@ slug: /python/connectors/pricefx
 ---
 
 > Added **v0.5**
-\{.is-info\}
 
 
 The PriceFx connector supports reading and writing to/from a PriceFx instance. Product and Customer master/extension tables, data sources, and Company Parameters are supported.
 
 
-# Tabset \{.tabset\}
 ## Read
 ### Recipe
 ```yaml
@@ -62,10 +60,8 @@ df = pricefx.read(
 
 ## Write
 > The column names must match the target column names. For master tables either names (e.g. attribute3) or labels may be used.
-\{.is-info\}
 
 > For Product/Customer extensions, a column called 'name' with the name of the Extension must be included.
-\{.is-info\}
 
 ### Recipe
 ```yaml

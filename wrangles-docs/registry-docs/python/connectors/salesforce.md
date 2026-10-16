@@ -4,12 +4,10 @@ slug: /python/connectors/salesforce
 ---
 
 > Added **v0.5**
-\{.is-info\}
 
 The salesforce connector supports reading and writing to/from Salesforce using [SOQL](https://developer.salesforce.com/docs/atlas.en-us.soql_sosl.meta/soql_sosl/sforce_api_calls_soql.htm).
 
 
-# Tabset \{.tabset\}
 ## Read
 ### Recipe
 ```yaml

@@ -4,14 +4,12 @@ slug: /python/connectors/notification/telegram
 ---
 
 > Added **v0.5**
-\{.is-info\}
 
 Send a telegram notification - such as to alert someone when a recipe is finished or if it fails.
 
 See [docs](https://core.telegram.org/bots) for how to setup and get required keys.
 
 
-# Tabset \{.tabset\}
 ## Run
 ### Recipe
 ```yaml

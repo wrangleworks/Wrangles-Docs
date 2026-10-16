@@ -4,12 +4,10 @@ slug: /python/connectors/notification
 ---
 
 > Added **v0.5**
-\{.is-info\}
 
 Send notifications - such as to alert someone when a recipe is finished or if it fails.
 
 
-# Tabset \{.tabset\}
 ## Run (Generic)
 
 Notifications use the Apprise python package. The default notification requires an apprise formatted url, see the [apprise documentation](https://github.com/caronc/apprise) for specifics of how to form an appropriate url.
@@ -50,4 +48,3 @@ A variety of notifications for specific services are also available.
 - [Email *Send an email.*](/py/python/connectors/notification/email)
 - [Telegram *Send telegram messages.*](/py/python/connectors/notification/telegram)
 - [Slack *Send Slack messages*](https://wrangles.io/en/python/connectors/notification/slack)
-\{.links-list\}

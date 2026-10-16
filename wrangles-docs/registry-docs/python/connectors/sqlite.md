@@ -6,7 +6,6 @@ slug: /python/connectors/sqlite
 The sqlite connector supports read and writing to/from a sqlite database.
 
 
-# Tabset \{.tabset\}
 ## Read
 Import data from a SQLite Database
 

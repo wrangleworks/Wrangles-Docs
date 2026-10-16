@@ -5,7 +5,6 @@ slug: /python/connectors/mysql
 
 The mysql connector supports read and writing to/from a MySQL Server.
 
-# Tabset \{.tabset\}
 ## Read
 ### Recipe
 ```yaml

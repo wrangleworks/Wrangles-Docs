@@ -8,7 +8,6 @@ By default, all functions executed by a recipe happen sequentially. The concurre
 
 Click [here](/py/concurrent) to learn about the concurrent wrangle.
 
-# Tabset \{.tabset\}
 ## Read
 ### Recipe
 ```yaml

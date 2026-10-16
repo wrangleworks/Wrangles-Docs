@@ -7,7 +7,6 @@ import RecipePlayground from '@site/src/components/RecipePlayground';
 
 
 > Pandas functions within Wrangles are currently under development and therefore do not possess all the functionality of pandas or other Wrangles. See below for details.
-\{.is-warning\}
 
 Pandas functions within recipes allow users to employ the powerful [pandas](https://pandas.pydata.org/) Python package seamlessly into their recipe without using any custom code or writing any Python script. Pandas is a very powerful data tool with a wide range of functions, but there are some restrictions as to which pandas functions work in a recipe. Of course, any pandas functions which do not work in a recipe will still work within a [custom function](https://wrangles.io//en/python/recipes/custom-functions).
 
@@ -25,12 +24,10 @@ Pandas functions within recipes allow users to employ the powerful [pandas](http
 
 
 > This example does not use any parameters, see [pandas.drop_duplicates](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.drop_duplicates.html) for function parameters.
-\{.is-note\}
 
 See [format.remove_duplicates](/py/namespaces/format#remove-duplicates) for the native Wrangle equivalent.
 
 # pandas.groupby
-## Tabset \{.tabset\}
 ### Sample
 
 #### Group DataFrame using a mapper or by a Series of columns.
@@ -54,13 +51,11 @@ See [format.remove_duplicates](/py/namespaces/format#remove-duplicates) for the 
 </div>
 
 > More parameters for this function can be found in the [pandas.groupby](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.groupby.html) documentation.
-\{.is-note\}
 
 See [select.group_by](/py/namespaces/select#group-by) for the native Wrangles equivalent.
 
 # pandas.sample
 
-## Tabset \{.tabset\}
 ### Sample
 
 #### Selects a random sample from the dataframe
@@ -83,7 +78,6 @@ See [select.group_by](/py/namespaces/select#group-by) for the native Wrangles eq
 </div>
 
 > See [pandas.sample](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.sample.html) for more parameters and information on this function.
-\{.is-note\}
 
 See [select.sample](/py/namespaces/select#sample) for the native Wrangles equivalent.
 

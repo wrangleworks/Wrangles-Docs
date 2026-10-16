@@ -4,7 +4,6 @@ slug: /python/functions
 ---
 
 > Some Wrangles require authentication to the WrangleWorks servers to function. See [the installation instructions](/py/python/install#authentication)
-\{.is-warning\}
 
 
 Wrangles can be used as functions, directly incorporated into python code.
@@ -21,7 +20,6 @@ Wrangles broadly accept a single input string, or a list of strings. If a list i
 ## Classify
 Predict which categories items belong to. A classification wrangle must be created to be able to use this.
 
-### Tabset \{.tabset\}
 #### Samples
 ```python
 >>> wrangles.classify('ball bearing', '<model id>')
@@ -44,7 +42,6 @@ MechPT
 
 ### Address
 
-#### Tabset \{.tabset\}
 ##### Samples
 Extract features from addresses such as streets or countries.
 ```python
@@ -65,7 +62,6 @@ Extract features from addresses such as streets or countries.
 
 ### Ai
 
-#### Tabset \{.tabset\}
 ##### Samples
 Use the power of AI (OpenAI's chatGPT in particular) to extract meaningful data
 ```python
@@ -96,7 +92,6 @@ Use the power of AI (OpenAI's chatGPT in particular) to extract meaningful data
 ### Attributes
 Extract numeric attributes such as lengths or voltages.
 
-#### Tabset \{.tabset\}
 ##### Samples
 ```python
 >>> wrangles.extract.attributes('it is 15mm long')
@@ -118,7 +113,6 @@ Extract numeric attributes such as lengths or voltages.
 ### Codes
 Extract alphanumeric codes.
 
-#### Tabset \{.tabset\}
 ##### Samples
 ```python
 >>> wrangles.extract.codes('test ABCD1234ZZ test')
@@ -138,7 +132,6 @@ Extract alphanumeric codes.
 ### Custom
 Extract entities using a custom model. An extraction wrangle must be created to be able to use this.
 
-#### Tabset \{.tabset\}
 ##### Samples
 ```python
 >>> wrangles.extract.custom('test skf test', '<model id>')
@@ -159,7 +152,6 @@ Extract entities using a custom model. An extraction wrangle must be created to 
 ### Properties
 Extract categorical properties such as colours or materials.
 
-#### Tabset \{.tabset\}
 ##### Samples
 ```python
 >>> wrangles.extract.properties('yellow submarine')
@@ -183,7 +175,6 @@ Lookups can be used to look up data from a saved lookup wrangle. They can either
 ### Exact Lookups
 Exact lookups look up exact matches (from your list of values) in a saved lookup wrangle.
 
-#### Tabset \{.tabset\}
 ##### Samples
 ```python
 >>> wrangles.lookup(["Key1", "Key2"], "<model id>", "Value1")
@@ -205,7 +196,6 @@ Exact lookups look up exact matches (from your list of values) in a saved lookup
 ### Semantic Lookups
 Semantic lookups look up the most similar matches (from your list of values) in a saved lookup wrangle.
 
-#### Tabset \{.tabset\}
 ##### Samples
 ```python
 >>> wrangles.lookup(["KeyOne", "KeyTwo"], "<model id>", "Value1")
@@ -227,7 +217,6 @@ Semantic lookups look up the most similar matches (from your list of values) in 
 ## Standardize
 Standardize text data, such as replacing abbreviations. A standardization wrangle must be created to be able to use this.
 
-### Tabset \{.tabset\}
 #### Samples
 ```python
 >>> wrangles.standardize('It will arrive asap.', '<model id>')
@@ -251,7 +240,6 @@ Translate text between languages.
 
 Requires a WrangleWorks Account and DeepL API Key (A free account for up to 500,000 characters per month is available).
 
-### Tabset \{.tabset\}
 #### Samples
 ```python
 >>> wrangles.translate('My name is Chris', 'ES')

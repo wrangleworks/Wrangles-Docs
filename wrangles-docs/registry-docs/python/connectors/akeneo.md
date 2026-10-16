@@ -4,13 +4,11 @@ slug: /python/connectors/akeneo
 ---
 
 > Added **v0.6**
-\{.is-info\}
 
 The Akeneo connector supports write to a PIM product list
 
 
 
-# Tabset \{.tabset\}
 
 ## Write
 ### Recipe

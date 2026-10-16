@@ -30,7 +30,6 @@ To retrain, or update, your wrangle hover your cursor over the three dots to the
 ![edit_standardize.png](/images/edit_standardize.png)
 
 > **Note**: When you retrain your wrangle, the training sheet is now named after the wrangle.
-\{.is-info\}
 
 ### Example
 | Find | Replace |
@@ -68,7 +67,6 @@ For more advanced use, [regular expressions](https://en.wikipedia.org/wiki/Regul
 
 > [Regex Cheat Sheet](https://www.debuggex.com/cheatsheet/regex/python): A useful reference of regex terms.
 > [Regex Testing](https://regex101.com/): A useful tool to test regex
-\{.is-info\}
 
 ### Samples
 | Find | Replace | Notes |

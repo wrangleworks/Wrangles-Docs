@@ -43,7 +43,6 @@ To update your extract wrangle, first click on the three dots next to the play b
 From here, simply update your wrangle as needed then click submit. Once your wrangle has been trained, it will be ready for use.
 
 > **Note**: When you retrain your wrangle, the training sheet is now named after the wrangle.
-\{.is-info\}
 
 ## Extracting Values Written in Multiple Variations
 Extracting data when variations exist can be done in two ways:
@@ -72,7 +71,6 @@ For more advanced use, [regular expressions](https://en.wikipedia.org/wiki/Regul
 
 > [Regex Cheat Sheet](https://www.debuggex.com/cheatsheet/regex/python): A useful reference of regex terms.
 > [Regex Testing](https://regex101.com/): A useful tool to test regex
-\{.is-info\}
 
 In order to implement regex into an extract wrangle, simply add "regex:" to the Find column before typing in your regex pattern.
 
@@ -168,7 +166,6 @@ Notes about this record. Not directly used as part of the wrangle.
 
 # MRO Brands Example
 > This is an example model for extracting brands in the MRO industry.
-\{.is-info\}
 
 Brand names are an essential piece of product data. Supplier brand name data is especially important on an eCommerce site where customers want to search and filter by them. As with all product attributes, brand data can be inconsistent, often buried in a field with other data (e.g. a catch-all description field).
 
@@ -195,7 +192,6 @@ This allows users to determine how the extract will output data. There are four 
 Return only the first result. 
 
 > **Note**: This outputs matches it finds in the input based on the order they are listed in the training data.
-\{.is-info\}
 
 #### Columns
 The Columns settings allows you to output multiple results from extract in individual columns rather than as a delimited string or JSON array. This will create as many columns as are needed for each result to end up in it's own column. Keep in mind, that some rows will have more matches than others, so there will likely be many empty cells when using this setting.
@@ -238,7 +234,6 @@ Return the results as a JSON object e.g. \{"Col1": "result1", "Col2":"result2", 
 # Converting Your DIY Extract To New Format
 
 > As of **2023-10-01**, the data for DIY Extract Wrangles requires a new format. Existing wrangles will continue to work as before with the old format until converted.
-\{.is-warning\}
 
 The new format is:
 

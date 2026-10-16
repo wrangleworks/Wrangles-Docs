@@ -5,7 +5,6 @@ slug: /python/connectors/ckan
 
 The CKAN connector allows users to read and write data to/from CKAN servers.
 
-# Tabset \{.tabset\}
 ## Read
 ### Recipe
 ```yaml

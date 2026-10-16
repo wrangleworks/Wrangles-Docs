@@ -103,4 +103,3 @@ While these could have been added to the same line (separated by "|"), I chose t
 </div>
 
 > Note: It is always a good idea to run a trim wrangle on your data after running a standardize wrangle like this to drop extra spaces that came about because of the wrangle.
-\{.is-info\}

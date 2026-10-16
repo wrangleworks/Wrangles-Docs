@@ -4,11 +4,9 @@ slug: /python/connectors/train
 ---
 
 > Added v1.0
-\{.is-info\}
 
 A connector that can read and write training data to and from wrangles. Useful for updating wrangles training data without having to open Excel.
 
-# Tabset \{.tabset\}
 ## Classify
 ### Read
 #### Recipe
@@ -111,7 +109,6 @@ train.classify.write(df = df, name = 'Fruits and Veggies')
 | if | | str | A condition that will determine whether the action runs or not as a whole. |
 
 > Note both name and model_id **cannot** be used together. Name is used when creating models and model_id is used when updating an existing model.
-\{.is-note\}
 
 ## Extract
 ### Read
@@ -199,7 +196,6 @@ train.extract.write(df = df, name = 'Bearing Types')
 | if | | str | A condition that will determine whether the action runs or not as a whole. |
 
 > Note both name and model_id **cannot** be used together. Name is used when creating models and model_id is used when updating an existing model.
-\{.is-note\}
 
 ## Lookup
 ### Read
@@ -287,7 +283,6 @@ train.lookup.write(df = df, name = 'Menu Updates', settings = {'variant': 'key'}
 | if | | str | A condition that will determine whether the action runs or not as a whole. |
 
 > Note both name and model_id **cannot** be used together. Name is used when creating models and model_id is used when updating an existing model.
-\{.is-note\}
 
 ## Standardize
 ### Read
@@ -377,4 +372,3 @@ train.standardize.write(df = df, name = 'Menu Updates')
 | if | | str | A condition that will determine whether the action runs or not as a whole. |
 
 > Note both name and model_id **cannot** be used together. Name is used when creating models and model_id is used when updating an existing model.
-\{.is-note\}

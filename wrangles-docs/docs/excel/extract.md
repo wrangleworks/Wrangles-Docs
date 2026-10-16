@@ -5,7 +5,6 @@ slug: /xl/extract
 
 - [Basics *Unsure how to start? Learn how.*](/xl)
 - [DIY Extract Wrangles *Build your own customized extract wrangles*](/xl/my_wrangles/extract)
-\{.links-list\}
 
 ---
 
@@ -18,7 +17,6 @@ If the extract wrangle finds multiple values, it returns them as a comma separat
 # Address
 Addresses are an example of data that often gets lumped together into a single field. The problem is that most target systems require address parts (street, city, state etc.) to be mapped to separate fields when importing. The Address extractor can wrangle that for you!
 
-## Tabset \{.tabset\}
 ### Example
 
 ![address-2-wrangles.gif](/gifs/address-2-wrangles.gif)
@@ -40,7 +38,6 @@ Desired units can be chosen for any given attribute (as long as there is more th
 
 ![extract_attributes.gif](/gifs/extract_attributes.gif)
 
-## Tabset \{.tabset\}
 ### Example
 
 <div className="table-scroll">
@@ -107,7 +104,6 @@ Extract the contents of any brackets from the input.
 
 ![extract_brackets.png](/images/extract_brackets.png)
 
-## Tabset \{.tabset\}
 ### Example
 
 <div className="table-scroll">
@@ -144,7 +140,6 @@ Extract the contents of any brackets from the input.
 # Codes
 Extract alphanumeric codes such as part codes or order numbers.
 
-## Tabset \{.tabset\}
 ### Example
 
 
@@ -179,7 +174,6 @@ The Find extract wrangle allows users to extract text using strings or regular e
 # Properties
 Extract categorical properties such as colors.
 
-## Tabset \{.tabset\}
 ### Example
 
 ![colors-extract.gif](/gifs/colors-extract.gif)
