@@ -40,10 +40,120 @@
     "where": true,
     "where_params": true
   },
+  "configuration_schema": {
+    "type": "object",
+    "description": "Filter the dataframe based on the contents.\nIf multiple filters are specified, all must be correct.\nFor complex filters, use the where parameter.",
+    "additionalProperties": false,
+    "properties": {
+      "where": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/where_special"
+      },
+      "where_params": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/where_params"
+      },
+      "input": {
+        "type": [
+          "string",
+          "integer",
+          "array"
+        ],
+        "description": "Name of the column to filter on.\nIf multiple are provided, all must match the criteria."
+      },
+      "equal": {
+        "type": [
+          "string",
+          "array",
+          "boolean",
+          "number"
+        ],
+        "description": "Select rows where the values equal a given value."
+      },
+      "not_equal": {
+        "type": [
+          "string",
+          "array",
+          "boolean",
+          "number"
+        ],
+        "description": "Select rows where the values do not equal a given value."
+      },
+      "is_in": {
+        "type": [
+          "array",
+          "string"
+        ],
+        "description": "Select rows where the values are in a given list."
+      },
+      "not_in": {
+        "type": [
+          "array",
+          "string"
+        ],
+        "description": "Select rows where the values are not in a given list."
+      },
+      "is_null": {
+        "type": "boolean",
+        "description": "If true, select all rows where the value is NULL. If false, where is not NULL."
+      },
+      "greater_than": {
+        "type": [
+          "integer",
+          "number"
+        ],
+        "description": "Select rows where the values are greater than a specified value. Does include the value itself."
+      },
+      "greater_than_equal_to": {
+        "type": [
+          "integer",
+          "number"
+        ],
+        "description": "Select rows where the values are greater than a specified value. Does include the value itself."
+      },
+      "less_than": {
+        "type": [
+          "integer",
+          "number"
+        ],
+        "description": "Select rows where the values are less than a specified value. Does not include the value itself."
+      },
+      "less_than_equal_to": {
+        "type": [
+          "integer",
+          "number"
+        ],
+        "description": "Select rows where the values are less than a specified value. Does include the value itself."
+      },
+      "between": {
+        "type": [
+          "array"
+        ],
+        "description": "Value or list of values to filter that are in between two parameter values"
+      },
+      "contains": {
+        "type": "string",
+        "description": "Select rows where the input contains the value. Allows regular expressions."
+      },
+      "not_contains": {
+        "type": "string",
+        "description": "Select rows where the input does not contain the value. Allows regular expressions."
+      },
+      "if": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/if"
+      }
+    }
+  },
+  "schema_origin": "upstream-docstring",
+  "schema_adjustments": [],
+  "schema_source": {
+    "repository": "https://github.com/wrangleworks/WranglesPY",
+    "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+    "version": "1.20.5",
+    "extraction": "static-python-ast"
+  },
   "parameters": [
     {
       "name": "input",
-      "description": "Name of the column to filter on. If multiple are provided, all must match the criteria.",
+      "description": "Name of the column to filter on.\nIf multiple are provided, all must match the criteria.",
       "required": false,
       "param_group": "I/O",
       "runtime_default": [],
@@ -52,8 +162,10 @@
           "string",
           "integer",
           "array"
-        ]
-      }
+        ],
+        "description": "Name of the column to filter on.\nIf multiple are provided, all must match the criteria."
+      },
+      "runtime_required": false
     },
     {
       "name": "equal",
@@ -65,9 +177,12 @@
         "type": [
           "string",
           "array",
-          "null"
-        ]
-      }
+          "boolean",
+          "number"
+        ],
+        "description": "Select rows where the values equal a given value."
+      },
+      "runtime_required": false
     },
     {
       "name": "not_equal",
@@ -79,9 +194,12 @@
         "type": [
           "string",
           "array",
-          "null"
-        ]
-      }
+          "boolean",
+          "number"
+        ],
+        "description": "Select rows where the values do not equal a given value."
+      },
+      "runtime_required": false
     },
     {
       "name": "is_in",
@@ -91,11 +209,12 @@
       "runtime_default": null,
       "schema": {
         "type": [
-          "string",
           "array",
-          "null"
-        ]
-      }
+          "string"
+        ],
+        "description": "Select rows where the values are in a given list."
+      },
+      "runtime_required": false
     },
     {
       "name": "not_in",
@@ -105,11 +224,12 @@
       "runtime_default": null,
       "schema": {
         "type": [
-          "string",
           "array",
-          "null"
-        ]
-      }
+          "string"
+        ],
+        "description": "Select rows where the values are not in a given list."
+      },
+      "runtime_required": false
     },
     {
       "name": "greater_than",
@@ -120,10 +240,11 @@
       "schema": {
         "type": [
           "integer",
-          "number",
-          "null"
-        ]
-      }
+          "number"
+        ],
+        "description": "Select rows where the values are greater than a specified value. Does include the value itself."
+      },
+      "runtime_required": false
     },
     {
       "name": "greater_than_equal_to",
@@ -134,10 +255,11 @@
       "schema": {
         "type": [
           "integer",
-          "number",
-          "null"
-        ]
-      }
+          "number"
+        ],
+        "description": "Select rows where the values are greater than a specified value. Does include the value itself."
+      },
+      "runtime_required": false
     },
     {
       "name": "less_than",
@@ -148,10 +270,11 @@
       "schema": {
         "type": [
           "integer",
-          "number",
-          "null"
-        ]
-      }
+          "number"
+        ],
+        "description": "Select rows where the values are less than a specified value. Does not include the value itself."
+      },
+      "runtime_required": false
     },
     {
       "name": "less_than_equal_to",
@@ -162,23 +285,25 @@
       "schema": {
         "type": [
           "integer",
-          "number",
-          "null"
-        ]
-      }
+          "number"
+        ],
+        "description": "Select rows where the values are less than a specified value. Does include the value itself."
+      },
+      "runtime_required": false
     },
     {
       "name": "between",
-      "description": "Value or list of values to filter that are in between two parameter values.",
+      "description": "Value or list of values to filter that are in between two parameter values",
       "required": false,
       "param_group": "Options",
       "runtime_default": null,
       "schema": {
         "type": [
-          "array",
-          "null"
-        ]
-      }
+          "array"
+        ],
+        "description": "Value or list of values to filter that are in between two parameter values"
+      },
+      "runtime_required": false
     },
     {
       "name": "contains",
@@ -187,11 +312,10 @@
       "param_group": "Options",
       "runtime_default": null,
       "schema": {
-        "type": [
-          "string",
-          "null"
-        ]
-      }
+        "type": "string",
+        "description": "Select rows where the input contains the value. Allows regular expressions."
+      },
+      "runtime_required": false
     },
     {
       "name": "not_contains",
@@ -200,11 +324,10 @@
       "param_group": "Options",
       "runtime_default": null,
       "schema": {
-        "type": [
-          "string",
-          "null"
-        ]
-      }
+        "type": "string",
+        "description": "Select rows where the input does not contain the value. Allows regular expressions."
+      },
+      "runtime_required": false
     },
     {
       "name": "is_null",
@@ -213,11 +336,10 @@
       "param_group": "Options",
       "runtime_default": null,
       "schema": {
-        "type": [
-          "boolean",
-          "null"
-        ]
-      }
+        "type": "boolean",
+        "description": "If true, select all rows where the value is NULL. If false, where is not NULL."
+      },
+      "runtime_required": false
     },
     {
       "name": "if",

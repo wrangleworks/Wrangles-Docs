@@ -23,17 +23,92 @@ Extract date range frequency from two dates.
 | Name | Description | Accepted Values | Default | Required |
 | --- | --- | --- | --- | --- |
 | <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `start_time` | Name of the start date column. | string | — | Yes |
-| `end_time` | Name of the end date column. | string | — | Yes |
-| `output` | Name of the output column. | string | — | Yes |
+| `start_time` | Name of the start date column | string | — | Yes |
+| `end_time` | Name of the end date column | string | — | Yes |
+| `output` | Name of the output column | string | — | Yes |
 | <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `range` | Type of frequency to count. | string; one of:<ul className="ww-param-enum-values"><li>business days</li><li>days</li><li>weeks</li><li>months</li><li>semi months</li><li>business month ends</li><li>month starts</li><li>semi month starts</li><li>business month starts</li><li>quarters</li><li>quarter starts</li><li>years</li><li>business hours</li><li>hours</li><li>minutes</li><li>seconds</li><li>milliseconds</li></ul> | `"day"` | No |
+| `range` | Type of frequency to count | string; one of:<ul className="ww-param-enum-values"><li>business days</li><li>days</li><li>weeks</li><li>months</li><li>semi months</li><li>business month ends</li><li>month starts</li><li>semi month starts</li><li>business month starts</li><li>quarters</li><li>quarter starts</li><li>years</li><li>business hours</li><li>hours</li><li>minutes</li><li>seconds</li><li>milliseconds</li></ul> | `"day"` | Yes |
 | <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
 | `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
 | `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
 | `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
 
 </div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+<details className="ww-field-disclosure">
+
+<summary>Complete configuration schema</summary>
+
+Schema source: upstream-docstring. Conditional and cross-parameter
+rules below apply in addition to the parameter table. References resolve against
+the [complete recipe schema](/schemas/recipes/registry/schema.json).
+
+
+
+```json
+{
+  "type": "object",
+  "description": "Extract date range frequency from two dates",
+  "additionalProperties": false,
+  "required": [
+    "start_time",
+    "end_time",
+    "output",
+    "range"
+  ],
+  "properties": {
+    "start_time": {
+      "type": "string",
+      "description": "Name of the start date column"
+    },
+    "end_time": {
+      "type": "string",
+      "description": "Name of the end date column"
+    },
+    "output": {
+      "type": "string",
+      "description": "Name of the output column"
+    },
+    "range": {
+      "type": "string",
+      "description": "Type of frequency to count",
+      "enum": [
+        "business days",
+        "days",
+        "weeks",
+        "months",
+        "semi months",
+        "business month ends",
+        "month starts",
+        "semi month starts",
+        "business month starts",
+        "quarters",
+        "quarter starts",
+        "years",
+        "business hours",
+        "hours",
+        "minutes",
+        "seconds",
+        "milliseconds"
+      ]
+    },
+    "if": {
+      "$ref": "#/$defs/wrangles/commonProperties/if"
+    },
+    "where": {
+      "$ref": "#/$defs/wrangles/commonProperties/where"
+    },
+    "where_params": {
+      "$ref": "#/$defs/wrangles/commonProperties/where_params"
+    }
+  }
+}
+```
+
+</details>
 
 ## Examples
 
@@ -93,6 +168,7 @@ _No sample available._
 | Documentation group | `extract` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.extract.date_range` |
+| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
 | Legacy UUID | `9cebfa6f-a524-4aec-84a7-02d77b792843` |
 
 **Sources**

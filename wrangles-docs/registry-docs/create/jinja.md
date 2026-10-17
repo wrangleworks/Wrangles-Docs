@@ -27,16 +27,84 @@ Jinja templates do not allow variables with spaces. This wrangle automatically r
 | Name | Description | Accepted Values | Default | Required |
 | --- | --- | --- | --- | --- |
 | <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `output` | Name of the column to be output to. | array | — | Yes |
-| `input` | Specify a name of column containing a dictionary of elements to be used in jinja template. Otherwise, the column headers will be used as keys. | string, null | `null` | No |
+| `output` | Name of the column to be output to. | string | — | Yes |
+| `input` | Specify a name of column containing a dictionary of elements to be used in jinja template.<br />Otherwise, the column headers will be used as keys.<br /> | string, integer | `null` | No |
 | <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `template` | A dictionary which defines the template/location as well as the form which the template is input. If any keys use a space, they must be replaced with an underscore. Note: spaces within column names are replaced by underscores (_). | object | — | Yes |
+| `template` | A dictionary which defines the template/location as well as the form which the template is input.<br />If any keys use a space, they must be replaced with an underscore.  Note: spaces within column names<br />are replaced by underscores (_).<br /> | object | — | Yes |
 | <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
 | `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
 | `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
 | `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
 
 </div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+<details className="ww-field-disclosure">
+
+<summary>Complete configuration schema</summary>
+
+Schema source: upstream-docstring. Conditional and cross-parameter
+rules below apply in addition to the parameter table. References resolve against
+the [complete recipe schema](/schemas/recipes/registry/schema.json).
+
+
+
+```json
+{
+  "type": "object",
+  "description": "Output text using a jinja template",
+  "additionalProperties": false,
+  "required": [
+    "output",
+    "template"
+  ],
+  "properties": {
+    "input": {
+      "type": [
+        "string",
+        "integer"
+      ],
+      "description": "Specify a name of column containing a dictionary of elements to be used in jinja template.\nOtherwise, the column headers will be used as keys.\n"
+    },
+    "output": {
+      "type": "string",
+      "description": "Name of the column to be output to."
+    },
+    "template": {
+      "type": "object",
+      "description": "A dictionary which defines the template/location as well as the form which the template is input.\nIf any keys use a space, they must be replaced with an underscore.  Note: spaces within column names\nare replaced by underscores (_).\n",
+      "additionalProperties": false,
+      "properties": {
+        "file": {
+          "type": "string",
+          "description": "A .jinja file containing the template"
+        },
+        "column": {
+          "type": "string",
+          "description": "A column containing the jinja template - this will apply to the corresponding row."
+        },
+        "string": {
+          "type": "string",
+          "description": "A string which is used as the jinja template"
+        }
+      }
+    },
+    "if": {
+      "$ref": "#/$defs/wrangles/commonProperties/if"
+    },
+    "where": {
+      "$ref": "#/$defs/wrangles/commonProperties/where"
+    },
+    "where_params": {
+      "$ref": "#/$defs/wrangles/commonProperties/where_params"
+    }
+  }
+}
+```
+
+</details>
 
 ## Examples
 
@@ -102,6 +170,7 @@ Using `|` in YAML denotes a multi-line string that preserves line breaks. Use `>
 | Documentation group | `create` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.create.jinja` |
+| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
 | Legacy UUID | `10fc6709-16d4-4eab-8f56-6cb5d170ea66` |
 
 **Sources**

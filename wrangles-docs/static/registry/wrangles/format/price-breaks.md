@@ -37,24 +37,49 @@ parameters:
     param_group: I/O
     schema:
       type: array
+    runtime_required: true
   - name: categoryLabel
     description: Prefix for output columns that identify the source price-break category.
     required: true
     param_group: Formatting
     schema:
       type: string
+    runtime_required: true
   - name: valueLabel
     description: Prefix for output columns that contain the corresponding price-break value.
     required: true
     param_group: Formatting
     schema:
       type: string
+    runtime_required: true
 examples: []
 sources:
   - id: runtime
     resource: >-
       https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/format.py
     title: WranglesPY format.price_breaks implementation
+configuration_schema:
+  type: object
+  properties:
+    input:
+      type: array
+    categoryLabel:
+      type: string
+    valueLabel:
+      type: string
+    if:
+      $ref: '#/$defs/wrangles/commonProperties/if'
+    where:
+      $ref: '#/$defs/wrangles/commonProperties/where'
+    where_params:
+      $ref: '#/$defs/wrangles/commonProperties/where_params'
+  required:
+    - input
+    - categoryLabel
+    - valueLabel
+  additionalProperties: false
+schema_origin: signature-derived
+schema_adjustments: []
 ---
 
 # Format Price Breaks

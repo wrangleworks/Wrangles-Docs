@@ -36,14 +36,18 @@ parameters:
     param_group: I/O
     schema:
       type: array
+      description: Two columns of vectors to compare the similarity of.
       minItems: 2
       maxItems: 2
+    runtime_required: true
   - name: output
     description: Name of the output column.
     required: true
     param_group: I/O
     schema:
       type: string
+      description: Name of the output column.
+    runtime_required: true
   - name: method
     description: >-
       The type of similarity to calculate (cosine or euclidean). Adjusted cosine adjusts the default
@@ -53,10 +57,14 @@ parameters:
     runtime_default: cosine
     schema:
       type: string
+      description: >-
+        The type of similarity to calculate (cosine or euclidean). Adjusted cosine adjusts the
+        default cosine calculation to cover a range of 0-1 for typical comparisons.
       enum:
         - cosine
         - adjusted cosine
         - euclidean
+    runtime_required: false
 examples: []
 sources:
   - id: runtime
@@ -67,6 +75,39 @@ sources:
     resource: >-
       https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/compare/_sources/similarity.md
     title: Archived similarity Markdown
+configuration_schema:
+  type: object
+  description: Calculate the cosine similarity of two vectors
+  additionalProperties: false
+  required:
+    - input
+    - output
+  properties:
+    input:
+      type: array
+      description: Two columns of vectors to compare the similarity of.
+      minItems: 2
+      maxItems: 2
+    output:
+      type: string
+      description: Name of the output column.
+    method:
+      type: string
+      description: >-
+        The type of similarity to calculate (cosine or euclidean). Adjusted cosine adjusts the
+        default cosine calculation to cover a range of 0-1 for typical comparisons.
+      enum:
+        - cosine
+        - adjusted cosine
+        - euclidean
+    if:
+      $ref: '#/$defs/wrangles/commonProperties/if'
+    where:
+      $ref: '#/$defs/wrangles/commonProperties/where'
+    where_params:
+      $ref: '#/$defs/wrangles/commonProperties/where_params'
+schema_origin: upstream-docstring
+schema_adjustments: []
 ---
 
 # Similarity

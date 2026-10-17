@@ -33,7 +33,9 @@ capabilities:
   where_params: true
 parameters:
   - name: input
-    description: Name of the column to filter on. If multiple are provided, all must match the criteria.
+    description: |-
+      Name of the column to filter on.
+      If multiple are provided, all must match the criteria.
     required: false
     param_group: I/O
     runtime_default: []
@@ -42,6 +44,10 @@ parameters:
         - string
         - integer
         - array
+      description: |-
+        Name of the column to filter on.
+        If multiple are provided, all must match the criteria.
+    runtime_required: false
   - name: equal
     description: Select rows where the values equal a given value.
     required: false
@@ -51,7 +57,10 @@ parameters:
       type:
         - string
         - array
-        - 'null'
+        - boolean
+        - number
+      description: Select rows where the values equal a given value.
+    runtime_required: false
   - name: not_equal
     description: Select rows where the values do not equal a given value.
     required: false
@@ -61,7 +70,10 @@ parameters:
       type:
         - string
         - array
-        - 'null'
+        - boolean
+        - number
+      description: Select rows where the values do not equal a given value.
+    runtime_required: false
   - name: is_in
     description: Select rows where the values are in a given list.
     required: false
@@ -69,9 +81,10 @@ parameters:
     runtime_default: null
     schema:
       type:
-        - string
         - array
-        - 'null'
+        - string
+      description: Select rows where the values are in a given list.
+    runtime_required: false
   - name: not_in
     description: Select rows where the values are not in a given list.
     required: false
@@ -79,9 +92,10 @@ parameters:
     runtime_default: null
     schema:
       type:
-        - string
         - array
-        - 'null'
+        - string
+      description: Select rows where the values are not in a given list.
+    runtime_required: false
   - name: greater_than
     description: >-
       Select rows where the values are greater than a specified value. Does include the value
@@ -93,7 +107,10 @@ parameters:
       type:
         - integer
         - number
-        - 'null'
+      description: >-
+        Select rows where the values are greater than a specified value. Does include the value
+        itself.
+    runtime_required: false
   - name: greater_than_equal_to
     description: >-
       Select rows where the values are greater than a specified value. Does include the value
@@ -105,7 +122,10 @@ parameters:
       type:
         - integer
         - number
-        - 'null'
+      description: >-
+        Select rows where the values are greater than a specified value. Does include the value
+        itself.
+    runtime_required: false
   - name: less_than
     description: >-
       Select rows where the values are less than a specified value. Does not include the value
@@ -117,7 +137,10 @@ parameters:
       type:
         - integer
         - number
-        - 'null'
+      description: >-
+        Select rows where the values are less than a specified value. Does not include the value
+        itself.
+    runtime_required: false
   - name: less_than_equal_to
     description: Select rows where the values are less than a specified value. Does include the value itself.
     required: false
@@ -127,43 +150,45 @@ parameters:
       type:
         - integer
         - number
-        - 'null'
+      description: Select rows where the values are less than a specified value. Does include the value itself.
+    runtime_required: false
   - name: between
-    description: Value or list of values to filter that are in between two parameter values.
+    description: Value or list of values to filter that are in between two parameter values
     required: false
     param_group: Options
     runtime_default: null
     schema:
       type:
         - array
-        - 'null'
+      description: Value or list of values to filter that are in between two parameter values
+    runtime_required: false
   - name: contains
     description: Select rows where the input contains the value. Allows regular expressions.
     required: false
     param_group: Options
     runtime_default: null
     schema:
-      type:
-        - string
-        - 'null'
+      type: string
+      description: Select rows where the input contains the value. Allows regular expressions.
+    runtime_required: false
   - name: not_contains
     description: Select rows where the input does not contain the value. Allows regular expressions.
     required: false
     param_group: Options
     runtime_default: null
     schema:
-      type:
-        - string
-        - 'null'
+      type: string
+      description: Select rows where the input does not contain the value. Allows regular expressions.
+    runtime_required: false
   - name: is_null
     description: If true, select all rows where the value is NULL. If false, where is not NULL.
     required: false
     param_group: Options
     runtime_default: null
     schema:
-      type:
-        - boolean
-        - 'null'
+      type: boolean
+      description: If true, select all rows where the value is NULL. If false, where is not NULL.
+    runtime_required: false
 examples: []
 sources:
   - id: runtime
@@ -174,6 +199,93 @@ sources:
     resource: >-
       https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/select/_sources/filter.md
     title: Archived filter Markdown
+configuration_schema:
+  type: object
+  description: |-
+    Filter the dataframe based on the contents.
+    If multiple filters are specified, all must be correct.
+    For complex filters, use the where parameter.
+  additionalProperties: false
+  properties:
+    where:
+      $ref: '#/$defs/wrangles/commonProperties/where_special'
+    where_params:
+      $ref: '#/$defs/wrangles/commonProperties/where_params'
+    input:
+      type:
+        - string
+        - integer
+        - array
+      description: |-
+        Name of the column to filter on.
+        If multiple are provided, all must match the criteria.
+    equal:
+      type:
+        - string
+        - array
+        - boolean
+        - number
+      description: Select rows where the values equal a given value.
+    not_equal:
+      type:
+        - string
+        - array
+        - boolean
+        - number
+      description: Select rows where the values do not equal a given value.
+    is_in:
+      type:
+        - array
+        - string
+      description: Select rows where the values are in a given list.
+    not_in:
+      type:
+        - array
+        - string
+      description: Select rows where the values are not in a given list.
+    is_null:
+      type: boolean
+      description: If true, select all rows where the value is NULL. If false, where is not NULL.
+    greater_than:
+      type:
+        - integer
+        - number
+      description: >-
+        Select rows where the values are greater than a specified value. Does include the value
+        itself.
+    greater_than_equal_to:
+      type:
+        - integer
+        - number
+      description: >-
+        Select rows where the values are greater than a specified value. Does include the value
+        itself.
+    less_than:
+      type:
+        - integer
+        - number
+      description: >-
+        Select rows where the values are less than a specified value. Does not include the value
+        itself.
+    less_than_equal_to:
+      type:
+        - integer
+        - number
+      description: Select rows where the values are less than a specified value. Does include the value itself.
+    between:
+      type:
+        - array
+      description: Value or list of values to filter that are in between two parameter values
+    contains:
+      type: string
+      description: Select rows where the input contains the value. Allows regular expressions.
+    not_contains:
+      type: string
+      description: Select rows where the input does not contain the value. Allows regular expressions.
+    if:
+      $ref: '#/$defs/wrangles/commonProperties/if'
+schema_origin: upstream-docstring
+schema_adjustments: []
 ---
 
 # Filter

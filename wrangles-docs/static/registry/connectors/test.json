@@ -1,0 +1,82 @@
+{
+  "schema_version": "0.2",
+  "type": "connector",
+  "catalog_id": "139",
+  "catalog_key": "connector.test",
+  "catalog_kind": "connector",
+  "runtime_key": "test",
+  "status": "active",
+  "title": "Test",
+  "source": {
+    "repository": "https://github.com/wrangleworks/WranglesPY",
+    "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+    "version": "1.20.5",
+    "extraction": "static-python-ast"
+  },
+  "operations": {
+    "read": {
+      "type": "object",
+      "description": "Create a test dataframe",
+      "required": [
+        "rows",
+        "values"
+      ],
+      "properties": {
+        "rows": {
+          "type": "integer",
+          "description": "Number of rows to include in the generated dataframe",
+          "minimum": 1
+        },
+        "values": {
+          "type": "object",
+          "description": "Dictionary of columns and values",
+          "patternProperties": {
+            ".*": {
+              "type": [
+                "object",
+                "string",
+                "array"
+              ],
+              "description": "Dictionary of headers and data type to randomly generate",
+              "additionProperties": true
+            }
+          }
+        },
+        "columns": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/columns"
+        },
+        "not_columns": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/not_columns"
+        },
+        "where": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/where"
+        },
+        "where_params": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/where_params"
+        },
+        "order_by": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/order_by"
+        },
+        "if": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/if"
+        }
+      }
+    }
+  },
+  "description": "Create a test dataframe",
+  "slug": "connectors/test",
+  "visibility": "public",
+  "sources": [
+    {
+      "id": "runtime",
+      "resource": "https://github.com/wrangleworks/WranglesPY/tree/bd5f88fba479ec406b409cb2880689c54e72b298",
+      "title": "Pinned WranglesPY connector schema"
+    },
+    {
+      "id": "existing-docs",
+      "resource": "wrangles-docs/registry-docs/python/connectors/test.md",
+      "title": "Existing connector documentation"
+    }
+  ],
+  "guidance": "> Added v0.4\n\nA useful connector to create test data. Either fixed values can be set or data can be randomly generated.\n\n### Read\n### Recipe\n```yaml\nread:\n  - test:\n      rows: 2\n      values:\n        fixed value: example string\n        code: <code(10)>\n        boolean: <boolean>\n        number: <number(2.718-3.141)>\n        int: <int(0-100)>\n        char: <char>\n        word: <word>\n        sentence: <sentence>\n        random_choice: <random([\"apple\",\"strawberry\",\"pear\"])>\n```\n#### Output\n\n<div className=\"table-scroll\">\n\n| fixed value | code | boolean | number | int | char | word | sentence | random_choice |\n| :--------- | :--- | :------ | :----- | :-- | :--- | :--- | :------- | :--- |\n| example string | E4CO2KRBG2 | True | 2.767 | 23 | m | neque | Adipisci dolor quisquam labore dolorem dolor | apple |\n| example string | 8G7DT4H7AB | False | 2.873 | 69 | r | tempora | Amet numquam quiquia numquam adipisci labore | pear |\n\n</div>\n\n### Function\n```python\nfrom wrangles.connectors import test\ndf = test.read(rows=2, values={'header1':'a','header2':'b'})\n```\n#### Output\n| header1 | header2 |\n| :------ | :------ |\n| a | b |\n| a | b |\n\n### Special Inputs\n- **\\&lt;code>** or **&lt;code(8)>** : Random alphanumeric codes - *(8)* sets the length. *e.g. J1RSB7X9*\n- **\\&lt;char>** : Random letters\n- **\\&lt;word>** : Random nonsense words\n- **\\&lt;sentence>** : Random nonsense sentences\n- **\\&lt;boolean>** : Randomly True or False\n- **\\&lt;number(2.718-3.141)>** : Random numbers - *(2.718-3.141)* sets the range and decimal places. Default 0.00-1.00.\n- **\\&lt;int(1-10)>** : Random integers - *(1-10)* sets the range. Default 1-100.\n- **&lt;random([\"a\",\"b\",\"c\"])>** : Randomly selected from the list."
+}

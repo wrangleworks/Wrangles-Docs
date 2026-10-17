@@ -33,7 +33,7 @@ capabilities:
   where_params: true
 parameters:
   - name: input
-    description: Name of the column to translate.
+    description: Name of the column to translate
     required: true
     param_group: I/O
     schema:
@@ -41,20 +41,25 @@ parameters:
         - string
         - integer
         - array
+      description: Name of the column to translate
+    runtime_required: true
   - name: output
-    description: Name of the output column.
+    description: Name of the output column
     required: true
     param_group: I/O
     schema:
       type:
         - string
         - array
+      description: Name of the output column
+    runtime_required: true
   - name: target_language
-    description: Code of the language to translate to.
+    description: Code of the language to translate to
     required: true
     param_group: Options
     schema:
       type: string
+      description: Code of the language to translate to
       enum:
         - Bulgarian
         - Chinese
@@ -82,13 +87,15 @@ parameters:
         - Slovenian
         - Spanish
         - Swedish
+    runtime_required: true
   - name: source_language
-    description: Code of the language to translate from. If omitted, automatically detects the input language.
+    description: Code of the language to translate from. If omitted, automatically detects the input language
     required: false
     param_group: Options
     runtime_default: AUTO
     schema:
       type: string
+      description: Code of the language to translate from. If omitted, automatically detects the input language
       enum:
         - Auto
         - Bulgarian
@@ -115,15 +122,14 @@ parameters:
         - Slovenian
         - Spanish
         - Swedish
+    runtime_required: false
   - name: case
     description: Allow changing the case of the input prior to translation.
     required: false
     param_group: Options
     runtime_default: null
-    schema:
-      type:
-        - string
-        - 'null'
+    schema: {}
+    runtime_required: false
 examples: []
 sources:
   - id: runtime
@@ -134,6 +140,95 @@ sources:
     resource: >-
       https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/format/_sources/translate.md
     title: Archived translate Markdown
+configuration_schema:
+  type: object
+  description: >-
+    Translate the input to a different language. Requires WrangleWorks Account and DeepL API Key (A
+    free account for up to 500,000 characters per month is available).
+  additionalProperties: false
+  required:
+    - input
+    - output
+    - target_language
+  properties:
+    input:
+      type:
+        - string
+        - integer
+        - array
+      description: Name of the column to translate
+    output:
+      type:
+        - string
+        - array
+      description: Name of the output column
+    target_language:
+      type: string
+      description: Code of the language to translate to
+      enum:
+        - Bulgarian
+        - Chinese
+        - Czech
+        - Danish
+        - Dutch
+        - English (American)
+        - English (British)
+        - Estonian
+        - Finnish
+        - French
+        - German
+        - Greek
+        - Hungarian
+        - Italian
+        - Japanese
+        - Latvian
+        - Lithuanian
+        - Polish
+        - Portuguese
+        - Portuguese (Brazilian)
+        - Romanian
+        - Russian
+        - Slovak
+        - Slovenian
+        - Spanish
+        - Swedish
+    source_language:
+      type: string
+      description: Code of the language to translate from. If omitted, automatically detects the input language
+      enum:
+        - Auto
+        - Bulgarian
+        - Chinese
+        - Czech
+        - Danish
+        - Dutch
+        - English
+        - Estonian
+        - Finnish
+        - French
+        - German
+        - Greek
+        - Hungarian
+        - Italian
+        - Japanese
+        - Latvian
+        - Lithuanian
+        - Polish
+        - Portuguese
+        - Romanian
+        - Russian
+        - Slovak
+        - Slovenian
+        - Spanish
+        - Swedish
+    if:
+      $ref: '#/$defs/wrangles/commonProperties/if'
+    where:
+      $ref: '#/$defs/wrangles/commonProperties/where'
+    where_params:
+      $ref: '#/$defs/wrangles/commonProperties/where_params'
+schema_origin: upstream-docstring
+schema_adjustments: []
 ---
 
 # Translate

@@ -37,14 +37,66 @@
     "requires_external_api_key": false
   },
   "capabilities": {
+    "if": true,
     "where": true,
-    "where_params": true,
-    "if": true
+    "where_params": true
+  },
+  "configuration_schema": {
+    "type": "object",
+    "description": "Convert a JSON representation into an object.",
+    "required": [
+      "input"
+    ],
+    "properties": {
+      "input": {
+        "type": [
+          "string",
+          "integer",
+          "array"
+        ],
+        "description": "Name of the input column."
+      },
+      "output": {
+        "type": [
+          "string",
+          "array"
+        ],
+        "description": "Name of the output column. If omitted, the input column will be overwritten"
+      },
+      "default": {
+        "type": [
+          "string",
+          "array",
+          "object",
+          "number",
+          "boolean",
+          "null"
+        ],
+        "description": "Value to return if the row is empty or fails to be parsed as JSON. If input is a list, default may also be a list - either a single value to apply to all columns, or one value per input column."
+      },
+      "if": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/if"
+      },
+      "where": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/where"
+      },
+      "where_params": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/where_params"
+      }
+    }
+  },
+  "schema_origin": "upstream-docstring",
+  "schema_adjustments": [],
+  "schema_source": {
+    "repository": "https://github.com/wrangleworks/WranglesPY",
+    "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+    "version": "1.20.5",
+    "extraction": "static-python-ast"
   },
   "parameters": [
     {
       "name": "input",
-      "description": "Name, index, or list of columns containing valid JSON text.",
+      "description": "Name of the input column.",
       "required": true,
       "param_group": "I/O",
       "schema": {
@@ -53,17 +105,13 @@
           "integer",
           "array"
         ],
-        "items": {
-          "type": [
-            "string",
-            "integer"
-          ]
-        }
-      }
+        "description": "Name of the input column."
+      },
+      "runtime_required": true
     },
     {
       "name": "output",
-      "description": "Name or list of output columns. If omitted, each input column is overwritten.",
+      "description": "Name of the output column. If omitted, the input column will be overwritten",
       "required": false,
       "param_group": "I/O",
       "runtime_default": null,
@@ -72,26 +120,36 @@
           "string",
           "array"
         ],
-        "items": {
-          "type": "string"
-        }
-      }
+        "description": "Name of the output column. If omitted, the input column will be overwritten"
+      },
+      "runtime_required": false
     },
     {
       "name": "default",
-      "description": "Value returned for empty or invalid JSON. A list may supply one fallback per input column.",
+      "description": "Value to return if the row is empty or fails to be parsed as JSON. If input is a list, default may also be a list - either a single value to apply to all columns, or one value per input column.",
       "required": false,
       "param_group": "Errors",
       "runtime_default": null,
       "schema": {
         "type": [
           "string",
-          "number",
           "array",
           "object",
+          "number",
           "boolean",
           "null"
-        ]
+        ],
+        "description": "Value to return if the row is empty or fails to be parsed as JSON. If input is a list, default may also be a list - either a single value to apply to all columns, or one value per input column."
+      },
+      "runtime_required": false
+    },
+    {
+      "name": "if",
+      "description": "Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`.",
+      "required": false,
+      "param_group": "Conditions",
+      "schema": {
+        "type": "string"
       }
     },
     {
@@ -113,15 +171,6 @@
           "array",
           "object"
         ]
-      }
-    },
-    {
-      "name": "if",
-      "description": "Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`.",
-      "required": false,
-      "param_group": "Conditions",
-      "schema": {
-        "type": "string"
       }
     }
   ],

@@ -3,7 +3,7 @@ title: "Read"
 slug: /python/recipes/read
 ---
 
-- [Connectors *Learn about the available connectors*](/py/python/connectors)
+- [Connectors *Learn about the available connectors*](/py/connectors)
 
 Data can be imported from one or more sources. Data is imported using connectors, which can read data from places such as files or databases.
 

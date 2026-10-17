@@ -23,11 +23,11 @@ Creates a column that segments and sorts data values into bins. `bins` can be an
 | Name | Description | Accepted Values | Default | Required |
 | --- | --- | --- | --- | --- |
 | <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `input` | Name of input column. | string, integer, array | — | Yes |
-| `output` | Name of new column. | string, array | — | Yes |
+| `input` | Name of input column | array | — | Yes |
+| `output` | Name of new column | array | — | Yes |
 | <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `bins` | Defines the number of equal-width bins in the range. | integer, array | — | Yes |
-| `labels` | Labels for the returned bins. | string, array, null | `null` | No |
+| `bins` | Defines the number of equal-width bins in the range | integer, array | — | Yes |
+| `labels` | Labels for the returned bins | string, array | `null` | No |
 | <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
 | `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
 | `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
@@ -35,13 +35,78 @@ Creates a column that segments and sorts data values into bins. `bins` can be an
 
 </div>
 
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+<details className="ww-field-disclosure">
+
+<summary>Complete configuration schema</summary>
+
+Schema source: upstream-docstring. Conditional and cross-parameter
+rules below apply in addition to the parameter table. References resolve against
+the [complete recipe schema](/schemas/recipes/registry/schema.json).
+
+
+
+```json
+{
+  "type": "object",
+  "description": "Create a column that groups data into bins",
+  "additionalProperties": false,
+  "required": [
+    "input",
+    "output",
+    "bins"
+  ],
+  "properties": {
+    "input": {
+      "type": [
+        "array"
+      ],
+      "description": "Name of input column"
+    },
+    "output": {
+      "type": [
+        "array"
+      ],
+      "description": "Name of new column"
+    },
+    "bins": {
+      "type": [
+        "integer",
+        "array"
+      ],
+      "description": "Defines the number of equal-width bins in the range"
+    },
+    "labels": {
+      "type": [
+        "string",
+        "array"
+      ],
+      "description": "Labels for the returned bins"
+    },
+    "if": {
+      "$ref": "#/$defs/wrangles/commonProperties/if"
+    },
+    "where": {
+      "$ref": "#/$defs/wrangles/commonProperties/where"
+    },
+    "where_params": {
+      "$ref": "#/$defs/wrangles/commonProperties/where_params"
+    }
+  }
+}
+```
+
+</details>
+
 ## Examples
 
 ```yaml
 wrangles:
   - create.bins:
-      input: Data
-      output: Category
+      input: [Data]
+      output: [Category]
       bins: 3
       labels:
         - Bad
@@ -86,8 +151,8 @@ wrangles:
 ```yaml
 wrangles:
   - create.bins:
-      input: Grades
-      output: Letter Grade
+      input: [Grades]
+      output: [Letter Grade]
       bins:
         - 0
         - 60
@@ -158,6 +223,7 @@ wrangles:
 | Documentation group | `create` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.create.bins` |
+| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
 | Legacy UUID | `232e3ba0-4735-4934-88aa-0163181abb3f` |
 
 **Sources**

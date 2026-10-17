@@ -33,7 +33,7 @@ parameters:
   - name: input
     description: >-
       Name of the input column and sub elements This permits by index for lists or dict and by key
-      for dicts e.g. col[0]['key'] // [{"key":"val"}] -> "val".
+      for dicts e.g. col[0]['key'] // [{"key":"val"}] -> "val"
     required: true
     param_group: I/O
     schema:
@@ -41,8 +41,12 @@ parameters:
         - string
         - integer
         - array
+      description: >-
+        Name of the input column and sub elements This permits by index for lists or dict and by key
+        for dicts e.g. col[0]['key'] // [{"key":"val"}] -> "val"
+    runtime_required: true
   - name: output
-    description: Name of the output column(s).
+    description: Name of the output column(s)
     required: false
     param_group: I/O
     runtime_default: null
@@ -50,7 +54,8 @@ parameters:
       type:
         - string
         - array
-        - 'null'
+      description: Name of the output column(s)
+    runtime_required: false
   - name: default
     description: Set the default value to return if the specified element doesn't exist.
     required: false
@@ -63,7 +68,9 @@ parameters:
         - array
         - object
         - boolean
-        - 'null'
+      description: Set the default value to return if the specified element doesn't exist.
+      default: ''
+    runtime_required: false
 examples: []
 sources:
   - id: runtime
@@ -74,6 +81,43 @@ sources:
     resource: >-
       https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/select/_sources/element.md
     title: Archived select.element Markdown
+configuration_schema:
+  type: object
+  description: Select elements of lists or dicts using python syntax like col[0]['key']
+  additionalProperties: false
+  required:
+    - input
+  properties:
+    input:
+      type:
+        - string
+        - integer
+        - array
+      description: >-
+        Name of the input column and sub elements This permits by index for lists or dict and by key
+        for dicts e.g. col[0]['key'] // [{"key":"val"}] -> "val"
+    output:
+      type:
+        - string
+        - array
+      description: Name of the output column(s)
+    default:
+      type:
+        - string
+        - number
+        - array
+        - object
+        - boolean
+      description: Set the default value to return if the specified element doesn't exist.
+      default: ''
+    if:
+      $ref: '#/$defs/wrangles/commonProperties/if'
+    where:
+      $ref: '#/$defs/wrangles/commonProperties/where'
+    where_params:
+      $ref: '#/$defs/wrangles/commonProperties/where_params'
+schema_origin: upstream-docstring
+schema_adjustments: []
 ---
 
 # Element

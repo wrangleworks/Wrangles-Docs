@@ -92,4 +92,4 @@ wrangles:
 
 ![recipe_step3.png](/in-depth-examples/remove-words/recipe_step3.png)
 
-As you see, we now have three columns with the last column being our goal. If you do not desire to output all columns, you can list the ones you want to output in the "columns" parameter of the [Excel Connector](/py/python/connectors/excel).
+As you see, we now have three columns with the last column being our goal. If you do not desire to output all columns, you can list the ones you want to output in the "columns" parameter of the [Excel Connector](/py/connectors/excel.sheet).

@@ -31,6 +31,48 @@ Transpose a dataframe.
 
 </div>
 
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+<details className="ww-field-disclosure">
+
+<summary>Complete configuration schema</summary>
+
+Schema source: upstream-docstring. Conditional and cross-parameter
+rules below apply in addition to the parameter table. References resolve against
+the [complete recipe schema](/schemas/recipes/registry/schema.json).
+
+Compatibility correction: Normalize schema type null to null.
+
+```json
+{
+  "type": "object",
+  "description": "Transpose the DataFrame (swap columns to rows)",
+  "additionalProperties": false,
+  "properties": {
+    "header_column": {
+      "type": [
+        "string",
+        "integer",
+        "null"
+      ],
+      "description": "Name or position of the column that will be used as the column headings for the transposed DataFrame. Default 0 (first column). Use header_column = null to not use any column as header."
+    },
+    "if": {
+      "$ref": "#/$defs/wrangles/commonProperties/if"
+    },
+    "where": {
+      "$ref": "#/$defs/wrangles/commonProperties/where_special"
+    },
+    "where_params": {
+      "$ref": "#/$defs/wrangles/commonProperties/where_params"
+    }
+  }
+}
+```
+
+</details>
+
 ## Examples
 
 :::note
@@ -97,6 +139,7 @@ wrangles:
 | Documentation group | `transform` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.pandas.transpose` |
+| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
 | Legacy UUID | `8716347f-f286-49b2-8a0b-cb73292e7475` |
 
 **Sources**

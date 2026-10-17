@@ -23,19 +23,81 @@ Print the current status of the dataframe. Only a sample of rows is logged.
 | Name | Description | Accepted Values | Default | Required |
 | --- | --- | --- | --- | --- |
 | <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `columns` | (Optional, default all columns) List of specific columns to log. | array, null | `null` | No |
+| `columns` | (Optional, default all columns) List of specific columns to log. | array | `null` | No |
 | <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `write` | (Optional) Allows for an intermediate output to a file/dataframe/database etc. | array, null | `null` | No |
-| `warning` | Log a warning to the console. | string, null | `null` | No |
-| `info` | Log info to the console. | string, null | `null` | No |
-| `log_data` | Whether to log a sample of the contents of the dataframe. Default True if not logging to a write, error, warning or info. Default False otherwise. | boolean, null | `null` | No |
-| `error` | Log an error to the console. | string | — | No |
+| `write` | (Optional) Allows for an intermediate output to a file/dataframe/database etc. | array | `null` | No |
+| `warning` | Log a warning to the console | string | `null` | No |
+| `info` | Log info to the console | string | `null` | No |
+| `log_data` | Whether to log a sample of the contents of the dataframe. Default True if not logging to a write, error, warning or info. Default False otherwise. | boolean | `null` | No |
+| `error` | Log an error to the console | string | — | No |
 | <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
 | `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
 | `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
 | `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
 
 </div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+<details className="ww-field-disclosure">
+
+<summary>Complete configuration schema</summary>
+
+Schema source: upstream-docstring. Conditional and cross-parameter
+rules below apply in addition to the parameter table. References resolve against
+the [complete recipe schema](/schemas/recipes/registry/schema.json).
+
+
+
+```json
+{
+  "type": "object",
+  "description": "Log the current status of the dataframe.",
+  "additionalProperties": false,
+  "properties": {
+    "columns": {
+      "type": "array",
+      "description": "(Optional, default all columns) List of specific columns to log."
+    },
+    "write": {
+      "type": "array",
+      "description": "(Optional) Allows for an intermediate output to a file/dataframe/database etc.",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/write/items"
+      }
+    },
+    "error": {
+      "type": "string",
+      "description": "Log an error to the console"
+    },
+    "warning": {
+      "type": "string",
+      "description": "Log a warning to the console"
+    },
+    "info": {
+      "type": "string",
+      "description": "Log info to the console"
+    },
+    "log_data": {
+      "type": "boolean",
+      "description": "Whether to log a sample of the contents of the dataframe. Default True if not logging to a write, error, warning or info. Default False otherwise."
+    },
+    "if": {
+      "$ref": "#/$defs/wrangles/commonProperties/if"
+    },
+    "where": {
+      "$ref": "#/$defs/wrangles/commonProperties/where"
+    },
+    "where_params": {
+      "$ref": "#/$defs/wrangles/commonProperties/where_params"
+    }
+  }
+}
+```
+
+</details>
 
 ## Examples
 
@@ -158,6 +220,7 @@ _Logs a sample of rows or status information to the configured destination._
 | Documentation group | `utility` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.log` |
+| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
 | Legacy UUID | `6177808e-aa2d-4d0b-8385-858b16948a5d` |
 
 **Sources**

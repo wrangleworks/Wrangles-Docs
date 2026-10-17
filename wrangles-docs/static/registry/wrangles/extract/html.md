@@ -1,25 +1,25 @@
 ---
 schema_version: '0.2'
-type: wrangle
-id: 728fc87a-a20d-4efa-833a-612e0b5eadc3
-wrangle_name: html
-namespace: extract
-title: HTML
-description: Extract elements from strings containing html. Requires WrangleWorks Account.
-wrangle_key: extract.html
+type: 'wrangle'
+id: '728fc87a-a20d-4efa-833a-612e0b5eadc3'
+wrangle_name: 'html'
+namespace: 'extract'
+title: 'HTML'
+description: 'Extract elements from strings containing html. Requires WrangleWorks Account.'
+wrangle_key: 'extract.html'
 aliases: []
-slug: extract/html
-status: active
-visibility: public
+slug: 'extract/html'
+status: 'active'
+visibility: 'public'
 recipe_writer:
   eligible: true
 tags:
-  - extract
-  - html
+  - 'extract'
+  - 'html'
 runtime:
-  package: wrangles
-  symbol: wrangles.recipe_wrangles.extract.html
-  contract_status: verified
+  package: 'wrangles'
+  symbol: 'wrangles.recipe_wrangles.extract.html'
+  contract_status: 'verified'
 access:
   ai_powered: false
   requires_account: true
@@ -30,64 +30,112 @@ capabilities:
   where: true
   where_params: true
 parameters:
-  - name: input
-    description: Name or list of input columns.
+  - name: 'input'
+    description: 'Name or list of input columns.'
     required: true
-    param_group: I/O
+    param_group: 'I/O'
     schema:
       type:
-        - string
-        - integer
-        - array
-  - name: data_type
-    description: The type of data to extract.
+        - 'string'
+        - 'integer'
+        - 'array'
+      description: 'Name or list of input columns.'
+    runtime_required: true
+  - name: 'data_type'
+    description: 'The type of data to extract'
     required: true
-    param_group: Options
+    param_group: 'Options'
     schema:
-      type: string
+      type: 'string'
+      description: 'The type of data to extract'
       enum:
-        - text
-        - links
-  - name: output
-    description: Name or list of output columns.
-    required: false
-    param_group: I/O
+        - 'text'
+        - 'links'
+    runtime_required: true
+  - name: 'output'
+    description: 'Name or list of output columns'
+    required: true
+    param_group: 'I/O'
     runtime_default: null
     schema:
       type:
-        - string
-        - array
-        - 'null'
-  - name: output_format
-    description: Format of the extract output.
+        - 'string'
+        - 'array'
+      description: 'Name or list of output columns'
+    runtime_required: false
+  - name: 'output_format'
+    description: 'Format of the extract output'
     required: false
-    param_group: Formatting
+    param_group: 'Formatting'
     runtime_default: null
     schema:
-      type:
-        - string
-        - 'null'
+      type: 'string'
+      description: 'Format of the extract output'
       enum:
-        - list
-        - columns
-        - concatenate
-  - name: char
-    description: Character to use when output_format is concatenate.
+        - 'list'
+        - 'columns'
+        - 'concatenate'
+    runtime_required: false
+  - name: 'char'
+    description: 'Character to use when output_format is concatenate'
     required: false
-    param_group: Formatting
+    param_group: 'Formatting'
     runtime_default: ', '
     schema:
-      type: string
+      type: 'string'
+      description: 'Character to use when output_format is concatenate'
+    runtime_required: false
 examples: []
 sources:
-  - id: runtime
-    resource: >-
-      https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/extract.py
-    title: WranglesPY extract.html implementation
-  - id: legacy-docs-archive
-    resource: >-
-      https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/extract/_sources/html.md
-    title: Archived extract.html Markdown
+  - id: 'runtime'
+    resource: 'https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/extract.py'
+    title: 'WranglesPY extract.html implementation'
+  - id: 'legacy-docs-archive'
+    resource: 'https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/extract/_sources/html.md'
+    title: 'Archived extract.html Markdown'
+configuration_schema:
+  type: 'object'
+  description: 'Extract elements from strings containing html. Requires WrangleWorks Account.'
+  required:
+    - 'input'
+    - 'output'
+    - 'data_type'
+  properties:
+    input:
+      type:
+        - 'string'
+        - 'integer'
+        - 'array'
+      description: 'Name or list of input columns.'
+    output:
+      type:
+        - 'string'
+        - 'array'
+      description: 'Name or list of output columns'
+    data_type:
+      type: 'string'
+      description: 'The type of data to extract'
+      enum:
+        - 'text'
+        - 'links'
+    output_format:
+      type: 'string'
+      description: 'Format of the extract output'
+      enum:
+        - 'list'
+        - 'columns'
+        - 'concatenate'
+    char:
+      type: 'string'
+      description: 'Character to use when output_format is concatenate'
+    if:
+      $ref: '#/$defs/wrangles/commonProperties/if'
+    where:
+      $ref: '#/$defs/wrangles/commonProperties/where'
+    where_params:
+      $ref: '#/$defs/wrangles/commonProperties/where_params'
+schema_origin: 'upstream-docstring'
+schema_adjustments: []
 ---
 
 # HTML

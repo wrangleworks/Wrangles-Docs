@@ -40,6 +40,58 @@
     "where": true,
     "where_params": true
   },
+  "configuration_schema": {
+    "type": "object",
+    "description": "Standardize data using a DIY or bespoke standardization wrangle. Requires WrangleWorks Account and Subscription.",
+    "required": [
+      "input"
+    ],
+    "properties": {
+      "input": {
+        "type": [
+          "string",
+          "integer",
+          "array"
+        ],
+        "description": "Name or list of input columns."
+      },
+      "output": {
+        "type": [
+          "string",
+          "array"
+        ],
+        "description": "Name or list of output columns"
+      },
+      "model_id": {
+        "type": [
+          "string",
+          "array"
+        ],
+        "description": "The ID of the wrangle to use (do not include 'find' and 'replace')"
+      },
+      "case_sensitive": {
+        "type": "boolean",
+        "description": "Allows the wrangle to be case sensitive if set to True, default is False."
+      },
+      "if": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/if"
+      },
+      "where": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/where"
+      },
+      "where_params": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/where_params"
+      }
+    }
+  },
+  "schema_origin": "upstream-docstring",
+  "schema_adjustments": [],
+  "schema_source": {
+    "repository": "https://github.com/wrangleworks/WranglesPY",
+    "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+    "version": "1.20.5",
+    "extraction": "static-python-ast"
+  },
   "parameters": [
     {
       "name": "input",
@@ -51,34 +103,39 @@
           "string",
           "integer",
           "array"
-        ]
-      }
+        ],
+        "description": "Name or list of input columns."
+      },
+      "runtime_required": true
     },
     {
       "name": "model_id",
-      "description": "The ID of the wrangle to use (do not include 'find' and 'replace').",
-      "required": true,
+      "description": "The ID of the wrangle to use (do not include 'find' and 'replace')",
+      "required": false,
       "param_group": "Details",
       "schema": {
         "type": [
           "string",
           "array"
-        ]
-      }
+        ],
+        "description": "The ID of the wrangle to use (do not include 'find' and 'replace')"
+      },
+      "runtime_required": true
     },
     {
       "name": "output",
-      "description": "Name or list of output columns.",
+      "description": "Name or list of output columns",
       "required": false,
       "param_group": "I/O",
       "runtime_default": null,
       "schema": {
         "type": [
           "string",
-          "array",
-          "null"
-        ]
-      }
+          "array"
+        ],
+        "description": "Name or list of output columns"
+      },
+      "runtime_required": false
     },
     {
       "name": "case_sensitive",
@@ -87,8 +144,10 @@
       "param_group": "Options",
       "runtime_default": false,
       "schema": {
-        "type": "boolean"
-      }
+        "type": "boolean",
+        "description": "Allows the wrangle to be case sensitive if set to True, default is False."
+      },
+      "runtime_required": false
     },
     {
       "name": "if",

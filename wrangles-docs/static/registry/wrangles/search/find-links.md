@@ -40,24 +40,31 @@ parameters:
       type:
         - string
         - array
+      description: Name or list of input columns containing search queries.
+    runtime_required: true
   - name: id
     description: Name of the column containing the row ID to append to each search result.
     required: true
     param_group: I/O
     schema:
       type: string
+      description: Name of the column containing the row ID to append to each search result.
+    runtime_required: true
   - name: output
     description: >-
       Output column for the dictionaries. If a list of 2 is provided, outputs [dicts_column,
       pretty_strings_column].
-    required: false
+    required: true
     param_group: I/O
     runtime_default: null
     schema:
       type:
         - string
         - array
-        - 'null'
+      description: >-
+        Output column for the dictionaries. If a list of 2 is provided, outputs [dicts_column,
+        pretty_strings_column].
+    runtime_required: false
   - name: client
     description: The search provider to use.
     required: false
@@ -65,8 +72,11 @@ parameters:
     runtime_default: serpapi
     schema:
       type: string
+      description: The search provider to use.
       enum:
         - serpapi
+      default: serpapi
+    runtime_required: false
   - name: api_key
     description: >-
       API key for the search client. Can also be set as an environment variable (e.g.,
@@ -75,9 +85,11 @@ parameters:
     param_group: Details
     runtime_default: null
     schema:
-      type:
-        - string
-        - 'null'
+      type: string
+      description: >-
+        API key for the search client. Can also be set as an environment variable (e.g.,
+        SERPAPI_API_KEY).
+    runtime_required: false
   - name: n_results
     description: Number of search results to return per query (default 10, max 100).
     required: false
@@ -85,6 +97,9 @@ parameters:
     runtime_default: 10
     schema:
       type: integer
+      description: Number of search results to return per query (default 10, max 100).
+      default: 10
+    runtime_required: false
   - name: threads
     description: Number of concurrent threads for parallel processing (default 10).
     required: false
@@ -92,34 +107,55 @@ parameters:
     runtime_default: 10
     schema:
       type: integer
+      description: Number of concurrent threads for parallel processing (default 10).
+      default: 10
+    runtime_required: false
   - name: country
     description: 'Country code for search results (default ''us''). Alias: gl.'
     required: false
     param_group: Options
     schema:
       type: string
+      description: 'Country code for search results (default ''us''). Alias: gl.'
+      default: us
+    runtime_required: false
   - name: language
     description: 'Language code for search results (default ''en''). Alias: hl.'
     required: false
     param_group: Options
     schema:
       type: string
+      description: 'Language code for search results (default ''en''). Alias: hl.'
+      default: en
+    runtime_required: false
   - name: location
     description: Location for search results (e.g., 'Austin, Texas').
     required: false
     param_group: Options
     schema:
       type: string
+      description: Location for search results (e.g., 'Austin, Texas').
+    runtime_required: false
   - name: device
     description: Device type for search results.
     required: false
     param_group: Options
     schema:
       type: string
+      description: Device type for search results.
       enum:
         - desktop
         - mobile
         - tablet
+    runtime_required: false
+  - name: google_domain
+    description: Google domain for search results (e.g., google.com, google.co.uk).
+    param_group: Options
+    schema:
+      type: string
+      description: Google domain for search results (e.g., google.com, google.co.uk).
+    required: false
+    runtime_required: false
 examples: []
 sources:
   - id: runtime
@@ -130,6 +166,80 @@ sources:
     resource: >-
       https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/search/_sources/find-links.md
     title: Archived search.find_links Markdown
+configuration_schema:
+  type: object
+  description: >-
+    Perform web searches to find links. Returns structured search results with titles, links,
+    snippets, and optional pricing.
+  additionalProperties: false
+  required:
+    - queries
+    - id
+    - output
+  properties:
+    queries:
+      type:
+        - string
+        - array
+      description: Name or list of input columns containing search queries.
+    id:
+      type: string
+      description: Name of the column containing the row ID to append to each search result.
+    output:
+      type:
+        - string
+        - array
+      description: >-
+        Output column for the dictionaries. If a list of 2 is provided, outputs [dicts_column,
+        pretty_strings_column].
+    client:
+      type: string
+      description: The search provider to use.
+      enum:
+        - serpapi
+      default: serpapi
+    api_key:
+      type: string
+      description: >-
+        API key for the search client. Can also be set as an environment variable (e.g.,
+        SERPAPI_API_KEY).
+    n_results:
+      type: integer
+      description: Number of search results to return per query (default 10, max 100).
+      default: 10
+    threads:
+      type: integer
+      description: Number of concurrent threads for parallel processing (default 10).
+      default: 10
+    country:
+      type: string
+      description: 'Country code for search results (default ''us''). Alias: gl.'
+      default: us
+    language:
+      type: string
+      description: 'Language code for search results (default ''en''). Alias: hl.'
+      default: en
+    google_domain:
+      type: string
+      description: Google domain for search results (e.g., google.com, google.co.uk).
+    location:
+      type: string
+      description: Location for search results (e.g., 'Austin, Texas').
+    device:
+      type: string
+      description: Device type for search results.
+      enum:
+        - desktop
+        - mobile
+        - tablet
+    if:
+      $ref: '#/$defs/wrangles/commonProperties/if'
+    where:
+      $ref: '#/$defs/wrangles/commonProperties/where'
+    where_params:
+      $ref: '#/$defs/wrangles/commonProperties/where_params'
+schema_origin: upstream-docstring
+schema_adjustments: []
 ---
 
 # Find Links

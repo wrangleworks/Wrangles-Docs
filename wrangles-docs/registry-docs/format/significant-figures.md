@@ -23,8 +23,8 @@ Format a value to a specific number of significant figures
 | Name | Description | Accepted Values | Default | Required |
 | --- | --- | --- | --- | --- |
 | <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `input` | Name of the input column. | string, integer, array | — | Yes |
-| `output` | Name of the output column. | string, array, null | `null` | No |
+| `input` | Name of the input column | string, integer, array | — | Yes |
+| `output` | Name of the output column | string, array | `null` | No |
 | <span className="ww-param-group-label">Formatting</span> |  |  |  |  |
 | `significant_figures` | Number of significant figures to format to. Default is 3. | integer | `3` | No |
 | <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
@@ -33,6 +33,64 @@ Format a value to a specific number of significant figures
 | `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
 
 </div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+<details className="ww-field-disclosure">
+
+<summary>Complete configuration schema</summary>
+
+Schema source: upstream-docstring. Conditional and cross-parameter
+rules below apply in addition to the parameter table. References resolve against
+the [complete recipe schema](/schemas/recipes/registry/schema.json).
+
+
+
+```json
+{
+  "type": "object",
+  "description": "Format a value to a specific number of significant figures",
+  "additionalProperties": false,
+  "required": [
+    "input"
+  ],
+  "properties": {
+    "input": {
+      "type": [
+        "string",
+        "integer",
+        "array"
+      ],
+      "description": "Name of the input column"
+    },
+    "output": {
+      "type": [
+        "string",
+        "array"
+      ],
+      "description": "Name of the output column"
+    },
+    "significant_figures": {
+      "type": [
+        "integer"
+      ],
+      "description": "Number of significant figures to format to. Default is 3."
+    },
+    "if": {
+      "$ref": "#/$defs/wrangles/commonProperties/if"
+    },
+    "where": {
+      "$ref": "#/$defs/wrangles/commonProperties/where"
+    },
+    "where_params": {
+      "$ref": "#/$defs/wrangles/commonProperties/where_params"
+    }
+  }
+}
+```
+
+</details>
 
 ## Examples
 
@@ -97,6 +155,7 @@ wrangles:
 | Documentation group | `format` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.format.significant_figures` |
+| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
 | Legacy UUID | `a359f72a-5250-4dd8-84f6-8a8173bee0f6` |
 
 **Sources**

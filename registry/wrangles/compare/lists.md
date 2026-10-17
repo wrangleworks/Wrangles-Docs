@@ -31,42 +31,52 @@ capabilities:
   where_params: true
 parameters:
   - name: input
-    description: List of input columns containing lists to compare.
+    description: List of input columns containing lists to compare
     required: true
     param_group: I/O
     schema:
       type: array
+      description: List of input columns containing lists to compare
+    runtime_required: true
   - name: output
-    description: Name of the output column.
+    description: Name of the output column
     required: true
     param_group: I/O
     schema:
       type: string
+      description: Name of the output column
+    runtime_required: true
   - name: method
-    description: Type of comparison to perform.
-    required: false
+    description: Type of comparison to perform
+    required: true
     param_group: Options
     runtime_default: intersection
     schema:
       type: string
+      description: Type of comparison to perform
       enum:
         - intersection
         - difference
         - union
+    runtime_required: false
   - name: remove_duplicates
-    description: Remove duplicates from the result.
+    description: Remove duplicates from the result
     required: false
     param_group: Options
     runtime_default: false
     schema:
       type: boolean
+      description: Remove duplicates from the result
+    runtime_required: false
   - name: ignore_case
-    description: Ignore case when comparing string items.
+    description: Ignore case when comparing string items
     required: false
     param_group: Options
     runtime_default: false
     schema:
       type: boolean
+      description: Ignore case when comparing string items
+    runtime_required: false
 examples: []
 sources:
   - id: runtime
@@ -77,6 +87,41 @@ sources:
     resource: >-
       https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/compare/_sources/lists.md
     title: Archived compare.lists Markdown
+configuration_schema:
+  type: object
+  description: Compare multiple lists and return the intersection, difference, or union
+  required:
+    - input
+    - output
+    - method
+  properties:
+    input:
+      type: array
+      description: List of input columns containing lists to compare
+    output:
+      type: string
+      description: Name of the output column
+    method:
+      type: string
+      description: Type of comparison to perform
+      enum:
+        - intersection
+        - difference
+        - union
+    remove_duplicates:
+      type: boolean
+      description: Remove duplicates from the result
+    ignore_case:
+      type: boolean
+      description: Ignore case when comparing string items
+    if:
+      $ref: '#/$defs/wrangles/commonProperties/if'
+    where:
+      $ref: '#/$defs/wrangles/commonProperties/where'
+    where_params:
+      $ref: '#/$defs/wrangles/commonProperties/where_params'
+schema_origin: upstream-docstring
+schema_adjustments: []
 ---
 
 # Lists

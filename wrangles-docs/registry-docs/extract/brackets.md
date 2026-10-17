@@ -23,20 +23,97 @@ Extract text in brackets from the input.
 | Name | Description | Accepted Values | Default | Required |
 | --- | --- | --- | --- | --- |
 | <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `input` | Name of the input column. | string, integer, array | — | Yes |
-| `output` | Name of the output columns. | string, array | — | Yes |
+| `input` | Name of the input column | string, integer, array | — | Yes |
+| `output` | Name of the output columns | string, array | — | Yes |
 | <span className="ww-param-group-label">Options</span> |  |  |  |  |
 | `find` | (Optional) The type of brackets to find (round '()', square '[]', curly '&#123;&#125;', angled '&lt;&gt;'). Default is all brackets. | string, array | `"all"` | No |
-| `include_brackets` | (Optional) Include the brackets in the output. | boolean | `false` | No |
+| `include_brackets` | (Optional) Include the brackets in the output | boolean | `false` | No |
 | <span className="ww-param-group-label">Formatting</span> |  |  |  |  |
-| `output_format` | Format of the extract output. | string, null; one of:<ul className="ww-param-enum-values"><li>list</li><li>columns</li><li>concatenate</li></ul> | `null` | No |
-| `char` | Character to use when output_format is concatenate. | string | `", "` | No |
+| `output_format` | Format of the extract output | string; one of:<ul className="ww-param-enum-values"><li>list</li><li>columns</li><li>concatenate</li></ul> | `null` | No |
+| `char` | Character to use when output_format is concatenate | string | `", "` | No |
 | <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
 | `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
 | `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
 | `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
 
 </div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+<details className="ww-field-disclosure">
+
+<summary>Complete configuration schema</summary>
+
+Schema source: upstream-docstring. Conditional and cross-parameter
+rules below apply in addition to the parameter table. References resolve against
+the [complete recipe schema](/schemas/recipes/registry/schema.json).
+
+
+
+```json
+{
+  "type": "object",
+  "description": "Extract text properties in brackets from the input",
+  "additionalProperties": false,
+  "required": [
+    "input",
+    "output"
+  ],
+  "properties": {
+    "input": {
+      "type": [
+        "string",
+        "integer",
+        "array"
+      ],
+      "description": "Name of the input column"
+    },
+    "output": {
+      "type": [
+        "string",
+        "array"
+      ],
+      "description": "Name of the output columns"
+    },
+    "find": {
+      "type": [
+        "string",
+        "array"
+      ],
+      "description": "(Optional) The type of brackets to find (round '()', square '[]', curly '{}', angled '<>'). Default is all brackets."
+    },
+    "include_brackets": {
+      "type": "boolean",
+      "description": "(Optional) Include the brackets in the output"
+    },
+    "output_format": {
+      "type": "string",
+      "description": "Format of the extract output",
+      "enum": [
+        "list",
+        "columns",
+        "concatenate"
+      ]
+    },
+    "char": {
+      "type": "string",
+      "description": "Character to use when output_format is concatenate"
+    },
+    "if": {
+      "$ref": "#/$defs/wrangles/commonProperties/if"
+    },
+    "where": {
+      "$ref": "#/$defs/wrangles/commonProperties/where"
+    },
+    "where_params": {
+      "$ref": "#/$defs/wrangles/commonProperties/where_params"
+    }
+  }
+}
+```
+
+</details>
 
 ## Examples
 
@@ -102,6 +179,7 @@ wrangles:
 | Documentation group | `extract` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.extract.brackets` |
+| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
 | Legacy UUID | `9b4c15fa-2aaa-40c8-8834-6e835760bee5` |
 
 **Sources**

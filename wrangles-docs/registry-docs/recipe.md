@@ -27,18 +27,70 @@ This guidance was derived from the callable signature and its embedded Python sc
 | Name | Description | Accepted Values | Default | Required |
 | --- | --- | --- | --- | --- |
 | <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `input` | Name, index, or list of input columns. | string, integer, array, null | `null` | No |
-| `output` | Name or list of output columns. | string, array, null | `null` | No |
+| `input` | Name, index, or list of input columns. | Any JSON value (not constrained upstream) | `null` | No |
+| `output` | Name or list of output columns. | Any JSON value (not constrained upstream) | `null` | No |
 | <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `name` | File name of the recipe. | string, null | `null` | No |
+| `name` | file name of the recipe | string | `null` | Conditional; see schema |
 | <span className="ww-param-group-label">Execution</span> |  |  |  |  |
-| `variables` | A dictionary of variables to pass to the recipe. | object, null | `null` | No |
+| `variables` | A dictionary of variables to pass to the recipe | object | `null` | No |
 | <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
 | `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
 | `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
 | `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
 
 </div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+<details className="ww-field-disclosure">
+
+<summary>Complete configuration schema</summary>
+
+Schema source: upstream-docstring. Conditional and cross-parameter
+rules below apply in addition to the parameter table. References resolve against
+the [complete recipe schema](/schemas/recipes/registry/schema.json).
+
+
+
+```json
+{
+  "anyOf": [
+    {
+      "$ref": "#"
+    },
+    {
+      "type": "object",
+      "description": "Run a recipe as a Wrangle. Recipe-ception,",
+      "additionalProperties": false,
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "file name of the recipe"
+        },
+        "variables": {
+          "type": "object",
+          "description": "A dictionary of variables to pass to the recipe"
+        },
+        "if": {
+          "$ref": "#/$defs/wrangles/commonProperties/if"
+        },
+        "where": {
+          "$ref": "#/$defs/wrangles/commonProperties/where"
+        },
+        "where_params": {
+          "$ref": "#/$defs/wrangles/commonProperties/where_params"
+        }
+      }
+    }
+  ]
+}
+```
+
+</details>
 
 
 
@@ -72,6 +124,7 @@ This guidance was derived from the callable signature and its embedded Python sc
 | Documentation group | `utility` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.recipe` |
+| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
 | Legacy UUID | None |
 
 **Sources**

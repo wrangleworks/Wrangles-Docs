@@ -23,16 +23,69 @@ Select the first option if it exceeds a given threshold, else the second option.
 | Name | Description | Accepted Values | Default | Required |
 | --- | --- | --- | --- | --- |
 | <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `input` | List of the input columns to select from. | array | — | Yes |
-| `output` | Name of the output column. | string | — | Yes |
+| `input` | List of the input columns to select from | array | — | Yes |
+| `output` | Name of the output column | string | — | Yes |
 | <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `threshold` | Threshold above which to choose the first option, otherwise the second. | number | — | Yes |
+| `threshold` | Threshold above which to choose the first option, otherwise the second | number | — | Yes |
 | <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
 | `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
 | `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
 | `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
 
 </div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+<details className="ww-field-disclosure">
+
+<summary>Complete configuration schema</summary>
+
+Schema source: upstream-docstring. Conditional and cross-parameter
+rules below apply in addition to the parameter table. References resolve against
+the [complete recipe schema](/schemas/recipes/registry/schema.json).
+
+
+
+```json
+{
+  "type": "object",
+  "description": "Select the first option if it exceeds a given threshold, else the second option.",
+  "additionalProperties": false,
+  "required": [
+    "input",
+    "output",
+    "threshold"
+  ],
+  "properties": {
+    "input": {
+      "type": "array",
+      "description": "List of the input columns to select from"
+    },
+    "output": {
+      "type": "string",
+      "description": "Name of the output column"
+    },
+    "threshold": {
+      "type": "number",
+      "description": "Threshold above which to choose the first option, otherwise the second",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "if": {
+      "$ref": "#/$defs/wrangles/commonProperties/if"
+    },
+    "where": {
+      "$ref": "#/$defs/wrangles/commonProperties/where"
+    },
+    "where_params": {
+      "$ref": "#/$defs/wrangles/commonProperties/where_params"
+    }
+  }
+}
+```
+
+</details>
 
 ## Examples
 
@@ -95,6 +148,7 @@ wrangles:
 | Documentation group | `select` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.select.threshold` |
+| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
 | Legacy UUID | `af2a5dcc-0ec0-48d7-8fb4-f58d9c5391d2` |
 
 **Sources**

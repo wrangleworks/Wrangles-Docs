@@ -40,6 +40,67 @@
     "where": true,
     "where_params": true
   },
+  "configuration_schema": {
+    "type": "object",
+    "description": "Create column(s) with a user defined value. Defaults to None (empty).",
+    "additionalProperties": false,
+    "required": [
+      "output"
+    ],
+    "properties": {
+      "output": {
+        "type": [
+          "string",
+          "array"
+        ],
+        "description": "Name or list of names of new columns or column_name: value pairs."
+      },
+      "value": {
+        "type": [
+          "string",
+          "number",
+          "object",
+          "array",
+          "boolean"
+        ],
+        "description": "(Optional) Value(s) to add in the new column(s). If using a dictionary in output, value can only be a string."
+      },
+      "value_if_exists": {
+        "type": "string",
+        "description": "Determines behaviour when the output column already exists. existing (default): leave the column unchanged. coalesce: fill empty/null cells with the new value, keeping non-null cells. new: overwrite the entire column with the new value.",
+        "enum": [
+          "existing",
+          "coalesce",
+          "new"
+        ]
+      },
+      "coalesce_value": {
+        "type": "string",
+        "description": "Only used when value_if_exists is coalesce. Determines which side is preferred when both the existing and new values are non-empty. existing (default): keep the existing value, only fill empty/null cells with the new value. new: keep the new value, only fall back to the existing value where the new value is empty/null.",
+        "enum": [
+          "existing",
+          "new"
+        ]
+      },
+      "if": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/if"
+      },
+      "where": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/where"
+      },
+      "where_params": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/where_params"
+      }
+    }
+  },
+  "schema_origin": "upstream-docstring",
+  "schema_adjustments": [],
+  "schema_source": {
+    "repository": "https://github.com/wrangleworks/WranglesPY",
+    "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+    "version": "1.20.5",
+    "extraction": "static-python-ast"
+  },
   "parameters": [
     {
       "name": "output",
@@ -50,8 +111,10 @@
         "type": [
           "string",
           "array"
-        ]
-      }
+        ],
+        "description": "Name or list of names of new columns or column_name: value pairs."
+      },
+      "runtime_required": true
     },
     {
       "name": "value",
@@ -65,10 +128,11 @@
           "number",
           "object",
           "array",
-          "boolean",
-          "null"
-        ]
-      }
+          "boolean"
+        ],
+        "description": "(Optional) Value(s) to add in the new column(s). If using a dictionary in output, value can only be a string."
+      },
+      "runtime_required": false
     },
     {
       "name": "value_if_exists",
@@ -78,12 +142,14 @@
       "runtime_default": "existing",
       "schema": {
         "type": "string",
+        "description": "Determines behaviour when the output column already exists. existing (default): leave the column unchanged. coalesce: fill empty/null cells with the new value, keeping non-null cells. new: overwrite the entire column with the new value.",
         "enum": [
           "existing",
           "coalesce",
           "new"
         ]
-      }
+      },
+      "runtime_required": false
     },
     {
       "name": "coalesce_value",
@@ -93,11 +159,13 @@
       "runtime_default": "existing",
       "schema": {
         "type": "string",
+        "description": "Only used when value_if_exists is coalesce. Determines which side is preferred when both the existing and new values are non-empty. existing (default): keep the existing value, only fill empty/null cells with the new value. new: keep the new value, only fall back to the existing value where the new value is empty/null.",
         "enum": [
           "existing",
           "new"
         ]
-      }
+      },
+      "runtime_required": false
     },
     {
       "name": "if",

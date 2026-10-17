@@ -23,8 +23,8 @@ Tokenize elements in a list or string into individual tokens.
 | Name | Description | Accepted Values | Default | Required |
 | --- | --- | --- | --- | --- |
 | <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `input` | Column(s) to be split into tokens. | string, integer, array | — | Yes |
-| `output` | Name of the output column. | string, array, null | `null` | No |
+| `input` | Column(s) to be split into tokens | string, integer, array | — | Yes |
+| `output` | Name of the output column | string, array | `null` | No |
 | <span className="ww-param-group-label">Options</span> |  |  |  |  |
 | `method` | Method to split the list. Options include `space`, `boundary`, `boundary_ignore_space`, custom functions as `custom.<function>`, or regex patterns as `regex:<pattern>`. | string; one of:<ul className="ww-param-enum-values"><li>space</li><li>boundary</li><li>boundary_ignore_space</li></ul> or string | `"space"` | No |
 | <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
@@ -33,6 +33,75 @@ Tokenize elements in a list or string into individual tokens.
 | `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
 
 </div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+<details className="ww-field-disclosure">
+
+<summary>Complete configuration schema</summary>
+
+Schema source: upstream-docstring. Conditional and cross-parameter
+rules below apply in addition to the parameter table. References resolve against
+the [complete recipe schema](/schemas/recipes/registry/schema.json).
+
+
+
+```json
+{
+  "type": "object",
+  "description": "Split text into tokens. A variety of methods are available. The default method is to split on spaces.",
+  "additionalProperties": false,
+  "required": [
+    "input"
+  ],
+  "properties": {
+    "input": {
+      "type": [
+        "string",
+        "integer",
+        "array"
+      ],
+      "description": "Column(s) to be split into tokens"
+    },
+    "output": {
+      "type": [
+        "string",
+        "array"
+      ],
+      "description": "Name of the output column"
+    },
+    "method": {
+      "anyOf": [
+        {
+          "type": "string",
+          "enum": [
+            "space",
+            "boundary",
+            "boundary_ignore_space"
+          ],
+          "description": "Method to split the list. Options: space, boundary, boundary_ignore_space or use a custom function with custom.<function> or use a regex pattern with regex:<pattern>"
+        },
+        {
+          "type": "string",
+          "description": "Method to split the list. Options: space, boundary, boundary_ignore_space or use a custom function with custom.<function> or use a regex pattern with regex:<pattern>"
+        }
+      ]
+    },
+    "if": {
+      "$ref": "#/$defs/wrangles/commonProperties/if"
+    },
+    "where": {
+      "$ref": "#/$defs/wrangles/commonProperties/where"
+    },
+    "where_params": {
+      "$ref": "#/$defs/wrangles/commonProperties/where_params"
+    }
+  }
+}
+```
+
+</details>
 
 ## Examples
 
@@ -124,6 +193,7 @@ wrangles:
 | Documentation group | `split` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.split.tokenize` |
+| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
 | Legacy UUID | `6cc88418-ae0c-43f6-84ee-31e0d5f838c3` |
 
 **Sources**

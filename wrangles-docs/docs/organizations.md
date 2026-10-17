@@ -47,4 +47,4 @@ The files tab allows users to upload and download files from their organization'
 
 ![Files](/images/account/files.gif)
 
-Files can also be downloaded or uploaded by using the [File Connector](/py/python/connectors/file).
+Files can also be downloaded or uploaded by using the [File Connector](/py/connectors/file).

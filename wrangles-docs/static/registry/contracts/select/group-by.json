@@ -40,10 +40,156 @@
     "where": true,
     "where_params": true
   },
+  "configuration_schema": {
+    "type": "object",
+    "description": "Group and aggregate the data",
+    "properties": {
+      "by": {
+        "type": [
+          "string",
+          "array"
+        ],
+        "description": "List of the input columns to group on"
+      },
+      "list": {
+        "type": [
+          "string",
+          "array"
+        ],
+        "description": "Group and return all values for these column(s) as a list"
+      },
+      "first": {
+        "type": [
+          "string",
+          "array"
+        ],
+        "description": "The first value for these column(s)"
+      },
+      "last": {
+        "type": [
+          "string",
+          "array"
+        ],
+        "description": "The last value for these column(s)"
+      },
+      "min": {
+        "type": [
+          "string",
+          "array"
+        ],
+        "description": "The minimum value for these column(s)"
+      },
+      "max": {
+        "type": [
+          "string",
+          "array"
+        ],
+        "description": "The maximum value for these column(s)"
+      },
+      "mean": {
+        "type": [
+          "string",
+          "array"
+        ],
+        "description": "The mean (average) value for these column(s)"
+      },
+      "median": {
+        "type": [
+          "string",
+          "array"
+        ],
+        "description": "The median value for these column(s)"
+      },
+      "nunique": {
+        "type": [
+          "string",
+          "array"
+        ],
+        "description": "The count of unique values for these column(s)"
+      },
+      "count": {
+        "type": [
+          "string",
+          "array"
+        ],
+        "description": "The count of values for these column(s)"
+      },
+      "counts": {
+        "type": [
+          "string",
+          "array"
+        ],
+        "description": "Return a dictionary containing the count of each distinct value for these column(s). Keys are converted to JSON-safe strings; missing values use the key \"null\" and booleans use lowercase \"true\"/\"false\"."
+      },
+      "std": {
+        "type": [
+          "string",
+          "array"
+        ],
+        "description": "The standard deviation of values for these column(s)"
+      },
+      "sum": {
+        "type": [
+          "string",
+          "array"
+        ],
+        "description": "The total of values for these column(s)"
+      },
+      "any": {
+        "type": [
+          "string",
+          "array"
+        ],
+        "description": "Return true if any of the values for these column(s) are true"
+      },
+      "all": {
+        "type": [
+          "string",
+          "array"
+        ],
+        "description": "Return true if all of the values for these column(s) are true"
+      },
+      "p75": {
+        "type": [
+          "string",
+          "array"
+        ],
+        "description": "Get a percentile. Note, you can use any integer here for the corresponding percentile."
+      },
+      "custom.placeholder": {
+        "type": [
+          "string",
+          "array"
+        ],
+        "description": "Placeholder for custom functions. Replace 'placeholder' with the name of the function."
+      },
+      "auto_rename_columns": {
+        "type": "boolean",
+        "description": "If true (default), aggregated column names include the operation as a suffix (e.g. Value.sum). If false, column names are left as-is; use a dictionary entry to supply a custom output name (e.g. - Value: Total)."
+      },
+      "if": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/if"
+      },
+      "where": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/where_special"
+      },
+      "where_params": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/where_params"
+      }
+    }
+  },
+  "schema_origin": "upstream-docstring",
+  "schema_adjustments": [],
+  "schema_source": {
+    "repository": "https://github.com/wrangleworks/WranglesPY",
+    "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+    "version": "1.20.5",
+    "extraction": "static-python-ast"
+  },
   "parameters": [
     {
       "name": "by",
-      "description": "List of the input columns to group on.",
+      "description": "List of the input columns to group on",
       "required": false,
       "param_group": "I/O",
       "runtime_default": [],
@@ -51,8 +197,10 @@
         "type": [
           "string",
           "array"
-        ]
-      }
+        ],
+        "description": "List of the input columns to group on"
+      },
+      "runtime_required": false
     },
     {
       "name": "auto_rename_columns",
@@ -61,116 +209,136 @@
       "param_group": "Formatting",
       "runtime_default": true,
       "schema": {
-        "type": "boolean"
-      }
+        "type": "boolean",
+        "description": "If true (default), aggregated column names include the operation as a suffix (e.g. Value.sum). If false, column names are left as-is; use a dictionary entry to supply a custom output name (e.g. - Value: Total)."
+      },
+      "runtime_required": false
     },
     {
       "name": "list",
-      "description": "Group and return all values for these column(s) as a list.",
+      "description": "Group and return all values for these column(s) as a list",
       "required": false,
       "param_group": "Options",
       "schema": {
         "type": [
           "string",
           "array"
-        ]
-      }
+        ],
+        "description": "Group and return all values for these column(s) as a list"
+      },
+      "runtime_required": false
     },
     {
       "name": "first",
-      "description": "The first value for these column(s).",
+      "description": "The first value for these column(s)",
       "required": false,
       "param_group": "Options",
       "schema": {
         "type": [
           "string",
           "array"
-        ]
-      }
+        ],
+        "description": "The first value for these column(s)"
+      },
+      "runtime_required": false
     },
     {
       "name": "last",
-      "description": "The last value for these column(s).",
+      "description": "The last value for these column(s)",
       "required": false,
       "param_group": "Options",
       "schema": {
         "type": [
           "string",
           "array"
-        ]
-      }
+        ],
+        "description": "The last value for these column(s)"
+      },
+      "runtime_required": false
     },
     {
       "name": "min",
-      "description": "The minimum value for these column(s).",
+      "description": "The minimum value for these column(s)",
       "required": false,
       "param_group": "Options",
       "schema": {
         "type": [
           "string",
           "array"
-        ]
-      }
+        ],
+        "description": "The minimum value for these column(s)"
+      },
+      "runtime_required": false
     },
     {
       "name": "max",
-      "description": "The maximum value for these column(s).",
+      "description": "The maximum value for these column(s)",
       "required": false,
       "param_group": "Options",
       "schema": {
         "type": [
           "string",
           "array"
-        ]
-      }
+        ],
+        "description": "The maximum value for these column(s)"
+      },
+      "runtime_required": false
     },
     {
       "name": "mean",
-      "description": "The mean (average) value for these column(s).",
+      "description": "The mean (average) value for these column(s)",
       "required": false,
       "param_group": "Options",
       "schema": {
         "type": [
           "string",
           "array"
-        ]
-      }
+        ],
+        "description": "The mean (average) value for these column(s)"
+      },
+      "runtime_required": false
     },
     {
       "name": "median",
-      "description": "The median value for these column(s).",
+      "description": "The median value for these column(s)",
       "required": false,
       "param_group": "Options",
       "schema": {
         "type": [
           "string",
           "array"
-        ]
-      }
+        ],
+        "description": "The median value for these column(s)"
+      },
+      "runtime_required": false
     },
     {
       "name": "nunique",
-      "description": "The count of unique values for these column(s).",
+      "description": "The count of unique values for these column(s)",
       "required": false,
       "param_group": "Options",
       "schema": {
         "type": [
           "string",
           "array"
-        ]
-      }
+        ],
+        "description": "The count of unique values for these column(s)"
+      },
+      "runtime_required": false
     },
     {
       "name": "count",
-      "description": "The count of values for these column(s).",
+      "description": "The count of values for these column(s)",
       "required": false,
       "param_group": "Options",
       "schema": {
         "type": [
           "string",
           "array"
-        ]
-      }
+        ],
+        "description": "The count of values for these column(s)"
+      },
+      "runtime_required": false
     },
     {
       "name": "counts",
@@ -181,56 +349,66 @@
         "type": [
           "string",
           "array"
-        ]
-      }
+        ],
+        "description": "Return a dictionary containing the count of each distinct value for these column(s). Keys are converted to JSON-safe strings; missing values use the key \"null\" and booleans use lowercase \"true\"/\"false\"."
+      },
+      "runtime_required": false
     },
     {
       "name": "std",
-      "description": "The standard deviation of values for these column(s).",
+      "description": "The standard deviation of values for these column(s)",
       "required": false,
       "param_group": "Options",
       "schema": {
         "type": [
           "string",
           "array"
-        ]
-      }
+        ],
+        "description": "The standard deviation of values for these column(s)"
+      },
+      "runtime_required": false
     },
     {
       "name": "sum",
-      "description": "The total of values for these column(s).",
+      "description": "The total of values for these column(s)",
       "required": false,
       "param_group": "Options",
       "schema": {
         "type": [
           "string",
           "array"
-        ]
-      }
+        ],
+        "description": "The total of values for these column(s)"
+      },
+      "runtime_required": false
     },
     {
       "name": "any",
-      "description": "Return true if any of the values for these column(s) are true.",
+      "description": "Return true if any of the values for these column(s) are true",
       "required": false,
       "param_group": "Options",
       "schema": {
         "type": [
           "string",
           "array"
-        ]
-      }
+        ],
+        "description": "Return true if any of the values for these column(s) are true"
+      },
+      "runtime_required": false
     },
     {
       "name": "all",
-      "description": "Return true if all of the values for these column(s) are true.",
+      "description": "Return true if all of the values for these column(s) are true",
       "required": false,
       "param_group": "Options",
       "schema": {
         "type": [
           "string",
           "array"
-        ]
-      }
+        ],
+        "description": "Return true if all of the values for these column(s) are true"
+      },
+      "runtime_required": false
     },
     {
       "name": "p75",
@@ -241,8 +419,10 @@
         "type": [
           "string",
           "array"
-        ]
-      }
+        ],
+        "description": "Get a percentile. Note, you can use any integer here for the corresponding percentile."
+      },
+      "runtime_required": false
     },
     {
       "name": "custom.*",
@@ -254,8 +434,10 @@
         "type": [
           "string",
           "array"
-        ]
-      }
+        ],
+        "description": "Placeholder for custom functions. Replace 'placeholder' with the name of the function."
+      },
+      "runtime_required": false
     },
     {
       "name": "if",

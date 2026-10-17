@@ -40,10 +40,38 @@
     "where": false,
     "where_params": false
   },
+  "configuration_schema": {
+    "type": "object",
+    "description": "Drop (Delete) selected column(s)",
+    "additionalProperties": true,
+    "required": [
+      "columns"
+    ],
+    "properties": {
+      "columns": {
+        "type": [
+          "array",
+          "string"
+        ],
+        "description": "Name of the column(s) to drop"
+      },
+      "if": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/if"
+      }
+    }
+  },
+  "schema_origin": "upstream-docstring",
+  "schema_adjustments": [],
+  "schema_source": {
+    "repository": "https://github.com/wrangleworks/WranglesPY",
+    "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+    "version": "1.20.5",
+    "extraction": "static-python-ast"
+  },
   "parameters": [
     {
       "name": "columns",
-      "description": "Name of the column(s) to drop.",
+      "description": "Name of the column(s) to drop",
       "required": true,
       "param_group": "I/O",
       "column_semantics": {
@@ -52,13 +80,12 @@
       },
       "schema": {
         "type": [
-          "string",
-          "array"
+          "array",
+          "string"
         ],
-        "items": {
-          "type": "string"
-        }
-      }
+        "description": "Name of the column(s) to drop"
+      },
+      "runtime_required": true
     },
     {
       "name": "if",

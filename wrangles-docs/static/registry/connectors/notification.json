@@ -1,0 +1,67 @@
+{
+  "schema_version": "0.2",
+  "type": "connector",
+  "catalog_id": "123",
+  "catalog_key": "connector.notification",
+  "catalog_kind": "connector",
+  "runtime_key": "notification",
+  "status": "active",
+  "title": "Notification",
+  "source": {
+    "repository": "https://github.com/wrangleworks/WranglesPY",
+    "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+    "version": "1.20.5",
+    "extraction": "static-python-ast"
+  },
+  "operations": {
+    "run": {
+      "type": "object",
+      "description": "Send a notification",
+      "required": [
+        "url",
+        "title",
+        "body"
+      ],
+      "properties": {
+        "url": {
+          "type": "string",
+          "description": "Apprise notification url. See https://github.com/caronc/apprise"
+        },
+        "title": {
+          "type": "string",
+          "description": "The title of the notification"
+        },
+        "body": {
+          "type": "string",
+          "description": "The body of the notification"
+        },
+        "attachment": {
+          "type": [
+            "string",
+            "array"
+          ],
+          "description": "A file path & name to attach to the message. Supports a single file or a list of files. Must be supported by the specific notification type."
+        },
+        "if": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/run/commonProperties/if"
+        }
+      }
+    }
+  },
+  "description": "Send a notification",
+  "slug": "connectors/notification",
+  "visibility": "public",
+  "sources": [
+    {
+      "id": "runtime",
+      "resource": "https://github.com/wrangleworks/WranglesPY/tree/bd5f88fba479ec406b409cb2880689c54e72b298",
+      "title": "Pinned WranglesPY connector schema"
+    },
+    {
+      "id": "existing-docs",
+      "resource": "wrangles-docs/registry-docs/python/connectors/notification.md",
+      "title": "Existing connector documentation"
+    }
+  ],
+  "guidance": "> Added **v0.5**\n\nSend notifications - such as to alert someone when a recipe is finished or if it fails.\n\n### Run (Generic)\n\nNotifications use the Apprise python package. The default notification requires an apprise formatted url, see the [apprise documentation](https://github.com/caronc/apprise) for specifics of how to form an appropriate url.\n\n### Recipe\n```yaml\nrun:\n  on_failure:\n    - notification:\n        url: apprise://hostname/Token\n        title: title\n        body: body\n```\n\n### Function\n```python\nfrom wrangles.connectors import notification\nnotification.run(\n    url = 'apprise://hostname/Token',\n    title = 'title',\n    body = 'body'\n)\n```\n\n### Specific Services\n\nA variety of notifications for specific services are also available.\n\n- [Email *Send an email.*](/py/connectors/notification.email)\n- [Telegram *Send telegram messages.*](/py/connectors/notification.telegram)\n- [Slack *Send Slack messages*](/py/connectors/notification.slack)"
+}

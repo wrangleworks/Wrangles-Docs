@@ -40,10 +40,88 @@
     "where": true,
     "where_params": true
   },
+  "configuration_schema": {
+    "type": "object",
+    "description": "Extract text properties from the input. Requires WrangleWorks Account.",
+    "required": [
+      "input",
+      "output"
+    ],
+    "properties": {
+      "input": {
+        "type": [
+          "string",
+          "integer",
+          "array"
+        ],
+        "description": "Name of the input column"
+      },
+      "output": {
+        "type": [
+          "string",
+          "array"
+        ],
+        "description": "Name of the output columns"
+      },
+      "property_type": {
+        "type": "string",
+        "description": "The specific type of properties to extract",
+        "enum": [
+          "Colours",
+          "Materials",
+          "Shapes",
+          "Standards"
+        ]
+      },
+      "return_data_type": {
+        "type": "string",
+        "description": "Legacy format option. Prefer output_format.",
+        "enum": [
+          "list",
+          "string"
+        ]
+      },
+      "first_element": {
+        "type": "boolean",
+        "description": "Get the first element from results"
+      },
+      "output_format": {
+        "type": "string",
+        "description": "Format of the extract output",
+        "enum": [
+          "list",
+          "dictionary",
+          "columns",
+          "concatenate"
+        ]
+      },
+      "char": {
+        "type": "string",
+        "description": "Character to use when output_format is concatenate"
+      },
+      "if": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/if"
+      },
+      "where": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/where"
+      },
+      "where_params": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/where_params"
+      }
+    }
+  },
+  "schema_origin": "upstream-docstring",
+  "schema_adjustments": [],
+  "schema_source": {
+    "repository": "https://github.com/wrangleworks/WranglesPY",
+    "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+    "version": "1.20.5",
+    "extraction": "static-python-ast"
+  },
   "parameters": [
     {
       "name": "input",
-      "description": "Name of the input column.",
+      "description": "Name of the input column",
       "required": true,
       "param_group": "I/O",
       "schema": {
@@ -51,39 +129,42 @@
           "string",
           "integer",
           "array"
-        ]
-      }
+        ],
+        "description": "Name of the input column"
+      },
+      "runtime_required": true
     },
     {
       "name": "output",
-      "description": "Name of the output columns.",
+      "description": "Name of the output columns",
       "required": true,
       "param_group": "I/O",
       "schema": {
         "type": [
           "string",
           "array"
-        ]
-      }
+        ],
+        "description": "Name of the output columns"
+      },
+      "runtime_required": true
     },
     {
       "name": "property_type",
-      "description": "The specific type of properties to extract.",
+      "description": "The specific type of properties to extract",
       "required": false,
       "param_group": "Options",
       "runtime_default": null,
       "schema": {
-        "type": [
-          "string",
-          "null"
-        ],
+        "type": "string",
+        "description": "The specific type of properties to extract",
         "enum": [
           "Colours",
           "Materials",
           "Shapes",
           "Standards"
         ]
-      }
+      },
+      "runtime_required": false
     },
     {
       "name": "return_data_type",
@@ -93,50 +174,55 @@
       "runtime_default": "list",
       "schema": {
         "type": "string",
+        "description": "Legacy format option. Prefer output_format.",
         "enum": [
           "list",
           "string"
         ]
-      }
+      },
+      "runtime_required": false
     },
     {
       "name": "first_element",
-      "description": "Get the first element from results.",
+      "description": "Get the first element from results",
       "required": false,
       "param_group": "Formatting",
       "runtime_default": false,
       "schema": {
-        "type": "boolean"
-      }
+        "type": "boolean",
+        "description": "Get the first element from results"
+      },
+      "runtime_required": false
     },
     {
       "name": "output_format",
-      "description": "Format of the extract output.",
+      "description": "Format of the extract output",
       "required": false,
       "param_group": "Formatting",
       "runtime_default": null,
       "schema": {
-        "type": [
-          "string",
-          "null"
-        ],
+        "type": "string",
+        "description": "Format of the extract output",
         "enum": [
           "list",
           "dictionary",
           "columns",
           "concatenate"
         ]
-      }
+      },
+      "runtime_required": false
     },
     {
       "name": "char",
-      "description": "Character to use when output_format is concatenate.",
+      "description": "Character to use when output_format is concatenate",
       "required": false,
       "param_group": "Formatting",
       "runtime_default": ", ",
       "schema": {
-        "type": "string"
-      }
+        "type": "string",
+        "description": "Character to use when output_format is concatenate"
+      },
+      "runtime_required": false
     },
     {
       "name": "if",
@@ -170,7 +256,7 @@
     }
   ],
   "examples": [],
-  "guidance": "Extract categorical properties from unstructured text, such as colours or materials. Requires WrangleWorks Account.\n\n## Migrated examples\n#### Extracting All Properties\n\n##### Recipe\n\n```yaml\nwrangles:\n  - extract.properties:\n      input: water bottles\n      output: properties\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n_No sample available._\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| Products | Product Properties |\n| --- | --- |\n| Stainless Steel Blue Bottle | \\{'Colours': ['Blue'], 'Materials': ['Stainless Steel']\\} |\n| Plastic Yellow Bottle | \\{'Colours': ['Yellow'], 'Materials': ['Plastic']\\} |\n\n</div>\n\n</div>\n\n#### Extracting Colour\n\n##### Recipe\n\n```yaml\nwrangles:\n  - extract.properties:\n      input: water bottles\n      output: properties\n      property_type: colours # Optional\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n_No sample available._\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| Products | Product Colours |\n| --- | --- |\n| Stainless Steel Blue Bottle | ['Blue'] |\n| Plastic Yellow Bottle | ['Yellow'] |\n\n</div>\n\n</div>",
+  "guidance": "Extract categorical properties from unstructured text, such as colours or materials. Requires WrangleWorks Account.\n\n## Migrated examples\n#### Extracting All Properties\n\n##### Recipe\n\n```yaml\nwrangles:\n  - extract.properties:\n      input: water bottles\n      output: properties\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n_No sample available._\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| Products | Product Properties |\n| --- | --- |\n| Stainless Steel Blue Bottle | \\{'Colours': ['Blue'], 'Materials': ['Stainless Steel']\\} |\n| Plastic Yellow Bottle | \\{'Colours': ['Yellow'], 'Materials': ['Plastic']\\} |\n\n</div>\n\n</div>\n\n#### Extracting Colour\n\n##### Recipe\n\n```yaml\nwrangles:\n  - extract.properties:\n      input: water bottles\n      output: properties\n      property_type: Colours # Optional\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n_No sample available._\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| Products | Product Colours |\n| --- | --- |\n| Stainless Steel Blue Bottle | ['Blue'] |\n| Plastic Yellow Bottle | ['Yellow'] |\n\n</div>\n\n</div>",
   "sources": [
     {
       "id": "runtime",

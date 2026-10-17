@@ -31,17 +31,20 @@ capabilities:
   where_params: true
 parameters:
   - name: output
-    description: Name of the output column.
+    description: Name of the output column
     required: true
     param_group: I/O
     schema:
       type: string
+      description: Name of the output column
+    runtime_required: true
   - name: cases
-    description: List of conditions and corresponding values.
+    description: List of conditions and corresponding values
     required: true
     param_group: Options
     schema:
       type: array
+      description: List of conditions and corresponding values
       minItems: 1
       items:
         type: object
@@ -51,12 +54,15 @@ parameters:
         properties:
           condition:
             type: string
+            description: Condition to evaluate (e.g., "Score > 0.84")
           value:
             type:
               - string
               - number
               - integer
               - boolean
+            description: Value to assign if condition is true
+    runtime_required: true
   - name: default
     description: Value to assign if no conditions are met. Default None.
     required: false
@@ -69,6 +75,8 @@ parameters:
         - integer
         - boolean
         - 'null'
+      description: Value to assign if no conditions are met. Default None.
+    runtime_required: false
 examples: []
 sources:
   - id: runtime
@@ -79,6 +87,53 @@ sources:
     resource: >-
       https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/compute/_sources/case-when.md
     title: Archived compute.case_when Markdown
+configuration_schema:
+  type: object
+  description: Assign values to a column based on conditional logic
+  additionalProperties: false
+  required:
+    - output
+    - cases
+  properties:
+    output:
+      type: string
+      description: Name of the output column
+    cases:
+      type: array
+      description: List of conditions and corresponding values
+      minItems: 1
+      items:
+        type: object
+        required:
+          - condition
+          - value
+        properties:
+          condition:
+            type: string
+            description: Condition to evaluate (e.g., "Score > 0.84")
+          value:
+            type:
+              - string
+              - number
+              - integer
+              - boolean
+            description: Value to assign if condition is true
+    default:
+      type:
+        - string
+        - number
+        - integer
+        - boolean
+        - 'null'
+      description: Value to assign if no conditions are met. Default None.
+    if:
+      $ref: '#/$defs/wrangles/commonProperties/if'
+    where:
+      $ref: '#/$defs/wrangles/commonProperties/where'
+    where_params:
+      $ref: '#/$defs/wrangles/commonProperties/where_params'
+schema_origin: upstream-docstring
+schema_adjustments: []
 ---
 
 # Case When

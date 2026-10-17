@@ -41,6 +41,46 @@
     "where": false,
     "where_params": false
   },
+  "configuration_schema": {
+    "type": "object",
+    "description": "Rename a column or list of columns.",
+    "properties": {
+      "input": {
+        "type": [
+          "string",
+          "integer",
+          "array"
+        ],
+        "description": "Name or list of input columns."
+      },
+      "output": {
+        "type": [
+          "string",
+          "array"
+        ],
+        "description": "Name or list of output columns."
+      },
+      "wrangles": {
+        "type": "array",
+        "description": "Use wrangles to transform the column names.\nThe input is named 'columns' and the final result\nmust also include the column named 'columns'.\nThis can only be used instead of the standard rename.",
+        "minItems": 1,
+        "items": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/items"
+        }
+      },
+      "if": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/if"
+      }
+    }
+  },
+  "schema_origin": "upstream-docstring",
+  "schema_adjustments": [],
+  "schema_source": {
+    "repository": "https://github.com/wrangleworks/WranglesPY",
+    "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+    "version": "1.20.5",
+    "extraction": "static-python-ast"
+  },
   "parameters": [
     {
       "name": "input",
@@ -56,16 +96,11 @@
         "type": [
           "string",
           "integer",
-          "array",
-          "null"
+          "array"
         ],
-        "items": {
-          "type": [
-            "string",
-            "integer"
-          ]
-        }
-      }
+        "description": "Name or list of input columns."
+      },
+      "runtime_required": false
     },
     {
       "name": "output",
@@ -80,30 +115,27 @@
       "schema": {
         "type": [
           "string",
-          "array",
-          "null"
+          "array"
         ],
-        "items": {
-          "type": "string"
-        }
-      }
+        "description": "Name or list of output columns."
+      },
+      "runtime_required": false
     },
     {
       "name": "wrangles",
-      "description": "Use wrangles to transform the column names. The input is named 'columns' and the final result must also include the column named 'columns'. This can only be used instead of the standard rename.",
+      "description": "Use wrangles to transform the column names.\nThe input is named 'columns' and the final result\nmust also include the column named 'columns'.\nThis can only be used instead of the standard rename.",
       "required": false,
       "param_group": "Execution",
       "runtime_default": null,
       "schema": {
-        "type": [
-          "array",
-          "null"
-        ],
+        "type": "array",
+        "description": "Use wrangles to transform the column names.\nThe input is named 'columns' and the final result\nmust also include the column named 'columns'.\nThis can only be used instead of the standard rename.",
         "minItems": 1,
         "items": {
-          "$ref": "#/$defs/wrangles/items"
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/items"
         }
-      }
+      },
+      "runtime_required": false
     },
     {
       "name": "if",

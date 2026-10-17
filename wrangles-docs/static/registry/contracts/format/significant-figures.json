@@ -40,10 +40,58 @@
     "where": true,
     "where_params": true
   },
+  "configuration_schema": {
+    "type": "object",
+    "description": "Format a value to a specific number of significant figures",
+    "additionalProperties": false,
+    "required": [
+      "input"
+    ],
+    "properties": {
+      "input": {
+        "type": [
+          "string",
+          "integer",
+          "array"
+        ],
+        "description": "Name of the input column"
+      },
+      "output": {
+        "type": [
+          "string",
+          "array"
+        ],
+        "description": "Name of the output column"
+      },
+      "significant_figures": {
+        "type": [
+          "integer"
+        ],
+        "description": "Number of significant figures to format to. Default is 3."
+      },
+      "if": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/if"
+      },
+      "where": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/where"
+      },
+      "where_params": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/where_params"
+      }
+    }
+  },
+  "schema_origin": "upstream-docstring",
+  "schema_adjustments": [],
+  "schema_source": {
+    "repository": "https://github.com/wrangleworks/WranglesPY",
+    "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+    "version": "1.20.5",
+    "extraction": "static-python-ast"
+  },
   "parameters": [
     {
       "name": "input",
-      "description": "Name of the input column.",
+      "description": "Name of the input column",
       "required": true,
       "param_group": "I/O",
       "schema": {
@@ -51,8 +99,10 @@
           "string",
           "integer",
           "array"
-        ]
-      }
+        ],
+        "description": "Name of the input column"
+      },
+      "runtime_required": true
     },
     {
       "name": "significant_figures",
@@ -61,22 +111,27 @@
       "param_group": "Formatting",
       "runtime_default": 3,
       "schema": {
-        "type": "integer"
-      }
+        "type": [
+          "integer"
+        ],
+        "description": "Number of significant figures to format to. Default is 3."
+      },
+      "runtime_required": false
     },
     {
       "name": "output",
-      "description": "Name of the output column.",
+      "description": "Name of the output column",
       "required": false,
       "param_group": "I/O",
       "runtime_default": null,
       "schema": {
         "type": [
           "string",
-          "array",
-          "null"
-        ]
-      }
+          "array"
+        ],
+        "description": "Name of the output column"
+      },
+      "runtime_required": false
     },
     {
       "name": "if",

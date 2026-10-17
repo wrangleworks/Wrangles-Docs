@@ -16,6 +16,9 @@ Try a list of wrangles and catch any errors that occur.
 
 Run a list of wrangles and catch errors. When `except` is provided, its wrangles or fallback column values run after an error; otherwise, the error is logged and the recipe continues.
 
+The runtime supports both forms, but the pinned upstream schema only permits a
+dictionary for `except`. Use fallback column values for schema-validated recipes.
+
 ## Parameters
 
 <div className="ww-parameters-table">
@@ -23,10 +26,10 @@ Run a list of wrangles and catch errors. When `except` is provided, its wrangles
 | Name | Description | Accepted Values | Default | Required |
 | --- | --- | --- | --- | --- |
 | <span className="ww-param-group-label">Execution</span> |  |  |  |  |
-| `wrangles` | List of wrangles to apply. | array | — | Yes |
+| `wrangles` | List of wrangles to apply | array | — | Yes |
 | <span className="ww-param-group-label">Errors</span> |  |  |  |  |
 | `retries` | Number of times to retry the wrangles if an error occurs. Default 0. | integer | `0` | No |
-| `except` | An action to take if the wrangles encounter an error. This can contain a list of wrangles or a dictionary of column names and values. If except is not provided, the error will be logged and the recipe will continue. | object | — | No |
+| `except` | An action to take if the wrangles encounter an error.<br />This can contain a list of wrangles or a dictionary of column names and values.<br />If except is not provided, the error will be logged and the recipe will continue. | object | — | No |
 | <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
 | `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
 | `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
@@ -34,17 +37,76 @@ Run a list of wrangles and catch errors. When `except` is provided, its wrangles
 
 </div>
 
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+<details className="ww-field-disclosure">
+
+<summary>Complete configuration schema</summary>
+
+Schema source: upstream-docstring. Conditional and cross-parameter
+rules below apply in addition to the parameter table. References resolve against
+the [complete recipe schema](/schemas/recipes/registry/schema.json).
+
+
+
+```json
+{
+  "type": "object",
+  "description": "Try a list of wrangles and catch any errors that occur",
+  "required": [
+    "wrangles"
+  ],
+  "properties": {
+    "wrangles": {
+      "type": "array",
+      "description": "List of wrangles to apply",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/wrangles/items"
+      }
+    },
+    "except": {
+      "type": [
+        "object"
+      ],
+      "description": "An action to take if the wrangles encounter an error.\nThis can contain a list of wrangles or a dictionary of column names and values.\nIf except is not provided, the error will be logged and the recipe will continue.",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/wrangles/items"
+      }
+    },
+    "retries": {
+      "type": "integer",
+      "description": "Number of times to retry the wrangles if an error occurs. Default 0.",
+      "minimum": 0
+    },
+    "if": {
+      "$ref": "#/$defs/wrangles/commonProperties/if"
+    },
+    "where": {
+      "$ref": "#/$defs/wrangles/commonProperties/where"
+    },
+    "where_params": {
+      "$ref": "#/$defs/wrangles/commonProperties/where_params"
+    }
+  }
+}
+```
+
+</details>
+
 ## Examples
 
 ```yaml
 wrangles:
   - try:
       wrangles:
-        - risky_wrangle:
+        - convert.data_type:
             input: column
+            data_type: int
       except:
-        - backup_wrangle:
-            input: column
+        column: unavailable
 ```
 
 <div className="ww-sample-grid">
@@ -93,6 +155,7 @@ _The primary result is returned on success; the `except` result is returned afte
 | Documentation group | `utility` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.Try` |
+| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
 | Legacy UUID | None |
 
 **Sources**

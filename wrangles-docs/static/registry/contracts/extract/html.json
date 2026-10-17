@@ -40,6 +40,70 @@
     "where": true,
     "where_params": true
   },
+  "configuration_schema": {
+    "type": "object",
+    "description": "Extract elements from strings containing html. Requires WrangleWorks Account.",
+    "required": [
+      "input",
+      "output",
+      "data_type"
+    ],
+    "properties": {
+      "input": {
+        "type": [
+          "string",
+          "integer",
+          "array"
+        ],
+        "description": "Name or list of input columns."
+      },
+      "output": {
+        "type": [
+          "string",
+          "array"
+        ],
+        "description": "Name or list of output columns"
+      },
+      "data_type": {
+        "type": "string",
+        "description": "The type of data to extract",
+        "enum": [
+          "text",
+          "links"
+        ]
+      },
+      "output_format": {
+        "type": "string",
+        "description": "Format of the extract output",
+        "enum": [
+          "list",
+          "columns",
+          "concatenate"
+        ]
+      },
+      "char": {
+        "type": "string",
+        "description": "Character to use when output_format is concatenate"
+      },
+      "if": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/if"
+      },
+      "where": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/where"
+      },
+      "where_params": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/where_params"
+      }
+    }
+  },
+  "schema_origin": "upstream-docstring",
+  "schema_adjustments": [],
+  "schema_source": {
+    "repository": "https://github.com/wrangleworks/WranglesPY",
+    "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+    "version": "1.20.5",
+    "extraction": "static-python-ast"
+  },
   "parameters": [
     {
       "name": "input",
@@ -51,63 +115,69 @@
           "string",
           "integer",
           "array"
-        ]
-      }
+        ],
+        "description": "Name or list of input columns."
+      },
+      "runtime_required": true
     },
     {
       "name": "data_type",
-      "description": "The type of data to extract.",
+      "description": "The type of data to extract",
       "required": true,
       "param_group": "Options",
       "schema": {
         "type": "string",
+        "description": "The type of data to extract",
         "enum": [
           "text",
           "links"
         ]
-      }
+      },
+      "runtime_required": true
     },
     {
       "name": "output",
-      "description": "Name or list of output columns.",
-      "required": false,
+      "description": "Name or list of output columns",
+      "required": true,
       "param_group": "I/O",
       "runtime_default": null,
       "schema": {
         "type": [
           "string",
-          "array",
-          "null"
-        ]
-      }
+          "array"
+        ],
+        "description": "Name or list of output columns"
+      },
+      "runtime_required": false
     },
     {
       "name": "output_format",
-      "description": "Format of the extract output.",
+      "description": "Format of the extract output",
       "required": false,
       "param_group": "Formatting",
       "runtime_default": null,
       "schema": {
-        "type": [
-          "string",
-          "null"
-        ],
+        "type": "string",
+        "description": "Format of the extract output",
         "enum": [
           "list",
           "columns",
           "concatenate"
         ]
-      }
+      },
+      "runtime_required": false
     },
     {
       "name": "char",
-      "description": "Character to use when output_format is concatenate.",
+      "description": "Character to use when output_format is concatenate",
       "required": false,
       "param_group": "Formatting",
       "runtime_default": ", ",
       "schema": {
-        "type": "string"
-      }
+        "type": "string",
+        "description": "Character to use when output_format is concatenate"
+      },
+      "runtime_required": false
     },
     {
       "name": "if",

@@ -40,6 +40,57 @@
     "where": true,
     "where_params": true
   },
+  "configuration_schema": {
+    "type": "object",
+    "description": "Run classify wrangles on the specified columns.\nRequires WrangleWorks Account and Subscription.\n",
+    "required": [
+      "input",
+      "output",
+      "model_id"
+    ],
+    "properties": {
+      "input": {
+        "type": [
+          "string",
+          "integer",
+          "array"
+        ],
+        "description": "Name of the input column."
+      },
+      "output": {
+        "type": [
+          "string",
+          "array"
+        ],
+        "description": "Name of the output column."
+      },
+      "model_id": {
+        "type": "string",
+        "description": "ID of the classification model to be used"
+      },
+      "include_confidence": {
+        "type": "boolean",
+        "description": "For models that support it, include the confidence level in the output"
+      },
+      "if": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/if"
+      },
+      "where": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/where"
+      },
+      "where_params": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/where_params"
+      }
+    }
+  },
+  "schema_origin": "upstream-docstring",
+  "schema_adjustments": [],
+  "schema_source": {
+    "repository": "https://github.com/wrangleworks/WranglesPY",
+    "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+    "version": "1.20.5",
+    "extraction": "static-python-ast"
+  },
   "parameters": [
     {
       "name": "input",
@@ -51,8 +102,10 @@
           "string",
           "integer",
           "array"
-        ]
-      }
+        ],
+        "description": "Name of the input column."
+      },
+      "runtime_required": true
     },
     {
       "name": "output",
@@ -63,26 +116,32 @@
         "type": [
           "string",
           "array"
-        ]
-      }
+        ],
+        "description": "Name of the output column."
+      },
+      "runtime_required": true
     },
     {
       "name": "model_id",
-      "description": "ID of the classification model to be used.",
+      "description": "ID of the classification model to be used",
       "required": true,
       "param_group": "Details",
       "schema": {
-        "type": "string"
-      }
+        "type": "string",
+        "description": "ID of the classification model to be used"
+      },
+      "runtime_required": true
     },
     {
       "name": "include_confidence",
-      "description": "For models that support it, include the confidence level in the output.",
+      "description": "For models that support it, include the confidence level in the output",
       "required": false,
       "param_group": "Formatting",
       "schema": {
-        "type": "boolean"
-      }
+        "type": "boolean",
+        "description": "For models that support it, include the confidence level in the output"
+      },
+      "runtime_required": false
     },
     {
       "name": "if",

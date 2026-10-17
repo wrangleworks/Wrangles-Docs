@@ -40,6 +40,96 @@
     "where": true,
     "where_params": true
   },
+  "configuration_schema": {
+    "type": "object",
+    "description": "Retrieves targeted content from web pages using LLM URL extraction. Can optionally output a second column containing a clean, human-readable text summary of the retrieved data. Additional options are passed to Gemini GenerateContentConfig.",
+    "additionalProperties": true,
+    "required": [
+      "input",
+      "output"
+    ],
+    "properties": {
+      "input": {
+        "type": [
+          "string",
+          "array"
+        ],
+        "description": "Name or list of input columns containing URLs or Scored Search Result dictionaries."
+      },
+      "output": {
+        "type": [
+          "string",
+          "array"
+        ],
+        "description": "Name of the output column for the raw dictionaries. To output BOTH the raw dictionaries and the formatted text, provide a list of exactly two column names (e.g., [page_data, page_text])."
+      },
+      "client": {
+        "type": "string",
+        "description": "The retrieval provider to use.",
+        "enum": [
+          "google_url_context"
+        ],
+        "default": "google_url_context"
+      },
+      "api_key": {
+        "type": "string",
+        "description": "API key for the provider. Can also be set as an environment variable (e.g., GOOGLE_API_KEY)."
+      },
+      "prompt": {
+        "type": "string",
+        "description": "Optional custom system prompt. Use {{ column_name }} to insert values from the full input row, including columns not selected by input. Replace spaces and punctuation in column names with underscores; aliases must be ASCII identifiers. Dictionaries and lists are inserted as finite JSON text. Substitution is literal and single-pass, without expressions or filters. Missing or ambiguous references fail before retrieval. Omit to use the default prompt."
+      },
+      "model_id": {
+        "type": "string",
+        "description": "The specific model ID to use. Defaults to the AI configuration."
+      },
+      "output_format": {
+        "type": "string",
+        "description": "The desired format for the extracted content.",
+        "enum": [
+          "markdown",
+          "json"
+        ],
+        "default": "json"
+      },
+      "threads": {
+        "type": "integer",
+        "description": "Number of concurrent threads for parallel processing. Defaults to the AI configuration."
+      },
+      "thinking_level": {
+        "type": "string",
+        "enum": [
+          "minimal",
+          "low",
+          "medium",
+          "high"
+        ],
+        "description": "Gemini thinking level. Defaults to the configured value, packaged as minimal. Supported levels depend on the selected model."
+      },
+      "request_timeout_seconds": {
+        "type": "number",
+        "exclusiveMinimum": 0,
+        "description": "Total deadline in seconds for each URL, including retries. Defaults to the configured value, packaged as 10 seconds. A batch may take longer when URLs run in several waves."
+      },
+      "if": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/if"
+      },
+      "where": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/where"
+      },
+      "where_params": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/where_params"
+      }
+    }
+  },
+  "schema_origin": "upstream-docstring",
+  "schema_adjustments": [],
+  "schema_source": {
+    "repository": "https://github.com/wrangleworks/WranglesPY",
+    "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+    "version": "1.20.5",
+    "extraction": "static-python-ast"
+  },
   "parameters": [
     {
       "name": "input",
@@ -50,22 +140,25 @@
         "type": [
           "string",
           "array"
-        ]
-      }
+        ],
+        "description": "Name or list of input columns containing URLs or Scored Search Result dictionaries."
+      },
+      "runtime_required": true
     },
     {
       "name": "output",
       "description": "Name of the output column for the raw dictionaries. To output BOTH the raw dictionaries and the formatted text, provide a list of exactly two column names (e.g., [page_data, page_text]).",
-      "required": false,
+      "required": true,
       "param_group": "I/O",
       "runtime_default": null,
       "schema": {
         "type": [
           "string",
-          "array",
-          "null"
-        ]
-      }
+          "array"
+        ],
+        "description": "Name of the output column for the raw dictionaries. To output BOTH the raw dictionaries and the formatted text, provide a list of exactly two column names (e.g., [page_data, page_text])."
+      },
+      "runtime_required": false
     },
     {
       "name": "client",
@@ -75,10 +168,13 @@
       "runtime_default": "google_url_context",
       "schema": {
         "type": "string",
+        "description": "The retrieval provider to use.",
         "enum": [
           "google_url_context"
-        ]
-      }
+        ],
+        "default": "google_url_context"
+      },
+      "runtime_required": false
     },
     {
       "name": "api_key",
@@ -87,34 +183,34 @@
       "param_group": "Details",
       "runtime_default": null,
       "schema": {
-        "type": [
-          "string",
-          "null"
-        ]
-      }
+        "type": "string",
+        "description": "API key for the provider. Can also be set as an environment variable (e.g., GOOGLE_API_KEY)."
+      },
+      "runtime_required": false
     },
     {
       "name": "prompt",
-      "description": "Optional custom system prompt to guide the extraction behavior and output format.",
+      "description": "Optional custom system prompt. Use {{ column_name }} to insert values from the full input row, including columns not selected by input. Replace spaces and punctuation in column names with underscores; aliases must be ASCII identifiers. Dictionaries and lists are inserted as finite JSON text. Substitution is literal and single-pass, without expressions or filters. Missing or ambiguous references fail before retrieval. Omit to use the default prompt.",
       "required": false,
       "param_group": "Options",
       "runtime_default": null,
       "schema": {
-        "type": [
-          "string",
-          "null"
-        ]
-      }
+        "type": "string",
+        "description": "Optional custom system prompt. Use {{ column_name }} to insert values from the full input row, including columns not selected by input. Replace spaces and punctuation in column names with underscores; aliases must be ASCII identifiers. Dictionaries and lists are inserted as finite JSON text. Substitution is literal and single-pass, without expressions or filters. Missing or ambiguous references fail before retrieval. Omit to use the default prompt."
+      },
+      "runtime_required": false
     },
     {
       "name": "model_id",
-      "description": "The specific model ID to use (default models/gemini-3-flash-preview).",
+      "description": "The specific model ID to use. Defaults to the AI configuration.",
       "required": false,
       "param_group": "Details",
-      "runtime_default": "models/gemini-3-flash-preview",
+      "runtime_default": null,
       "schema": {
-        "type": "string"
-      }
+        "type": "string",
+        "description": "The specific model ID to use. Defaults to the AI configuration."
+      },
+      "runtime_required": false
     },
     {
       "name": "output_format",
@@ -124,21 +220,57 @@
       "runtime_default": "json",
       "schema": {
         "type": "string",
+        "description": "The desired format for the extracted content.",
         "enum": [
           "markdown",
           "json"
-        ]
-      }
+        ],
+        "default": "json"
+      },
+      "runtime_required": false
     },
     {
       "name": "threads",
-      "description": "Number of concurrent threads for parallel processing (default 10).",
+      "description": "Number of concurrent threads for parallel processing. Defaults to the AI configuration.",
       "required": false,
       "param_group": "Execution",
-      "runtime_default": 10,
+      "runtime_default": null,
       "schema": {
-        "type": "integer"
-      }
+        "type": "integer",
+        "description": "Number of concurrent threads for parallel processing. Defaults to the AI configuration."
+      },
+      "runtime_required": false
+    },
+    {
+      "name": "thinking_level",
+      "description": "Gemini thinking level. Defaults to the configured value, packaged as minimal. Supported levels depend on the selected model.",
+      "param_group": "Options",
+      "schema": {
+        "type": "string",
+        "enum": [
+          "minimal",
+          "low",
+          "medium",
+          "high"
+        ],
+        "description": "Gemini thinking level. Defaults to the configured value, packaged as minimal. Supported levels depend on the selected model."
+      },
+      "required": false,
+      "runtime_default": null,
+      "runtime_required": false
+    },
+    {
+      "name": "request_timeout_seconds",
+      "description": "Total deadline in seconds for each URL, including retries. Defaults to the configured value, packaged as 10 seconds. A batch may take longer when URLs run in several waves.",
+      "param_group": "Options",
+      "schema": {
+        "type": "number",
+        "exclusiveMinimum": 0,
+        "description": "Total deadline in seconds for each URL, including retries. Defaults to the configured value, packaged as 10 seconds. A batch may take longer when URLs run in several waves."
+      },
+      "required": false,
+      "runtime_default": null,
+      "runtime_required": false
     },
     {
       "name": "if",

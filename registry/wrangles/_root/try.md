@@ -32,14 +32,16 @@ capabilities:
   where_params: true
 parameters:
   - name: wrangles
-    description: List of wrangles to apply.
+    description: List of wrangles to apply
     required: true
     param_group: Execution
     schema:
       type: array
+      description: List of wrangles to apply
       minItems: 1
       items:
         $ref: '#/$defs/wrangles/items'
+    runtime_required: true
   - name: retries
     description: Number of times to retry the wrangles if an error occurs. Default 0.
     required: false
@@ -47,19 +49,27 @@ parameters:
     runtime_default: 0
     schema:
       type: integer
+      description: Number of times to retry the wrangles if an error occurs. Default 0.
       minimum: 0
+    runtime_required: false
   - name: except
-    description: >-
-      An action to take if the wrangles encounter an error. This can contain a list of wrangles or a
-      dictionary of column names and values. If except is not provided, the error will be logged and
-      the recipe will continue.
+    description: |-
+      An action to take if the wrangles encounter an error.
+      This can contain a list of wrangles or a dictionary of column names and values.
+      If except is not provided, the error will be logged and the recipe will continue.
     required: false
     param_group: Errors
     schema:
-      type: object
+      type:
+        - object
+      description: |-
+        An action to take if the wrangles encounter an error.
+        This can contain a list of wrangles or a dictionary of column names and values.
+        If except is not provided, the error will be logged and the recipe will continue.
       minItems: 1
       items:
         $ref: '#/$defs/wrangles/items'
+    runtime_required: false
 examples: []
 sources:
   - id: runtime
@@ -70,14 +80,51 @@ sources:
     resource: >-
       https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/utility/_sources/try.md
     title: Archived try Markdown
+configuration_schema:
+  type: object
+  description: Try a list of wrangles and catch any errors that occur
+  required:
+    - wrangles
+  properties:
+    wrangles:
+      type: array
+      description: List of wrangles to apply
+      minItems: 1
+      items:
+        $ref: '#/$defs/wrangles/items'
+    except:
+      type:
+        - object
+      description: |-
+        An action to take if the wrangles encounter an error.
+        This can contain a list of wrangles or a dictionary of column names and values.
+        If except is not provided, the error will be logged and the recipe will continue.
+      minItems: 1
+      items:
+        $ref: '#/$defs/wrangles/items'
+    retries:
+      type: integer
+      description: Number of times to retry the wrangles if an error occurs. Default 0.
+      minimum: 0
+    if:
+      $ref: '#/$defs/wrangles/commonProperties/if'
+    where:
+      $ref: '#/$defs/wrangles/commonProperties/where'
+    where_params:
+      $ref: '#/$defs/wrangles/commonProperties/where_params'
+schema_origin: upstream-docstring
+schema_adjustments: []
 ---
 
 # Try
 
 Run a list of wrangles and catch errors. When `except` is provided, its wrangles or fallback column values run after an error; otherwise, the error is logged and the recipe continues.
 
+The runtime supports both forms, but the pinned upstream schema only permits a
+dictionary for `except`. Use fallback column values for schema-validated recipes.
+
 ## Migrated examples
-#### Use Fallback Wrangles After an Error
+#### Use Fallback Column Values After an Error
 
 ##### Recipe
 
@@ -85,11 +132,11 @@ Run a list of wrangles and catch errors. When `except` is provided, its wrangles
 wrangles:
   - try:
       wrangles:
-        - risky_wrangle:
+        - convert.data_type:
             input: column
+            data_type: int
       except:
-        - backup_wrangle:
-            input: column
+        column: unavailable
 ```
 
 <div className="ww-sample-grid">

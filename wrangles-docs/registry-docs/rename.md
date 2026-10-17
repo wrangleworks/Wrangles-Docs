@@ -23,14 +23,64 @@ Rename a column or list of columns.
 | Name | Description | Accepted Values | Default | Required |
 | --- | --- | --- | --- | --- |
 | <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `input` | Name or list of input columns. | string, integer, array, null | `null` | No |
-| `output` | Name or list of output columns. | string, array, null | `null` | No |
+| `input` | Name or list of input columns. | string, integer, array | `null` | No |
+| `output` | Name or list of output columns. | string, array | `null` | No |
 | <span className="ww-param-group-label">Execution</span> |  |  |  |  |
-| `wrangles` | Use wrangles to transform the column names. The input is named 'columns' and the final result must also include the column named 'columns'. This can only be used instead of the standard rename. | array, null | `null` | No |
+| `wrangles` | Use wrangles to transform the column names.<br />The input is named 'columns' and the final result<br />must also include the column named 'columns'.<br />This can only be used instead of the standard rename. | array | `null` | No |
 | <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
 | `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
 
 </div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+<details className="ww-field-disclosure">
+
+<summary>Complete configuration schema</summary>
+
+Schema source: upstream-docstring. Conditional and cross-parameter
+rules below apply in addition to the parameter table. References resolve against
+the [complete recipe schema](/schemas/recipes/registry/schema.json).
+
+
+
+```json
+{
+  "type": "object",
+  "description": "Rename a column or list of columns.",
+  "properties": {
+    "input": {
+      "type": [
+        "string",
+        "integer",
+        "array"
+      ],
+      "description": "Name or list of input columns."
+    },
+    "output": {
+      "type": [
+        "string",
+        "array"
+      ],
+      "description": "Name or list of output columns."
+    },
+    "wrangles": {
+      "type": "array",
+      "description": "Use wrangles to transform the column names.\nThe input is named 'columns' and the final result\nmust also include the column named 'columns'.\nThis can only be used instead of the standard rename.",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/wrangles/items"
+      }
+    },
+    "if": {
+      "$ref": "#/$defs/wrangles/commonProperties/if"
+    }
+  }
+}
+```
+
+</details>
 
 ## Examples
 
@@ -173,6 +223,7 @@ wrangles:
 | Documentation group | `transform` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.rename` |
+| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
 | Legacy UUID | `ab06898f-faf7-42e7-8275-5e3034a4d727` |
 
 **Sources**

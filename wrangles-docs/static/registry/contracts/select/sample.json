@@ -40,10 +40,44 @@
     "where": true,
     "where_params": true
   },
+  "configuration_schema": {
+    "type": "object",
+    "description": "Return a random sample of the rows",
+    "required": [
+      "rows"
+    ],
+    "properties": {
+      "rows": {
+        "type": [
+          "integer",
+          "number"
+        ],
+        "description": "If a whole number, will select that number of rows.\nIf a decimal between 0 and 1 will select that fraction \nof the rows e.g. 0.1 => 10% of rows will be returned",
+        "exclusiveMinimum": 0
+      },
+      "if": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/if"
+      },
+      "where": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/where_special"
+      },
+      "where_params": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/where_params"
+      }
+    }
+  },
+  "schema_origin": "upstream-docstring",
+  "schema_adjustments": [],
+  "schema_source": {
+    "repository": "https://github.com/wrangleworks/WranglesPY",
+    "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+    "version": "1.20.5",
+    "extraction": "static-python-ast"
+  },
   "parameters": [
     {
       "name": "rows",
-      "description": "If a whole number, will select that number of rows. If a decimal between 0 and 1 will select that fraction of the rows e.g. 0.1 => 10% of rows will be returned.",
+      "description": "If a whole number, will select that number of rows.\nIf a decimal between 0 and 1 will select that fraction \nof the rows e.g. 0.1 => 10% of rows will be returned",
       "required": true,
       "param_group": "Options",
       "schema": {
@@ -51,8 +85,10 @@
           "integer",
           "number"
         ],
+        "description": "If a whole number, will select that number of rows.\nIf a decimal between 0 and 1 will select that fraction \nof the rows e.g. 0.1 => 10% of rows will be returned",
         "exclusiveMinimum": 0
-      }
+      },
+      "runtime_required": true
     },
     {
       "name": "if",

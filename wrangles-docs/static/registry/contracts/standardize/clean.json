@@ -40,6 +40,128 @@
     "where": true,
     "where_params": true
   },
+  "configuration_schema": {
+    "type": "object",
+    "description": "Repair common encoding, Unicode, HTML character reference, control character, and whitespace problems locally.",
+    "required": [
+      "input"
+    ],
+    "properties": {
+      "input": {
+        "type": [
+          "string",
+          "integer",
+          "array"
+        ],
+        "description": "Name or list of input columns."
+      },
+      "output": {
+        "type": [
+          "string",
+          "integer",
+          "array"
+        ],
+        "description": "Name or list of output columns. Defaults to overwriting input."
+      },
+      "fix_encoding": {
+        "type": "boolean",
+        "default": true,
+        "description": "Repair mojibake and other reversible encoding errors."
+      },
+      "unescape_html": {
+        "anyOf": [
+          {
+            "type": "boolean"
+          },
+          {
+            "type": "string",
+            "enum": [
+              "auto"
+            ]
+          }
+        ],
+        "default": "auto",
+        "description": "Decode HTML character references. Auto avoids decoding text that appears to contain HTML markup."
+      },
+      "normalization": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "enum": [
+          "NFC",
+          "NFKC",
+          "NFD",
+          "NFKD",
+          null
+        ],
+        "default": "NFC",
+        "description": "Unicode normalization form."
+      },
+      "fix_character_width": {
+        "type": "boolean",
+        "default": true,
+        "description": "Normalize fullwidth and halfwidth characters."
+      },
+      "uncurl_quotes": {
+        "type": "boolean",
+        "default": true,
+        "description": "Replace typographic quotes with straight quotes."
+      },
+      "remove_control_chars": {
+        "type": "boolean",
+        "default": true,
+        "description": "Remove C0 and C1 control characters."
+      },
+      "collapse_whitespace": {
+        "type": "boolean",
+        "default": true,
+        "description": "Collapse runs of Unicode whitespace."
+      },
+      "preserve_line_breaks": {
+        "type": "boolean",
+        "default": false,
+        "description": "Preserve line breaks while collapsing other whitespace."
+      },
+      "trim": {
+        "type": "boolean",
+        "default": true,
+        "description": "Remove leading and trailing whitespace."
+      },
+      "unescape_unicode": {
+        "type": "boolean",
+        "default": false,
+        "description": "Decode literal printable Unicode escapes in prose, preserving code and Markdown link destinations."
+      },
+      "latex_to_text": {
+        "type": "boolean",
+        "default": false,
+        "description": "Convert supported inline LaTeX units, symbols and numeric fractions to readable text. Preserve numeric dollar amounts, ranges and explicit price qualifiers; remove extra dollar signs from other supported inline math. Preserve unsupported formulas. Set collapse_whitespace and trim to false to retain Markdown layout."
+      },
+      "separator": {
+        "type": "string",
+        "default": " ",
+        "description": "Text used to join multiple input columns into one output."
+      },
+      "if": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/if"
+      },
+      "where": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/where"
+      },
+      "where_params": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/where_params"
+      }
+    }
+  },
+  "schema_origin": "upstream-docstring",
+  "schema_adjustments": [],
+  "schema_source": {
+    "repository": "https://github.com/wrangleworks/WranglesPY",
+    "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+    "version": "1.20.5",
+    "extraction": "static-python-ast"
+  },
   "parameters": [
     {
       "name": "input",
@@ -56,13 +178,9 @@
           "integer",
           "array"
         ],
-        "items": {
-          "type": [
-            "string",
-            "integer"
-          ]
-        }
-      }
+        "description": "Name or list of input columns."
+      },
+      "runtime_required": true
     },
     {
       "name": "output",
@@ -78,16 +196,11 @@
         "type": [
           "string",
           "integer",
-          "array",
-          "null"
+          "array"
         ],
-        "items": {
-          "type": [
-            "string",
-            "integer"
-          ]
-        }
-      }
+        "description": "Name or list of output columns. Defaults to overwriting input."
+      },
+      "runtime_required": false
     },
     {
       "name": "fix_encoding",
@@ -96,8 +209,11 @@
       "param_group": "Options",
       "runtime_default": true,
       "schema": {
-        "type": "boolean"
-      }
+        "type": "boolean",
+        "default": true,
+        "description": "Repair mojibake and other reversible encoding errors."
+      },
+      "runtime_required": false
     },
     {
       "name": "unescape_html",
@@ -116,8 +232,11 @@
               "auto"
             ]
           }
-        ]
-      }
+        ],
+        "default": "auto",
+        "description": "Decode HTML character references. Auto avoids decoding text that appears to contain HTML markup."
+      },
+      "runtime_required": false
     },
     {
       "name": "normalization",
@@ -126,15 +245,21 @@
       "param_group": "Options",
       "runtime_default": "NFC",
       "schema": {
-        "type": "string",
+        "type": [
+          "string",
+          "null"
+        ],
         "enum": [
           "NFC",
           "NFKC",
           "NFD",
           "NFKD",
           null
-        ]
-      }
+        ],
+        "default": "NFC",
+        "description": "Unicode normalization form."
+      },
+      "runtime_required": false
     },
     {
       "name": "fix_character_width",
@@ -143,8 +268,11 @@
       "param_group": "Options",
       "runtime_default": true,
       "schema": {
-        "type": "boolean"
-      }
+        "type": "boolean",
+        "default": true,
+        "description": "Normalize fullwidth and halfwidth characters."
+      },
+      "runtime_required": false
     },
     {
       "name": "uncurl_quotes",
@@ -153,8 +281,11 @@
       "param_group": "Options",
       "runtime_default": true,
       "schema": {
-        "type": "boolean"
-      }
+        "type": "boolean",
+        "default": true,
+        "description": "Replace typographic quotes with straight quotes."
+      },
+      "runtime_required": false
     },
     {
       "name": "remove_control_chars",
@@ -163,8 +294,11 @@
       "param_group": "Options",
       "runtime_default": true,
       "schema": {
-        "type": "boolean"
-      }
+        "type": "boolean",
+        "default": true,
+        "description": "Remove C0 and C1 control characters."
+      },
+      "runtime_required": false
     },
     {
       "name": "collapse_whitespace",
@@ -173,8 +307,11 @@
       "param_group": "Options",
       "runtime_default": true,
       "schema": {
-        "type": "boolean"
-      }
+        "type": "boolean",
+        "default": true,
+        "description": "Collapse runs of Unicode whitespace."
+      },
+      "runtime_required": false
     },
     {
       "name": "preserve_line_breaks",
@@ -183,8 +320,11 @@
       "param_group": "Options",
       "runtime_default": false,
       "schema": {
-        "type": "boolean"
-      }
+        "type": "boolean",
+        "default": false,
+        "description": "Preserve line breaks while collapsing other whitespace."
+      },
+      "runtime_required": false
     },
     {
       "name": "trim",
@@ -193,8 +333,11 @@
       "param_group": "Options",
       "runtime_default": true,
       "schema": {
-        "type": "boolean"
-      }
+        "type": "boolean",
+        "default": true,
+        "description": "Remove leading and trailing whitespace."
+      },
+      "runtime_required": false
     },
     {
       "name": "separator",
@@ -203,8 +346,37 @@
       "param_group": "Formatting",
       "runtime_default": " ",
       "schema": {
-        "type": "string"
-      }
+        "type": "string",
+        "default": " ",
+        "description": "Text used to join multiple input columns into one output."
+      },
+      "runtime_required": false
+    },
+    {
+      "name": "unescape_unicode",
+      "description": "Decode literal printable Unicode escapes in prose, preserving code and Markdown link destinations.",
+      "param_group": "Options",
+      "schema": {
+        "type": "boolean",
+        "default": false,
+        "description": "Decode literal printable Unicode escapes in prose, preserving code and Markdown link destinations."
+      },
+      "required": false,
+      "runtime_default": false,
+      "runtime_required": false
+    },
+    {
+      "name": "latex_to_text",
+      "description": "Convert supported inline LaTeX units, symbols and numeric fractions to readable text. Preserve numeric dollar amounts, ranges and explicit price qualifiers; remove extra dollar signs from other supported inline math. Preserve unsupported formulas. Set collapse_whitespace and trim to false to retain Markdown layout.",
+      "param_group": "Options",
+      "schema": {
+        "type": "boolean",
+        "default": false,
+        "description": "Convert supported inline LaTeX units, symbols and numeric fractions to readable text. Preserve numeric dollar amounts, ranges and explicit price qualifiers; remove extra dollar signs from other supported inline math. Preserve unsupported formulas. Set collapse_whitespace and trim to false to retain Markdown layout."
+      },
+      "required": false,
+      "runtime_default": false,
+      "runtime_required": false
     },
     {
       "name": "if",

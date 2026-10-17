@@ -25,16 +25,67 @@ For duplicate keys, the last key in the input list takes precedence in the merge
 | Name | Description | Accepted Values | Default | Required |
 | --- | --- | --- | --- | --- |
 | <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `input` | List of input columns. | array | — | Yes |
-| `output` | Name of the output column. | string | — | Yes |
+| `input` | list of input columns | array | — | Yes |
+| `output` | Name of the output column | string | — | Yes |
 | <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `skip_empty` | Whether to skip empty dictionaries when merging. | boolean | `false` | No |
+| `skip_empty` | Whether to skip empty dictionaries when merging | boolean | `false` | No |
 | <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
 | `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
 | `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
 | `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
 
 </div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+<details className="ww-field-disclosure">
+
+<summary>Complete configuration schema</summary>
+
+Schema source: upstream-docstring. Conditional and cross-parameter
+rules below apply in addition to the parameter table. References resolve against
+the [complete recipe schema](/schemas/recipes/registry/schema.json).
+
+
+
+```json
+{
+  "type": "object",
+  "description": "Take dictionaries in multiple columns and merge them to a single dictionary.",
+  "additionalProperties": false,
+  "required": [
+    "input",
+    "output"
+  ],
+  "properties": {
+    "input": {
+      "type": "array",
+      "description": "list of input columns"
+    },
+    "output": {
+      "type": "string",
+      "description": "Name of the output column"
+    },
+    "skip_empty": {
+      "type": "boolean",
+      "description": "Whether to skip empty dictionaries when merging",
+      "default": false
+    },
+    "if": {
+      "$ref": "#/$defs/wrangles/commonProperties/if"
+    },
+    "where": {
+      "$ref": "#/$defs/wrangles/commonProperties/where"
+    },
+    "where_params": {
+      "$ref": "#/$defs/wrangles/commonProperties/where_params"
+    }
+  }
+}
+```
+
+</details>
 
 ## Examples
 
@@ -75,7 +126,7 @@ wrangles:
 # Using a Wildcard (*)
 wrangles:
   - merge.dictionaries:
-      input: Dict *
+      input: [Dict *]
       output: Merged
 ```
 
@@ -168,6 +219,7 @@ Note the extra dash in front of `Dict 2` excludes that column from the wildcard 
 | Documentation group | `merge` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.merge.dictionaries` |
+| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
 | Legacy UUID | `93e27737-e966-4ba9-8777-4e96724ebfc4` |
 
 **Sources**

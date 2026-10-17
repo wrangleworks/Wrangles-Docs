@@ -1,0 +1,99 @@
+{
+  "schema_version": "0.2",
+  "type": "connector",
+  "catalog_id": "140",
+  "catalog_key": "connector.train.classify",
+  "catalog_kind": "connector",
+  "runtime_key": "train.classify",
+  "status": "active",
+  "title": "Train Classify",
+  "source": {
+    "repository": "https://github.com/wrangleworks/WranglesPY",
+    "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+    "version": "1.20.5",
+    "extraction": "static-python-ast"
+  },
+  "operations": {
+    "read": {
+      "type": "object",
+      "description": "Read the training data for a Classify Wrangle",
+      "additionalProperties": false,
+      "required": [
+        "model_id"
+      ],
+      "properties": {
+        "model_id": {
+          "type": "string",
+          "description": "Specific model to read"
+        },
+        "columns": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/columns"
+        },
+        "not_columns": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/not_columns"
+        },
+        "where": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/where"
+        },
+        "where_params": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/where_params"
+        },
+        "order_by": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/order_by"
+        },
+        "if": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/if"
+        }
+      }
+    },
+    "write": {
+      "type": "object",
+      "description": "Train a new or existing Classify Wrangle",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name to give to a new Wrangle that will be created"
+        },
+        "model_id": {
+          "type": "string",
+          "description": "Model to be updated. Either this or a name must be provided"
+        },
+        "columns": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/columns"
+        },
+        "not_columns": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/not_columns"
+        },
+        "where": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/where"
+        },
+        "where_params": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/where_params"
+        },
+        "order_by": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/order_by"
+        },
+        "if": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/if"
+        }
+      }
+    }
+  },
+  "description": "Read the training data for a Classify Wrangle",
+  "slug": "connectors/train.classify",
+  "visibility": "public",
+  "sources": [
+    {
+      "id": "runtime",
+      "resource": "https://github.com/wrangleworks/WranglesPY/tree/bd5f88fba479ec406b409cb2880689c54e72b298",
+      "title": "Pinned WranglesPY connector schema"
+    },
+    {
+      "id": "existing-docs",
+      "resource": "wrangles-docs/registry-docs/python/connectors/train.md#classify",
+      "title": "Existing connector documentation"
+    }
+  ],
+  "guidance": "### Read\n#### Recipe\n```yaml\nread:\n  - train.classify:\n      model_id: xxxxxxxx-xxxx-xxxx\n```\n\n##### Output\n\n<div className=\"table-scroll\">\n\n| Example | Category | Notes |\n| :------ | :------- | :---- |\n| Apple | Fruit | |\n| Broccoli | Vegetable | |\n| Pear | Fruit | |\n| Aperagus | Vegetable | |\n\n</div>\n\n#### Function\n```python\nfrom wrangles.connectors import train\ndf = train.classify.read(model_id = 'xxxxxxxx-xxxx-xxxx')\n```\n\n##### Output\n\n<div className=\"table-scroll\">\n\n| Example | Category | Notes |\n| :------ | :------- | :---- |\n| Apple | Fruit | |\n| Broccoli | Vegetable | |\n| Pear | Fruit | |\n| Asperagus | Vegetable | |\n\n</div>\n\n### Write\n#### Recipe\nUpdate the training data for an existing classify wrangle.\n\n```yaml\nwrite:\n  - train.classify:\n      columns:\n        - Example\n        - Category\n        - Notes\n      model_id: xxxxxxxx-xxxx-xxxx\n```\n\n#### Function\nCreate a new classify wrangle.\n```python\nfrom wrangles.connectors import train\nimport pandas as pd\n\ndf = pd.DataFrame({\n\t\t'Example': ['Apple', 'Broccoli', 'Pear', 'Asperagus'],\n    'Category': ['Fruit', 'Vegitable', 'Fruit', 'Vegitable'],\n    'Notes': ['', '', '', '']\n})\n\ntrain.classify.write(df = df, name = 'Fruits and Veggies')\n```\n\n> Note both name and model_id **cannot** be used together. Name is used when creating models and model_id is used when updating an existing model."
+}

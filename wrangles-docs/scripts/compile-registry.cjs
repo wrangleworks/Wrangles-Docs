@@ -3,7 +3,13 @@
 const fs = require('node:fs/promises');
 const path = require('node:path');
 const crypto = require('node:crypto');
+const {isDeepStrictEqual} = require('node:util');
 const yaml = require('js-yaml');
+const {normalizeApiCatalog} = require('./api-core-catalog.cjs');
+const {parseRegistryMarkdown} = require('./registry-markdown.cjs');
+const {loadConnectors, withConnectors, renderConnector, compiledConnector} = require('./connector-registry.cjs');
+const {configurationSchema, objectBranch, parameterProperties, schemaRequired, conditionallyRequired, qualifySchemaReferences} = require('./wrangle-schema.cjs');
+const sourceSnapshot = require('../../registry/runtime/wranglespy-source-schema.json');
 
 const REGISTRY_VERSION = '0.3.0';
 const SOURCE_ENTRY_SCHEMA_VERSION = '0.2';
@@ -38,6 +44,7 @@ const docsOutputRoot = path.join(siteRoot, 'registry-docs');
 const manualPythonDocsRoot = path.join(docsOutputRoot, 'python');
 const registrySidebarPath = path.join(siteRoot, 'sidebarsRegistry.js');
 const rawOutputRoot = path.join(siteRoot, 'static', 'registry');
+const connectorRedirectRoot = path.join(siteRoot, 'static', 'py', 'python', 'connectors');
 const schemaOutputRoot = path.join(siteRoot, 'static', 'schemas', 'recipes', 'registry');
 
 const LEGACY_GROUP_OVERRIDES = {
@@ -95,7 +102,7 @@ function hasOwn(value, key) {
 }
 
 function valuesEqual(left, right) {
-  return JSON.stringify(left) === JSON.stringify(right);
+  return isDeepStrictEqual(left, right);
 }
 
 function sha256(value) {
@@ -118,22 +125,8 @@ function canonicalizeSchema(value) {
 }
 
 function parseFrontmatter(source, filename) {
-  const match = source.match(/^---\r?\n([\s\S]*?)\r?\n---(?:\r?\n|$)/);
-  if (!match) {
-    fail(filename, 'missing YAML frontmatter');
-    return null;
-  }
-
   try {
-    const metadata = yaml.load(match[1]);
-    if (!isObject(metadata)) {
-      fail(filename, 'frontmatter must be an object');
-      return null;
-    }
-    return {
-      metadata,
-      body: source.slice(match[0].length).trim(),
-    };
+    return parseRegistryMarkdown(source, filename);
   } catch (error) {
     fail(filename, `invalid YAML frontmatter: ${error.message}`);
     return null;
@@ -358,6 +351,7 @@ function splitMarkdownRow(line) {
 }
 
 function validateSchemaFragment(fragment, source, label) {
+  if (typeof fragment === 'boolean') return;
   if (!isObject(fragment)) {
     fail(source, `${label}.schema must be an object`);
     return;
@@ -374,16 +368,15 @@ function validateSchemaFragment(fragment, source, label) {
   ]);
   const types = Array.isArray(fragment.type) ? fragment.type : [fragment.type];
   const hasComposition = ['anyOf', 'oneOf', 'allOf'].some((key) => Array.isArray(fragment[key]));
-  if (!fragment.type && !hasComposition && typeof fragment.$ref !== 'string') {
-    fail(source, `${label}.schema must declare type, composition, or $ref`);
-  } else if (fragment.type && types.some((type) => !validTypes.has(type))) {
+  if (fragment.type && types.some((type) => !validTypes.has(type))) {
     fail(source, `${label}.schema.type contains an unsupported JSON Schema type`);
   }
   if (fragment.enum && !Array.isArray(fragment.enum)) {
     fail(source, `${label}.schema.enum must be an array`);
   }
   if (fragment.items) {
-    validateSchemaFragment(fragment.items, source, `${label}.items`);
+    if (Array.isArray(fragment.items)) fragment.items.forEach((item, index) => validateSchemaFragment(item, source, `${label}.items[${index}]`));
+    else validateSchemaFragment(fragment.items, source, `${label}.items`);
   }
   for (const keyword of ['anyOf', 'oneOf', 'allOf']) {
     if (!hasOwn(fragment, keyword)) continue;
@@ -442,7 +435,9 @@ function directColumnSchemaShapes(fragment) {
         continue;
       }
       if (type === 'array' && !listItem) {
-        if (!isObject(value.items)) {
+        if (value.items === undefined) {
+          shapes.add('list'); // Schema permits any items; column roles are annotations, not restrictions.
+        } else if (!isObject(value.items)) {
           messages.push(
             `${location} array items must be explicitly limited to string/integer column identifiers`,
           );
@@ -653,8 +648,8 @@ function validateTopLevel(metadata, source, entrySchema) {
     fail(source, 'access must be an object');
   } else {
     for (const key of accessKeys) {
-      if (typeof metadata.access[key] !== 'boolean') {
-        fail(source, `access.${key} must be a boolean`);
+      if (metadata.access[key] !== null && typeof metadata.access[key] !== 'boolean') {
+        fail(source, `access.${key} must be a boolean or null (not reviewed)`);
       }
     }
   }
@@ -685,6 +680,7 @@ function validateParameters(metadata, source) {
       'param_group',
       'column_semantics',
       'runtime_default',
+      'runtime_required',
       'schema',
     ]);
     for (const key of Object.keys(parameter)) {
@@ -715,6 +711,7 @@ function validateParameters(metadata, source) {
     if (typeof parameter.required !== 'boolean') {
       fail(source, `${label}.required must be a boolean`);
     }
+    if (typeof parameter.runtime_required !== 'boolean') fail(source, `${label}.runtime_required must be a boolean`);
     if (!PARAM_GROUP_ORDER.includes(parameter.param_group)) {
       fail(source, `${label}.param_group must be one of: ${PARAM_GROUP_ORDER.join(', ')}`);
     }
@@ -811,6 +808,7 @@ function escapeCell(value) {
 }
 
 function acceptedValueSummary(schema) {
+  if (!Object.keys(schema).length) return 'Any JSON value (not constrained upstream)';
   for (const keyword of ['anyOf', 'oneOf']) {
     if (Array.isArray(schema[keyword])) {
       return schema[keyword].map(acceptedValueSummary).filter(Boolean).join(' or ');
@@ -1139,7 +1137,7 @@ function renderEntryContent(entry, controls, {grouped = false, entriesByKey = ne
         escapeCell(parameter.description),
         acceptedValueSummary(parameter.schema),
         hasOwn(parameter, 'runtime_default') ? jsonValue(parameter.runtime_default) : '—',
-        parameter.required ? 'Yes' : 'No',
+        parameter.required ? 'Yes' : conditionallyRequired(metadata.configuration_schema, parameter.name) ? 'Conditional; see schema' : 'No',
       ]),
     ];
   });
@@ -1159,7 +1157,7 @@ function renderEntryContent(entry, controls, {grouped = false, entriesByKey = ne
     requires_external_api_key: 'Requires external API key',
   };
   const accessRows = Object.entries(metadata.access).map(([key, value]) =>
-    `| ${accessLabels[key] || escapeCell(key.replaceAll('_', ' '))} | ${value ? 'Yes' : 'No'} |`,
+    `| ${accessLabels[key] || escapeCell(key.replaceAll('_', ' '))} | ${value === null ? 'Not reviewed' : value ? 'Yes' : 'No'} |`,
   ).join('\n');
 
   const normalizedBody = normalizePublicBody(entry.body, metadata.description, grouped);
@@ -1205,6 +1203,25 @@ ${parameterRows.map((row) => `| ${row.join(' | ')} |`).join('\n')}
 
 </div>
 
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+<details className="ww-field-disclosure">
+
+<summary>Complete configuration schema</summary>
+
+Schema source: ${escapeMdxText(metadata.schema_origin)}. Conditional and cross-parameter
+rules below apply in addition to the parameter table. References resolve against
+the [complete recipe schema](/schemas/recipes/registry/schema.json).
+
+${(metadata.schema_adjustments || []).map(note => `Compatibility correction: ${escapeMdxText(note)}`).join('\n\n')}
+
+\`\`\`json
+${JSON.stringify(metadata.configuration_schema, null, 2)}
+\`\`\`
+
+</details>
+
 ${examplesSection}
 
 <details className="ww-field-disclosure">
@@ -1223,7 +1240,7 @@ ${accessRows}
 
 | Field | Value |
 | --- | --- |
-| Catalog ID | \`${entry.catalog.catalog_id}\` |
+| Catalog ID | ${entry.catalog.catalog_id === null ? 'Pending API-Core registration' : `\`${entry.catalog.catalog_id}\``} |
 | Catalog key | \`${entry.catalog.catalog_key}\` |
 | Recipe key | \`${metadata.wrangle_key}\` |
 | Catalog status | ${entry.catalog.status} |
@@ -1233,6 +1250,7 @@ ${metadata.recipe_writer.reason ? `| Recipe Writer exclusion | ${escapeCell(meta
 | Documentation group | \`${documentationGroup}\` |
 | Aliases | ${aliases} |
 | Runtime symbol | \`${metadata.runtime.symbol}\` |
+| Accepted schema revision | \`${(sourceSnapshot.entry_sources?.[metadata.wrangle_key] || sourceSnapshot.source).revision}\` |
 | Legacy UUID | ${metadata.id ? `\`${metadata.id}\`` : 'None'} |
 
 **Sources**
@@ -1347,9 +1365,9 @@ ${items}
     {
       type: 'category',
       label: 'Connectors',
-      link: {type: 'doc', id: 'python/connectors'},
+      link: {type: 'doc', id: 'namespaces/connectors'},
       collapsed: true,
-      items: [{type: 'autogenerated', dirName: 'python/connectors'}],
+      items: [{type: 'autogenerated', dirName: 'connectors'}],
     },
   ],
 };
@@ -1358,7 +1376,7 @@ export default sidebarsRegistry;
 `;
 }
 
-function renderDocsIndex(groups) {
+function renderDocsIndex(groups, connectors = []) {
   const rows = groups.map(({group, entries}) =>
     `| [${groupLabel(group)}](${groupRoute(group)}) | ${entries.length} | ${groupLabel(group)} wrangles and compatibility entries. |`,
   ).join('\n');
@@ -1379,10 +1397,14 @@ root-level compatibility keys remain in their existing documentation group.
 | Namespace or group | Wrangles | Description |
 | --- | ---: | --- |
 ${rows}
+
+## Connector reference
+
+${connectors.map(entry => `- [\`${entry.runtime_key}\`](/py/connectors/${entry.runtime_key}) — ${Object.keys(entry.operations).join(', ')}`).join('\n')}
 `;
 }
 
-function renderRawIndex(entries) {
+function renderRawIndex(entries, connectors = []) {
   const rows = entries.map((entry) => {
     const rawRelative = posixPath(path.relative(registryRoot, entry.sourceFile));
     return `- [\`${entry.metadata.wrangle_key}\`](${rawRelative}): ${entry.metadata.description}`;
@@ -1402,6 +1424,10 @@ This is the public, agent-readable pre-production bundle. Use \`manifest.json\`
 for structured discovery.
 
 ${rows}
+
+## Connectors
+
+${connectors.map(entry => `- [\`${entry.runtime_key}\`](connectors/${entry.runtime_key}.json): ${Object.keys(entry.operations).join(', ')}`).join('\n')}
 `;
 }
 
@@ -1452,28 +1478,17 @@ function buildRecipeSchema(
 ) {
   const wrangleProperties = {};
   for (const entry of entries) {
-    const parameters = combinedParameters(entry, controls);
-    const properties = Object.fromEntries(
-      parameters
-        .filter((parameter) => !parameter.name_pattern)
-        .map((parameter) => [parameter.name, buildParameterSchema(parameter)]),
-    );
-    const patternProperties = Object.fromEntries(
-      parameters
-        .filter((parameter) => parameter.name_pattern)
-        .map((parameter) => [parameter.name_pattern, buildParameterSchema(parameter)]),
-    );
-    const required = parameters
-      .filter((parameter) => parameter.required && !parameter.name_pattern)
-      .map((parameter) => parameter.name);
-    const configuration = {
-      type: 'object',
-      description: entry.metadata.description,
-      additionalProperties: false,
-      properties,
-    };
-    if (Object.keys(patternProperties).length) configuration.patternProperties = patternProperties;
-    if (required.length) configuration.required = required;
+    if (!entry.metadata.configuration_schema) {
+      fail(entry.sourceFile, 'configuration_schema is required; refresh from the pinned schema');
+      continue;
+    }
+    const configuration = structuredClone(entry.metadata.configuration_schema);
+    const target = objectBranch(configuration);
+    for (const parameter of entry.metadata.parameters) {
+      if (parameter.column_semantics && target.properties?.[parameter.name]) {
+        target.properties[parameter.name]['x-wrangles-column'] = structuredClone(parameter.column_semantics);
+      }
+    }
     for (const recipeKey of [entry.metadata.wrangle_key, ...entry.metadata.aliases]) {
       wrangleProperties[recipeKey] = configuration;
     }
@@ -1496,7 +1511,9 @@ function buildRecipeSchema(
       },
     },
     $defs: {
+      ...structuredClone(sourceSnapshot.recipe_base.$defs),
       wrangles: {
+        ...structuredClone(sourceSnapshot.recipe_base.$defs.wrangles),
         items: {
           type: 'object',
           description: 'One Registry-backed wrangle step.',
@@ -1560,9 +1577,9 @@ function buildCompiledContractSchema(entrySchema) {
       registry_version: {const: REGISTRY_VERSION},
       ...properties,
       catalog_id: {
-        type: 'string',
+        type: ['string', 'null'],
         pattern: '^[1-9][0-9]*$',
-        description: 'API Core BIGINT identity represented as a decimal string.',
+        description: 'API Core BIGINT identity as a decimal string, or null while awaiting registration.',
       },
       catalog_key: {
         type: 'string',
@@ -1575,6 +1592,7 @@ function buildCompiledContractSchema(entrySchema) {
         description: 'Previous documentation UUID retained only for migration compatibility.',
       },
       guidance: {type: 'string'},
+      schema_source: {type: 'object'},
     },
     $defs: JSON.parse(JSON.stringify(entrySchema.$defs || {})),
   };
@@ -1620,7 +1638,12 @@ function buildEntryContract(entry, controls) {
     runtime: metadata.runtime,
     access: metadata.access,
     capabilities: metadata.capabilities,
-    parameters: combinedParameters(entry, controls),
+    configuration_schema: qualifySchemaReferences(metadata.configuration_schema, `${PUBLIC_ORIGIN}/schemas/recipes/registry/schema.json`),
+    schema_origin: metadata.schema_origin,
+    schema_adjustments: metadata.schema_adjustments,
+    schema_source: sourceSnapshot.entry_sources?.[metadata.wrangle_key] || sourceSnapshot.source,
+    parameters: combinedParameters(entry, controls).map(parameter => ({...parameter,
+      schema: qualifySchemaReferences(parameter.schema, `${PUBLIC_ORIGIN}/schemas/recipes/registry/schema.json`)})),
     examples,
     guidance: stripLeadingTitle(entry.body),
     sources: metadata.sources,
@@ -1656,62 +1679,35 @@ function parameterComparisonName(parameter) {
 }
 
 function compareEmbeddedSchema(entry, runtime) {
-  if (runtime.docstring_schema_status === 'missing') {
-    return [{code: 'missing_docstring_schema'}];
-  }
-
+  const expected = configurationSchema(runtime, sourceSnapshot);
   const differences = [];
-  const registryParameters = new Map(
-    entry.metadata.parameters.map((parameter) => [parameterComparisonName(parameter), parameter]),
-  );
-  const runtimeParameters = new Map(
-    runtime.parameters.map((parameter) => [parameter.name, parameter]),
-  );
-  const properties = docstringProperties(runtime.docstring_schema);
-  const required = new Set(docstringRequired(runtime.docstring_schema));
-  const allNames = [...new Set([
-    ...registryParameters.keys(),
-    ...Object.keys(properties),
-  ])].sort();
-
-  for (const name of allNames) {
-    const registryParameter = registryParameters.get(name);
-    const docstringParameter = properties[name];
-    if (!registryParameter) {
-      differences.push({code: 'docstring_only_parameter', parameter: name});
-      continue;
-    }
-    if (!docstringParameter) {
-      differences.push({code: 'registry_only_parameter', parameter: name});
-      continue;
-    }
-
-    const runtimeParameter = runtimeParameters.get(name);
-    if (runtimeParameter && required.has(name) !== runtimeParameter.required) {
-      differences.push({
-        code: 'docstring_required_mismatch',
-        parameter: name,
-        runtime_required: runtimeParameter.required,
-        docstring_required: required.has(name),
-      });
-    }
-    if (!valuesEqual(
-      canonicalizeSchema(registryParameter.schema),
-      canonicalizeSchema(docstringParameter),
-    )) {
-      differences.push({
-        code: 'schema_constraint_difference',
-        parameter: name,
-        registry_schema: canonicalizeSchema(registryParameter.schema),
-        docstring_schema: canonicalizeSchema(docstringParameter),
-      });
-    }
+  if (!valuesEqual(entry.metadata.configuration_schema, expected.schema)) differences.push({code: 'configuration_schema_drift'});
+  if (entry.metadata.schema_origin !== expected.origin) differences.push({code: 'schema_origin_drift'});
+  if (!valuesEqual(entry.metadata.schema_adjustments, expected.adjustments)) differences.push({code: 'schema_adjustments_drift'});
+  const properties = parameterProperties(expected.schema);
+  for (const parameter of entry.metadata.parameters) {
+    const name = parameterComparisonName(parameter);
+    if (!valuesEqual(parameter.schema, properties[name] || {})) differences.push({code: 'parameter_schema_drift', parameter: name});
+    if (parameter.required !== schemaRequired(expected.schema, name)) differences.push({code: 'schema_required_drift', parameter: name});
   }
-
-  if (runtime.docstring_schema.additionalProperties !== false) {
-    differences.push({code: 'docstring_allows_additional_properties'});
-  }
+  for (const difference of differences) fail(entry.sourceFile, JSON.stringify(difference));
   return differences;
+}
+
+function upstreamSchemaIssues(runtime) {
+  const issues = [];
+  const properties = parameterProperties(runtime.docstring_schema || {});
+  if (!runtime.docstring_schema) issues.push({code: 'missing_upstream_schema', resolution: configurationSchema(runtime, sourceSnapshot).origin});
+  else for (const parameter of runtime.parameters) {
+    if (!properties[parameter.name]) {
+      issues.push({code: 'signature_parameter_not_declared_by_schema', parameter: parameter.name});
+    } else if (schemaRequired(runtime.docstring_schema, parameter.name) !== parameter.required) {
+      issues.push({code: 'upstream_required_mismatch', parameter: parameter.name,
+        runtime_required: parameter.required, schema_required: schemaRequired(runtime.docstring_schema, parameter.name)});
+    }
+  }
+  for (const resolution of configurationSchema(runtime, sourceSnapshot).adjustments) issues.push({code: 'upstream_invalid_schema_type', resolution});
+  return issues;
 }
 
 function effectiveRuntimeParameters(runtime) {
@@ -1721,15 +1717,14 @@ function effectiveRuntimeParameters(runtime) {
       source: 'signature',
     }]),
   );
-  if (runtime.variadic.keyword && runtime.docstring_schema_status === 'available') {
-    const properties = docstringProperties(runtime.docstring_schema);
-    const required = new Set(docstringRequired(runtime.docstring_schema));
+  if (runtime.docstring_schema_status === 'available') {
+    const properties = parameterProperties(runtime.docstring_schema);
     for (const name of Object.keys(properties)) {
       if (!parameters.has(name)) {
         parameters.set(name, {
           name,
-          required: required.has(name),
-          source: 'embedded-schema-for-kwargs',
+          required: false,
+          source: 'embedded-schema-only',
         });
       }
     }
@@ -1795,11 +1790,11 @@ function reconcileRegistry(entries, runtimeManifest) {
           issues.push({code: 'registry_only_parameter', parameter: name});
           continue;
         }
-        if (registryParameter.required !== runtimeParameter.required) {
+        if ((registryParameter.runtime_required ?? registryParameter.required) !== runtimeParameter.required) {
           issues.push({
             code: 'required_mismatch',
             parameter: name,
-            registry: registryParameter.required,
+            registry: registryParameter.runtime_required ?? registryParameter.required,
             runtime: runtimeParameter.required,
           });
         }
@@ -1845,6 +1840,9 @@ function reconcileRegistry(entries, runtimeManifest) {
       status: runtime && issues.length === 0 ? 'verified' : 'conflict',
       runtime_issues: issues,
       embedded_schema_differences: runtime ? compareEmbeddedSchema(entry, runtime) : [],
+      upstream_schema_issues: runtime ? upstreamSchemaIssues(runtime) : [],
+      schema_origin: entry.metadata.schema_origin,
+      schema_adjustments: entry.metadata.schema_adjustments,
     });
   }
 
@@ -1852,12 +1850,8 @@ function reconcileRegistry(entries, runtimeManifest) {
     .filter((runtime) => !normalizedByDeclaredKey.has(runtime.runtime_key))
     .map((runtime) => runtime.runtime_key)
     .sort();
-  for (const runtimeKey of runtimeWithoutNormalized) {
-    fail(
-      runtimeManifestPath,
-      `runtime key ${runtimeKey} has no Registry entry`,
-    );
-  }
+  // Keep the complete upstream inventory. New upstream entries are reported,
+  // not silently published without curated Markdown and catalog reconciliation.
 
   return {
     format: 'wrangles-registry-reconciliation',
@@ -1870,6 +1864,10 @@ function reconcileRegistry(entries, runtimeManifest) {
         (wrangle) => wrangle.docstring_schema_status === 'available',
       ).length,
       normalized_registry_entries: entries.length,
+      entries_with_upstream_schema_issues: normalizedResults.filter(result => result.upstream_schema_issues.length > 0).length,
+      unmodified_upstream_schemas: normalizedResults.filter(result => result.schema_origin === 'upstream-docstring' && !result.schema_adjustments.length).length,
+      corrected_upstream_schemas: normalizedResults.filter(result => result.schema_adjustments.length).length,
+      derived_schema_fallbacks: normalizedResults.filter(result => result.schema_origin !== 'upstream-docstring').length,
       normalized_verified_entries: normalizedResults.filter(
         (result) => result.status === 'verified',
       ).length,
@@ -1889,7 +1887,7 @@ function reconcileRegistry(entries, runtimeManifest) {
   };
 }
 
-function reconcileCatalog(entries, catalogSnapshot) {
+function reconcileCatalog(entries, catalogSnapshot, connectors = []) {
   const catalogByWrangleKey = new Map(
     catalogSnapshot.entries
       .filter((entry) => entry.wrangle_key !== null)
@@ -1903,7 +1901,7 @@ function reconcileCatalog(entries, catalogSnapshot) {
     const key = entry.metadata.wrangle_key;
     const catalog = catalogByWrangleKey.get(key);
     if (!catalog) {
-      fail(entry.sourceFile, `API Core catalog has no row for wrangle_key ${key}`);
+      entry.catalog = {catalog_id: null, catalog_key: key, status: 'pending-registration'};
       continue;
     }
     entry.catalog = catalog;
@@ -1923,7 +1921,7 @@ function reconcileCatalog(entries, catalogSnapshot) {
         catalog: catalog.kind,
       });
     }
-    if (catalog.title !== entry.metadata.title) {
+    if (catalog.title !== null && catalog.title !== entry.metadata.title) {
       conflicts.push({
         code: 'title_mismatch',
         registry: entry.metadata.title,
@@ -1966,8 +1964,10 @@ function reconcileCatalog(entries, catalogSnapshot) {
     });
   }
 
+  const connectorKeys = new Set(connectors.map(entry => entry.catalog_key));
   const catalogOnlyEntries = catalogSnapshot.entries
-    .filter((entry) => entry.wrangle_key === null || !registryKeys.has(entry.wrangle_key))
+    .filter((entry) => !connectorKeys.has(entry.catalog_key)
+      && (entry.wrangle_key === null || !registryKeys.has(entry.wrangle_key)))
     .map((entry) => ({
       catalog_id: entry.catalog_id,
       catalog_key: entry.catalog_key,
@@ -1985,6 +1985,8 @@ function reconcileCatalog(entries, catalogSnapshot) {
     catalog_source: catalogSnapshot.source,
     summary: {
       catalog_entries: catalogSnapshot.entries.length,
+      pending_registration: entries.filter(entry => entry.catalog?.catalog_id === null).length,
+      matched_connector_entries: connectors.length,
       registry_entries: entries.length,
       matched_entries: matchedEntries.filter((entry) => entry.status === 'matched').length,
       conflicting_entries: matchedEntries.filter((entry) => entry.status === 'conflict').length,
@@ -1995,11 +1997,19 @@ function reconcileCatalog(entries, catalogSnapshot) {
       catalog_only_entries: catalogOnlyEntries.length,
     },
     matched_entries: matchedEntries,
+    pending_registration: entries.filter(entry => entry.catalog?.catalog_id === null).map(entry => entry.metadata.wrangle_key),
+    matched_connectors: connectors.map(entry => ({catalog_id: entry.catalog_id,
+      catalog_key: entry.catalog_key, runtime_key: entry.runtime_key,
+      operations: Object.keys(entry.operations), source: entry.source, status: 'matched'})),
     catalog_only_entries: catalogOnlyEntries,
   };
 }
 
 function renderReconciliationReport(report) {
+  const upstreamRows = report.normalized_registry_entries.flatMap(entry =>
+    entry.upstream_schema_issues.map(issue => `| \`${entry.wrangle_key}\` | ${issue.code} | ${issue.parameter || '—'} | ${issue.resolution || (issue.code === 'signature_parameter_not_declared_by_schema'
+      ? 'Python accepts this parameter, but the upstream schema does not declare a constraint for it.'
+      : `Python required=${issue.runtime_required}; schema required=${issue.schema_required}`)} |`)).join('\n');
   const registryRows = report.normalized_registry_entries.map((entry) => {
     const runtimeKeys = entry.matched_runtime_keys.length
       ? entry.matched_runtime_keys.map((key) => `\`${key}\``).join(', ')
@@ -2031,12 +2041,16 @@ Generated file. Do not edit directly.
 - Embedded Python schema docstrings: ${report.summary.embedded_schema_entries}
 - Registry entries: ${report.summary.normalized_registry_entries}
 - Verified Registry entries: ${report.summary.normalized_verified_entries}
+- Unmodified upstream schemas (plus shared controls): ${report.summary.unmodified_upstream_schemas}
+- Upstream schemas with explicit syntax corrections: ${report.summary.corrected_upstream_schemas}
+- Explicit alias/signature-derived fallbacks: ${report.summary.derived_schema_fallbacks}
 - Runtime entries without Registry entries: ${report.summary.runtime_entries_without_normalized_registry}
 
 The compiler reconciles Registry records directly with the pinned WranglesPY
 runtime manifest. Signature-owned names, required status, defaults, symbols,
-and common-control capabilities must agree. Embedded Python schema differences
-remain migration evidence until the runtime-owned contract migration is complete.
+and common-control capabilities must agree. Full-schema drift is a build failure.
+Upstream contradictions and explicit compatibility corrections are reported
+separately below, not counted as Registry drift or silently discarded.
 
 ## Normalized Registry entries
 
@@ -2049,6 +2063,15 @@ ${registryRows}
 | Registry key | Difference | Parameter | Detail |
 | --- | --- | --- | --- |
 ${embeddedRows || '| — | none | — | — |'}
+
+## Upstream schema issues and compatibility corrections
+
+These are limitations of the pinned upstream source, not claims of full runtime
+correctness. Schema requiredness is preserved independently from Python requiredness.
+
+| Wrangle | Issue | Parameter | Detail |
+| --- | --- | --- | --- |
+${upstreamRows}
 `;
 }
 
@@ -2073,15 +2096,22 @@ Generated file. Do not edit directly.
 - Catalog rows: ${report.summary.catalog_entries}
 - Callable Registry entries: ${report.summary.registry_entries}
 - Identity matches: ${report.summary.matched_entries}
+- Connector matches: ${report.summary.matched_connector_entries}
 - Identity conflicts: ${report.summary.conflicting_entries}
 - Lifecycle/status differences: ${report.summary.entries_with_status_differences}
 - Missing catalog registry paths: ${report.summary.entries_without_catalog_registry_path}
 - Catalog-only rows: ${report.summary.catalog_only_entries}
 
-The compiler joins callable entries to API Core by \`wrangle_key\`. A missing row,
-duplicate identity, key mismatch, kind mismatch, or title mismatch fails the build.
+The compiler joins callable entries to API Core by \`wrangle_key\`. Missing rows
+remain explicitly pending registration (${report.summary.pending_registration || 0});
+no database IDs are invented. Duplicate identity, key mismatch, kind mismatch,
+or title mismatch fails the build.
 Status and path differences remain visible migration work and do not silently
 change the executable contract.
+
+Connector records are joined by catalog key and checked against their exact
+WranglesPY source revision and operation schemas. Their matches are included in
+the JSON report under \`matched_connectors\`.
 
 ## Status differences
 
@@ -2146,8 +2176,16 @@ async function readInputs() {
   const entrySchema = JSON.parse(entrySchemaSource);
   const catalogSnapshotSchema = JSON.parse(catalogSnapshotSchemaSource);
   const runtimeManifestSchema = JSON.parse(runtimeManifestSchemaSource);
-  const catalogSnapshot = JSON.parse(await fs.readFile(catalogSnapshotPath, 'utf8'));
+  const catalogResponse = JSON.parse(await fs.readFile(catalogSnapshotPath, 'utf8'));
+  const catalogSnapshot = normalizeApiCatalog(catalogResponse, catalogSnapshotSchema.$id);
+  const sourceSchema = JSON.parse(await fs.readFile(path.join(registryRoot, 'runtime', 'wranglespy-source-schema.json'), 'utf8'));
+  const connectors = loadConnectors(repositoryRoot, catalogResponse, sourceSchema);
   const runtimeManifest = JSON.parse(await fs.readFile(runtimeManifestPath, 'utf8'));
+  for (const field of ['repository', 'version', 'revision']) {
+    if (runtimeManifest.source[field] !== sourceSchema.source[field]) {
+      fail(runtimeManifestPath, `runtime and connector source ${field} must match`);
+    }
+  }
   validateCatalogSnapshot(catalogSnapshot, catalogSnapshotSchema);
   validateRuntimeManifest(runtimeManifest);
   if (runtimeManifest.$schema !== runtimeManifestSchema.$id) {
@@ -2228,6 +2266,9 @@ async function readInputs() {
   return {
     entries,
     controls: commonDocument.controls,
+    connectors,
+    sourceSchema,
+    catalogResponse,
     catalogSnapshot,
     runtimeManifest,
     registrySchemas: {
@@ -2246,6 +2287,9 @@ function buildOutputs(
   registrySchemas,
   catalogSnapshot,
   runtimeManifest,
+  connectors,
+  sourceSchema,
+  catalogResponse,
 ) {
   const publicEntries = entries
     .filter((entry) => entry.metadata.visibility === 'public')
@@ -2259,7 +2303,7 @@ function buildOutputs(
   const entriesByKey = new Map(publicEntries.map((entry) => [entry.metadata.wrangle_key, entry]));
   const bundleMembers = [];
 
-  addGeneratedFile(path.join(docsOutputRoot, 'index.md'), renderDocsIndex(groups));
+  addGeneratedFile(path.join(docsOutputRoot, 'index.md'), renderDocsIndex(groups, connectors));
   addGeneratedFile(registrySidebarPath, renderRegistrySidebar(groups));
   for (const group of groups) {
     addGeneratedFile(
@@ -2293,13 +2337,13 @@ function buildOutputs(
     }
   }
 
-  addGeneratedFile(path.join(rawOutputRoot, 'index.md'), renderRawIndex(publicEntries));
+  addGeneratedFile(path.join(rawOutputRoot, 'index.md'), renderRawIndex(publicEntries, connectors));
 
   addBundleArtifact(
     bundleMembers,
     '/schemas/recipes/registry/schema.json',
     path.join(schemaOutputRoot, 'schema.json'),
-    JSON.stringify(buildRecipeSchema(publicEntries, controls), null, 2),
+    JSON.stringify(withConnectors(buildRecipeSchema(publicEntries, controls), connectors, sourceSchema), null, 2),
   );
   const recipeWriterSchema = buildRecipeSchema(recipeWriterEntries, controls, {
     schemaFilename: 'recipe-writer.schema.json',
@@ -2377,6 +2421,38 @@ function buildOutputs(
     JSON.stringify(reconciliationSummary, null, 2),
   );
 
+  for (const connector of connectors) {
+    addGeneratedFile(path.join(docsOutputRoot, 'connectors', `${connector.runtime_key}.md`),
+      renderConnector(connector, sourceSchema));
+    addBundleArtifact(bundleMembers, `/registry/connectors/${connector.runtime_key}.json`,
+      path.join(rawOutputRoot, 'connectors', `${connector.runtime_key}.json`), JSON.stringify(compiledConnector(connector), null, 2));
+    addBundleArtifact(bundleMembers, `/registry/connectors/${connector.runtime_key}.md`,
+      path.join(rawOutputRoot, 'connectors', `${connector.runtime_key}.md`),
+      require('node:fs').readFileSync(path.join(registryRoot, 'connectors', `${connector.runtime_key}.md`), 'utf8'));
+    connectorRedirect(connector.runtime_key.replaceAll('.', '/'), `/py/${connector.slug}`);
+  }
+  function connectorRedirect(suffix, destination) {
+    // Static redirect documents preserve bookmarks without duplicate docs/routes.
+    addGeneratedFile(path.join(connectorRedirectRoot, suffix, 'index.html'),
+      `<!doctype html>\n<html lang="en"><head><meta charset="utf-8"><title>Page moved</title><link rel="canonical" href="${PUBLIC_ORIGIN}${destination}"><meta http-equiv="refresh" content="0;url=${destination}"></head><body><a href="${destination}">Continue to the Registry</a><script>location.replace(${JSON.stringify(destination)} + location.search + location.hash);</script></body></html>\n`);
+  }
+  function connectorIndex(title, slug, members) {
+    return `---\ntitle: ${JSON.stringify(title)}\nslug: /${slug}\n---\n\n# ${title}\n\n` +
+      members.map(connector => `- [${escapeMdxText(connector.title)}](/py/${connector.slug}): ${escapeMdxText(connector.description.replace(/\s+/g, ' ').trim())}`).join('\n') + '\n';
+  }
+  addGeneratedFile(path.join(docsOutputRoot, 'namespaces/connectors.md'),
+    connectorIndex('Connectors', 'connectors', connectors));
+  connectorRedirect('', '/py/connectors');
+  for (const family of ['excel', 'train']) {
+    connectorRedirect(family, '/py/connectors');
+  }
+  addBundleArtifact(bundleMembers, '/registry/catalog/api-core-response.json',
+    path.join(rawOutputRoot, 'catalog', 'api-core-response.json'), JSON.stringify(catalogResponse, null, 2));
+  addBundleArtifact(bundleMembers, '/registry/runtime/wranglespy-source-schema.json',
+    path.join(rawOutputRoot, 'runtime', 'wranglespy-source-schema.json'), JSON.stringify(sourceSchema, null, 2));
+  addBundleArtifact(bundleMembers, '/registry/schema/connector-entry.schema.json',
+    path.join(rawOutputRoot, 'schema', 'connector-entry.schema.json'),
+    require('node:fs').readFileSync(path.join(registryRoot, 'schema', 'connector-entry.schema.json'), 'utf8'));
   const integrity = buildBundleIntegrity(bundleMembers);
   const manifest = {
     format: 'wrangles-registry',
@@ -2385,6 +2461,7 @@ function buildOutputs(
     source_entry_schema_version: SOURCE_ENTRY_SCHEMA_VERSION,
     status: 'pre-production',
     compatibility: {
+      scope: 'wrangle-contracts',
       wranglespy_version: runtimeManifest.source.version,
       wranglespy_revision: runtimeManifest.source.revision,
       compatible_wranglespy: `==${runtimeManifest.source.version}`,
@@ -2403,6 +2480,16 @@ function buildOutputs(
         catalogReconciliation.summary.entries_with_status_differences,
     },
     entry_count: publicEntries.length,
+    connector_entry_count: connectors.length,
+    connector_source: sourceSchema.source,
+    connectors: connectors.map(connector => ({
+      catalog_id: connector.catalog_id, catalog_key: connector.catalog_key,
+      runtime_key: connector.runtime_key, status: connector.status,
+      operations: Object.keys(connector.operations),
+      route: `/py/connectors/${connector.runtime_key}`,
+      contract_json: `/registry/connectors/${connector.runtime_key}.json`,
+      raw_markdown: `/registry/connectors/${connector.runtime_key}.md`,
+    })),
     entries: publicEntries.map((entry) => ({
       type: entry.metadata.type,
       catalog_id: entry.catalog.catalog_id,
@@ -2433,6 +2520,9 @@ function buildOutputs(
       recipe_writer_schema: '/schemas/recipes/registry/recipe-writer.schema.json',
       entry_schema: '/registry/schema/wrangle-entry.schema.json',
       catalog_snapshot: '/registry/catalog/api-core.json',
+      catalog_response: '/registry/catalog/api-core-response.json',
+      source_schema: '/registry/runtime/wranglespy-source-schema.json',
+      connector_entry_schema: '/registry/schema/connector-entry.schema.json',
       catalog_snapshot_schema: '/registry/schema/catalog-snapshot.schema.json',
       catalog_reconciliation: '/registry/catalog/reconciliation.json',
       compiled_contract_schema: '/registry/schema/wrangle-contract.schema.json',
@@ -2484,7 +2574,7 @@ async function checkOutputs() {
     if (actual !== expected) fail(filename, 'generated artifact is stale; run npm run compile:registry');
   }
 
-  const managedRoots = [docsOutputRoot, rawOutputRoot, schemaOutputRoot, reportsOutputRoot];
+  const managedRoots = [docsOutputRoot, rawOutputRoot, schemaOutputRoot, reportsOutputRoot, connectorRedirectRoot];
   const expectedPaths = new Set(generatedFiles.keys());
   const manualPythonDocsPrefix = `${path.resolve(manualPythonDocsRoot)}${path.sep}`;
   for (const root of managedRoots) {
@@ -2492,7 +2582,9 @@ async function checkOutputs() {
       const resolvedFilename = path.resolve(filename);
       if (
         !expectedPaths.has(resolvedFilename) &&
-        !resolvedFilename.startsWith(manualPythonDocsPrefix)
+        (!resolvedFilename.startsWith(manualPythonDocsPrefix)
+          || resolvedFilename === path.join(manualPythonDocsRoot, 'connectors.md')
+          || resolvedFilename.startsWith(path.join(manualPythonDocsRoot, 'connectors') + path.sep))
       ) {
         fail(filename, 'unexpected generated artifact');
       }
@@ -2508,9 +2600,12 @@ async function main() {
     catalogSnapshot,
     runtimeManifest,
     registrySchemas,
+    connectors,
+    sourceSchema,
+    catalogResponse,
   } = await readInputs();
   const reconciliation = reconcileRegistry(entries, runtimeManifest);
-  const catalogReconciliation = reconcileCatalog(entries, catalogSnapshot);
+  const catalogReconciliation = reconcileCatalog(entries, catalogSnapshot, connectors);
   if (entries.some((entry) => !entry.catalog)) {
     throw new Error(`Registry validation failed:\n- ${errors.join('\n- ')}`);
   }
@@ -2522,6 +2617,9 @@ async function main() {
     registrySchemas,
     catalogSnapshot,
     runtimeManifest,
+    connectors,
+    sourceSchema,
+    catalogResponse,
   );
 
   if (errors.length) {
@@ -2546,7 +2644,7 @@ async function main() {
   console.log(
     `Matched ${catalogReconciliation.summary.matched_entries} callable entries to ` +
     `${catalogReconciliation.summary.catalog_entries} API Core catalog rows; ` +
-    `${catalogReconciliation.summary.catalog_only_entries} catalog-only row remains excluded.`,
+    `${connectors.length} connectors matched; ${catalogReconciliation.summary.catalog_only_entries} catalog-only rows remain excluded.`,
   );
 }
 
@@ -2557,4 +2655,4 @@ if (require.main === module) {
   });
 }
 
-module.exports = {validateColumnSemantics};
+module.exports = {validateColumnSemantics, compareEmbeddedSchema};

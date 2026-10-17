@@ -23,20 +23,98 @@ Pad a string to a fixed length
 | Name | Description | Accepted Values | Default | Required |
 | --- | --- | --- | --- | --- |
 | <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `input` | Name of the input column. | string, integer, array | — | Yes |
-| `output` | Name of the output column. | string, array, null | `null` | No |
+| `input` | Name of the input column | string, integer, array | — | Yes |
+| `output` | Name of the output column | string, array | `null` | No |
 | <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `side` | Side from which to fill resulting string. | string | — | Yes |
-| `skip_empty` | If true, skip padding for empty or whitespace-only values. | boolean | `false` | No |
+| `side` | Side from which to fill resulting string | string | — | Yes |
+| `skip_empty` | If true, skip padding for empty or whitespace-only values | boolean | `false` | No |
 | <span className="ww-param-group-label">Formatting</span> |  |  |  |  |
-| `pad_length` | Length for the output. | integer | — | Yes |
-| `char` | The character to pad the input with. | string | — | Yes |
+| `pad_length` | Length for the output | number | — | Yes |
+| `char` | The character to pad the input with | string | — | Yes |
 | <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
 | `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
 | `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
 | `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
 
 </div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+<details className="ww-field-disclosure">
+
+<summary>Complete configuration schema</summary>
+
+Schema source: upstream-docstring. Conditional and cross-parameter
+rules below apply in addition to the parameter table. References resolve against
+the [complete recipe schema](/schemas/recipes/registry/schema.json).
+
+
+
+```json
+{
+  "type": "object",
+  "description": "Pad a string to a fixed length",
+  "additionalProperties": false,
+  "required": [
+    "input",
+    "pad_length",
+    "side",
+    "char"
+  ],
+  "properties": {
+    "input": {
+      "type": [
+        "string",
+        "integer",
+        "array"
+      ],
+      "description": "Name of the input column"
+    },
+    "output": {
+      "type": [
+        "string",
+        "array"
+      ],
+      "description": "Name of the output column"
+    },
+    "pad_length": {
+      "type": [
+        "number"
+      ],
+      "description": "Length for the output"
+    },
+    "side": {
+      "type": [
+        "string"
+      ],
+      "description": "Side from which to fill resulting string"
+    },
+    "char": {
+      "type": [
+        "string"
+      ],
+      "description": "The character to pad the input with"
+    },
+    "skip_empty": {
+      "type": "boolean",
+      "description": "If true, skip padding for empty or whitespace-only values",
+      "default": false
+    },
+    "if": {
+      "$ref": "#/$defs/wrangles/commonProperties/if"
+    },
+    "where": {
+      "$ref": "#/$defs/wrangles/commonProperties/where"
+    },
+    "where_params": {
+      "$ref": "#/$defs/wrangles/commonProperties/where_params"
+    }
+  }
+}
+```
+
+</details>
 
 ## Examples
 
@@ -104,6 +182,7 @@ wrangles:
 | Documentation group | `format` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.format.pad` |
+| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
 | Legacy UUID | `76c19378-38f4-45aa-85d1-3cdf8f8aae29` |
 
 **Sources**

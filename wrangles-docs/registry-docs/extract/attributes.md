@@ -26,20 +26,143 @@ Extract numeric attributes from unstructured text such as lengths, voltages, wei
 | `input` | Name of the input column. | string, integer, array | — | Yes |
 | `output` | Name of the output column. | string, array | — | Yes |
 | <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `responseContent` | Span - returns the text found. object - returns an object with the value and unit. | string; one of:<ul className="ww-param-enum-values"><li>span</li><li>object</li></ul> | `"span"` | No |
-| `attribute_type` | Request only a specific type of attribute. | string, null; one of:<ul className="ww-param-enum-values"><li>angle</li><li>area</li><li>capacitance</li><li>charge</li><li>current</li><li>data transfer rate</li><li>electrical conductance</li><li>electrical resistance</li><li>energy</li><li>force</li><li>frequency</li><li>inductance</li><li>instance frequency</li><li>length</li><li>luminous flux</li><li>weight</li><li>power</li><li>pressure</li><li>speed</li><li>velocity</li><li>temperature</li><li>time</li><li>voltage</li><li>volume</li><li>volumetric flow</li></ul> | `null` | No |
-| `desired_unit` | Convert the extracted unit to the desired unit. | string, null | `null` | No |
+| `responseContent` | span - returns the text found. object - returns an object with the value and unit | string; one of:<ul className="ww-param-enum-values"><li>span</li><li>object</li></ul> | `"span"` | No |
+| `attribute_type` | Request only a specific type of attribute | string; one of:<ul className="ww-param-enum-values"><li>angle</li><li>area</li><li>capacitance</li><li>charge</li><li>current</li><li>data transfer rate</li><li>electrical conductance</li><li>electrical resistance</li><li>energy</li><li>force</li><li>frequency</li><li>inductance</li><li>instance frequency</li><li>length</li><li>luminous flux</li><li>weight</li><li>power</li><li>pressure</li><li>speed</li><li>velocity</li><li>temperature</li><li>time</li><li>voltage</li><li>volume</li><li>volumetric flow</li></ul> | `null` | No |
+| `desired_unit` | Convert the extracted unit to the desired unit | string | `null` | No |
 | `bound` | When returning an object, if the input is a range (e.g. 10-20mm) set the value to return. min, mid or max. Default mid. | string; one of:<ul className="ww-param-enum-values"><li>min</li><li>mid</li><li>max</li></ul> | `"mid"` | No |
 | <span className="ww-param-group-label">Formatting</span> |  |  |  |  |
-| `first_element` | Get the first element from results. | boolean | `false` | No |
-| `output_format` | Format of the extract output. | string, null; one of:<ul className="ww-param-enum-values"><li>list</li><li>dictionary</li><li>columns</li><li>concatenate</li></ul> | `null` | No |
-| `char` | Character to use when output_format is concatenate. | string | `", "` | No |
+| `first_element` | Get the first element from results | boolean | `false` | No |
+| `output_format` | Format of the extract output | string; one of:<ul className="ww-param-enum-values"><li>list</li><li>dictionary</li><li>columns</li><li>concatenate</li></ul> | `null` | No |
+| `char` | Character to use when output_format is concatenate | string | `", "` | No |
 | <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
 | `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
 | `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
 | `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
 
 </div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+<details className="ww-field-disclosure">
+
+<summary>Complete configuration schema</summary>
+
+Schema source: upstream-docstring. Conditional and cross-parameter
+rules below apply in addition to the parameter table. References resolve against
+the [complete recipe schema](/schemas/recipes/registry/schema.json).
+
+
+
+```json
+{
+  "type": "object",
+  "description": "Extract numeric attributes from the input such as weights or lengths. Requires WrangleWorks Account.",
+  "required": [
+    "input",
+    "output"
+  ],
+  "properties": {
+    "input": {
+      "type": [
+        "string",
+        "integer",
+        "array"
+      ],
+      "description": "Name of the input column."
+    },
+    "output": {
+      "type": [
+        "string",
+        "array"
+      ],
+      "description": "Name of the output column."
+    },
+    "attribute_type": {
+      "type": "string",
+      "description": "Request only a specific type of attribute",
+      "enum": [
+        "angle",
+        "area",
+        "capacitance",
+        "charge",
+        "current",
+        "data transfer rate",
+        "electrical conductance",
+        "electrical resistance",
+        "energy",
+        "force",
+        "frequency",
+        "inductance",
+        "instance frequency",
+        "length",
+        "luminous flux",
+        "weight",
+        "power",
+        "pressure",
+        "speed",
+        "velocity",
+        "temperature",
+        "time",
+        "voltage",
+        "volume",
+        "volumetric flow"
+      ]
+    },
+    "responseContent": {
+      "type": "string",
+      "description": "span - returns the text found. object - returns an object with the value and unit",
+      "enum": [
+        "span",
+        "object"
+      ]
+    },
+    "bound": {
+      "type": "string",
+      "description": "When returning an object, if the input is a range (e.g. 10-20mm) set the value to return. min, mid or max. Default mid.",
+      "enum": [
+        "min",
+        "mid",
+        "max"
+      ]
+    },
+    "desired_unit": {
+      "type": "string",
+      "description": "Convert the extracted unit to the desired unit"
+    },
+    "first_element": {
+      "type": "boolean",
+      "description": "Get the first element from results"
+    },
+    "output_format": {
+      "type": "string",
+      "description": "Format of the extract output",
+      "enum": [
+        "list",
+        "dictionary",
+        "columns",
+        "concatenate"
+      ]
+    },
+    "char": {
+      "type": "string",
+      "description": "Character to use when output_format is concatenate"
+    },
+    "if": {
+      "$ref": "#/$defs/wrangles/commonProperties/if"
+    },
+    "where": {
+      "$ref": "#/$defs/wrangles/commonProperties/where"
+    },
+    "where_params": {
+      "$ref": "#/$defs/wrangles/commonProperties/where_params"
+    }
+  },
+  "$ref": "#/$defs/misc/unit_entity_map"
+}
+```
+
+</details>
 
 ## Examples
 
@@ -113,7 +236,7 @@ wrangles:
       input: Tools
       output: attributes
       responseContent: span
-      attribute_type: mass      # Specific attributes
+      attribute_type: weight    # Specific attributes
 ```
 
 <div className="ww-sample-grid">
@@ -161,6 +284,7 @@ _No sample available._
 | Documentation group | `extract` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.extract.attributes` |
+| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
 | Legacy UUID | `03ccedef-c938-41f1-8980-280f1a91542e` |
 
 **Sources**

@@ -31,7 +31,7 @@ capabilities:
   where_params: true
 parameters:
   - name: input
-    description: Name of the input column.
+    description: Name of the input column
     required: true
     param_group: I/O
     schema:
@@ -39,15 +39,20 @@ parameters:
         - string
         - integer
         - array
+      description: Name of the input column
+    runtime_required: true
   - name: decimals
-    description: Number of decimals to round fraction.
+    description: Number of decimals to round fraction
     required: false
     param_group: Formatting
     runtime_default: 4
     schema:
-      type: integer
+      type:
+        - number
+      description: Number of decimals to round fraction
+    runtime_required: false
   - name: output
-    description: Name of the output colum.
+    description: Name of the output colum
     required: false
     param_group: I/O
     runtime_default: null
@@ -55,7 +60,8 @@ parameters:
       type:
         - string
         - array
-        - 'null'
+      description: Name of the output colum
+    runtime_required: false
 examples: []
 sources:
   - id: runtime
@@ -66,6 +72,36 @@ sources:
     resource: >-
       https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/convert/_sources/fraction-to-decimal.md
     title: Archived convert.fraction_to_decimal Markdown
+configuration_schema:
+  type: object
+  description: Convert fractions to decimals
+  additionalProperties: false
+  required:
+    - input
+  properties:
+    input:
+      type:
+        - string
+        - integer
+        - array
+      description: Name of the input column
+    output:
+      type:
+        - string
+        - array
+      description: Name of the output colum
+    decimals:
+      type:
+        - number
+      description: Number of decimals to round fraction
+    if:
+      $ref: '#/$defs/wrangles/commonProperties/if'
+    where:
+      $ref: '#/$defs/wrangles/commonProperties/where'
+    where_params:
+      $ref: '#/$defs/wrangles/commonProperties/where_params'
+schema_origin: upstream-docstring
+schema_adjustments: []
 ---
 
 # Fraction to Decimal

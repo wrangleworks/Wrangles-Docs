@@ -1,0 +1,150 @@
+{
+  "schema_version": "0.2",
+  "type": "connector",
+  "catalog_id": "120",
+  "catalog_key": "connector.mongodb",
+  "catalog_kind": "connector",
+  "runtime_key": "mongodb",
+  "status": "active",
+  "title": "MongoDB",
+  "source": {
+    "repository": "https://github.com/wrangleworks/WranglesPY",
+    "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+    "version": "1.20.5",
+    "extraction": "static-python-ast"
+  },
+  "operations": {
+    "read": {
+      "type": "object",
+      "description": "Import data from a mongoDB Server",
+      "required": [
+        "user",
+        "password",
+        "database",
+        "collection",
+        "host",
+        "query"
+      ],
+      "properties": {
+        "user": {
+          "type": "string",
+          "description": "User with access to the database"
+        },
+        "password": {
+          "type": "string",
+          "description": "Password of user"
+        },
+        "database": {
+          "type": "string",
+          "description": "Database to be queried"
+        },
+        "host": {
+          "type": "string",
+          "description": "mongoDB cluster-url"
+        },
+        "query": {
+          "type": "string",
+          "description": "mongoDB query"
+        },
+        "projection": {
+          "type": "string",
+          "description": "Select which fields to include"
+        },
+        "columns": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/columns"
+        },
+        "not_columns": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/not_columns"
+        },
+        "where": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/where"
+        },
+        "where_params": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/where_params"
+        },
+        "order_by": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/order_by"
+        },
+        "if": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/if"
+        }
+      }
+    },
+    "write": {
+      "type": "object",
+      "description": "Write data into a mongoDB database",
+      "required": [
+        "user",
+        "password",
+        "database",
+        "collection",
+        "host",
+        "action"
+      ],
+      "properties": {
+        "user": {
+          "type": "string",
+          "description": "User with access to the database"
+        },
+        "password": {
+          "type": "string",
+          "description": "Password of user"
+        },
+        "database": {
+          "type": "string",
+          "description": "Database to be queried"
+        },
+        "host": {
+          "type": "string",
+          "description": "mongoDB cluster-url"
+        },
+        "action": {
+          "type": "string",
+          "description": "action to perform, actions supported INSERT UPDATE"
+        },
+        "query": {
+          "type": "object",
+          "description": "mongoDB query to search for value to update or delete, only valid when using UPDATE, DELETE"
+        },
+        "update": {
+          "type": "object",
+          "description": "mongoDB query value to update, only valid when using UPDATE"
+        },
+        "columns": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/columns"
+        },
+        "not_columns": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/not_columns"
+        },
+        "where": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/where"
+        },
+        "where_params": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/where_params"
+        },
+        "order_by": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/order_by"
+        },
+        "if": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/if"
+        }
+      }
+    }
+  },
+  "description": "Import data from a mongoDB Server",
+  "slug": "connectors/mongodb",
+  "visibility": "public",
+  "sources": [
+    {
+      "id": "runtime",
+      "resource": "https://github.com/wrangleworks/WranglesPY/tree/bd5f88fba479ec406b409cb2880689c54e72b298",
+      "title": "Pinned WranglesPY connector schema"
+    },
+    {
+      "id": "existing-docs",
+      "resource": "wrangles-docs/registry-docs/python/connectors/mongodb.md",
+      "title": "Existing connector documentation"
+    }
+  ],
+  "guidance": "The MongoDB connector supports read and writing to/from a collection.\n\n### Read\n### Recipe\n```yaml\nread:\n  - mongodb:\n      user: user\n      password: password\n      database: database\n      collection: collection\n      host: host\t\t\t# mongoDB cluster-url\n      query: query\n\n      # Optional\n      projection: projection\n```\n\n### Function\n```python\nfrom wrangles.connectors import mongodb\ndf = mongodb.read(\n      user='user',\n      password='password',\n      database='db',\n      collection='products',\n      host='cluster123.mongodb.net',\n      query='{\"name\": \"WrWx\"}',\n      projection='{\"_id\": 0, \"name\": 1}'\n)\n```\n\n### Write\n### Recipe\n```yaml\nwrite:\n  - mongodb:\n      user: user\n      password: password\n      database: database_write\n      collection: collection_write\n      host: host    # mongoDB cluster-url\n      action: action\n\n      # Optional\n      columns:\n        - column1\n        - column2\n```\n\n### Function\n```python\nfrom wrangles.connectors import mongodb\nmongodb.write(\n      df,\n      user='user',\n      password='password',\n      database='db',\n      collection='products',\n      host='cluster123.mongodb.net',\n      action='INSERT',\n)\n```"
+}

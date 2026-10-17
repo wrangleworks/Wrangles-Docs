@@ -39,6 +39,8 @@ parameters:
         - string
         - integer
         - array
+      description: Name of the input column.
+    runtime_required: true
   - name: output
     description: Name of the output column.
     required: true
@@ -47,18 +49,24 @@ parameters:
       type:
         - string
         - array
+      description: Name of the output column.
+    runtime_required: true
   - name: model_id
-    description: ID of the classification model to be used.
+    description: ID of the classification model to be used
     required: true
     param_group: Details
     schema:
       type: string
+      description: ID of the classification model to be used
+    runtime_required: true
   - name: include_confidence
-    description: For models that support it, include the confidence level in the output.
+    description: For models that support it, include the confidence level in the output
     required: false
     param_group: Formatting
     schema:
       type: boolean
+      description: For models that support it, include the confidence level in the output
+    runtime_required: false
 examples: []
 sources:
   - id: runtime
@@ -69,6 +77,41 @@ sources:
     resource: >-
       https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/ai/_sources/classify.md
     title: Archived classify Markdown
+configuration_schema:
+  type: object
+  description: |
+    Run classify wrangles on the specified columns.
+    Requires WrangleWorks Account and Subscription.
+  required:
+    - input
+    - output
+    - model_id
+  properties:
+    input:
+      type:
+        - string
+        - integer
+        - array
+      description: Name of the input column.
+    output:
+      type:
+        - string
+        - array
+      description: Name of the output column.
+    model_id:
+      type: string
+      description: ID of the classification model to be used
+    include_confidence:
+      type: boolean
+      description: For models that support it, include the confidence level in the output
+    if:
+      $ref: '#/$defs/wrangles/commonProperties/if'
+    where:
+      $ref: '#/$defs/wrangles/commonProperties/where'
+    where_params:
+      $ref: '#/$defs/wrangles/commonProperties/where_params'
+schema_origin: upstream-docstring
+schema_adjustments: []
 ---
 
 # Classify

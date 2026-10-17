@@ -1,0 +1,153 @@
+{
+  "schema_version": "0.2",
+  "type": "connector",
+  "catalog_id": "109",
+  "catalog_key": "connector.duckdb",
+  "catalog_kind": "connector",
+  "runtime_key": "duckdb",
+  "status": "active",
+  "title": "DuckDB",
+  "source": {
+    "repository": "https://github.com/wrangleworks/WranglesPY",
+    "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+    "version": "1.20.5",
+    "extraction": "static-python-ast"
+  },
+  "operations": {
+    "read": {
+      "type": "object",
+      "description": "Import data from a DuckDB Database",
+      "required": [
+        "database",
+        "command"
+      ],
+      "properties": {
+        "database": {
+          "type": "string",
+          "description": "The database to connect to including the file path. Use ':memory:' for an in-memory database."
+        },
+        "command": {
+          "type": "string",
+          "description": "SQL command to select data.\nNote - using variables here can make your recipe vulnerable\nto sql injection. Use params if using variables from\nuntrusted sources."
+        },
+        "columns": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/columns"
+        },
+        "params": {
+          "type": [
+            "array",
+            "object"
+          ],
+          "description": "Variables to pass to a parameterized query."
+        },
+        "not_columns": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/not_columns"
+        },
+        "where": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/where"
+        },
+        "where_params": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/where_params"
+        },
+        "order_by": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/order_by"
+        },
+        "if": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/if"
+        }
+      }
+    },
+    "run": {
+      "type": "object",
+      "description": "Run a command against a DuckDB Database",
+      "required": [
+        "database",
+        "command"
+      ],
+      "properties": {
+        "database": {
+          "type": "string",
+          "description": "The database to connect to including the file path. Use ':memory:' for an in-memory database."
+        },
+        "command": {
+          "type": [
+            "string",
+            "array"
+          ],
+          "description": "SQL command or a list of SQL commands to execute"
+        },
+        "params": {
+          "type": [
+            "array",
+            "object"
+          ],
+          "description": "Variables to pass to a parameterized query."
+        },
+        "if": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/run/commonProperties/if"
+        }
+      }
+    },
+    "write": {
+      "type": "object",
+      "description": "Export data to a DuckDB Database",
+      "required": [
+        "database",
+        "table"
+      ],
+      "properties": {
+        "database": {
+          "type": "string",
+          "description": "The database to connect to including the file path. Use ':memory:' for an in-memory database."
+        },
+        "table": {
+          "type": "string",
+          "description": "The table to write to"
+        },
+        "action": {
+          "type": "string",
+          "description": "INSERT appends, REPLACE recreates the table, FAIL errors if the table exists. Defaults to INSERT.",
+          "enum": [
+            "INSERT",
+            "REPLACE",
+            "FAIL"
+          ]
+        },
+        "columns": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/columns"
+        },
+        "not_columns": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/not_columns"
+        },
+        "where": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/where"
+        },
+        "where_params": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/where_params"
+        },
+        "order_by": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/order_by"
+        },
+        "if": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/if"
+        }
+      }
+    }
+  },
+  "description": "Import data from a DuckDB Database",
+  "slug": "connectors/duckdb",
+  "visibility": "public",
+  "sources": [
+    {
+      "id": "runtime",
+      "resource": "https://github.com/wrangleworks/WranglesPY/tree/bd5f88fba479ec406b409cb2880689c54e72b298",
+      "title": "Pinned WranglesPY connector schema"
+    },
+    {
+      "id": "documentation-search",
+      "resource": "https://wrangles.io/python/connectors/duckdb",
+      "title": "Checked for matching guide; no matching material retrieved. Description derived from pinned schema."
+    }
+  ],
+  "guidance": "Import data from a DuckDB Database"
+}

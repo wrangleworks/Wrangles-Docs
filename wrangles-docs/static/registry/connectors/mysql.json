@@ -1,0 +1,150 @@
+{
+  "schema_version": "0.2",
+  "type": "connector",
+  "catalog_id": "122",
+  "catalog_key": "connector.mysql",
+  "catalog_kind": "connector",
+  "runtime_key": "mysql",
+  "status": "active",
+  "title": "MySQL",
+  "source": {
+    "repository": "https://github.com/wrangleworks/WranglesPY",
+    "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+    "version": "1.20.5",
+    "extraction": "static-python-ast"
+  },
+  "operations": {
+    "read": {
+      "type": "object",
+      "description": "Import data from a MySQL Server",
+      "required": [
+        "host",
+        "user",
+        "password",
+        "command"
+      ],
+      "properties": {
+        "host": {
+          "type": "string",
+          "description": "Hostname or IP address of the server"
+        },
+        "user": {
+          "type": "string",
+          "description": "The user to connect to the database with"
+        },
+        "password": {
+          "type": "string",
+          "description": "Password for the specified user"
+        },
+        "command": {
+          "type": "string",
+          "description": "Table name or SQL command to select data.\nNote - using variables here can make your recipe vulnerable\nto sql injection. Use params if using variables from\nuntrusted sources."
+        },
+        "database": {
+          "type": "string",
+          "description": "The database to connect to"
+        },
+        "port": {
+          "type": "integer",
+          "description": "The Port to connect to. Defaults to 3306."
+        },
+        "columns": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/columns"
+        },
+        "params": {
+          "type": [
+            "array",
+            "object"
+          ],
+          "description": "List of parameters to pass to execute method.\nThis may use %s or %(name)s syntax"
+        },
+        "not_columns": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/not_columns"
+        },
+        "where": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/where"
+        },
+        "where_params": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/where_params"
+        },
+        "order_by": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/order_by"
+        },
+        "if": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/if"
+        }
+      }
+    },
+    "write": {
+      "type": "object",
+      "description": "Write data to a MySQL Server",
+      "required": [
+        "host",
+        "user",
+        "password",
+        "database",
+        "table"
+      ],
+      "properties": {
+        "host": {
+          "type": "string",
+          "description": "Hostname or IP address of the server"
+        },
+        "user": {
+          "type": "string",
+          "description": "The user to connect to the database with"
+        },
+        "password": {
+          "type": "string",
+          "description": "Password for the specified user"
+        },
+        "database": {
+          "type": "string",
+          "description": "The database to connect to"
+        },
+        "table": {
+          "type": "string",
+          "description": "The name of the table to insert the data into"
+        },
+        "port": {
+          "type": "integer",
+          "description": "The Port to connect to. Defaults to 3306."
+        },
+        "columns": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/columns"
+        },
+        "not_columns": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/not_columns"
+        },
+        "where": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/where"
+        },
+        "where_params": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/where_params"
+        },
+        "order_by": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/order_by"
+        },
+        "if": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/if"
+        }
+      }
+    }
+  },
+  "description": "Import data from a MySQL Server",
+  "slug": "connectors/mysql",
+  "visibility": "public",
+  "sources": [
+    {
+      "id": "runtime",
+      "resource": "https://github.com/wrangleworks/WranglesPY/tree/bd5f88fba479ec406b409cb2880689c54e72b298",
+      "title": "Pinned WranglesPY connector schema"
+    },
+    {
+      "id": "existing-docs",
+      "resource": "wrangles-docs/registry-docs/python/connectors/mysql.md",
+      "title": "Existing connector documentation"
+    }
+  ],
+  "guidance": "The mysql connector supports read and writing to/from a MySQL Server.\n\n### Read\n### Recipe\n```yaml\nread:\n  - mysql:\n      host: sql.domain\n      user: user\n      password: password\n      command: |\n        SELECT *\n        FROM table\n\n      # Optional\n      port: 3306\n      database: database\n      columns:\n        - column1\n        - column2\n```\n\n### Function\n```python\nfrom wrangles.connectors import mysql\ndf = mysql.read(\n      host = 'sql.domain',\n      user = 'user',\n      password = 'password',\n      command = 'SELECT * FROM table'\n)\n```\n\n### Write\n### Recipe\n```yaml\nwrite:\n  - mysql:\n      host: sql.domain\n      database: database\n      table: table\n      user: user\n      password: password\n\n      # Optional\n      port: 3306\n      columns:\n        - column1\n        - column2\n```\n\n### Function\n```python\nfrom wrangles.connectors import mysql\nmysql.write(\n    df,\n    host = 'sql.domain',\n    database = 'database',\n    table = 'table',\n    user = 'user',\n    password = 'password'\n)\n```"
+}

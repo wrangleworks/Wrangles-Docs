@@ -1,0 +1,76 @@
+{
+  "schema_version": "0.2",
+  "type": "connector",
+  "catalog_id": "132",
+  "catalog_key": "connector.s3.upload_files",
+  "catalog_kind": "connector",
+  "runtime_key": "s3.upload_files",
+  "status": "active",
+  "title": "S3 Upload Files",
+  "source": {
+    "repository": "https://github.com/wrangleworks/WranglesPY",
+    "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+    "version": "1.20.5",
+    "extraction": "static-python-ast"
+  },
+  "operations": {
+    "run": {
+      "type": "object",
+      "description": "Upload file(s) to S3 from the local file system.",
+      "required": [
+        "bucket"
+      ],
+      "properties": {
+        "bucket": {
+          "type": "string",
+          "description": "S3 Bucket"
+        },
+        "save_as": {
+          "type": [
+            "string",
+            "array"
+          ],
+          "description": "S3 file key(s) to upload as. Include directory in this path."
+        },
+        "file": {
+          "type": [
+            "string",
+            "array"
+          ],
+          "description": "File or list of files to upload. Accepts strings or pathlib.Path objects."
+        },
+        "endpoint_url": {
+          "type": "string",
+          "description": "Override the S3 host for alternative S3 storage providers."
+        },
+        "aws_access_key_id": {
+          "type": "string",
+          "description": "Set the access key. Can also be set as an environment variable"
+        },
+        "aws_secret_access_key": {
+          "type": "string",
+          "description": "Set the access secret. Can also be set as an environment variable"
+        },
+        "if": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/run/commonProperties/if"
+        }
+      }
+    }
+  },
+  "description": "Upload file(s) to S3 from the local file system.",
+  "slug": "connectors/s3.upload_files",
+  "visibility": "public",
+  "sources": [
+    {
+      "id": "runtime",
+      "resource": "https://github.com/wrangleworks/WranglesPY/tree/bd5f88fba479ec406b409cb2880689c54e72b298",
+      "title": "Pinned WranglesPY connector schema"
+    },
+    {
+      "id": "existing-docs",
+      "resource": "wrangles-docs/registry-docs/python/connectors/s3.md#upload",
+      "title": "Existing connector documentation"
+    }
+  ],
+  "guidance": "### Recipe\n```yaml\nrun:\n  on_success:\n    - s3.upload_files:\n        bucket: s3-bucket\n        file: example.csv\n```\n\n### Function\n```python\nfrom wrangles.connectors import s3\ns3.upload_files.run(\n      bucket='bucket',\n      file = 'example.csv',\n      key='key'\n)\n```"
+}

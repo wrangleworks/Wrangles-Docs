@@ -23,16 +23,67 @@ Create a dictionary from keys and values in paired columns.
 | Name | Description | Accepted Values | Default | Required |
 | --- | --- | --- | --- | --- |
 | <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `input` | Matched pairs of key and value columns. | object | — | Yes |
-| `output` | Name of the output column. | string | — | Yes |
+| `input` | Matched pairs of key and value columns | object | — | Yes |
+| `output` | Name of the output column | string | — | Yes |
 | <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `skip_empty` | Whether to skip empty keys or values when creating the dictionary. | boolean | `false` | No |
+| `skip_empty` | Whether to skip empty keys or values when creating the dictionary | boolean | `false` | No |
 | <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
 | `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
 | `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
 | `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
 
 </div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+<details className="ww-field-disclosure">
+
+<summary>Complete configuration schema</summary>
+
+Schema source: upstream-docstring. Conditional and cross-parameter
+rules below apply in addition to the parameter table. References resolve against
+the [complete recipe schema](/schemas/recipes/registry/schema.json).
+
+
+
+```json
+{
+  "type": "object",
+  "description": "Create a dictionary from keys and values in paired columns e.g. COLUMN_NAME_1, COLUMN_VALUE_1, COLUMN_NAME_2, COLUMN_VALUE_2 ...",
+  "additionalProperties": false,
+  "required": [
+    "input",
+    "output"
+  ],
+  "properties": {
+    "input": {
+      "type": "object",
+      "description": "Matched pairs of key and value columns"
+    },
+    "output": {
+      "type": "string",
+      "description": "Name of the output column"
+    },
+    "skip_empty": {
+      "type": "boolean",
+      "description": "Whether to skip empty keys or values when creating the dictionary",
+      "default": false
+    },
+    "if": {
+      "$ref": "#/$defs/wrangles/commonProperties/if"
+    },
+    "where": {
+      "$ref": "#/$defs/wrangles/commonProperties/where"
+    },
+    "where_params": {
+      "$ref": "#/$defs/wrangles/commonProperties/where_params"
+    }
+  }
+}
+```
+
+</details>
 
 ## Examples
 
@@ -134,6 +185,7 @@ wrangles:
 | Documentation group | `merge` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.merge.key_value_pairs` |
+| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
 | Legacy UUID | `8a2cd37c-8ef7-4b05-8264-36512f5dd837` |
 
 **Sources**

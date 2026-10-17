@@ -23,10 +23,10 @@ Select a numbered element of a list (zero indexed).
 | Name | Description | Accepted Values | Default | Required |
 | --- | --- | --- | --- | --- |
 | <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `input` | Name of the input column. | string, integer, array | — | Yes |
-| `output` | Name of the output column. | string, array, null | `null` | No |
+| `input` | Name of the input column | string, integer, array | — | Yes |
+| `output` | Name of the output column | string, array | `null` | No |
 | <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `element` | The numbered element of the list to select. Starts from zero. This may use python slicing syntax to select a subset of the list. | integer | `0` | No |
+| `element` | The numbered element of the list to select.<br />Starts from zero.<br />This may use python slicing syntax to select a subset of the list. | integer | `0` | Yes |
 | <span className="ww-param-group-label">Errors</span> |  |  |  |  |
 | `default` | Set the default value to return if the specified element doesn't exist. | string, number, array, object, boolean, null | `""` | No |
 | <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
@@ -35,6 +35,74 @@ Select a numbered element of a list (zero indexed).
 | `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
 
 </div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+<details className="ww-field-disclosure">
+
+<summary>Complete configuration schema</summary>
+
+Schema source: upstream-docstring. Conditional and cross-parameter
+rules below apply in addition to the parameter table. References resolve against
+the [complete recipe schema](/schemas/recipes/registry/schema.json).
+
+
+
+```json
+{
+  "type": "object",
+  "description": "Select a numbered element of a list (zero indexed).",
+  "additionalProperties": false,
+  "required": [
+    "input",
+    "element"
+  ],
+  "properties": {
+    "input": {
+      "type": [
+        "string",
+        "integer",
+        "array"
+      ],
+      "description": "Name of the input column"
+    },
+    "output": {
+      "type": [
+        "string",
+        "array"
+      ],
+      "description": "Name of the output column"
+    },
+    "element": {
+      "type": "integer",
+      "description": "The numbered element of the list to select.\nStarts from zero.\nThis may use python slicing syntax to select a subset of the list."
+    },
+    "default": {
+      "type": [
+        "string",
+        "number",
+        "array",
+        "object",
+        "boolean",
+        "null"
+      ],
+      "description": "Set the default value to return if the specified element doesn't exist."
+    },
+    "if": {
+      "$ref": "#/$defs/wrangles/commonProperties/if"
+    },
+    "where": {
+      "$ref": "#/$defs/wrangles/commonProperties/where"
+    },
+    "where_params": {
+      "$ref": "#/$defs/wrangles/commonProperties/where_params"
+    }
+  }
+}
+```
+
+</details>
 
 ## Examples
 
@@ -98,6 +166,7 @@ wrangles:
 | Documentation group | `select` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.select.list_element` |
+| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
 | Legacy UUID | `ec40495d-d29a-4f62-86dd-eafa43cf388a` |
 
 **Sources**

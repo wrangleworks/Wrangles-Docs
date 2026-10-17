@@ -31,7 +31,7 @@ capabilities:
   where_params: true
 parameters:
   - name: input
-    description: Name of the input column.
+    description: Name of the input column
     required: true
     param_group: I/O
     schema:
@@ -39,14 +39,26 @@ parameters:
         - string
         - integer
         - array
+      description: Name of the input column
+    runtime_required: true
   - name: element
-    description: >-
-      The key or keys from the dictionary to select. If a single key is provided, the value will be
-      returned If a lists of keys are selected, the result will be a new dictionary.
+    description: |-
+      The key or keys from the dictionary to select.
+      If a single key is provided, the value will be returned
+      If a lists of keys are selected,
+      the result will be a new dictionary.
     required: true
     param_group: Options
     schema:
-      type: string
+      type:
+        - string
+        - array
+      description: |-
+        The key or keys from the dictionary to select.
+        If a single key is provided, the value will be returned
+        If a lists of keys are selected,
+        the result will be a new dictionary.
+    runtime_required: true
   - name: output
     description: Name of the output column. If omitted, the input column will be replaced.
     required: false
@@ -56,11 +68,12 @@ parameters:
       type:
         - string
         - array
-        - 'null'
+      description: Name of the output column. If omitted, the input column will be replaced.
+    runtime_required: false
   - name: default
-    description: >-
-      Set the default value to return if the specified element doesn't exist. If selecting multiple
-      elements, a dict of defaults can be set.
+    description: |-
+      Set the default value to return if the specified element doesn't exist.
+      If selecting multiple elements, a dict of defaults can be set.
     required: false
     param_group: Errors
     runtime_default: ''
@@ -72,6 +85,10 @@ parameters:
         - object
         - boolean
         - 'null'
+      description: |-
+        Set the default value to return if the specified element doesn't exist.
+        If selecting multiple elements, a dict of defaults can be set.
+    runtime_required: false
 examples: []
 sources:
   - id: runtime
@@ -82,6 +99,53 @@ sources:
     resource: >-
       https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/select/_sources/dictionary-element.md
     title: Archived select.dictionary_element Markdown
+configuration_schema:
+  type: object
+  description: Select one or more element of a dictionary.
+  additionalProperties: false
+  required:
+    - input
+    - element
+  properties:
+    input:
+      type:
+        - string
+        - integer
+        - array
+      description: Name of the input column
+    output:
+      type:
+        - string
+        - array
+      description: Name of the output column. If omitted, the input column will be replaced.
+    element:
+      type:
+        - string
+        - array
+      description: |-
+        The key or keys from the dictionary to select.
+        If a single key is provided, the value will be returned
+        If a lists of keys are selected,
+        the result will be a new dictionary.
+    default:
+      type:
+        - string
+        - number
+        - array
+        - object
+        - boolean
+        - 'null'
+      description: |-
+        Set the default value to return if the specified element doesn't exist.
+        If selecting multiple elements, a dict of defaults can be set.
+    if:
+      $ref: '#/$defs/wrangles/commonProperties/if'
+    where:
+      $ref: '#/$defs/wrangles/commonProperties/where'
+    where_params:
+      $ref: '#/$defs/wrangles/commonProperties/where_params'
+schema_origin: upstream-docstring
+schema_adjustments: []
 ---
 
 # Dictionary Element

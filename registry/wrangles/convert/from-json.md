@@ -1,5 +1,5 @@
 ---
-schema_version: "0.2"
+schema_version: '0.2'
 type: wrangle
 id: e370dfcf-b0fe-4c48-8a52-6f34c47e7978
 wrangle_name: from_json
@@ -27,34 +27,53 @@ access:
   requires_subscription: false
   requires_external_api_key: false
 capabilities:
+  if: true
   where: true
   where_params: true
-  if: true
 parameters:
   - name: input
-    description: Name, index, or list of columns containing valid JSON text.
+    description: Name of the input column.
     required: true
     param_group: I/O
     schema:
-      type: [string, integer, array]
-      items:
-        type: [string, integer]
+      type:
+        - string
+        - integer
+        - array
+      description: Name of the input column.
+    runtime_required: true
   - name: output
-    description: Name or list of output columns. If omitted, each input column is overwritten.
+    description: Name of the output column. If omitted, the input column will be overwritten
     required: false
     param_group: I/O
     runtime_default: null
     schema:
-      type: [string, array]
-      items:
-        type: string
+      type:
+        - string
+        - array
+      description: Name of the output column. If omitted, the input column will be overwritten
+    runtime_required: false
   - name: default
-    description: Value returned for empty or invalid JSON. A list may supply one fallback per input column.
+    description: >-
+      Value to return if the row is empty or fails to be parsed as JSON. If input is a list, default
+      may also be a list - either a single value to apply to all columns, or one value per input
+      column.
     required: false
     param_group: Errors
     runtime_default: null
     schema:
-      type: [string, number, array, object, boolean, "null"]
+      type:
+        - string
+        - array
+        - object
+        - number
+        - boolean
+        - 'null'
+      description: >-
+        Value to return if the row is empty or fails to be parsed as JSON. If input is a list,
+        default may also be a list - either a single value to apply to all columns, or one value per
+        input column.
+    runtime_required: false
 examples:
   - id: parse-structured-values
     title: Parse JSON objects and lists
@@ -68,11 +87,49 @@ examples:
     verification: static
 sources:
   - id: runtime
-    resource: https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/convert.py
+    resource: >-
+      https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/convert.py
     title: WranglesPY convert.from_json implementation
   - id: legacy-docs
     resource: https://wrangles.io/python/recipes/wrangles/convert#from-json
     title: Legacy convert.from_json documentation
+configuration_schema:
+  type: object
+  description: Convert a JSON representation into an object.
+  required:
+    - input
+  properties:
+    input:
+      type:
+        - string
+        - integer
+        - array
+      description: Name of the input column.
+    output:
+      type:
+        - string
+        - array
+      description: Name of the output column. If omitted, the input column will be overwritten
+    default:
+      type:
+        - string
+        - array
+        - object
+        - number
+        - boolean
+        - 'null'
+      description: >-
+        Value to return if the row is empty or fails to be parsed as JSON. If input is a list,
+        default may also be a list - either a single value to apply to all columns, or one value per
+        input column.
+    if:
+      $ref: '#/$defs/wrangles/commonProperties/if'
+    where:
+      $ref: '#/$defs/wrangles/commonProperties/where'
+    where_params:
+      $ref: '#/$defs/wrangles/commonProperties/where_params'
+schema_origin: upstream-docstring
+schema_adjustments: []
 ---
 
 # Convert From JSON

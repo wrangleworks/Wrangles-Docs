@@ -4,16 +4,20 @@
   "registry_version": "0.3.0",
   "runtime_source": {
     "repository": "https://github.com/wrangleworks/WranglesPY",
-    "version": "1.20.2",
-    "revision": "7916bf158e8b7e561270a1bea7b808f88956edc4"
+    "version": "1.20.5",
+    "revision": "bd5f88fba479ec406b409cb2880689c54e72b298"
   },
   "summary": {
-    "runtime_entries": 98,
-    "embedded_schema_entries": 96,
-    "normalized_registry_entries": 98,
-    "normalized_verified_entries": 98,
+    "runtime_entries": 106,
+    "embedded_schema_entries": 104,
+    "normalized_registry_entries": 106,
+    "entries_with_upstream_schema_issues": 31,
+    "unmodified_upstream_schemas": 101,
+    "corrected_upstream_schemas": 3,
+    "derived_schema_fallbacks": 2,
+    "normalized_verified_entries": 106,
     "normalized_conflicting_entries": 0,
-    "normalized_entries_with_embedded_schema_differences": 90,
+    "normalized_entries_with_embedded_schema_differences": 0,
     "runtime_entries_without_embedded_schema": 2,
     "runtime_entries_without_normalized_registry": 0
   },
@@ -25,42 +29,58 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": [
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "output",
-          "registry_schema": {
-            "type": [
-              "string",
-              "array",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": [
-              "string",
-              "array"
-            ]
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "propagate",
-          "registry_schema": {
-            "type": [
-              "string",
-              "array",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": [
-              "string",
-              "array"
-            ]
-          }
-        }
-      ]
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
+    },
+    {
+      "wrangle_key": "ai.answers",
+      "matched_runtime_keys": [
+        "ai.answers"
+      ],
+      "status": "verified",
+      "runtime_issues": [],
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
+    },
+    {
+      "wrangle_key": "ai.choose",
+      "matched_runtime_keys": [
+        "ai.choose"
+      ],
+      "status": "verified",
+      "runtime_issues": [],
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
+    },
+    {
+      "wrangle_key": "ai.score",
+      "matched_runtime_keys": [
+        "ai.score"
+      ],
+      "status": "verified",
+      "runtime_issues": [],
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
+    },
+    {
+      "wrangle_key": "ai.true_false",
+      "matched_runtime_keys": [
+        "ai.true_false"
+      ],
+      "status": "verified",
+      "runtime_issues": [],
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "batch",
@@ -69,49 +89,15 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": [
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [
         {
-          "code": "schema_constraint_difference",
-          "parameter": "batch_size",
-          "registry_schema": {
-            "type": "integer"
-          },
-          "docstring_schema": {
-            "default": 1000,
-            "type": "integer"
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "on_error",
-          "registry_schema": {
-            "type": [
-              "object",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": "object"
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "timeout",
-          "registry_schema": {
-            "type": [
-              "number",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": "number"
-          }
-        },
-        {
-          "code": "registry_only_parameter",
+          "code": "signature_parameter_not_declared_by_schema",
           "parameter": "use_multiprocessing"
         }
-      ]
+      ],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "classify",
@@ -120,11 +106,10 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": [
-        {
-          "code": "docstring_allows_additional_properties"
-        }
-      ]
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "clean_whitespaces",
@@ -133,25 +118,10 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": [
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "output",
-          "registry_schema": {
-            "type": [
-              "string",
-              "array",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": [
-              "string",
-              "array"
-            ]
-          }
-        }
-      ]
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "compare.lists",
@@ -160,17 +130,17 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": [
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [
         {
-          "code": "docstring_required_mismatch",
+          "code": "upstream_required_mismatch",
           "parameter": "method",
           "runtime_required": false,
-          "docstring_required": true
-        },
-        {
-          "code": "docstring_allows_additional_properties"
+          "schema_required": true
         }
-      ]
+      ],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "compare.text",
@@ -179,57 +149,17 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": [
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [
         {
-          "code": "registry_only_parameter",
-          "parameter": "all_empty"
-        },
-        {
-          "code": "registry_only_parameter",
-          "parameter": "case_sensitive"
-        },
-        {
-          "code": "registry_only_parameter",
-          "parameter": "char"
-        },
-        {
-          "code": "registry_only_parameter",
-          "parameter": "decimal_places"
-        },
-        {
-          "code": "registry_only_parameter",
-          "parameter": "empty_a"
-        },
-        {
-          "code": "registry_only_parameter",
-          "parameter": "empty_b"
-        },
-        {
-          "code": "registry_only_parameter",
-          "parameter": "exact_match"
-        },
-        {
-          "code": "registry_only_parameter",
-          "parameter": "include_ratio"
-        },
-        {
-          "code": "docstring_required_mismatch",
+          "code": "upstream_required_mismatch",
           "parameter": "method",
           "runtime_required": false,
-          "docstring_required": true
-        },
-        {
-          "code": "registry_only_parameter",
-          "parameter": "metric"
-        },
-        {
-          "code": "registry_only_parameter",
-          "parameter": "non_match_char"
-        },
-        {
-          "code": "docstring_allows_additional_properties"
+          "schema_required": true
         }
-      ]
+      ],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "compute.case_when",
@@ -238,7 +168,10 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": []
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "compute.score_search_results",
@@ -247,21 +180,10 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": [
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "blacklist_keywords",
-          "registry_schema": {
-            "type": "string"
-          },
-          "docstring_schema": {
-            "type": [
-              "string",
-              "array"
-            ]
-          }
-        }
-      ]
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "concurrent",
@@ -270,32 +192,15 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": [
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [
         {
-          "code": "registry_only_parameter",
+          "code": "signature_parameter_not_declared_by_schema",
           "parameter": "use_multiprocessing"
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "wrangles",
-          "registry_schema": {
-            "items": {
-              "$ref": "#/$defs/wrangles/items"
-            },
-            "minItems": 1,
-            "type": "array"
-          },
-          "docstring_schema": {
-            "items": [
-              {
-                "$ref": "#/$defs/wrangles/items"
-              }
-            ],
-            "minItems": 1,
-            "type": "array"
-          }
         }
-      ]
+      ],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "convert.case",
@@ -304,57 +209,17 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": [
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [
         {
-          "code": "docstring_required_mismatch",
+          "code": "upstream_required_mismatch",
           "parameter": "case",
           "runtime_required": false,
-          "docstring_required": true
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "input",
-          "registry_schema": {
-            "items": {
-              "type": [
-                "string",
-                "integer"
-              ]
-            },
-            "type": [
-              "string",
-              "integer",
-              "array"
-            ]
-          },
-          "docstring_schema": {
-            "type": [
-              "string",
-              "integer",
-              "array"
-            ]
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "output",
-          "registry_schema": {
-            "items": {
-              "type": "string"
-            },
-            "type": [
-              "string",
-              "array"
-            ]
-          },
-          "docstring_schema": {
-            "type": [
-              "string",
-              "array"
-            ]
-          }
+          "schema_required": true
         }
-      ]
+      ],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "convert.data_type",
@@ -363,79 +228,22 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": [
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [
         {
-          "code": "docstring_required_mismatch",
+          "code": "upstream_required_mismatch",
           "parameter": "data_type",
           "runtime_required": false,
-          "docstring_required": true
+          "schema_required": true
         },
         {
-          "code": "schema_constraint_difference",
-          "parameter": "default",
-          "registry_schema": {
-            "type": [
-              "string",
-              "number",
-              "array",
-              "object",
-              "boolean",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": [
-              "string",
-              "number",
-              "array",
-              "boolean",
-              "datetime"
-            ]
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "input",
-          "registry_schema": {
-            "items": {
-              "type": [
-                "string",
-                "integer"
-              ]
-            },
-            "type": [
-              "string",
-              "integer",
-              "array"
-            ]
-          },
-          "docstring_schema": {
-            "type": [
-              "string",
-              "integer",
-              "array"
-            ]
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "output",
-          "registry_schema": {
-            "items": {
-              "type": "string"
-            },
-            "type": [
-              "string",
-              "array"
-            ]
-          },
-          "docstring_schema": {
-            "type": [
-              "string",
-              "array"
-            ]
-          }
+          "code": "upstream_invalid_schema_type",
+          "resolution": "JSON Schema has no datetime primitive; JSON timestamps use string."
         }
+      ],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": [
+        "JSON Schema has no datetime primitive; JSON timestamps use string."
       ]
     },
     {
@@ -445,37 +253,10 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": [
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "decimals",
-          "registry_schema": {
-            "type": "integer"
-          },
-          "docstring_schema": {
-            "type": [
-              "number"
-            ]
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "output",
-          "registry_schema": {
-            "type": [
-              "string",
-              "array",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": [
-              "string",
-              "array"
-            ]
-          }
-        }
-      ]
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "convert.from_json",
@@ -484,78 +265,10 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": [
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "default",
-          "registry_schema": {
-            "type": [
-              "string",
-              "number",
-              "array",
-              "object",
-              "boolean",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": [
-              "string",
-              "array",
-              "object",
-              "number",
-              "boolean",
-              "null"
-            ]
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "input",
-          "registry_schema": {
-            "items": {
-              "type": [
-                "string",
-                "integer"
-              ]
-            },
-            "type": [
-              "string",
-              "integer",
-              "array"
-            ]
-          },
-          "docstring_schema": {
-            "type": [
-              "string",
-              "integer",
-              "array"
-            ]
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "output",
-          "registry_schema": {
-            "items": {
-              "type": "string"
-            },
-            "type": [
-              "string",
-              "array"
-            ]
-          },
-          "docstring_schema": {
-            "type": [
-              "string",
-              "array"
-            ]
-          }
-        },
-        {
-          "code": "docstring_allows_additional_properties"
-        }
-      ]
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "convert.from_yaml",
@@ -564,28 +277,22 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": [
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "output",
-          "registry_schema": {
-            "type": [
-              "string",
-              "array",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": [
-              "string",
-              "array"
-            ]
-          }
-        },
-        {
-          "code": "docstring_allows_additional_properties"
-        }
-      ]
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
+    },
+    {
+      "wrangle_key": "convert.parse",
+      "matched_runtime_keys": [
+        "convert.parse"
+      ],
+      "status": "verified",
+      "runtime_issues": [],
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "convert.to_json",
@@ -594,28 +301,10 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": [
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "output",
-          "registry_schema": {
-            "type": [
-              "string",
-              "array",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": [
-              "string",
-              "array"
-            ]
-          }
-        },
-        {
-          "code": "docstring_allows_additional_properties"
-        }
-      ]
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "convert.to_yaml",
@@ -624,32 +313,15 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": [
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [
         {
-          "code": "registry_only_parameter",
+          "code": "signature_parameter_not_declared_by_schema",
           "parameter": "allow_unicode"
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "output",
-          "registry_schema": {
-            "type": [
-              "string",
-              "array",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": [
-              "string",
-              "array"
-            ]
-          }
-        },
-        {
-          "code": "docstring_allows_additional_properties"
         }
-      ]
+      ],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "copy",
@@ -658,56 +330,23 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": [
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [
         {
-          "code": "docstring_required_mismatch",
+          "code": "upstream_required_mismatch",
           "parameter": "input",
           "runtime_required": false,
-          "docstring_required": true
+          "schema_required": true
         },
         {
-          "code": "schema_constraint_difference",
-          "parameter": "input",
-          "registry_schema": {
-            "type": [
-              "string",
-              "integer",
-              "array",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": [
-              "string",
-              "integer",
-              "array"
-            ]
-          }
-        },
-        {
-          "code": "docstring_required_mismatch",
+          "code": "upstream_required_mismatch",
           "parameter": "output",
           "runtime_required": false,
-          "docstring_required": true
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "output",
-          "registry_schema": {
-            "type": [
-              "string",
-              "array",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": [
-              "string",
-              "array"
-            ]
-          }
+          "schema_required": true
         }
-      ]
+      ],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "create.bins",
@@ -716,56 +355,10 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": [
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "input",
-          "registry_schema": {
-            "type": [
-              "string",
-              "integer",
-              "array"
-            ]
-          },
-          "docstring_schema": {
-            "type": [
-              "array"
-            ]
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "labels",
-          "registry_schema": {
-            "type": [
-              "string",
-              "array",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": [
-              "string",
-              "array"
-            ]
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "output",
-          "registry_schema": {
-            "type": [
-              "string",
-              "array"
-            ]
-          },
-          "docstring_schema": {
-            "type": [
-              "array"
-            ]
-          }
-        }
-      ]
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "create.column",
@@ -774,31 +367,10 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": [
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "value",
-          "registry_schema": {
-            "type": [
-              "string",
-              "number",
-              "object",
-              "array",
-              "boolean",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": [
-              "string",
-              "number",
-              "object",
-              "array",
-              "boolean"
-            ]
-          }
-        }
-      ]
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "create.embeddings",
@@ -807,89 +379,10 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": [
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "input",
-          "registry_schema": {
-            "type": "string"
-          },
-          "docstring_schema": {
-            "type": [
-              "string",
-              "integer",
-              "array"
-            ]
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "output",
-          "registry_schema": {
-            "type": [
-              "string",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": [
-              "string",
-              "array"
-            ]
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "provider",
-          "registry_schema": {
-            "enum": [
-              "openai",
-              "jina"
-            ],
-            "type": [
-              "string",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "enum": [
-              "openai",
-              "jina"
-            ],
-            "type": "string"
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "task",
-          "registry_schema": {
-            "enum": [
-              "retrieval.query",
-              "retrieval.passage",
-              "text-matching",
-              "classification",
-              "separation"
-            ],
-            "type": [
-              "string",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "enum": [
-              "retrieval.query",
-              "retrieval.passage",
-              "text-matching",
-              "classification",
-              "separation"
-            ],
-            "type": "string"
-          }
-        },
-        {
-          "code": "docstring_allows_additional_properties"
-        }
-      ]
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "create.guid",
@@ -898,7 +391,10 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": []
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "create.hash",
@@ -907,14 +403,17 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": [
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [
         {
-          "code": "docstring_required_mismatch",
+          "code": "upstream_required_mismatch",
           "parameter": "output",
           "runtime_required": true,
-          "docstring_required": false
+          "schema_required": false
         }
-      ]
+      ],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "create.index",
@@ -923,25 +422,10 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": [
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "by",
-          "registry_schema": {
-            "type": [
-              "string",
-              "array",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": [
-              "string",
-              "array"
-            ]
-          }
-        }
-      ]
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "create.jinja",
@@ -950,34 +434,10 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": [
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "input",
-          "registry_schema": {
-            "type": [
-              "string",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": [
-              "string",
-              "integer"
-            ]
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "output",
-          "registry_schema": {
-            "type": "array"
-          },
-          "docstring_schema": {
-            "type": "string"
-          }
-        }
-      ]
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "create.uuid",
@@ -986,7 +446,10 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": []
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "date_calculator",
@@ -995,80 +458,10 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": [
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "input",
-          "registry_schema": {
-            "type": "string"
-          },
-          "docstring_schema": {
-            "type": [
-              "string",
-              "integer"
-            ]
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "output",
-          "registry_schema": {
-            "type": [
-              "string",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": "string"
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "time_unit",
-          "registry_schema": {
-            "enum": [
-              "years",
-              "months",
-              "weeks",
-              "days",
-              "hours",
-              "minutes",
-              "seconds",
-              "milliseconds"
-            ],
-            "type": [
-              "string",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "enum": [
-              "years",
-              "months",
-              "weeks",
-              "days",
-              "hours",
-              "minutes",
-              "seconds",
-              "milliseconds"
-            ],
-            "type": "string"
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "time_value",
-          "registry_schema": {
-            "type": [
-              "number",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": "number"
-          }
-        }
-      ]
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "drop",
@@ -1077,30 +470,10 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": [
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "columns",
-          "registry_schema": {
-            "items": {
-              "type": "string"
-            },
-            "type": [
-              "string",
-              "array"
-            ]
-          },
-          "docstring_schema": {
-            "type": [
-              "array",
-              "string"
-            ]
-          }
-        },
-        {
-          "code": "docstring_allows_additional_properties"
-        }
-      ]
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "explode",
@@ -1109,7 +482,15 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": []
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [
+        {
+          "code": "signature_parameter_not_declared_by_schema",
+          "parameter": "where"
+        }
+      ],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "extract.address",
@@ -1118,40 +499,17 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": [
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [
         {
-          "code": "docstring_required_mismatch",
+          "code": "upstream_required_mismatch",
           "parameter": "dataType",
           "runtime_required": true,
-          "docstring_required": false
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "output_format",
-          "registry_schema": {
-            "enum": [
-              "list",
-              "columns",
-              "concatenate"
-            ],
-            "type": [
-              "string",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "enum": [
-              "list",
-              "columns",
-              "concatenate"
-            ],
-            "type": "string"
-          }
-        },
-        {
-          "code": "docstring_allows_additional_properties"
+          "schema_required": false
         }
-      ]
+      ],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "extract.ai",
@@ -1160,391 +518,10 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": [
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "input",
-          "registry_schema": {
-            "items": {
-              "type": [
-                "string",
-                "integer"
-              ]
-            },
-            "type": [
-              "array",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "items": {
-              "type": [
-                "string",
-                "integer"
-              ]
-            },
-            "type": [
-              "string",
-              "integer",
-              "array"
-            ]
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "instructions",
-          "registry_schema": {
-            "items": {
-              "type": "string"
-            },
-            "type": [
-              "string",
-              "array",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "items": {
-              "type": "string"
-            },
-            "type": [
-              "string",
-              "array"
-            ]
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "model_id",
-          "registry_schema": {
-            "type": [
-              "string",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": "string"
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "output",
-          "registry_schema": {
-            "patternProperties": {
-              "^[a-zA-Z0-9 _-]+$": {
-                "properties": {
-                  "additionalProperties": {
-                    "type": [
-                      "boolean",
-                      "object"
-                    ]
-                  },
-                  "enum": {
-                    "type": "array"
-                  },
-                  "examples": {
-                    "items": {
-                      "anyOf": [
-                        {
-                          "properties": {
-                            "input": {},
-                            "name": {
-                              "type": "string"
-                            },
-                            "notes": {
-                              "type": "string"
-                            },
-                            "output": {}
-                          },
-                          "required": [
-                            "input",
-                            "output"
-                          ],
-                          "type": "object"
-                        },
-                        {}
-                      ]
-                    },
-                    "properties": {
-                      "input": {},
-                      "name": {
-                        "type": "string"
-                      },
-                      "notes": {
-                        "type": "string"
-                      },
-                      "output": {}
-                    },
-                    "type": [
-                      "array",
-                      "object",
-                      "string",
-                      "number",
-                      "integer",
-                      "boolean",
-                      "null"
-                    ]
-                  },
-                  "items": {
-                    "type": "object"
-                  },
-                  "nullable": {
-                    "type": "boolean"
-                  },
-                  "properties": {
-                    "type": [
-                      "object",
-                      "array",
-                      "string"
-                    ]
-                  },
-                  "required": {
-                    "type": [
-                      "array",
-                      "string"
-                    ]
-                  },
-                  "type": {
-                    "enum": [
-                      "string",
-                      "number",
-                      "integer",
-                      "boolean",
-                      "null",
-                      "object",
-                      "array"
-                    ],
-                    "type": "string"
-                  }
-                },
-                "type": [
-                  "object",
-                  "string"
-                ]
-              }
-            },
-            "type": [
-              "string",
-              "array",
-              "object",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "patternProperties": {
-              "^[a-zA-Z0-9 _-]+$": {
-                "properties": {
-                  "additionalProperties": {
-                    "type": [
-                      "boolean",
-                      "object"
-                    ]
-                  },
-                  "default": {
-                    "type": [
-                      "string",
-                      "number",
-                      "integer",
-                      "boolean",
-                      "null",
-                      "object",
-                      "array"
-                    ]
-                  },
-                  "enum": {
-                    "type": "array"
-                  },
-                  "examples": {
-                    "items": {
-                      "anyOf": [
-                        {
-                          "properties": {
-                            "input": {},
-                            "name": {
-                              "type": "string"
-                            },
-                            "notes": {
-                              "type": "string"
-                            },
-                            "output": {}
-                          },
-                          "required": [
-                            "input",
-                            "output"
-                          ],
-                          "type": "object"
-                        },
-                        {}
-                      ]
-                    },
-                    "properties": {
-                      "input": {},
-                      "name": {
-                        "type": "string"
-                      },
-                      "notes": {
-                        "type": "string"
-                      },
-                      "output": {}
-                    },
-                    "type": [
-                      "array",
-                      "object",
-                      "string",
-                      "number",
-                      "integer",
-                      "boolean",
-                      "null"
-                    ]
-                  },
-                  "items": {
-                    "type": "object"
-                  },
-                  "nullable": {
-                    "type": "boolean"
-                  },
-                  "properties": {
-                    "type": [
-                      "object",
-                      "array",
-                      "string"
-                    ]
-                  },
-                  "required": {
-                    "type": [
-                      "array",
-                      "string"
-                    ]
-                  },
-                  "type": {
-                    "enum": [
-                      "string",
-                      "number",
-                      "integer",
-                      "boolean",
-                      "null",
-                      "object",
-                      "array"
-                    ],
-                    "type": "string"
-                  }
-                },
-                "type": [
-                  "object",
-                  "string"
-                ]
-              }
-            },
-            "type": [
-              "object",
-              "string",
-              "array"
-            ]
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "output_format",
-          "registry_schema": {
-            "enum": [
-              "dictionary",
-              "columns",
-              "concatenate"
-            ],
-            "type": [
-              "string",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "enum": [
-              "dictionary",
-              "columns",
-              "concatenate"
-            ],
-            "type": "string"
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "record_examples",
-          "registry_schema": {
-            "items": {
-              "properties": {
-                "input": {},
-                "name": {
-                  "type": "string"
-                },
-                "notes": {
-                  "type": "string"
-                },
-                "output": {}
-              },
-              "required": [
-                "input",
-                "output"
-              ],
-              "type": "object"
-            },
-            "properties": {
-              "input": {},
-              "name": {
-                "type": "string"
-              },
-              "notes": {
-                "type": "string"
-              },
-              "output": {}
-            },
-            "required": [
-              "input",
-              "output"
-            ],
-            "type": [
-              "array",
-              "object",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "items": {
-              "properties": {
-                "input": {},
-                "name": {
-                  "type": "string"
-                },
-                "notes": {
-                  "type": "string"
-                },
-                "output": {}
-              },
-              "required": [
-                "input",
-                "output"
-              ],
-              "type": "object"
-            },
-            "properties": {
-              "input": {},
-              "name": {
-                "type": "string"
-              },
-              "notes": {
-                "type": "string"
-              },
-              "output": {}
-            },
-            "required": [
-              "input",
-              "output"
-            ],
-            "type": [
-              "array",
-              "object"
-            ]
-          }
-        }
-      ]
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "extract.attributes",
@@ -1553,116 +530,10 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": [
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "attribute_type",
-          "registry_schema": {
-            "enum": [
-              "angle",
-              "area",
-              "capacitance",
-              "charge",
-              "current",
-              "data transfer rate",
-              "electrical conductance",
-              "electrical resistance",
-              "energy",
-              "force",
-              "frequency",
-              "inductance",
-              "instance frequency",
-              "length",
-              "luminous flux",
-              "weight",
-              "power",
-              "pressure",
-              "speed",
-              "velocity",
-              "temperature",
-              "time",
-              "voltage",
-              "volume",
-              "volumetric flow"
-            ],
-            "type": [
-              "string",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "enum": [
-              "angle",
-              "area",
-              "capacitance",
-              "charge",
-              "current",
-              "data transfer rate",
-              "electrical conductance",
-              "electrical resistance",
-              "energy",
-              "force",
-              "frequency",
-              "inductance",
-              "instance frequency",
-              "length",
-              "luminous flux",
-              "weight",
-              "power",
-              "pressure",
-              "speed",
-              "velocity",
-              "temperature",
-              "time",
-              "voltage",
-              "volume",
-              "volumetric flow"
-            ],
-            "type": "string"
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "desired_unit",
-          "registry_schema": {
-            "type": [
-              "string",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": "string"
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "output_format",
-          "registry_schema": {
-            "enum": [
-              "list",
-              "dictionary",
-              "columns",
-              "concatenate"
-            ],
-            "type": [
-              "string",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "enum": [
-              "list",
-              "dictionary",
-              "columns",
-              "concatenate"
-            ],
-            "type": "string"
-          }
-        },
-        {
-          "code": "docstring_allows_additional_properties"
-        }
-      ]
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "extract.brackets",
@@ -1671,31 +542,10 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": [
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "output_format",
-          "registry_schema": {
-            "enum": [
-              "list",
-              "columns",
-              "concatenate"
-            ],
-            "type": [
-              "string",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "enum": [
-              "list",
-              "columns",
-              "concatenate"
-            ],
-            "type": "string"
-          }
-        }
-      ]
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "extract.codes",
@@ -1704,34 +554,10 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": [
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "output_format",
-          "registry_schema": {
-            "enum": [
-              "list",
-              "columns",
-              "concatenate"
-            ],
-            "type": [
-              "string",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "enum": [
-              "list",
-              "columns",
-              "concatenate"
-            ],
-            "type": "string"
-          }
-        },
-        {
-          "code": "docstring_allows_additional_properties"
-        }
-      ]
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "extract.custom",
@@ -1740,53 +566,10 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": [
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "output",
-          "registry_schema": {
-            "type": [
-              "string",
-              "array",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": [
-              "string",
-              "array"
-            ]
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "output_format",
-          "registry_schema": {
-            "enum": [
-              "list",
-              "dictionary",
-              "columns",
-              "concatenate"
-            ],
-            "type": [
-              "string",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "enum": [
-              "list",
-              "dictionary",
-              "columns",
-              "concatenate"
-            ],
-            "type": "string"
-          }
-        },
-        {
-          "code": "docstring_allows_additional_properties"
-        }
-      ]
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "extract.date_properties",
@@ -1795,24 +578,10 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": [
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "output",
-          "registry_schema": {
-            "type": [
-              "string",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": [
-              "string",
-              "array"
-            ]
-          }
-        }
-      ]
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "extract.date_range",
@@ -1821,14 +590,17 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": [
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [
         {
-          "code": "docstring_required_mismatch",
+          "code": "upstream_required_mismatch",
           "parameter": "range",
           "runtime_required": false,
-          "docstring_required": true
+          "schema_required": true
         }
-      ]
+      ],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "extract.html",
@@ -1837,57 +609,17 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": [
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [
         {
-          "code": "docstring_required_mismatch",
+          "code": "upstream_required_mismatch",
           "parameter": "output",
           "runtime_required": false,
-          "docstring_required": true
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "output",
-          "registry_schema": {
-            "type": [
-              "string",
-              "array",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": [
-              "string",
-              "array"
-            ]
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "output_format",
-          "registry_schema": {
-            "enum": [
-              "list",
-              "columns",
-              "concatenate"
-            ],
-            "type": [
-              "string",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "enum": [
-              "list",
-              "columns",
-              "concatenate"
-            ],
-            "type": "string"
-          }
-        },
-        {
-          "code": "docstring_allows_additional_properties"
+          "schema_required": true
         }
-      ]
+      ],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "extract.properties",
@@ -1896,61 +628,10 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": [
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "output_format",
-          "registry_schema": {
-            "enum": [
-              "list",
-              "dictionary",
-              "columns",
-              "concatenate"
-            ],
-            "type": [
-              "string",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "enum": [
-              "list",
-              "dictionary",
-              "columns",
-              "concatenate"
-            ],
-            "type": "string"
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "property_type",
-          "registry_schema": {
-            "enum": [
-              "Colours",
-              "Materials",
-              "Shapes",
-              "Standards"
-            ],
-            "type": [
-              "string",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "enum": [
-              "Colours",
-              "Materials",
-              "Shapes",
-              "Standards"
-            ],
-            "type": "string"
-          }
-        },
-        {
-          "code": "docstring_allows_additional_properties"
-        }
-      ]
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "extract.regex",
@@ -1959,44 +640,10 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": [
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "output_format",
-          "registry_schema": {
-            "enum": [
-              "list",
-              "columns",
-              "concatenate"
-            ],
-            "type": [
-              "string",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "enum": [
-              "list",
-              "columns",
-              "concatenate"
-            ],
-            "type": "string"
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "output_pattern",
-          "registry_schema": {
-            "type": [
-              "string",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": "string"
-          }
-        }
-      ]
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "filter",
@@ -2005,210 +652,10 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": [
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "between",
-          "registry_schema": {
-            "type": [
-              "array",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": [
-              "array"
-            ]
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "contains",
-          "registry_schema": {
-            "type": [
-              "string",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": "string"
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "equal",
-          "registry_schema": {
-            "type": [
-              "string",
-              "array",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": [
-              "string",
-              "array",
-              "boolean",
-              "number"
-            ]
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "greater_than",
-          "registry_schema": {
-            "type": [
-              "integer",
-              "number",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": [
-              "integer",
-              "number"
-            ]
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "greater_than_equal_to",
-          "registry_schema": {
-            "type": [
-              "integer",
-              "number",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": [
-              "integer",
-              "number"
-            ]
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "is_in",
-          "registry_schema": {
-            "type": [
-              "string",
-              "array",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": [
-              "array",
-              "string"
-            ]
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "is_null",
-          "registry_schema": {
-            "type": [
-              "boolean",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": "boolean"
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "less_than",
-          "registry_schema": {
-            "type": [
-              "integer",
-              "number",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": [
-              "integer",
-              "number"
-            ]
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "less_than_equal_to",
-          "registry_schema": {
-            "type": [
-              "integer",
-              "number",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": [
-              "integer",
-              "number"
-            ]
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "not_contains",
-          "registry_schema": {
-            "type": [
-              "string",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": "string"
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "not_equal",
-          "registry_schema": {
-            "type": [
-              "string",
-              "array",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": [
-              "string",
-              "array",
-              "boolean",
-              "number"
-            ]
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "not_in",
-          "registry_schema": {
-            "type": [
-              "string",
-              "array",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": [
-              "array",
-              "string"
-            ]
-          }
-        },
-        {
-          "code": "docstring_only_parameter",
-          "parameter": "where"
-        },
-        {
-          "code": "docstring_only_parameter",
-          "parameter": "where_params"
-        }
-      ]
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "format.dates",
@@ -2217,37 +664,10 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": [
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "format",
-          "registry_schema": {
-            "type": "string"
-          },
-          "docstring_schema": {
-            "type": [
-              "string"
-            ]
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "output",
-          "registry_schema": {
-            "type": [
-              "string",
-              "array",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": [
-              "string",
-              "array"
-            ]
-          }
-        }
-      ]
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "format.pad",
@@ -2256,72 +676,10 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": [
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "char",
-          "registry_schema": {
-            "type": "string"
-          },
-          "docstring_schema": {
-            "type": [
-              "string"
-            ]
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "output",
-          "registry_schema": {
-            "type": [
-              "string",
-              "array",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": [
-              "string",
-              "array"
-            ]
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "pad_length",
-          "registry_schema": {
-            "type": "integer"
-          },
-          "docstring_schema": {
-            "type": [
-              "number"
-            ]
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "side",
-          "registry_schema": {
-            "type": "string"
-          },
-          "docstring_schema": {
-            "type": [
-              "string"
-            ]
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "skip_empty",
-          "registry_schema": {
-            "type": "boolean"
-          },
-          "docstring_schema": {
-            "default": false,
-            "type": "boolean"
-          }
-        }
-      ]
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "format.prefix",
@@ -2330,53 +688,10 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": [
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "output",
-          "registry_schema": {
-            "type": [
-              "string",
-              "array",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": [
-              "string",
-              "array"
-            ]
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "skip_empty",
-          "registry_schema": {
-            "type": "boolean"
-          },
-          "docstring_schema": {
-            "default": false,
-            "type": "boolean"
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "value",
-          "registry_schema": {
-            "type": [
-              "string",
-              "integer",
-              "number"
-            ]
-          },
-          "docstring_schema": {
-            "type": [
-              "string",
-              "number"
-            ]
-          }
-        }
-      ]
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "format.price_breaks",
@@ -2385,11 +700,15 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": [
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [
         {
-          "code": "missing_docstring_schema"
+          "code": "missing_upstream_schema",
+          "resolution": "signature-derived"
         }
-      ]
+      ],
+      "schema_origin": "signature-derived",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "format.remove_duplicates",
@@ -2398,25 +717,10 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": [
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "output",
-          "registry_schema": {
-            "type": [
-              "string",
-              "array",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": [
-              "string",
-              "array"
-            ]
-          }
-        }
-      ]
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "format.significant_figures",
@@ -2425,37 +729,10 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": [
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "output",
-          "registry_schema": {
-            "type": [
-              "string",
-              "array",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": [
-              "string",
-              "array"
-            ]
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "significant_figures",
-          "registry_schema": {
-            "type": "integer"
-          },
-          "docstring_schema": {
-            "type": [
-              "integer"
-            ]
-          }
-        }
-      ]
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "format.suffix",
@@ -2464,53 +741,10 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": [
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "output",
-          "registry_schema": {
-            "type": [
-              "string",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": [
-              "string",
-              "array"
-            ]
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "skip_empty",
-          "registry_schema": {
-            "type": "boolean"
-          },
-          "docstring_schema": {
-            "default": false,
-            "type": "boolean"
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "value",
-          "registry_schema": {
-            "type": [
-              "string",
-              "integer",
-              "number",
-              "array"
-            ]
-          },
-          "docstring_schema": {
-            "type": [
-              "string",
-              "number"
-            ]
-          }
-        }
-      ]
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "format.trim",
@@ -2519,25 +753,10 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": [
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "output",
-          "registry_schema": {
-            "type": [
-              "string",
-              "array",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": [
-              "string",
-              "array"
-            ]
-          }
-        }
-      ]
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "generate.ai",
@@ -2546,70 +765,10 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": [
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "input",
-          "registry_schema": {
-            "type": [
-              "string",
-              "array",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": [
-              "string",
-              "array"
-            ]
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "messages",
-          "registry_schema": {
-            "type": [
-              "array",
-              "object",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": "array"
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "output",
-          "registry_schema": {
-            "type": [
-              "string",
-              "array",
-              "object"
-            ]
-          },
-          "docstring_schema": {
-            "type": [
-              "string",
-              "object",
-              "array"
-            ]
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "reasoning",
-          "registry_schema": {
-            "type": [
-              "string",
-              "object"
-            ]
-          },
-          "docstring_schema": {
-            "type": "object"
-          }
-        }
-      ]
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "huggingface",
@@ -2618,41 +777,10 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": [
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "output",
-          "registry_schema": {
-            "type": [
-              "string",
-              "array",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": [
-              "string",
-              "array"
-            ]
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "parameters",
-          "registry_schema": {
-            "type": [
-              "object",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": "object"
-          }
-        },
-        {
-          "code": "docstring_allows_additional_properties"
-        }
-      ]
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "log",
@@ -2661,81 +789,10 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": [
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "columns",
-          "registry_schema": {
-            "type": [
-              "array",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": "array"
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "info",
-          "registry_schema": {
-            "type": [
-              "string",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": "string"
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "log_data",
-          "registry_schema": {
-            "type": [
-              "boolean",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": "boolean"
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "warning",
-          "registry_schema": {
-            "type": [
-              "string",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": "string"
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "write",
-          "registry_schema": {
-            "items": {
-              "$ref": "#/$defs/write/items"
-            },
-            "minItems": 1,
-            "type": [
-              "array",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "items": {
-              "$ref": "#/$defs/write/items"
-            },
-            "minItems": 1,
-            "type": "array"
-          }
-        }
-      ]
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "lookup",
@@ -2744,73 +801,41 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": [
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [
         {
-          "code": "schema_constraint_difference",
-          "parameter": "input",
-          "registry_schema": {
-            "type": "string"
-          },
-          "docstring_schema": {
-            "type": [
-              "string",
-              "integer"
-            ]
-          }
-        },
-        {
-          "code": "docstring_required_mismatch",
+          "code": "upstream_required_mismatch",
           "parameter": "model_id",
           "runtime_required": false,
-          "docstring_required": true
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "model_id",
-          "registry_schema": {
-            "type": [
-              "string",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": "string"
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "n",
-          "registry_schema": {
-            "type": [
-              "integer",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": "integer"
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "output",
-          "registry_schema": {
-            "type": [
-              "string",
-              "array",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": [
-              "string",
-              "array"
-            ]
-          }
-        },
-        {
-          "code": "docstring_allows_additional_properties"
+          "schema_required": true
         }
-      ]
+      ],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
+    },
+    {
+      "wrangle_key": "lookup.key",
+      "matched_runtime_keys": [
+        "lookup.key"
+      ],
+      "status": "verified",
+      "runtime_issues": [],
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
+    },
+    {
+      "wrangle_key": "lookup.semantic",
+      "matched_runtime_keys": [
+        "lookup.semantic"
+      ],
+      "status": "verified",
+      "runtime_issues": [],
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "math",
@@ -2819,21 +844,10 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": [
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "input",
-          "registry_schema": {
-            "type": "string"
-          },
-          "docstring_schema": {
-            "type": [
-              "string",
-              "integer"
-            ]
-          }
-        }
-      ]
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "maths",
@@ -2842,11 +856,15 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": [
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [
         {
-          "code": "missing_docstring_schema"
+          "code": "missing_upstream_schema",
+          "resolution": "deprecated-alias:math"
         }
-      ]
+      ],
+      "schema_origin": "deprecated-alias:math",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "matrix",
@@ -2855,11 +873,10 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": [
-        {
-          "code": "docstring_allows_additional_properties"
-        }
-      ]
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "merge.coalesce",
@@ -2868,35 +885,10 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": [
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "input",
-          "registry_schema": {
-            "type": "array"
-          },
-          "docstring_schema": {
-            "type": [
-              "array",
-              "string",
-              "integer"
-            ]
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "output",
-          "registry_schema": {
-            "type": [
-              "string",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": "string"
-          }
-        }
-      ]
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "merge.concatenate",
@@ -2905,45 +897,17 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": [
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [
         {
-          "code": "docstring_required_mismatch",
+          "code": "upstream_required_mismatch",
           "parameter": "char",
           "runtime_required": false,
-          "docstring_required": true
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "input",
-          "registry_schema": {
-            "type": [
-              "string",
-              "integer",
-              "array"
-            ]
-          },
-          "docstring_schema": {
-            "type": [
-              "array",
-              "string",
-              "integer"
-            ]
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "skip_empty",
-          "registry_schema": {
-            "desription": "Whether to skip empty values",
-            "type": "boolean"
-          },
-          "docstring_schema": {
-            "default": false,
-            "desription": "Whether to skip empty values",
-            "type": "boolean"
-          }
+          "schema_required": true
         }
-      ]
+      ],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "merge.dictionaries",
@@ -2952,19 +916,10 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": [
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "skip_empty",
-          "registry_schema": {
-            "type": "boolean"
-          },
-          "docstring_schema": {
-            "default": false,
-            "type": "boolean"
-          }
-        }
-      ]
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "merge.key_value_pairs",
@@ -2973,19 +928,10 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": [
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "skip_empty",
-          "registry_schema": {
-            "type": "boolean"
-          },
-          "docstring_schema": {
-            "default": false,
-            "type": "boolean"
-          }
-        }
-      ]
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "merge.lists",
@@ -2994,7 +940,10 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": []
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "merge.to_dict",
@@ -3003,22 +952,10 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": [
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "input",
-          "registry_schema": {
-            "type": "array"
-          },
-          "docstring_schema": {
-            "type": [
-              "array",
-              "string",
-              "integer"
-            ]
-          }
-        }
-      ]
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "merge.to_list",
@@ -3027,22 +964,10 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": [
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "input",
-          "registry_schema": {
-            "type": "array"
-          },
-          "docstring_schema": {
-            "type": [
-              "array",
-              "string",
-              "integer"
-            ]
-          }
-        }
-      ]
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "python",
@@ -3051,30 +976,10 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": [
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "input",
-          "registry_schema": {
-            "type": [
-              "string",
-              "integer",
-              "array",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": [
-              "string",
-              "integer",
-              "array"
-            ]
-          }
-        },
-        {
-          "code": "docstring_allows_additional_properties"
-        }
-      ]
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "recipe",
@@ -3083,51 +988,19 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": [
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [
         {
-          "code": "registry_only_parameter",
+          "code": "signature_parameter_not_declared_by_schema",
           "parameter": "input"
         },
         {
-          "code": "docstring_required_mismatch",
-          "parameter": "name",
-          "runtime_required": false,
-          "docstring_required": true
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "name",
-          "registry_schema": {
-            "type": [
-              "string",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": "string"
-          }
-        },
-        {
-          "code": "registry_only_parameter",
+          "code": "signature_parameter_not_declared_by_schema",
           "parameter": "output"
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "variables",
-          "registry_schema": {
-            "type": [
-              "object",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": "object"
-          }
-        },
-        {
-          "code": "docstring_allows_additional_properties"
         }
-      ]
+      ],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "reindex",
@@ -3136,64 +1009,10 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": [
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "axis",
-          "registry_schema": {
-            "type": [
-              "string",
-              "integer",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": [
-              "number",
-              "string"
-            ]
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "columns",
-          "registry_schema": {
-            "type": [
-              "array",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": "array"
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "index",
-          "registry_schema": {
-            "type": [
-              "array",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": "array"
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "labels",
-          "registry_schema": {
-            "type": [
-              "array",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": "array"
-          }
-        }
-      ]
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "remove_words",
@@ -3202,41 +1021,17 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": [
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [
         {
-          "code": "docstring_required_mismatch",
+          "code": "upstream_required_mismatch",
           "parameter": "output",
           "runtime_required": false,
-          "docstring_required": true
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "output",
-          "registry_schema": {
-            "type": [
-              "string",
-              "array",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": [
-              "string",
-              "array"
-            ]
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "to_remove",
-          "registry_schema": {
-            "type": "string"
-          },
-          "docstring_schema": {
-            "type": "array"
-          }
+          "schema_required": true
         }
-      ]
+      ],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "rename",
@@ -3245,77 +1040,10 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": [
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "input",
-          "registry_schema": {
-            "items": {
-              "type": [
-                "string",
-                "integer"
-              ]
-            },
-            "type": [
-              "string",
-              "integer",
-              "array",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": [
-              "string",
-              "integer",
-              "array"
-            ]
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "output",
-          "registry_schema": {
-            "items": {
-              "type": "string"
-            },
-            "type": [
-              "string",
-              "array",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": [
-              "string",
-              "array"
-            ]
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "wrangles",
-          "registry_schema": {
-            "items": {
-              "$ref": "#/$defs/wrangles/items"
-            },
-            "minItems": 1,
-            "type": [
-              "array",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "items": {
-              "$ref": "#/$defs/wrangles/items"
-            },
-            "minItems": 1,
-            "type": "array"
-          }
-        },
-        {
-          "code": "docstring_allows_additional_properties"
-        }
-      ]
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "replace",
@@ -3324,25 +1052,10 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": [
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "output",
-          "registry_schema": {
-            "type": [
-              "string",
-              "array",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": [
-              "string",
-              "array"
-            ]
-          }
-        }
-      ]
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "round",
@@ -3351,35 +1064,29 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": [
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
+    },
+    {
+      "wrangle_key": "search.ai_mode",
+      "matched_runtime_keys": [
+        "search.ai_mode"
+      ],
+      "status": "verified",
+      "runtime_issues": [],
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [
         {
-          "code": "schema_constraint_difference",
-          "parameter": "decimals",
-          "registry_schema": {
-            "type": "integer"
-          },
-          "docstring_schema": {
-            "type": "number"
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
+          "code": "upstream_required_mismatch",
           "parameter": "output",
-          "registry_schema": {
-            "type": [
-              "string",
-              "array",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": [
-              "string",
-              "array"
-            ]
-          }
+          "runtime_required": false,
+          "schema_required": true
         }
-      ]
+      ],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "search.find_links",
@@ -3388,105 +1095,17 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": [
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [
         {
-          "code": "schema_constraint_difference",
-          "parameter": "api_key",
-          "registry_schema": {
-            "type": [
-              "string",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": "string"
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "client",
-          "registry_schema": {
-            "enum": [
-              "serpapi"
-            ],
-            "type": "string"
-          },
-          "docstring_schema": {
-            "default": "serpapi",
-            "enum": [
-              "serpapi"
-            ],
-            "type": "string"
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "country",
-          "registry_schema": {
-            "type": "string"
-          },
-          "docstring_schema": {
-            "default": "us",
-            "type": "string"
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "language",
-          "registry_schema": {
-            "type": "string"
-          },
-          "docstring_schema": {
-            "default": "en",
-            "type": "string"
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "n_results",
-          "registry_schema": {
-            "type": "integer"
-          },
-          "docstring_schema": {
-            "default": 10,
-            "type": "integer"
-          }
-        },
-        {
-          "code": "docstring_required_mismatch",
+          "code": "upstream_required_mismatch",
           "parameter": "output",
           "runtime_required": false,
-          "docstring_required": true
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "output",
-          "registry_schema": {
-            "type": [
-              "string",
-              "array",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": [
-              "string",
-              "array"
-            ]
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "threads",
-          "registry_schema": {
-            "type": "integer"
-          },
-          "docstring_schema": {
-            "default": 10,
-            "type": "integer"
-          }
+          "schema_required": true
         }
-      ]
+      ],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "search.retrieve_link_content",
@@ -3495,104 +1114,17 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": [
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [
         {
-          "code": "schema_constraint_difference",
-          "parameter": "api_key",
-          "registry_schema": {
-            "type": [
-              "string",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": "string"
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "client",
-          "registry_schema": {
-            "enum": [
-              "google_url_context"
-            ],
-            "type": "string"
-          },
-          "docstring_schema": {
-            "default": "google_url_context",
-            "enum": [
-              "google_url_context"
-            ],
-            "type": "string"
-          }
-        },
-        {
-          "code": "docstring_required_mismatch",
+          "code": "upstream_required_mismatch",
           "parameter": "output",
           "runtime_required": false,
-          "docstring_required": true
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "output",
-          "registry_schema": {
-            "type": [
-              "string",
-              "array",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": [
-              "string",
-              "array"
-            ]
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "output_format",
-          "registry_schema": {
-            "enum": [
-              "markdown",
-              "json"
-            ],
-            "type": "string"
-          },
-          "docstring_schema": {
-            "default": "json",
-            "enum": [
-              "markdown",
-              "json"
-            ],
-            "type": "string"
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "prompt",
-          "registry_schema": {
-            "type": [
-              "string",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": "string"
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "threads",
-          "registry_schema": {
-            "type": "integer"
-          },
-          "docstring_schema": {
-            "default": 10,
-            "type": "integer"
-          }
+          "schema_required": true
         }
-      ]
+      ],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "select.columns",
@@ -3601,7 +1133,10 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": []
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "select.dictionary_element",
@@ -3610,38 +1145,10 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": [
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "element",
-          "registry_schema": {
-            "type": "string"
-          },
-          "docstring_schema": {
-            "type": [
-              "string",
-              "array"
-            ]
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "output",
-          "registry_schema": {
-            "type": [
-              "string",
-              "array",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": [
-              "string",
-              "array"
-            ]
-          }
-        }
-      ]
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "select.element",
@@ -3650,49 +1157,10 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": [
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "default",
-          "registry_schema": {
-            "type": [
-              "string",
-              "number",
-              "array",
-              "object",
-              "boolean",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "default": "",
-            "type": [
-              "string",
-              "number",
-              "array",
-              "object",
-              "boolean"
-            ]
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "output",
-          "registry_schema": {
-            "type": [
-              "string",
-              "array",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": [
-              "string",
-              "array"
-            ]
-          }
-        }
-      ]
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "select.group_by",
@@ -3701,11 +1169,10 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": [
-        {
-          "code": "docstring_allows_additional_properties"
-        }
-      ]
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "select.head",
@@ -3714,11 +1181,10 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": [
-        {
-          "code": "docstring_allows_additional_properties"
-        }
-      ]
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "select.highest_confidence",
@@ -3727,24 +1193,10 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": [
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "output",
-          "registry_schema": {
-            "type": [
-              "string",
-              "array"
-            ]
-          },
-          "docstring_schema": {
-            "type": [
-              "array",
-              "string"
-            ]
-          }
-        }
-      ]
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "select.left",
@@ -3753,25 +1205,10 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": [
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "output",
-          "registry_schema": {
-            "type": [
-              "string",
-              "array",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": [
-              "string",
-              "array"
-            ]
-          }
-        }
-      ]
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "select.length",
@@ -3780,28 +1217,10 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": [
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "output",
-          "registry_schema": {
-            "type": [
-              "string",
-              "array",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": [
-              "string",
-              "array"
-            ]
-          }
-        },
-        {
-          "code": "docstring_allows_additional_properties"
-        }
-      ]
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "select.list_element",
@@ -3810,31 +1229,17 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": [
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [
         {
-          "code": "docstring_required_mismatch",
+          "code": "upstream_required_mismatch",
           "parameter": "element",
           "runtime_required": false,
-          "docstring_required": true
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "output",
-          "registry_schema": {
-            "type": [
-              "string",
-              "array",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": [
-              "string",
-              "array"
-            ]
-          }
+          "schema_required": true
         }
-      ]
+      ],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "select.right",
@@ -3843,25 +1248,10 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": [
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "output",
-          "registry_schema": {
-            "type": [
-              "string",
-              "array",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": [
-              "string",
-              "array"
-            ]
-          }
-        }
-      ]
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "select.sample",
@@ -3870,11 +1260,10 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": [
-        {
-          "code": "docstring_allows_additional_properties"
-        }
-      ]
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "select.substring",
@@ -3883,67 +1272,23 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": [
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [
         {
-          "code": "docstring_required_mismatch",
-          "parameter": "length",
-          "runtime_required": false,
-          "docstring_required": true
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "length",
-          "registry_schema": {
-            "minimum": 1,
-            "type": [
-              "integer",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "minimum": 1,
-            "type": "integer"
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "output",
-          "registry_schema": {
-            "type": [
-              "string",
-              "array",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": [
-              "string",
-              "array"
-            ]
-          }
-        },
-        {
-          "code": "docstring_required_mismatch",
+          "code": "upstream_required_mismatch",
           "parameter": "start",
           "runtime_required": false,
-          "docstring_required": true
+          "schema_required": true
         },
         {
-          "code": "schema_constraint_difference",
-          "parameter": "start",
-          "registry_schema": {
-            "minimum": 1,
-            "type": [
-              "integer",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "minimum": 1,
-            "type": "integer"
-          }
+          "code": "upstream_required_mismatch",
+          "parameter": "length",
+          "runtime_required": false,
+          "schema_required": true
         }
-      ]
+      ],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "select.tail",
@@ -3952,11 +1297,10 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": [
-        {
-          "code": "docstring_allows_additional_properties"
-        }
-      ]
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "select.threshold",
@@ -3965,7 +1309,10 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": []
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "similarity",
@@ -3974,7 +1321,10 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": []
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "sort",
@@ -3983,15 +1333,15 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": [
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [
         {
-          "code": "registry_only_parameter",
+          "code": "signature_parameter_not_declared_by_schema",
           "parameter": "ignore_index"
-        },
-        {
-          "code": "docstring_allows_additional_properties"
         }
-      ]
+      ],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "split.dictionary",
@@ -4000,38 +1350,10 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": [
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "default",
-          "registry_schema": {
-            "type": [
-              "object",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": "object"
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "output",
-          "registry_schema": {
-            "type": [
-              "string",
-              "array",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": [
-              "string",
-              "array"
-            ]
-          }
-        }
-      ]
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "split.list",
@@ -4040,23 +1362,16 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": [
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [
         {
-          "code": "schema_constraint_difference",
-          "parameter": "input",
-          "registry_schema": {
-            "type": [
-              "string",
-              "integer"
-            ]
-          },
-          "docstring_schema": {
-            "type": [
-              "string",
-              "int"
-            ]
-          }
+          "code": "upstream_invalid_schema_type",
+          "resolution": "Normalize schema type \"int\" to integer."
         }
+      ],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": [
+        "Normalize schema type \"int\" to integer."
       ]
     },
     {
@@ -4066,66 +1381,10 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": [
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "element",
-          "registry_schema": {
-            "type": [
-              "string",
-              "integer",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": [
-              "integer",
-              "string"
-            ]
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "output",
-          "registry_schema": {
-            "type": [
-              "string",
-              "array",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": [
-              "string",
-              "array"
-            ]
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "pad",
-          "registry_schema": {
-            "type": [
-              "boolean",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": "boolean"
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "skip_empty",
-          "registry_schema": {
-            "type": "boolean"
-          },
-          "docstring_schema": {
-            "default": false,
-            "type": "boolean"
-          }
-        }
-      ]
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "split.tokenize",
@@ -4134,25 +1393,10 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": [
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "output",
-          "registry_schema": {
-            "type": [
-              "string",
-              "array",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": [
-              "string",
-              "array"
-            ]
-          }
-        }
-      ]
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "sql",
@@ -4161,33 +1405,19 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": [
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [
         {
-          "code": "schema_constraint_difference",
-          "parameter": "params",
-          "registry_schema": {
-            "type": [
-              "array",
-              "object",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": [
-              "array",
-              "object"
-            ]
-          }
-        },
-        {
-          "code": "registry_only_parameter",
-          "parameter": "preserve_data_types"
-        },
-        {
-          "code": "registry_only_parameter",
+          "code": "signature_parameter_not_declared_by_schema",
           "parameter": "preserve_index"
+        },
+        {
+          "code": "signature_parameter_not_declared_by_schema",
+          "parameter": "preserve_data_types"
         }
-      ]
+      ],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "standardize",
@@ -4196,34 +1426,17 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": [
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [
         {
-          "code": "docstring_required_mismatch",
+          "code": "upstream_required_mismatch",
           "parameter": "model_id",
           "runtime_required": true,
-          "docstring_required": false
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "output",
-          "registry_schema": {
-            "type": [
-              "string",
-              "array",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": [
-              "string",
-              "array"
-            ]
-          }
-        },
-        {
-          "code": "docstring_allows_additional_properties"
+          "schema_required": false
         }
-      ]
+      ],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "standardize.clean",
@@ -4232,207 +1445,10 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": [
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "collapse_whitespace",
-          "registry_schema": {
-            "type": "boolean"
-          },
-          "docstring_schema": {
-            "default": true,
-            "type": "boolean"
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "fix_character_width",
-          "registry_schema": {
-            "type": "boolean"
-          },
-          "docstring_schema": {
-            "default": true,
-            "type": "boolean"
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "fix_encoding",
-          "registry_schema": {
-            "type": "boolean"
-          },
-          "docstring_schema": {
-            "default": true,
-            "type": "boolean"
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "input",
-          "registry_schema": {
-            "items": {
-              "type": [
-                "string",
-                "integer"
-              ]
-            },
-            "type": [
-              "string",
-              "integer",
-              "array"
-            ]
-          },
-          "docstring_schema": {
-            "type": [
-              "string",
-              "integer",
-              "array"
-            ]
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "normalization",
-          "registry_schema": {
-            "enum": [
-              "NFC",
-              "NFKC",
-              "NFD",
-              "NFKD",
-              null
-            ],
-            "type": "string"
-          },
-          "docstring_schema": {
-            "default": "NFC",
-            "enum": [
-              "NFC",
-              "NFKC",
-              "NFD",
-              "NFKD",
-              null
-            ],
-            "type": [
-              "string",
-              "null"
-            ]
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "output",
-          "registry_schema": {
-            "items": {
-              "type": [
-                "string",
-                "integer"
-              ]
-            },
-            "type": [
-              "string",
-              "integer",
-              "array",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": [
-              "string",
-              "integer",
-              "array"
-            ]
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "preserve_line_breaks",
-          "registry_schema": {
-            "type": "boolean"
-          },
-          "docstring_schema": {
-            "default": false,
-            "type": "boolean"
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "remove_control_chars",
-          "registry_schema": {
-            "type": "boolean"
-          },
-          "docstring_schema": {
-            "default": true,
-            "type": "boolean"
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "separator",
-          "registry_schema": {
-            "type": "string"
-          },
-          "docstring_schema": {
-            "default": " ",
-            "type": "string"
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "trim",
-          "registry_schema": {
-            "type": "boolean"
-          },
-          "docstring_schema": {
-            "default": true,
-            "type": "boolean"
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "uncurl_quotes",
-          "registry_schema": {
-            "type": "boolean"
-          },
-          "docstring_schema": {
-            "default": true,
-            "type": "boolean"
-          }
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "unescape_html",
-          "registry_schema": {
-            "anyOf": [
-              {
-                "type": "boolean"
-              },
-              {
-                "enum": [
-                  "auto"
-                ],
-                "type": "string"
-              }
-            ]
-          },
-          "docstring_schema": {
-            "anyOf": [
-              {
-                "type": "boolean"
-              },
-              {
-                "enum": [
-                  "auto"
-                ],
-                "type": "string"
-              }
-            ],
-            "default": "auto"
-          }
-        },
-        {
-          "code": "docstring_allows_additional_properties"
-        }
-      ]
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "standardize.custom",
@@ -4441,34 +1457,17 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": [
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [
         {
-          "code": "docstring_required_mismatch",
+          "code": "upstream_required_mismatch",
           "parameter": "model_id",
           "runtime_required": true,
-          "docstring_required": false
-        },
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "output",
-          "registry_schema": {
-            "type": [
-              "string",
-              "array",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": [
-              "string",
-              "array"
-            ]
-          }
-        },
-        {
-          "code": "docstring_allows_additional_properties"
+          "schema_required": false
         }
-      ]
+      ],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "translate",
@@ -4477,12 +1476,15 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": [
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [
         {
-          "code": "registry_only_parameter",
+          "code": "signature_parameter_not_declared_by_schema",
           "parameter": "case"
         }
-      ]
+      ],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     },
     {
       "wrangle_key": "transpose",
@@ -4491,25 +1493,16 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": [
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [
         {
-          "code": "schema_constraint_difference",
-          "parameter": "header_column",
-          "registry_schema": {
-            "type": [
-              "string",
-              "integer",
-              "null"
-            ]
-          },
-          "docstring_schema": {
-            "type": [
-              "string",
-              "integer",
-              null
-            ]
-          }
+          "code": "upstream_invalid_schema_type",
+          "resolution": "Normalize schema type null to null."
         }
+      ],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": [
+        "Normalize schema type null to null."
       ]
     },
     {
@@ -4519,31 +1512,10 @@
       ],
       "status": "verified",
       "runtime_issues": [],
-      "embedded_schema_differences": [
-        {
-          "code": "schema_constraint_difference",
-          "parameter": "except",
-          "registry_schema": {
-            "items": {
-              "$ref": "#/$defs/wrangles/items"
-            },
-            "minItems": 1,
-            "type": "object"
-          },
-          "docstring_schema": {
-            "items": {
-              "$ref": "#/$defs/wrangles/items"
-            },
-            "minItems": 1,
-            "type": [
-              "object"
-            ]
-          }
-        },
-        {
-          "code": "docstring_allows_additional_properties"
-        }
-      ]
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
     }
   ],
   "runtime_without_normalized_registry": []

@@ -31,7 +31,7 @@ capabilities:
   where_params: true
 parameters:
   - name: input
-    description: Name of input column.
+    description: Name of input column
     required: true
     param_group: I/O
     schema:
@@ -39,26 +39,32 @@ parameters:
         - string
         - integer
         - array
+      description: Name of input column
+    runtime_required: true
   - name: output
-    description: Name of new column.
-    required: true
+    description: Name of new column
+    required: false
     param_group: I/O
     schema:
       type:
         - string
         - array
+      description: Name of new column
+    runtime_required: true
   - name: method
-    description: 'The method to use to hash the input (Default: md5).'
+    description: 'The method to use to hash the input (Default: md5)'
     required: false
     param_group: Options
     runtime_default: md5
     schema:
       type: string
+      description: 'The method to use to hash the input (Default: md5)'
       enum:
         - md5
         - sha1
         - sha256
         - sha512
+    runtime_required: false
 examples: []
 sources:
   - id: runtime
@@ -69,6 +75,40 @@ sources:
     resource: >-
       https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/create/_sources/hash.md
     title: Archived create.hash Markdown
+configuration_schema:
+  type: object
+  description: Create a hash of a column
+  additionalProperties: false
+  required:
+    - input
+  properties:
+    input:
+      type:
+        - string
+        - integer
+        - array
+      description: Name of input column
+    output:
+      type:
+        - string
+        - array
+      description: Name of new column
+    method:
+      type: string
+      description: 'The method to use to hash the input (Default: md5)'
+      enum:
+        - md5
+        - sha1
+        - sha256
+        - sha512
+    if:
+      $ref: '#/$defs/wrangles/commonProperties/if'
+    where:
+      $ref: '#/$defs/wrangles/commonProperties/where'
+    where_params:
+      $ref: '#/$defs/wrangles/commonProperties/where_params'
+schema_origin: upstream-docstring
+schema_adjustments: []
 ---
 
 # Hash

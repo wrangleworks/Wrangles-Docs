@@ -40,6 +40,56 @@
     "where": true,
     "where_params": true
   },
+  "configuration_schema": {
+    "type": "object",
+    "description": "Condense multiple spaces to a single space and convert special space characters to a standard space.",
+    "additionalProperties": false,
+    "required": [
+      "input"
+    ],
+    "properties": {
+      "input": {
+        "type": [
+          "string",
+          "integer",
+          "array"
+        ],
+        "description": "Name or list of input columns."
+      },
+      "output": {
+        "type": [
+          "string",
+          "array"
+        ],
+        "description": "Name or list of output columns."
+      },
+      "trim": {
+        "type": "boolean",
+        "description": "Whether to trim leading and trailing spaces. Default True."
+      },
+      "remove_literals": {
+        "type": "boolean",
+        "description": "Whether to remove special space characters such as new lines etc. Default True."
+      },
+      "if": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/if"
+      },
+      "where": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/where"
+      },
+      "where_params": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/where_params"
+      }
+    }
+  },
+  "schema_origin": "upstream-docstring",
+  "schema_adjustments": [],
+  "schema_source": {
+    "repository": "https://github.com/wrangleworks/WranglesPY",
+    "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+    "version": "1.20.5",
+    "extraction": "static-python-ast"
+  },
   "parameters": [
     {
       "name": "input",
@@ -51,8 +101,10 @@
           "string",
           "integer",
           "array"
-        ]
-      }
+        ],
+        "description": "Name or list of input columns."
+      },
+      "runtime_required": true
     },
     {
       "name": "output",
@@ -63,10 +115,11 @@
       "schema": {
         "type": [
           "string",
-          "array",
-          "null"
-        ]
-      }
+          "array"
+        ],
+        "description": "Name or list of output columns."
+      },
+      "runtime_required": false
     },
     {
       "name": "trim",
@@ -75,8 +128,10 @@
       "param_group": "Options",
       "runtime_default": true,
       "schema": {
-        "type": "boolean"
-      }
+        "type": "boolean",
+        "description": "Whether to trim leading and trailing spaces. Default True."
+      },
+      "runtime_required": false
     },
     {
       "name": "remove_literals",
@@ -85,8 +140,10 @@
       "param_group": "Options",
       "runtime_default": true,
       "schema": {
-        "type": "boolean"
-      }
+        "type": "boolean",
+        "description": "Whether to remove special space characters such as new lines etc. Default True."
+      },
+      "runtime_required": false
     },
     {
       "name": "if",

@@ -1,25 +1,25 @@
 ---
 schema_version: '0.2'
-type: wrangle
-id: da591387-0fca-4842-8bcb-d19f561f0292
-wrangle_name: codes
-namespace: extract
-title: Codes
-description: Extract alphanumeric codes from the input. Requires WrangleWorks Account.
-wrangle_key: extract.codes
+type: 'wrangle'
+id: 'da591387-0fca-4842-8bcb-d19f561f0292'
+wrangle_name: 'codes'
+namespace: 'extract'
+title: 'Codes'
+description: 'Extract alphanumeric codes from the input. Requires WrangleWorks Account.'
+wrangle_key: 'extract.codes'
 aliases: []
-slug: extract/codes
-status: active
-visibility: public
+slug: 'extract/codes'
+status: 'active'
+visibility: 'public'
 recipe_writer:
   eligible: true
 tags:
-  - extract
-  - codes
+  - 'extract'
+  - 'codes'
 runtime:
-  package: wrangles
-  symbol: wrangles.recipe_wrangles.extract.codes
-  contract_status: verified
+  package: 'wrangles'
+  symbol: 'wrangles.recipe_wrangles.extract.codes'
+  contract_status: 'verified'
 access:
   ai_powered: false
   requires_account: true
@@ -30,119 +30,206 @@ capabilities:
   where: true
   where_params: true
 parameters:
-  - name: input
-    description: Name or list of input columns.
+  - name: 'input'
+    description: 'Name or list of input columns.'
     required: true
-    param_group: I/O
+    param_group: 'I/O'
     schema:
       type:
-        - string
-        - integer
-        - array
-  - name: output
-    description: Name or list of output columns.
+        - 'string'
+        - 'integer'
+        - 'array'
+      description: 'Name or list of input columns.'
+    runtime_required: true
+  - name: 'output'
+    description: 'Name or list of output columns'
     required: true
-    param_group: I/O
+    param_group: 'I/O'
     schema:
       type:
-        - string
-        - array
-  - name: first_element
-    description: Get the first element from results.
+        - 'string'
+        - 'array'
+      description: 'Name or list of output columns'
+    runtime_required: true
+  - name: 'first_element'
+    description: 'Get the first element from results'
     required: false
-    param_group: Formatting
+    param_group: 'Formatting'
     runtime_default: false
     schema:
-      type: boolean
-  - name: output_format
-    description: Format of the extract output.
+      type: 'boolean'
+      description: 'Get the first element from results'
+    runtime_required: false
+  - name: 'output_format'
+    description: 'Format of the extract output'
     required: false
-    param_group: Formatting
+    param_group: 'Formatting'
     runtime_default: null
     schema:
-      type:
-        - string
-        - 'null'
+      type: 'string'
+      description: 'Format of the extract output'
       enum:
-        - list
-        - columns
-        - concatenate
-  - name: char
-    description: Character to use when output_format is concatenate.
+        - 'list'
+        - 'columns'
+        - 'concatenate'
+    runtime_required: false
+  - name: 'char'
+    description: 'Character to use when output_format is concatenate'
     required: false
-    param_group: Formatting
+    param_group: 'Formatting'
     runtime_default: ', '
     schema:
-      type: string
-  - name: min_length
-    description: Minimum length of allowed results.
+      type: 'string'
+      description: 'Character to use when output_format is concatenate'
+    runtime_required: false
+  - name: 'min_length'
+    description: 'Minimum length of allowed results'
     required: false
-    param_group: Options
+    param_group: 'Options'
     schema:
       type:
-        - integer
-        - string
-  - name: max_length
-    description: Maximum length of allowed results.
+        - 'integer'
+        - 'string'
+      description: 'Minimum length of allowed results'
+    runtime_required: false
+  - name: 'max_length'
+    description: 'Maximum length of allowed results'
     required: false
-    param_group: Options
+    param_group: 'Options'
     schema:
       type:
-        - integer
-        - string
-  - name: strategy
-    description: >-
-      Controls filtering of likely false positives such as measurements. Lenient skips this filter;
-      balanced and strict currently apply the same filter. Default is balanced. Unless min_length is
-      provided, minimum lengths default to 3 for lenient, 4 for balanced, and 5 for strict.
+        - 'integer'
+        - 'string'
+      description: 'Maximum length of allowed results'
+    runtime_required: false
+  - name: 'strategy'
+    description: 'Controls filtering of likely false positives such as measurements. Lenient skips this filter; balanced and strict currently apply the same filter. Default is balanced. Unless min_length is provided, minimum lengths default to 3 for lenient, 4 for balanced, and 5 for strict.'
     required: false
-    param_group: Options
+    param_group: 'Options'
     schema:
-      type: string
+      type: 'string'
+      description: 'Controls filtering of likely false positives such as measurements. Lenient skips this filter; balanced and strict currently apply the same filter. Default is balanced. Unless min_length is provided, minimum lengths default to 3 for lenient, 4 for balanced, and 5 for strict.'
       enum:
-        - lenient
-        - balanced
-        - strict
-  - name: sort_order
-    description: Default is input order. Also allows longest or shortest.
+        - 'lenient'
+        - 'balanced'
+        - 'strict'
+    runtime_required: false
+  - name: 'sort_order'
+    description: 'Default is input order. Also allows longest or shortest.'
     required: false
-    param_group: Formatting
+    param_group: 'Formatting'
     schema:
-      type: string
+      type: 'string'
+      description: 'Default is input order. Also allows longest or shortest.'
       enum:
-        - input
-        - longest
-        - shortest
-  - name: disallowed_patterns
-    description: A pattern or JSON array of regex patterns to not include in the found codes.
+        - 'input'
+        - 'longest'
+        - 'shortest'
+    runtime_required: false
+  - name: 'disallowed_patterns'
+    description: 'A pattern or JSON array of regex patterns to not include in the found codes'
     required: false
-    param_group: Options
+    param_group: 'Options'
     schema:
-      type: string
-  - name: include_multi_part_tokens
-    description: Whether to include multi-part tokens that have a space. Default True.
+      type: 'string'
+      description: 'A pattern or JSON array of regex patterns to not include in the found codes'
+    runtime_required: false
+  - name: 'include_multi_part_tokens'
+    description: 'Whether to include multi-part tokens that have a space. Default True.'
     required: false
-    param_group: Options
+    param_group: 'Options'
     schema:
-      type: boolean
-  - name: extract_raw
-    description: >-
-      Whether to return tokens with their adjacent non-whitespace characters included, rather than
-      the cleaned token. Default False.
+      type: 'boolean'
+      description: 'Whether to include multi-part tokens that have a space. Default True.'
+    runtime_required: false
+  - name: 'extract_raw'
+    description: 'Whether to return tokens with their adjacent non-whitespace characters included, rather than the cleaned token. Default False.'
     required: false
-    param_group: Options
+    param_group: 'Options'
     schema:
-      type: boolean
+      type: 'boolean'
+      description: 'Whether to return tokens with their adjacent non-whitespace characters included, rather than the cleaned token. Default False.'
+    runtime_required: false
 examples: []
 sources:
-  - id: runtime
-    resource: >-
-      https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/extract.py
-    title: WranglesPY extract.codes implementation
-  - id: legacy-docs-archive
-    resource: >-
-      https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/extract/_sources/codes.md
-    title: Archived extract.codes Markdown
+  - id: 'runtime'
+    resource: 'https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/extract.py'
+    title: 'WranglesPY extract.codes implementation'
+  - id: 'legacy-docs-archive'
+    resource: 'https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/extract/_sources/codes.md'
+    title: 'Archived extract.codes Markdown'
+configuration_schema:
+  type: 'object'
+  description: 'Extract alphanumeric codes from the input. Requires WrangleWorks Account.'
+  required:
+    - 'input'
+    - 'output'
+  properties:
+    input:
+      type:
+        - 'string'
+        - 'integer'
+        - 'array'
+      description: 'Name or list of input columns.'
+    output:
+      type:
+        - 'string'
+        - 'array'
+      description: 'Name or list of output columns'
+    first_element:
+      type: 'boolean'
+      description: 'Get the first element from results'
+    output_format:
+      type: 'string'
+      description: 'Format of the extract output'
+      enum:
+        - 'list'
+        - 'columns'
+        - 'concatenate'
+    char:
+      type: 'string'
+      description: 'Character to use when output_format is concatenate'
+    min_length:
+      type:
+        - 'integer'
+        - 'string'
+      description: 'Minimum length of allowed results'
+    max_length:
+      type:
+        - 'integer'
+        - 'string'
+      description: 'Maximum length of allowed results'
+    strategy:
+      type: 'string'
+      description: 'Controls filtering of likely false positives such as measurements. Lenient skips this filter; balanced and strict currently apply the same filter. Default is balanced. Unless min_length is provided, minimum lengths default to 3 for lenient, 4 for balanced, and 5 for strict.'
+      enum:
+        - 'lenient'
+        - 'balanced'
+        - 'strict'
+    sort_order:
+      type: 'string'
+      description: 'Default is input order. Also allows longest or shortest.'
+      enum:
+        - 'input'
+        - 'longest'
+        - 'shortest'
+    disallowed_patterns:
+      type: 'string'
+      description: 'A pattern or JSON array of regex patterns to not include in the found codes'
+    include_multi_part_tokens:
+      type: 'boolean'
+      description: 'Whether to include multi-part tokens that have a space. Default True.'
+    extract_raw:
+      type: 'boolean'
+      description: 'Whether to return tokens with their adjacent non-whitespace characters included, rather than the cleaned token. Default False.'
+    if:
+      $ref: '#/$defs/wrangles/commonProperties/if'
+    where:
+      $ref: '#/$defs/wrangles/commonProperties/where'
+    where_params:
+      $ref: '#/$defs/wrangles/commonProperties/where_params'
+schema_origin: 'upstream-docstring'
+schema_adjustments: []
 ---
 
 # Codes

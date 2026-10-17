@@ -1,0 +1,53 @@
+---
+title: "Connectors"
+slug: /connectors
+---
+
+# Connectors
+
+- [Access](/py/connectors/access): Import data from a Microsoft Access Database
+- [Akeneo](/py/connectors/akeneo): Read data from an Akeneo PIM
+- [Ckan Download](/py/connectors/ckan.download): Download data from CKAN and save to the local file system
+- [CKAN](/py/connectors/ckan): Read data from CKAN
+- [Ckan Upload](/py/connectors/ckan.upload): Upload a file or list of files to a CKAN dataset
+- [Concatenate](/py/connectors/concatenate): Combine two or more data sets together, stacked horizontally.
+- [Concurrent](/py/connectors/concurrent): The concurrent connector lets you read multiple sources simultaneously rather than sequentially. If the outputs of the reads are not otherwise aggregated, they will be merged together via a union.
+- [Dataframe](/py/connectors/dataframe): Define the dataframe returned from recipe.run(). Retains its generic Python return-value behavior. In Excel this is also legacy columns-mode syntax; prefer excel.columns for an explicit spreadsheet write mode.
+- [DuckDB](/py/connectors/duckdb): Import data from a DuckDB Database
+- [Excel Columns](/py/connectors/excel.columns): Spreadsheet write mode: columns. Insert new or changed output columns alongside the selected rows in Excel. The output must retain row alignment with the selection. Unchanged input columns are not duplicated.
+- [Excel Selected Data](/py/connectors/excel.selected_data): Read the selected Excel data supplied to this recipe invocation. Grid applications supply the current batch of selected rows. Within a recipe wrangle, this is the current parent dataframe, including any preceding transformations. Missing or empty selected data raises an error.
+- [Excel Sheet](/py/connectors/excel.sheet): Spreadsheet write mode: sheet. Write all requested columns to an Excel sheet/range, including unchanged input columns.
+- [File](/py/connectors/file): Import a file
+- [Grid Selected Data](/py/connectors/grid.selected_data): Read the selected data supplied to this recipe invocation. Grid applications supply the current batch of selected rows. Within a recipe wrangle, this is the current parent dataframe, including any preceding transformations. Missing or empty selected data raises an error.
+- [HTTP](/py/connectors/http): Get data from a HTTP(S) endpoint.
+- [Input](/py/connectors/input): This connector can be used to reference the default dataframe that was passed to the recipe.
+- [Jinja](/py/connectors/jinja): Use a Jinja template with a context to create a file
+- [Join](/py/connectors/join): Join two data sources on key(s). Equivalent to a join in SQL.
+- [Matrix](/py/connectors/matrix): The matrix connector lets you use variables to automatically execute multiple reads that are based on the combinations of the variables. If the outputs of the reads are not otherwise aggregated, they will be merged together via a union.
+- [Memory](/py/connectors/memory): The memory connector allows saving dataframes and variables in memory for communication between successive wrangles and recipes. All contents of the memory connector are lost once the python script finishes executing.
+- [MongoDB](/py/connectors/mongodb): Import data from a mongoDB Server
+- [MSSQL](/py/connectors/mssql): Import data from a Microsoft SQL Server
+- [MySQL](/py/connectors/mysql): Import data from a MySQL Server
+- [Email](/py/connectors/notification.email): Send an email
+- [Notification](/py/connectors/notification): Send a notification
+- [Slack](/py/connectors/notification.slack): Send a message to Slack
+- [Telegram](/py/connectors/notification.telegram): Send a telegram message. See https://core.telegram.org/bots
+- [PostgreSQL](/py/connectors/postgres): Import data from a PostgreSQL Server
+- [Pricefx](/py/connectors/pricefx): Import data from a PriceFx instance.
+- [Recipe](/py/connectors/recipe): Use recipe in recipe read, run, write operations.
+- [S3 Download Files](/py/connectors/s3.download_files): Download file(s) from S3 and save to the local file system.
+- [S3](/py/connectors/s3): Import data from a file in AWS S3
+- [S3 Upload Files](/py/connectors/s3.upload_files): Upload file(s) to S3 from the local file system.
+- [Salesforce](/py/connectors/salesforce): Import data from Salesforce
+- [Sftp Download Files](/py/connectors/sftp.download_files): Download files from an SFTP host and save to the local file system.
+- [SFTP](/py/connectors/sftp): Import a file from an SFTP server
+- [Sftp Upload Files](/py/connectors/sftp.upload_files): Upload files from the local file system to an SFTP host.
+- [SQLite](/py/connectors/sqlite): Import data from a SQLite Database
+- [SSH](/py/connectors/ssh): Issue commands over SSH
+- [Test](/py/connectors/test): Create a test dataframe
+- [Train Classify](/py/connectors/train.classify): Read the training data for a Classify Wrangle
+- [Train Extract](/py/connectors/train.extract): Read the training data for an Extract Wrangle
+- [Train Lookup](/py/connectors/train.lookup): Read the training data for a Lookup Wrangle
+- [Train Meta Data](/py/connectors/train.meta_data): Read the metadata for a Wrangle model. Returns a DataFrame with the following columns: - id - name - type - purpose - status - path - batch_size - tags - notes - created_by - date_created - modified_by - date_modified - variant - settings
+- [Train Standardize](/py/connectors/train.standardize): Read the training data for a Standardize Wrangle
+- [Union](/py/connectors/union): Combine two or more data sets together, stacked vertically. Equivalent to a union in SQL.

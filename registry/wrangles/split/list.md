@@ -31,23 +31,29 @@ capabilities:
   where_params: true
 parameters:
   - name: input
-    description: Name of the column to be split.
+    description: Name of the column to be split
     required: true
     param_group: I/O
     schema:
       type:
         - string
         - integer
+      description: Name of the column to be split
+    runtime_required: true
   - name: output
     description: >-
       Name of column(s) for the results. If providing a single column, use a wildcard (*) to
-      indicate a incrementing integer.
+      indicate a incrementing integer
     required: true
     param_group: I/O
     schema:
       type:
         - string
         - array
+      description: >-
+        Name of column(s) for the results. If providing a single column, use a wildcard (*) to
+        indicate a incrementing integer
+    runtime_required: true
 examples: []
 sources:
   - id: runtime
@@ -58,6 +64,35 @@ sources:
     resource: >-
       https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/split/_sources/list.md
     title: Archived split.list Markdown
+configuration_schema:
+  type: object
+  description: Split a list in a single column to multiple columns.
+  additionalProperties: false
+  required:
+    - input
+    - output
+  properties:
+    input:
+      type:
+        - string
+        - integer
+      description: Name of the column to be split
+    output:
+      type:
+        - string
+        - array
+      description: >-
+        Name of column(s) for the results. If providing a single column, use a wildcard (*) to
+        indicate a incrementing integer
+    if:
+      $ref: '#/$defs/wrangles/commonProperties/if'
+    where:
+      $ref: '#/$defs/wrangles/commonProperties/where'
+    where_params:
+      $ref: '#/$defs/wrangles/commonProperties/where_params'
+schema_origin: upstream-docstring
+schema_adjustments:
+  - Normalize schema type "int" to integer.
 ---
 
 # List

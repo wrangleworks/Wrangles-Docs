@@ -31,38 +31,48 @@ capabilities:
   where_params: true
 parameters:
   - name: input
-    description: List of input columns.
+    description: List of input columns
     required: true
     param_group: I/O
     schema:
       type: array
+      description: List of input columns
+    runtime_required: true
   - name: output
-    description: Name of the output column.
+    description: Name of the output column
     required: true
     param_group: I/O
     schema:
       type: string
+      description: Name of the output column
+    runtime_required: true
   - name: remove_duplicates
-    description: Whether to remove duplicates from the created list.
+    description: Whether to remove duplicates from the created list
     required: false
     param_group: Options
     runtime_default: false
     schema:
       type: boolean
+      description: Whether to remove duplicates from the created list
+    runtime_required: false
   - name: ignore_case
-    description: Ignore case when removing duplicates.
+    description: Ignore case when removing duplicates
     required: false
     param_group: Options
     runtime_default: false
     schema:
       type: boolean
+      description: Ignore case when removing duplicates
+    runtime_required: false
   - name: include_empty
-    description: Whether to include empty values in the created list.
+    description: Whether to include empty values in the created list
     required: false
     param_group: Options
     runtime_default: true
     schema:
       type: boolean
+      description: Whether to include empty values in the created list
+    runtime_required: false
 examples: []
 sources:
   - id: runtime
@@ -73,6 +83,37 @@ sources:
     resource: >-
       https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/merge/_sources/lists.md
     title: Archived merge.lists Markdown
+configuration_schema:
+  type: object
+  description: Take lists in multiple columns and merge them to a single list.
+  additionalProperties: false
+  required:
+    - input
+    - output
+  properties:
+    input:
+      type: array
+      description: List of input columns
+    output:
+      type: string
+      description: Name of the output column
+    remove_duplicates:
+      type: boolean
+      description: Whether to remove duplicates from the created list
+    ignore_case:
+      type: boolean
+      description: Ignore case when removing duplicates
+    include_empty:
+      type: boolean
+      description: Whether to include empty values in the created list
+    if:
+      $ref: '#/$defs/wrangles/commonProperties/if'
+    where:
+      $ref: '#/$defs/wrangles/commonProperties/where'
+    where_params:
+      $ref: '#/$defs/wrangles/commonProperties/where_params'
+schema_origin: upstream-docstring
+schema_adjustments: []
 ---
 
 # Lists

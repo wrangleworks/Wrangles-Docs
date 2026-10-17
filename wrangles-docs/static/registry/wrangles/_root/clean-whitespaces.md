@@ -41,6 +41,8 @@ parameters:
         - string
         - integer
         - array
+      description: Name or list of input columns.
+    runtime_required: true
   - name: output
     description: Name or list of output columns.
     required: false
@@ -50,7 +52,8 @@ parameters:
       type:
         - string
         - array
-        - 'null'
+      description: Name or list of output columns.
+    runtime_required: false
   - name: trim
     description: Whether to trim leading and trailing spaces. Default True.
     required: false
@@ -58,6 +61,8 @@ parameters:
     runtime_default: true
     schema:
       type: boolean
+      description: Whether to trim leading and trailing spaces. Default True.
+    runtime_required: false
   - name: remove_literals
     description: Whether to remove special space characters such as new lines etc. Default True.
     required: false
@@ -65,6 +70,8 @@ parameters:
     runtime_default: true
     schema:
       type: boolean
+      description: Whether to remove special space characters such as new lines etc. Default True.
+    runtime_required: false
 examples: []
 sources:
   - id: runtime
@@ -75,6 +82,40 @@ sources:
     resource: >-
       https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/format/_sources/clean-whitespaces.md
     title: Archived clean_whitespaces Markdown
+configuration_schema:
+  type: object
+  description: >-
+    Condense multiple spaces to a single space and convert special space characters to a standard
+    space.
+  additionalProperties: false
+  required:
+    - input
+  properties:
+    input:
+      type:
+        - string
+        - integer
+        - array
+      description: Name or list of input columns.
+    output:
+      type:
+        - string
+        - array
+      description: Name or list of output columns.
+    trim:
+      type: boolean
+      description: Whether to trim leading and trailing spaces. Default True.
+    remove_literals:
+      type: boolean
+      description: Whether to remove special space characters such as new lines etc. Default True.
+    if:
+      $ref: '#/$defs/wrangles/commonProperties/if'
+    where:
+      $ref: '#/$defs/wrangles/commonProperties/where'
+    where_params:
+      $ref: '#/$defs/wrangles/commonProperties/where_params'
+schema_origin: upstream-docstring
+schema_adjustments: []
 ---
 
 # Clean Whitespaces

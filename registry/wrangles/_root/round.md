@@ -31,7 +31,7 @@ capabilities:
   where_params: true
 parameters:
   - name: input
-    description: Name of the input column(s).
+    description: Name of the input column(s)
     required: true
     param_group: I/O
     schema:
@@ -39,15 +39,19 @@ parameters:
         - string
         - integer
         - array
+      description: Name of the input column(s)
+    runtime_required: true
   - name: decimals
-    description: Number of decimal places to round column.
+    description: Number of decimal places to round column
     required: false
     param_group: Formatting
     runtime_default: 0
     schema:
-      type: integer
+      type: number
+      description: Number of decimal places to round column
+    runtime_required: false
   - name: output
-    description: Name of the output column(s).
+    description: Name of the output column(s)
     required: false
     param_group: I/O
     runtime_default: null
@@ -55,7 +59,8 @@ parameters:
       type:
         - string
         - array
-        - 'null'
+      description: Name of the output column(s)
+    runtime_required: false
 examples: []
 sources:
   - id: runtime
@@ -66,6 +71,35 @@ sources:
     resource: >-
       https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/format/_sources/round.md
     title: Archived round Markdown
+configuration_schema:
+  type: object
+  description: Round column(s) to the specified decimals
+  additionalProperties: false
+  required:
+    - input
+  properties:
+    input:
+      type:
+        - string
+        - integer
+        - array
+      description: Name of the input column(s)
+    output:
+      type:
+        - string
+        - array
+      description: Name of the output column(s)
+    decimals:
+      type: number
+      description: Number of decimal places to round column
+    if:
+      $ref: '#/$defs/wrangles/commonProperties/if'
+    where:
+      $ref: '#/$defs/wrangles/commonProperties/where'
+    where_params:
+      $ref: '#/$defs/wrangles/commonProperties/where_params'
+schema_origin: upstream-docstring
+schema_adjustments: []
 ---
 
 # Round

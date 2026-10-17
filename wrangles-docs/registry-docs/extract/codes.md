@@ -24,18 +24,18 @@ Extract alphanumeric codes from unstructured text. Can be performed on one colum
 | --- | --- | --- | --- | --- |
 | <span className="ww-param-group-label">I/O</span> |  |  |  |  |
 | `input` | Name or list of input columns. | string, integer, array | — | Yes |
-| `output` | Name or list of output columns. | string, array | — | Yes |
+| `output` | Name or list of output columns | string, array | — | Yes |
 | <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `min_length` | Minimum length of allowed results. | integer, string | — | No |
-| `max_length` | Maximum length of allowed results. | integer, string | — | No |
+| `min_length` | Minimum length of allowed results | integer, string | — | No |
+| `max_length` | Maximum length of allowed results | integer, string | — | No |
 | `strategy` | Controls filtering of likely false positives such as measurements. Lenient skips this filter; balanced and strict currently apply the same filter. Default is balanced. Unless min_length is provided, minimum lengths default to 3 for lenient, 4 for balanced, and 5 for strict. | string; one of:<ul className="ww-param-enum-values"><li>lenient</li><li>balanced</li><li>strict</li></ul> | — | No |
-| `disallowed_patterns` | A pattern or JSON array of regex patterns to not include in the found codes. | string | — | No |
+| `disallowed_patterns` | A pattern or JSON array of regex patterns to not include in the found codes | string | — | No |
 | `include_multi_part_tokens` | Whether to include multi-part tokens that have a space. Default True. | boolean | — | No |
 | `extract_raw` | Whether to return tokens with their adjacent non-whitespace characters included, rather than the cleaned token. Default False. | boolean | — | No |
 | <span className="ww-param-group-label">Formatting</span> |  |  |  |  |
-| `first_element` | Get the first element from results. | boolean | `false` | No |
-| `output_format` | Format of the extract output. | string, null; one of:<ul className="ww-param-enum-values"><li>list</li><li>columns</li><li>concatenate</li></ul> | `null` | No |
-| `char` | Character to use when output_format is concatenate. | string | `", "` | No |
+| `first_element` | Get the first element from results | boolean | `false` | No |
+| `output_format` | Format of the extract output | string; one of:<ul className="ww-param-enum-values"><li>list</li><li>columns</li><li>concatenate</li></ul> | `null` | No |
+| `char` | Character to use when output_format is concatenate | string | `", "` | No |
 | `sort_order` | Default is input order. Also allows longest or shortest. | string; one of:<ul className="ww-param-enum-values"><li>input</li><li>longest</li><li>shortest</li></ul> | — | No |
 | <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
 | `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
@@ -43,6 +43,119 @@ Extract alphanumeric codes from unstructured text. Can be performed on one colum
 | `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
 
 </div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+<details className="ww-field-disclosure">
+
+<summary>Complete configuration schema</summary>
+
+Schema source: upstream-docstring. Conditional and cross-parameter
+rules below apply in addition to the parameter table. References resolve against
+the [complete recipe schema](/schemas/recipes/registry/schema.json).
+
+
+
+```json
+{
+  "type": "object",
+  "description": "Extract alphanumeric codes from the input. Requires WrangleWorks Account.",
+  "required": [
+    "input",
+    "output"
+  ],
+  "properties": {
+    "input": {
+      "type": [
+        "string",
+        "integer",
+        "array"
+      ],
+      "description": "Name or list of input columns."
+    },
+    "output": {
+      "type": [
+        "string",
+        "array"
+      ],
+      "description": "Name or list of output columns"
+    },
+    "first_element": {
+      "type": "boolean",
+      "description": "Get the first element from results"
+    },
+    "output_format": {
+      "type": "string",
+      "description": "Format of the extract output",
+      "enum": [
+        "list",
+        "columns",
+        "concatenate"
+      ]
+    },
+    "char": {
+      "type": "string",
+      "description": "Character to use when output_format is concatenate"
+    },
+    "min_length": {
+      "type": [
+        "integer",
+        "string"
+      ],
+      "description": "Minimum length of allowed results"
+    },
+    "max_length": {
+      "type": [
+        "integer",
+        "string"
+      ],
+      "description": "Maximum length of allowed results"
+    },
+    "strategy": {
+      "type": "string",
+      "description": "Controls filtering of likely false positives such as measurements. Lenient skips this filter; balanced and strict currently apply the same filter. Default is balanced. Unless min_length is provided, minimum lengths default to 3 for lenient, 4 for balanced, and 5 for strict.",
+      "enum": [
+        "lenient",
+        "balanced",
+        "strict"
+      ]
+    },
+    "sort_order": {
+      "type": "string",
+      "description": "Default is input order. Also allows longest or shortest.",
+      "enum": [
+        "input",
+        "longest",
+        "shortest"
+      ]
+    },
+    "disallowed_patterns": {
+      "type": "string",
+      "description": "A pattern or JSON array of regex patterns to not include in the found codes"
+    },
+    "include_multi_part_tokens": {
+      "type": "boolean",
+      "description": "Whether to include multi-part tokens that have a space. Default True."
+    },
+    "extract_raw": {
+      "type": "boolean",
+      "description": "Whether to return tokens with their adjacent non-whitespace characters included, rather than the cleaned token. Default False."
+    },
+    "if": {
+      "$ref": "#/$defs/wrangles/commonProperties/if"
+    },
+    "where": {
+      "$ref": "#/$defs/wrangles/commonProperties/where"
+    },
+    "where_params": {
+      "$ref": "#/$defs/wrangles/commonProperties/where_params"
+    }
+  }
+}
+```
+
+</details>
 
 ## Examples
 
@@ -137,6 +250,7 @@ wrangles:
 | Documentation group | `extract` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.extract.codes` |
+| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
 | Legacy UUID | `da591387-0fca-4842-8bcb-d19f561f0292` |
 
 **Sources**

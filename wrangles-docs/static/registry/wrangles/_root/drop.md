@@ -31,7 +31,7 @@ capabilities:
   where_params: false
 parameters:
   - name: columns
-    description: Name of the column(s) to drop.
+    description: Name of the column(s) to drop
     required: true
     param_group: I/O
     column_semantics:
@@ -39,10 +39,10 @@ parameters:
       cardinality: scalar_or_list
     schema:
       type:
-        - string
         - array
-      items:
-        type: string
+        - string
+      description: Name of the column(s) to drop
+    runtime_required: true
 examples: []
 sources:
   - id: runtime
@@ -53,6 +53,22 @@ sources:
     resource: >-
       https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/select/_sources/drop.md
     title: Archived drop Markdown
+configuration_schema:
+  type: object
+  description: Drop (Delete) selected column(s)
+  additionalProperties: true
+  required:
+    - columns
+  properties:
+    columns:
+      type:
+        - array
+        - string
+      description: Name of the column(s) to drop
+    if:
+      $ref: '#/$defs/wrangles/commonProperties/if'
+schema_origin: upstream-docstring
+schema_adjustments: []
 ---
 
 # Drop

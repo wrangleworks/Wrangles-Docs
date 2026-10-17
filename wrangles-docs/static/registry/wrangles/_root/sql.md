@@ -38,10 +38,13 @@ parameters:
     param_group: Options
     schema:
       type: string
+      description: SQL Command. The table is called df. For specific SQL syntax, this uses the SQLite dialect.
+    runtime_required: true
   - name: params
-    description: >-
-      Variables to use in conjunctions with query. This allows the query to be parameterized. This
-      uses sqlite syntax (? or :name).
+    description: |-
+      Variables to use in conjunctions with query.
+      This allows the query to be parameterized.
+      This uses sqlite syntax (? or :name)
     required: false
     param_group: Options
     runtime_default: null
@@ -49,21 +52,25 @@ parameters:
       type:
         - array
         - object
-        - 'null'
+      description: |-
+        Variables to use in conjunctions with query.
+        This allows the query to be parameterized.
+        This uses sqlite syntax (? or :name)
+    runtime_required: false
   - name: preserve_index
     description: Preserve Index value accepted by the runtime.
     required: false
     param_group: Formatting
     runtime_default: false
-    schema:
-      type: boolean
+    schema: {}
+    runtime_required: false
   - name: preserve_data_types
     description: Preserve Data Types value accepted by the runtime.
     required: false
     param_group: Options
     runtime_default: true
-    schema:
-      type: boolean
+    schema: {}
+    runtime_required: false
 examples: []
 sources:
   - id: runtime
@@ -74,6 +81,34 @@ sources:
     resource: >-
       https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/compute/_sources/sql.md
     title: Archived sql Markdown
+configuration_schema:
+  type: object
+  description: >-
+    Apply a SQL command to the current dataframe. Only SELECT statements are supported - the result
+    will be the output.
+  additionalProperties: false
+  required:
+    - command
+  properties:
+    command:
+      type: string
+      description: SQL Command. The table is called df. For specific SQL syntax, this uses the SQLite dialect.
+    params:
+      type:
+        - array
+        - object
+      description: |-
+        Variables to use in conjunctions with query.
+        This allows the query to be parameterized.
+        This uses sqlite syntax (? or :name)
+    if:
+      $ref: '#/$defs/wrangles/commonProperties/if'
+    where:
+      $ref: '#/$defs/wrangles/commonProperties/where_special'
+    where_params:
+      $ref: '#/$defs/wrangles/commonProperties/where_params'
+schema_origin: upstream-docstring
+schema_adjustments: []
 ---
 
 # SQL

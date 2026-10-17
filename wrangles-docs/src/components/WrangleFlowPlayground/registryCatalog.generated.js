@@ -30,7 +30,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Input",
         "type": "list",
         "required": true,
-        "helper": "Name, index, or list of input columns.",
+        "helper": "Name or list of input columns",
         "placeholder": "Column A"
       },
       {
@@ -38,15 +38,15 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Output",
         "type": "list",
         "required": false,
-        "helper": "Name or list of output columns. If omitted, each input column is overwritten.",
+        "helper": "Name or list of output columns",
         "placeholder": null
       },
       {
         "key": "case",
         "label": "Case",
         "type": "select",
-        "required": false,
-        "helper": "Letter case to apply. Sentence case lowercases the value and capitalizes sentence starts.",
+        "required": true,
+        "helper": "The case to convert to. lower, upper, title or sentence",
         "options": [
           {
             "value": "lower",
@@ -93,7 +93,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Input",
         "type": "list",
         "required": true,
-        "helper": "Name, index, or list of input columns.",
+        "helper": "Name or list of input columns",
         "placeholder": "Column A"
       },
       {
@@ -101,15 +101,15 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Output",
         "type": "list",
         "required": false,
-        "helper": "Name or list of output columns. If omitted, each input column is overwritten.",
+        "helper": "Name or list of output columns",
         "placeholder": null
       },
       {
         "key": "data_type",
         "label": "Data Type",
         "type": "select",
-        "required": false,
-        "helper": "Data type to produce.",
+        "required": true,
+        "helper": "The new data type",
         "options": [
           {
             "value": "str",
@@ -138,7 +138,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Default",
         "type": "boolean",
         "required": false,
-        "helper": "Value returned when conversion fails. If omitted, the original value is retained."
+        "helper": "Set the default value to return if the input data"
       }
     ]
   },
@@ -166,7 +166,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Input",
         "type": "list",
         "required": true,
-        "helper": "Name of the input column.",
+        "helper": "Name of the input column",
         "placeholder": "Column A"
       },
       {
@@ -174,7 +174,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Output",
         "type": "list",
         "required": false,
-        "helper": "Name of the output colum.",
+        "helper": "Name of the output colum",
         "placeholder": null
       },
       {
@@ -182,7 +182,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Decimals",
         "type": "number",
         "required": false,
-        "helper": "Number of decimals to round fraction."
+        "helper": "Number of decimals to round fraction"
       }
     ]
   },
@@ -210,7 +210,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Input",
         "type": "list",
         "required": true,
-        "helper": "Name, index, or list of columns containing valid JSON text.",
+        "helper": "Name of the input column.",
         "placeholder": "Column A"
       },
       {
@@ -218,7 +218,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Output",
         "type": "list",
         "required": false,
-        "helper": "Name or list of output columns. If omitted, each input column is overwritten.",
+        "helper": "Name of the output column. If omitted, the input column will be overwritten",
         "placeholder": null
       },
       {
@@ -226,7 +226,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Default",
         "type": "boolean",
         "required": false,
-        "helper": "Value returned for empty or invalid JSON. A list may supply one fallback per input column."
+        "helper": "Value to return if the row is empty or fails to be parsed as JSON. If input is a list, default may also be a list - either a single value to apply to all columns, or one value per input column."
       }
     ]
   },
@@ -262,7 +262,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Output",
         "type": "list",
         "required": false,
-        "helper": "Name of the output column. If omitted, the input column will be overwritten.",
+        "helper": "Name of the output column. If omitted, the input column will be overwritten",
         "placeholder": null
       },
       {
@@ -271,6 +271,76 @@ const GENERATED_REGISTRY_CATALOG = [
         "type": "boolean",
         "required": false,
         "helper": "Value to return if the row is empty or fails to be parsed as YAML. If input is a list, default may also be a list - either a single value to apply to all columns, or one value per input column."
+      }
+    ]
+  },
+  {
+    "type": "convert.parse",
+    "catalogId": null,
+    "catalogKey": "convert.parse",
+    "registryRoute": "/py/namespaces/convert#parse",
+    "recipeWriterEligible": false,
+    "label": "Parse",
+    "category": "Convert",
+    "description": "Parse JSON, Python, YAML, or human-readable JSON-like structures into JSON-compatible Python values. YAML-only numeric forms such as 00123 and 12:34 remain strings. YAML anchors, aliases, and explicit tags are not supported. Parsed values retain their Python types, preserving integer precision in mixed columns. Excessively nested inputs use the configured default or raise a contextual ValueError.",
+    "color": "sun",
+    "defaults": {
+      "input": [
+        "Column A",
+        "Column B"
+      ],
+      "output": null,
+      "default": false,
+      "expected": "any"
+    },
+    "fields": [
+      {
+        "key": "input",
+        "label": "Input",
+        "type": "list",
+        "required": true,
+        "helper": "Name or list of input columns.",
+        "placeholder": "Column A"
+      },
+      {
+        "key": "output",
+        "label": "Output",
+        "type": "list",
+        "required": false,
+        "helper": "Name or list of output columns. If omitted, the input columns will be overwritten.",
+        "placeholder": null
+      },
+      {
+        "key": "default",
+        "label": "Default",
+        "type": "boolean",
+        "required": false,
+        "helper": "Value to return for missing, invalid, or type-mismatched rows. If input is a list, default may be a single value applied to every column or a list containing one value per input column. Defaults must be JSON-compatible; NumPy values are normalized and mutable defaults are copied independently for each row."
+      },
+      {
+        "key": "expected",
+        "label": "Expected",
+        "type": "select",
+        "required": false,
+        "helper": "Required result category. Use any, dictionary, list, or scalar. A list may provide one category per input column.",
+        "options": [
+          {
+            "value": "any",
+            "label": "Any"
+          },
+          {
+            "value": "dictionary",
+            "label": "Dictionary"
+          },
+          {
+            "value": "list",
+            "label": "List"
+          },
+          {
+            "value": "scalar",
+            "label": "Scalar"
+          }
+        ]
       }
     ]
   },
@@ -308,7 +378,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Output",
         "type": "list",
         "required": false,
-        "helper": "Name of the output column. If omitted, the input column will be overwritten.",
+        "helper": "Name of the output column. If omitted, the input column will be overwritten",
         "placeholder": null
       },
       {
@@ -316,14 +386,14 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Ensure Ascii",
         "type": "boolean",
         "required": false,
-        "helper": "If true, non-ASCII characters will be escaped. Default is false."
+        "helper": "If true, non-ASCII characters will be escaped. Default is false"
       },
       {
         "key": "indent",
         "label": "Indent",
         "type": "text",
         "required": false,
-        "helper": "If indent is a non-negative integer or string, then JSON array elements and object members will be pretty-printed with that indent level. An indent level of 0, negative, or \"\" will only insert newlines. None (the default) selects the most compact representation. Using a positive integer indent indents that many spaces per level. If indent is a string (such as '\\t'), that string is used to indent each level."
+        "helper": "If indent is a non-negative integer or string, then JSON array elements and object members will be pretty-printed  with that indent level. An indent level of 0, negative, or \"\" will only insert newlines. None (the default) selects the most  compact representation. Using a positive integer indent indents that many spaces per level. If indent is a string (such as '\\t'),  that string is used to indent each level."
       },
       {
         "key": "sort_keys",
@@ -368,13 +438,13 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Output",
         "type": "list",
         "required": false,
-        "helper": "Name of the output column. If omitted, the input column will be overwritten.",
+        "helper": "Name of the output column. If omitted, the input column will be overwritten",
         "placeholder": null
       },
       {
         "key": "allow_unicode",
         "label": "Allow Unicode",
-        "type": "boolean",
+        "type": "text",
         "required": false,
         "helper": "Allow Unicode value accepted by the runtime."
       },
@@ -383,7 +453,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Indent",
         "type": "number",
         "required": false,
-        "helper": "Specify the number of spaces for indentation to specify nested elements."
+        "helper": "Specify the number of spaces for indentation to  specify nested elements"
       },
       {
         "key": "sort_keys",
@@ -417,7 +487,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Input",
         "type": "list",
         "required": true,
-        "helper": "List of input columns or a single column containing lists.",
+        "helper": "List of input columns or a single column containing lists",
         "placeholder": "Column A"
       },
       {
@@ -455,7 +525,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Input",
         "type": "list",
         "required": true,
-        "helper": "Either a single column name or list of columns.",
+        "helper": "Either a single column name or list of columns",
         "placeholder": "Column A"
       },
       {
@@ -463,15 +533,15 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Output",
         "type": "text",
         "required": true,
-        "helper": "Name of the output column.",
+        "helper": "Name of the output column",
         "placeholder": "Concatenate Output"
       },
       {
         "key": "char",
         "label": "Char",
         "type": "text",
-        "required": false,
-        "helper": "(Optional) Character to add between successive values."
+        "required": true,
+        "helper": "(Optional) Character to add between successive values"
       },
       {
         "key": "skip_empty",
@@ -506,7 +576,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Input",
         "type": "list",
         "required": true,
-        "helper": "List of input columns.",
+        "helper": "list of input columns",
         "placeholder": "Column A"
       },
       {
@@ -514,7 +584,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Output",
         "type": "text",
         "required": true,
-        "helper": "Name of the output column.",
+        "helper": "Name of the output column",
         "placeholder": "Dictionaries Output"
       },
       {
@@ -522,7 +592,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Skip Empty",
         "type": "boolean",
         "required": false,
-        "helper": "Whether to skip empty dictionaries when merging."
+        "helper": "Whether to skip empty dictionaries when merging"
       }
     ]
   },
@@ -547,7 +617,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Input",
         "type": "text",
         "required": true,
-        "helper": "Matched pairs of key and value columns.",
+        "helper": "Matched pairs of key and value columns",
         "placeholder": "Column A"
       },
       {
@@ -555,7 +625,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Output",
         "type": "text",
         "required": true,
-        "helper": "Name of the output column.",
+        "helper": "Name of the output column",
         "placeholder": "Key Value Pairs Output"
       },
       {
@@ -563,7 +633,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Skip Empty",
         "type": "boolean",
         "required": false,
-        "helper": "Whether to skip empty keys or values when creating the dictionary."
+        "helper": "Whether to skip empty keys or values when creating the dictionary"
       }
     ]
   },
@@ -593,7 +663,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Input",
         "type": "list",
         "required": true,
-        "helper": "List of input columns.",
+        "helper": "List of input columns",
         "placeholder": "Column A"
       },
       {
@@ -601,7 +671,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Output",
         "type": "text",
         "required": true,
-        "helper": "Name of the output column.",
+        "helper": "Name of the output column",
         "placeholder": "Lists Output"
       },
       {
@@ -609,21 +679,21 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Ignore Case",
         "type": "boolean",
         "required": false,
-        "helper": "Ignore case when removing duplicates."
+        "helper": "Ignore case when removing duplicates"
       },
       {
         "key": "include_empty",
         "label": "Include Empty",
         "type": "boolean",
         "required": false,
-        "helper": "Whether to include empty values in the created list."
+        "helper": "Whether to include empty values in the created list"
       },
       {
         "key": "remove_duplicates",
         "label": "Remove Duplicates",
         "type": "boolean",
         "required": false,
-        "helper": "Whether to remove duplicates from the created list."
+        "helper": "Whether to remove duplicates from the created list"
       }
     ]
   },
@@ -651,7 +721,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Input",
         "type": "list",
         "required": true,
-        "helper": "List of input columns.",
+        "helper": "List of input columns",
         "placeholder": "Column A"
       },
       {
@@ -659,7 +729,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Output",
         "type": "text",
         "required": true,
-        "helper": "Name of the output column.",
+        "helper": "Name of the output column",
         "placeholder": "To Dict Output"
       },
       {
@@ -667,7 +737,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Include Empty",
         "type": "boolean",
         "required": false,
-        "helper": "Whether to include empty columns in the created dictionary."
+        "helper": "Whether to include empty columns in the created dictionary"
       }
     ]
   },
@@ -695,7 +765,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Input",
         "type": "list",
         "required": true,
-        "helper": "List of input columns.",
+        "helper": "List of input columns",
         "placeholder": "Column A"
       },
       {
@@ -703,7 +773,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Output",
         "type": "text",
         "required": true,
-        "helper": "Name of the output column.",
+        "helper": "Name of the output column",
         "placeholder": "To List Output"
       },
       {
@@ -711,7 +781,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Include Empty",
         "type": "boolean",
         "required": false,
-        "helper": "Whether to include empty columns in the created list."
+        "helper": "Whether to include empty columns in the created list"
       }
     ]
   },
@@ -739,7 +809,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Input",
         "type": "list",
         "required": true,
-        "helper": "Name of the column(s) to explode. If multiple columns are included they must contain lists of the same length.",
+        "helper": "Name of the column(s) to explode. If multiple columns are included they must contain lists of the same length",
         "placeholder": "Column A"
       },
       {
@@ -747,7 +817,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Drop Empty",
         "type": "boolean",
         "required": false,
-        "helper": "If true, any rows that contain an empty list will be dropped. If false, rows that contain empty lists will keep 1 row with an empty value. Default False."
+        "helper": "If true, any rows that contain an empty list will be dropped."
       },
       {
         "key": "reset_index",
@@ -783,7 +853,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Input",
         "type": "list",
         "required": true,
-        "helper": "Name or lists of the column(s) containing dictionaries to be split. If providing multiple dictionaries and the dictionaries contain overlapping values, the last value will be returned.",
+        "helper": "Name or list of columns containing dictionaries or JSON object strings to split.",
         "placeholder": "Column A"
       },
       {
@@ -791,7 +861,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Output",
         "type": "list",
         "required": false,
-        "helper": "In columns output_format, this is an optional subset of keys to extract from the dictionary. If not provided, all keys will be returned. Columns can be renamed with the following syntax: output: - key1: new_column_name1 - key2: new_column_name2 In to_lists output_format, this must be two output columns for the keys and values lists. If not provided, Keys and Values will be used.",
+        "helper": "In columns output_format, this is an optional subset of keys to extract",
         "placeholder": null
       },
       {
@@ -799,14 +869,14 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Default",
         "type": "json",
         "required": false,
-        "helper": "Provide a set of default headings and values if they are not found within the input."
+        "helper": "Provide defaults for missing top-level keys or keys with null values after merging the input dictionaries. Keys use their original names before output renaming. Non-null values, including 0, false, empty strings, lists, and dictionaries, are preserved. Nested values are not filled recursively. When default is supplied (including {}), invalid or non-dictionary input cells are treated as empty dictionaries, so valid values from other input columns are retained. Without default, invalid input raises an error."
       },
       {
         "key": "output_format",
         "label": "Output Format",
         "type": "select",
         "required": false,
-        "helper": "How to split the dictionary. columns creates one output column for each dictionary key. to_lists creates two output columns containing lists of keys and values.",
+        "helper": "How to split the dictionary.",
         "options": [
           {
             "value": "columns",
@@ -842,7 +912,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Input",
         "type": "text",
         "required": true,
-        "helper": "Name of the column to be split.",
+        "helper": "Name of the column to be split",
         "placeholder": "Column A"
       },
       {
@@ -850,7 +920,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Output",
         "type": "list",
         "required": true,
-        "helper": "Name of column(s) for the results. If providing a single column, use a wildcard (*) to indicate a incrementing integer.",
+        "helper": "Name of column(s) for the results. If providing a single column, use a wildcard (*) to indicate a incrementing integer",
         "placeholder": [
           "List Output"
         ]
@@ -882,7 +952,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Input",
         "type": "text",
         "required": true,
-        "helper": "Name of the column to be split.",
+        "helper": "Name of the column to be split",
         "placeholder": "Column A"
       },
       {
@@ -890,7 +960,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Output",
         "type": "list",
         "required": false,
-        "helper": "Name of the output column(s) If a single column is provided, the results will be returned as a list If multiple columns are listed, the results will be separated into the columns. If omitted, will overwrite the input.",
+        "helper": "Name of the output column(s)",
         "placeholder": null
       },
       {
@@ -898,21 +968,21 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Char",
         "type": "text",
         "required": false,
-        "helper": "Set the character(s) to split on. Default comma (,) Can also prefix with \"regex:\" to split on a pattern."
+        "helper": "Set the character(s) to split on."
       },
       {
         "key": "element",
         "label": "Element",
         "type": "text",
         "required": false,
-        "helper": "Select a specific element or range after splitting using slicing syntax. e.g. 0, \":5\", \"5:\", \"2:8:2\"."
+        "helper": "Select a specific element or range after splitting using slicing syntax. e.g. 0, \":5\", \"5:\", \"2:8:2\""
       },
       {
         "key": "inclusive",
         "label": "Inclusive",
         "type": "boolean",
         "required": false,
-        "helper": "If true, include the split character in the output. Default False."
+        "helper": "If true, include the split character in the output. Default False"
       },
       {
         "key": "pad",
@@ -926,7 +996,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Skip Empty",
         "type": "boolean",
         "required": false,
-        "helper": "Whether to skip empty values."
+        "helper": "Whether to skip empty values"
       }
     ]
   },
@@ -954,7 +1024,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Input",
         "type": "list",
         "required": true,
-        "helper": "Column(s) to be split into tokens.",
+        "helper": "Column(s) to be split into tokens",
         "placeholder": "Column A"
       },
       {
@@ -962,7 +1032,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Output",
         "type": "list",
         "required": false,
-        "helper": "Name of the output column.",
+        "helper": "Name of the output column",
         "placeholder": null
       },
       {
@@ -1010,7 +1080,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Columns",
         "type": "list",
         "required": true,
-        "helper": "Name of the column(s) to drop."
+        "helper": "Name of the column(s) to drop"
       }
     ]
   },
@@ -1045,7 +1115,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Input",
         "type": "list",
         "required": false,
-        "helper": "Name of the column to filter on. If multiple are provided, all must match the criteria.",
+        "helper": "Name of the column to filter on.",
         "placeholder": "Column A"
       },
       {
@@ -1053,7 +1123,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Between",
         "type": "list",
         "required": false,
-        "helper": "Value or list of values to filter that are in between two parameter values."
+        "helper": "Value or list of values to filter that are in between two parameter values"
       },
       {
         "key": "contains",
@@ -1065,7 +1135,7 @@ const GENERATED_REGISTRY_CATALOG = [
       {
         "key": "equal",
         "label": "Equal",
-        "type": "list",
+        "type": "boolean",
         "required": false,
         "helper": "Select rows where the values equal a given value."
       },
@@ -1121,7 +1191,7 @@ const GENERATED_REGISTRY_CATALOG = [
       {
         "key": "not_equal",
         "label": "Not Equal",
-        "type": "list",
+        "type": "boolean",
         "required": false,
         "helper": "Select rows where the values do not equal a given value."
       },
@@ -1156,7 +1226,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Input",
         "type": "list",
         "required": true,
-        "helper": "Name of the column(s) to select.",
+        "helper": "Name of the column(s) to select",
         "placeholder": "Column A"
       }
     ]
@@ -1177,7 +1247,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "Column B"
       ],
       "output": null,
-      "element": "",
+      "element": [],
       "default": ""
     },
     "fields": [
@@ -1186,7 +1256,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Input",
         "type": "list",
         "required": true,
-        "helper": "Name of the input column.",
+        "helper": "Name of the input column",
         "placeholder": "Column A"
       },
       {
@@ -1200,16 +1270,16 @@ const GENERATED_REGISTRY_CATALOG = [
       {
         "key": "element",
         "label": "Element",
-        "type": "text",
+        "type": "list",
         "required": true,
-        "helper": "The key or keys from the dictionary to select. If a single key is provided, the value will be returned If a lists of keys are selected, the result will be a new dictionary."
+        "helper": "The key or keys from the dictionary to select."
       },
       {
         "key": "default",
         "label": "Default",
         "type": "boolean",
         "required": false,
-        "helper": "Set the default value to return if the specified element doesn't exist. If selecting multiple elements, a dict of defaults can be set."
+        "helper": "Set the default value to return if the specified element doesn't exist."
       }
     ]
   },
@@ -1237,7 +1307,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Input",
         "type": "list",
         "required": true,
-        "helper": "Name of the input column and sub elements This permits by index for lists or dict and by key for dicts e.g. col[0]['key'] // [{\"key\":\"val\"}] -> \"val\".",
+        "helper": "Name of the input column and sub elements This permits by index for lists or dict and by key for dicts e.g. col[0]['key'] // [{\"key\":\"val\"}] -> \"val\"",
         "placeholder": "Column A"
       },
       {
@@ -1245,7 +1315,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Output",
         "type": "list",
         "required": false,
-        "helper": "Name of the output column(s).",
+        "helper": "Name of the output column(s)",
         "placeholder": null
       },
       {
@@ -1293,21 +1363,21 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "By",
         "type": "list",
         "required": false,
-        "helper": "List of the input columns to group on."
+        "helper": "List of the input columns to group on"
       },
       {
         "key": "all",
         "label": "All",
         "type": "list",
         "required": false,
-        "helper": "Return true if all of the values for these column(s) are true."
+        "helper": "Return true if all of the values for these column(s) are true"
       },
       {
         "key": "any",
         "label": "Any",
         "type": "list",
         "required": false,
-        "helper": "Return true if any of the values for these column(s) are true."
+        "helper": "Return true if any of the values for these column(s) are true"
       },
       {
         "key": "auto_rename_columns",
@@ -1321,7 +1391,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Count",
         "type": "list",
         "required": false,
-        "helper": "The count of values for these column(s)."
+        "helper": "The count of values for these column(s)"
       },
       {
         "key": "counts",
@@ -1342,56 +1412,56 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "First",
         "type": "list",
         "required": false,
-        "helper": "The first value for these column(s)."
+        "helper": "The first value for these column(s)"
       },
       {
         "key": "last",
         "label": "Last",
         "type": "list",
         "required": false,
-        "helper": "The last value for these column(s)."
+        "helper": "The last value for these column(s)"
       },
       {
         "key": "list",
         "label": "List",
         "type": "list",
         "required": false,
-        "helper": "Group and return all values for these column(s) as a list."
+        "helper": "Group and return all values for these column(s) as a list"
       },
       {
         "key": "max",
         "label": "Max",
         "type": "list",
         "required": false,
-        "helper": "The maximum value for these column(s)."
+        "helper": "The maximum value for these column(s)"
       },
       {
         "key": "mean",
         "label": "Mean",
         "type": "list",
         "required": false,
-        "helper": "The mean (average) value for these column(s)."
+        "helper": "The mean (average) value for these column(s)"
       },
       {
         "key": "median",
         "label": "Median",
         "type": "list",
         "required": false,
-        "helper": "The median value for these column(s)."
+        "helper": "The median value for these column(s)"
       },
       {
         "key": "min",
         "label": "Min",
         "type": "list",
         "required": false,
-        "helper": "The minimum value for these column(s)."
+        "helper": "The minimum value for these column(s)"
       },
       {
         "key": "nunique",
         "label": "Nunique",
         "type": "list",
         "required": false,
-        "helper": "The count of unique values for these column(s)."
+        "helper": "The count of unique values for these column(s)"
       },
       {
         "key": "p75",
@@ -1405,14 +1475,14 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Std",
         "type": "list",
         "required": false,
-        "helper": "The standard deviation of values for these column(s)."
+        "helper": "The standard deviation of values for these column(s)"
       },
       {
         "key": "sum",
         "label": "Sum",
         "type": "list",
         "required": false,
-        "helper": "The total of values for these column(s)."
+        "helper": "The total of values for these column(s)"
       }
     ]
   },
@@ -1435,7 +1505,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "N",
         "type": "number",
         "required": true,
-        "helper": "Number of rows to return."
+        "helper": "Number of rows to return"
       }
     ]
   },
@@ -1464,7 +1534,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Input",
         "type": "list",
         "required": true,
-        "helper": "List of the input columns to select from.",
+        "helper": "List of the input columns to select from",
         "placeholder": "Column A"
       },
       {
@@ -1472,7 +1542,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Output",
         "type": "list",
         "required": true,
-        "helper": "If two columns; the result and confidence. If one column; [result, confidence].",
+        "helper": "If two columns; the result and confidence. If one column; [result, confidence]",
         "placeholder": [
           "Highest Confidence Output"
         ]
@@ -1503,7 +1573,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Input",
         "type": "list",
         "required": true,
-        "helper": "Name of the column(s) to edit.",
+        "helper": "Name of the column(s) to edit",
         "placeholder": "Column A"
       },
       {
@@ -1511,7 +1581,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Output",
         "type": "list",
         "required": false,
-        "helper": "Name of the output column(s).",
+        "helper": "Name of the output column(s)",
         "placeholder": null
       },
       {
@@ -1575,8 +1645,8 @@ const GENERATED_REGISTRY_CATALOG = [
         "Column B"
       ],
       "output": null,
-      "default": "",
-      "element": 0
+      "element": 0,
+      "default": ""
     },
     "fields": [
       {
@@ -1584,7 +1654,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Input",
         "type": "list",
         "required": true,
-        "helper": "Name of the input column.",
+        "helper": "Name of the input column",
         "placeholder": "Column A"
       },
       {
@@ -1592,8 +1662,15 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Output",
         "type": "list",
         "required": false,
-        "helper": "Name of the output column.",
+        "helper": "Name of the output column",
         "placeholder": null
+      },
+      {
+        "key": "element",
+        "label": "Element",
+        "type": "number",
+        "required": true,
+        "helper": "The numbered element of the list to select."
       },
       {
         "key": "default",
@@ -1601,13 +1678,6 @@ const GENERATED_REGISTRY_CATALOG = [
         "type": "boolean",
         "required": false,
         "helper": "Set the default value to return if the specified element doesn't exist."
-      },
-      {
-        "key": "element",
-        "label": "Element",
-        "type": "number",
-        "required": false,
-        "helper": "The numbered element of the list to select. Starts from zero. This may use python slicing syntax to select a subset of the list."
       }
     ]
   },
@@ -1635,7 +1705,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Input",
         "type": "list",
         "required": true,
-        "helper": "Name of the column(s) to edit.",
+        "helper": "Name of the column(s) to edit",
         "placeholder": "Column A"
       },
       {
@@ -1643,7 +1713,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Output",
         "type": "list",
         "required": false,
-        "helper": "Name of the output column(s).",
+        "helper": "Name of the output column(s)",
         "placeholder": null
       },
       {
@@ -1674,7 +1744,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Rows",
         "type": "number",
         "required": true,
-        "helper": "If a whole number, will select that number of rows. If a decimal between 0 and 1 will select that fraction of the rows e.g. 0.1 => 10% of rows will be returned."
+        "helper": "If a whole number, will select that number of rows."
       }
     ]
   },
@@ -1703,7 +1773,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Input",
         "type": "list",
         "required": true,
-        "helper": "Name of the column(s) to edit.",
+        "helper": "Name of the column(s) to edit",
         "placeholder": "Column A"
       },
       {
@@ -1711,22 +1781,22 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Output",
         "type": "list",
         "required": false,
-        "helper": "Name of the output column(s).",
+        "helper": "Name of the output column(s)",
         "placeholder": null
       },
       {
         "key": "length",
         "label": "Length",
         "type": "number",
-        "required": false,
-        "helper": "The length of the string to select. If ommited will select to the end of the string and start must be provided."
+        "required": true,
+        "helper": "The length of the string to select. If ommited"
       },
       {
         "key": "start",
         "label": "Start",
         "type": "number",
-        "required": false,
-        "helper": "The position of the first character to select. If ommited will start from the beginning and length must be provided."
+        "required": true,
+        "helper": "The position of the first character to select."
       }
     ]
   },
@@ -1749,7 +1819,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "N",
         "type": "number",
         "required": true,
-        "helper": "Number of rows to return."
+        "helper": "Number of rows to return"
       }
     ]
   },
@@ -1777,7 +1847,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Input",
         "type": "list",
         "required": true,
-        "helper": "List of the input columns to select from.",
+        "helper": "List of the input columns to select from",
         "placeholder": "Column A"
       },
       {
@@ -1785,7 +1855,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Output",
         "type": "text",
         "required": true,
-        "helper": "Name of the output column.",
+        "helper": "Name of the output column",
         "placeholder": "Threshold Output"
       },
       {
@@ -1793,7 +1863,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Threshold",
         "type": "number",
         "required": true,
-        "helper": "Threshold above which to choose the first option, otherwise the second."
+        "helper": "Threshold above which to choose the first option, otherwise the second"
       }
     ]
   },
@@ -1821,7 +1891,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "By",
         "type": "list",
         "required": true,
-        "helper": "Name or list of the column(s) to sort by."
+        "helper": "Name or list of the column(s) to sort by"
       },
       {
         "key": "ascending",
@@ -1833,7 +1903,7 @@ const GENERATED_REGISTRY_CATALOG = [
       {
         "key": "ignore_index",
         "label": "Ignore Index",
-        "type": "boolean",
+        "type": "text",
         "required": false,
         "helper": "Ignore Index value accepted by the runtime."
       }
@@ -1915,7 +1985,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Input",
         "type": "list",
         "required": true,
-        "helper": "Name of the input column.",
+        "helper": "Name of the input column",
         "placeholder": "Column A"
       },
       {
@@ -1923,7 +1993,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Output",
         "type": "list",
         "required": false,
-        "helper": "Name of the output column.",
+        "helper": "Name of the output column",
         "placeholder": null
       },
       {
@@ -1931,7 +2001,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Format",
         "type": "text",
         "required": true,
-        "helper": "String pattern to format date."
+        "helper": "String pattern to format date"
       }
     ]
   },
@@ -1962,7 +2032,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Input",
         "type": "list",
         "required": true,
-        "helper": "Name of the input column.",
+        "helper": "Name of the input column",
         "placeholder": "Column A"
       },
       {
@@ -1970,7 +2040,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Output",
         "type": "list",
         "required": false,
-        "helper": "Name of the output column.",
+        "helper": "Name of the output column",
         "placeholder": null
       },
       {
@@ -1978,28 +2048,28 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Char",
         "type": "text",
         "required": true,
-        "helper": "The character to pad the input with."
+        "helper": "The character to pad the input with"
       },
       {
         "key": "pad_length",
         "label": "Pad Length",
         "type": "number",
         "required": true,
-        "helper": "Length for the output."
+        "helper": "Length for the output"
       },
       {
         "key": "side",
         "label": "Side",
         "type": "text",
         "required": true,
-        "helper": "Side from which to fill resulting string."
+        "helper": "Side from which to fill resulting string"
       },
       {
         "key": "skip_empty",
         "label": "Skip Empty",
         "type": "boolean",
         "required": false,
-        "helper": "If true, skip padding for empty or whitespace-only values."
+        "helper": "If true, skip padding for empty or whitespace-only values"
       }
     ]
   },
@@ -2028,7 +2098,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Input",
         "type": "list",
         "required": true,
-        "helper": "Name of the input column.",
+        "helper": "Name of the input column",
         "placeholder": "Column A"
       },
       {
@@ -2036,7 +2106,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Output",
         "type": "list",
         "required": false,
-        "helper": "(Optional) Name of the output column.",
+        "helper": "(Optional) Name of the output column",
         "placeholder": null
       },
       {
@@ -2044,14 +2114,14 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Value",
         "type": "text",
         "required": true,
-        "helper": "Prefix value to add."
+        "helper": "Prefix value to add"
       },
       {
         "key": "skip_empty",
         "label": "Skip Empty",
         "type": "boolean",
         "required": false,
-        "helper": "Whether to skip empty values."
+        "helper": "Whether to skip empty values"
       }
     ]
   },
@@ -2122,7 +2192,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Input",
         "type": "list",
         "required": true,
-        "helper": "Name of the input column.",
+        "helper": "Name of the input column",
         "placeholder": "Column A"
       },
       {
@@ -2130,7 +2200,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Output",
         "type": "list",
         "required": false,
-        "helper": "Name of the output column.",
+        "helper": "Name of the output column",
         "placeholder": null
       },
       {
@@ -2138,7 +2208,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Ignore Case",
         "type": "boolean",
         "required": false,
-        "helper": "Ignore case when removing duplicates."
+        "helper": "Ignore case when removing duplicates"
       }
     ]
   },
@@ -2166,7 +2236,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Input",
         "type": "list",
         "required": true,
-        "helper": "Name of the input column.",
+        "helper": "Name of the input column",
         "placeholder": "Column A"
       },
       {
@@ -2174,7 +2244,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Output",
         "type": "list",
         "required": false,
-        "helper": "Name of the output column.",
+        "helper": "Name of the output column",
         "placeholder": null
       },
       {
@@ -2202,7 +2272,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "Column B"
       ],
       "output": null,
-      "value": [],
+      "value": "",
       "skip_empty": false
     },
     "fields": [
@@ -2211,30 +2281,30 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Input",
         "type": "list",
         "required": true,
-        "helper": "Name of the input column.",
+        "helper": "Name of the input column",
         "placeholder": "Column A"
       },
       {
         "key": "output",
         "label": "Output",
-        "type": "text",
+        "type": "list",
         "required": false,
-        "helper": "(Optional) Name of the output column.",
+        "helper": "(Optional) Name of the output column",
         "placeholder": null
       },
       {
         "key": "value",
         "label": "Value",
-        "type": "list",
+        "type": "text",
         "required": true,
-        "helper": "Suffix value to add."
+        "helper": "Suffix value to add"
       },
       {
         "key": "skip_empty",
         "label": "Skip Empty",
         "type": "boolean",
         "required": false,
-        "helper": "Whether to skip empty values."
+        "helper": "Whether to skip empty values"
       }
     ]
   },
@@ -2261,7 +2331,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Input",
         "type": "list",
         "required": true,
-        "helper": "Name of the input column.",
+        "helper": "Name of the input column",
         "placeholder": "Column A"
       },
       {
@@ -2269,7 +2339,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Output",
         "type": "list",
         "required": false,
-        "helper": "Name of the output column.",
+        "helper": "Name of the output column",
         "placeholder": null
       }
     ]
@@ -2290,7 +2360,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "Column B"
       ],
       "output": null,
-      "to_remove": "",
+      "to_remove": [],
       "ignore_case": true,
       "tokenize_to_remove": false
     },
@@ -2300,37 +2370,37 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Input",
         "type": "list",
         "required": true,
-        "helper": "Name of column to remove words from.",
+        "helper": "Name of column to remove words from",
         "placeholder": "Column A"
       },
       {
         "key": "output",
         "label": "Output",
         "type": "list",
-        "required": false,
-        "helper": "Name of the output columns.",
+        "required": true,
+        "helper": "Name of the output columns",
         "placeholder": null
       },
       {
         "key": "to_remove",
         "label": "To Remove",
-        "type": "text",
+        "type": "list",
         "required": true,
-        "helper": "Column or list of columns with a list of words to be removed."
+        "helper": "Column or list of columns with a list of words to be removed"
       },
       {
         "key": "ignore_case",
         "label": "Ignore Case",
         "type": "boolean",
         "required": false,
-        "helper": "Ignore input and to_remove case."
+        "helper": "Ignore input and to_remove case"
       },
       {
         "key": "tokenize_to_remove",
         "label": "Tokenize To Remove",
         "type": "boolean",
         "required": false,
-        "helper": "Tokenize all to_remove inputs."
+        "helper": "Tokenize all to_remove inputs"
       }
     ]
   },
@@ -2359,7 +2429,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Input",
         "type": "list",
         "required": true,
-        "helper": "Name or list of input column.",
+        "helper": "Name or list of input column",
         "placeholder": "Column A"
       },
       {
@@ -2367,7 +2437,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Output",
         "type": "list",
         "required": false,
-        "helper": "Name or list of output column.",
+        "helper": "Name or list of output column",
         "placeholder": null
       },
       {
@@ -2375,14 +2445,14 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Find",
         "type": "text",
         "required": true,
-        "helper": "Pattern to find using regex."
+        "helper": "Pattern to find using regex"
       },
       {
         "key": "replace",
         "label": "Replace",
         "type": "text",
         "required": true,
-        "helper": "Value to replace the pattern found."
+        "helper": "Value to replace the pattern found"
       }
     ]
   },
@@ -2410,7 +2480,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Input",
         "type": "list",
         "required": true,
-        "helper": "Name of the input column(s).",
+        "helper": "Name of the input column(s)",
         "placeholder": "Column A"
       },
       {
@@ -2418,7 +2488,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Output",
         "type": "list",
         "required": false,
-        "helper": "Name of the output column(s).",
+        "helper": "Name of the output column(s)",
         "placeholder": null
       },
       {
@@ -2426,7 +2496,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Decimals",
         "type": "number",
         "required": false,
-        "helper": "Number of decimal places to round column."
+        "helper": "Number of decimal places to round column"
       }
     ]
   },
@@ -2446,8 +2516,8 @@ const GENERATED_REGISTRY_CATALOG = [
         "Column B"
       ],
       "output": null,
-      "model_id": [],
-      "case_sensitive": false
+      "case_sensitive": false,
+      "model_id": []
     },
     "fields": [
       {
@@ -2463,15 +2533,8 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Output",
         "type": "list",
         "required": false,
-        "helper": "Name or list of output columns.",
+        "helper": "Name or list of output columns",
         "placeholder": null
-      },
-      {
-        "key": "model_id",
-        "label": "Model Id",
-        "type": "list",
-        "required": true,
-        "helper": "The ID of the wrangle to use (do not include 'find' and 'replace')."
       },
       {
         "key": "case_sensitive",
@@ -2479,6 +2542,13 @@ const GENERATED_REGISTRY_CATALOG = [
         "type": "boolean",
         "required": false,
         "helper": "Allows the wrangle to be case sensitive if set to True, default is False."
+      },
+      {
+        "key": "model_id",
+        "label": "Model Id",
+        "type": "list",
+        "required": false,
+        "helper": "The ID of the wrangle to use (do not include 'find' and 'replace')"
       }
     ]
   },
@@ -2510,7 +2580,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Input",
         "type": "list",
         "required": true,
-        "helper": "Name of the column to translate.",
+        "helper": "Name of the column to translate",
         "placeholder": "Column A"
       },
       {
@@ -2518,7 +2588,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Output",
         "type": "list",
         "required": true,
-        "helper": "Name of the output column.",
+        "helper": "Name of the output column",
         "placeholder": [
           "Translate Output"
         ]
@@ -2528,7 +2598,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Target Language",
         "type": "select",
         "required": true,
-        "helper": "Code of the language to translate to.",
+        "helper": "Code of the language to translate to",
         "options": [
           {
             "value": "Bulgarian",
@@ -2648,7 +2718,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Source Language",
         "type": "select",
         "required": false,
-        "helper": "Code of the language to translate from. If omitted, automatically detects the input language.",
+        "helper": "Code of the language to translate from. If omitted, automatically detects the input language",
         "options": [
           {
             "value": "Auto",
@@ -2781,7 +2851,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Input",
         "type": "list",
         "required": true,
-        "helper": "Name of input column.",
+        "helper": "Name of input column",
         "placeholder": "Column A"
       },
       {
@@ -2789,7 +2859,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Output",
         "type": "list",
         "required": true,
-        "helper": "Name of new column.",
+        "helper": "Name of new column",
         "placeholder": [
           "Bins Output"
         ]
@@ -2799,14 +2869,14 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Bins",
         "type": "list",
         "required": true,
-        "helper": "Defines the number of equal-width bins in the range."
+        "helper": "Defines the number of equal-width bins in the range"
       },
       {
         "key": "labels",
         "label": "Labels",
         "type": "list",
         "required": false,
-        "helper": "Labels for the returned bins."
+        "helper": "Labels for the returned bins"
       }
     ]
   },
@@ -2897,24 +2967,28 @@ const GENERATED_REGISTRY_CATALOG = [
     "description": "Create an embedding based on text input.",
     "color": "forest",
     "defaults": {
-      "input": "Column A",
+      "input": [
+        "Column A",
+        "Column B"
+      ],
       "output": null,
       "api_key": "",
-      "batch_size": 100,
-      "model": "text-embedding-3-small",
+      "batch_size": null,
+      "model": null,
       "output_type": "python list",
-      "precision": "float32",
+      "precision": null,
       "provider": null,
-      "retries": 0,
+      "retries": null,
       "task": null,
-      "threads": 10,
-      "url": "https://api.openai.com/v1/embeddings"
+      "threads": null,
+      "timeout": null,
+      "url": null
     },
     "fields": [
       {
         "key": "input",
         "label": "Input",
-        "type": "text",
+        "type": "list",
         "required": true,
         "helper": "The column of text to create the embeddings for.",
         "placeholder": "Column A"
@@ -2922,7 +2996,7 @@ const GENERATED_REGISTRY_CATALOG = [
       {
         "key": "output",
         "label": "Output",
-        "type": "text",
+        "type": "list",
         "required": false,
         "helper": "The output column the embeddings will be saved as.",
         "placeholder": null
@@ -2946,7 +3020,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Model",
         "type": "text",
         "required": false,
-        "helper": "The specific model to use to generate the embeddings."
+        "helper": "The embedding model. Defaults to the AI configuration for the resolved provider. Jina requires an explicit model unless a default is configured."
       },
       {
         "key": "output_type",
@@ -2970,7 +3044,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Precision",
         "type": "select",
         "required": false,
-        "helper": "The precision of the embeddings. Default is float32. This should be used with output_type numpy array.",
+        "helper": "The precision of the embeddings. Defaults to the AI configuration. This should be used with output_type numpy array.",
         "options": [
           {
             "value": "float16",
@@ -2987,7 +3061,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Provider",
         "type": "select",
         "required": false,
-        "helper": "Controls the request/response format for the embedding API. When omitted, inferred from url (jina.ai → jina, otherwise openai). Setting provider also sets the default url for that provider, so you only need one of provider or url for standard endpoints. Use both together only when pointing to a custom endpoint that uses a non-default provider's API format (e.g. a Jina-compatible proxy).",
+        "helper": "Controls the request/response format for the embedding API. When omitted, inferred from an explicit url (jina.ai → jina, otherwise openai), or the AI configuration when no url is supplied. Setting provider also sets the default url for that provider, so you only need one of provider or url for standard endpoints. Use both together only when pointing to a custom endpoint that uses a non-default provider's API format (e.g. a Jina-compatible proxy).",
         "options": [
           {
             "value": "openai",
@@ -3004,36 +3078,14 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Retries",
         "type": "number",
         "required": false,
-        "helper": "The number of times to retry if the request fails. This will apply exponential backoff to help with rate limiting."
+        "helper": "Additional attempts after transient transport or HTTP errors. Defaults to the AI configuration. Retries use exponential backoff and respect Retry-After. Permanent errors fail immediately."
       },
       {
         "key": "task",
         "label": "Task",
-        "type": "select",
+        "type": "text",
         "required": false,
-        "helper": "The task type for the embedding model. Only applicable for the Jina provider. Selects the appropriate task-specific adapter.",
-        "options": [
-          {
-            "value": "retrieval.query",
-            "label": "Retrieval Query"
-          },
-          {
-            "value": "retrieval.passage",
-            "label": "Retrieval Passage"
-          },
-          {
-            "value": "text-matching",
-            "label": "Text Matching"
-          },
-          {
-            "value": "classification",
-            "label": "Classification"
-          },
-          {
-            "value": "separation",
-            "label": "Separation"
-          }
-        ]
+        "helper": "The task type for the embedding model. Only applicable for the Jina provider. Selects the appropriate task-specific adapter. Defaults and allowed values come from the selected model's AI configuration. Jina v5 supports retrieval.query, retrieval.passage, text-matching, classification, and clustering. Legacy models without a configured task enum also support retrieval.query, retrieval.passage, text-matching, and classification, but use separation for clustering."
       },
       {
         "key": "threads",
@@ -3041,6 +3093,13 @@ const GENERATED_REGISTRY_CATALOG = [
         "type": "number",
         "required": false,
         "helper": "The number of requests to submit in parallel. Each request contains the number of rows set as batch_size."
+      },
+      {
+        "key": "timeout",
+        "label": "Timeout",
+        "type": "number",
+        "required": false,
+        "helper": "Request timeout in seconds for each attempt. Defaults to the AI configuration. Each retry receives the full timeout; this is not a total batch deadline."
       },
       {
         "key": "url",
@@ -3072,7 +3131,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Output",
         "type": "list",
         "required": true,
-        "helper": "Name or list of names of new columns.",
+        "helper": "Name or list of names of new columns",
         "placeholder": [
           "Guid Output"
         ]
@@ -3105,15 +3164,15 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Input",
         "type": "list",
         "required": true,
-        "helper": "Name of input column.",
+        "helper": "Name of input column",
         "placeholder": "Column A"
       },
       {
         "key": "output",
         "label": "Output",
         "type": "list",
-        "required": true,
-        "helper": "Name of new column.",
+        "required": false,
+        "helper": "Name of new column",
         "placeholder": [
           "Hash Output"
         ]
@@ -3123,7 +3182,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Method",
         "type": "select",
         "required": false,
-        "helper": "The method to use to hash the input (Default: md5).",
+        "helper": "The method to use to hash the input (Default: md5)",
         "options": [
           {
             "value": "md5",
@@ -3169,14 +3228,14 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "By",
         "type": "list",
         "required": false,
-        "helper": "Optional. Cluster the created indexes by one or more columns."
+        "helper": "Optional. Cluster the created indexes by one or more columns"
       },
       {
         "key": "output",
         "label": "Output",
         "type": "list",
         "required": true,
-        "helper": "Name or list of names of new columns.",
+        "helper": "Name or list of names of new columns",
         "placeholder": [
           "Index Output"
         ]
@@ -3186,14 +3245,14 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Start",
         "type": "number",
         "required": false,
-        "helper": "(Optional; default 1) Starting number for the index."
+        "helper": "(Optional; default 1) Starting number for the index"
       },
       {
         "key": "step",
         "label": "Step",
         "type": "number",
         "required": false,
-        "helper": "(Optional; default 1) Step between successive rows."
+        "helper": "(Optional; default 1) Step between successive rows"
       }
     ]
   },
@@ -3209,9 +3268,7 @@ const GENERATED_REGISTRY_CATALOG = [
     "color": "forest",
     "defaults": {
       "input": null,
-      "output": [
-        "Jinja Output"
-      ],
+      "output": "Jinja Output",
       "template": "{}"
     },
     "fields": [
@@ -3220,25 +3277,23 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Input",
         "type": "text",
         "required": false,
-        "helper": "Specify a name of column containing a dictionary of elements to be used in jinja template. Otherwise, the column headers will be used as keys.",
+        "helper": "Specify a name of column containing a dictionary of elements to be used in jinja template.",
         "placeholder": "Column A"
       },
       {
         "key": "output",
         "label": "Output",
-        "type": "list",
+        "type": "text",
         "required": true,
         "helper": "Name of the column to be output to.",
-        "placeholder": [
-          "Jinja Output"
-        ]
+        "placeholder": "Jinja Output"
       },
       {
         "key": "template",
         "label": "Template",
         "type": "json",
         "required": true,
-        "helper": "A dictionary which defines the template/location as well as the form which the template is input. If any keys use a space, they must be replaced with an underscore. Note: spaces within column names are replaced by underscores (_)."
+        "helper": "A dictionary which defines the template/location as well as the form which the template is input."
       }
     ]
   },
@@ -3263,7 +3318,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Output",
         "type": "list",
         "required": true,
-        "helper": "Name or list of names of new columns.",
+        "helper": "Name or list of names of new columns",
         "placeholder": [
           "Uuid Output"
         ]
@@ -3288,8 +3343,8 @@ const GENERATED_REGISTRY_CATALOG = [
       "output": [
         "Address Output"
       ],
-      "dataType": "streets",
       "char": ", ",
+      "dataType": "",
       "output_format": null
     },
     "fields": [
@@ -3312,11 +3367,18 @@ const GENERATED_REGISTRY_CATALOG = [
         ]
       },
       {
+        "key": "char",
+        "label": "Char",
+        "type": "text",
+        "required": false,
+        "helper": "Character to use when output_format is concatenate"
+      },
+      {
         "key": "dataType",
         "label": "DataType",
         "type": "select",
-        "required": true,
-        "helper": "Specific part of the address to extract.",
+        "required": false,
+        "helper": "Specific part of the address to extract",
         "options": [
           {
             "value": "streets",
@@ -3337,18 +3399,11 @@ const GENERATED_REGISTRY_CATALOG = [
         ]
       },
       {
-        "key": "char",
-        "label": "Char",
-        "type": "text",
-        "required": false,
-        "helper": "Character to use when output_format is concatenate."
-      },
-      {
         "key": "output_format",
         "label": "Output Format",
         "type": "select",
         "required": false,
-        "helper": "Format of the extract output.",
+        "helper": "Format of the extract output",
         "options": [
           {
             "value": "list",
@@ -3416,7 +3471,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Attribute Type",
         "type": "select",
         "required": false,
-        "helper": "Request only a specific type of attribute.",
+        "helper": "Request only a specific type of attribute",
         "options": [
           {
             "value": "angle",
@@ -3546,28 +3601,28 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Char",
         "type": "text",
         "required": false,
-        "helper": "Character to use when output_format is concatenate."
+        "helper": "Character to use when output_format is concatenate"
       },
       {
         "key": "desired_unit",
         "label": "Desired Unit",
         "type": "text",
         "required": false,
-        "helper": "Convert the extracted unit to the desired unit."
+        "helper": "Convert the extracted unit to the desired unit"
       },
       {
         "key": "first_element",
         "label": "First Element",
         "type": "boolean",
         "required": false,
-        "helper": "Get the first element from results."
+        "helper": "Get the first element from results"
       },
       {
         "key": "output_format",
         "label": "Output Format",
         "type": "select",
         "required": false,
-        "helper": "Format of the extract output.",
+        "helper": "Format of the extract output",
         "options": [
           {
             "value": "list",
@@ -3592,7 +3647,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "ResponseContent",
         "type": "select",
         "required": false,
-        "helper": "Span - returns the text found. object - returns an object with the value and unit.",
+        "helper": "span - returns the text found. object - returns an object with the value and unit",
         "options": [
           {
             "value": "span",
@@ -3635,7 +3690,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Input",
         "type": "list",
         "required": true,
-        "helper": "Name of the input column.",
+        "helper": "Name of the input column",
         "placeholder": "Column A"
       },
       {
@@ -3643,7 +3698,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Output",
         "type": "list",
         "required": true,
-        "helper": "Name of the output columns.",
+        "helper": "Name of the output columns",
         "placeholder": [
           "Brackets Output"
         ]
@@ -3653,7 +3708,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Char",
         "type": "text",
         "required": false,
-        "helper": "Character to use when output_format is concatenate."
+        "helper": "Character to use when output_format is concatenate"
       },
       {
         "key": "find",
@@ -3667,14 +3722,14 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Include Brackets",
         "type": "boolean",
         "required": false,
-        "helper": "(Optional) Include the brackets in the output."
+        "helper": "(Optional) Include the brackets in the output"
       },
       {
         "key": "output_format",
         "label": "Output Format",
         "type": "select",
         "required": false,
-        "helper": "Format of the extract output.",
+        "helper": "Format of the extract output",
         "options": [
           {
             "value": "list",
@@ -3735,7 +3790,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Output",
         "type": "list",
         "required": true,
-        "helper": "Name or list of output columns.",
+        "helper": "Name or list of output columns",
         "placeholder": [
           "Codes Output"
         ]
@@ -3745,14 +3800,14 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Char",
         "type": "text",
         "required": false,
-        "helper": "Character to use when output_format is concatenate."
+        "helper": "Character to use when output_format is concatenate"
       },
       {
         "key": "disallowed_patterns",
         "label": "Disallowed Patterns",
         "type": "text",
         "required": false,
-        "helper": "A pattern or JSON array of regex patterns to not include in the found codes."
+        "helper": "A pattern or JSON array of regex patterns to not include in the found codes"
       },
       {
         "key": "extract_raw",
@@ -3766,7 +3821,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "First Element",
         "type": "boolean",
         "required": false,
-        "helper": "Get the first element from results."
+        "helper": "Get the first element from results"
       },
       {
         "key": "include_multi_part_tokens",
@@ -3780,21 +3835,21 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Max Length",
         "type": "text",
         "required": false,
-        "helper": "Maximum length of allowed results."
+        "helper": "Maximum length of allowed results"
       },
       {
         "key": "min_length",
         "label": "Min Length",
         "type": "text",
         "required": false,
-        "helper": "Minimum length of allowed results."
+        "helper": "Minimum length of allowed results"
       },
       {
         "key": "output_format",
         "label": "Output Format",
         "type": "select",
         "required": false,
-        "helper": "Format of the extract output.",
+        "helper": "Format of the extract output",
         "options": [
           {
             "value": "list",
@@ -3895,7 +3950,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Output",
         "type": "list",
         "required": false,
-        "helper": "Name or list of output columns.",
+        "helper": "Name or list of output columns",
         "placeholder": null
       },
       {
@@ -3903,7 +3958,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Model Id",
         "type": "list",
         "required": true,
-        "helper": "The ID of the wrangle to use."
+        "helper": "The ID of the wrangle to use"
       },
       {
         "key": "case_sensitive",
@@ -3917,35 +3972,35 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Char",
         "type": "text",
         "required": false,
-        "helper": "Character to use when output_format is concatenate."
+        "helper": "Character to use when output_format is concatenate"
       },
       {
         "key": "extract_raw",
         "label": "Extract Raw",
         "type": "boolean",
         "required": false,
-        "helper": "Extract the raw data from the wrangle."
+        "helper": "Extract the raw data from the wrangle"
       },
       {
         "key": "first_element",
         "label": "First Element",
         "type": "boolean",
         "required": false,
-        "helper": "Get the first element from results."
+        "helper": "Get the first element from results"
       },
       {
         "key": "include_empty_labels",
         "label": "Include Empty Labels",
         "type": "boolean",
         "required": false,
-        "helper": "Include labels with no found values in the output when using use_labels=True."
+        "helper": "Include labels with no found values in the output when using use_labels=True"
       },
       {
         "key": "output_format",
         "label": "Output Format",
         "type": "select",
         "required": false,
-        "helper": "Format of the extract output.",
+        "helper": "Format of the extract output",
         "options": [
           {
             "value": "list",
@@ -3970,7 +4025,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Sort",
         "type": "select",
         "required": false,
-        "helper": "Sort the results.",
+        "helper": "Sort the results",
         "options": [
           {
             "value": "training_order",
@@ -4011,14 +4066,14 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Use Labels",
         "type": "boolean",
         "required": false,
-        "helper": "Use Labels in the extract output {label: value}."
+        "helper": "Use Labels in the extract output {label: value}"
       },
       {
         "key": "use_spellcheck",
         "label": "Use Spellcheck",
         "type": "boolean",
         "required": false,
-        "helper": "Use spellcheck to also find minor mispellings compared to the reference data."
+        "helper": "Use spellcheck to also find minor mispellings compared to the reference data"
       }
     ]
   },
@@ -4046,15 +4101,15 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Input",
         "type": "list",
         "required": true,
-        "helper": "Name of the input column.",
+        "helper": "Name of the input column",
         "placeholder": "Column A"
       },
       {
         "key": "output",
         "label": "Output",
-        "type": "text",
+        "type": "list",
         "required": false,
-        "helper": "Name of the output columns.",
+        "helper": "Name of the output columns",
         "placeholder": null
       },
       {
@@ -4062,7 +4117,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Property",
         "type": "select",
         "required": true,
-        "helper": "Property to extract from date.",
+        "helper": "Property to extract from date",
         "options": [
           {
             "value": "day",
@@ -4113,8 +4168,8 @@ const GENERATED_REGISTRY_CATALOG = [
     "defaults": {
       "output": "Date Range Output",
       "end_time": "",
-      "start_time": "",
-      "range": "day"
+      "range": "day",
+      "start_time": ""
     },
     "fields": [
       {
@@ -4122,7 +4177,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Output",
         "type": "text",
         "required": true,
-        "helper": "Name of the output column.",
+        "helper": "Name of the output column",
         "placeholder": "Date Range Output"
       },
       {
@@ -4130,21 +4185,14 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "End Time",
         "type": "text",
         "required": true,
-        "helper": "Name of the end date column."
-      },
-      {
-        "key": "start_time",
-        "label": "Start Time",
-        "type": "text",
-        "required": true,
-        "helper": "Name of the start date column."
+        "helper": "Name of the end date column"
       },
       {
         "key": "range",
         "label": "Range",
         "type": "select",
-        "required": false,
-        "helper": "Type of frequency to count.",
+        "required": true,
+        "helper": "Type of frequency to count",
         "options": [
           {
             "value": "business days",
@@ -4215,6 +4263,13 @@ const GENERATED_REGISTRY_CATALOG = [
             "label": "Milliseconds"
           }
         ]
+      },
+      {
+        "key": "start_time",
+        "label": "Start Time",
+        "type": "text",
+        "required": true,
+        "helper": "Name of the start date column"
       }
     ]
   },
@@ -4251,8 +4306,8 @@ const GENERATED_REGISTRY_CATALOG = [
         "key": "output",
         "label": "Output",
         "type": "list",
-        "required": false,
-        "helper": "Name or list of output columns.",
+        "required": true,
+        "helper": "Name or list of output columns",
         "placeholder": null
       },
       {
@@ -4260,7 +4315,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Data Type",
         "type": "select",
         "required": true,
-        "helper": "The type of data to extract.",
+        "helper": "The type of data to extract",
         "options": [
           {
             "value": "text",
@@ -4277,14 +4332,14 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Char",
         "type": "text",
         "required": false,
-        "helper": "Character to use when output_format is concatenate."
+        "helper": "Character to use when output_format is concatenate"
       },
       {
         "key": "output_format",
         "label": "Output Format",
         "type": "select",
         "required": false,
-        "helper": "Format of the extract output.",
+        "helper": "Format of the extract output",
         "options": [
           {
             "value": "list",
@@ -4332,7 +4387,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Input",
         "type": "list",
         "required": true,
-        "helper": "Name of the input column.",
+        "helper": "Name of the input column",
         "placeholder": "Column A"
       },
       {
@@ -4340,7 +4395,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Output",
         "type": "list",
         "required": true,
-        "helper": "Name of the output columns.",
+        "helper": "Name of the output columns",
         "placeholder": [
           "Properties Output"
         ]
@@ -4350,21 +4405,21 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Char",
         "type": "text",
         "required": false,
-        "helper": "Character to use when output_format is concatenate."
+        "helper": "Character to use when output_format is concatenate"
       },
       {
         "key": "first_element",
         "label": "First Element",
         "type": "boolean",
         "required": false,
-        "helper": "Get the first element from results."
+        "helper": "Get the first element from results"
       },
       {
         "key": "output_format",
         "label": "Output Format",
         "type": "select",
         "required": false,
-        "helper": "Format of the extract output.",
+        "helper": "Format of the extract output",
         "options": [
           {
             "value": "list",
@@ -4389,7 +4444,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Property Type",
         "type": "select",
         "required": false,
-        "helper": "The specific type of properties to extract.",
+        "helper": "The specific type of properties to extract",
         "options": [
           {
             "value": "Colours",
@@ -4476,28 +4531,28 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Find",
         "type": "text",
         "required": true,
-        "helper": "Pattern to find using regex."
+        "helper": "Pattern to find using regex"
       },
       {
         "key": "char",
         "label": "Char",
         "type": "text",
         "required": false,
-        "helper": "Character to use when output_format is concatenate."
+        "helper": "Character to use when output_format is concatenate"
       },
       {
         "key": "first_element",
         "label": "First Element",
         "type": "boolean",
         "required": false,
-        "helper": "Get the first element from results."
+        "helper": "Get the first element from results"
       },
       {
         "key": "output_format",
         "label": "Output Format",
         "type": "select",
         "required": false,
-        "helper": "Format of the extract output.",
+        "helper": "Format of the extract output",
         "options": [
           {
             "value": "list",
@@ -4518,7 +4573,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Output Pattern",
         "type": "text",
         "required": false,
-        "helper": "Specifies the format to output matches and specific capture groups using backreferences (e.g., `\\1`, `\\2`). Default is to return entire matches. **Example**: For a regex pattern `r'(\\d+)\\s(\\w+)'` and `output_pattern = '\\2 \\1'`, with input `'120 volt'`, the output would be `'volt 120'`."
+        "helper": "Specifies the format to output matches and specific capture groups using backreferences (e.g., `\\1`, `\\2`). Default is to return entire matches."
       }
     ]
   },
@@ -4538,8 +4593,8 @@ const GENERATED_REGISTRY_CATALOG = [
         "Column B"
       ],
       "output": "Lists Output",
-      "ignore_case": false,
       "method": "intersection",
+      "ignore_case": false,
       "remove_duplicates": false
     },
     "fields": [
@@ -4548,7 +4603,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Input",
         "type": "list",
         "required": true,
-        "helper": "List of input columns containing lists to compare.",
+        "helper": "List of input columns containing lists to compare",
         "placeholder": "Column A"
       },
       {
@@ -4556,22 +4611,15 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Output",
         "type": "text",
         "required": true,
-        "helper": "Name of the output column.",
+        "helper": "Name of the output column",
         "placeholder": "Lists Output"
-      },
-      {
-        "key": "ignore_case",
-        "label": "Ignore Case",
-        "type": "boolean",
-        "required": false,
-        "helper": "Ignore case when comparing string items."
       },
       {
         "key": "method",
         "label": "Method",
         "type": "select",
-        "required": false,
-        "helper": "Type of comparison to perform.",
+        "required": true,
+        "helper": "Type of comparison to perform",
         "options": [
           {
             "value": "intersection",
@@ -4588,11 +4636,18 @@ const GENERATED_REGISTRY_CATALOG = [
         ]
       },
       {
+        "key": "ignore_case",
+        "label": "Ignore Case",
+        "type": "boolean",
+        "required": false,
+        "helper": "Ignore case when comparing string items"
+      },
+      {
         "key": "remove_duplicates",
         "label": "Remove Duplicates",
         "type": "boolean",
         "required": false,
-        "helper": "Remove duplicates from the result."
+        "helper": "Remove duplicates from the result"
       }
     ]
   },
@@ -4614,6 +4669,7 @@ const GENERATED_REGISTRY_CATALOG = [
       "output": [
         "Text Output"
       ],
+      "method": "difference",
       "all_empty": null,
       "case_sensitive": false,
       "char": " ",
@@ -4622,7 +4678,6 @@ const GENERATED_REGISTRY_CATALOG = [
       "empty_b": null,
       "exact_match": null,
       "include_ratio": false,
-      "method": "difference",
       "metric": "token_sort",
       "non_match_char": "*"
     },
@@ -4632,7 +4687,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Input",
         "type": "list",
         "required": true,
-        "helper": "The columns to compare. First column is the base column.",
+        "helper": "the columns to compare. First column is the base column",
         "placeholder": "Column A"
       },
       {
@@ -4646,67 +4701,11 @@ const GENERATED_REGISTRY_CATALOG = [
         ]
       },
       {
-        "key": "all_empty",
-        "label": "All Empty",
-        "type": "text",
-        "required": false,
-        "helper": "Value to use when both inputs are empty when using overlap."
-      },
-      {
-        "key": "case_sensitive",
-        "label": "Case Sensitive",
-        "type": "boolean",
-        "required": false,
-        "helper": "Whether the comparison is case sensitive. Defaults to true."
-      },
-      {
-        "key": "char",
-        "label": "Char",
-        "type": "text",
-        "required": false,
-        "helper": "Character to split strings on for difference and intersection. Defaults to a space."
-      },
-      {
-        "key": "decimal_places",
-        "label": "Decimal Places",
-        "type": "number",
-        "required": false,
-        "helper": "Number of decimal places to round the overlap ratio to."
-      },
-      {
-        "key": "empty_a",
-        "label": "Empty A",
-        "type": "text",
-        "required": false,
-        "helper": "Value to use when input A is empty when using overlap."
-      },
-      {
-        "key": "empty_b",
-        "label": "Empty B",
-        "type": "text",
-        "required": false,
-        "helper": "Value to use when input B is empty when using overlap."
-      },
-      {
-        "key": "exact_match",
-        "label": "Exact Match",
-        "type": "text",
-        "required": false,
-        "helper": "Value to use for exact matches when using overlap."
-      },
-      {
-        "key": "include_ratio",
-        "label": "Include Ratio",
-        "type": "boolean",
-        "required": false,
-        "helper": "Include the ratio of matching characters when using overlap."
-      },
-      {
         "key": "method",
         "label": "Method",
         "type": "select",
-        "required": false,
-        "helper": "The type of comparison to perform (difference, intersection, overlap, similarity).",
+        "required": true,
+        "helper": "The type of comparison to perform (difference, intersection, overlap, similarity)",
         "options": [
           {
             "value": "difference",
@@ -4727,18 +4726,74 @@ const GENERATED_REGISTRY_CATALOG = [
         ]
       },
       {
+        "key": "all_empty",
+        "label": "All Empty",
+        "type": "text",
+        "required": false,
+        "helper": "(Optional) Value to use for both inputs"
+      },
+      {
+        "key": "case_sensitive",
+        "label": "Case Sensitive",
+        "type": "boolean",
+        "required": false,
+        "helper": "(Optional) Whether the comparison is case sensitive. Default is False"
+      },
+      {
+        "key": "char",
+        "label": "Char",
+        "type": "text",
+        "required": false,
+        "helper": "(Optional) The character to split the strings on. Default is a space"
+      },
+      {
+        "key": "decimal_places",
+        "label": "Decimal Places",
+        "type": "number",
+        "required": false,
+        "helper": "(Optional) Number of decimal places to round the score to. Default is 3"
+      },
+      {
+        "key": "empty_a",
+        "label": "Empty A",
+        "type": "text",
+        "required": false,
+        "helper": "(Optional) Value to use for empty input a"
+      },
+      {
+        "key": "empty_b",
+        "label": "Empty B",
+        "type": "text",
+        "required": false,
+        "helper": "(Optional) Value to use for empty input b"
+      },
+      {
+        "key": "exact_match",
+        "label": "Exact Match",
+        "type": "text",
+        "required": false,
+        "helper": "(Optional) Value to use for exact matches"
+      },
+      {
+        "key": "include_ratio",
+        "label": "Include Ratio",
+        "type": "boolean",
+        "required": false,
+        "helper": "(Optional) Include the ratio of matching characters. This is the legacy difflib.SequenceMatcher score, not the similarity score from method: similarity. When true, output must be a list of two column names: [mask_column, ratio_column]"
+      },
+      {
         "key": "metric",
         "label": "Metric",
         "type": "text",
         "required": false,
-        "helper": "Metric value accepted by the runtime."
+        "helper": "(Optional) The similarity metric to use. Default is token_sort"
       },
       {
         "key": "non_match_char",
         "label": "Non Match Char",
         "type": "text",
         "required": false,
-        "helper": "Character to use for non-matching characters when using overlap."
+        "helper": "(Optional) Character to use for non-matching characters"
       }
     ]
   },
@@ -4821,7 +4876,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Output",
         "type": "text",
         "required": true,
-        "helper": "Name of the output column.",
+        "helper": "Name of the output column",
         "placeholder": "Case When Output"
       },
       {
@@ -4829,7 +4884,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Cases",
         "type": "list",
         "required": true,
-        "helper": "List of conditions and corresponding values."
+        "helper": "List of conditions and corresponding values"
       },
       {
         "key": "default",
@@ -4879,7 +4934,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Input",
         "type": "list",
         "required": true,
-        "helper": "List of 3 to 5 columns -> [results, suppliers, part_codes, mpns (optional), descriptions (optional)].",
+        "helper": "Three to five ordered column names: results, suppliers, part_codes, optional MPNs, optional descriptions. Results cells contain lists of payloads with search_metadata and search_results. Text-input cells accept scalar values or lists. To use descriptions without an MPN, provide five inputs and leave the fourth column's values blank.",
         "placeholder": "Column A"
       },
       {
@@ -4887,7 +4942,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Output",
         "type": "list",
         "required": true,
-        "helper": "Output column for the dictionaries. If a list of 2 is provided, outputs [dicts_column, pretty_strings_column].",
+        "helper": "One name or a one-element list receives scored dictionaries. Two names receive parallel dictionary and formatted-summary lists in that order. Each row retains its result lists; results are not expanded into rows. Part-code evidence and counts remain nested in each dictionary, not in a third output column. Empty or non-list results cells produce empty lists.",
         "placeholder": [
           "Score Search Results Output"
         ]
@@ -4897,98 +4952,98 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Allow Mpn Exact",
         "type": "boolean",
         "required": false,
-        "helper": "Treat exact MPN matches as valid part code matches."
+        "helper": "Allow the mpn_exact scoring category. Containment of an MPN with at least four normalized characters can receive this category even when its diagnostic evidence is partial. Does not change scores or evidence."
       },
       {
         "key": "allow_mpn_partial",
         "label": "Allow Mpn Partial",
         "type": "boolean",
         "required": false,
-        "helper": "Treat partial MPN matches as valid part code matches."
+        "helper": "Allow the mpn_partial scoring category, not every partial diagnostic evidence record. MPN categories take precedence over other-code categories."
       },
       {
         "key": "allow_other_exact",
         "label": "Allow Other Exact",
         "type": "boolean",
         "required": false,
-        "helper": "Treat exact other part code matches as valid part code matches."
+        "helper": "Allow other_code_exact when no positive MPN match is recognized. Normalized containment can receive exact points. Disallowing an MPN category does not fall back to this category."
       },
       {
         "key": "allow_other_partial",
         "label": "Allow Other Partial",
         "type": "boolean",
         "required": false,
-        "helper": "Treat partial other part code matches as valid part code matches."
+        "helper": "Allow other_code_partial when no positive MPN match is recognized. Applies to the scoring category, not the diagnostic match_level."
       },
       {
         "key": "blacklist_keywords",
         "label": "Blacklist Keywords",
-        "type": "text",
+        "type": "list",
         "required": false,
-        "helper": "Comma-separated list or array of keywords to filter out URLs containing them."
+        "helper": "Literal substrings of the full lowercased URL to mark as filtered. A comma-separated string is trimmed and lowercased; list entries are used as supplied, so provide trimmed lowercase strings. Does not match titles or snippets and applies even when must_match_part_code is false."
       },
       {
         "key": "context_match_base",
         "label": "Context Match Base",
         "type": "number",
         "required": false,
-        "helper": "Context Match Base value accepted by the runtime."
+        "helper": "Points when all normalized unique input context terms match. Terms include suppliers, codes, MPNs, full descriptions, and description words longer than two characters. The matched fraction times this base is rounded to one decimal place; repeated occurrences do not add points."
       },
       {
         "key": "fuzzy_match_threshold",
         "label": "Fuzzy Match Threshold",
         "type": "number",
         "required": false,
-        "helper": "Fuzzy Match Threshold value accepted by the runtime."
+        "helper": "Similarity cutoff for context terms and supplier-text recognition in brand_found. Does not change the fixed supplier fuzzy-scoring cutoff, part-code evidence levels, or allowed scoring categories. Domain evidence can set brand_found independently of this threshold."
       },
       {
         "key": "mpn_exact_score",
         "label": "Mpn Exact Score",
         "type": "number",
         "required": false,
-        "helper": "Mpn Exact Score value accepted by the runtime."
+        "helper": "Exact-score MPN points, including normalized containment for inputs of at least four characters. Only the higher MPN or other-code contribution is added; a tie prefers the MPN explanation. Keep exact weights positive."
       },
       {
         "key": "mpn_partial_base",
         "label": "Mpn Partial Base",
         "type": "number",
         "required": false,
-        "helper": "Mpn Partial Base value accepted by the runtime."
+        "helper": "Base points for partial/variant MPN scoring. Ordinary normalized containment already receives exact points; this is not a weight for every partial diagnostic evidence record."
       },
       {
         "key": "must_match_part_code",
         "label": "Must Match Part Code",
         "type": "boolean",
         "required": false,
-        "helper": "If true, filters out results that don't satisfy the allowed match types."
+        "helper": "If true, mark results filtered when their scoring match category is not allowed. If false, keep such results eligible, while part_code_found still reports category eligibility. Blacklisting applies in both cases. Filtered dictionaries remain in the output with their scores and reasons."
       },
       {
         "key": "part_code_exact_score",
         "label": "Part Code Exact Score",
         "type": "number",
         "required": false,
-        "helper": "Part Code Exact Score value accepted by the runtime."
+        "helper": "Exact-score other-code points, including normalized containment for inputs of at least four characters. Not added on top of the MPN score."
       },
       {
         "key": "part_code_partial_base",
         "label": "Part Code Partial Base",
         "type": "number",
         "required": false,
-        "helper": "Part Code Partial Base value accepted by the runtime."
+        "helper": "Base points for partial/variant other-code scoring. Does not change diagnostic levels; containment can already receive exact points."
       },
       {
         "key": "supplier_exact_score",
         "label": "Supplier Exact Score",
         "type": "number",
         "required": false,
-        "helper": "Supplier Exact Score value accepted by the runtime."
+        "helper": "Points when a normalized supplier name equals a complete title, snippet, or URL field. An embedded name instead uses supplier_partial_base."
       },
       {
         "key": "supplier_partial_base",
         "label": "Supplier Partial Base",
         "type": "number",
         "required": false,
-        "helper": "Supplier Partial Base value accepted by the runtime."
+        "helper": "Base for embedded supplier text; reverse containment uses 95 percent of the base, and fuzzy matches at the fixed 0.8 cutoff use their similarity times the base. Only the strongest text match contributes."
       }
     ]
   },
@@ -5012,7 +5067,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Input",
         "type": "text",
         "required": true,
-        "helper": "The mathematical expression using column names. e.g. column1 * column2 + column3. Note: spaces within column names are replaced by underscores (_).",
+        "helper": "The mathematical expression using column names. e.g. column1 * column2",
         "placeholder": "Column A"
       },
       {
@@ -5020,7 +5075,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Output",
         "type": "text",
         "required": true,
-        "helper": "The column to output the results to.",
+        "helper": "The column to output the results to",
         "placeholder": "Math Output"
       }
     ]
@@ -5049,7 +5104,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Input",
         "type": "list",
         "required": false,
-        "helper": "Name or list of input column(s) to filter the data available to the command. Useful in conjunction with kwargs to target a variable range of columns. If not specified, all columns will be available.",
+        "helper": "Name or list of input column(s) to filter the data available",
         "placeholder": "Column A"
       },
       {
@@ -5057,7 +5112,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Output",
         "type": "list",
         "required": true,
-        "helper": "Name or list of output column(s). To output multiple columns, return a list of the corresponding length.",
+        "helper": "Name or list of output column(s). To output multiple columns,",
         "placeholder": [
           "Python Output"
         ]
@@ -5067,14 +5122,14 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Command",
         "type": "text",
         "required": true,
-        "helper": "Python command. This must return a value. Note: any non-alphanumeric characters in variable names are replaced by underscores (_)."
+        "helper": "Python command. This must return a value."
       },
       {
         "key": "except",
         "label": "Except",
         "type": "boolean",
         "required": false,
-        "helper": "Value to return for the row if an exception occurs during the evaluation. If not provided, an exception will be raised as normal. If multiple output columns are specified, this must match the length."
+        "helper": "Value to return for the row if an exception occurs during the evaluation."
       }
     ]
   },
@@ -5107,21 +5162,161 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Params",
         "type": "json",
         "required": false,
-        "helper": "Variables to use in conjunctions with query. This allows the query to be parameterized. This uses sqlite syntax (? or :name)."
+        "helper": "Variables to use in conjunctions with query."
       },
       {
         "key": "preserve_data_types",
         "label": "Preserve Data Types",
-        "type": "boolean",
+        "type": "text",
         "required": false,
         "helper": "Preserve Data Types value accepted by the runtime."
       },
       {
         "key": "preserve_index",
         "label": "Preserve Index",
-        "type": "boolean",
+        "type": "text",
         "required": false,
         "helper": "Preserve Index value accepted by the runtime."
+      }
+    ]
+  },
+  {
+    "type": "search.ai_mode",
+    "catalogId": null,
+    "catalogKey": "search.ai_mode",
+    "registryRoute": "/py/namespaces/search#ai-mode",
+    "recipeWriterEligible": false,
+    "label": "Ai Mode",
+    "category": "Search",
+    "description": "Retrieve Google AI Mode Markdown and metadata. Use standardize.clean and extract.ai afterwards for cleanup and structuring.",
+    "color": "sky",
+    "defaults": {
+      "output": null,
+      "id": "",
+      "queries": "",
+      "api_key": null,
+      "client": "serpapi",
+      "country": "",
+      "device": "",
+      "gl": "",
+      "hl": "",
+      "include_raw_response": false,
+      "language": "",
+      "location": "",
+      "threads": 10
+    },
+    "fields": [
+      {
+        "key": "output",
+        "label": "Output",
+        "type": "list",
+        "required": true,
+        "helper": "Outputs are ordered [ai_mode_results, ai_mode_metadata]. The first is",
+        "placeholder": null
+      },
+      {
+        "key": "id",
+        "label": "Id",
+        "type": "text",
+        "required": true,
+        "helper": "Input row ID column, retained in metadata.input_row_id."
+      },
+      {
+        "key": "queries",
+        "label": "Queries",
+        "type": "text",
+        "required": true,
+        "helper": "Column containing one query string per row. Explode query lists before searching."
+      },
+      {
+        "key": "api_key",
+        "label": "Api Key",
+        "type": "text",
+        "required": false,
+        "helper": "Search key; defaults to SERPAPI_API_KEY."
+      },
+      {
+        "key": "client",
+        "label": "Client",
+        "type": "select",
+        "required": false,
+        "helper": "The client parameter.",
+        "options": [
+          {
+            "value": "serpapi",
+            "label": "Serpapi"
+          }
+        ]
+      },
+      {
+        "key": "country",
+        "label": "Country",
+        "type": "text",
+        "required": false,
+        "helper": "Optional country code. Alias: gl. Null or empty means omit."
+      },
+      {
+        "key": "device",
+        "label": "Device",
+        "type": "select",
+        "required": false,
+        "helper": "Optional device override.",
+        "options": [
+          {
+            "value": "desktop",
+            "label": "Desktop"
+          },
+          {
+            "value": "mobile",
+            "label": "Mobile"
+          },
+          {
+            "value": "tablet",
+            "label": "Tablet"
+          }
+        ]
+      },
+      {
+        "key": "gl",
+        "label": "Gl",
+        "type": "text",
+        "required": false,
+        "helper": "Optional country code; omitted unless supplied."
+      },
+      {
+        "key": "hl",
+        "label": "Hl",
+        "type": "text",
+        "required": false,
+        "helper": "Optional language code; omitted unless supplied."
+      },
+      {
+        "key": "include_raw_response",
+        "label": "Include Raw Response",
+        "type": "boolean",
+        "required": false,
+        "helper": "Retain the untouched Markdown response including frontmatter under metadata.raw_response for trial capture and replay."
+      },
+      {
+        "key": "language",
+        "label": "Language",
+        "type": "text",
+        "required": false,
+        "helper": "Optional language code. Alias: hl. Null or empty means omit."
+      },
+      {
+        "key": "location",
+        "label": "Location",
+        "type": "text",
+        "required": false,
+        "helper": "Optional city or geographic location; omitted unless supplied."
+      },
+      {
+        "key": "threads",
+        "label": "Threads",
+        "type": "number",
+        "required": false,
+        "helper": "The threads parameter."
       }
     ]
   },
@@ -5143,6 +5338,7 @@ const GENERATED_REGISTRY_CATALOG = [
       "client": "serpapi",
       "country": "",
       "device": "",
+      "google_domain": "",
       "language": "",
       "location": "",
       "n_results": 10,
@@ -5153,7 +5349,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "key": "output",
         "label": "Output",
         "type": "list",
-        "required": false,
+        "required": true,
         "helper": "Output column for the dictionaries. If a list of 2 is provided, outputs [dicts_column, pretty_strings_column].",
         "placeholder": null
       },
@@ -5220,6 +5416,13 @@ const GENERATED_REGISTRY_CATALOG = [
         ]
       },
       {
+        "key": "google_domain",
+        "label": "Google Domain",
+        "type": "text",
+        "required": false,
+        "helper": "Google domain for search results (e.g., google.com, google.co.uk)."
+      },
+      {
         "key": "language",
         "label": "Language",
         "type": "text",
@@ -5267,10 +5470,12 @@ const GENERATED_REGISTRY_CATALOG = [
       "output": null,
       "api_key": null,
       "client": "google_url_context",
-      "model_id": "models/gemini-3-flash-preview",
+      "model_id": null,
       "output_format": "json",
       "prompt": null,
-      "threads": 10
+      "request_timeout_seconds": null,
+      "thinking_level": null,
+      "threads": null
     },
     "fields": [
       {
@@ -5285,7 +5490,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "key": "output",
         "label": "Output",
         "type": "list",
-        "required": false,
+        "required": true,
         "helper": "Name of the output column for the raw dictionaries. To output BOTH the raw dictionaries and the formatted text, provide a list of exactly two column names (e.g., [page_data, page_text]).",
         "placeholder": null
       },
@@ -5314,7 +5519,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Model Id",
         "type": "text",
         "required": false,
-        "helper": "The specific model ID to use (default models/gemini-3-flash-preview)."
+        "helper": "The specific model ID to use. Defaults to the AI configuration."
       },
       {
         "key": "output_format",
@@ -5338,14 +5543,46 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Prompt",
         "type": "text",
         "required": false,
-        "helper": "Optional custom system prompt to guide the extraction behavior and output format."
+        "helper": "Optional custom system prompt. Use {{ column_name }} to insert values from the full input row, including columns not selected by input. Replace spaces and punctuation in column names with underscores; aliases must be ASCII identifiers. Dictionaries and lists are inserted as finite JSON text. Substitution is literal and single-pass, without expressions or filters. Missing or ambiguous references fail before retrieval. Omit to use the default prompt."
+      },
+      {
+        "key": "request_timeout_seconds",
+        "label": "Request Timeout Seconds",
+        "type": "number",
+        "required": false,
+        "helper": "Total deadline in seconds for each URL, including retries. Defaults to the configured value, packaged as 10 seconds. A batch may take longer when URLs run in several waves."
+      },
+      {
+        "key": "thinking_level",
+        "label": "Thinking Level",
+        "type": "select",
+        "required": false,
+        "helper": "Gemini thinking level. Defaults to the configured value, packaged as minimal. Supported levels depend on the selected model.",
+        "options": [
+          {
+            "value": "minimal",
+            "label": "Minimal"
+          },
+          {
+            "value": "low",
+            "label": "Low"
+          },
+          {
+            "value": "medium",
+            "label": "Medium"
+          },
+          {
+            "value": "high",
+            "label": "High"
+          }
+        ]
       },
       {
         "key": "threads",
         "label": "Threads",
         "type": "number",
         "required": false,
-        "helper": "Number of concurrent threads for parallel processing (default 10)."
+        "helper": "Number of concurrent threads for parallel processing. Defaults to the AI configuration."
       }
     ]
   },
@@ -5394,14 +5631,14 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Model Id",
         "type": "text",
         "required": true,
-        "helper": "ID of the classification model to be used."
+        "helper": "ID of the classification model to be used"
       },
       {
         "key": "include_confidence",
         "label": "Include Confidence",
         "type": "boolean",
         "required": false,
-        "helper": "For models that support it, include the confidence level in the output."
+        "helper": "For models that support it, include the confidence level in the output"
       }
     ]
   },
@@ -5422,8 +5659,8 @@ const GENERATED_REGISTRY_CATALOG = [
       "cache": false,
       "cache_ttl": "",
       "char": ", ",
-      "deadline": "",
       "instructions": null,
+      "metadata": "",
       "model": "",
       "model_id": null,
       "output_format": null,
@@ -5486,18 +5723,18 @@ const GENERATED_REGISTRY_CATALOG = [
         "helper": "Separator used only when output_format is concatenate. Defaults to comma-space."
       },
       {
-        "key": "deadline",
-        "label": "Deadline",
-        "type": "number",
-        "required": false,
-        "helper": "Total seconds allowed for the entire wrangle call, including queued work, retries, and backoff. The configured default is 15."
-      },
-      {
         "key": "instructions",
         "label": "Instructions",
         "type": "list",
         "required": false,
-        "helper": "Additional guidance applied to every input row. Use this for decision rules, evidence priorities, normalization requirements, or other behavior that applies to the complete extraction."
+        "helper": "General instructions applied to every input row, in addition to any GeneralInstructions in the saved model. Use this for decision rules, evidence priorities, normalization requirements, or other behavior that applies to the complete extraction."
+      },
+      {
+        "key": "metadata",
+        "label": "Metadata",
+        "type": "json",
+        "required": false,
+        "helper": "Labels attached to OpenAI requests, such as recipe_name and wrangles_user. Available recipe name and Wrangles user are added automatically. Explicit labels override those defaults; an empty object disables automatic labels. These appear with stored logs and are separate from model instructions. Up to 16 string pairs; keys may contain up to 64 characters and values up to 512 characters. Does not enable workflow tracing."
       },
       {
         "key": "model",
@@ -5567,9 +5804,39 @@ const GENERATED_REGISTRY_CATALOG = [
       {
         "key": "reasoning",
         "label": "Reasoning",
-        "type": "json",
+        "type": "select",
         "required": false,
-        "helper": "Responses API reasoning controls. Set effort for reasoning-capable models. The configured default is none when that model supports it; otherwise the provider default applies."
+        "helper": "Reasoning effort, such as none or low, or an object with effort and other reasoning options. Both forms are equivalent for setting effort. Defaults to none for every model. Explicit settings are always sent to the provider; unsupported settings produce a provider error.",
+        "options": [
+          {
+            "value": "none",
+            "label": "None"
+          },
+          {
+            "value": "minimal",
+            "label": "Minimal"
+          },
+          {
+            "value": "low",
+            "label": "Low"
+          },
+          {
+            "value": "medium",
+            "label": "Medium"
+          },
+          {
+            "value": "high",
+            "label": "High"
+          },
+          {
+            "value": "xhigh",
+            "label": "Xhigh"
+          },
+          {
+            "value": "max",
+            "label": "Max"
+          }
+        ]
       },
       {
         "key": "record_examples",
@@ -5583,14 +5850,14 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Retries",
         "type": "number",
         "required": false,
-        "helper": "Number of additional attempts after a retryable failure. The configured default is 1. Backoff and request timeouts remain bounded by deadline."
+        "helper": "Number of additional attempts per row after a retryable failure. The configured default is 1. Retry delays are separate from timeout."
       },
       {
         "key": "store",
         "label": "Store",
         "type": "boolean",
         "required": false,
-        "helper": "Whether OpenAI may store Responses API results. Defaults to false."
+        "helper": "Whether OpenAI may store Responses API results. Defaults to true."
       },
       {
         "key": "strict",
@@ -5611,14 +5878,14 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Timeout",
         "type": "number",
         "required": false,
-        "helper": "Maximum seconds for one HTTP attempt. The configured default is 12; deadline can end the overall call sooner."
+        "helper": "Network timeout in seconds for each HTTP attempt. The configured default is 12. Each retry uses the same timeout."
       },
       {
         "key": "url",
         "label": "Url",
         "type": "text",
         "required": false,
-        "helper": "Override the endpoint for the selected protocol. A chat/completions URL selects the legacy protocol only when protocol is omitted; new recipes should use the configured Responses endpoint."
+        "helper": "Override the endpoint for the selected protocol. A chat/completions URL"
       },
       {
         "key": "verbosity",
@@ -5664,18 +5931,17 @@ const GENERATED_REGISTRY_CATALOG = [
       "input": null,
       "output": "{}",
       "api_key": "",
+      "examples": [],
       "messages": null,
-      "model": "gpt-5",
+      "model": null,
       "previous_response": false,
-      "reasoning": {
-        "effort": "low"
-      },
-      "retries": 0,
-      "strict": false,
+      "reasoning": null,
+      "retries": null,
+      "strict": null,
       "summary": false,
-      "threads": 20,
-      "timeout": 90,
-      "url": "https://api.openai.com/v1/responses",
+      "threads": null,
+      "timeout": null,
+      "url": null,
       "web_search": false
     },
     "fields": [
@@ -5703,18 +5969,25 @@ const GENERATED_REGISTRY_CATALOG = [
         "helper": "OpenAI-compatible API key."
       },
       {
+        "key": "examples",
+        "label": "Examples",
+        "type": "list",
+        "required": false,
+        "helper": "Few-shot examples with input, output, and optional notes."
+      },
+      {
         "key": "messages",
         "label": "Messages",
-        "type": "json",
+        "type": "list",
         "required": false,
-        "helper": "Optional extra messages forwarded to the inner generate helper."
+        "helper": "The first message's content overrides the generation instructions."
       },
       {
         "key": "model",
         "label": "Model",
         "type": "text",
         "required": false,
-        "helper": "Responses model name (e.g. gpt-5-mini)."
+        "helper": "Responses model name. Defaults to the generate.ai role in the AI configuration."
       },
       {
         "key": "previous_response",
@@ -5728,7 +6001,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Reasoning",
         "type": "json",
         "required": false,
-        "helper": "Responses API reasoning options (forwarded verbatim)."
+        "helper": "Responses API reasoning options, checked against configured model capabilities."
       },
       {
         "key": "retries",
@@ -5756,7 +6029,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Threads",
         "type": "number",
         "required": false,
-        "helper": "Maximum concurrent requests (default 20)."
+        "helper": "Maximum concurrent requests; defaults to the AI configuration."
       },
       {
         "key": "timeout",
@@ -5799,7 +6072,9 @@ const GENERATED_REGISTRY_CATALOG = [
       "output": null,
       "api_token": "",
       "model": "",
-      "parameters": null
+      "parameters": null,
+      "retries": null,
+      "timeout": null
     },
     "fields": [
       {
@@ -5815,7 +6090,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Output",
         "type": "list",
         "required": false,
-        "helper": "Name of the output column. If not provided, will overwrite the input column.",
+        "helper": "Name of the output column. If not provided, will overwrite the input column",
         "placeholder": null
       },
       {
@@ -5823,21 +6098,35 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Api Token",
         "type": "text",
         "required": true,
-        "helper": "Huggingface API Token."
+        "helper": "Huggingface API Token"
       },
       {
         "key": "model",
         "label": "Model",
         "type": "text",
         "required": true,
-        "helper": "Name of the model to use. e.g. facebook/bart-large-cnn."
+        "helper": "Name of the model to use. e.g. facebook/bart-large-cnn"
       },
       {
         "key": "parameters",
         "label": "Parameters",
         "type": "json",
         "required": false,
-        "helper": "Optionally, provide additional parameters to define the model behaviour."
+        "helper": "Optionally, provide additional parameters to define the model behaviour"
+      },
+      {
+        "key": "retries",
+        "label": "Retries",
+        "type": "number",
+        "required": false,
+        "helper": "Additional attempts after transient failures; defaults to the AI configuration."
+      },
+      {
+        "key": "timeout",
+        "label": "Timeout",
+        "type": "number",
+        "required": false,
+        "helper": "Request timeout in seconds; defaults to the AI configuration."
       }
     ]
   },
@@ -5854,8 +6143,8 @@ const GENERATED_REGISTRY_CATALOG = [
     "defaults": {
       "input": "Column A",
       "output": null,
-      "lookup_mode": "by_row",
       "model_id": null,
+      "lookup_mode": "by_row",
       "n": null
     },
     "fields": [
@@ -5874,6 +6163,13 @@ const GENERATED_REGISTRY_CATALOG = [
         "required": false,
         "helper": "Name of the output column(s). When n is provided and the output list length equals n, each output column receives the corresponding match. A single output containing a wildcard (*) is expanded into n columns, e.g. \"Top *\" with n: 3 becomes \"Top 1\", \"Top 2\", \"Top 3\".",
         "placeholder": null
+      },
+      {
+        "key": "model_id",
+        "label": "Model Id",
+        "type": "text",
+        "required": true,
+        "helper": "The model_id to use lookup against"
       },
       {
         "key": "lookup_mode",
@@ -5897,18 +6193,147 @@ const GENERATED_REGISTRY_CATALOG = [
         ]
       },
       {
+        "key": "n",
+        "label": "N",
+        "type": "number",
+        "required": false,
+        "helper": "Number of matches to return per input value. When the output list length equals n, each output column receives the corresponding match. Otherwise all n matches are stored as a list in each output column."
+      }
+    ]
+  },
+  {
+    "type": "lookup.key",
+    "catalogId": "101",
+    "catalogKey": "lookup.key",
+    "registryRoute": "/py/namespaces/lookup#key",
+    "recipeWriterEligible": false,
+    "label": "Key",
+    "category": "Lookup",
+    "description": "Look up values using a saved key lookup model. Requires a WrangleWorks account and a model with purpose lookup and stored variant key. Missing or unknown variants are rejected; use lookup for legacy models.",
+    "color": "lagoon",
+    "defaults": {
+      "input": [
+        "Column A",
+        "Column B"
+      ],
+      "output": null,
+      "model_id": "",
+      "lookup_mode": "by_row",
+      "matrix_variables": [],
+      "n": null
+    },
+    "fields": [
+      {
+        "key": "input",
+        "label": "Input",
+        "type": "list",
+        "required": true,
+        "helper": "One input column, optionally expressed as a single-item list.",
+        "placeholder": "Column A"
+      },
+      {
+        "key": "output",
+        "label": "Output",
+        "type": "list",
+        "required": false,
+        "helper": "Output column or columns; defaults to the input column. Named lookup columns return their values; other names receive match dictionaries. With n greater than one, n output columns or a wildcard name such as 'Match *' distribute match dictionaries across columns.",
+        "placeholder": null
+      },
+      {
         "key": "model_id",
         "label": "Model Id",
         "type": "text",
+        "required": true,
+        "helper": "Existing saved key lookup model ID, not a catalog ID."
+      },
+      {
+        "key": "lookup_mode",
+        "label": "Lookup Mode",
+        "type": "text",
         "required": false,
-        "helper": "The model_id to use lookup against."
+        "helper": "The lookup_mode parameter."
+      },
+      {
+        "key": "matrix_variables",
+        "label": "Matrix Variables",
+        "type": "list",
+        "required": false,
+        "helper": "Columns that define the permutations for by_matrix mode."
       },
       {
         "key": "n",
         "label": "N",
         "type": "number",
         "required": false,
-        "helper": "Number of matches to return per input value. When the output list length equals n, each output column receives the corresponding match. Otherwise all n matches are stored as a list in each output column."
+        "helper": "Optional number of matches using the existing lookup behavior. Supported only with by_row. When greater than one, a single output contains a list of match dictionaries unless expanded with a wildcard."
+      }
+    ]
+  },
+  {
+    "type": "lookup.semantic",
+    "catalogId": "102",
+    "catalogKey": "lookup.semantic",
+    "registryRoute": "/py/namespaces/lookup#semantic",
+    "recipeWriterEligible": false,
+    "label": "Semantic",
+    "category": "Lookup",
+    "description": "Look up values using a saved semantic lookup model. Requires a WrangleWorks account and a model with purpose lookup and stored variant embedding. Missing or unknown variants are rejected; use lookup for legacy models.",
+    "color": "lagoon",
+    "defaults": {
+      "input": [
+        "Column A",
+        "Column B"
+      ],
+      "output": null,
+      "model_id": "",
+      "lookup_mode": "by_row",
+      "matrix_variables": [],
+      "n": null
+    },
+    "fields": [
+      {
+        "key": "input",
+        "label": "Input",
+        "type": "list",
+        "required": true,
+        "helper": "One input column, optionally expressed as a single-item list.",
+        "placeholder": "Column A"
+      },
+      {
+        "key": "output",
+        "label": "Output",
+        "type": "list",
+        "required": false,
+        "helper": "Output column or columns; defaults to the input column. Named lookup columns return their values; other names receive match dictionaries. With n greater than one, n output columns or a wildcard name such as 'Match *' distribute match dictionaries across columns.",
+        "placeholder": null
+      },
+      {
+        "key": "model_id",
+        "label": "Model Id",
+        "type": "text",
+        "required": true,
+        "helper": "Existing saved semantic lookup model ID, not a catalog ID."
+      },
+      {
+        "key": "lookup_mode",
+        "label": "Lookup Mode",
+        "type": "text",
+        "required": false,
+        "helper": "The lookup_mode parameter."
+      },
+      {
+        "key": "matrix_variables",
+        "label": "Matrix Variables",
+        "type": "list",
+        "required": false,
+        "helper": "Columns that define the permutations for by_matrix mode."
+      },
+      {
+        "key": "n",
+        "label": "N",
+        "type": "number",
+        "required": false,
+        "helper": "Optional number of matches. Supported only with by_row. When greater than one, a single output contains a list of match dictionaries unless expanded with a wildcard. Each of n output columns receives one match."
       }
     ]
   },
@@ -5931,16 +6356,16 @@ const GENERATED_REGISTRY_CATALOG = [
         "key": "input",
         "label": "Input",
         "type": "list",
-        "required": false,
-        "helper": "Name of the input columns or columns.",
+        "required": true,
+        "helper": "Name of the input columns or columns",
         "placeholder": "Column A"
       },
       {
         "key": "output",
         "label": "Output",
         "type": "list",
-        "required": false,
-        "helper": "Name of the output columns or columns.",
+        "required": true,
+        "helper": "Name of the output columns or columns",
         "placeholder": null
       }
     ]
@@ -6029,7 +6454,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Wrangles",
         "type": "list",
         "required": false,
-        "helper": "Use wrangles to transform the column names. The input is named 'columns' and the final result must also include the column named 'columns'. This can only be used instead of the standard rename."
+        "helper": "Use wrangles to transform the column names."
       }
     ]
   },
@@ -6087,14 +6512,14 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Error",
         "type": "text",
         "required": false,
-        "helper": "Log an error to the console."
+        "helper": "Log an error to the console"
       },
       {
         "key": "info",
         "label": "Info",
         "type": "text",
         "required": false,
-        "helper": "Log info to the console."
+        "helper": "Log info to the console"
       },
       {
         "key": "log_data",
@@ -6108,7 +6533,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Warning",
         "type": "text",
         "required": false,
-        "helper": "Log a warning to the console."
+        "helper": "Log a warning to the console"
       },
       {
         "key": "write",
@@ -6160,7 +6585,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Wrangles",
         "type": "list",
         "required": true,
-        "helper": "List of wrangles to apply."
+        "helper": "List of wrangles to apply"
       },
       {
         "key": "propagate",
@@ -6168,6 +6593,470 @@ const GENERATED_REGISTRY_CATALOG = [
         "type": "list",
         "required": false,
         "helper": "Limit the column(s) that will be available to the wrangles and replicated for each element. If not specified, all columns will be propogated. This may be useful to limit the memory use for large datasets."
+      }
+    ]
+  },
+  {
+    "type": "ai.answers",
+    "catalogId": null,
+    "catalogKey": "ai.answers",
+    "registryRoute": "/py/namespaces/ai#answers",
+    "recipeWriterEligible": false,
+    "label": "Answers",
+    "category": "Ai",
+    "description": "Answers any combination of `choose`, `score`, and `true_false` questions about the input with structured results. Accepts multiple named questions in one provider request per row. Question labels determine default output names.",
+    "color": "slate",
+    "defaults": {
+      "input": null,
+      "questions": "{}",
+      "api_key": null,
+      "cache": null,
+      "cache_ttl": null,
+      "model": null,
+      "protocol": null,
+      "provider": null,
+      "retries": null,
+      "threads": null,
+      "timeout": null
+    },
+    "fields": [
+      {
+        "key": "input",
+        "label": "Input",
+        "type": "list",
+        "required": false,
+        "helper": "Input column(s) sent as the shared provider state; omit to supply all columns. Question templates and for_each sources can reference other columns in the row.",
+        "placeholder": "Column A"
+      },
+      {
+        "key": "questions",
+        "label": "Questions",
+        "type": "json",
+        "required": true,
+        "helper": "Questions to answer for each input row, keyed by their distinct labels."
+      },
+      {
+        "key": "api_key",
+        "label": "Api Key",
+        "type": "text",
+        "required": false,
+        "helper": "Typesafe API key; defaults to TYPESAFE_API_KEY."
+      },
+      {
+        "key": "cache",
+        "label": "Cache",
+        "type": "boolean",
+        "required": false,
+        "helper": "Reuse identical successful requests through the shared AI cache. Off by default for Typesafe; set true to enable."
+      },
+      {
+        "key": "cache_ttl",
+        "label": "Cache Ttl",
+        "type": "number",
+        "required": false,
+        "helper": "Override the cache result lifetime in seconds."
+      },
+      {
+        "key": "model",
+        "label": "Model",
+        "type": "text",
+        "required": false,
+        "helper": "Model ID; defaults to this wrangle's AI catalog selection."
+      },
+      {
+        "key": "protocol",
+        "label": "Protocol",
+        "type": "select",
+        "required": false,
+        "helper": "Provider protocol selected through the AI catalog.",
+        "options": [
+          {
+            "value": "systemone",
+            "label": "Systemone"
+          }
+        ]
+      },
+      {
+        "key": "provider",
+        "label": "Provider",
+        "type": "select",
+        "required": false,
+        "helper": "Provider resolved through the AI catalog; currently typesafe.",
+        "options": [
+          {
+            "value": "typesafe",
+            "label": "Typesafe"
+          }
+        ]
+      },
+      {
+        "key": "retries",
+        "label": "Retries",
+        "type": "number",
+        "required": false,
+        "helper": "Additional attempts for retryable failures; defaults to the AI catalog."
+      },
+      {
+        "key": "threads",
+        "label": "Threads",
+        "type": "number",
+        "required": false,
+        "helper": "Maximum row requests in parallel; defaults to the AI catalog."
+      },
+      {
+        "key": "timeout",
+        "label": "Timeout",
+        "type": "number",
+        "required": false,
+        "helper": "Per-attempt request timeout in seconds; defaults to the AI catalog."
+      }
+    ]
+  },
+  {
+    "type": "ai.choose",
+    "catalogId": null,
+    "catalogKey": "ai.choose",
+    "registryRoute": "/py/namespaces/ai#choose",
+    "recipeWriterEligible": false,
+    "label": "Choose",
+    "category": "Ai",
+    "description": "Answers which option best fits the input, with the choice, confidence, and complete probabilities. Accepts multiple named questions in one provider request per row. Question labels determine default output names.",
+    "color": "slate",
+    "defaults": {
+      "input": null,
+      "questions": "{}",
+      "api_key": null,
+      "cache": null,
+      "cache_ttl": null,
+      "model": null,
+      "protocol": null,
+      "provider": null,
+      "retries": null,
+      "threads": null,
+      "timeout": null
+    },
+    "fields": [
+      {
+        "key": "input",
+        "label": "Input",
+        "type": "list",
+        "required": false,
+        "helper": "Input column(s) sent as the shared provider state; omit to supply all columns. Question templates and for_each sources can reference other columns in the row.",
+        "placeholder": "Column A"
+      },
+      {
+        "key": "questions",
+        "label": "Questions",
+        "type": "json",
+        "required": true,
+        "helper": "Questions to answer for each input row, keyed by their distinct labels."
+      },
+      {
+        "key": "api_key",
+        "label": "Api Key",
+        "type": "text",
+        "required": false,
+        "helper": "Typesafe API key; defaults to TYPESAFE_API_KEY."
+      },
+      {
+        "key": "cache",
+        "label": "Cache",
+        "type": "boolean",
+        "required": false,
+        "helper": "Reuse identical successful requests through the shared AI cache. Off by default for Typesafe; set true to enable."
+      },
+      {
+        "key": "cache_ttl",
+        "label": "Cache Ttl",
+        "type": "number",
+        "required": false,
+        "helper": "Override the cache result lifetime in seconds."
+      },
+      {
+        "key": "model",
+        "label": "Model",
+        "type": "text",
+        "required": false,
+        "helper": "Model ID; defaults to this wrangle's AI catalog selection."
+      },
+      {
+        "key": "protocol",
+        "label": "Protocol",
+        "type": "select",
+        "required": false,
+        "helper": "Provider protocol selected through the AI catalog.",
+        "options": [
+          {
+            "value": "systemone",
+            "label": "Systemone"
+          }
+        ]
+      },
+      {
+        "key": "provider",
+        "label": "Provider",
+        "type": "select",
+        "required": false,
+        "helper": "Provider resolved through the AI catalog; currently typesafe.",
+        "options": [
+          {
+            "value": "typesafe",
+            "label": "Typesafe"
+          }
+        ]
+      },
+      {
+        "key": "retries",
+        "label": "Retries",
+        "type": "number",
+        "required": false,
+        "helper": "Additional attempts for retryable failures; defaults to the AI catalog."
+      },
+      {
+        "key": "threads",
+        "label": "Threads",
+        "type": "number",
+        "required": false,
+        "helper": "Maximum row requests in parallel; defaults to the AI catalog."
+      },
+      {
+        "key": "timeout",
+        "label": "Timeout",
+        "type": "number",
+        "required": false,
+        "helper": "Per-attempt request timeout in seconds; defaults to the AI catalog."
+      }
+    ]
+  },
+  {
+    "type": "ai.score",
+    "catalogId": null,
+    "catalogKey": "ai.score",
+    "registryRoute": "/py/namespaces/ai#score",
+    "recipeWriterEligible": false,
+    "label": "Score",
+    "category": "Ai",
+    "description": "Answers where the input falls along ordered criteria, with the native score, confidence, and complete probabilities. Accepts multiple named questions in one provider request per row. Question labels determine default output names.",
+    "color": "slate",
+    "defaults": {
+      "input": null,
+      "questions": "{}",
+      "api_key": null,
+      "cache": null,
+      "cache_ttl": null,
+      "model": null,
+      "protocol": null,
+      "provider": null,
+      "retries": null,
+      "threads": null,
+      "timeout": null
+    },
+    "fields": [
+      {
+        "key": "input",
+        "label": "Input",
+        "type": "list",
+        "required": false,
+        "helper": "Input column(s) sent as the shared provider state; omit to supply all columns. Question templates and for_each sources can reference other columns in the row.",
+        "placeholder": "Column A"
+      },
+      {
+        "key": "questions",
+        "label": "Questions",
+        "type": "json",
+        "required": true,
+        "helper": "Questions to answer for each input row, keyed by their distinct labels."
+      },
+      {
+        "key": "api_key",
+        "label": "Api Key",
+        "type": "text",
+        "required": false,
+        "helper": "Typesafe API key; defaults to TYPESAFE_API_KEY."
+      },
+      {
+        "key": "cache",
+        "label": "Cache",
+        "type": "boolean",
+        "required": false,
+        "helper": "Reuse identical successful requests through the shared AI cache. Off by default for Typesafe; set true to enable."
+      },
+      {
+        "key": "cache_ttl",
+        "label": "Cache Ttl",
+        "type": "number",
+        "required": false,
+        "helper": "Override the cache result lifetime in seconds."
+      },
+      {
+        "key": "model",
+        "label": "Model",
+        "type": "text",
+        "required": false,
+        "helper": "Model ID; defaults to this wrangle's AI catalog selection."
+      },
+      {
+        "key": "protocol",
+        "label": "Protocol",
+        "type": "select",
+        "required": false,
+        "helper": "Provider protocol selected through the AI catalog.",
+        "options": [
+          {
+            "value": "systemone",
+            "label": "Systemone"
+          }
+        ]
+      },
+      {
+        "key": "provider",
+        "label": "Provider",
+        "type": "select",
+        "required": false,
+        "helper": "Provider resolved through the AI catalog; currently typesafe.",
+        "options": [
+          {
+            "value": "typesafe",
+            "label": "Typesafe"
+          }
+        ]
+      },
+      {
+        "key": "retries",
+        "label": "Retries",
+        "type": "number",
+        "required": false,
+        "helper": "Additional attempts for retryable failures; defaults to the AI catalog."
+      },
+      {
+        "key": "threads",
+        "label": "Threads",
+        "type": "number",
+        "required": false,
+        "helper": "Maximum row requests in parallel; defaults to the AI catalog."
+      },
+      {
+        "key": "timeout",
+        "label": "Timeout",
+        "type": "number",
+        "required": false,
+        "helper": "Per-attempt request timeout in seconds; defaults to the AI catalog."
+      }
+    ]
+  },
+  {
+    "type": "ai.true_false",
+    "catalogId": null,
+    "catalogKey": "ai.true_false",
+    "registryRoute": "/py/namespaces/ai#true-false",
+    "recipeWriterEligible": false,
+    "label": "True False",
+    "category": "Ai",
+    "description": "Answers how likely a statement is to be true for the input, with probability_true and the supplied true_criteria. Accepts multiple named questions in one provider request per row. Question labels determine default output names.",
+    "color": "slate",
+    "defaults": {
+      "input": null,
+      "questions": "{}",
+      "api_key": null,
+      "cache": null,
+      "cache_ttl": null,
+      "model": null,
+      "protocol": null,
+      "provider": null,
+      "retries": null,
+      "threads": null,
+      "timeout": null
+    },
+    "fields": [
+      {
+        "key": "input",
+        "label": "Input",
+        "type": "list",
+        "required": false,
+        "helper": "Input column(s) sent as the shared provider state; omit to supply all columns. Question templates and for_each sources can reference other columns in the row.",
+        "placeholder": "Column A"
+      },
+      {
+        "key": "questions",
+        "label": "Questions",
+        "type": "json",
+        "required": true,
+        "helper": "Questions to answer for each input row, keyed by their distinct labels."
+      },
+      {
+        "key": "api_key",
+        "label": "Api Key",
+        "type": "text",
+        "required": false,
+        "helper": "Typesafe API key; defaults to TYPESAFE_API_KEY."
+      },
+      {
+        "key": "cache",
+        "label": "Cache",
+        "type": "boolean",
+        "required": false,
+        "helper": "Reuse identical successful requests through the shared AI cache. Off by default for Typesafe; set true to enable."
+      },
+      {
+        "key": "cache_ttl",
+        "label": "Cache Ttl",
+        "type": "number",
+        "required": false,
+        "helper": "Override the cache result lifetime in seconds."
+      },
+      {
+        "key": "model",
+        "label": "Model",
+        "type": "text",
+        "required": false,
+        "helper": "Model ID; defaults to this wrangle's AI catalog selection."
+      },
+      {
+        "key": "protocol",
+        "label": "Protocol",
+        "type": "select",
+        "required": false,
+        "helper": "Provider protocol selected through the AI catalog.",
+        "options": [
+          {
+            "value": "systemone",
+            "label": "Systemone"
+          }
+        ]
+      },
+      {
+        "key": "provider",
+        "label": "Provider",
+        "type": "select",
+        "required": false,
+        "helper": "Provider resolved through the AI catalog; currently typesafe.",
+        "options": [
+          {
+            "value": "typesafe",
+            "label": "Typesafe"
+          }
+        ]
+      },
+      {
+        "key": "retries",
+        "label": "Retries",
+        "type": "number",
+        "required": false,
+        "helper": "Additional attempts for retryable failures; defaults to the AI catalog."
+      },
+      {
+        "key": "threads",
+        "label": "Threads",
+        "type": "number",
+        "required": false,
+        "helper": "Maximum row requests in parallel; defaults to the AI catalog."
+      },
+      {
+        "key": "timeout",
+        "label": "Timeout",
+        "type": "number",
+        "required": false,
+        "helper": "Per-attempt request timeout in seconds; defaults to the AI catalog."
       }
     ]
   },
@@ -6195,21 +7084,21 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Wrangles",
         "type": "list",
         "required": true,
-        "helper": "The wrangles to execute on the data. Each series of wrangles will be run against the data in batches of the size defined by batch_size."
+        "helper": "The wrangles to execute on the data. Each series of wrangles"
       },
       {
         "key": "batch_size",
         "label": "Batch Size",
         "type": "number",
         "required": false,
-        "helper": "The number of rows to split each batch into."
+        "helper": "The number of rows to split each batch into"
       },
       {
         "key": "on_error",
         "label": "On Error",
         "type": "json",
         "required": false,
-        "helper": "A dictionary of column_name: value to return if an error occurs while attempting to run a batch."
+        "helper": "A dictionary of column_name: value to return if an error occurs while attempting to run a batch"
       },
       {
         "key": "threads",
@@ -6223,12 +7112,12 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Timeout",
         "type": "number",
         "required": false,
-        "helper": "The number of seconds to wait for a batch to complete before raising an error."
+        "helper": "The number of seconds to wait for a batch to complete before raising an error"
       },
       {
         "key": "use_multiprocessing",
         "label": "Use Multiprocessing",
-        "type": "boolean",
+        "type": "text",
         "required": false,
         "helper": "Use process-based workers instead of threads. This is an advanced runtime option."
       }
@@ -6255,19 +7144,19 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Wrangles",
         "type": "list",
         "required": true,
-        "helper": "The wrangles section of a recipe to execute for each combination of variables."
+        "helper": "The wrangles section of a recipe to execute for each combination of variables"
       },
       {
         "key": "max_concurrency",
         "label": "Max Concurrency",
         "type": "number",
         "required": false,
-        "helper": "The maximum number of wrangles to execute in parallel."
+        "helper": "The maximum number of wrangles to execute in parallel"
       },
       {
         "key": "use_multiprocessing",
         "label": "Use Multiprocessing",
-        "type": "boolean",
+        "type": "text",
         "required": false,
         "helper": "Use process-based workers instead of threads. This is an advanced runtime option."
       }
@@ -6296,7 +7185,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Input",
         "type": "text",
         "required": true,
-        "helper": "Name of the dates column.",
+        "helper": "Name of the dates column",
         "placeholder": "Column A"
       },
       {
@@ -6304,7 +7193,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Output",
         "type": "text",
         "required": false,
-        "helper": "Name of the output column of dates.",
+        "helper": "Name of the output column of dates",
         "placeholder": null
       },
       {
@@ -6312,7 +7201,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Operation",
         "type": "select",
         "required": false,
-        "helper": "Date operation.",
+        "helper": "Date operation",
         "options": [
           {
             "value": "add",
@@ -6329,7 +7218,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Time Unit",
         "type": "select",
         "required": false,
-        "helper": "Time unit for operation.",
+        "helper": "time unit for operation",
         "options": [
           {
             "value": "years",
@@ -6370,7 +7259,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Time Value",
         "type": "number",
         "required": false,
-        "helper": "Time unit value for operation."
+        "helper": "time unit value for operation"
       }
     ]
   },
@@ -6394,7 +7283,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Input",
         "type": "text",
         "required": true,
-        "helper": "Name, index, or list of input columns.",
+        "helper": "The mathematical expression using column names. e.g. column1 * column2",
         "placeholder": "Column A"
       },
       {
@@ -6402,7 +7291,7 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Output",
         "type": "text",
         "required": true,
-        "helper": "Name or list of output columns.",
+        "helper": "The column to output the results to",
         "placeholder": "Maths Output"
       }
     ]
@@ -6428,21 +7317,21 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Variables",
         "type": "json",
         "required": true,
-        "helper": "A dictionary of variables to pass to the wrangle. The key is the variable name and the value is a list of values."
+        "helper": "A dictionary of variables to pass to the wrangle."
       },
       {
         "key": "wrangles",
         "label": "Wrangles",
         "type": "list",
         "required": true,
-        "helper": "The wrangles to apply to the dataframe. Each wrangle will be run for each combination of the variables."
+        "helper": "The wrangles to apply to the dataframe."
       },
       {
         "key": "strategy",
         "label": "Strategy",
         "type": "select",
         "required": false,
-        "helper": "Determines how to combine variables when there are multiple. loop (default) iterates over each set of variables, repeating shorter lists until the longest is completed. permutations uses the combination of all variables against all other variables.",
+        "helper": "Determines how to combine variables when there are multiple. loop (default) iterates over each set of variables, repeating shorter lists  until the longest is completed. permutations uses the combination of all  variables against all other variables.",
         "options": [
           {
             "value": "permutations",
@@ -6476,7 +7365,7 @@ const GENERATED_REGISTRY_CATALOG = [
       {
         "key": "input",
         "label": "Input",
-        "type": "list",
+        "type": "text",
         "required": false,
         "helper": "Name, index, or list of input columns.",
         "placeholder": "Column A"
@@ -6484,7 +7373,7 @@ const GENERATED_REGISTRY_CATALOG = [
       {
         "key": "output",
         "label": "Output",
-        "type": "list",
+        "type": "text",
         "required": false,
         "helper": "Name or list of output columns.",
         "placeholder": null
@@ -6494,14 +7383,14 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Name",
         "type": "text",
         "required": false,
-        "helper": "File name of the recipe."
+        "helper": "file name of the recipe"
       },
       {
         "key": "variables",
         "label": "Variables",
         "type": "json",
         "required": false,
-        "helper": "A dictionary of variables to pass to the recipe."
+        "helper": "A dictionary of variables to pass to the recipe"
       }
     ]
   },
@@ -6524,13 +7413,15 @@ const GENERATED_REGISTRY_CATALOG = [
       "collapse_whitespace": true,
       "fix_character_width": true,
       "fix_encoding": true,
+      "latex_to_text": false,
       "normalization": "NFC",
       "preserve_line_breaks": false,
       "remove_control_chars": true,
       "separator": " ",
       "trim": true,
       "uncurl_quotes": true,
-      "unescape_html": "auto"
+      "unescape_html": "auto",
+      "unescape_unicode": false
     },
     "fields": [
       {
@@ -6569,6 +7460,13 @@ const GENERATED_REGISTRY_CATALOG = [
         "type": "boolean",
         "required": false,
         "helper": "Repair mojibake and other reversible encoding errors."
+      },
+      {
+        "key": "latex_to_text",
+        "label": "Latex To Text",
+        "type": "boolean",
+        "required": false,
+        "helper": "Convert supported inline LaTeX units, symbols and numeric fractions to readable text. Preserve numeric dollar amounts, ranges and explicit price qualifiers; remove extra dollar signs from other supported inline math. Preserve unsupported formulas. Set collapse_whitespace and trim to false to retain Markdown layout."
       },
       {
         "key": "normalization",
@@ -6646,6 +7544,13 @@ const GENERATED_REGISTRY_CATALOG = [
             "label": "Auto"
           }
         ]
+      },
+      {
+        "key": "unescape_unicode",
+        "label": "Unescape Unicode",
+        "type": "boolean",
+        "required": false,
+        "helper": "Decode literal printable Unicode escapes in prose, preserving code and Markdown link destinations."
       }
     ]
   },
@@ -6665,8 +7570,8 @@ const GENERATED_REGISTRY_CATALOG = [
         "Column B"
       ],
       "output": null,
-      "model_id": [],
-      "case_sensitive": false
+      "case_sensitive": false,
+      "model_id": []
     },
     "fields": [
       {
@@ -6682,15 +7587,8 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Output",
         "type": "list",
         "required": false,
-        "helper": "Name or list of output columns.",
+        "helper": "Name or list of output columns",
         "placeholder": null
-      },
-      {
-        "key": "model_id",
-        "label": "Model Id",
-        "type": "list",
-        "required": true,
-        "helper": "The ID of the wrangle to use (do not include 'find' and 'replace')."
       },
       {
         "key": "case_sensitive",
@@ -6698,6 +7596,13 @@ const GENERATED_REGISTRY_CATALOG = [
         "type": "boolean",
         "required": false,
         "helper": "Allows the wrangle to be case sensitive if set to True, default is False."
+      },
+      {
+        "key": "model_id",
+        "label": "Model Id",
+        "type": "list",
+        "required": false,
+        "helper": "The ID of the wrangle to use (do not include 'find' and 'replace')"
       }
     ]
   },
@@ -6722,14 +7627,14 @@ const GENERATED_REGISTRY_CATALOG = [
         "label": "Wrangles",
         "type": "list",
         "required": true,
-        "helper": "List of wrangles to apply."
+        "helper": "List of wrangles to apply"
       },
       {
         "key": "except",
         "label": "Except",
         "type": "json",
         "required": false,
-        "helper": "An action to take if the wrangles encounter an error. This can contain a list of wrangles or a dictionary of column names and values. If except is not provided, the error will be logged and the recipe will continue."
+        "helper": "An action to take if the wrangles encounter an error."
       },
       {
         "key": "retries",

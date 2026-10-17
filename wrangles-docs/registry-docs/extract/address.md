@@ -26,16 +26,91 @@ Extract geographical information from unstructured text such as streets, cities,
 | `input` | Name of the input column. | string, integer, array | — | Yes |
 | `output` | Name of the output column. | string, array | — | Yes |
 | <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `dataType` | Specific part of the address to extract. | string; one of:<ul className="ww-param-enum-values"><li>streets</li><li>cities</li><li>regions</li><li>countries</li></ul> | — | Yes |
+| `dataType` | Specific part of the address to extract | string; one of:<ul className="ww-param-enum-values"><li>streets</li><li>cities</li><li>regions</li><li>countries</li></ul> | — | No |
 | <span className="ww-param-group-label">Formatting</span> |  |  |  |  |
-| `output_format` | Format of the extract output. | string, null; one of:<ul className="ww-param-enum-values"><li>list</li><li>columns</li><li>concatenate</li></ul> | `null` | No |
-| `char` | Character to use when output_format is concatenate. | string | `", "` | No |
+| `output_format` | Format of the extract output | string; one of:<ul className="ww-param-enum-values"><li>list</li><li>columns</li><li>concatenate</li></ul> | `null` | No |
+| `char` | Character to use when output_format is concatenate | string | `", "` | No |
 | <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
 | `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
 | `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
 | `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
 
 </div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+<details className="ww-field-disclosure">
+
+<summary>Complete configuration schema</summary>
+
+Schema source: upstream-docstring. Conditional and cross-parameter
+rules below apply in addition to the parameter table. References resolve against
+the [complete recipe schema](/schemas/recipes/registry/schema.json).
+
+
+
+```json
+{
+  "type": "object",
+  "description": "Extract parts of addresses. Requires WrangleWorks Account.",
+  "required": [
+    "input",
+    "output"
+  ],
+  "properties": {
+    "input": {
+      "type": [
+        "string",
+        "integer",
+        "array"
+      ],
+      "description": "Name of the input column."
+    },
+    "output": {
+      "type": [
+        "string",
+        "array"
+      ],
+      "description": "Name of the output column."
+    },
+    "dataType": {
+      "type": "string",
+      "description": "Specific part of the address to extract",
+      "enum": [
+        "streets",
+        "cities",
+        "regions",
+        "countries"
+      ]
+    },
+    "output_format": {
+      "type": "string",
+      "description": "Format of the extract output",
+      "enum": [
+        "list",
+        "columns",
+        "concatenate"
+      ]
+    },
+    "char": {
+      "type": "string",
+      "description": "Character to use when output_format is concatenate"
+    },
+    "if": {
+      "$ref": "#/$defs/wrangles/commonProperties/if"
+    },
+    "where": {
+      "$ref": "#/$defs/wrangles/commonProperties/where"
+    },
+    "where_params": {
+      "$ref": "#/$defs/wrangles/commonProperties/where_params"
+    }
+  }
+}
+```
+
+</details>
 
 ## Examples
 
@@ -99,6 +174,7 @@ wrangles:
 | Documentation group | `extract` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.extract.address` |
+| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
 | Legacy UUID | `44153f95-4581-4cee-898e-b3b4714045fd` |
 
 **Sources**

@@ -23,9 +23,9 @@ Assign values to a column based on conditional logic.
 | Name | Description | Accepted Values | Default | Required |
 | --- | --- | --- | --- | --- |
 | <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `output` | Name of the output column. | string | — | Yes |
+| `output` | Name of the output column | string | — | Yes |
 | <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `cases` | List of conditions and corresponding values. | array | — | Yes |
+| `cases` | List of conditions and corresponding values | array | — | Yes |
 | `default` | Value to assign if no conditions are met. Default None. | string, number, integer, boolean, null | `null` | No |
 | <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
 | `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
@@ -33,6 +33,85 @@ Assign values to a column based on conditional logic.
 | `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
 
 </div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+<details className="ww-field-disclosure">
+
+<summary>Complete configuration schema</summary>
+
+Schema source: upstream-docstring. Conditional and cross-parameter
+rules below apply in addition to the parameter table. References resolve against
+the [complete recipe schema](/schemas/recipes/registry/schema.json).
+
+
+
+```json
+{
+  "type": "object",
+  "description": "Assign values to a column based on conditional logic",
+  "additionalProperties": false,
+  "required": [
+    "output",
+    "cases"
+  ],
+  "properties": {
+    "output": {
+      "type": "string",
+      "description": "Name of the output column"
+    },
+    "cases": {
+      "type": "array",
+      "description": "List of conditions and corresponding values",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "condition",
+          "value"
+        ],
+        "properties": {
+          "condition": {
+            "type": "string",
+            "description": "Condition to evaluate (e.g., \"Score > 0.84\")"
+          },
+          "value": {
+            "type": [
+              "string",
+              "number",
+              "integer",
+              "boolean"
+            ],
+            "description": "Value to assign if condition is true"
+          }
+        }
+      }
+    },
+    "default": {
+      "type": [
+        "string",
+        "number",
+        "integer",
+        "boolean",
+        "null"
+      ],
+      "description": "Value to assign if no conditions are met. Default None."
+    },
+    "if": {
+      "$ref": "#/$defs/wrangles/commonProperties/if"
+    },
+    "where": {
+      "$ref": "#/$defs/wrangles/commonProperties/where"
+    },
+    "where_params": {
+      "$ref": "#/$defs/wrangles/commonProperties/where_params"
+    }
+  }
+}
+```
+
+</details>
 
 ## Examples
 
@@ -153,6 +232,7 @@ wrangles:
 | Documentation group | `compute` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.compute.case_when` |
+| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
 | Legacy UUID | `9a9662e4-53d1-4932-8adf-bc3e7aa364ad` |
 
 **Sources**

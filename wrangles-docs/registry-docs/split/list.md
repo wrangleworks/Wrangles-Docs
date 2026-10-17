@@ -23,14 +23,66 @@ Split a list into multiple columns. If only one output is given, `split.list` re
 | Name | Description | Accepted Values | Default | Required |
 | --- | --- | --- | --- | --- |
 | <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `input` | Name of the column to be split. | string, integer | — | Yes |
-| `output` | Name of column(s) for the results. If providing a single column, use a wildcard (*) to indicate a incrementing integer. | string, array | — | Yes |
+| `input` | Name of the column to be split | string, integer | — | Yes |
+| `output` | Name of column(s) for the results. If providing a single column, use a wildcard (*) to indicate a incrementing integer | string, array | — | Yes |
 | <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
 | `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
 | `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
 | `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
 
 </div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+<details className="ww-field-disclosure">
+
+<summary>Complete configuration schema</summary>
+
+Schema source: upstream-docstring. Conditional and cross-parameter
+rules below apply in addition to the parameter table. References resolve against
+the [complete recipe schema](/schemas/recipes/registry/schema.json).
+
+Compatibility correction: Normalize schema type "int" to integer.
+
+```json
+{
+  "type": "object",
+  "description": "Split a list in a single column to multiple columns.",
+  "additionalProperties": false,
+  "required": [
+    "input",
+    "output"
+  ],
+  "properties": {
+    "input": {
+      "type": [
+        "string",
+        "integer"
+      ],
+      "description": "Name of the column to be split"
+    },
+    "output": {
+      "type": [
+        "string",
+        "array"
+      ],
+      "description": "Name of column(s) for the results. If providing a single column, use a wildcard (*) to indicate a incrementing integer"
+    },
+    "if": {
+      "$ref": "#/$defs/wrangles/commonProperties/if"
+    },
+    "where": {
+      "$ref": "#/$defs/wrangles/commonProperties/where"
+    },
+    "where_params": {
+      "$ref": "#/$defs/wrangles/commonProperties/where_params"
+    }
+  }
+}
+```
+
+</details>
 
 ## Examples
 
@@ -124,6 +176,7 @@ wrangles:
 | Documentation group | `split` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.split.list` |
+| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
 | Legacy UUID | `3260b9f7-aae2-499f-8004-d211c2cf643e` |
 
 **Sources**

@@ -31,7 +31,7 @@ capabilities:
   where_params: true
 parameters:
   - name: input
-    description: Name of column to remove words from.
+    description: Name of column to remove words from
     required: true
     param_group: I/O
     schema:
@@ -39,36 +39,45 @@ parameters:
         - string
         - integer
         - array
+      description: Name of column to remove words from
+    runtime_required: true
   - name: to_remove
-    description: Column or list of columns with a list of words to be removed.
+    description: Column or list of columns with a list of words to be removed
     required: true
     param_group: I/O
     schema:
-      type: string
+      type: array
+      description: Column or list of columns with a list of words to be removed
+    runtime_required: true
   - name: output
-    description: Name of the output columns.
-    required: false
+    description: Name of the output columns
+    required: true
     param_group: I/O
     runtime_default: null
     schema:
       type:
         - string
         - array
-        - 'null'
+      description: Name of the output columns
+    runtime_required: false
   - name: tokenize_to_remove
-    description: Tokenize all to_remove inputs.
+    description: Tokenize all to_remove inputs
     required: false
     param_group: Options
     runtime_default: false
     schema:
       type: boolean
+      description: Tokenize all to_remove inputs
+    runtime_required: false
   - name: ignore_case
-    description: Ignore input and to_remove case.
+    description: Ignore input and to_remove case
     required: false
     param_group: Options
     runtime_default: true
     schema:
       type: boolean
+      description: Ignore input and to_remove case
+    runtime_required: false
 examples: []
 sources:
   - id: runtime
@@ -79,6 +88,43 @@ sources:
     resource: >-
       https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/format/_sources/remove-words.md
     title: Archived remove_words Markdown
+configuration_schema:
+  type: object
+  description: Remove all the elements that occur in one list from another.
+  additionalProperties: false
+  required:
+    - input
+    - to_remove
+    - output
+  properties:
+    input:
+      type:
+        - string
+        - integer
+        - array
+      description: Name of column to remove words from
+    to_remove:
+      type: array
+      description: Column or list of columns with a list of words to be removed
+    output:
+      type:
+        - string
+        - array
+      description: Name of the output columns
+    tokenize_to_remove:
+      type: boolean
+      description: Tokenize all to_remove inputs
+    ignore_case:
+      type: boolean
+      description: Ignore input and to_remove case
+    if:
+      $ref: '#/$defs/wrangles/commonProperties/if'
+    where:
+      $ref: '#/$defs/wrangles/commonProperties/where'
+    where_params:
+      $ref: '#/$defs/wrangles/commonProperties/where_params'
+schema_origin: upstream-docstring
+schema_adjustments: []
 ---
 
 # Remove Words

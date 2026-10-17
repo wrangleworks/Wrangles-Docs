@@ -31,7 +31,7 @@ capabilities:
   where_params: true
 parameters:
   - name: input
-    description: Name of the input column.
+    description: Name of the input column
     required: true
     param_group: I/O
     schema:
@@ -39,17 +39,20 @@ parameters:
         - string
         - integer
         - array
+      description: Name of the input column
+    runtime_required: true
   - name: value
-    description: Prefix value to add.
+    description: Prefix value to add
     required: true
     param_group: Options
     schema:
       type:
         - string
-        - integer
         - number
+      description: Prefix value to add
+    runtime_required: true
   - name: output
-    description: (Optional) Name of the output column.
+    description: (Optional) Name of the output column
     required: false
     param_group: I/O
     runtime_default: null
@@ -57,14 +60,18 @@ parameters:
       type:
         - string
         - array
-        - 'null'
+      description: (Optional) Name of the output column
+    runtime_required: false
   - name: skip_empty
-    description: Whether to skip empty values.
+    description: Whether to skip empty values
     required: false
     param_group: Options
     runtime_default: false
     schema:
       type: boolean
+      description: Whether to skip empty values
+      default: false
+    runtime_required: false
 examples: []
 sources:
   - id: runtime
@@ -75,6 +82,42 @@ sources:
     resource: >-
       https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/format/_sources/prefix.md
     title: Archived format.prefix Markdown
+configuration_schema:
+  type: object
+  description: Add a prefix to a column
+  additionalProperties: false
+  required:
+    - input
+    - value
+  properties:
+    input:
+      type:
+        - string
+        - integer
+        - array
+      description: Name of the input column
+    value:
+      type:
+        - string
+        - number
+      description: Prefix value to add
+    output:
+      type:
+        - string
+        - array
+      description: (Optional) Name of the output column
+    skip_empty:
+      type: boolean
+      description: Whether to skip empty values
+      default: false
+    if:
+      $ref: '#/$defs/wrangles/commonProperties/if'
+    where:
+      $ref: '#/$defs/wrangles/commonProperties/where'
+    where_params:
+      $ref: '#/$defs/wrangles/commonProperties/where_params'
+schema_origin: upstream-docstring
+schema_adjustments: []
 ---
 
 # Prefix

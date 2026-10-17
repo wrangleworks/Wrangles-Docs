@@ -40,15 +40,60 @@
     "where": true,
     "where_params": true
   },
+  "configuration_schema": {
+    "type": "object",
+    "description": "Take the first non-empty value from a series of columns or lists.",
+    "additionalProperties": false,
+    "required": [
+      "input"
+    ],
+    "properties": {
+      "input": {
+        "type": [
+          "array",
+          "string",
+          "integer"
+        ],
+        "description": "List of input columns or a single column containing lists"
+      },
+      "output": {
+        "type": "string",
+        "description": "Name of the output columns. This is required if multiple input columns are provided."
+      },
+      "if": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/if"
+      },
+      "where": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/where"
+      },
+      "where_params": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/where_params"
+      }
+    }
+  },
+  "schema_origin": "upstream-docstring",
+  "schema_adjustments": [],
+  "schema_source": {
+    "repository": "https://github.com/wrangleworks/WranglesPY",
+    "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+    "version": "1.20.5",
+    "extraction": "static-python-ast"
+  },
   "parameters": [
     {
       "name": "input",
-      "description": "List of input columns or a single column containing lists.",
+      "description": "List of input columns or a single column containing lists",
       "required": true,
       "param_group": "I/O",
       "schema": {
-        "type": "array"
-      }
+        "type": [
+          "array",
+          "string",
+          "integer"
+        ],
+        "description": "List of input columns or a single column containing lists"
+      },
+      "runtime_required": true
     },
     {
       "name": "output",
@@ -57,11 +102,10 @@
       "param_group": "I/O",
       "runtime_default": null,
       "schema": {
-        "type": [
-          "string",
-          "null"
-        ]
-      }
+        "type": "string",
+        "description": "Name of the output columns. This is required if multiple input columns are provided."
+      },
+      "runtime_required": false
     },
     {
       "name": "if",

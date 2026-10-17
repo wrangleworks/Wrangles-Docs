@@ -27,14 +27,63 @@ Take the first non-empty value from a series of columns.
 | Name | Description | Accepted Values | Default | Required |
 | --- | --- | --- | --- | --- |
 | <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `input` | List of input columns or a single column containing lists. | array | — | Yes |
-| `output` | Name of the output columns. This is required if multiple input columns are provided. | string, null | `null` | No |
+| `input` | List of input columns or a single column containing lists | array, string, integer | — | Yes |
+| `output` | Name of the output columns. This is required if multiple input columns are provided. | string | `null` | No |
 | <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
 | `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
 | `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
 | `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
 
 </div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+<details className="ww-field-disclosure">
+
+<summary>Complete configuration schema</summary>
+
+Schema source: upstream-docstring. Conditional and cross-parameter
+rules below apply in addition to the parameter table. References resolve against
+the [complete recipe schema](/schemas/recipes/registry/schema.json).
+
+
+
+```json
+{
+  "type": "object",
+  "description": "Take the first non-empty value from a series of columns or lists.",
+  "additionalProperties": false,
+  "required": [
+    "input"
+  ],
+  "properties": {
+    "input": {
+      "type": [
+        "array",
+        "string",
+        "integer"
+      ],
+      "description": "List of input columns or a single column containing lists"
+    },
+    "output": {
+      "type": "string",
+      "description": "Name of the output columns. This is required if multiple input columns are provided."
+    },
+    "if": {
+      "$ref": "#/$defs/wrangles/commonProperties/if"
+    },
+    "where": {
+      "$ref": "#/$defs/wrangles/commonProperties/where"
+    },
+    "where_params": {
+      "$ref": "#/$defs/wrangles/commonProperties/where_params"
+    }
+  }
+}
+```
+
+</details>
 
 ### Examples
 
@@ -102,6 +151,7 @@ wrangles:
 | Documentation group | `merge` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.merge.coalesce` |
+| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
 | Legacy UUID | `25c1a60d-fa48-4b9a-8c03-0921d5b31049` |
 
 **Sources**
@@ -127,18 +177,78 @@ If the input is a list of columns, concatenate multiple columns into one as a de
 | Name | Description | Accepted Values | Default | Required |
 | --- | --- | --- | --- | --- |
 | <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `input` | Either a single column name or list of columns. | string, integer, array | — | Yes |
-| `output` | Name of the output column. | string | — | Yes |
+| `input` | Either a single column name or list of columns | array, string, integer | — | Yes |
+| `output` | Name of the output column | string | — | Yes |
 | <span className="ww-param-group-label">Options</span> |  |  |  |  |
 | `skip_empty` | Whether to skip empty values, defaults to false. | boolean | `false` | No |
 | <span className="ww-param-group-label">Formatting</span> |  |  |  |  |
-| `char` | (Optional) Character to add between successive values. | string | `","` | No |
+| `char` | (Optional) Character to add between successive values | string | `","` | Yes |
 | <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
 | `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
 | `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
 | `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
 
 </div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+<details className="ww-field-disclosure">
+
+<summary>Complete configuration schema</summary>
+
+Schema source: upstream-docstring. Conditional and cross-parameter
+rules below apply in addition to the parameter table. References resolve against
+the [complete recipe schema](/schemas/recipes/registry/schema.json).
+
+
+
+```json
+{
+  "type": "object",
+  "description": "Concatenate a list of columns or a list within a single column.",
+  "additionalProperties": false,
+  "required": [
+    "input",
+    "output",
+    "char"
+  ],
+  "properties": {
+    "input": {
+      "type": [
+        "array",
+        "string",
+        "integer"
+      ],
+      "description": "Either a single column name or list of columns"
+    },
+    "output": {
+      "type": "string",
+      "description": "Name of the output column"
+    },
+    "char": {
+      "type": "string",
+      "description": "(Optional) Character to add between successive values"
+    },
+    "skip_empty": {
+      "type": "boolean",
+      "desription": "Whether to skip empty values",
+      "default": false
+    },
+    "if": {
+      "$ref": "#/$defs/wrangles/commonProperties/if"
+    },
+    "where": {
+      "$ref": "#/$defs/wrangles/commonProperties/where"
+    },
+    "where_params": {
+      "$ref": "#/$defs/wrangles/commonProperties/where_params"
+    }
+  }
+}
+```
+
+</details>
 
 ### Examples
 
@@ -236,6 +346,7 @@ wrangles:
 | Documentation group | `merge` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.merge.concatenate` |
+| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
 | Legacy UUID | `6ff76728-e1f6-4d3d-8946-6aa3b7524b3f` |
 
 **Sources**
@@ -263,16 +374,67 @@ For duplicate keys, the last key in the input list takes precedence in the merge
 | Name | Description | Accepted Values | Default | Required |
 | --- | --- | --- | --- | --- |
 | <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `input` | List of input columns. | array | — | Yes |
-| `output` | Name of the output column. | string | — | Yes |
+| `input` | list of input columns | array | — | Yes |
+| `output` | Name of the output column | string | — | Yes |
 | <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `skip_empty` | Whether to skip empty dictionaries when merging. | boolean | `false` | No |
+| `skip_empty` | Whether to skip empty dictionaries when merging | boolean | `false` | No |
 | <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
 | `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
 | `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
 | `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
 
 </div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+<details className="ww-field-disclosure">
+
+<summary>Complete configuration schema</summary>
+
+Schema source: upstream-docstring. Conditional and cross-parameter
+rules below apply in addition to the parameter table. References resolve against
+the [complete recipe schema](/schemas/recipes/registry/schema.json).
+
+
+
+```json
+{
+  "type": "object",
+  "description": "Take dictionaries in multiple columns and merge them to a single dictionary.",
+  "additionalProperties": false,
+  "required": [
+    "input",
+    "output"
+  ],
+  "properties": {
+    "input": {
+      "type": "array",
+      "description": "list of input columns"
+    },
+    "output": {
+      "type": "string",
+      "description": "Name of the output column"
+    },
+    "skip_empty": {
+      "type": "boolean",
+      "description": "Whether to skip empty dictionaries when merging",
+      "default": false
+    },
+    "if": {
+      "$ref": "#/$defs/wrangles/commonProperties/if"
+    },
+    "where": {
+      "$ref": "#/$defs/wrangles/commonProperties/where"
+    },
+    "where_params": {
+      "$ref": "#/$defs/wrangles/commonProperties/where_params"
+    }
+  }
+}
+```
+
+</details>
 
 ### Examples
 
@@ -313,7 +475,7 @@ wrangles:
 # Using a Wildcard (*)
 wrangles:
   - merge.dictionaries:
-      input: Dict *
+      input: [Dict *]
       output: Merged
 ```
 
@@ -406,6 +568,7 @@ Note the extra dash in front of `Dict 2` excludes that column from the wildcard 
 | Documentation group | `merge` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.merge.dictionaries` |
+| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
 | Legacy UUID | `93e27737-e966-4ba9-8777-4e96724ebfc4` |
 
 **Sources**
@@ -431,16 +594,67 @@ Create a dictionary from keys and values in paired columns.
 | Name | Description | Accepted Values | Default | Required |
 | --- | --- | --- | --- | --- |
 | <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `input` | Matched pairs of key and value columns. | object | — | Yes |
-| `output` | Name of the output column. | string | — | Yes |
+| `input` | Matched pairs of key and value columns | object | — | Yes |
+| `output` | Name of the output column | string | — | Yes |
 | <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `skip_empty` | Whether to skip empty keys or values when creating the dictionary. | boolean | `false` | No |
+| `skip_empty` | Whether to skip empty keys or values when creating the dictionary | boolean | `false` | No |
 | <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
 | `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
 | `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
 | `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
 
 </div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+<details className="ww-field-disclosure">
+
+<summary>Complete configuration schema</summary>
+
+Schema source: upstream-docstring. Conditional and cross-parameter
+rules below apply in addition to the parameter table. References resolve against
+the [complete recipe schema](/schemas/recipes/registry/schema.json).
+
+
+
+```json
+{
+  "type": "object",
+  "description": "Create a dictionary from keys and values in paired columns e.g. COLUMN_NAME_1, COLUMN_VALUE_1, COLUMN_NAME_2, COLUMN_VALUE_2 ...",
+  "additionalProperties": false,
+  "required": [
+    "input",
+    "output"
+  ],
+  "properties": {
+    "input": {
+      "type": "object",
+      "description": "Matched pairs of key and value columns"
+    },
+    "output": {
+      "type": "string",
+      "description": "Name of the output column"
+    },
+    "skip_empty": {
+      "type": "boolean",
+      "description": "Whether to skip empty keys or values when creating the dictionary",
+      "default": false
+    },
+    "if": {
+      "$ref": "#/$defs/wrangles/commonProperties/if"
+    },
+    "where": {
+      "$ref": "#/$defs/wrangles/commonProperties/where"
+    },
+    "where_params": {
+      "$ref": "#/$defs/wrangles/commonProperties/where_params"
+    }
+  }
+}
+```
+
+</details>
 
 ### Examples
 
@@ -542,6 +756,7 @@ wrangles:
 | Documentation group | `merge` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.merge.key_value_pairs` |
+| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
 | Legacy UUID | `8a2cd37c-8ef7-4b05-8264-36512f5dd837` |
 
 **Sources**
@@ -567,18 +782,76 @@ Take lists in multiple columns and merge them to a single list.
 | Name | Description | Accepted Values | Default | Required |
 | --- | --- | --- | --- | --- |
 | <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `input` | List of input columns. | array | — | Yes |
-| `output` | Name of the output column. | string | — | Yes |
+| `input` | List of input columns | array | — | Yes |
+| `output` | Name of the output column | string | — | Yes |
 | <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `remove_duplicates` | Whether to remove duplicates from the created list. | boolean | `false` | No |
-| `ignore_case` | Ignore case when removing duplicates. | boolean | `false` | No |
-| `include_empty` | Whether to include empty values in the created list. | boolean | `true` | No |
+| `remove_duplicates` | Whether to remove duplicates from the created list | boolean | `false` | No |
+| `ignore_case` | Ignore case when removing duplicates | boolean | `false` | No |
+| `include_empty` | Whether to include empty values in the created list | boolean | `true` | No |
 | <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
 | `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
 | `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
 | `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
 
 </div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+<details className="ww-field-disclosure">
+
+<summary>Complete configuration schema</summary>
+
+Schema source: upstream-docstring. Conditional and cross-parameter
+rules below apply in addition to the parameter table. References resolve against
+the [complete recipe schema](/schemas/recipes/registry/schema.json).
+
+
+
+```json
+{
+  "type": "object",
+  "description": "Take lists in multiple columns and merge them to a single list.",
+  "additionalProperties": false,
+  "required": [
+    "input",
+    "output"
+  ],
+  "properties": {
+    "input": {
+      "type": "array",
+      "description": "List of input columns"
+    },
+    "output": {
+      "type": "string",
+      "description": "Name of the output column"
+    },
+    "remove_duplicates": {
+      "type": "boolean",
+      "description": "Whether to remove duplicates from the created list"
+    },
+    "ignore_case": {
+      "type": "boolean",
+      "description": "Ignore case when removing duplicates"
+    },
+    "include_empty": {
+      "type": "boolean",
+      "description": "Whether to include empty values in the created list"
+    },
+    "if": {
+      "$ref": "#/$defs/wrangles/commonProperties/if"
+    },
+    "where": {
+      "$ref": "#/$defs/wrangles/commonProperties/where"
+    },
+    "where_params": {
+      "$ref": "#/$defs/wrangles/commonProperties/where_params"
+    }
+  }
+}
+```
+
+</details>
 
 ### Examples
 
@@ -641,6 +914,7 @@ wrangles:
 | Documentation group | `merge` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.merge.lists` |
+| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
 | Legacy UUID | `d9978f00-b3d4-4583-884e-a53b98a43e9a` |
 
 **Sources**
@@ -666,16 +940,70 @@ Take multiple columns and merge them to a dictionary (aka object) using the colu
 | Name | Description | Accepted Values | Default | Required |
 | --- | --- | --- | --- | --- |
 | <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `input` | List of input columns. | array | — | Yes |
-| `output` | Name of the output column. | string | — | Yes |
+| `input` | List of input columns | array, string, integer | — | Yes |
+| `output` | Name of the output column | string | — | Yes |
 | <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `include_empty` | Whether to include empty columns in the created dictionary. | boolean | `false` | No |
+| `include_empty` | Whether to include empty columns in the created dictionary | boolean | `false` | No |
 | <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
 | `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
 | `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
 | `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
 
 </div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+<details className="ww-field-disclosure">
+
+<summary>Complete configuration schema</summary>
+
+Schema source: upstream-docstring. Conditional and cross-parameter
+rules below apply in addition to the parameter table. References resolve against
+the [complete recipe schema](/schemas/recipes/registry/schema.json).
+
+
+
+```json
+{
+  "type": "object",
+  "description": "Take multiple columns and merge them to a dictionary (aka object) using the column headers as keys.",
+  "additionalProperties": false,
+  "required": [
+    "input",
+    "output"
+  ],
+  "properties": {
+    "input": {
+      "type": [
+        "array",
+        "string",
+        "integer"
+      ],
+      "description": "List of input columns"
+    },
+    "output": {
+      "type": "string",
+      "description": "Name of the output column"
+    },
+    "include_empty": {
+      "type": "boolean",
+      "description": "Whether to include empty columns in the created dictionary"
+    },
+    "if": {
+      "$ref": "#/$defs/wrangles/commonProperties/if"
+    },
+    "where": {
+      "$ref": "#/$defs/wrangles/commonProperties/where"
+    },
+    "where_params": {
+      "$ref": "#/$defs/wrangles/commonProperties/where_params"
+    }
+  }
+}
+```
+
+</details>
 
 ### Examples
 
@@ -737,6 +1065,7 @@ wrangles:
 | Documentation group | `merge` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.merge.to_dict` |
+| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
 | Legacy UUID | `9b869210-0d89-403b-8409-7cecdb5f9c7c` |
 
 **Sources**
@@ -762,16 +1091,70 @@ Take multiple columns and merge them to a list.
 | Name | Description | Accepted Values | Default | Required |
 | --- | --- | --- | --- | --- |
 | <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `input` | List of input columns. | array | — | Yes |
-| `output` | Name of the output column. | string | — | Yes |
+| `input` | List of input columns | array, string, integer | — | Yes |
+| `output` | Name of the output column | string | — | Yes |
 | <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `include_empty` | Whether to include empty columns in the created list. | boolean | `false` | No |
+| `include_empty` | Whether to include empty columns in the created list | boolean | `false` | No |
 | <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
 | `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
 | `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
 | `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
 
 </div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+<details className="ww-field-disclosure">
+
+<summary>Complete configuration schema</summary>
+
+Schema source: upstream-docstring. Conditional and cross-parameter
+rules below apply in addition to the parameter table. References resolve against
+the [complete recipe schema](/schemas/recipes/registry/schema.json).
+
+
+
+```json
+{
+  "type": "object",
+  "description": "Take multiple columns and merge them to a list.",
+  "additionalProperties": false,
+  "required": [
+    "input",
+    "output"
+  ],
+  "properties": {
+    "input": {
+      "type": [
+        "array",
+        "string",
+        "integer"
+      ],
+      "description": "List of input columns"
+    },
+    "output": {
+      "type": "string",
+      "description": "Name of the output column"
+    },
+    "include_empty": {
+      "type": "boolean",
+      "description": "Whether to include empty columns in the created list"
+    },
+    "if": {
+      "$ref": "#/$defs/wrangles/commonProperties/if"
+    },
+    "where": {
+      "$ref": "#/$defs/wrangles/commonProperties/where"
+    },
+    "where_params": {
+      "$ref": "#/$defs/wrangles/commonProperties/where_params"
+    }
+  }
+}
+```
+
+</details>
 
 ### Examples
 
@@ -834,6 +1217,7 @@ wrangles:
 | Documentation group | `merge` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.merge.to_list` |
+| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
 | Legacy UUID | `d5300fe7-c8a4-4a41-8f12-f2c1698678cc` |
 
 **Sources**

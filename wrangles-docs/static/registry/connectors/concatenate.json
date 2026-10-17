@@ -1,0 +1,69 @@
+{
+  "schema_version": "0.2",
+  "type": "connector",
+  "catalog_id": "147",
+  "catalog_key": "connector.concatenate",
+  "catalog_kind": "connector",
+  "runtime_key": "concatenate",
+  "status": "active",
+  "title": "Concatenate",
+  "source": {
+    "repository": "https://github.com/wrangleworks/WranglesPY",
+    "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+    "version": "1.20.5",
+    "extraction": "static-python-ast"
+  },
+  "operations": {
+    "read": {
+      "type": "object",
+      "description": "Combine two or more data sets together, stacked horizontally.",
+      "required": [
+        "sources"
+      ],
+      "properties": {
+        "sources": {
+          "type": "array",
+          "description": "The data sources to be combined",
+          "minItems": 1,
+          "items": {
+            "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/read/items"
+          }
+        },
+        "columns": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/columns"
+        },
+        "not_columns": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/not_columns"
+        },
+        "where": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/where"
+        },
+        "where_params": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/where_params"
+        },
+        "order_by": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/order_by"
+        },
+        "if": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/if"
+        }
+      }
+    }
+  },
+  "description": "Combine two or more data sets together, stacked horizontally.",
+  "slug": "connectors/concatenate",
+  "visibility": "public",
+  "sources": [
+    {
+      "id": "runtime",
+      "resource": "https://github.com/wrangleworks/WranglesPY/tree/bd5f88fba479ec406b409cb2880689c54e72b298",
+      "title": "Pinned WranglesPY connector schema"
+    },
+    {
+      "id": "existing-docs",
+      "resource": "wrangles-docs/registry-docs/python/recipes/read.md",
+      "title": "Existing connector documentation"
+    }
+  ],
+  "guidance": "Combine data from multiple sources, stacked horizontally.\n\n```yaml\nread:\n  - concatenate:\n      sources:\n        - file:\n            name: file1.xlsx\n        - file:\n            name: file2.xlsx\n```\n<div className=\"table-scroll\">\n<table>\n<tr><th></th><th></th><th></th><th></th><th></th></tr>\n<tr><td>\n\n| column |\n| :-----: |\n| a |\n\n</td><td>\n\n\\+\n\n</td><td>\n\n| column |\n| :-----: |\n| b |\n\n</td><td>\n\n→\n</td><td>\n\n| column | column |\n| :-----: | :---: |\n| a | b |\n\n</td></tr>\n</table>\n</div>"
+}

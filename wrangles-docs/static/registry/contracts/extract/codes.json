@@ -40,6 +40,109 @@
     "where": true,
     "where_params": true
   },
+  "configuration_schema": {
+    "type": "object",
+    "description": "Extract alphanumeric codes from the input. Requires WrangleWorks Account.",
+    "required": [
+      "input",
+      "output"
+    ],
+    "properties": {
+      "input": {
+        "type": [
+          "string",
+          "integer",
+          "array"
+        ],
+        "description": "Name or list of input columns."
+      },
+      "output": {
+        "type": [
+          "string",
+          "array"
+        ],
+        "description": "Name or list of output columns"
+      },
+      "first_element": {
+        "type": "boolean",
+        "description": "Get the first element from results"
+      },
+      "output_format": {
+        "type": "string",
+        "description": "Format of the extract output",
+        "enum": [
+          "list",
+          "columns",
+          "concatenate"
+        ]
+      },
+      "char": {
+        "type": "string",
+        "description": "Character to use when output_format is concatenate"
+      },
+      "min_length": {
+        "type": [
+          "integer",
+          "string"
+        ],
+        "description": "Minimum length of allowed results"
+      },
+      "max_length": {
+        "type": [
+          "integer",
+          "string"
+        ],
+        "description": "Maximum length of allowed results"
+      },
+      "strategy": {
+        "type": "string",
+        "description": "Controls filtering of likely false positives such as measurements. Lenient skips this filter; balanced and strict currently apply the same filter. Default is balanced. Unless min_length is provided, minimum lengths default to 3 for lenient, 4 for balanced, and 5 for strict.",
+        "enum": [
+          "lenient",
+          "balanced",
+          "strict"
+        ]
+      },
+      "sort_order": {
+        "type": "string",
+        "description": "Default is input order. Also allows longest or shortest.",
+        "enum": [
+          "input",
+          "longest",
+          "shortest"
+        ]
+      },
+      "disallowed_patterns": {
+        "type": "string",
+        "description": "A pattern or JSON array of regex patterns to not include in the found codes"
+      },
+      "include_multi_part_tokens": {
+        "type": "boolean",
+        "description": "Whether to include multi-part tokens that have a space. Default True."
+      },
+      "extract_raw": {
+        "type": "boolean",
+        "description": "Whether to return tokens with their adjacent non-whitespace characters included, rather than the cleaned token. Default False."
+      },
+      "if": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/if"
+      },
+      "where": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/where"
+      },
+      "where_params": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/where_params"
+      }
+    }
+  },
+  "schema_origin": "upstream-docstring",
+  "schema_adjustments": [],
+  "schema_source": {
+    "repository": "https://github.com/wrangleworks/WranglesPY",
+    "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+    "version": "1.20.5",
+    "extraction": "static-python-ast"
+  },
   "parameters": [
     {
       "name": "input",
@@ -51,82 +154,93 @@
           "string",
           "integer",
           "array"
-        ]
-      }
+        ],
+        "description": "Name or list of input columns."
+      },
+      "runtime_required": true
     },
     {
       "name": "output",
-      "description": "Name or list of output columns.",
+      "description": "Name or list of output columns",
       "required": true,
       "param_group": "I/O",
       "schema": {
         "type": [
           "string",
           "array"
-        ]
-      }
+        ],
+        "description": "Name or list of output columns"
+      },
+      "runtime_required": true
     },
     {
       "name": "first_element",
-      "description": "Get the first element from results.",
+      "description": "Get the first element from results",
       "required": false,
       "param_group": "Formatting",
       "runtime_default": false,
       "schema": {
-        "type": "boolean"
-      }
+        "type": "boolean",
+        "description": "Get the first element from results"
+      },
+      "runtime_required": false
     },
     {
       "name": "output_format",
-      "description": "Format of the extract output.",
+      "description": "Format of the extract output",
       "required": false,
       "param_group": "Formatting",
       "runtime_default": null,
       "schema": {
-        "type": [
-          "string",
-          "null"
-        ],
+        "type": "string",
+        "description": "Format of the extract output",
         "enum": [
           "list",
           "columns",
           "concatenate"
         ]
-      }
+      },
+      "runtime_required": false
     },
     {
       "name": "char",
-      "description": "Character to use when output_format is concatenate.",
+      "description": "Character to use when output_format is concatenate",
       "required": false,
       "param_group": "Formatting",
       "runtime_default": ", ",
       "schema": {
-        "type": "string"
-      }
+        "type": "string",
+        "description": "Character to use when output_format is concatenate"
+      },
+      "runtime_required": false
     },
     {
       "name": "min_length",
-      "description": "Minimum length of allowed results.",
+      "description": "Minimum length of allowed results",
       "required": false,
       "param_group": "Options",
       "schema": {
         "type": [
           "integer",
           "string"
-        ]
-      }
+        ],
+        "description": "Minimum length of allowed results"
+      },
+      "runtime_required": false
     },
     {
       "name": "max_length",
-      "description": "Maximum length of allowed results.",
+      "description": "Maximum length of allowed results",
       "required": false,
       "param_group": "Options",
       "schema": {
         "type": [
           "integer",
           "string"
-        ]
-      }
+        ],
+        "description": "Maximum length of allowed results"
+      },
+      "runtime_required": false
     },
     {
       "name": "strategy",
@@ -135,12 +249,14 @@
       "param_group": "Options",
       "schema": {
         "type": "string",
+        "description": "Controls filtering of likely false positives such as measurements. Lenient skips this filter; balanced and strict currently apply the same filter. Default is balanced. Unless min_length is provided, minimum lengths default to 3 for lenient, 4 for balanced, and 5 for strict.",
         "enum": [
           "lenient",
           "balanced",
           "strict"
         ]
-      }
+      },
+      "runtime_required": false
     },
     {
       "name": "sort_order",
@@ -149,21 +265,25 @@
       "param_group": "Formatting",
       "schema": {
         "type": "string",
+        "description": "Default is input order. Also allows longest or shortest.",
         "enum": [
           "input",
           "longest",
           "shortest"
         ]
-      }
+      },
+      "runtime_required": false
     },
     {
       "name": "disallowed_patterns",
-      "description": "A pattern or JSON array of regex patterns to not include in the found codes.",
+      "description": "A pattern or JSON array of regex patterns to not include in the found codes",
       "required": false,
       "param_group": "Options",
       "schema": {
-        "type": "string"
-      }
+        "type": "string",
+        "description": "A pattern or JSON array of regex patterns to not include in the found codes"
+      },
+      "runtime_required": false
     },
     {
       "name": "include_multi_part_tokens",
@@ -171,8 +291,10 @@
       "required": false,
       "param_group": "Options",
       "schema": {
-        "type": "boolean"
-      }
+        "type": "boolean",
+        "description": "Whether to include multi-part tokens that have a space. Default True."
+      },
+      "runtime_required": false
     },
     {
       "name": "extract_raw",
@@ -180,8 +302,10 @@
       "required": false,
       "param_group": "Options",
       "schema": {
-        "type": "boolean"
-      }
+        "type": "boolean",
+        "description": "Whether to return tokens with their adjacent non-whitespace characters included, rather than the cleaned token. Default False."
+      },
+      "runtime_required": false
     },
     {
       "name": "if",

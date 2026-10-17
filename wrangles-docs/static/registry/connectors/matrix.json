@@ -1,0 +1,184 @@
+{
+  "schema_version": "0.2",
+  "type": "connector",
+  "catalog_id": "118",
+  "catalog_key": "connector.matrix",
+  "catalog_kind": "connector",
+  "runtime_key": "matrix",
+  "status": "active",
+  "title": "Matrix",
+  "source": {
+    "repository": "https://github.com/wrangleworks/WranglesPY",
+    "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+    "version": "1.20.5",
+    "extraction": "static-python-ast"
+  },
+  "operations": {
+    "read": {
+      "type": "object",
+      "description": "The matrix connector lets you use variables to automatically execute multiple reads that are based on the combinations of the variables. If the outputs of the reads are not otherwise aggregated, they will be merged together via a union.",
+      "required": [
+        "variables",
+        "read"
+      ],
+      "properties": {
+        "variables": {
+          "type": "object",
+          "description": "A set of variables as key/values. The action will be execute once for each combination of variables.\nValues may be a single value or a list or reference a custom function."
+        },
+        "read": {
+          "type": "array",
+          "description": "The read section of a recipe to execute for each combination of variables",
+          "minItems": 1,
+          "items": [
+            {
+              "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/read/items"
+            }
+          ]
+        },
+        "strategy": {
+          "type": "string",
+          "enum": [
+            "permutations",
+            "loop"
+          ],
+          "description": "Determines how to combine variables when there are multiple. loop (default) iterates over each set of variables, repeating shorter lists  until the longest is completed. permutations uses the combination of all  variables against all other variables."
+        },
+        "max_concurrency": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "The maximum number to execute in parallel. If there are more than this, the rest will be queued. Default 10."
+        },
+        "columns": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/columns"
+        },
+        "not_columns": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/not_columns"
+        },
+        "where": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/where"
+        },
+        "where_params": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/where_params"
+        },
+        "order_by": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/order_by"
+        },
+        "if": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/if"
+        }
+      }
+    },
+    "run": {
+      "type": "object",
+      "description": "The matrix connector lets you use variables to automatically execute multiple actions based on the combinations of those variables.",
+      "required": [
+        "variables",
+        "run"
+      ],
+      "properties": {
+        "variables": {
+          "type": "object",
+          "description": "A set of variables as key/values. The action will be execute once for each combination of variables.\nValues may be a single value or a list or reference a custom function."
+        },
+        "run": {
+          "type": "array",
+          "description": "The run section of a recipe to execute for each combination of variables",
+          "minItems": 1,
+          "items": [
+            {
+              "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/run/items"
+            }
+          ]
+        },
+        "strategy": {
+          "type": "string",
+          "enum": [
+            "permutations",
+            "loop"
+          ],
+          "description": "Determines how to combine variables when there are multiple. loop (default) iterates over each set of variables, repeating shorter lists  until the longest is completed. permutations uses the combination of all  variables against all other variables."
+        },
+        "max_concurrency": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "The maximum number to execute in parallel. If there are more than this, the rest will be queued. Default 10."
+        },
+        "if": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/run/commonProperties/if"
+        }
+      }
+    },
+    "write": {
+      "type": "object",
+      "description": "The matrix connector lets you use variables in a single write definition to automatically execute multiple writes that are based on the combinations of the variables. ",
+      "required": [
+        "variables",
+        "write"
+      ],
+      "properties": {
+        "variables": {
+          "type": "object",
+          "description": "A set of variables as key/values. The write will be execute once for each combination of variables.\nValues may be a single value or a list, may use custom functions and may use the special syntax set(column_name) to use the unique values from a column."
+        },
+        "write": {
+          "type": "array",
+          "description": "The write section of a recipe to execute for each combination of variables",
+          "minItems": 1,
+          "items": [
+            {
+              "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/items"
+            }
+          ]
+        },
+        "strategy": {
+          "type": "string",
+          "enum": [
+            "permutations",
+            "loop"
+          ],
+          "description": "Determines how to combine variables when there are multiple. loop (default) iterates over each set of variables, repeating shorter lists  until the longest is completed. permutations uses the combination of all  variables against all other variables."
+        },
+        "max_concurrency": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "The maximum number to execute in parallel. If there are more than this, the rest will be queued. Default 10."
+        },
+        "columns": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/columns"
+        },
+        "not_columns": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/not_columns"
+        },
+        "where": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/where"
+        },
+        "where_params": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/where_params"
+        },
+        "order_by": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/order_by"
+        },
+        "if": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/if"
+        }
+      }
+    }
+  },
+  "description": "The matrix connector lets you use variables to automatically execute multiple reads that are based on the combinations of the variables. If the outputs of the reads are not otherwise aggregated, they will be merged together via a union.",
+  "slug": "connectors/matrix",
+  "visibility": "public",
+  "sources": [
+    {
+      "id": "runtime",
+      "resource": "https://github.com/wrangleworks/WranglesPY/tree/bd5f88fba479ec406b409cb2880689c54e72b298",
+      "title": "Pinned WranglesPY connector schema"
+    },
+    {
+      "id": "existing-docs",
+      "resource": "wrangles-docs/registry-docs/python/connectors/matrix.md",
+      "title": "Existing connector documentation"
+    }
+  ],
+  "guidance": "> Added v1.5.0\n\nThe matrix write connector lets you use variables in a single write definition to automatically execute multiple writes that are based on the combinations of the variables. Ie: if you wanted to split your data into categories with a different sheet for each category. Click [here](/py/matrix) for the wrangle equivalent of this connector.\n\n### Read\n\n> Added **v1.12.0**\n\n### Recipes\n#### Three Ways to Implement Variables\n```yaml\nread:\n  - union:\n      sources:\n        - matrix:\n            variables:\n              file_name:\n                - file1.csv\n                - file2.csv\n                - file3.json\n            read:\n              - file:\n                  name: ${file_name}\n```\n\nThe above example shows 3 different ways to implement variables: List of Values, Variables From a Custom Function, and a File Directory that contains all variables/files.\n\n```python\ndef get_list():\n    return [\"file1.csv\",\"file2.csv\",\"file3.json\"]\n```\n\n#### Input\n\n| Product | Price | Quantity | Category |\n| :------ | :---- | :------- | :------- |\n| Hammer | $3.99 | 31 | Tools |\n| Screw Driver | $11.99 | 17 | Tools |\n\n| Product | Price | Quantity | Category |\n| :------ | :---- | :------- | :------- |\n| Safety Glasses | $1.99 | 12 | PPE |\n| Hard Hat | $12.99 | 4 | PPE |\n\n| Product | Price | Quantity | Category |\n| :------ | :---- | :------- | :------- |\n| Extension Cord | $4.95 | 14 | Electrical |\n| Wire Nuts | $1.99 | 11 | Electrical |\n\n#### Output\n\n| Product | Price | Quantity | Category |\n| :------ | :---- | :------- | :------- |\n| Hammer | $3.99 | 31 | Tools |\n| Safety Glasses | $1.99 | 12 | PPE |\n| Hard Hat | $12.99 | 4 | PPE |\n| Extension Cord | $4.95 | 14 | Electrical |\n| Screw Driver | $11.99 | 17 | Tools |\n| Wire Nuts | $1.99 | 11 | Electrical |\n\n### Function\n```python\nimport pandas as pd\nfrom wrangles.connectors import matrix\n\nproducts_dataframe = matrix.read(variables={'files': ['file1.csv', 'file2.csv', 'file3.json']}, read=[{'file': {'name': '${files}'}}])\n```\n\n### Write\n### Recipes\n#### Three Ways to Implement Variables\n```yaml\nwrite:\n  - matrix:\n      variables:\n        category:\n          - Tools\n          - PPE\n          - Electrical\n      write:\n        - file:\n            name: ${category}.xlsx\n            where: category = ?\n            where_params:\n              - ${category}\n```\n\nThe above example shows 3 different ways to implement variables: List of Values, Variables as a Set, and Variables From a Custom Function.\n\n```python\ndef get_list():\n    return [\"Tools\",\"PPE\",\"Electrical\"]\n```\n\n#### Input\n\n| Product | Price | Quantity | Category |\n| :------ | :---- | :------- | :------- |\n| Hammer | $3.99 | 31 | Tools |\n| Safety Glasses | $1.99 | 12 | PPE |\n| Hard Hat | $12.99 | 4 | PPE |\n| Extension Cord | $4.95 | 14 | Electrical |\n| Screw Driver | $11.99 | 17 | Tools |\n| Wire Nuts | $1.99 | 11 | Electrical |\n\n#### Output\n\n| Product | Price | Quantity | Category |\n| :------ | :---- | :------- | :------- |\n| Hammer | $3.99 | 31 | Tools |\n| Screw Driver | $11.99 | 17 | Tools |\n\n| Product | Price | Quantity | Category |\n| :------ | :---- | :------- | :------- |\n| Safety Glasses | $1.99 | 12 | PPE |\n| Hard Hat | $12.99 | 4 | PPE |\n\n| Product | Price | Quantity | Category |\n| :------ | :---- | :------- | :------- |\n| Extension Cord | $4.95 | 14 | Electrical |\n| Wire Nuts | $1.99 | 11 | Electrical |\n\n### Function\n```python\nimport pandas as pd\nfrom wrangles.connectors import matrix\n\nproducts_dataframe = pd.read_excel('product_file.xlsx')\nmatrix.write(df=products_dataframe, variables={'category': ['Tools', 'PPE', 'Electrical']}, write=[{'file': {'name': '${category}.xlsx', 'where': 'category = ?', 'where_params': ['${category}']}}])\n```\n\n### Run\n\n> Added **v1.12.0**\n\n### Recipes\n#### Three Ways to Implement Variables\n```yaml\nrun:\n  on_start:\n    - matrix:\n        variables:\n          category:\n            - Tools\n            - PPE\n            - Electrical\n        run:\n          - custom.function:\n              value: ${category}\n```\n\nThe above example shows 3 different ways to implement variables: List of Values, Variables from a list defined by an Input Variable, and Variables From a a list defined by and Input Variable as JSON.\n\n```python\ntest_vals = []\ndef function(value):\n    test_vals.append(value)\nvariables = {\"input_var1\": [\"a\", \"b\", \"c\"], \"input_var2\": '[\"a\", \"b\", \"c\"]'}\n```\n\n#### Output\n\n```python\ntest_vals = [\"a\", \"b\", \"c\"]\n```\n\n### Function\n```python\nfrom wrangles.connectors import matrix\n\ntest_vals = []\ndef function(value):\n    test_vals.append(value)\n\nproducts_dataframe = matrix.run(variables={\"input_var1\": [\"a\", \"b\", \"c\"], \"input_var2\":'[\"a\", \"b\", \"c\"]'}, run=[my_function], functions={\"my_function\": function})\n```"
+}

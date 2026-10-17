@@ -39,8 +39,10 @@ parameters:
         - string
         - integer
         - array
+      description: Name of the input column.
+    runtime_required: true
   - name: output
-    description: Name of the output column. If omitted, the input column will be overwritten.
+    description: Name of the output column. If omitted, the input column will be overwritten
     required: false
     param_group: I/O
     runtime_default: null
@@ -48,7 +50,8 @@ parameters:
       type:
         - string
         - array
-        - 'null'
+      description: Name of the output column. If omitted, the input column will be overwritten
+    runtime_required: false
   - name: default
     description: >-
       Value to return if the row is empty or fails to be parsed as YAML. If input is a list, default
@@ -65,6 +68,11 @@ parameters:
         - number
         - boolean
         - 'null'
+      description: >-
+        Value to return if the row is empty or fails to be parsed as YAML. If input is a list,
+        default may also be a list - either a single value to apply to all columns, or one value per
+        input column.
+    runtime_required: false
 examples: []
 sources:
   - id: runtime
@@ -75,6 +83,43 @@ sources:
     resource: >-
       https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/convert/_sources/from-yaml.md
     title: Archived convert.from_yaml Markdown
+configuration_schema:
+  type: object
+  description: Convert a YAML representation into an object
+  required:
+    - input
+  properties:
+    input:
+      type:
+        - string
+        - integer
+        - array
+      description: Name of the input column.
+    output:
+      type:
+        - string
+        - array
+      description: Name of the output column. If omitted, the input column will be overwritten
+    default:
+      type:
+        - string
+        - array
+        - object
+        - number
+        - boolean
+        - 'null'
+      description: >-
+        Value to return if the row is empty or fails to be parsed as YAML. If input is a list,
+        default may also be a list - either a single value to apply to all columns, or one value per
+        input column.
+    if:
+      $ref: '#/$defs/wrangles/commonProperties/if'
+    where:
+      $ref: '#/$defs/wrangles/commonProperties/where'
+    where_params:
+      $ref: '#/$defs/wrangles/commonProperties/where_params'
+schema_origin: upstream-docstring
+schema_adjustments: []
 ---
 
 # From YAML

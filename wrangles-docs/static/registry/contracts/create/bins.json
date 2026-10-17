@@ -40,57 +40,116 @@
     "where": true,
     "where_params": true
   },
+  "configuration_schema": {
+    "type": "object",
+    "description": "Create a column that groups data into bins",
+    "additionalProperties": false,
+    "required": [
+      "input",
+      "output",
+      "bins"
+    ],
+    "properties": {
+      "input": {
+        "type": [
+          "array"
+        ],
+        "description": "Name of input column"
+      },
+      "output": {
+        "type": [
+          "array"
+        ],
+        "description": "Name of new column"
+      },
+      "bins": {
+        "type": [
+          "integer",
+          "array"
+        ],
+        "description": "Defines the number of equal-width bins in the range"
+      },
+      "labels": {
+        "type": [
+          "string",
+          "array"
+        ],
+        "description": "Labels for the returned bins"
+      },
+      "if": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/if"
+      },
+      "where": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/where"
+      },
+      "where_params": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/where_params"
+      }
+    }
+  },
+  "schema_origin": "upstream-docstring",
+  "schema_adjustments": [],
+  "schema_source": {
+    "repository": "https://github.com/wrangleworks/WranglesPY",
+    "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+    "version": "1.20.5",
+    "extraction": "static-python-ast"
+  },
   "parameters": [
     {
       "name": "input",
-      "description": "Name of input column.",
+      "description": "Name of input column",
       "required": true,
       "param_group": "I/O",
       "schema": {
         "type": [
-          "string",
-          "integer",
           "array"
-        ]
-      }
+        ],
+        "description": "Name of input column"
+      },
+      "runtime_required": true
     },
     {
       "name": "output",
-      "description": "Name of new column.",
+      "description": "Name of new column",
       "required": true,
       "param_group": "I/O",
       "schema": {
         "type": [
-          "string",
           "array"
-        ]
-      }
+        ],
+        "description": "Name of new column"
+      },
+      "runtime_required": true
     },
     {
       "name": "bins",
-      "description": "Defines the number of equal-width bins in the range.",
+      "description": "Defines the number of equal-width bins in the range",
       "required": true,
       "param_group": "Options",
       "schema": {
         "type": [
           "integer",
           "array"
-        ]
-      }
+        ],
+        "description": "Defines the number of equal-width bins in the range"
+      },
+      "runtime_required": true
     },
     {
       "name": "labels",
-      "description": "Labels for the returned bins.",
+      "description": "Labels for the returned bins",
       "required": false,
       "param_group": "Options",
       "runtime_default": null,
       "schema": {
         "type": [
           "string",
-          "array",
-          "null"
-        ]
-      }
+          "array"
+        ],
+        "description": "Labels for the returned bins"
+      },
+      "runtime_required": false
     },
     {
       "name": "if",
@@ -124,7 +183,7 @@
     }
   ],
   "examples": [],
-  "guidance": "Creates a column that segments and sorts data values into bins. `bins` can be an integer or a list. When `bins` is an integer, the input data is split equally into that number of bins. When `bins` is a list, the input data is split based on the list boundaries.\n\n## Migrated examples\n#### Creating Bins With an Integer\n\n##### Recipe\n\n```yaml\nwrangles:\n  - create.bins:\n      input: Data\n      output: Category\n      bins: 3\n      labels:\n        - Bad\n        - Medium\n        - Good\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n_No sample available._\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| Data | Category |\n| --- | --- |\n| 1 | Bad |\n| 7 | Good |\n| 5 | Medium |\n| 4 | Medium |\n| 6 | Good |\n| 3 | Bad |\n\n</div>\n\n</div>\n\n#### Creating Bins With a List\n\n##### Recipe\n\n```yaml\nwrangles:\n  - create.bins:\n      input: Grades\n      output: Letter Grade\n      bins:\n        - 0\n        - 60\n        - 70\n        - 80\n        - 90\n        - 100\n      labels:\n        - F\n        - D\n        - C\n        - B\n        - A\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n| Grade | Student |\n| --- | --- |\n| 64 | Charles |\n| 92 | Sabrina |\n| 76 | Edward |\n| 84 | Wendy |\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| Grade | Student | Letter Grade |\n| --- | --- | --- |\n| 64 | Charles | D |\n| 92 | Sabrina | A |\n| 76 | Edward | C |\n| 84 | Wendy | B |\n\n</div>\n\n</div>",
+  "guidance": "Creates a column that segments and sorts data values into bins. `bins` can be an integer or a list. When `bins` is an integer, the input data is split equally into that number of bins. When `bins` is a list, the input data is split based on the list boundaries.\n\n## Migrated examples\n#### Creating Bins With an Integer\n\n##### Recipe\n\n```yaml\nwrangles:\n  - create.bins:\n      input: [Data]\n      output: [Category]\n      bins: 3\n      labels:\n        - Bad\n        - Medium\n        - Good\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n_No sample available._\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| Data | Category |\n| --- | --- |\n| 1 | Bad |\n| 7 | Good |\n| 5 | Medium |\n| 4 | Medium |\n| 6 | Good |\n| 3 | Bad |\n\n</div>\n\n</div>\n\n#### Creating Bins With a List\n\n##### Recipe\n\n```yaml\nwrangles:\n  - create.bins:\n      input: [Grades]\n      output: [Letter Grade]\n      bins:\n        - 0\n        - 60\n        - 70\n        - 80\n        - 90\n        - 100\n      labels:\n        - F\n        - D\n        - C\n        - B\n        - A\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n| Grade | Student |\n| --- | --- |\n| 64 | Charles |\n| 92 | Sabrina |\n| 76 | Edward |\n| 84 | Wendy |\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| Grade | Student | Letter Grade |\n| --- | --- | --- |\n| 64 | Charles | D |\n| 92 | Sabrina | A |\n| 76 | Edward | C |\n| 84 | Wendy | B |\n\n</div>\n\n</div>",
   "sources": [
     {
       "id": "runtime",

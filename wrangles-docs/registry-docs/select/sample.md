@@ -23,13 +23,57 @@ Return a random sample of the rows
 | Name | Description | Accepted Values | Default | Required |
 | --- | --- | --- | --- | --- |
 | <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `rows` | If a whole number, will select that number of rows. If a decimal between 0 and 1 will select that fraction of the rows e.g. 0.1 =&gt; 10% of rows will be returned. | integer, number | — | Yes |
+| `rows` | If a whole number, will select that number of rows.<br />If a decimal between 0 and 1 will select that fraction <br />of the rows e.g. 0.1 =&gt; 10% of rows will be returned | integer, number | — | Yes |
 | <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
 | `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
 | `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
 | `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
 
 </div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+<details className="ww-field-disclosure">
+
+<summary>Complete configuration schema</summary>
+
+Schema source: upstream-docstring. Conditional and cross-parameter
+rules below apply in addition to the parameter table. References resolve against
+the [complete recipe schema](/schemas/recipes/registry/schema.json).
+
+
+
+```json
+{
+  "type": "object",
+  "description": "Return a random sample of the rows",
+  "required": [
+    "rows"
+  ],
+  "properties": {
+    "rows": {
+      "type": [
+        "integer",
+        "number"
+      ],
+      "description": "If a whole number, will select that number of rows.\nIf a decimal between 0 and 1 will select that fraction \nof the rows e.g. 0.1 => 10% of rows will be returned",
+      "exclusiveMinimum": 0
+    },
+    "if": {
+      "$ref": "#/$defs/wrangles/commonProperties/if"
+    },
+    "where": {
+      "$ref": "#/$defs/wrangles/commonProperties/where_special"
+    },
+    "where_params": {
+      "$ref": "#/$defs/wrangles/commonProperties/where_params"
+    }
+  }
+}
+```
+
+</details>
 
 ## Examples
 
@@ -125,6 +169,7 @@ wrangles:
 | Documentation group | `select` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.select.sample` |
+| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
 | Legacy UUID | `95a84ab6-a66e-450f-8a4a-7a87e3a77932` |
 
 **Sources**

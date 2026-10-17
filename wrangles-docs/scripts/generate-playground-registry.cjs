@@ -368,10 +368,10 @@ function generateRegistryCatalog(manifestPath, options = {}) {
     if (entry.type !== 'wrangle' || !entry.contract_json) {
       throw new Error(`Manifest entry is not a wrangle contract: ${entry.catalog_key || 'unknown'}`);
     }
-    if (seenCatalogIds.has(String(entry.catalog_id)) || seenWrangleKeys.has(entry.wrangle_key)) {
+    if ((entry.catalog_id !== null && seenCatalogIds.has(String(entry.catalog_id))) || seenWrangleKeys.has(entry.wrangle_key)) {
       throw new Error(`Duplicate Registry identity: ${entry.wrangle_key}`);
     }
-    seenCatalogIds.add(String(entry.catalog_id));
+    if (entry.catalog_id !== null) seenCatalogIds.add(String(entry.catalog_id));
     seenWrangleKeys.add(entry.wrangle_key);
 
     const contractPath = path.join(staticRoot, entry.contract_json.replace(/^\//, ''));

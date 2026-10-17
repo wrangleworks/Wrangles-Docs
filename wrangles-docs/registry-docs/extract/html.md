@@ -24,18 +24,92 @@ Extract text and links from HTML elements. Requires WrangleWorks Account.
 | --- | --- | --- | --- | --- |
 | <span className="ww-param-group-label">I/O</span> |  |  |  |  |
 | `input` | Name or list of input columns. | string, integer, array | — | Yes |
-| `output` | Name or list of output columns. | string, array, null | `null` | No |
+| `output` | Name or list of output columns | string, array | `null` | Yes |
 | <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `data_type` | The type of data to extract. | string; one of:<ul className="ww-param-enum-values"><li>text</li><li>links</li></ul> | — | Yes |
+| `data_type` | The type of data to extract | string; one of:<ul className="ww-param-enum-values"><li>text</li><li>links</li></ul> | — | Yes |
 | <span className="ww-param-group-label">Formatting</span> |  |  |  |  |
-| `output_format` | Format of the extract output. | string, null; one of:<ul className="ww-param-enum-values"><li>list</li><li>columns</li><li>concatenate</li></ul> | `null` | No |
-| `char` | Character to use when output_format is concatenate. | string | `", "` | No |
+| `output_format` | Format of the extract output | string; one of:<ul className="ww-param-enum-values"><li>list</li><li>columns</li><li>concatenate</li></ul> | `null` | No |
+| `char` | Character to use when output_format is concatenate | string | `", "` | No |
 | <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
 | `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
 | `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
 | `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
 
 </div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+<details className="ww-field-disclosure">
+
+<summary>Complete configuration schema</summary>
+
+Schema source: upstream-docstring. Conditional and cross-parameter
+rules below apply in addition to the parameter table. References resolve against
+the [complete recipe schema](/schemas/recipes/registry/schema.json).
+
+
+
+```json
+{
+  "type": "object",
+  "description": "Extract elements from strings containing html. Requires WrangleWorks Account.",
+  "required": [
+    "input",
+    "output",
+    "data_type"
+  ],
+  "properties": {
+    "input": {
+      "type": [
+        "string",
+        "integer",
+        "array"
+      ],
+      "description": "Name or list of input columns."
+    },
+    "output": {
+      "type": [
+        "string",
+        "array"
+      ],
+      "description": "Name or list of output columns"
+    },
+    "data_type": {
+      "type": "string",
+      "description": "The type of data to extract",
+      "enum": [
+        "text",
+        "links"
+      ]
+    },
+    "output_format": {
+      "type": "string",
+      "description": "Format of the extract output",
+      "enum": [
+        "list",
+        "columns",
+        "concatenate"
+      ]
+    },
+    "char": {
+      "type": "string",
+      "description": "Character to use when output_format is concatenate"
+    },
+    "if": {
+      "$ref": "#/$defs/wrangles/commonProperties/if"
+    },
+    "where": {
+      "$ref": "#/$defs/wrangles/commonProperties/where"
+    },
+    "where_params": {
+      "$ref": "#/$defs/wrangles/commonProperties/where_params"
+    }
+  }
+}
+```
+
+</details>
 
 ## Examples
 
@@ -128,6 +202,7 @@ wrangles:
 | Documentation group | `extract` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.extract.html` |
+| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
 | Legacy UUID | `728fc87a-a20d-4efa-833a-612e0b5eadc3` |
 
 **Sources**

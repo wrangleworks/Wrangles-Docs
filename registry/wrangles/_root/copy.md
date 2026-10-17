@@ -31,8 +31,8 @@ capabilities:
   where_params: true
 parameters:
   - name: input
-    description: Name of the input columns or columns.
-    required: false
+    description: Name of the input columns or columns
+    required: true
     param_group: I/O
     runtime_default: null
     schema:
@@ -40,17 +40,19 @@ parameters:
         - string
         - integer
         - array
-        - 'null'
+      description: Name of the input columns or columns
+    runtime_required: false
   - name: output
-    description: Name of the output columns or columns.
-    required: false
+    description: Name of the output columns or columns
+    required: true
     param_group: I/O
     runtime_default: null
     schema:
       type:
         - string
         - array
-        - 'null'
+      description: Name of the output columns or columns
+    runtime_required: false
 examples: []
 sources:
   - id: runtime
@@ -61,6 +63,33 @@ sources:
     resource: >-
       https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/transform/_sources/copy.md
     title: Archived copy Markdown
+configuration_schema:
+  type: object
+  description: Make a copy of a column or a list of columns
+  additionalProperties: false
+  required:
+    - input
+    - output
+  properties:
+    input:
+      type:
+        - string
+        - integer
+        - array
+      description: Name of the input columns or columns
+    output:
+      type:
+        - string
+        - array
+      description: Name of the output columns or columns
+    if:
+      $ref: '#/$defs/wrangles/commonProperties/if'
+    where:
+      $ref: '#/$defs/wrangles/commonProperties/where'
+    where_params:
+      $ref: '#/$defs/wrangles/commonProperties/where_params'
+schema_origin: upstream-docstring
+schema_adjustments: []
 ---
 
 # Copy
@@ -105,14 +134,18 @@ wrangles:
 
 </div>
 
-#### Copying a Column Express as a Dictionary
+#### Schema-compatible Copy Parameters
+
+The runtime also accepts dictionary shorthand, but the upstream recipe schema
+requires explicit `input` and `output`. Use this form for schema-validated recipes.
 
 ##### Recipe
 
 ```yaml
 wrangles:
   - copy:
-      Product Data: Product Data (copy)
+      input: Product Data
+      output: Product Data (copy)
 ```
 
 <div className="ww-sample-grid">

@@ -1,25 +1,25 @@
 ---
 schema_version: '0.2'
-type: wrangle
-id: 9aa0253a-4b70-4737-832c-964e15967289
-wrangle_name: regex
-namespace: extract
-title: Regex
-description: Extract matches or specific capture groups using regex.
-wrangle_key: extract.regex
+type: 'wrangle'
+id: '9aa0253a-4b70-4737-832c-964e15967289'
+wrangle_name: 'regex'
+namespace: 'extract'
+title: 'Regex'
+description: 'Extract matches or specific capture groups using regex.'
+wrangle_key: 'extract.regex'
 aliases: []
-slug: extract/regex
-status: active
-visibility: public
+slug: 'extract/regex'
+status: 'active'
+visibility: 'public'
 recipe_writer:
   eligible: true
 tags:
-  - extract
-  - regex
+  - 'extract'
+  - 'regex'
 runtime:
-  package: wrangles
-  symbol: wrangles.recipe_wrangles.extract.regex
-  contract_status: verified
+  package: 'wrangles'
+  symbol: 'wrangles.recipe_wrangles.extract.regex'
+  contract_status: 'verified'
 access:
   ai_powered: false
   requires_account: false
@@ -30,79 +30,130 @@ capabilities:
   where: true
   where_params: true
 parameters:
-  - name: input
-    description: Name of the input column(s).
+  - name: 'input'
+    description: 'Name of the input column(s).'
     required: true
-    param_group: I/O
+    param_group: 'I/O'
     schema:
       type:
-        - string
-        - integer
-        - array
-  - name: find
-    description: Pattern to find using regex.
+        - 'string'
+        - 'integer'
+        - 'array'
+      description: 'Name of the input column(s).'
+    runtime_required: true
+  - name: 'find'
+    description: 'Pattern to find using regex'
     required: true
-    param_group: Options
+    param_group: 'Options'
     schema:
-      type: string
-  - name: output
-    description: Name of the output column(s).
+      type: 'string'
+      description: 'Pattern to find using regex'
+    runtime_required: true
+  - name: 'output'
+    description: 'Name of the output column(s).'
     required: true
-    param_group: I/O
+    param_group: 'I/O'
     schema:
       type:
-        - string
-        - array
-  - name: output_pattern
-    description: >-
-      Specifies the format to output matches and specific capture groups using backreferences (e.g.,
-      `\1`, `\2`). Default is to return entire matches. **Example**: For a regex pattern
-      `r'(\d+)\s(\w+)'` and `output_pattern = '\2 \1'`, with input `'120 volt'`, the output would be
-      `'volt 120'`.
+        - 'string'
+        - 'array'
+      description: 'Name of the output column(s).'
+    runtime_required: true
+  - name: 'output_pattern'
+    description: "Specifies the format to output matches and specific capture groups using backreferences (e.g., `\\1`, `\\2`). Default is to return entire matches.\n\n**Example**: For a regex pattern `r'(\\d+)\\s(\\w+)'` and `output_pattern = '\\2 \\1'`, with input `'120 volt'`, the output would be `'volt 120'`.\n"
     required: false
-    param_group: Formatting
+    param_group: 'Formatting'
     runtime_default: null
     schema:
-      type:
-        - string
-        - 'null'
-  - name: first_element
-    description: Get the first element from results.
+      type: 'string'
+      description: "Specifies the format to output matches and specific capture groups using backreferences (e.g., `\\1`, `\\2`). Default is to return entire matches.\n\n**Example**: For a regex pattern `r'(\\d+)\\s(\\w+)'` and `output_pattern = '\\2 \\1'`, with input `'120 volt'`, the output would be `'volt 120'`.\n"
+    runtime_required: false
+  - name: 'first_element'
+    description: 'Get the first element from results'
     required: false
-    param_group: Formatting
+    param_group: 'Formatting'
     runtime_default: false
     schema:
-      type: boolean
-  - name: output_format
-    description: Format of the extract output.
+      type: 'boolean'
+      description: 'Get the first element from results'
+    runtime_required: false
+  - name: 'output_format'
+    description: 'Format of the extract output'
     required: false
-    param_group: Formatting
+    param_group: 'Formatting'
     runtime_default: null
     schema:
-      type:
-        - string
-        - 'null'
+      type: 'string'
+      description: 'Format of the extract output'
       enum:
-        - list
-        - columns
-        - concatenate
-  - name: char
-    description: Character to use when output_format is concatenate.
+        - 'list'
+        - 'columns'
+        - 'concatenate'
+    runtime_required: false
+  - name: 'char'
+    description: 'Character to use when output_format is concatenate'
     required: false
-    param_group: Formatting
+    param_group: 'Formatting'
     runtime_default: ', '
     schema:
-      type: string
+      type: 'string'
+      description: 'Character to use when output_format is concatenate'
+    runtime_required: false
 examples: []
 sources:
-  - id: runtime
-    resource: >-
-      https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/extract.py
-    title: WranglesPY extract.regex implementation
-  - id: legacy-docs-archive
-    resource: >-
-      https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/extract/_sources/regex.md
-    title: Archived extract.regex Markdown
+  - id: 'runtime'
+    resource: 'https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/extract.py'
+    title: 'WranglesPY extract.regex implementation'
+  - id: 'legacy-docs-archive'
+    resource: 'https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/extract/_sources/regex.md'
+    title: 'Archived extract.regex Markdown'
+configuration_schema:
+  type: 'object'
+  description: 'Extract matches or specific capture groups using regex'
+  additionalProperties: false
+  required:
+    - 'input'
+    - 'output'
+    - 'find'
+  properties:
+    input:
+      type:
+        - 'string'
+        - 'integer'
+        - 'array'
+      description: 'Name of the input column(s).'
+    output:
+      type:
+        - 'string'
+        - 'array'
+      description: 'Name of the output column(s).'
+    find:
+      type: 'string'
+      description: 'Pattern to find using regex'
+    output_pattern:
+      type: 'string'
+      description: "Specifies the format to output matches and specific capture groups using backreferences (e.g., `\\1`, `\\2`). Default is to return entire matches.\n\n**Example**: For a regex pattern `r'(\\d+)\\s(\\w+)'` and `output_pattern = '\\2 \\1'`, with input `'120 volt'`, the output would be `'volt 120'`.\n"
+    first_element:
+      type: 'boolean'
+      description: 'Get the first element from results'
+    output_format:
+      type: 'string'
+      description: 'Format of the extract output'
+      enum:
+        - 'list'
+        - 'columns'
+        - 'concatenate'
+    char:
+      type: 'string'
+      description: 'Character to use when output_format is concatenate'
+    if:
+      $ref: '#/$defs/wrangles/commonProperties/if'
+    where:
+      $ref: '#/$defs/wrangles/commonProperties/where'
+    where_params:
+      $ref: '#/$defs/wrangles/commonProperties/where_params'
+schema_origin: 'upstream-docstring'
+schema_adjustments: []
 ---
 
 # Regex

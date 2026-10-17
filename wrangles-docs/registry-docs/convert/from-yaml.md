@@ -24,7 +24,7 @@ Convert a YAML representation into an object.
 | --- | --- | --- | --- | --- |
 | <span className="ww-param-group-label">I/O</span> |  |  |  |  |
 | `input` | Name of the input column. | string, integer, array | — | Yes |
-| `output` | Name of the output column. If omitted, the input column will be overwritten. | string, array, null | `null` | No |
+| `output` | Name of the output column. If omitted, the input column will be overwritten | string, array | `null` | No |
 | <span className="ww-param-group-label">Errors</span> |  |  |  |  |
 | `default` | Value to return if the row is empty or fails to be parsed as YAML. If input is a list, default may also be a list - either a single value to apply to all columns, or one value per input column. | string, array, object, number, boolean, null | `null` | No |
 | <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
@@ -33,6 +33,68 @@ Convert a YAML representation into an object.
 | `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
 
 </div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+<details className="ww-field-disclosure">
+
+<summary>Complete configuration schema</summary>
+
+Schema source: upstream-docstring. Conditional and cross-parameter
+rules below apply in addition to the parameter table. References resolve against
+the [complete recipe schema](/schemas/recipes/registry/schema.json).
+
+
+
+```json
+{
+  "type": "object",
+  "description": "Convert a YAML representation into an object",
+  "required": [
+    "input"
+  ],
+  "properties": {
+    "input": {
+      "type": [
+        "string",
+        "integer",
+        "array"
+      ],
+      "description": "Name of the input column."
+    },
+    "output": {
+      "type": [
+        "string",
+        "array"
+      ],
+      "description": "Name of the output column. If omitted, the input column will be overwritten"
+    },
+    "default": {
+      "type": [
+        "string",
+        "array",
+        "object",
+        "number",
+        "boolean",
+        "null"
+      ],
+      "description": "Value to return if the row is empty or fails to be parsed as YAML. If input is a list, default may also be a list - either a single value to apply to all columns, or one value per input column."
+    },
+    "if": {
+      "$ref": "#/$defs/wrangles/commonProperties/if"
+    },
+    "where": {
+      "$ref": "#/$defs/wrangles/commonProperties/where"
+    },
+    "where_params": {
+      "$ref": "#/$defs/wrangles/commonProperties/where_params"
+    }
+  }
+}
+```
+
+</details>
 
 ## Examples
 
@@ -100,6 +162,7 @@ Product Specs:
 | Documentation group | `convert` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.convert.from_yaml` |
+| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
 | Legacy UUID | `b1c20004-5f80-41c2-84d2-2d4601a033b5` |
 
 **Sources**

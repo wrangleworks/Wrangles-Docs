@@ -23,21 +23,93 @@ Split text strings on certain characters. The text can be split into either mult
 | Name | Description | Accepted Values | Default | Required |
 | --- | --- | --- | --- | --- |
 | <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `input` | Name of the column to be split. | string | — | Yes |
-| `output` | Name of the output column(s) If a single column is provided, the results will be returned as a list If multiple columns are listed, the results will be separated into the columns. If omitted, will overwrite the input. | string, array, null | `null` | No |
+| `input` | Name of the column to be split | string | — | Yes |
+| `output` | Name of the output column(s)<br />If a single column is provided,<br />the results will be returned as a list<br />If multiple columns are listed,<br />the results will be separated into the columns.<br />If omitted, will overwrite the input. | string, array | `null` | No |
 | <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `char` | Set the character(s) to split on. Default comma (,) Can also prefix with "regex:" to split on a pattern. | string | `","` | No |
-| `element` | Select a specific element or range after splitting using slicing syntax. e.g. 0, ":5", "5:", "2:8:2". | string, integer, null | `null` | No |
-| `inclusive` | If true, include the split character in the output. Default False. | boolean | `false` | No |
-| `skip_empty` | Whether to skip empty values. | boolean | `false` | No |
+| `char` | Set the character(s) to split on.<br />Default comma (,)<br />Can also prefix with "regex:" to split on a pattern. | string | `","` | No |
+| `element` | Select a specific element or range after splitting using slicing syntax. e.g. 0, ":5", "5:", "2:8:2" | integer, string | `null` | No |
+| `inclusive` | If true, include the split character in the output. Default False | boolean | `false` | No |
+| `skip_empty` | Whether to skip empty values | boolean | `false` | No |
 | <span className="ww-param-group-label">Formatting</span> |  |  |  |  |
-| `pad` | Choose whether to pad to ensure a consistent length. Default true if outputting to columns, false for lists. | boolean, null | `null` | No |
+| `pad` | Choose whether to pad to ensure a consistent length. Default true if outputting to columns, false for lists. | boolean | `null` | No |
 | <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
 | `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
 | `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
 | `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
 
 </div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+<details className="ww-field-disclosure">
+
+<summary>Complete configuration schema</summary>
+
+Schema source: upstream-docstring. Conditional and cross-parameter
+rules below apply in addition to the parameter table. References resolve against
+the [complete recipe schema](/schemas/recipes/registry/schema.json).
+
+
+
+```json
+{
+  "type": "object",
+  "description": "Split a string to multiple columns or a list.",
+  "additionalProperties": false,
+  "required": [
+    "input"
+  ],
+  "properties": {
+    "input": {
+      "type": "string",
+      "description": "Name of the column to be split"
+    },
+    "output": {
+      "type": [
+        "string",
+        "array"
+      ],
+      "description": "Name of the output column(s)\nIf a single column is provided,\nthe results will be returned as a list\nIf multiple columns are listed,\nthe results will be separated into the columns.\nIf omitted, will overwrite the input."
+    },
+    "char": {
+      "type": "string",
+      "description": "Set the character(s) to split on.\nDefault comma (,)\nCan also prefix with \"regex:\" to split on a pattern."
+    },
+    "pad": {
+      "type": "boolean",
+      "description": "Choose whether to pad to ensure a consistent length. Default true if outputting to columns, false for lists."
+    },
+    "element": {
+      "type": [
+        "integer",
+        "string"
+      ],
+      "description": "Select a specific element or range after splitting using slicing syntax. e.g. 0, \":5\", \"5:\", \"2:8:2\""
+    },
+    "inclusive": {
+      "type": "boolean",
+      "description": "If true, include the split character in the output. Default False"
+    },
+    "skip_empty": {
+      "type": "boolean",
+      "description": "Whether to skip empty values",
+      "default": false
+    },
+    "if": {
+      "$ref": "#/$defs/wrangles/commonProperties/if"
+    },
+    "where": {
+      "$ref": "#/$defs/wrangles/commonProperties/where"
+    },
+    "where_params": {
+      "$ref": "#/$defs/wrangles/commonProperties/where_params"
+    }
+  }
+}
+```
+
+</details>
 
 ## Examples
 
@@ -233,6 +305,7 @@ wrangles:
 | Documentation group | `split` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.split.text` |
+| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
 | Legacy UUID | `e76e43f7-d129-4bf8-87b4-a304a378b130` |
 
 **Sources**

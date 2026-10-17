@@ -33,9 +33,10 @@ capabilities:
   where_params: true
 parameters:
   - name: input
-    description: >-
-      Name or lists of the column(s) containing dictionaries to be split. If providing multiple
-      dictionaries and the dictionaries contain overlapping values, the last value will be returned.
+    description: |-
+      Name or list of columns containing dictionaries or JSON object strings to split.
+      For overlapping keys, later input columns take precedence
+      before defaults are applied.
     required: true
     param_group: I/O
     schema:
@@ -43,13 +44,21 @@ parameters:
         - string
         - integer
         - array
+      description: |-
+        Name or list of columns containing dictionaries or JSON object strings to split.
+        For overlapping keys, later input columns take precedence
+        before defaults are applied.
+    runtime_required: true
   - name: output
-    description: >-
-      In columns output_format, this is an optional subset of keys to extract from the dictionary.
-      If not provided, all keys will be returned. Columns can be renamed with the following syntax:
-      output: - key1: new_column_name1 - key2: new_column_name2 In to_lists output_format, this must
-      be two output columns for the keys and values lists. If not provided, Keys and Values will be
-      used.
+    description: |-
+      In columns output_format, this is an optional subset of keys to extract
+      from the dictionary. If not provided, all keys will be returned.
+      Columns can be renamed with the following syntax:
+      output:
+        - key1: new_column_name1
+        - key2: new_column_name2
+      In to_lists output_format, this must be two output columns for the keys
+      and values lists. If not provided, Keys and Values will be used.
     required: false
     param_group: I/O
     runtime_default: null
@@ -57,20 +66,44 @@ parameters:
       type:
         - string
         - array
-        - 'null'
+      description: |-
+        In columns output_format, this is an optional subset of keys to extract
+        from the dictionary. If not provided, all keys will be returned.
+        Columns can be renamed with the following syntax:
+        output:
+          - key1: new_column_name1
+          - key2: new_column_name2
+        In to_lists output_format, this must be two output columns for the keys
+        and values lists. If not provided, Keys and Values will be used.
+    runtime_required: false
   - name: default
-    description: Provide a set of default headings and values if they are not found within the input.
+    description: >-
+      Provide defaults for missing top-level keys or keys with null values after merging the input
+      dictionaries. Keys use their original names before output renaming. Non-null values, including
+      0, false, empty strings, lists, and dictionaries, are preserved. Nested values are not filled
+      recursively. When default is supplied (including {}), invalid or non-dictionary input cells
+      are treated as empty dictionaries, so valid values from other input columns are retained.
+      Without default, invalid input raises an error.
     required: false
     param_group: Errors
     runtime_default: null
     schema:
-      type:
-        - object
-        - 'null'
+      type: object
+      description: >-
+        Provide defaults for missing top-level keys or keys with null values after merging the input
+        dictionaries. Keys use their original names before output renaming. Non-null values,
+        including 0, false, empty strings, lists, and dictionaries, are preserved. Nested values are
+        not filled recursively. When default is supplied (including {}), invalid or non-dictionary
+        input cells are treated as empty dictionaries, so valid values from other input columns are
+        retained. Without default, invalid input raises an error.
+    runtime_required: false
   - name: output_format
-    description: >-
-      How to split the dictionary. columns creates one output column for each dictionary key.
+    description: |-
+      How to split the dictionary.
+      columns creates one output column for each dictionary key.
+      In recipes, remaining null cells are normalized to empty strings.
       to_lists creates two output columns containing lists of keys and values.
+      Remaining null values inside these lists are preserved.
     required: false
     param_group: Formatting
     runtime_default: columns
@@ -79,6 +112,13 @@ parameters:
       enum:
         - columns
         - to_lists
+      description: |-
+        How to split the dictionary.
+        columns creates one output column for each dictionary key.
+        In recipes, remaining null cells are normalized to empty strings.
+        to_lists creates two output columns containing lists of keys and values.
+        Remaining null values inside these lists are preserved.
+    runtime_required: false
 examples: []
 sources:
   - id: runtime
@@ -89,6 +129,67 @@ sources:
     resource: >-
       https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/split/_sources/dictionary.md
     title: Archived split.dictionary Markdown
+configuration_schema:
+  type: object
+  description: |-
+    Split one or more dictionaries into columns.
+    The dictionary keys will be returned as the new column headers.
+    Dictionary keys are case-sensitive. With multiple input columns,
+    later dictionaries overwrite earlier keys before defaults are applied.
+  additionalProperties: false
+  required:
+    - input
+  properties:
+    input:
+      type:
+        - string
+        - integer
+        - array
+      description: |-
+        Name or list of columns containing dictionaries or JSON object strings to split.
+        For overlapping keys, later input columns take precedence
+        before defaults are applied.
+    output:
+      type:
+        - string
+        - array
+      description: |-
+        In columns output_format, this is an optional subset of keys to extract
+        from the dictionary. If not provided, all keys will be returned.
+        Columns can be renamed with the following syntax:
+        output:
+          - key1: new_column_name1
+          - key2: new_column_name2
+        In to_lists output_format, this must be two output columns for the keys
+        and values lists. If not provided, Keys and Values will be used.
+    default:
+      type: object
+      description: >-
+        Provide defaults for missing top-level keys or keys with null values after merging the input
+        dictionaries. Keys use their original names before output renaming. Non-null values,
+        including 0, false, empty strings, lists, and dictionaries, are preserved. Nested values are
+        not filled recursively. When default is supplied (including {}), invalid or non-dictionary
+        input cells are treated as empty dictionaries, so valid values from other input columns are
+        retained. Without default, invalid input raises an error.
+    output_format:
+      type: string
+      enum:
+        - columns
+        - to_lists
+      description: |-
+        How to split the dictionary.
+        columns creates one output column for each dictionary key.
+        In recipes, remaining null cells are normalized to empty strings.
+        to_lists creates two output columns containing lists of keys and values.
+        Remaining null values inside these lists are preserved.
+    if:
+      $ref: '#/$defs/wrangles/commonProperties/if'
+    where:
+      $ref: '#/$defs/wrangles/commonProperties/where'
+    where_params:
+      $ref: '#/$defs/wrangles/commonProperties/where_params'
+schema_origin: upstream-docstring
+schema_adjustments: []
 ---
 
 # Dictionary

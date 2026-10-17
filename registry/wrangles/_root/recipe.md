@@ -35,46 +35,62 @@ parameters:
     required: false
     param_group: I/O
     runtime_default: null
-    schema:
-      type:
-        - string
-        - integer
-        - array
-        - 'null'
+    schema: {}
+    runtime_required: false
   - name: output
     description: Name or list of output columns.
     required: false
     param_group: I/O
     runtime_default: null
-    schema:
-      type:
-        - string
-        - array
-        - 'null'
+    schema: {}
+    runtime_required: false
   - name: name
-    description: File name of the recipe.
+    description: file name of the recipe
     required: false
     param_group: Options
     runtime_default: null
     schema:
-      type:
-        - string
-        - 'null'
+      type: string
+      description: file name of the recipe
+    runtime_required: false
   - name: variables
-    description: A dictionary of variables to pass to the recipe.
+    description: A dictionary of variables to pass to the recipe
     required: false
     param_group: Execution
     runtime_default: null
     schema:
-      type:
-        - object
-        - 'null'
+      type: object
+      description: A dictionary of variables to pass to the recipe
+    runtime_required: false
 examples: []
 sources:
   - id: runtime
     resource: >-
       https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/main.py
     title: WranglesPY recipe implementation
+configuration_schema:
+  anyOf:
+    - $ref: '#'
+    - type: object
+      description: Run a recipe as a Wrangle. Recipe-ception,
+      additionalProperties: false
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          description: file name of the recipe
+        variables:
+          type: object
+          description: A dictionary of variables to pass to the recipe
+        if:
+          $ref: '#/$defs/wrangles/commonProperties/if'
+        where:
+          $ref: '#/$defs/wrangles/commonProperties/where'
+        where_params:
+          $ref: '#/$defs/wrangles/commonProperties/where_params'
+schema_origin: upstream-docstring
+schema_adjustments: []
 ---
 
 # Recipe

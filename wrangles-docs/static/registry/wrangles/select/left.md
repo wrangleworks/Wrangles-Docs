@@ -33,7 +33,7 @@ capabilities:
   where_params: true
 parameters:
   - name: input
-    description: Name of the column(s) to edit.
+    description: Name of the column(s) to edit
     required: true
     param_group: I/O
     schema:
@@ -41,6 +41,8 @@ parameters:
         - string
         - integer
         - array
+      description: Name of the column(s) to edit
+    runtime_required: true
   - name: length
     description: >-
       Number of characters to include from the left. If negative, this will remove the specified
@@ -49,8 +51,12 @@ parameters:
     param_group: Options
     schema:
       type: integer
+      description: >-
+        Number of characters to include from the left. If negative, this will remove the specified
+        number of characters from the left. May not equal 0.
+    runtime_required: true
   - name: output
-    description: Name of the output column(s).
+    description: Name of the output column(s)
     required: false
     param_group: I/O
     runtime_default: null
@@ -58,7 +64,8 @@ parameters:
       type:
         - string
         - array
-        - 'null'
+      description: Name of the output column(s)
+    runtime_required: false
 examples: []
 sources:
   - id: runtime
@@ -69,6 +76,40 @@ sources:
     resource: >-
       https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/select/_sources/left.md
     title: Archived select.left Markdown
+configuration_schema:
+  type: object
+  description: >-
+    Return characters from the left of text. Strings shorter than the length defined will be
+    unaffected.
+  additionalProperties: false
+  required:
+    - input
+    - length
+  properties:
+    input:
+      type:
+        - string
+        - integer
+        - array
+      description: Name of the column(s) to edit
+    output:
+      type:
+        - string
+        - array
+      description: Name of the output column(s)
+    length:
+      type: integer
+      description: >-
+        Number of characters to include from the left. If negative, this will remove the specified
+        number of characters from the left. May not equal 0.
+    if:
+      $ref: '#/$defs/wrangles/commonProperties/if'
+    where:
+      $ref: '#/$defs/wrangles/commonProperties/where'
+    where_params:
+      $ref: '#/$defs/wrangles/commonProperties/where_params'
+schema_origin: upstream-docstring
+schema_adjustments: []
 ---
 
 # Left

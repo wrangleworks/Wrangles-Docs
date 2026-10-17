@@ -41,30 +41,78 @@
     "where": true,
     "where_params": true
   },
+  "configuration_schema": {
+    "type": "object",
+    "description": "Run multiple wrangles concurrently rather than sequentially. Wrangles must specify output columns to be used concurrently. When using concurrent, Wrangles may not complete in a predictable order and it is not recommended to update overlapping columns with different wrangles.",
+    "additionalProperties": false,
+    "required": [
+      "wrangles"
+    ],
+    "properties": {
+      "wrangles": {
+        "type": "array",
+        "description": "The wrangles section of a recipe to execute for each combination of variables",
+        "minItems": 1,
+        "items": [
+          {
+            "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/items"
+          }
+        ]
+      },
+      "max_concurrency": {
+        "type": "integer",
+        "description": "The maximum number of wrangles to execute in parallel",
+        "minimum": 1
+      },
+      "if": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/if"
+      },
+      "where": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/where"
+      },
+      "where_params": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/where_params"
+      }
+    }
+  },
+  "schema_origin": "upstream-docstring",
+  "schema_adjustments": [],
+  "schema_source": {
+    "repository": "https://github.com/wrangleworks/WranglesPY",
+    "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+    "version": "1.20.5",
+    "extraction": "static-python-ast"
+  },
   "parameters": [
     {
       "name": "wrangles",
-      "description": "The wrangles section of a recipe to execute for each combination of variables.",
+      "description": "The wrangles section of a recipe to execute for each combination of variables",
       "required": true,
       "param_group": "Execution",
       "schema": {
         "type": "array",
+        "description": "The wrangles section of a recipe to execute for each combination of variables",
         "minItems": 1,
-        "items": {
-          "$ref": "#/$defs/wrangles/items"
-        }
-      }
+        "items": [
+          {
+            "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/items"
+          }
+        ]
+      },
+      "runtime_required": true
     },
     {
       "name": "max_concurrency",
-      "description": "The maximum number of wrangles to execute in parallel.",
+      "description": "The maximum number of wrangles to execute in parallel",
       "required": false,
       "param_group": "Execution",
       "runtime_default": 10,
       "schema": {
         "type": "integer",
+        "description": "The maximum number of wrangles to execute in parallel",
         "minimum": 1
-      }
+      },
+      "runtime_required": false
     },
     {
       "name": "use_multiprocessing",
@@ -72,9 +120,8 @@
       "required": false,
       "param_group": "Execution",
       "runtime_default": false,
-      "schema": {
-        "type": "boolean"
-      }
+      "schema": {},
+      "runtime_required": false
     },
     {
       "name": "if",
@@ -108,7 +155,7 @@
     }
   ],
   "examples": [],
-  "guidance": "Run multiple wrangles concurrently instead of sequentially. Concurrent wrangles must declare output columns, may finish in any order, and should not update overlapping columns.\n\nSee the [Concurrent connector](/py/python/connectors/concurrent) for the connector equivalent.\n\n## Migrated examples\n#### Run Extraction Wrangles Concurrently\n\n##### Recipe\n\n```yaml\nwrangles:\n  - concurrent:\n      wrangles:\n        - extract.codes:\n            input: Products\n            output: Part Codes\n        - extract.attributes:\n            input: Products\n            output: Attributes\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n| Products |\n| --- |\n| SKF ball brg 2\" od 6202 |\n| brg seal 1\" id 5493 |\n| 3lb hammer 87102 |\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| Products | Part Codes | Attributes |\n| --- | --- | --- |\n| SKF ball brg 2\" od 6202 | 6202 | `{\"length\":[\"2in\"]}` |\n| brg seal 1\" id 5493 | 5493 | `{\"length\":[\"1in\"]}` |\n| 3lb hammer 87102 | 87102 | `{\"weight\":[\"3lb\"]}` |\n\n</div>\n\n</div>",
+  "guidance": "Run multiple wrangles concurrently instead of sequentially. Concurrent wrangles must declare output columns, may finish in any order, and should not update overlapping columns.\n\nSee the [Concurrent connector](/py/connectors/concurrent) for the connector equivalent.\n\n## Migrated examples\n#### Run Extraction Wrangles Concurrently\n\n##### Recipe\n\n```yaml\nwrangles:\n  - concurrent:\n      wrangles:\n        - extract.codes:\n            input: Products\n            output: Part Codes\n        - extract.attributes:\n            input: Products\n            output: Attributes\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n| Products |\n| --- |\n| SKF ball brg 2\" od 6202 |\n| brg seal 1\" id 5493 |\n| 3lb hammer 87102 |\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| Products | Part Codes | Attributes |\n| --- | --- | --- |\n| SKF ball brg 2\" od 6202 | 6202 | `{\"length\":[\"2in\"]}` |\n| brg seal 1\" id 5493 | 5493 | `{\"length\":[\"1in\"]}` |\n| 3lb hammer 87102 | 87102 | `{\"weight\":[\"3lb\"]}` |\n\n</div>\n\n</div>",
   "sources": [
     {
       "id": "runtime",

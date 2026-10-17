@@ -1,0 +1,67 @@
+{
+  "schema_version": "0.2",
+  "type": "connector",
+  "catalog_id": "125",
+  "catalog_key": "connector.notification.slack",
+  "catalog_kind": "connector",
+  "runtime_key": "notification.slack",
+  "status": "active",
+  "title": "Slack",
+  "source": {
+    "repository": "https://github.com/wrangleworks/WranglesPY",
+    "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+    "version": "1.20.5",
+    "extraction": "static-python-ast"
+  },
+  "operations": {
+    "run": {
+      "type": "object",
+      "description": "Send a message to Slack",
+      "required": [
+        "web_hook",
+        "title",
+        "message"
+      ],
+      "properties": {
+        "web_hook": {
+          "type": "string",
+          "description": "Webhook to post a message to Slack"
+        },
+        "title": {
+          "type": "string",
+          "description": "Title of the message to send to Slack"
+        },
+        "message": {
+          "type": "string",
+          "description": "Message to send to Slack"
+        },
+        "attachment": {
+          "type": [
+            "string",
+            "array"
+          ],
+          "description": "A file path & name to attach to the message. Supports a single file or a list of files. Must be supported by the specific notification type."
+        },
+        "if": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/run/commonProperties/if"
+        }
+      }
+    }
+  },
+  "description": "Send a message to Slack",
+  "slug": "connectors/notification.slack",
+  "visibility": "public",
+  "sources": [
+    {
+      "id": "runtime",
+      "resource": "https://github.com/wrangleworks/WranglesPY/tree/bd5f88fba479ec406b409cb2880689c54e72b298",
+      "title": "Pinned WranglesPY connector schema"
+    },
+    {
+      "id": "existing-docs",
+      "resource": "wrangles-docs/registry-docs/python/connectors/notification/slack.md",
+      "title": "Existing connector documentation"
+    }
+  ],
+  "guidance": "> Added **v0.5**\n\nSend a Slack notification - such as to alert someone when a recipe is finished or if it fails.\n\nSee [docs](https://slack.com/apps/new/A0F7XDUAZ-incoming-webhooks) for how to create a WebHook in Slack.\n\n### Run\n### Recipe\n```yaml\nrun:\n  on_success:\n    - notification.slack:\n        web_hook: Slack WebHook\n        title: title\n        message: message\n```\n\n### Function\n```python\nfrom wrangles.connectors.notification import slack\nslack.run(\n    web_hook= 'Slack WebHook',\n    title='title',\n    message='message'\n)\n```"
+}

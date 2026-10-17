@@ -31,24 +31,31 @@ capabilities:
   where_params: true
 parameters:
   - name: input
-    description: List of input columns.
+    description: list of input columns
     required: true
     param_group: I/O
     schema:
       type: array
+      description: list of input columns
+    runtime_required: true
   - name: output
-    description: Name of the output column.
+    description: Name of the output column
     required: true
     param_group: I/O
     schema:
       type: string
+      description: Name of the output column
+    runtime_required: true
   - name: skip_empty
-    description: Whether to skip empty dictionaries when merging.
+    description: Whether to skip empty dictionaries when merging
     required: false
     param_group: Options
     runtime_default: false
     schema:
       type: boolean
+      description: Whether to skip empty dictionaries when merging
+      default: false
+    runtime_required: false
 examples: []
 sources:
   - id: runtime
@@ -59,6 +66,32 @@ sources:
     resource: >-
       https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/merge/_sources/dictionaries.md
     title: Archived merge.dictionaries Markdown
+configuration_schema:
+  type: object
+  description: Take dictionaries in multiple columns and merge them to a single dictionary.
+  additionalProperties: false
+  required:
+    - input
+    - output
+  properties:
+    input:
+      type: array
+      description: list of input columns
+    output:
+      type: string
+      description: Name of the output column
+    skip_empty:
+      type: boolean
+      description: Whether to skip empty dictionaries when merging
+      default: false
+    if:
+      $ref: '#/$defs/wrangles/commonProperties/if'
+    where:
+      $ref: '#/$defs/wrangles/commonProperties/where'
+    where_params:
+      $ref: '#/$defs/wrangles/commonProperties/where_params'
+schema_origin: upstream-docstring
+schema_adjustments: []
 ---
 
 # Dictionaries
@@ -115,7 +148,7 @@ wrangles:
 # Using a Wildcard (*)
 wrangles:
   - merge.dictionaries:
-      input: Dict *
+      input: [Dict *]
       output: Merged
 ```
 

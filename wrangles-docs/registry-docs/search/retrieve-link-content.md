@@ -24,23 +24,125 @@ Retrieves targeted content from web pages using LLM URL extraction. Can optional
 | --- | --- | --- | --- | --- |
 | <span className="ww-param-group-label">I/O</span> |  |  |  |  |
 | `input` | Name or list of input columns containing URLs or Scored Search Result dictionaries. | string, array | — | Yes |
-| `output` | Name of the output column for the raw dictionaries. To output BOTH the raw dictionaries and the formatted text, provide a list of exactly two column names (e.g., [page_data, page_text]). | string, array, null | `null` | No |
+| `output` | Name of the output column for the raw dictionaries. To output BOTH the raw dictionaries and the formatted text, provide a list of exactly two column names (e.g., [page_data, page_text]). | string, array | `null` | Yes |
 | <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `prompt` | Optional custom system prompt to guide the extraction behavior and output format. | string, null | `null` | No |
+| `prompt` | Optional custom system prompt. Use &#123;&#123; column_name &#125;&#125; to insert values from the full input row, including columns not selected by input. Replace spaces and punctuation in column names with underscores; aliases must be ASCII identifiers. Dictionaries and lists are inserted as finite JSON text. Substitution is literal and single-pass, without expressions or filters. Missing or ambiguous references fail before retrieval. Omit to use the default prompt. | string | `null` | No |
+| `thinking_level` | Gemini thinking level. Defaults to the configured value, packaged as minimal. Supported levels depend on the selected model. | string; one of:<ul className="ww-param-enum-values"><li>minimal</li><li>low</li><li>medium</li><li>high</li></ul> | `null` | No |
+| `request_timeout_seconds` | Total deadline in seconds for each URL, including retries. Defaults to the configured value, packaged as 10 seconds. A batch may take longer when URLs run in several waves. | number | `null` | No |
 | <span className="ww-param-group-label">Formatting</span> |  |  |  |  |
 | `output_format` | The desired format for the extracted content. | string; one of:<ul className="ww-param-enum-values"><li>markdown</li><li>json</li></ul> | `"json"` | No |
 | <span className="ww-param-group-label">Execution</span> |  |  |  |  |
-| `threads` | Number of concurrent threads for parallel processing (default 10). | integer | `10` | No |
+| `threads` | Number of concurrent threads for parallel processing. Defaults to the AI configuration. | integer | `null` | No |
 | <span className="ww-param-group-label">Details</span> |  |  |  |  |
 | `client` | The retrieval provider to use. | string; one of:<ul className="ww-param-enum-values"><li>google_url_context</li></ul> | `"google_url_context"` | No |
-| `api_key` | API key for the provider. Can also be set as an environment variable (e.g., GOOGLE_API_KEY). | string, null | `null` | No |
-| `model_id` | The specific model ID to use (default models/gemini-3-flash-preview). | string | `"models/gemini-3-flash-preview"` | No |
+| `api_key` | API key for the provider. Can also be set as an environment variable (e.g., GOOGLE_API_KEY). | string | `null` | No |
+| `model_id` | The specific model ID to use. Defaults to the AI configuration. | string | `null` | No |
 | <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
 | `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
 | `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
 | `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
 
 </div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+<details className="ww-field-disclosure">
+
+<summary>Complete configuration schema</summary>
+
+Schema source: upstream-docstring. Conditional and cross-parameter
+rules below apply in addition to the parameter table. References resolve against
+the [complete recipe schema](/schemas/recipes/registry/schema.json).
+
+
+
+```json
+{
+  "type": "object",
+  "description": "Retrieves targeted content from web pages using LLM URL extraction. Can optionally output a second column containing a clean, human-readable text summary of the retrieved data. Additional options are passed to Gemini GenerateContentConfig.",
+  "additionalProperties": true,
+  "required": [
+    "input",
+    "output"
+  ],
+  "properties": {
+    "input": {
+      "type": [
+        "string",
+        "array"
+      ],
+      "description": "Name or list of input columns containing URLs or Scored Search Result dictionaries."
+    },
+    "output": {
+      "type": [
+        "string",
+        "array"
+      ],
+      "description": "Name of the output column for the raw dictionaries. To output BOTH the raw dictionaries and the formatted text, provide a list of exactly two column names (e.g., [page_data, page_text])."
+    },
+    "client": {
+      "type": "string",
+      "description": "The retrieval provider to use.",
+      "enum": [
+        "google_url_context"
+      ],
+      "default": "google_url_context"
+    },
+    "api_key": {
+      "type": "string",
+      "description": "API key for the provider. Can also be set as an environment variable (e.g., GOOGLE_API_KEY)."
+    },
+    "prompt": {
+      "type": "string",
+      "description": "Optional custom system prompt. Use {{ column_name }} to insert values from the full input row, including columns not selected by input. Replace spaces and punctuation in column names with underscores; aliases must be ASCII identifiers. Dictionaries and lists are inserted as finite JSON text. Substitution is literal and single-pass, without expressions or filters. Missing or ambiguous references fail before retrieval. Omit to use the default prompt."
+    },
+    "model_id": {
+      "type": "string",
+      "description": "The specific model ID to use. Defaults to the AI configuration."
+    },
+    "output_format": {
+      "type": "string",
+      "description": "The desired format for the extracted content.",
+      "enum": [
+        "markdown",
+        "json"
+      ],
+      "default": "json"
+    },
+    "threads": {
+      "type": "integer",
+      "description": "Number of concurrent threads for parallel processing. Defaults to the AI configuration."
+    },
+    "thinking_level": {
+      "type": "string",
+      "enum": [
+        "minimal",
+        "low",
+        "medium",
+        "high"
+      ],
+      "description": "Gemini thinking level. Defaults to the configured value, packaged as minimal. Supported levels depend on the selected model."
+    },
+    "request_timeout_seconds": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "description": "Total deadline in seconds for each URL, including retries. Defaults to the configured value, packaged as 10 seconds. A batch may take longer when URLs run in several waves."
+    },
+    "if": {
+      "$ref": "#/$defs/wrangles/commonProperties/if"
+    },
+    "where": {
+      "$ref": "#/$defs/wrangles/commonProperties/where"
+    },
+    "where_params": {
+      "$ref": "#/$defs/wrangles/commonProperties/where_params"
+    }
+  }
+}
+```
+
+</details>
 
 ## Examples
 
@@ -112,6 +214,7 @@ _Template based on the documented parameters; no published source example is cur
 | Documentation group | `search` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.search.retrieve_link_content` |
+| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
 | Legacy UUID | `3d5faa87-9e96-48c0-8226-5ae566e8d76c` |
 
 **Sources**

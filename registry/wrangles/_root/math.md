@@ -31,19 +31,27 @@ capabilities:
   where_params: true
 parameters:
   - name: input
-    description: >-
-      The mathematical expression using column names. e.g. column1 * column2 + column3. Note: spaces
-      within column names are replaced by underscores (_).
+    description: |
+      The mathematical expression using column names. e.g. column1 * column2
+      + column3.  Note: spaces within column names are replaced by underscores (_).
     required: true
     param_group: I/O
     schema:
-      type: string
+      type:
+        - string
+        - integer
+      description: |
+        The mathematical expression using column names. e.g. column1 * column2
+        + column3.  Note: spaces within column names are replaced by underscores (_).
+    runtime_required: true
   - name: output
-    description: The column to output the results to.
+    description: The column to output the results to
     required: true
     param_group: I/O
     schema:
       type: string
+      description: The column to output the results to
+    runtime_required: true
 examples: []
 sources:
   - id: runtime
@@ -54,6 +62,32 @@ sources:
     resource: >-
       https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/compute/_sources/math.md
     title: Archived math Markdown
+configuration_schema:
+  type: object
+  description: Apply a mathematical calculation.
+  additionalProperties: false
+  required:
+    - input
+    - output
+  properties:
+    input:
+      type:
+        - string
+        - integer
+      description: |
+        The mathematical expression using column names. e.g. column1 * column2
+        + column3.  Note: spaces within column names are replaced by underscores (_).
+    output:
+      type: string
+      description: The column to output the results to
+    if:
+      $ref: '#/$defs/wrangles/commonProperties/if'
+    where:
+      $ref: '#/$defs/wrangles/commonProperties/where'
+    where_params:
+      $ref: '#/$defs/wrangles/commonProperties/where_params'
+schema_origin: upstream-docstring
+schema_adjustments: []
 ---
 
 # Math

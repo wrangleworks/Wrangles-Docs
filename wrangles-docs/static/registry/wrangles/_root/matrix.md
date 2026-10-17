@@ -34,29 +34,37 @@ capabilities:
   where_params: true
 parameters:
   - name: variables
-    description: >-
-      A dictionary of variables to pass to the wrangle. The key is the variable name and the value
-      is a list of values.
+    description: |-
+      A dictionary of variables to pass to the wrangle.
+      The key is the variable name and the value is a list of values.
     required: true
     param_group: Execution
     schema:
       type: object
+      description: |-
+        A dictionary of variables to pass to the wrangle.
+        The key is the variable name and the value is a list of values.
+    runtime_required: true
   - name: wrangles
-    description: >-
-      The wrangles to apply to the dataframe. Each wrangle will be run for each combination of the
-      variables.
+    description: |-
+      The wrangles to apply to the dataframe.
+      Each wrangle will be run for each combination of the variables.
     required: true
     param_group: Execution
     schema:
       type: array
+      description: |-
+        The wrangles to apply to the dataframe.
+        Each wrangle will be run for each combination of the variables.
       minItems: 1
       items:
         $ref: '#/$defs/wrangles/items'
+    runtime_required: true
   - name: strategy
     description: >-
       Determines how to combine variables when there are multiple. loop (default) iterates over each
-      set of variables, repeating shorter lists until the longest is completed. permutations uses
-      the combination of all variables against all other variables.
+      set of variables, repeating shorter lists  until the longest is completed. permutations uses
+      the combination of all  variables against all other variables.
     required: false
     param_group: Options
     runtime_default: loop
@@ -65,6 +73,11 @@ parameters:
       enum:
         - permutations
         - loop
+      description: >-
+        Determines how to combine variables when there are multiple. loop (default) iterates over
+        each set of variables, repeating shorter lists  until the longest is completed. permutations
+        uses the combination of all  variables against all other variables.
+    runtime_required: false
 examples: []
 sources:
   - id: runtime
@@ -75,13 +88,52 @@ sources:
     resource: >-
       https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/utility/_sources/matrix.md
     title: Archived matrix Markdown
+configuration_schema:
+  type: object
+  description: |-
+    Apply a matrix of wrangles to the dataframe.
+    This will run the wrangles for each combination of the variables.
+  required:
+    - variables
+    - wrangles
+  properties:
+    variables:
+      type: object
+      description: |-
+        A dictionary of variables to pass to the wrangle.
+        The key is the variable name and the value is a list of values.
+    wrangles:
+      type: array
+      description: |-
+        The wrangles to apply to the dataframe.
+        Each wrangle will be run for each combination of the variables.
+      minItems: 1
+      items:
+        $ref: '#/$defs/wrangles/items'
+    strategy:
+      type: string
+      enum:
+        - permutations
+        - loop
+      description: >-
+        Determines how to combine variables when there are multiple. loop (default) iterates over
+        each set of variables, repeating shorter lists  until the longest is completed. permutations
+        uses the combination of all  variables against all other variables.
+    if:
+      $ref: '#/$defs/wrangles/commonProperties/if'
+    where:
+      $ref: '#/$defs/wrangles/commonProperties/where'
+    where_params:
+      $ref: '#/$defs/wrangles/commonProperties/where_params'
+schema_origin: upstream-docstring
+schema_adjustments: []
 ---
 
 # Matrix
 
 Apply a matrix of wrangles to the dataframe. Each wrangle runs for the configured combinations of variables, including recipe variables and variables declared by the `variables` parameter.
 
-See the [Matrix connector](/py/python/connectors/matrix) for the connector equivalent.
+See the [Matrix connector](/py/connectors/matrix) for the connector equivalent.
 
 ## Migrated examples
 #### Use Hardcoded Variables

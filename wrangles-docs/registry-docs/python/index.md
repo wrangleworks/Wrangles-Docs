@@ -41,7 +41,7 @@ wrangles.recipe.run('recipe.wrgl.yml')
 
 ## Connectors
 
--   [Connectors *Connect data from other systems as a function or in a recipe*](/py/python/connectors)
+-   [Connectors *Connect data from other systems as a function or in a recipe*](/py/connectors)
 
 ```yaml
 read:

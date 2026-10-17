@@ -23,15 +23,62 @@ Conform a DataFrame to a new index with optional filling logic.
 | Name | Description | Accepted Values | Default | Required |
 | --- | --- | --- | --- | --- |
 | <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `columns` | New labels for the columns. Preferably an Index object to avoid duplicating data. | array, null | `null` | No |
+| `columns` | New labels for the columns. Preferably an Index object to avoid duplicating data. | array | `null` | No |
 | <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `labels` | New labels / index to conform the axis specified by ‘axis’ to. | array, null | `null` | No |
-| `index` | New labels for the index. Preferably an Index object to avoid duplicating data. | array, null | `null` | No |
-| `axis` | Axis to target. Can be either the axis name (‘index’, ‘columns’) or number (0, 1). | string, integer, null | `null` | No |
+| `labels` | New labels / index to conform the axis specified by ‘axis’ to. | array | `null` | No |
+| `index` | New labels for the index. Preferably an Index object to avoid duplicating data. | array | `null` | No |
+| `axis` | Axis to target. Can be either the axis name (‘index’, ‘columns’) or number (0, 1). | number, string | `null` | No |
 | <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
 | `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
 
 </div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+<details className="ww-field-disclosure">
+
+<summary>Complete configuration schema</summary>
+
+Schema source: upstream-docstring. Conditional and cross-parameter
+rules below apply in addition to the parameter table. References resolve against
+the [complete recipe schema](/schemas/recipes/registry/schema.json).
+
+
+
+```json
+{
+  "type": "object",
+  "description": "Changes the row labels and column labels of a DataFrame.",
+  "additionalProperties": false,
+  "properties": {
+    "labels": {
+      "type": "array",
+      "description": "New labels / index to conform the axis specified by ‘axis’ to."
+    },
+    "index": {
+      "type": "array",
+      "description": "New labels for the index. Preferably an Index object to avoid duplicating data."
+    },
+    "columns": {
+      "type": "array",
+      "description": "New labels for the columns. Preferably an Index object to avoid duplicating data."
+    },
+    "axis": {
+      "type": [
+        "number",
+        "string"
+      ],
+      "description": "Axis to target. Can be either the axis name (‘index’, ‘columns’) or number (0, 1)."
+    },
+    "if": {
+      "$ref": "#/$defs/wrangles/commonProperties/if"
+    }
+  }
+}
+```
+
+</details>
 
 ## Examples
 
@@ -111,6 +158,7 @@ wrangles:
 | Documentation group | `transform` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.pandas.reindex` |
+| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
 | Legacy UUID | `def87df8-72da-4e34-83c1-1fde25126257` |
 
 **Sources**

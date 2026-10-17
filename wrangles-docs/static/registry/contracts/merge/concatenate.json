@@ -40,38 +40,94 @@
     "where": true,
     "where_params": true
   },
+  "configuration_schema": {
+    "type": "object",
+    "description": "Concatenate a list of columns or a list within a single column.",
+    "additionalProperties": false,
+    "required": [
+      "input",
+      "output",
+      "char"
+    ],
+    "properties": {
+      "input": {
+        "type": [
+          "array",
+          "string",
+          "integer"
+        ],
+        "description": "Either a single column name or list of columns"
+      },
+      "output": {
+        "type": "string",
+        "description": "Name of the output column"
+      },
+      "char": {
+        "type": "string",
+        "description": "(Optional) Character to add between successive values"
+      },
+      "skip_empty": {
+        "type": "boolean",
+        "desription": "Whether to skip empty values",
+        "default": false
+      },
+      "if": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/if"
+      },
+      "where": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/where"
+      },
+      "where_params": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/where_params"
+      }
+    }
+  },
+  "schema_origin": "upstream-docstring",
+  "schema_adjustments": [],
+  "schema_source": {
+    "repository": "https://github.com/wrangleworks/WranglesPY",
+    "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+    "version": "1.20.5",
+    "extraction": "static-python-ast"
+  },
   "parameters": [
     {
       "name": "input",
-      "description": "Either a single column name or list of columns.",
+      "description": "Either a single column name or list of columns",
       "required": true,
       "param_group": "I/O",
       "schema": {
         "type": [
+          "array",
           "string",
-          "integer",
-          "array"
-        ]
-      }
+          "integer"
+        ],
+        "description": "Either a single column name or list of columns"
+      },
+      "runtime_required": true
     },
     {
       "name": "output",
-      "description": "Name of the output column.",
+      "description": "Name of the output column",
       "required": true,
       "param_group": "I/O",
       "schema": {
-        "type": "string"
-      }
+        "type": "string",
+        "description": "Name of the output column"
+      },
+      "runtime_required": true
     },
     {
       "name": "char",
-      "description": "(Optional) Character to add between successive values.",
-      "required": false,
+      "description": "(Optional) Character to add between successive values",
+      "required": true,
       "param_group": "Formatting",
       "runtime_default": ",",
       "schema": {
-        "type": "string"
-      }
+        "type": "string",
+        "description": "(Optional) Character to add between successive values"
+      },
+      "runtime_required": false
     },
     {
       "name": "skip_empty",
@@ -81,8 +137,10 @@
       "runtime_default": false,
       "schema": {
         "type": "boolean",
-        "desription": "Whether to skip empty values"
-      }
+        "desription": "Whether to skip empty values",
+        "default": false
+      },
+      "runtime_required": false
     },
     {
       "name": "if",

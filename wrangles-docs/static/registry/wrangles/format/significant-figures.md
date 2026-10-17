@@ -31,7 +31,7 @@ capabilities:
   where_params: true
 parameters:
   - name: input
-    description: Name of the input column.
+    description: Name of the input column
     required: true
     param_group: I/O
     schema:
@@ -39,15 +39,20 @@ parameters:
         - string
         - integer
         - array
+      description: Name of the input column
+    runtime_required: true
   - name: significant_figures
     description: Number of significant figures to format to. Default is 3.
     required: false
     param_group: Formatting
     runtime_default: 3
     schema:
-      type: integer
+      type:
+        - integer
+      description: Number of significant figures to format to. Default is 3.
+    runtime_required: false
   - name: output
-    description: Name of the output column.
+    description: Name of the output column
     required: false
     param_group: I/O
     runtime_default: null
@@ -55,7 +60,8 @@ parameters:
       type:
         - string
         - array
-        - 'null'
+      description: Name of the output column
+    runtime_required: false
 examples: []
 sources:
   - id: runtime
@@ -66,6 +72,36 @@ sources:
     resource: >-
       https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/format/_sources/significant-figures.md
     title: Archived format.significant_figures Markdown
+configuration_schema:
+  type: object
+  description: Format a value to a specific number of significant figures
+  additionalProperties: false
+  required:
+    - input
+  properties:
+    input:
+      type:
+        - string
+        - integer
+        - array
+      description: Name of the input column
+    output:
+      type:
+        - string
+        - array
+      description: Name of the output column
+    significant_figures:
+      type:
+        - integer
+      description: Number of significant figures to format to. Default is 3.
+    if:
+      $ref: '#/$defs/wrangles/commonProperties/if'
+    where:
+      $ref: '#/$defs/wrangles/commonProperties/where'
+    where_params:
+      $ref: '#/$defs/wrangles/commonProperties/where_params'
+schema_origin: upstream-docstring
+schema_adjustments: []
 ---
 
 # Significant Figures

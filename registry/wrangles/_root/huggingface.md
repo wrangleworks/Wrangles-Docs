@@ -39,20 +39,27 @@ parameters:
         - string
         - integer
         - array
+      description: Name of the input column.
+    runtime_required: true
   - name: api_token
-    description: Huggingface API Token.
+    description: Huggingface API Token
     required: true
     param_group: Details
     schema:
       type: string
+      description: Huggingface API Token
+    runtime_required: true
   - name: model
-    description: Name of the model to use. e.g. facebook/bart-large-cnn.
+    description: Name of the model to use. e.g. facebook/bart-large-cnn
     required: true
     param_group: Details
     schema:
       type: string
+      description: Name of the model to use. e.g. facebook/bart-large-cnn
+    runtime_required: true
   - name: output
-    description: Name of the output column. If not provided, will overwrite the input column.
+    description: |
+      Name of the output column. If not provided, will overwrite the input column
     required: false
     param_group: I/O
     runtime_default: null
@@ -60,16 +67,38 @@ parameters:
       type:
         - string
         - array
-        - 'null'
+      description: |
+        Name of the output column. If not provided, will overwrite the input column
+    runtime_required: false
   - name: parameters
-    description: Optionally, provide additional parameters to define the model behaviour.
+    description: Optionally, provide additional parameters to define the model behaviour
     required: false
     param_group: Options
     runtime_default: null
     schema:
-      type:
-        - object
-        - 'null'
+      type: object
+      description: Optionally, provide additional parameters to define the model behaviour
+    runtime_required: false
+  - name: timeout
+    description: Request timeout in seconds; defaults to the AI configuration.
+    param_group: Options
+    schema:
+      type: number
+      exclusiveMinimum: 0
+      description: Request timeout in seconds; defaults to the AI configuration.
+    required: false
+    runtime_default: null
+    runtime_required: false
+  - name: retries
+    description: Additional attempts after transient failures; defaults to the AI configuration.
+    param_group: Options
+    schema:
+      type: integer
+      minimum: 0
+      description: Additional attempts after transient failures; defaults to the AI configuration.
+    required: false
+    runtime_default: null
+    runtime_required: false
 examples: []
 sources:
   - id: runtime
@@ -80,6 +109,51 @@ sources:
     resource: >-
       https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/ai/_sources/huggingface.md
     title: Archived huggingface Markdown
+configuration_schema:
+  type: object
+  description: Use a model from huggingface
+  required:
+    - input
+    - api_token
+    - model
+  properties:
+    input:
+      type:
+        - string
+        - integer
+        - array
+      description: Name of the input column.
+    output:
+      type:
+        - string
+        - array
+      description: |
+        Name of the output column. If not provided, will overwrite the input column
+    model:
+      type: string
+      description: Name of the model to use. e.g. facebook/bart-large-cnn
+    api_token:
+      type: string
+      description: Huggingface API Token
+    parameters:
+      type: object
+      description: Optionally, provide additional parameters to define the model behaviour
+    timeout:
+      type: number
+      exclusiveMinimum: 0
+      description: Request timeout in seconds; defaults to the AI configuration.
+    retries:
+      type: integer
+      minimum: 0
+      description: Additional attempts after transient failures; defaults to the AI configuration.
+    if:
+      $ref: '#/$defs/wrangles/commonProperties/if'
+    where:
+      $ref: '#/$defs/wrangles/commonProperties/where'
+    where_params:
+      $ref: '#/$defs/wrangles/commonProperties/where_params'
+schema_origin: upstream-docstring
+schema_adjustments: []
 ---
 
 # Huggingface

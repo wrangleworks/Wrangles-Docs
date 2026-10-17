@@ -37,28 +37,39 @@ capabilities:
   where_params: true
 parameters:
   - name: command
-    description: >-
-      Python command. This must return a value. Note: any non-alphanumeric characters in variable
-      names are replaced by underscores (_).
+    description: |-
+      Python command. This must return a value.
+      Note: any non-alphanumeric characters in variable names
+      are replaced by underscores (_).
     required: true
     param_group: Options
     schema:
       type: string
+      description: |-
+        Python command. This must return a value.
+        Note: any non-alphanumeric characters in variable names
+        are replaced by underscores (_).
+    runtime_required: true
   - name: output
-    description: >-
-      Name or list of output column(s). To output multiple columns, return a list of the
-      corresponding length.
+    description: |-
+      Name or list of output column(s). To output multiple columns,
+      return a list of the corresponding length.
     required: true
     param_group: I/O
     schema:
       type:
         - string
         - array
+      description: |-
+        Name or list of output column(s). To output multiple columns,
+        return a list of the corresponding length.
+    runtime_required: true
   - name: input
-    description: >-
-      Name or list of input column(s) to filter the data available to the command. Useful in
-      conjunction with kwargs to target a variable range of columns. If not specified, all columns
-      will be available.
+    description: |-
+      Name or list of input column(s) to filter the data available
+      to the command. Useful in conjunction with kwargs to target
+      a variable range of columns.
+      If not specified, all columns will be available.
     required: false
     param_group: I/O
     runtime_default: null
@@ -67,12 +78,17 @@ parameters:
         - string
         - integer
         - array
-        - 'null'
+      description: |-
+        Name or list of input column(s) to filter the data available
+        to the command. Useful in conjunction with kwargs to target
+        a variable range of columns.
+        If not specified, all columns will be available.
+    runtime_required: false
   - name: except
-    description: >-
-      Value to return for the row if an exception occurs during the evaluation. If not provided, an
-      exception will be raised as normal. If multiple output columns are specified, this must match
-      the length.
+    description: |-
+      Value to return for the row if an exception occurs during the evaluation.
+      If not provided, an exception will be raised as normal.
+      If multiple output columns are specified, this must match the length.
     required: false
     param_group: Errors
     schema:
@@ -83,6 +99,11 @@ parameters:
         - integer
         - boolean
         - object
+      description: |-
+        Value to return for the row if an exception occurs during the evaluation.
+        If not provided, an exception will be raised as normal.
+        If multiple output columns are specified, this must match the length.
+    runtime_required: false
 examples: []
 sources:
   - id: runtime
@@ -93,6 +114,64 @@ sources:
     resource: >-
       https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/compute/_sources/python.md
     title: Archived python Markdown
+configuration_schema:
+  type: object
+  description: |-
+    Apply a simple single-line python command. For more complex python use a custom function.
+    Note, this evaluates the python command - be especially cautious including
+    variables from untrusted sources within the command string.
+    The python command will be evaluated once for each row and the result returned.
+    Reference column values by using their name.
+    Non-alphanumeric characters within column names are replaced by underscores (_)
+    Additionally, all columns are available as a dict named kwargs.
+    Additional parameters set for the wrangle will also be available to the command.
+  required:
+    - command
+    - output
+  properties:
+    input:
+      type:
+        - string
+        - integer
+        - array
+      description: |-
+        Name or list of input column(s) to filter the data available
+        to the command. Useful in conjunction with kwargs to target
+        a variable range of columns.
+        If not specified, all columns will be available.
+    output:
+      type:
+        - string
+        - array
+      description: |-
+        Name or list of output column(s). To output multiple columns,
+        return a list of the corresponding length.
+    command:
+      type: string
+      description: |-
+        Python command. This must return a value.
+        Note: any non-alphanumeric characters in variable names
+        are replaced by underscores (_).
+    except:
+      type:
+        - string
+        - array
+        - number
+        - integer
+        - boolean
+        - object
+      description: |-
+        Value to return for the row if an exception occurs during the evaluation.
+        If not provided, an exception will be raised as normal.
+        If multiple output columns are specified, this must match the length.
+    if:
+      $ref: '#/$defs/wrangles/commonProperties/if'
+    where:
+      $ref: '#/$defs/wrangles/commonProperties/where'
+    where_params:
+      $ref: '#/$defs/wrangles/commonProperties/where_params'
+schema_origin: upstream-docstring
+schema_adjustments: []
 ---
 
 # Python

@@ -31,7 +31,7 @@ capabilities:
   where_params: true
 parameters:
   - name: start_time
-    description: Name of the start date column.
+    description: Name of the start date column
     required: true
     param_group: I/O
     column_semantics:
@@ -39,8 +39,10 @@ parameters:
       cardinality: scalar
     schema:
       type: string
+      description: Name of the start date column
+    runtime_required: true
   - name: end_time
-    description: Name of the end date column.
+    description: Name of the end date column
     required: true
     param_group: I/O
     column_semantics:
@@ -48,8 +50,10 @@ parameters:
       cardinality: scalar
     schema:
       type: string
+      description: Name of the end date column
+    runtime_required: true
   - name: output
-    description: Name of the output column.
+    description: Name of the output column
     required: true
     param_group: I/O
     column_semantics:
@@ -57,13 +61,16 @@ parameters:
       cardinality: scalar
     schema:
       type: string
+      description: Name of the output column
+    runtime_required: true
   - name: range
-    description: Type of frequency to count.
-    required: false
+    description: Type of frequency to count
+    required: true
     param_group: Options
     runtime_default: day
     schema:
       type: string
+      description: Type of frequency to count
       enum:
         - business days
         - days
@@ -82,6 +89,7 @@ parameters:
         - minutes
         - seconds
         - milliseconds
+    runtime_required: false
 examples: []
 sources:
   - id: runtime
@@ -92,6 +100,54 @@ sources:
     resource: >-
       https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/extract/_sources/date-range.md
     title: Archived extract.date_range Markdown
+configuration_schema:
+  type: object
+  description: Extract date range frequency from two dates
+  additionalProperties: false
+  required:
+    - start_time
+    - end_time
+    - output
+    - range
+  properties:
+    start_time:
+      type: string
+      description: Name of the start date column
+    end_time:
+      type: string
+      description: Name of the end date column
+    output:
+      type: string
+      description: Name of the output column
+    range:
+      type: string
+      description: Type of frequency to count
+      enum:
+        - business days
+        - days
+        - weeks
+        - months
+        - semi months
+        - business month ends
+        - month starts
+        - semi month starts
+        - business month starts
+        - quarters
+        - quarter starts
+        - years
+        - business hours
+        - hours
+        - minutes
+        - seconds
+        - milliseconds
+    if:
+      $ref: '#/$defs/wrangles/commonProperties/if'
+    where:
+      $ref: '#/$defs/wrangles/commonProperties/where'
+    where_params:
+      $ref: '#/$defs/wrangles/commonProperties/where_params'
+schema_origin: upstream-docstring
+schema_adjustments: []
 ---
 
 # Date Range

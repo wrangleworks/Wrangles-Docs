@@ -28,7 +28,7 @@ Condense multiple spaces to a single space and convert special space characters 
 | --- | --- | --- | --- | --- |
 | <span className="ww-param-group-label">I/O</span> |  |  |  |  |
 | `input` | Name or list of input columns. | string, integer, array | — | Yes |
-| `output` | Name or list of output columns. | string, array, null | `null` | No |
+| `output` | Name or list of output columns. | string, array | `null` | No |
 | <span className="ww-param-group-label">Options</span> |  |  |  |  |
 | `trim` | Whether to trim leading and trailing spaces. Default True. | boolean | `true` | No |
 | `remove_literals` | Whether to remove special space characters such as new lines etc. Default True. | boolean | `true` | No |
@@ -38,6 +38,66 @@ Condense multiple spaces to a single space and convert special space characters 
 | `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
 
 </div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+<details className="ww-field-disclosure">
+
+<summary>Complete configuration schema</summary>
+
+Schema source: upstream-docstring. Conditional and cross-parameter
+rules below apply in addition to the parameter table. References resolve against
+the [complete recipe schema](/schemas/recipes/registry/schema.json).
+
+
+
+```json
+{
+  "type": "object",
+  "description": "Condense multiple spaces to a single space and convert special space characters to a standard space.",
+  "additionalProperties": false,
+  "required": [
+    "input"
+  ],
+  "properties": {
+    "input": {
+      "type": [
+        "string",
+        "integer",
+        "array"
+      ],
+      "description": "Name or list of input columns."
+    },
+    "output": {
+      "type": [
+        "string",
+        "array"
+      ],
+      "description": "Name or list of output columns."
+    },
+    "trim": {
+      "type": "boolean",
+      "description": "Whether to trim leading and trailing spaces. Default True."
+    },
+    "remove_literals": {
+      "type": "boolean",
+      "description": "Whether to remove special space characters such as new lines etc. Default True."
+    },
+    "if": {
+      "$ref": "#/$defs/wrangles/commonProperties/if"
+    },
+    "where": {
+      "$ref": "#/$defs/wrangles/commonProperties/where"
+    },
+    "where_params": {
+      "$ref": "#/$defs/wrangles/commonProperties/where_params"
+    }
+  }
+}
+```
+
+</details>
 
 ### Examples
 
@@ -98,6 +158,7 @@ wrangles:
 | Documentation group | `format` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.clean_whitespaces` |
+| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
 | Legacy UUID | `e36e15c4-f0ad-43f8-8555-ef683a8ab892` |
 
 **Sources**
@@ -123,16 +184,75 @@ Format a date into the desired pattern.
 | Name | Description | Accepted Values | Default | Required |
 | --- | --- | --- | --- | --- |
 | <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `input` | Name of the input column. | string, integer, array | — | Yes |
-| `output` | Name of the output column. | string, array, null | `null` | No |
+| `input` | Name of the input column | string, integer, array | — | Yes |
+| `output` | Name of the output column | string, array | `null` | No |
 | <span className="ww-param-group-label">Formatting</span> |  |  |  |  |
-| `format` | String pattern to format date. | string | — | Yes |
+| `format` | String pattern to format date | string | — | Yes |
 | <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
 | `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
 | `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
 | `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
 
 </div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+<details className="ww-field-disclosure">
+
+<summary>Complete configuration schema</summary>
+
+Schema source: upstream-docstring. Conditional and cross-parameter
+rules below apply in addition to the parameter table. References resolve against
+the [complete recipe schema](/schemas/recipes/registry/schema.json).
+
+
+
+```json
+{
+  "type": "object",
+  "description": "Format a date",
+  "additionalProperties": false,
+  "required": [
+    "input",
+    "format"
+  ],
+  "properties": {
+    "input": {
+      "type": [
+        "string",
+        "integer",
+        "array"
+      ],
+      "description": "Name of the input column"
+    },
+    "output": {
+      "type": [
+        "string",
+        "array"
+      ],
+      "description": "Name of the output column"
+    },
+    "format": {
+      "type": [
+        "string"
+      ],
+      "description": "String pattern to format date"
+    },
+    "if": {
+      "$ref": "#/$defs/wrangles/commonProperties/if"
+    },
+    "where": {
+      "$ref": "#/$defs/wrangles/commonProperties/where"
+    },
+    "where_params": {
+      "$ref": "#/$defs/wrangles/commonProperties/where_params"
+    }
+  }
+}
+```
+
+</details>
 
 ### Examples
 
@@ -193,6 +313,7 @@ wrangles:
 | Documentation group | `format` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.format.dates` |
+| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
 | Legacy UUID | `a3c15135-4f7a-4659-83fd-f657afa603c9` |
 
 **Sources**
@@ -218,20 +339,98 @@ Pad a string to a fixed length
 | Name | Description | Accepted Values | Default | Required |
 | --- | --- | --- | --- | --- |
 | <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `input` | Name of the input column. | string, integer, array | — | Yes |
-| `output` | Name of the output column. | string, array, null | `null` | No |
+| `input` | Name of the input column | string, integer, array | — | Yes |
+| `output` | Name of the output column | string, array | `null` | No |
 | <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `side` | Side from which to fill resulting string. | string | — | Yes |
-| `skip_empty` | If true, skip padding for empty or whitespace-only values. | boolean | `false` | No |
+| `side` | Side from which to fill resulting string | string | — | Yes |
+| `skip_empty` | If true, skip padding for empty or whitespace-only values | boolean | `false` | No |
 | <span className="ww-param-group-label">Formatting</span> |  |  |  |  |
-| `pad_length` | Length for the output. | integer | — | Yes |
-| `char` | The character to pad the input with. | string | — | Yes |
+| `pad_length` | Length for the output | number | — | Yes |
+| `char` | The character to pad the input with | string | — | Yes |
 | <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
 | `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
 | `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
 | `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
 
 </div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+<details className="ww-field-disclosure">
+
+<summary>Complete configuration schema</summary>
+
+Schema source: upstream-docstring. Conditional and cross-parameter
+rules below apply in addition to the parameter table. References resolve against
+the [complete recipe schema](/schemas/recipes/registry/schema.json).
+
+
+
+```json
+{
+  "type": "object",
+  "description": "Pad a string to a fixed length",
+  "additionalProperties": false,
+  "required": [
+    "input",
+    "pad_length",
+    "side",
+    "char"
+  ],
+  "properties": {
+    "input": {
+      "type": [
+        "string",
+        "integer",
+        "array"
+      ],
+      "description": "Name of the input column"
+    },
+    "output": {
+      "type": [
+        "string",
+        "array"
+      ],
+      "description": "Name of the output column"
+    },
+    "pad_length": {
+      "type": [
+        "number"
+      ],
+      "description": "Length for the output"
+    },
+    "side": {
+      "type": [
+        "string"
+      ],
+      "description": "Side from which to fill resulting string"
+    },
+    "char": {
+      "type": [
+        "string"
+      ],
+      "description": "The character to pad the input with"
+    },
+    "skip_empty": {
+      "type": "boolean",
+      "description": "If true, skip padding for empty or whitespace-only values",
+      "default": false
+    },
+    "if": {
+      "$ref": "#/$defs/wrangles/commonProperties/if"
+    },
+    "where": {
+      "$ref": "#/$defs/wrangles/commonProperties/where"
+    },
+    "where_params": {
+      "$ref": "#/$defs/wrangles/commonProperties/where_params"
+    }
+  }
+}
+```
+
+</details>
 
 ### Examples
 
@@ -299,6 +498,7 @@ wrangles:
 | Documentation group | `format` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.format.pad` |
+| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
 | Legacy UUID | `76c19378-38f4-45aa-85d1-3cdf8f8aae29` |
 
 **Sources**
@@ -324,17 +524,82 @@ Add a prefix to a column.
 | Name | Description | Accepted Values | Default | Required |
 | --- | --- | --- | --- | --- |
 | <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `input` | Name of the input column. | string, integer, array | — | Yes |
-| `output` | (Optional) Name of the output column. | string, array, null | `null` | No |
+| `input` | Name of the input column | string, integer, array | — | Yes |
+| `output` | (Optional) Name of the output column | string, array | `null` | No |
 | <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `value` | Prefix value to add. | string, integer, number | — | Yes |
-| `skip_empty` | Whether to skip empty values. | boolean | `false` | No |
+| `value` | Prefix value to add | string, number | — | Yes |
+| `skip_empty` | Whether to skip empty values | boolean | `false` | No |
 | <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
 | `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
 | `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
 | `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
 
 </div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+<details className="ww-field-disclosure">
+
+<summary>Complete configuration schema</summary>
+
+Schema source: upstream-docstring. Conditional and cross-parameter
+rules below apply in addition to the parameter table. References resolve against
+the [complete recipe schema](/schemas/recipes/registry/schema.json).
+
+
+
+```json
+{
+  "type": "object",
+  "description": "Add a prefix to a column",
+  "additionalProperties": false,
+  "required": [
+    "input",
+    "value"
+  ],
+  "properties": {
+    "input": {
+      "type": [
+        "string",
+        "integer",
+        "array"
+      ],
+      "description": "Name of the input column"
+    },
+    "value": {
+      "type": [
+        "string",
+        "number"
+      ],
+      "description": "Prefix value to add"
+    },
+    "output": {
+      "type": [
+        "string",
+        "array"
+      ],
+      "description": "(Optional) Name of the output column"
+    },
+    "skip_empty": {
+      "type": "boolean",
+      "description": "Whether to skip empty values",
+      "default": false
+    },
+    "if": {
+      "$ref": "#/$defs/wrangles/commonProperties/if"
+    },
+    "where": {
+      "$ref": "#/$defs/wrangles/commonProperties/where"
+    },
+    "where_params": {
+      "$ref": "#/$defs/wrangles/commonProperties/where_params"
+    }
+  }
+}
+```
+
+</details>
 
 ### Examples
 
@@ -399,6 +664,7 @@ wrangles:
 | Documentation group | `format` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.format.prefix` |
+| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
 | Legacy UUID | `c12f99b9-2363-4da7-8405-7c73b87906e5` |
 
 **Sources**
@@ -439,6 +705,53 @@ This guidance was derived from the callable signature.
 
 </div>
 
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+<details className="ww-field-disclosure">
+
+<summary>Complete configuration schema</summary>
+
+Schema source: signature-derived. Conditional and cross-parameter
+rules below apply in addition to the parameter table. References resolve against
+the [complete recipe schema](/schemas/recipes/registry/schema.json).
+
+
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "input": {
+      "type": "array"
+    },
+    "categoryLabel": {
+      "type": "string"
+    },
+    "valueLabel": {
+      "type": "string"
+    },
+    "if": {
+      "$ref": "#/$defs/wrangles/commonProperties/if"
+    },
+    "where": {
+      "$ref": "#/$defs/wrangles/commonProperties/where"
+    },
+    "where_params": {
+      "$ref": "#/$defs/wrangles/commonProperties/where_params"
+    }
+  },
+  "required": [
+    "input",
+    "categoryLabel",
+    "valueLabel"
+  ],
+  "additionalProperties": false
+}
+```
+
+</details>
+
 
 
 <details className="ww-field-disclosure">
@@ -471,6 +784,7 @@ This guidance was derived from the callable signature.
 | Documentation group | `format` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.format.price_breaks` |
+| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
 | Legacy UUID | None |
 
 **Sources**
@@ -495,16 +809,72 @@ Remove duplicate values in a list.
 | Name | Description | Accepted Values | Default | Required |
 | --- | --- | --- | --- | --- |
 | <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `input` | Name of the input column. | string, integer, array | — | Yes |
-| `output` | Name of the output column. | string, array, null | `null` | No |
+| `input` | Name of the input column | string, integer, array | — | Yes |
+| `output` | Name of the output column | string, array | `null` | No |
 | <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `ignore_case` | Ignore case when removing duplicates. | boolean | `false` | No |
+| `ignore_case` | Ignore case when removing duplicates | boolean | `false` | No |
 | <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
 | `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
 | `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
 | `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
 
 </div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+<details className="ww-field-disclosure">
+
+<summary>Complete configuration schema</summary>
+
+Schema source: upstream-docstring. Conditional and cross-parameter
+rules below apply in addition to the parameter table. References resolve against
+the [complete recipe schema](/schemas/recipes/registry/schema.json).
+
+
+
+```json
+{
+  "type": "object",
+  "description": "Remove duplicates from a list. Preserves input order.",
+  "additionalProperties": false,
+  "required": [
+    "input"
+  ],
+  "properties": {
+    "input": {
+      "type": [
+        "string",
+        "integer",
+        "array"
+      ],
+      "description": "Name of the input column"
+    },
+    "output": {
+      "type": [
+        "string",
+        "array"
+      ],
+      "description": "Name of the output column"
+    },
+    "ignore_case": {
+      "type": "boolean",
+      "description": "Ignore case when removing duplicates"
+    },
+    "if": {
+      "$ref": "#/$defs/wrangles/commonProperties/if"
+    },
+    "where": {
+      "$ref": "#/$defs/wrangles/commonProperties/where"
+    },
+    "where_params": {
+      "$ref": "#/$defs/wrangles/commonProperties/where_params"
+    }
+  }
+}
+```
+
+</details>
 
 ### Examples
 
@@ -567,6 +937,7 @@ wrangles:
 | Documentation group | `format` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.format.remove_duplicates` |
+| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
 | Legacy UUID | `283b9e78-b2b2-43d0-844f-9842c33120aa` |
 
 **Sources**
@@ -592,8 +963,8 @@ Format a value to a specific number of significant figures
 | Name | Description | Accepted Values | Default | Required |
 | --- | --- | --- | --- | --- |
 | <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `input` | Name of the input column. | string, integer, array | — | Yes |
-| `output` | Name of the output column. | string, array, null | `null` | No |
+| `input` | Name of the input column | string, integer, array | — | Yes |
+| `output` | Name of the output column | string, array | `null` | No |
 | <span className="ww-param-group-label">Formatting</span> |  |  |  |  |
 | `significant_figures` | Number of significant figures to format to. Default is 3. | integer | `3` | No |
 | <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
@@ -602,6 +973,64 @@ Format a value to a specific number of significant figures
 | `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
 
 </div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+<details className="ww-field-disclosure">
+
+<summary>Complete configuration schema</summary>
+
+Schema source: upstream-docstring. Conditional and cross-parameter
+rules below apply in addition to the parameter table. References resolve against
+the [complete recipe schema](/schemas/recipes/registry/schema.json).
+
+
+
+```json
+{
+  "type": "object",
+  "description": "Format a value to a specific number of significant figures",
+  "additionalProperties": false,
+  "required": [
+    "input"
+  ],
+  "properties": {
+    "input": {
+      "type": [
+        "string",
+        "integer",
+        "array"
+      ],
+      "description": "Name of the input column"
+    },
+    "output": {
+      "type": [
+        "string",
+        "array"
+      ],
+      "description": "Name of the output column"
+    },
+    "significant_figures": {
+      "type": [
+        "integer"
+      ],
+      "description": "Number of significant figures to format to. Default is 3."
+    },
+    "if": {
+      "$ref": "#/$defs/wrangles/commonProperties/if"
+    },
+    "where": {
+      "$ref": "#/$defs/wrangles/commonProperties/where"
+    },
+    "where_params": {
+      "$ref": "#/$defs/wrangles/commonProperties/where_params"
+    }
+  }
+}
+```
+
+</details>
 
 ### Examples
 
@@ -666,6 +1095,7 @@ wrangles:
 | Documentation group | `format` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.format.significant_figures` |
+| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
 | Legacy UUID | `a359f72a-5250-4dd8-84f6-8a8173bee0f6` |
 
 **Sources**
@@ -691,17 +1121,82 @@ Add a suffix to a column
 | Name | Description | Accepted Values | Default | Required |
 | --- | --- | --- | --- | --- |
 | <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `input` | Name of the input column. | string, integer, array | — | Yes |
-| `output` | (Optional) Name of the output column. | string, null | `null` | No |
+| `input` | Name of the input column | string, integer, array | — | Yes |
+| `output` | (Optional) Name of the output column | string, array | `null` | No |
 | <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `value` | Suffix value to add. | string, integer, number, array | — | Yes |
-| `skip_empty` | Whether to skip empty values. | boolean | `false` | No |
+| `value` | Suffix value to add | string, number | — | Yes |
+| `skip_empty` | Whether to skip empty values | boolean | `false` | No |
 | <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
 | `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
 | `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
 | `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
 
 </div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+<details className="ww-field-disclosure">
+
+<summary>Complete configuration schema</summary>
+
+Schema source: upstream-docstring. Conditional and cross-parameter
+rules below apply in addition to the parameter table. References resolve against
+the [complete recipe schema](/schemas/recipes/registry/schema.json).
+
+
+
+```json
+{
+  "type": "object",
+  "description": "Add a suffix to a column",
+  "additionalProperties": false,
+  "required": [
+    "input",
+    "value"
+  ],
+  "properties": {
+    "input": {
+      "type": [
+        "string",
+        "integer",
+        "array"
+      ],
+      "description": "Name of the input column"
+    },
+    "value": {
+      "type": [
+        "string",
+        "number"
+      ],
+      "description": "Suffix value to add"
+    },
+    "output": {
+      "type": [
+        "string",
+        "array"
+      ],
+      "description": "(Optional) Name of the output column"
+    },
+    "skip_empty": {
+      "type": "boolean",
+      "description": "Whether to skip empty values",
+      "default": false
+    },
+    "if": {
+      "$ref": "#/$defs/wrangles/commonProperties/if"
+    },
+    "where": {
+      "$ref": "#/$defs/wrangles/commonProperties/where"
+    },
+    "where_params": {
+      "$ref": "#/$defs/wrangles/commonProperties/where_params"
+    }
+  }
+}
+```
+
+</details>
 
 ### Examples
 
@@ -766,6 +1261,7 @@ wrangles:
 | Documentation group | `format` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.format.suffix` |
+| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
 | Legacy UUID | `8d127060-ba2d-4934-897f-07662e01e40b` |
 
 **Sources**
@@ -795,14 +1291,66 @@ Non-string values pass through unaltered.
 | Name | Description | Accepted Values | Default | Required |
 | --- | --- | --- | --- | --- |
 | <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `input` | Name of the input column. | string, integer, array | — | Yes |
-| `output` | Name of the output column. | string, array, null | `null` | No |
+| `input` | Name of the input column | string, integer, array | — | Yes |
+| `output` | Name of the output column | string, array | `null` | No |
 | <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
 | `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
 | `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
 | `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
 
 </div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+<details className="ww-field-disclosure">
+
+<summary>Complete configuration schema</summary>
+
+Schema source: upstream-docstring. Conditional and cross-parameter
+rules below apply in addition to the parameter table. References resolve against
+the [complete recipe schema](/schemas/recipes/registry/schema.json).
+
+
+
+```json
+{
+  "type": "object",
+  "description": "Remove excess whitespace at the start and end of text.",
+  "additionalProperties": false,
+  "required": [
+    "input"
+  ],
+  "properties": {
+    "input": {
+      "type": [
+        "string",
+        "integer",
+        "array"
+      ],
+      "description": "Name of the input column"
+    },
+    "output": {
+      "type": [
+        "string",
+        "array"
+      ],
+      "description": "Name of the output column"
+    },
+    "if": {
+      "$ref": "#/$defs/wrangles/commonProperties/if"
+    },
+    "where": {
+      "$ref": "#/$defs/wrangles/commonProperties/where"
+    },
+    "where_params": {
+      "$ref": "#/$defs/wrangles/commonProperties/where_params"
+    }
+  }
+}
+```
+
+</details>
 
 ### Examples
 
@@ -863,6 +1411,7 @@ wrangles:
 | Documentation group | `format` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.format.trim` |
+| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
 | Legacy UUID | `af16b3c1-c230-4868-8ebe-f574904a0c76` |
 
 **Sources**
@@ -888,18 +1437,84 @@ Remove all the elements that occur in one list from another.
 | Name | Description | Accepted Values | Default | Required |
 | --- | --- | --- | --- | --- |
 | <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `input` | Name of column to remove words from. | string, integer, array | — | Yes |
-| `to_remove` | Column or list of columns with a list of words to be removed. | string | — | Yes |
-| `output` | Name of the output columns. | string, array, null | `null` | No |
+| `input` | Name of column to remove words from | string, integer, array | — | Yes |
+| `to_remove` | Column or list of columns with a list of words to be removed | array | — | Yes |
+| `output` | Name of the output columns | string, array | `null` | Yes |
 | <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `tokenize_to_remove` | Tokenize all to_remove inputs. | boolean | `false` | No |
-| `ignore_case` | Ignore input and to_remove case. | boolean | `true` | No |
+| `tokenize_to_remove` | Tokenize all to_remove inputs | boolean | `false` | No |
+| `ignore_case` | Ignore input and to_remove case | boolean | `true` | No |
 | <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
 | `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
 | `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
 | `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
 
 </div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+<details className="ww-field-disclosure">
+
+<summary>Complete configuration schema</summary>
+
+Schema source: upstream-docstring. Conditional and cross-parameter
+rules below apply in addition to the parameter table. References resolve against
+the [complete recipe schema](/schemas/recipes/registry/schema.json).
+
+
+
+```json
+{
+  "type": "object",
+  "description": "Remove all the elements that occur in one list from another.",
+  "additionalProperties": false,
+  "required": [
+    "input",
+    "to_remove",
+    "output"
+  ],
+  "properties": {
+    "input": {
+      "type": [
+        "string",
+        "integer",
+        "array"
+      ],
+      "description": "Name of column to remove words from"
+    },
+    "to_remove": {
+      "type": "array",
+      "description": "Column or list of columns with a list of words to be removed"
+    },
+    "output": {
+      "type": [
+        "string",
+        "array"
+      ],
+      "description": "Name of the output columns"
+    },
+    "tokenize_to_remove": {
+      "type": "boolean",
+      "description": "Tokenize all to_remove inputs"
+    },
+    "ignore_case": {
+      "type": "boolean",
+      "description": "Ignore input and to_remove case"
+    },
+    "if": {
+      "$ref": "#/$defs/wrangles/commonProperties/if"
+    },
+    "where": {
+      "$ref": "#/$defs/wrangles/commonProperties/where"
+    },
+    "where_params": {
+      "$ref": "#/$defs/wrangles/commonProperties/where_params"
+    }
+  }
+}
+```
+
+</details>
 
 ### Examples
 
@@ -966,6 +1581,7 @@ wrangles:
 | Documentation group | `format` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.remove_words` |
+| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
 | Legacy UUID | `543b96c3-f354-48be-8046-bf0cb9fbaf56` |
 
 **Sources**
@@ -995,17 +1611,79 @@ Values that are not a number or a string pass through unaltered.
 | Name | Description | Accepted Values | Default | Required |
 | --- | --- | --- | --- | --- |
 | <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `input` | Name or list of input column. | string, integer, array | — | Yes |
-| `output` | Name or list of output column. | string, array, null | `null` | No |
+| `input` | Name or list of input column | string, integer, array | — | Yes |
+| `output` | Name or list of output column | string, array | `null` | No |
 | <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `find` | Pattern to find using regex. | string | — | Yes |
-| `replace` | Value to replace the pattern found. | string | — | Yes |
+| `find` | Pattern to find using regex | string | — | Yes |
+| `replace` | Value to replace the pattern found | string | — | Yes |
 | <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
 | `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
 | `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
 | `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
 
 </div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+<details className="ww-field-disclosure">
+
+<summary>Complete configuration schema</summary>
+
+Schema source: upstream-docstring. Conditional and cross-parameter
+rules below apply in addition to the parameter table. References resolve against
+the [complete recipe schema](/schemas/recipes/registry/schema.json).
+
+
+
+```json
+{
+  "type": "object",
+  "description": "Quick find and replace for simple values. Can use regex if 'input' in params and isinstance(params['input'], list):in the find field.",
+  "additionalProperties": false,
+  "required": [
+    "input",
+    "find",
+    "replace"
+  ],
+  "properties": {
+    "input": {
+      "type": [
+        "string",
+        "integer",
+        "array"
+      ],
+      "description": "Name or list of input column"
+    },
+    "output": {
+      "type": [
+        "string",
+        "array"
+      ],
+      "description": "Name or list of output column"
+    },
+    "find": {
+      "type": "string",
+      "description": "Pattern to find using regex"
+    },
+    "replace": {
+      "type": "string",
+      "description": "Value to replace the pattern found"
+    },
+    "if": {
+      "$ref": "#/$defs/wrangles/commonProperties/if"
+    },
+    "where": {
+      "$ref": "#/$defs/wrangles/commonProperties/where"
+    },
+    "where_params": {
+      "$ref": "#/$defs/wrangles/commonProperties/where_params"
+    }
+  }
+}
+```
+
+</details>
 
 ### Examples
 
@@ -1068,6 +1746,7 @@ wrangles:
 | Documentation group | `format` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.replace` |
+| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
 | Legacy UUID | `f0ab715e-9e0e-4614-83e4-5cd8ea08a09f` |
 
 **Sources**
@@ -1093,16 +1772,72 @@ Round numbers in a column to the nearest decimal point of your choosing.
 | Name | Description | Accepted Values | Default | Required |
 | --- | --- | --- | --- | --- |
 | <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `input` | Name of the input column(s). | string, integer, array | — | Yes |
-| `output` | Name of the output column(s). | string, array, null | `null` | No |
+| `input` | Name of the input column(s) | string, integer, array | — | Yes |
+| `output` | Name of the output column(s) | string, array | `null` | No |
 | <span className="ww-param-group-label">Formatting</span> |  |  |  |  |
-| `decimals` | Number of decimal places to round column. | integer | `0` | No |
+| `decimals` | Number of decimal places to round column | number | `0` | No |
 | <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
 | `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
 | `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
 | `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
 
 </div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+<details className="ww-field-disclosure">
+
+<summary>Complete configuration schema</summary>
+
+Schema source: upstream-docstring. Conditional and cross-parameter
+rules below apply in addition to the parameter table. References resolve against
+the [complete recipe schema](/schemas/recipes/registry/schema.json).
+
+
+
+```json
+{
+  "type": "object",
+  "description": "Round column(s) to the specified decimals",
+  "additionalProperties": false,
+  "required": [
+    "input"
+  ],
+  "properties": {
+    "input": {
+      "type": [
+        "string",
+        "integer",
+        "array"
+      ],
+      "description": "Name of the input column(s)"
+    },
+    "output": {
+      "type": [
+        "string",
+        "array"
+      ],
+      "description": "Name of the output column(s)"
+    },
+    "decimals": {
+      "type": "number",
+      "description": "Number of decimal places to round column"
+    },
+    "if": {
+      "$ref": "#/$defs/wrangles/commonProperties/if"
+    },
+    "where": {
+      "$ref": "#/$defs/wrangles/commonProperties/where"
+    },
+    "where_params": {
+      "$ref": "#/$defs/wrangles/commonProperties/where_params"
+    }
+  }
+}
+```
+
+</details>
 
 ### Examples
 
@@ -1165,6 +1900,7 @@ wrangles:
 | Documentation group | `format` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.pandas.round` |
+| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
 | Legacy UUID | `12f3111b-8511-4e42-8d3f-b5302dc3b4e4` |
 
 **Sources**
@@ -1190,18 +1926,135 @@ Translate the input column to another language. Powered by DeepL.
 | Name | Description | Accepted Values | Default | Required |
 | --- | --- | --- | --- | --- |
 | <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `input` | Name of the column to translate. | string, integer, array | — | Yes |
-| `output` | Name of the output column. | string, array | — | Yes |
+| `input` | Name of the column to translate | string, integer, array | — | Yes |
+| `output` | Name of the output column | string, array | — | Yes |
 | <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `target_language` | Code of the language to translate to. | string; one of:<ul className="ww-param-enum-values"><li>Bulgarian</li><li>Chinese</li><li>Czech</li><li>Danish</li><li>Dutch</li><li>English (American)</li><li>English (British)</li><li>Estonian</li><li>Finnish</li><li>French</li><li>German</li><li>Greek</li><li>Hungarian</li><li>Italian</li><li>Japanese</li><li>Latvian</li><li>Lithuanian</li><li>Polish</li><li>Portuguese</li><li>Portuguese (Brazilian)</li><li>Romanian</li><li>Russian</li><li>Slovak</li><li>Slovenian</li><li>Spanish</li><li>Swedish</li></ul> | — | Yes |
-| `source_language` | Code of the language to translate from. If omitted, automatically detects the input language. | string; one of:<ul className="ww-param-enum-values"><li>Auto</li><li>Bulgarian</li><li>Chinese</li><li>Czech</li><li>Danish</li><li>Dutch</li><li>English</li><li>Estonian</li><li>Finnish</li><li>French</li><li>German</li><li>Greek</li><li>Hungarian</li><li>Italian</li><li>Japanese</li><li>Latvian</li><li>Lithuanian</li><li>Polish</li><li>Portuguese</li><li>Romanian</li><li>Russian</li><li>Slovak</li><li>Slovenian</li><li>Spanish</li><li>Swedish</li></ul> | `"AUTO"` | No |
-| `case` | Allow changing the case of the input prior to translation. | string, null | `null` | No |
+| `target_language` | Code of the language to translate to | string; one of:<ul className="ww-param-enum-values"><li>Bulgarian</li><li>Chinese</li><li>Czech</li><li>Danish</li><li>Dutch</li><li>English (American)</li><li>English (British)</li><li>Estonian</li><li>Finnish</li><li>French</li><li>German</li><li>Greek</li><li>Hungarian</li><li>Italian</li><li>Japanese</li><li>Latvian</li><li>Lithuanian</li><li>Polish</li><li>Portuguese</li><li>Portuguese (Brazilian)</li><li>Romanian</li><li>Russian</li><li>Slovak</li><li>Slovenian</li><li>Spanish</li><li>Swedish</li></ul> | — | Yes |
+| `source_language` | Code of the language to translate from. If omitted, automatically detects the input language | string; one of:<ul className="ww-param-enum-values"><li>Auto</li><li>Bulgarian</li><li>Chinese</li><li>Czech</li><li>Danish</li><li>Dutch</li><li>English</li><li>Estonian</li><li>Finnish</li><li>French</li><li>German</li><li>Greek</li><li>Hungarian</li><li>Italian</li><li>Japanese</li><li>Latvian</li><li>Lithuanian</li><li>Polish</li><li>Portuguese</li><li>Romanian</li><li>Russian</li><li>Slovak</li><li>Slovenian</li><li>Spanish</li><li>Swedish</li></ul> | `"AUTO"` | No |
+| `case` | Allow changing the case of the input prior to translation. | Any JSON value (not constrained upstream) | `null` | No |
 | <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
 | `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
 | `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
 | `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
 
 </div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+<details className="ww-field-disclosure">
+
+<summary>Complete configuration schema</summary>
+
+Schema source: upstream-docstring. Conditional and cross-parameter
+rules below apply in addition to the parameter table. References resolve against
+the [complete recipe schema](/schemas/recipes/registry/schema.json).
+
+
+
+```json
+{
+  "type": "object",
+  "description": "Translate the input to a different language. Requires WrangleWorks Account and DeepL API Key (A free account for up to 500,000 characters per month is available).",
+  "additionalProperties": false,
+  "required": [
+    "input",
+    "output",
+    "target_language"
+  ],
+  "properties": {
+    "input": {
+      "type": [
+        "string",
+        "integer",
+        "array"
+      ],
+      "description": "Name of the column to translate"
+    },
+    "output": {
+      "type": [
+        "string",
+        "array"
+      ],
+      "description": "Name of the output column"
+    },
+    "target_language": {
+      "type": "string",
+      "description": "Code of the language to translate to",
+      "enum": [
+        "Bulgarian",
+        "Chinese",
+        "Czech",
+        "Danish",
+        "Dutch",
+        "English (American)",
+        "English (British)",
+        "Estonian",
+        "Finnish",
+        "French",
+        "German",
+        "Greek",
+        "Hungarian",
+        "Italian",
+        "Japanese",
+        "Latvian",
+        "Lithuanian",
+        "Polish",
+        "Portuguese",
+        "Portuguese (Brazilian)",
+        "Romanian",
+        "Russian",
+        "Slovak",
+        "Slovenian",
+        "Spanish",
+        "Swedish"
+      ]
+    },
+    "source_language": {
+      "type": "string",
+      "description": "Code of the language to translate from. If omitted, automatically detects the input language",
+      "enum": [
+        "Auto",
+        "Bulgarian",
+        "Chinese",
+        "Czech",
+        "Danish",
+        "Dutch",
+        "English",
+        "Estonian",
+        "Finnish",
+        "French",
+        "German",
+        "Greek",
+        "Hungarian",
+        "Italian",
+        "Japanese",
+        "Latvian",
+        "Lithuanian",
+        "Polish",
+        "Portuguese",
+        "Romanian",
+        "Russian",
+        "Slovak",
+        "Slovenian",
+        "Spanish",
+        "Swedish"
+      ]
+    },
+    "if": {
+      "$ref": "#/$defs/wrangles/commonProperties/if"
+    },
+    "where": {
+      "$ref": "#/$defs/wrangles/commonProperties/where"
+    },
+    "where_params": {
+      "$ref": "#/$defs/wrangles/commonProperties/where_params"
+    }
+  }
+}
+```
+
+</details>
 
 ### Examples
 
@@ -1263,6 +2116,7 @@ wrangles:
 | Documentation group | `format` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.translate` |
+| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
 | Legacy UUID | `73c3ceb6-ffd8-4d74-8389-c83b99d33bb0` |
 
 **Sources**
@@ -1293,17 +2147,79 @@ Run a standardize wrangle, such as one that expands abbreviations. A standardiza
 | --- | --- | --- | --- | --- |
 | <span className="ww-param-group-label">I/O</span> |  |  |  |  |
 | `input` | Name or list of input columns. | string, integer, array | — | Yes |
-| `output` | Name or list of output columns. | string, array, null | `null` | No |
+| `output` | Name or list of output columns | string, array | `null` | No |
 | <span className="ww-param-group-label">Options</span> |  |  |  |  |
 | `case_sensitive` | Allows the wrangle to be case sensitive if set to True, default is False. | boolean | `false` | No |
 | <span className="ww-param-group-label">Details</span> |  |  |  |  |
-| `model_id` | The ID of the wrangle to use (do not include 'find' and 'replace'). | string, array | — | Yes |
+| `model_id` | The ID of the wrangle to use (do not include 'find' and 'replace') | string, array | — | No |
 | <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
 | `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
 | `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
 | `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
 
 </div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+<details className="ww-field-disclosure">
+
+<summary>Complete configuration schema</summary>
+
+Schema source: upstream-docstring. Conditional and cross-parameter
+rules below apply in addition to the parameter table. References resolve against
+the [complete recipe schema](/schemas/recipes/registry/schema.json).
+
+
+
+```json
+{
+  "type": "object",
+  "description": "Standardize data using a DIY or bespoke standardization wrangle. Requires WrangleWorks Account and Subscription.",
+  "required": [
+    "input"
+  ],
+  "properties": {
+    "input": {
+      "type": [
+        "string",
+        "integer",
+        "array"
+      ],
+      "description": "Name or list of input columns."
+    },
+    "output": {
+      "type": [
+        "string",
+        "array"
+      ],
+      "description": "Name or list of output columns"
+    },
+    "model_id": {
+      "type": [
+        "string",
+        "array"
+      ],
+      "description": "The ID of the wrangle to use (do not include 'find' and 'replace')"
+    },
+    "case_sensitive": {
+      "type": "boolean",
+      "description": "Allows the wrangle to be case sensitive if set to True, default is False."
+    },
+    "if": {
+      "$ref": "#/$defs/wrangles/commonProperties/if"
+    },
+    "where": {
+      "$ref": "#/$defs/wrangles/commonProperties/where"
+    },
+    "where_params": {
+      "$ref": "#/$defs/wrangles/commonProperties/where_params"
+    }
+  }
+}
+```
+
+</details>
 
 ### Examples
 
@@ -1368,6 +2284,7 @@ wrangles:
 | Documentation group | `format` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.standardize` |
+| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
 | Legacy UUID | `53cd3fdd-24e2-4411-8655-6014b92a3f3a` |
 
 **Sources**

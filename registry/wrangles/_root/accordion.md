@@ -34,14 +34,16 @@ capabilities:
   where_params: true
 parameters:
   - name: wrangles
-    description: List of wrangles to apply.
+    description: List of wrangles to apply
     required: true
     param_group: Execution
     schema:
       type: array
+      description: List of wrangles to apply
       minItems: 1
       items:
         $ref: '#/$defs/wrangles/items'
+    runtime_required: true
   - name: input
     description: The column(s) containing the list(s) that the wrangles will be applied to the elements of.
     required: true
@@ -51,6 +53,8 @@ parameters:
         - string
         - integer
         - array
+      description: The column(s) containing the list(s) that the wrangles will be applied to the elements of.
+    runtime_required: true
   - name: output
     description: Output of the wrangles to save back to the dataframe.
     required: false
@@ -60,7 +64,8 @@ parameters:
       type:
         - string
         - array
-        - 'null'
+      description: Output of the wrangles to save back to the dataframe.
+    runtime_required: false
   - name: propagate
     description: >-
       Limit the column(s) that will be available to the wrangles and replicated for each element. If
@@ -73,7 +78,11 @@ parameters:
       type:
         - string
         - array
-        - 'null'
+      description: >-
+        Limit the column(s) that will be available to the wrangles and replicated for each element.
+        If not specified, all columns will be propogated. This may be useful to limit the memory use
+        for large datasets.
+    runtime_required: false
 examples: []
 sources:
   - id: runtime
@@ -84,6 +93,49 @@ sources:
     resource: >-
       https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/utility/_sources/accordion.md
     title: Archived accordion Markdown
+configuration_schema:
+  type: object
+  description: >-
+    Apply a series of wrangles to column(s) containing lists. The wrangles will be applied to each
+    element in the list and the results will be returned back as a list.
+  additionalProperties: false
+  required:
+    - input
+    - wrangles
+  properties:
+    input:
+      type:
+        - string
+        - integer
+        - array
+      description: The column(s) containing the list(s) that the wrangles will be applied to the elements of.
+    propagate:
+      type:
+        - string
+        - array
+      description: >-
+        Limit the column(s) that will be available to the wrangles and replicated for each element.
+        If not specified, all columns will be propogated. This may be useful to limit the memory use
+        for large datasets.
+    output:
+      type:
+        - string
+        - array
+      description: Output of the wrangles to save back to the dataframe.
+    wrangles:
+      type: array
+      description: List of wrangles to apply
+      minItems: 1
+      items:
+        $ref: '#/$defs/wrangles/items'
+    if:
+      $ref: '#/$defs/wrangles/commonProperties/if'
+    where:
+      $ref: '#/$defs/wrangles/commonProperties/where'
+    where_params:
+      $ref: '#/$defs/wrangles/commonProperties/where_params'
+schema_origin: upstream-docstring
+schema_adjustments: []
 ---
 
 # Accordion

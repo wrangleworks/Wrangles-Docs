@@ -31,7 +31,7 @@ capabilities:
   where_params: true
 parameters:
   - name: input
-    description: Name of the input column.
+    description: Name of the input column
     required: true
     param_group: I/O
     schema:
@@ -39,14 +39,19 @@ parameters:
         - string
         - integer
         - array
+      description: Name of the input column
+    runtime_required: true
   - name: format
-    description: String pattern to format date.
+    description: String pattern to format date
     required: true
     param_group: Formatting
     schema:
-      type: string
+      type:
+        - string
+      description: String pattern to format date
+    runtime_required: true
   - name: output
-    description: Name of the output column.
+    description: Name of the output column
     required: false
     param_group: I/O
     runtime_default: null
@@ -54,7 +59,8 @@ parameters:
       type:
         - string
         - array
-        - 'null'
+      description: Name of the output column
+    runtime_required: false
 examples: []
 sources:
   - id: runtime
@@ -65,6 +71,37 @@ sources:
     resource: >-
       https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/format/_sources/dates.md
     title: Archived format.dates Markdown
+configuration_schema:
+  type: object
+  description: Format a date
+  additionalProperties: false
+  required:
+    - input
+    - format
+  properties:
+    input:
+      type:
+        - string
+        - integer
+        - array
+      description: Name of the input column
+    output:
+      type:
+        - string
+        - array
+      description: Name of the output column
+    format:
+      type:
+        - string
+      description: String pattern to format date
+    if:
+      $ref: '#/$defs/wrangles/commonProperties/if'
+    where:
+      $ref: '#/$defs/wrangles/commonProperties/where'
+    where_params:
+      $ref: '#/$defs/wrangles/commonProperties/where_params'
+schema_origin: upstream-docstring
+schema_adjustments: []
 ---
 
 # Dates

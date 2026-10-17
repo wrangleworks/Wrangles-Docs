@@ -31,7 +31,7 @@ capabilities:
   where_params: true
 parameters:
   - name: input
-    description: Name of the input column.
+    description: Name of the input column
     required: true
     param_group: I/O
     schema:
@@ -39,8 +39,10 @@ parameters:
         - string
         - integer
         - array
+      description: Name of the input column
+    runtime_required: true
   - name: output
-    description: Name of the output column.
+    description: Name of the output column
     required: false
     param_group: I/O
     runtime_default: null
@@ -48,16 +50,23 @@ parameters:
       type:
         - string
         - array
-        - 'null'
+      description: Name of the output column
+    runtime_required: false
   - name: element
-    description: >-
-      The numbered element of the list to select. Starts from zero. This may use python slicing
-      syntax to select a subset of the list.
-    required: false
+    description: |-
+      The numbered element of the list to select.
+      Starts from zero.
+      This may use python slicing syntax to select a subset of the list.
+    required: true
     param_group: Options
     runtime_default: 0
     schema:
       type: integer
+      description: |-
+        The numbered element of the list to select.
+        Starts from zero.
+        This may use python slicing syntax to select a subset of the list.
+    runtime_required: false
   - name: default
     description: Set the default value to return if the specified element doesn't exist.
     required: false
@@ -71,6 +80,8 @@ parameters:
         - object
         - boolean
         - 'null'
+      description: Set the default value to return if the specified element doesn't exist.
+    runtime_required: false
 examples: []
 sources:
   - id: runtime
@@ -81,6 +92,48 @@ sources:
     resource: >-
       https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/select/_sources/list-element.md
     title: Archived select.list_element Markdown
+configuration_schema:
+  type: object
+  description: Select a numbered element of a list (zero indexed).
+  additionalProperties: false
+  required:
+    - input
+    - element
+  properties:
+    input:
+      type:
+        - string
+        - integer
+        - array
+      description: Name of the input column
+    output:
+      type:
+        - string
+        - array
+      description: Name of the output column
+    element:
+      type: integer
+      description: |-
+        The numbered element of the list to select.
+        Starts from zero.
+        This may use python slicing syntax to select a subset of the list.
+    default:
+      type:
+        - string
+        - number
+        - array
+        - object
+        - boolean
+        - 'null'
+      description: Set the default value to return if the specified element doesn't exist.
+    if:
+      $ref: '#/$defs/wrangles/commonProperties/if'
+    where:
+      $ref: '#/$defs/wrangles/commonProperties/where'
+    where_params:
+      $ref: '#/$defs/wrangles/commonProperties/where_params'
+schema_origin: upstream-docstring
+schema_adjustments: []
 ---
 
 # List Element

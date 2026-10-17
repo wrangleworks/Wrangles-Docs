@@ -31,7 +31,7 @@ capabilities:
   where_params: true
 parameters:
   - name: input
-    description: Name of the column(s) to select.
+    description: Name of the column(s) to select
     required: true
     param_group: I/O
     schema:
@@ -39,6 +39,8 @@ parameters:
         - string
         - integer
         - array
+      description: Name of the column(s) to select
+    runtime_required: true
 examples: []
 sources:
   - id: runtime
@@ -49,6 +51,27 @@ sources:
     resource: >-
       https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/select/_sources/columns.md
     title: Archived select.columns Markdown
+configuration_schema:
+  type: object
+  description: Select columns from the dataframe
+  additionalProperties: false
+  required:
+    - input
+  properties:
+    input:
+      type:
+        - string
+        - integer
+        - array
+      description: Name of the column(s) to select
+    if:
+      $ref: '#/$defs/wrangles/commonProperties/if'
+    where:
+      $ref: '#/$defs/wrangles/commonProperties/where_special'
+    where_params:
+      $ref: '#/$defs/wrangles/commonProperties/where_params'
+schema_origin: upstream-docstring
+schema_adjustments: []
 ---
 
 # Columns

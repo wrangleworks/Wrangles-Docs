@@ -1,27 +1,25 @@
 ---
 schema_version: '0.2'
-type: wrangle
-id: 31905b74-ce58-45cd-8add-821cc04ab946
-wrangle_name: text
-namespace: compare
-title: Text
-description: >-
-  Compare two strings and return the intersection or difference, use overlap to find the matching
-  characters between the two strings, or use similarity to get a numeric similarity score.
-wrangle_key: compare.text
+type: 'wrangle'
+id: '31905b74-ce58-45cd-8add-821cc04ab946'
+wrangle_name: 'text'
+namespace: 'compare'
+title: 'Text'
+description: 'Compare two strings and return the intersection or difference, use overlap to find the matching characters between the two strings, or use similarity to get a numeric similarity score.'
+wrangle_key: 'compare.text'
 aliases: []
-slug: compare/text
-status: active
-visibility: public
+slug: 'compare/text'
+status: 'active'
+visibility: 'public'
 recipe_writer:
   eligible: true
 tags:
-  - compare
-  - text
+  - 'compare'
+  - 'text'
 runtime:
-  package: wrangles
-  symbol: wrangles.recipe_wrangles.compare.text
-  contract_status: verified
+  package: 'wrangles'
+  symbol: 'wrangles.recipe_wrangles.compare.text'
+  contract_status: 'verified'
 access:
   ai_powered: false
   requires_account: false
@@ -32,123 +30,249 @@ capabilities:
   where: true
   where_params: true
 parameters:
-  - name: input
-    description: The columns to compare. First column is the base column.
+  - name: 'input'
+    description: 'the columns to compare. First column is the base column'
     required: true
-    param_group: I/O
+    param_group: 'I/O'
     schema:
-      type: array
-  - name: output
-    description: >-
-      The column to output the results to. Must be a list of two column names [mask_column,
-      ratio_column] when method is overlap and include_ratio is true; otherwise a single column
-      name.
+      type: 'array'
+      description: 'the columns to compare. First column is the base column'
+    runtime_required: true
+  - name: 'output'
+    description: 'The column to output the results to. Must be a list of two column names [mask_column, ratio_column] when method is overlap and include_ratio is true; otherwise a single column name.'
     required: true
-    param_group: I/O
+    param_group: 'I/O'
     schema:
       type:
-        - string
-        - array
-  - name: method
-    description: The type of comparison to perform (difference, intersection, overlap, similarity).
-    required: false
-    param_group: Options
-    runtime_default: difference
+        - 'string'
+        - 'array'
+      description: 'The column to output the results to. Must be a list of two column names [mask_column, ratio_column] when method is overlap and include_ratio is true; otherwise a single column name.'
+    runtime_required: true
+  - name: 'method'
+    description: 'The type of comparison to perform (difference, intersection, overlap, similarity)'
+    required: true
+    param_group: 'Options'
+    runtime_default: 'difference'
     schema:
-      type: string
+      type: 'string'
+      description: 'The type of comparison to perform (difference, intersection, overlap, similarity)'
       enum:
-        - difference
-        - intersection
-        - overlap
-        - similarity
-  - name: char
-    description: Character to split strings on for difference and intersection. Defaults to a space.
+        - 'difference'
+        - 'intersection'
+        - 'overlap'
+        - 'similarity'
+    runtime_required: false
+  - name: 'char'
+    description: '(Optional) The character to split the strings on. Default is a space'
     required: false
-    param_group: Options
+    param_group: 'Options'
     runtime_default: ' '
     schema:
-      type: string
-  - name: non_match_char
-    description: Character to use for non-matching characters when using overlap.
+      type: 'string'
+      description: '(Optional) The character to split the strings on. Default is a space'
+    runtime_required: false
+  - name: 'non_match_char'
+    description: '(Optional) Character to use for non-matching characters'
     required: false
-    param_group: Formatting
+    param_group: 'Formatting'
     runtime_default: '*'
     schema:
-      type: string
-  - name: include_ratio
-    description: Include the ratio of matching characters when using overlap.
+      type: 'string'
+      description: '(Optional) Character to use for non-matching characters'
+    runtime_required: false
+  - name: 'include_ratio'
+    description: '(Optional) Include the ratio of matching characters. This is the legacy difflib.SequenceMatcher score, not the similarity score from method: similarity. When true, output must be a list of two column names: [mask_column, ratio_column]'
     required: false
-    param_group: Formatting
+    param_group: 'Formatting'
     runtime_default: false
     schema:
-      type: boolean
-  - name: decimal_places
-    description: Number of decimal places to round the overlap ratio to.
+      type: 'boolean'
+      description: '(Optional) Include the ratio of matching characters. This is the legacy difflib.SequenceMatcher score, not the similarity score from method: similarity. When true, output must be a list of two column names: [mask_column, ratio_column]'
+    runtime_required: false
+  - name: 'decimal_places'
+    description: '(Optional) Number of decimal places to round the score to. Default is 3'
     required: false
-    param_group: Formatting
+    param_group: 'Formatting'
     runtime_default: 3
     schema:
-      type: integer
-  - name: exact_match
-    description: Value to use for exact matches when using overlap.
+      type: 'integer'
+      description: '(Optional) Number of decimal places to round the score to. Default is 3'
+    runtime_required: false
+  - name: 'exact_match'
+    description: '(Optional) Value to use for exact matches'
     required: false
-    param_group: Options
+    param_group: 'Options'
     runtime_default: null
     schema:
-      type:
-        - string
-        - 'null'
-  - name: empty_a
-    description: Value to use when input A is empty when using overlap.
+      type: 'string'
+      description: '(Optional) Value to use for exact matches'
+    runtime_required: false
+  - name: 'empty_a'
+    description: '(Optional) Value to use for empty input a'
     required: false
-    param_group: Options
+    param_group: 'Options'
     runtime_default: null
     schema:
-      type:
-        - string
-        - 'null'
-  - name: empty_b
-    description: Value to use when input B is empty when using overlap.
+      type: 'string'
+      description: '(Optional) Value to use for empty input a'
+    runtime_required: false
+  - name: 'empty_b'
+    description: '(Optional) Value to use for empty input b'
     required: false
-    param_group: Options
+    param_group: 'Options'
     runtime_default: null
     schema:
-      type:
-        - string
-        - 'null'
-  - name: all_empty
-    description: Value to use when both inputs are empty when using overlap.
+      type: 'string'
+      description: '(Optional) Value to use for empty input b'
+    runtime_required: false
+  - name: 'all_empty'
+    description: '(Optional) Value to use for both inputs'
     required: false
-    param_group: Options
+    param_group: 'Options'
     runtime_default: null
     schema:
-      type:
-        - string
-        - 'null'
-  - name: case_sensitive
-    description: Whether the comparison is case sensitive. Defaults to true.
+      type: 'string'
+      description: '(Optional) Value to use for both inputs'
+    runtime_required: false
+  - name: 'case_sensitive'
+    description: '(Optional) Whether the comparison is case sensitive. Default is False'
     required: false
-    param_group: Options
+    param_group: 'Options'
     runtime_default: false
     schema:
-      type: boolean
-  - name: metric
-    description: Metric value accepted by the runtime.
+      type: 'boolean'
+      description: '(Optional) Whether the comparison is case sensitive. Default is False'
+    runtime_required: false
+  - name: 'metric'
+    description: '(Optional) The similarity metric to use. Default is token_sort'
     required: false
-    param_group: Options
-    runtime_default: token_sort
+    param_group: 'Options'
+    runtime_default: 'token_sort'
     schema:
-      type: string
+      type: 'string'
+      description: '(Optional) The similarity metric to use. Default is token_sort'
+      oneOf:
+        - const: 'token_sort'
+          description: 'Ignores token order but keeps duplicate tokens, penalizing missing or extra content. Best general-purpose choice for comparing full descriptions where word order may differ.'
+        - const: 'damerau_levenshtein'
+          description: 'Sequential character-edit similarity that recognizes adjacent transpositions (e.g. smtih vs smith) as a single edit. Best for short, order-sensitive strings like part numbers or codes.'
+        - const: 'token_set'
+          description: 'Ignores token order and duplicate tokens. A shorter token set fully contained in a longer one can score 1.0. Best when one description is expected to be a subset of the other.'
+    runtime_required: false
 examples: []
 sources:
-  - id: runtime
-    resource: >-
-      https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/compare.py
-    title: WranglesPY compare.text implementation
-  - id: legacy-docs-archive
-    resource: >-
-      https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/compare/_sources/text.md
-    title: Archived compare.text Markdown
+  - id: 'runtime'
+    resource: 'https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/compare.py'
+    title: 'WranglesPY compare.text implementation'
+  - id: 'legacy-docs-archive'
+    resource: 'https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/compare/_sources/text.md'
+    title: 'Archived compare.text Markdown'
+configuration_schema:
+  type: 'object'
+  description: 'Compare two strings and return the intersection or difference, use overlap to find the matching characters between the two strings, or use similarity to get a numeric similarity score.'
+  required:
+    - 'input'
+    - 'output'
+    - 'method'
+  properties:
+    input:
+      type: 'array'
+      description: 'the columns to compare. First column is the base column'
+    output:
+      type:
+        - 'string'
+        - 'array'
+      description: 'The column to output the results to. Must be a list of two column names [mask_column, ratio_column] when method is overlap and include_ratio is true; otherwise a single column name.'
+    method:
+      type: 'string'
+      description: 'The type of comparison to perform (difference, intersection, overlap, similarity)'
+      enum:
+        - 'difference'
+        - 'intersection'
+        - 'overlap'
+        - 'similarity'
+    if:
+      $ref: '#/$defs/wrangles/commonProperties/if'
+    where:
+      $ref: '#/$defs/wrangles/commonProperties/where'
+    where_params:
+      $ref: '#/$defs/wrangles/commonProperties/where_params'
+  allOf:
+    - if:
+        properties:
+          method:
+            const: 'difference'
+      then:
+        properties:
+          char:
+            type: 'string'
+            description: '(Optional) The character to split the strings on. Default is a space'
+          case_sensitive:
+            type: 'boolean'
+            description: '(Optional) Whether the comparison is case sensitive. Default is False'
+    - if:
+        properties:
+          method:
+            const: 'intersection'
+      then:
+        properties:
+          char:
+            type: 'string'
+            description: '(Optional) The character to split the strings on. Default is a space'
+          case_sensitive:
+            type: 'boolean'
+            description: '(Optional) Whether the comparison is case sensitive. Default is False'
+    - if:
+        properties:
+          method:
+            const: 'overlap'
+      then:
+        properties:
+          non_match_char:
+            type: 'string'
+            description: '(Optional) Character to use for non-matching characters'
+          include_ratio:
+            type: 'boolean'
+            description: '(Optional) Include the ratio of matching characters. This is the legacy difflib.SequenceMatcher score, not the similarity score from method: similarity. When true, output must be a list of two column names: [mask_column, ratio_column]'
+          decimal_places:
+            type: 'integer'
+            description: '(Optional) Number of decimal places to round the ratio to'
+          exact_match:
+            type: 'string'
+            description: '(Optional) Value to use for exact matches'
+          empty_a:
+            type: 'string'
+            description: '(Optional) Value to use for empty input a'
+          empty_b:
+            type: 'string'
+            description: '(Optional) Value to use for empty input b'
+          all_empty:
+            type: 'string'
+            description: '(Optional) Value to use for both inputs'
+          case_sensitive:
+            type: 'boolean'
+            description: '(Optional) Whether the comparison is case sensitive. Default is False'
+    - if:
+        properties:
+          method:
+            const: 'similarity'
+      then:
+        properties:
+          metric:
+            type: 'string'
+            description: '(Optional) The similarity metric to use. Default is token_sort'
+            oneOf:
+              - const: 'token_sort'
+                description: 'Ignores token order but keeps duplicate tokens, penalizing missing or extra content. Best general-purpose choice for comparing full descriptions where word order may differ.'
+              - const: 'damerau_levenshtein'
+                description: 'Sequential character-edit similarity that recognizes adjacent transpositions (e.g. smtih vs smith) as a single edit. Best for short, order-sensitive strings like part numbers or codes.'
+              - const: 'token_set'
+                description: 'Ignores token order and duplicate tokens. A shorter token set fully contained in a longer one can score 1.0. Best when one description is expected to be a subset of the other.'
+          decimal_places:
+            type: 'integer'
+            description: '(Optional) Number of decimal places to round the score to. Default is 3'
+schema_origin: 'upstream-docstring'
+schema_adjustments: []
 ---
 
 # Text

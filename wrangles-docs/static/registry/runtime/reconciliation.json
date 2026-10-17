@@ -3,16 +3,20 @@
   "registry_version": "0.3.0",
   "runtime_source": {
     "repository": "https://github.com/wrangleworks/WranglesPY",
-    "version": "1.20.2",
-    "revision": "7916bf158e8b7e561270a1bea7b808f88956edc4"
+    "version": "1.20.5",
+    "revision": "bd5f88fba479ec406b409cb2880689c54e72b298"
   },
   "summary": {
-    "runtime_entries": 98,
-    "embedded_schema_entries": 96,
-    "normalized_registry_entries": 98,
-    "normalized_verified_entries": 98,
+    "runtime_entries": 106,
+    "embedded_schema_entries": 104,
+    "normalized_registry_entries": 106,
+    "entries_with_upstream_schema_issues": 31,
+    "unmodified_upstream_schemas": 101,
+    "corrected_upstream_schemas": 3,
+    "derived_schema_fallbacks": 2,
+    "normalized_verified_entries": 106,
     "normalized_conflicting_entries": 0,
-    "normalized_entries_with_embedded_schema_differences": 90,
+    "normalized_entries_with_embedded_schema_differences": 0,
     "runtime_entries_without_embedded_schema": 2,
     "runtime_entries_without_normalized_registry": 0
   }

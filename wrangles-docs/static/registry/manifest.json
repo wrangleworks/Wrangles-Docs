@@ -5,9 +5,10 @@
   "source_entry_schema_version": "0.2",
   "status": "pre-production",
   "compatibility": {
-    "wranglespy_version": "1.20.2",
-    "wranglespy_revision": "7916bf158e8b7e561270a1bea7b808f88956edc4",
-    "compatible_wranglespy": "==1.20.2"
+    "scope": "wrangle-contracts",
+    "wranglespy_version": "1.20.5",
+    "wranglespy_revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+    "compatible_wranglespy": "==1.20.5"
   },
   "recipe_writer": {
     "eligible_entry_count": 88,
@@ -19,14 +20,608 @@
       "system": "API Core",
       "repository": "https://github.com/wrangleworks/API-Core",
       "table": "public.wrangles_catalog",
-      "data_updated_through": "2026-09-16T08:44:50.975472Z"
+      "data_updated_through": "2026-10-09T14:06:47Z"
     },
-    "entry_count": 99,
-    "callable_entry_count": 98,
+    "entry_count": 147,
+    "callable_entry_count": 100,
     "catalog_only_entry_count": 1,
     "entries_with_status_differences": 2
   },
-  "entry_count": 98,
+  "entry_count": 106,
+  "connector_entry_count": 46,
+  "connector_source": {
+    "repository": "https://github.com/wrangleworks/WranglesPY",
+    "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+    "version": "1.20.5",
+    "extraction": "static-python-ast"
+  },
+  "connectors": [
+    {
+      "catalog_id": "103",
+      "catalog_key": "connector.access",
+      "runtime_key": "access",
+      "status": "active",
+      "operations": [
+        "read",
+        "run",
+        "write"
+      ],
+      "route": "/py/connectors/access",
+      "contract_json": "/registry/connectors/access.json",
+      "raw_markdown": "/registry/connectors/access.md"
+    },
+    {
+      "catalog_id": "104",
+      "catalog_key": "connector.akeneo",
+      "runtime_key": "akeneo",
+      "status": "active",
+      "operations": [
+        "read",
+        "write"
+      ],
+      "route": "/py/connectors/akeneo",
+      "contract_json": "/registry/connectors/akeneo.json",
+      "raw_markdown": "/registry/connectors/akeneo.md"
+    },
+    {
+      "catalog_id": "106",
+      "catalog_key": "connector.ckan.download",
+      "runtime_key": "ckan.download",
+      "status": "active",
+      "operations": [
+        "run"
+      ],
+      "route": "/py/connectors/ckan.download",
+      "contract_json": "/registry/connectors/ckan.download.json",
+      "raw_markdown": "/registry/connectors/ckan.download.md"
+    },
+    {
+      "catalog_id": "105",
+      "catalog_key": "connector.ckan",
+      "runtime_key": "ckan",
+      "status": "active",
+      "operations": [
+        "read",
+        "write"
+      ],
+      "route": "/py/connectors/ckan",
+      "contract_json": "/registry/connectors/ckan.json",
+      "raw_markdown": "/registry/connectors/ckan.md"
+    },
+    {
+      "catalog_id": "107",
+      "catalog_key": "connector.ckan.upload",
+      "runtime_key": "ckan.upload",
+      "status": "active",
+      "operations": [
+        "run"
+      ],
+      "route": "/py/connectors/ckan.upload",
+      "contract_json": "/registry/connectors/ckan.upload.json",
+      "raw_markdown": "/registry/connectors/ckan.upload.md"
+    },
+    {
+      "catalog_id": "147",
+      "catalog_key": "connector.concatenate",
+      "runtime_key": "concatenate",
+      "status": "active",
+      "operations": [
+        "read"
+      ],
+      "route": "/py/connectors/concatenate",
+      "contract_json": "/registry/connectors/concatenate.json",
+      "raw_markdown": "/registry/connectors/concatenate.md"
+    },
+    {
+      "catalog_id": "108",
+      "catalog_key": "connector.concurrent",
+      "runtime_key": "concurrent",
+      "status": "active",
+      "operations": [
+        "read",
+        "run",
+        "write"
+      ],
+      "route": "/py/connectors/concurrent",
+      "contract_json": "/registry/connectors/concurrent.json",
+      "raw_markdown": "/registry/connectors/concurrent.md"
+    },
+    {
+      "catalog_id": "148",
+      "catalog_key": "connector.dataframe",
+      "runtime_key": "dataframe",
+      "status": "active",
+      "operations": [
+        "write"
+      ],
+      "route": "/py/connectors/dataframe",
+      "contract_json": "/registry/connectors/dataframe.json",
+      "raw_markdown": "/registry/connectors/dataframe.md"
+    },
+    {
+      "catalog_id": "109",
+      "catalog_key": "connector.duckdb",
+      "runtime_key": "duckdb",
+      "status": "active",
+      "operations": [
+        "read",
+        "run",
+        "write"
+      ],
+      "route": "/py/connectors/duckdb",
+      "contract_json": "/registry/connectors/duckdb.json",
+      "raw_markdown": "/registry/connectors/duckdb.md"
+    },
+    {
+      "catalog_id": "110",
+      "catalog_key": "connector.excel.columns",
+      "runtime_key": "excel.columns",
+      "status": "active",
+      "operations": [
+        "write"
+      ],
+      "route": "/py/connectors/excel.columns",
+      "contract_json": "/registry/connectors/excel.columns.json",
+      "raw_markdown": "/registry/connectors/excel.columns.md"
+    },
+    {
+      "catalog_id": "111",
+      "catalog_key": "connector.excel.selected_data",
+      "runtime_key": "excel.selected_data",
+      "status": "active",
+      "operations": [
+        "read"
+      ],
+      "route": "/py/connectors/excel.selected_data",
+      "contract_json": "/registry/connectors/excel.selected_data.json",
+      "raw_markdown": "/registry/connectors/excel.selected_data.md"
+    },
+    {
+      "catalog_id": "112",
+      "catalog_key": "connector.excel.sheet",
+      "runtime_key": "excel.sheet",
+      "status": "active",
+      "operations": [
+        "write"
+      ],
+      "route": "/py/connectors/excel.sheet",
+      "contract_json": "/registry/connectors/excel.sheet.json",
+      "raw_markdown": "/registry/connectors/excel.sheet.md"
+    },
+    {
+      "catalog_id": "113",
+      "catalog_key": "connector.file",
+      "runtime_key": "file",
+      "status": "active",
+      "operations": [
+        "read",
+        "write"
+      ],
+      "route": "/py/connectors/file",
+      "contract_json": "/registry/connectors/file.json",
+      "raw_markdown": "/registry/connectors/file.md"
+    },
+    {
+      "catalog_id": "114",
+      "catalog_key": "connector.grid.selected_data",
+      "runtime_key": "grid.selected_data",
+      "status": "active",
+      "operations": [
+        "read"
+      ],
+      "route": "/py/connectors/grid.selected_data",
+      "contract_json": "/registry/connectors/grid.selected_data.json",
+      "raw_markdown": "/registry/connectors/grid.selected_data.md"
+    },
+    {
+      "catalog_id": "115",
+      "catalog_key": "connector.http",
+      "runtime_key": "http",
+      "status": "active",
+      "operations": [
+        "read",
+        "run",
+        "write"
+      ],
+      "route": "/py/connectors/http",
+      "contract_json": "/registry/connectors/http.json",
+      "raw_markdown": "/registry/connectors/http.md"
+    },
+    {
+      "catalog_id": "116",
+      "catalog_key": "connector.input",
+      "runtime_key": "input",
+      "status": "active",
+      "operations": [
+        "read"
+      ],
+      "route": "/py/connectors/input",
+      "contract_json": "/registry/connectors/input.json",
+      "raw_markdown": "/registry/connectors/input.md"
+    },
+    {
+      "catalog_id": "117",
+      "catalog_key": "connector.jinja",
+      "runtime_key": "jinja",
+      "status": "active",
+      "operations": [
+        "run"
+      ],
+      "route": "/py/connectors/jinja",
+      "contract_json": "/registry/connectors/jinja.json",
+      "raw_markdown": "/registry/connectors/jinja.md"
+    },
+    {
+      "catalog_id": "145",
+      "catalog_key": "connector.join",
+      "runtime_key": "join",
+      "status": "active",
+      "operations": [
+        "read"
+      ],
+      "route": "/py/connectors/join",
+      "contract_json": "/registry/connectors/join.json",
+      "raw_markdown": "/registry/connectors/join.md"
+    },
+    {
+      "catalog_id": "118",
+      "catalog_key": "connector.matrix",
+      "runtime_key": "matrix",
+      "status": "active",
+      "operations": [
+        "read",
+        "run",
+        "write"
+      ],
+      "route": "/py/connectors/matrix",
+      "contract_json": "/registry/connectors/matrix.json",
+      "raw_markdown": "/registry/connectors/matrix.md"
+    },
+    {
+      "catalog_id": "119",
+      "catalog_key": "connector.memory",
+      "runtime_key": "memory",
+      "status": "active",
+      "operations": [
+        "read",
+        "write"
+      ],
+      "route": "/py/connectors/memory",
+      "contract_json": "/registry/connectors/memory.json",
+      "raw_markdown": "/registry/connectors/memory.md"
+    },
+    {
+      "catalog_id": "120",
+      "catalog_key": "connector.mongodb",
+      "runtime_key": "mongodb",
+      "status": "active",
+      "operations": [
+        "read",
+        "write"
+      ],
+      "route": "/py/connectors/mongodb",
+      "contract_json": "/registry/connectors/mongodb.json",
+      "raw_markdown": "/registry/connectors/mongodb.md"
+    },
+    {
+      "catalog_id": "121",
+      "catalog_key": "connector.mssql",
+      "runtime_key": "mssql",
+      "status": "active",
+      "operations": [
+        "read",
+        "run",
+        "write"
+      ],
+      "route": "/py/connectors/mssql",
+      "contract_json": "/registry/connectors/mssql.json",
+      "raw_markdown": "/registry/connectors/mssql.md"
+    },
+    {
+      "catalog_id": "122",
+      "catalog_key": "connector.mysql",
+      "runtime_key": "mysql",
+      "status": "active",
+      "operations": [
+        "read",
+        "write"
+      ],
+      "route": "/py/connectors/mysql",
+      "contract_json": "/registry/connectors/mysql.json",
+      "raw_markdown": "/registry/connectors/mysql.md"
+    },
+    {
+      "catalog_id": "124",
+      "catalog_key": "connector.notification.email",
+      "runtime_key": "notification.email",
+      "status": "active",
+      "operations": [
+        "run"
+      ],
+      "route": "/py/connectors/notification.email",
+      "contract_json": "/registry/connectors/notification.email.json",
+      "raw_markdown": "/registry/connectors/notification.email.md"
+    },
+    {
+      "catalog_id": "123",
+      "catalog_key": "connector.notification",
+      "runtime_key": "notification",
+      "status": "active",
+      "operations": [
+        "run"
+      ],
+      "route": "/py/connectors/notification",
+      "contract_json": "/registry/connectors/notification.json",
+      "raw_markdown": "/registry/connectors/notification.md"
+    },
+    {
+      "catalog_id": "125",
+      "catalog_key": "connector.notification.slack",
+      "runtime_key": "notification.slack",
+      "status": "active",
+      "operations": [
+        "run"
+      ],
+      "route": "/py/connectors/notification.slack",
+      "contract_json": "/registry/connectors/notification.slack.json",
+      "raw_markdown": "/registry/connectors/notification.slack.md"
+    },
+    {
+      "catalog_id": "126",
+      "catalog_key": "connector.notification.telegram",
+      "runtime_key": "notification.telegram",
+      "status": "active",
+      "operations": [
+        "run"
+      ],
+      "route": "/py/connectors/notification.telegram",
+      "contract_json": "/registry/connectors/notification.telegram.json",
+      "raw_markdown": "/registry/connectors/notification.telegram.md"
+    },
+    {
+      "catalog_id": "127",
+      "catalog_key": "connector.postgres",
+      "runtime_key": "postgres",
+      "status": "active",
+      "operations": [
+        "read",
+        "run",
+        "write"
+      ],
+      "route": "/py/connectors/postgres",
+      "contract_json": "/registry/connectors/postgres.json",
+      "raw_markdown": "/registry/connectors/postgres.md"
+    },
+    {
+      "catalog_id": "128",
+      "catalog_key": "connector.pricefx",
+      "runtime_key": "pricefx",
+      "status": "active",
+      "operations": [
+        "read",
+        "write"
+      ],
+      "route": "/py/connectors/pricefx",
+      "contract_json": "/registry/connectors/pricefx.json",
+      "raw_markdown": "/registry/connectors/pricefx.md"
+    },
+    {
+      "catalog_id": "129",
+      "catalog_key": "connector.recipe",
+      "runtime_key": "recipe",
+      "status": "active",
+      "operations": [
+        "read",
+        "run",
+        "write"
+      ],
+      "route": "/py/connectors/recipe",
+      "contract_json": "/registry/connectors/recipe.json",
+      "raw_markdown": "/registry/connectors/recipe.md"
+    },
+    {
+      "catalog_id": "131",
+      "catalog_key": "connector.s3.download_files",
+      "runtime_key": "s3.download_files",
+      "status": "active",
+      "operations": [
+        "run"
+      ],
+      "route": "/py/connectors/s3.download_files",
+      "contract_json": "/registry/connectors/s3.download_files.json",
+      "raw_markdown": "/registry/connectors/s3.download_files.md"
+    },
+    {
+      "catalog_id": "130",
+      "catalog_key": "connector.s3",
+      "runtime_key": "s3",
+      "status": "active",
+      "operations": [
+        "read",
+        "write"
+      ],
+      "route": "/py/connectors/s3",
+      "contract_json": "/registry/connectors/s3.json",
+      "raw_markdown": "/registry/connectors/s3.md"
+    },
+    {
+      "catalog_id": "132",
+      "catalog_key": "connector.s3.upload_files",
+      "runtime_key": "s3.upload_files",
+      "status": "active",
+      "operations": [
+        "run"
+      ],
+      "route": "/py/connectors/s3.upload_files",
+      "contract_json": "/registry/connectors/s3.upload_files.json",
+      "raw_markdown": "/registry/connectors/s3.upload_files.md"
+    },
+    {
+      "catalog_id": "133",
+      "catalog_key": "connector.salesforce",
+      "runtime_key": "salesforce",
+      "status": "active",
+      "operations": [
+        "read",
+        "write"
+      ],
+      "route": "/py/connectors/salesforce",
+      "contract_json": "/registry/connectors/salesforce.json",
+      "raw_markdown": "/registry/connectors/salesforce.md"
+    },
+    {
+      "catalog_id": "135",
+      "catalog_key": "connector.sftp.download_files",
+      "runtime_key": "sftp.download_files",
+      "status": "active",
+      "operations": [
+        "run"
+      ],
+      "route": "/py/connectors/sftp.download_files",
+      "contract_json": "/registry/connectors/sftp.download_files.json",
+      "raw_markdown": "/registry/connectors/sftp.download_files.md"
+    },
+    {
+      "catalog_id": "134",
+      "catalog_key": "connector.sftp",
+      "runtime_key": "sftp",
+      "status": "active",
+      "operations": [
+        "read",
+        "write"
+      ],
+      "route": "/py/connectors/sftp",
+      "contract_json": "/registry/connectors/sftp.json",
+      "raw_markdown": "/registry/connectors/sftp.md"
+    },
+    {
+      "catalog_id": "136",
+      "catalog_key": "connector.sftp.upload_files",
+      "runtime_key": "sftp.upload_files",
+      "status": "active",
+      "operations": [
+        "run"
+      ],
+      "route": "/py/connectors/sftp.upload_files",
+      "contract_json": "/registry/connectors/sftp.upload_files.json",
+      "raw_markdown": "/registry/connectors/sftp.upload_files.md"
+    },
+    {
+      "catalog_id": "137",
+      "catalog_key": "connector.sqlite",
+      "runtime_key": "sqlite",
+      "status": "active",
+      "operations": [
+        "read",
+        "run",
+        "write"
+      ],
+      "route": "/py/connectors/sqlite",
+      "contract_json": "/registry/connectors/sqlite.json",
+      "raw_markdown": "/registry/connectors/sqlite.md"
+    },
+    {
+      "catalog_id": "138",
+      "catalog_key": "connector.ssh",
+      "runtime_key": "ssh",
+      "status": "active",
+      "operations": [
+        "run"
+      ],
+      "route": "/py/connectors/ssh",
+      "contract_json": "/registry/connectors/ssh.json",
+      "raw_markdown": "/registry/connectors/ssh.md"
+    },
+    {
+      "catalog_id": "139",
+      "catalog_key": "connector.test",
+      "runtime_key": "test",
+      "status": "active",
+      "operations": [
+        "read"
+      ],
+      "route": "/py/connectors/test",
+      "contract_json": "/registry/connectors/test.json",
+      "raw_markdown": "/registry/connectors/test.md"
+    },
+    {
+      "catalog_id": "140",
+      "catalog_key": "connector.train.classify",
+      "runtime_key": "train.classify",
+      "status": "active",
+      "operations": [
+        "read",
+        "write"
+      ],
+      "route": "/py/connectors/train.classify",
+      "contract_json": "/registry/connectors/train.classify.json",
+      "raw_markdown": "/registry/connectors/train.classify.md"
+    },
+    {
+      "catalog_id": "141",
+      "catalog_key": "connector.train.extract",
+      "runtime_key": "train.extract",
+      "status": "active",
+      "operations": [
+        "read",
+        "write"
+      ],
+      "route": "/py/connectors/train.extract",
+      "contract_json": "/registry/connectors/train.extract.json",
+      "raw_markdown": "/registry/connectors/train.extract.md"
+    },
+    {
+      "catalog_id": "142",
+      "catalog_key": "connector.train.lookup",
+      "runtime_key": "train.lookup",
+      "status": "active",
+      "operations": [
+        "read",
+        "write"
+      ],
+      "route": "/py/connectors/train.lookup",
+      "contract_json": "/registry/connectors/train.lookup.json",
+      "raw_markdown": "/registry/connectors/train.lookup.md"
+    },
+    {
+      "catalog_id": "143",
+      "catalog_key": "connector.train.meta_data",
+      "runtime_key": "train.meta_data",
+      "status": "active",
+      "operations": [
+        "read",
+        "write"
+      ],
+      "route": "/py/connectors/train.meta_data",
+      "contract_json": "/registry/connectors/train.meta_data.json",
+      "raw_markdown": "/registry/connectors/train.meta_data.md"
+    },
+    {
+      "catalog_id": "144",
+      "catalog_key": "connector.train.standardize",
+      "runtime_key": "train.standardize",
+      "status": "active",
+      "operations": [
+        "read",
+        "write"
+      ],
+      "route": "/py/connectors/train.standardize",
+      "contract_json": "/registry/connectors/train.standardize.json",
+      "raw_markdown": "/registry/connectors/train.standardize.md"
+    },
+    {
+      "catalog_id": "146",
+      "catalog_key": "connector.union",
+      "runtime_key": "union",
+      "status": "active",
+      "operations": [
+        "read"
+      ],
+      "route": "/py/connectors/union",
+      "contract_json": "/registry/connectors/union.json",
+      "raw_markdown": "/registry/connectors/union.md"
+    }
+  ],
   "entries": [
     {
       "type": "wrangle",
@@ -54,6 +649,118 @@
       "contract_json": "/registry/contracts/accordion.json",
       "raw_markdown": "/registry/wrangles/_root/accordion.md",
       "runtime_symbol": "wrangles.recipe_wrangles.main.accordion",
+      "runtime_contract_status": "verified",
+      "example_count": 0
+    },
+    {
+      "type": "wrangle",
+      "catalog_id": null,
+      "catalog_key": "ai.answers",
+      "catalog_status": "pending-registration",
+      "legacy_id": null,
+      "wrangle_name": "answers",
+      "namespace": "ai",
+      "wrangle_key": "ai.answers",
+      "aliases": [],
+      "slug": "ai/answers",
+      "title": "Answers",
+      "description": "Answers any combination of `choose`, `score`, and `true_false` questions about the input with structured results. Accepts multiple named questions in one provider request per row. Question labels determine default output names.",
+      "status": "active",
+      "recipe_writer": {
+        "eligible": false,
+        "reason": "Automatically documented from schema; execution eligibility requires review."
+      },
+      "tags": [
+        "ai"
+      ],
+      "route": "/py/namespaces/ai#answers",
+      "contract_json": "/registry/contracts/ai/answers.json",
+      "raw_markdown": "/registry/wrangles/ai/answers.md",
+      "runtime_symbol": "wrangles.recipe_wrangles.ai.answers",
+      "runtime_contract_status": "verified",
+      "example_count": 0
+    },
+    {
+      "type": "wrangle",
+      "catalog_id": null,
+      "catalog_key": "ai.choose",
+      "catalog_status": "pending-registration",
+      "legacy_id": null,
+      "wrangle_name": "choose",
+      "namespace": "ai",
+      "wrangle_key": "ai.choose",
+      "aliases": [],
+      "slug": "ai/choose",
+      "title": "Choose",
+      "description": "Answers which option best fits the input, with the choice, confidence, and complete probabilities. Accepts multiple named questions in one provider request per row. Question labels determine default output names.",
+      "status": "active",
+      "recipe_writer": {
+        "eligible": false,
+        "reason": "Automatically documented from schema; execution eligibility requires review."
+      },
+      "tags": [
+        "ai"
+      ],
+      "route": "/py/namespaces/ai#choose",
+      "contract_json": "/registry/contracts/ai/choose.json",
+      "raw_markdown": "/registry/wrangles/ai/choose.md",
+      "runtime_symbol": "wrangles.recipe_wrangles.ai.choose",
+      "runtime_contract_status": "verified",
+      "example_count": 0
+    },
+    {
+      "type": "wrangle",
+      "catalog_id": null,
+      "catalog_key": "ai.score",
+      "catalog_status": "pending-registration",
+      "legacy_id": null,
+      "wrangle_name": "score",
+      "namespace": "ai",
+      "wrangle_key": "ai.score",
+      "aliases": [],
+      "slug": "ai/score",
+      "title": "Score",
+      "description": "Answers where the input falls along ordered criteria, with the native score, confidence, and complete probabilities. Accepts multiple named questions in one provider request per row. Question labels determine default output names.",
+      "status": "active",
+      "recipe_writer": {
+        "eligible": false,
+        "reason": "Automatically documented from schema; execution eligibility requires review."
+      },
+      "tags": [
+        "ai"
+      ],
+      "route": "/py/namespaces/ai#score",
+      "contract_json": "/registry/contracts/ai/score.json",
+      "raw_markdown": "/registry/wrangles/ai/score.md",
+      "runtime_symbol": "wrangles.recipe_wrangles.ai.score",
+      "runtime_contract_status": "verified",
+      "example_count": 0
+    },
+    {
+      "type": "wrangle",
+      "catalog_id": null,
+      "catalog_key": "ai.true_false",
+      "catalog_status": "pending-registration",
+      "legacy_id": null,
+      "wrangle_name": "true_false",
+      "namespace": "ai",
+      "wrangle_key": "ai.true_false",
+      "aliases": [],
+      "slug": "ai/true-false",
+      "title": "True False",
+      "description": "Answers how likely a statement is to be true for the input, with probability_true and the supplied true_criteria. Accepts multiple named questions in one provider request per row. Question labels determine default output names.",
+      "status": "active",
+      "recipe_writer": {
+        "eligible": false,
+        "reason": "Automatically documented from schema; execution eligibility requires review."
+      },
+      "tags": [
+        "ai"
+      ],
+      "route": "/py/namespaces/ai#true-false",
+      "contract_json": "/registry/contracts/ai/true-false.json",
+      "raw_markdown": "/registry/wrangles/ai/true-false.md",
+      "runtime_symbol": "wrangles.recipe_wrangles.ai.true_false",
       "runtime_contract_status": "verified",
       "example_count": 0
     },
@@ -422,6 +1129,34 @@
       "contract_json": "/registry/contracts/convert/from-yaml.json",
       "raw_markdown": "/registry/wrangles/convert/from-yaml.md",
       "runtime_symbol": "wrangles.recipe_wrangles.convert.from_yaml",
+      "runtime_contract_status": "verified",
+      "example_count": 0
+    },
+    {
+      "type": "wrangle",
+      "catalog_id": null,
+      "catalog_key": "convert.parse",
+      "catalog_status": "pending-registration",
+      "legacy_id": null,
+      "wrangle_name": "parse",
+      "namespace": "convert",
+      "wrangle_key": "convert.parse",
+      "aliases": [],
+      "slug": "convert/parse",
+      "title": "Parse",
+      "description": "Parse JSON, Python, YAML, or human-readable JSON-like structures into JSON-compatible Python values. YAML-only numeric forms such as 00123 and 12:34 remain strings. YAML anchors, aliases, and explicit tags are not supported. Parsed values retain their Python types, preserving integer precision in mixed columns. Excessively nested inputs use the configured default or raise a contextual ValueError.",
+      "status": "active",
+      "recipe_writer": {
+        "eligible": false,
+        "reason": "Automatically documented from schema; execution eligibility requires review."
+      },
+      "tags": [
+        "convert"
+      ],
+      "route": "/py/namespaces/convert#parse",
+      "contract_json": "/registry/contracts/convert/parse.json",
+      "raw_markdown": "/registry/wrangles/convert/parse.md",
+      "runtime_symbol": "wrangles.recipe_wrangles.convert.parse",
       "runtime_contract_status": "verified",
       "example_count": 0
     },
@@ -1492,6 +2227,62 @@
     },
     {
       "type": "wrangle",
+      "catalog_id": "101",
+      "catalog_key": "lookup.key",
+      "catalog_status": "active",
+      "legacy_id": null,
+      "wrangle_name": "key",
+      "namespace": "lookup",
+      "wrangle_key": "lookup.key",
+      "aliases": [],
+      "slug": "lookup/key",
+      "title": "Key",
+      "description": "Look up values using a saved key lookup model. Requires a WrangleWorks account and a model with purpose lookup and stored variant key. Missing or unknown variants are rejected; use lookup for legacy models.",
+      "status": "active",
+      "recipe_writer": {
+        "eligible": false,
+        "reason": "Automatically documented from schema; execution eligibility requires review."
+      },
+      "tags": [
+        "lookup"
+      ],
+      "route": "/py/namespaces/lookup#key",
+      "contract_json": "/registry/contracts/lookup/key.json",
+      "raw_markdown": "/registry/wrangles/lookup/key.md",
+      "runtime_symbol": "wrangles.recipe_wrangles.lookup.key",
+      "runtime_contract_status": "verified",
+      "example_count": 0
+    },
+    {
+      "type": "wrangle",
+      "catalog_id": "102",
+      "catalog_key": "lookup.semantic",
+      "catalog_status": "active",
+      "legacy_id": null,
+      "wrangle_name": "semantic",
+      "namespace": "lookup",
+      "wrangle_key": "lookup.semantic",
+      "aliases": [],
+      "slug": "lookup/semantic",
+      "title": "Semantic",
+      "description": "Look up values using a saved semantic lookup model. Requires a WrangleWorks account and a model with purpose lookup and stored variant embedding. Missing or unknown variants are rejected; use lookup for legacy models.",
+      "status": "active",
+      "recipe_writer": {
+        "eligible": false,
+        "reason": "Automatically documented from schema; execution eligibility requires review."
+      },
+      "tags": [
+        "lookup"
+      ],
+      "route": "/py/namespaces/lookup#semantic",
+      "contract_json": "/registry/contracts/lookup/semantic.json",
+      "raw_markdown": "/registry/wrangles/lookup/semantic.md",
+      "runtime_symbol": "wrangles.recipe_wrangles.lookup.semantic",
+      "runtime_contract_status": "verified",
+      "example_count": 0
+    },
+    {
+      "type": "wrangle",
       "catalog_id": "82",
       "catalog_key": "math",
       "catalog_status": "active",
@@ -1966,6 +2757,34 @@
       "contract_json": "/registry/contracts/round.json",
       "raw_markdown": "/registry/wrangles/_root/round.md",
       "runtime_symbol": "wrangles.recipe_wrangles.pandas.round",
+      "runtime_contract_status": "verified",
+      "example_count": 0
+    },
+    {
+      "type": "wrangle",
+      "catalog_id": null,
+      "catalog_key": "search.ai_mode",
+      "catalog_status": "pending-registration",
+      "legacy_id": null,
+      "wrangle_name": "ai_mode",
+      "namespace": "search",
+      "wrangle_key": "search.ai_mode",
+      "aliases": [],
+      "slug": "search/ai-mode",
+      "title": "Ai Mode",
+      "description": "Retrieve Google AI Mode Markdown and metadata. Use standardize.clean and extract.ai afterwards for cleanup and structuring.",
+      "status": "active",
+      "recipe_writer": {
+        "eligible": false,
+        "reason": "Automatically documented from schema; execution eligibility requires review."
+      },
+      "tags": [
+        "search"
+      ],
+      "route": "/py/namespaces/search#ai-mode",
+      "contract_json": "/registry/contracts/search/ai-mode.json",
+      "raw_markdown": "/registry/wrangles/search/ai-mode.md",
+      "runtime_symbol": "wrangles.recipe_wrangles.search.ai_mode",
       "runtime_contract_status": "verified",
       "example_count": 0
     },
@@ -2791,6 +3610,9 @@
     "recipe_writer_schema": "/schemas/recipes/registry/recipe-writer.schema.json",
     "entry_schema": "/registry/schema/wrangle-entry.schema.json",
     "catalog_snapshot": "/registry/catalog/api-core.json",
+    "catalog_response": "/registry/catalog/api-core-response.json",
+    "source_schema": "/registry/runtime/wranglespy-source-schema.json",
+    "connector_entry_schema": "/registry/schema/connector-entry.schema.json",
     "catalog_snapshot_schema": "/registry/schema/catalog-snapshot.schema.json",
     "catalog_reconciliation": "/registry/catalog/reconciliation.json",
     "compiled_contract_schema": "/registry/schema/wrangle-contract.schema.json",
@@ -2801,121 +3623,224 @@
   "artifact_checksums": {
     "algorithm": "sha256",
     "files": {
-      "/registry/catalog/api-core.json": "c7e964f5d1ce824340c787e5e34791e82b82b71f8bc8a8a341543784f69be98a",
-      "/registry/catalog/reconciliation.json": "f7e43990af0f1694910bb4629970d8bfaa4cae6b9820fdb99a6aeeda05568922",
-      "/registry/contracts/accordion.json": "2c32e017771ad53da3159c95200d84b32e50b3bf9a74780ffdc684cf3171426d",
-      "/registry/contracts/batch.json": "0884911af6578a78f05948dc07144500659867bcdab407f5461a56a8e83e272b",
-      "/registry/contracts/classify.json": "4723df627c34090efd4e1d31a28bfb755e704b0c16b64359c00597079fd373c8",
-      "/registry/contracts/clean-whitespaces.json": "47aa7a06561527f32dca0bedf0e162b5ae22f8873faceae458a2825a4e9671af",
-      "/registry/contracts/compare/lists.json": "775a4c85b767573d4a1daf28480f023fbd248b5087b69cc121093925696e0191",
-      "/registry/contracts/compare/text.json": "34ed6238d1fc8297b63a8e144faad2eafe83bc9534aa2959d832d77a5d3a555c",
-      "/registry/contracts/compute/case-when.json": "e0826ebda20bf668e51d218e0383b79d0fd50b43c4ae3d409c0afa65cb4360e4",
-      "/registry/contracts/compute/score-search-results.json": "633d7671937a5f4060227a7e46e16fb9b0aab208a8ee81bf3225e9e67bd17cc4",
-      "/registry/contracts/concurrent.json": "02a13b05d487b0a5abf96f0d5073e10a7aef670312b763dc4cd9148134531dbe",
-      "/registry/contracts/convert/case.json": "88498f5d8591f6d4f1ff3f019db74c215eee6cfd038d5cc50b632b9e09e754e6",
-      "/registry/contracts/convert/data-type.json": "b2a76ccf49341465101ac535d592a9c1b682594d92dc7ea9099eeed196c4c6c4",
-      "/registry/contracts/convert/fraction-to-decimal.json": "e7ccf538ef58766d88df700c8ca902a8ceb4f2cf73181b8df5bd0ab0e1eb1116",
-      "/registry/contracts/convert/from-json.json": "e719c3bc4970b8ee8d44c806c605bdcb17440632dde1558f8e7fb209be4922d8",
-      "/registry/contracts/convert/from-yaml.json": "8b40c63b5213a776b3ac3e7938fe8589164747edafee27c9b5836268cac02c53",
-      "/registry/contracts/convert/to-json.json": "f09c0fcb44b98f60ca4be0f2d53bb57a008acfc2f80d5e21d8e3928077e2064a",
-      "/registry/contracts/convert/to-yaml.json": "94114ed9f92a97207a13fc9691a1aa93db2a0b10158be9aa7b4f692ae03753d7",
-      "/registry/contracts/copy.json": "d1dba8b99d9bd9f56ad4077aa8d94adf85fffed067ecaed740686bb46fecd8ea",
-      "/registry/contracts/create/bins.json": "05f847a460b9d2fd61ad3288697e3c9d56b42184950168d99ead356cb9e5dc13",
-      "/registry/contracts/create/column.json": "d073fa8de6a5e70e19fad3aa978734adbbd513c795875895a1a406d601b37b61",
-      "/registry/contracts/create/embeddings.json": "331d504282fe59c38ce058306237f4500ecf2c5d14299ef1e28746ede3f6ffdc",
-      "/registry/contracts/create/guid.json": "8bbcac33196ce8f80f2dff5835e02eac32afd1970102e59caeb547374bc62258",
-      "/registry/contracts/create/hash.json": "9a7f9b5fb5b87ca8b7ede852da423304a0a4254c7f899344b8d976be83314408",
-      "/registry/contracts/create/index.json": "044e21501f22b03d676f2d91c2ebd868ff8d0a8e2b81f15136b8d18a4fcca32b",
-      "/registry/contracts/create/jinja.json": "f33dc99667bcb35d5361342205a10dd4341c64a4a29ea3da875534d462696a05",
-      "/registry/contracts/create/uuid.json": "834b964177251900f00027aa50cb09223fe09aa56e9605f58177ecb4de87a908",
-      "/registry/contracts/date-calculator.json": "4e0d713d44ef939d79cdb9b105bd5f6eb843a7d295e68e3f184f28d13efabd57",
-      "/registry/contracts/drop.json": "1ad8f6d3536144a0b3c3f893acf28aa0903b70be4093bf03e0767a9683d48f89",
-      "/registry/contracts/explode.json": "010650658dce574c4c6009f70c8f9b218f34843776033a74ee56fc742244ddb1",
-      "/registry/contracts/extract/address.json": "4c610ec6c8b1f1a04fd87af53f002e01654d9fe84785077312d933d6daf37ac7",
-      "/registry/contracts/extract/ai.json": "c804c4bab07499833b7eccb684a848f26c0f7ffb5b65d8d83ec721688f566d19",
-      "/registry/contracts/extract/attributes.json": "7324c4831e74f4035e678ba9a5a8901c3690649e0085d1b015736da93158f291",
-      "/registry/contracts/extract/brackets.json": "af722987f32c82ff5a693b9431bf3f600af97696c635c20d8e9f674f9f7efc66",
-      "/registry/contracts/extract/codes.json": "8c0d1699595752c7c24527af195cb61b9730962201f510875b9acba725cbaa1e",
-      "/registry/contracts/extract/custom.json": "de2cad96a479a58889a109c293314798a272db8b14a18876d8ca5d73a9147fa4",
-      "/registry/contracts/extract/date-properties.json": "1c6a23e834b7e58b014117654d4a0a4416d573a106fd469aa9ea3c2b6ed45e06",
-      "/registry/contracts/extract/date-range.json": "768ccf5b41a76b4e91bff484a63e14ba67633c1e29df882cdb366fdee8b4a155",
-      "/registry/contracts/extract/html.json": "68393a6e6fd595f955285cc996b947a7e88d8d07814e562ac4b3737854884327",
-      "/registry/contracts/extract/properties.json": "7124a9684af4b8a7eb3fb1cfd6e2c66cc3cde897f092a70c74f9a1490cd42e98",
-      "/registry/contracts/extract/regex.json": "94ca2420115e0f65df6c3e5795c911b7b4a6ca9b452982fd48e1b3a463930a90",
-      "/registry/contracts/filter.json": "d31afe4269ef010aa6174da501317242b0757ebaf2ef274de479e280a33a7d45",
-      "/registry/contracts/format/dates.json": "517d761305efd80e16ba54924806311810cb3512dda1ab860899d0083c520662",
-      "/registry/contracts/format/pad.json": "8fdcffb53a98804411fb90a929f8817390863550b39709ac163cfd68110b31aa",
-      "/registry/contracts/format/prefix.json": "96f60154301e75e3d738da761baf8f0732b7d0da542467815b2423b82eea3a2c",
-      "/registry/contracts/format/price-breaks.json": "5575afd8cec58179276eb0cf855e3334f5f30b4aa06ef7b985d70ffe3313895e",
-      "/registry/contracts/format/remove-duplicates.json": "727acf417b3ca15015fcb74c434e12bc675e1d1599c4ea3c07d13e9a3e7f662b",
-      "/registry/contracts/format/significant-figures.json": "d9b1be3366f0ee0bd57efd5b720ed2e496d0b491f3a464681e3950a5206ac6c1",
-      "/registry/contracts/format/suffix.json": "9ade5eaec6a4abf0bcc7a68906cc028eb98c2964e77549629914db7f7c0df982",
-      "/registry/contracts/format/trim.json": "f2e0728a967982729dce5b9c2d9bc3db070fb9b1244aac3553eaeec615b1cb2e",
-      "/registry/contracts/generate/ai.json": "eb23a9a3a8552cefb8fca7e481665d163271fdfeb43e001985ef6484fd654adf",
-      "/registry/contracts/huggingface.json": "9be1e5569a4ea67f64457dd7f5e14534a58b1c0b7d6a2e0d2785d6acfccf9d49",
-      "/registry/contracts/log.json": "c2bc76e93040058090890b657b0c26d52b97b88e07d921dacd8a8503580f68b5",
-      "/registry/contracts/lookup.json": "139a2f4a039e3692e5e01f46f011043744c9b10b480d95bef3120108746f6f85",
-      "/registry/contracts/math.json": "e51b7d63b70855b9e0a7de4ddded098e613ca5fc8ce9bddce9f40c3aa25c1344",
-      "/registry/contracts/maths.json": "6bd1dbe8a3a862fd3f541fd6d0c23f8735cdbd9e61028cb59dc39bfc3617e31c",
-      "/registry/contracts/matrix.json": "7c62ba6fd132e411a9cac13eeb30536375071aa8b024ec875038c2c1d702201c",
-      "/registry/contracts/merge/coalesce.json": "10d82547f6b587e78422cfddde0f6715083ea2865df2c02f0355464d590dfd55",
-      "/registry/contracts/merge/concatenate.json": "d1a3bcacc6e64ada759def225dcefd0e681fac08538527dcea44d0d78af0962f",
-      "/registry/contracts/merge/dictionaries.json": "a3cd5d02ab9fe00a4498dd98f762ab74a5a8f291988c6098e16e066b1727bcc9",
-      "/registry/contracts/merge/key-value-pairs.json": "bf7b094a53f1edadbea0011a8f59bf4c8994ebef00d9aca6666b176817fa06dc",
-      "/registry/contracts/merge/lists.json": "da627c1fb23600ed7a5495d951f4588691b7f5881b18f25c9b7d2e77073b3de7",
-      "/registry/contracts/merge/to-dict.json": "6287902b382882113a7c06ee93fb150b55c863905b93350eba89b9c07832c6e6",
-      "/registry/contracts/merge/to-list.json": "8fce0d55383b9c2b5a7c332f6da0571538c9c16cb4db42cebe495e0c7ee4dded",
-      "/registry/contracts/python.json": "9c71254b2ac0bef88848df0a85a11168def40ba61eb58ebaff249dfb2a89a999",
-      "/registry/contracts/recipe.json": "dfa17c9068945760cd36299a6765704c1e74b49f871949b4a25d12f5bde9d033",
-      "/registry/contracts/reindex.json": "60a86c1422cfd22f5ec2303195a8b12dbb6b0c790eb007a3807d0369c55742ae",
-      "/registry/contracts/remove-words.json": "c98208dd85d459fb7df6f04e3189f7f3c542ddf88861774dd57258340392b329",
-      "/registry/contracts/rename.json": "a9682c3b2e8b388da3ff0dbcc0ab5410f4b583af4e966bbfa4f9a0e03d21d13d",
-      "/registry/contracts/replace.json": "dc29afdf3d0f951a66a3f65f51833989e2e9c77583fa464d7955a411c820a5f6",
-      "/registry/contracts/round.json": "787c6d8815ee9b19d0f75eae4e56da6dae23ab13dbbb7629058c22f8e8db449d",
-      "/registry/contracts/search/find-links.json": "5964a242c447a8a74cdc47a3c47e745b2e607a72ea30ce5e3631737baeebd853",
-      "/registry/contracts/search/retrieve-link-content.json": "82efa286bd7614eebaa9ba7063e91e269abe03262324a1a2b2442e2d13d23168",
-      "/registry/contracts/select/columns.json": "2fd04ba255c7ff4c3eb43b1340631b61d81f6e59820264683497205b84361257",
-      "/registry/contracts/select/dictionary-element.json": "c6e68af8f2c8ce84ef52d813e1b3ea75e1b78a35c75052a7b4886bb0e9bbe7c6",
-      "/registry/contracts/select/element.json": "048b7bd4557f22070b66c738a006053ff76249ef950200edb2d63e1cf902e38e",
-      "/registry/contracts/select/group-by.json": "a6b9d540a7a17b2e409d270425ff7b15ad06dc542416fae5960cff011832f27f",
-      "/registry/contracts/select/head.json": "5036edae245c2be8442bf97f4f8e424853e18da10a8516d3040d8fecac3b9483",
-      "/registry/contracts/select/highest-confidence.json": "686e0079c61e77499530f694a7042de34bfae02016009140d862bca54c0dec26",
-      "/registry/contracts/select/left.json": "b3694e6c617cd0b952ebe363f4a4164e2715a22108a99af7231329d11b39a730",
-      "/registry/contracts/select/length.json": "5b7aaf82436ffcac62492d49bde6aafc887a7dfc6c7cbde57d7889f12660723c",
-      "/registry/contracts/select/list-element.json": "0476fea821311b2f97c54031a5ff34cb466bc30ac4288f7e4890e1c13e1212e4",
-      "/registry/contracts/select/right.json": "4164b0cae1780699fcd66286f321ad0233a42b2a381bf266a682d2c66c1b4d73",
-      "/registry/contracts/select/sample.json": "9cc3f7d86d737c7caa74447f2312305b712b85080cce7d626b8d2c924d4a3544",
-      "/registry/contracts/select/substring.json": "e6c41c5178a59babbffeb8e2fb0a1eb75e9d3f6d7d64792401bbf28836c13c93",
-      "/registry/contracts/select/tail.json": "62de8b8cf6ec8ce03c3b8010a38c1980f90e67e745c3db7c8697361b34554bfb",
-      "/registry/contracts/select/threshold.json": "9a402e8c9f020fe6f8003f28b629f1520cccf0bd0dfdd8e58be6053bbb0adc9d",
-      "/registry/contracts/similarity.json": "9d3f6898d3bd274fe348e87d3e1fca2bf059493190c7d1d9eb02328e5812b0b5",
-      "/registry/contracts/sort.json": "7a02a11d5f35484f944b0513b637730fffcfcfb05dfe6549e5de8ab68971ad13",
-      "/registry/contracts/split/dictionary.json": "fb578e49ff5310a53ba6339c5a4972ecd7f61450959ec15048638cf0d603ff73",
-      "/registry/contracts/split/list.json": "e8039e53ddeb49b4bc9535da6ba7a9f63ed1089a5be9ce33d90a201ee65c3ffb",
-      "/registry/contracts/split/text.json": "ec206d7f2ab8e965ad6eacc1e5352d00d294c90db4a3f027b84a7cb45ec1b4af",
-      "/registry/contracts/split/tokenize.json": "9079a9a1c792dbd2bf5a7a0d84e9d4c4f961aa23a3306df8da79e89e94b02290",
-      "/registry/contracts/sql.json": "a1934f389fb169ba8f2a12c04895a5d63f9c660abb78b3ebab236449fa4bf81d",
-      "/registry/contracts/standardize.json": "dc6cd501b1b58cdbbdfd3bf6f4395a2c50f43c447bd8e8e4439b8e98b6952af8",
-      "/registry/contracts/standardize/clean.json": "ab4c5506ece798521a2d573acb20e80239d98c40ff12f57a09a9701b16a49230",
-      "/registry/contracts/standardize/custom.json": "1743d3a78b0cb30f6a463d355cd3af0a886abd0d9ca5a02b45a494d3a4630439",
-      "/registry/contracts/translate.json": "1219be26353c2d5e1801581fc2f58e65050a9ff6e6a331e3c4e65358567801d2",
-      "/registry/contracts/transpose.json": "5a5d69383c3e42315542d32b9e518525a752b2989bd27cbc895a9353cf691478",
-      "/registry/contracts/try.json": "50f1b2120d0f31dce37ff5c54d52a8ed37039bec7841fbe61e0f9f69ca0edb82",
-      "/registry/runtime/reconciliation.json": "b5f5f1d8da9d338a8c0e58fe67337cd5122ac25b73b0f4ce6c161468c35ad80f",
-      "/registry/runtime/wranglespy.json": "f06526b3823fb70f1bb28f4be242bf23621d1b5a544d1f42c04b7549fe1bbef0",
+      "/registry/catalog/api-core-response.json": "9d1cce206f7afe3a2e527655b6c7235767bb955cd94727c79beab9ae196cce8b",
+      "/registry/catalog/api-core.json": "ddcdd39572883e23d1a008331dcfd5d7eab837f30ef38c67dab3539c8590b308",
+      "/registry/catalog/reconciliation.json": "8f9ac22f62ce7ce6dd1851c239fa36d4143b5949bff5fb8cc8882793eefb5b79",
+      "/registry/connectors/access.json": "ea7a836bc6535671221733fd697f38161bec30e2c4557721f1f59476366336bf",
+      "/registry/connectors/access.md": "4c133b22c9e2eaa9a4c738fa4d69f23b4afba0cff4c0d650c411887b0c788a2c",
+      "/registry/connectors/akeneo.json": "37dcf458335702af957a9cda27e75f7a0802ca38206ab0d0451fd6f930f6fd17",
+      "/registry/connectors/akeneo.md": "a594aec32ff7434909e3253e28f761b3596bf46ec01b5bdf4120529e5946e212",
+      "/registry/connectors/ckan.download.json": "6a061803b506373b47c5d45865fefef2f98684db01f073f1c831e5207727df17",
+      "/registry/connectors/ckan.download.md": "93a6001f909bdd5f1241e5d29778b22e90a3b4c729704e4afd93d1c62116e1d0",
+      "/registry/connectors/ckan.json": "8670d34e53f3bf6f774d0dcafddc04b5ded391b84abe71d0db8ebebfcf632e6a",
+      "/registry/connectors/ckan.md": "40e932e80f963623e75bce34446e18f850986a2f3fe50271623a171c203a7095",
+      "/registry/connectors/ckan.upload.json": "ac326d75d0800c241618c0b3b54ec71ee3dfd082ceb7c5e599e201012da7cf32",
+      "/registry/connectors/ckan.upload.md": "d51ece5ce9d45c0c033e96d8e9d87c50898930a8fb56595156e0b9ee91e52a5d",
+      "/registry/connectors/concatenate.json": "272a69f02c58eea690ea515db275b306039ed297a85ccb1662c3c42572983302",
+      "/registry/connectors/concatenate.md": "a3618e373547f7579b614acdbea621ba0faceb79ddeff743d12f2f6357d5b0fb",
+      "/registry/connectors/concurrent.json": "b2053950273210b629e1b04a9eee5e8b6be5d5cb5d337c720e373aad2c0b8c1d",
+      "/registry/connectors/concurrent.md": "bb78432657b4e87e3916c3eabfe93f663f9b8b537eba1f5f39d669f357433105",
+      "/registry/connectors/dataframe.json": "5b2804632142f1abcb06b8db51068efbfc0610a50cf9f0d1048b493df4af739f",
+      "/registry/connectors/dataframe.md": "a2a43f6d5d9fc9a97f7583a3e550677c76fe298bbbbdb2166e54734837d36db5",
+      "/registry/connectors/duckdb.json": "d691ba0e32c59cbdc32d3cefa25d44b3f27fe5cef4dfc0b8ca6799969ae9f8d1",
+      "/registry/connectors/duckdb.md": "c9f9b637445b2fdc825eb86fdf663db668104f2bafb8a91deeb24b5f48cc7d63",
+      "/registry/connectors/excel.columns.json": "a13490ca24db77164a1d4b6830a03999230ebe61132bb516699abb28c453db44",
+      "/registry/connectors/excel.columns.md": "0bf0e17980ec1decdf067abb999f283fbe061e6fb149bc4492ff39900e39c9b6",
+      "/registry/connectors/excel.selected_data.json": "7176e9c0672f1d9de2c181e504040df4db0fea935c705394cbbc3b5fd4951084",
+      "/registry/connectors/excel.selected_data.md": "26051a9ffb5809b4dc68d713499b5b26565e7826a1d6ddba7e4a72c11a496132",
+      "/registry/connectors/excel.sheet.json": "b2fd443847caaed7f702c86a2f6185e0d815311b34837c2450ec9efb01d57448",
+      "/registry/connectors/excel.sheet.md": "e9811fa5a56ad681daa4b12249fe09d3305c496c8bcfa50807366307dd1f4bac",
+      "/registry/connectors/file.json": "f883473935248e9f843dd8eebcc05d2ff50e1fba404fcf749a8a9406b3f0a953",
+      "/registry/connectors/file.md": "9901cee155cd5f6b5ddc3640ad5fb2b94f64af195e134e5019b1990b2a2bd8a5",
+      "/registry/connectors/grid.selected_data.json": "313d1d728a0a2e5c035ecd4dbd8fb853f290659a6afa8cea71f8730d1762924a",
+      "/registry/connectors/grid.selected_data.md": "f9288f5027331e6fbc615551b8161e60ce91f67a6fadca1d3cb99623e0c4033d",
+      "/registry/connectors/http.json": "337743f724d98cf57d1caef5543349e0e385618eba40554755a40de4795e3a63",
+      "/registry/connectors/http.md": "1af3a5b82d1861e7cb4303e0530e159404c8fad3eaba2513f2163ee5cfb39120",
+      "/registry/connectors/input.json": "6cbf924cf32b41004a62e77e7eee199cfcde66c90af127bf1676409c2e1a1f66",
+      "/registry/connectors/input.md": "f089436c9465ebf7dbdd75d80c7c54d22504c1ee43b6c36fbc74c50b706a9fd3",
+      "/registry/connectors/jinja.json": "9265244ac6203790cb4584e923e80481138b33fb371a5ac63a83cc69d5123898",
+      "/registry/connectors/jinja.md": "693231a336f339cd6096866d7040ee28817daf0896c68eef8bece44b5ed5b69e",
+      "/registry/connectors/join.json": "29528ca171033d37c82859474118c61abf17dbab861bb286afc3fcd199992d91",
+      "/registry/connectors/join.md": "a3b8e8a26f6a61e6ecd62e6e1b1b65c9d30ec2ba8e8220bdfc76077776fa4ab2",
+      "/registry/connectors/matrix.json": "c4cc1e6a61d7ffd896ac987e571f8390e0e3c8c9a6a3a3d81ddb0b426668f3aa",
+      "/registry/connectors/matrix.md": "a6c129ef201d631a7bebb9b13eb1dbefcd7de84e9756571785edc58140ec8bb2",
+      "/registry/connectors/memory.json": "7cec3a7d7ede9bcf499a9af7cc499af363bafa0c5b011556b0ebc52d6fb02e57",
+      "/registry/connectors/memory.md": "2502ac4707838f8f65e764fd76f4d9fc8b47d7491785186d521283582274cbae",
+      "/registry/connectors/mongodb.json": "95c9f780b21398c300aa85127316902352e3b7029dafa1067d07dbce6d794d3f",
+      "/registry/connectors/mongodb.md": "4be0249fa11d070858e6eda5aa68c3618d0e75ae6d0f84cc50adb089952b0817",
+      "/registry/connectors/mssql.json": "fd7696706621c6de233ce5006f8c818b3506c857f752f8f175f9e1fe0746a508",
+      "/registry/connectors/mssql.md": "e2e53b8f04072ed0ab0b3a24ea94f44ffec4aae6f6b727e2bda51022336cb003",
+      "/registry/connectors/mysql.json": "f75ce002728c20a6a94d6bacb7631b0aa6fa96ef6da8895b245738efce9af7b7",
+      "/registry/connectors/mysql.md": "2a93c4690872638c3c78b3544043572cf11ebcdeef0b767345318af2f8a3b4fa",
+      "/registry/connectors/notification.email.json": "d7eff1741434de0f2447434f9464bfe6543d2fbd95c49e834055ec9fdd9bae3e",
+      "/registry/connectors/notification.email.md": "fbf664127c3e7285595dd5b3d0c0816f40237cd788b3a6d148fea84242c462e2",
+      "/registry/connectors/notification.json": "be1832245f2c90cfad65be0580b2a3d2834fc2c7236dbff3e5378edf1a478e22",
+      "/registry/connectors/notification.md": "672da95fe6eeebc78aa343bd125b71f7d46d92254a61efacf1c7c3e4f73346f5",
+      "/registry/connectors/notification.slack.json": "35a794950414cc98f159825ff5ccca3e05152f667be10e47d8381e89d930ed2f",
+      "/registry/connectors/notification.slack.md": "ecc0c8a18ee34c23fd2d1d4e0ee140c2540cc9fe246a847d7fb759d9ae80ac7e",
+      "/registry/connectors/notification.telegram.json": "d5d20fb467afc3d6636033cdff0007807239e5aa8744622dd411bb7bacbc2769",
+      "/registry/connectors/notification.telegram.md": "d15c2426c046303f553083d85d5669ce1992e4e5c370d8e2d1dff8c6c159aedf",
+      "/registry/connectors/postgres.json": "db401cd2cbbf098dcaef89c5d0d26957497f2342bc380153a376f8d9cb00d128",
+      "/registry/connectors/postgres.md": "9ccfa500a96c4c3267cc9d6d9633f52325cab49e49c163379d37da8711dacd44",
+      "/registry/connectors/pricefx.json": "acd8444f6a7f46f7dbb2443eecaf431155cb555441a2b404c8e1d9b2913700fd",
+      "/registry/connectors/pricefx.md": "8ac57d7bca8c2f3368f8c35b28061f33884ef6112786e6dfbc9d50d1a0f25e1f",
+      "/registry/connectors/recipe.json": "8ea252fcda1b609fe75cad9effd902fd45a0b251216a0f7487e4e20bdebb93d5",
+      "/registry/connectors/recipe.md": "0146a1d1fe948f76683794175445f6db62092eac2bb4369767008f1850f00672",
+      "/registry/connectors/s3.download_files.json": "bcd2184008e60a85d8db68db389453ef1771030484f60eafe2ca415a5fe9f7b9",
+      "/registry/connectors/s3.download_files.md": "51e7f735a590335968552bc898929da72e9db3bd0bff2c9dc25059343beaa78a",
+      "/registry/connectors/s3.json": "179583af0595d81fac397956716668915ba0a2ab6527640d84f1d470627c8e24",
+      "/registry/connectors/s3.md": "05d659d0bc1b1a97896b9ff7e450b2efc2da3ec9c0311d85df52590367b28c6d",
+      "/registry/connectors/s3.upload_files.json": "ca842784aac50826ae444857f3b58c43495802c676077567ef9a043b798650c6",
+      "/registry/connectors/s3.upload_files.md": "4f27819efee8d9778b6a30f5feddf4d4127c8301a9e731c376029a26c7d465a5",
+      "/registry/connectors/salesforce.json": "ff0b40a167271c5e55540c56b4e9f262e17a58c4d1d880ead4b2085abfcb55d7",
+      "/registry/connectors/salesforce.md": "64f38d8326f885c931c6f34014f95bd750836ec62e1c02532c28e7867c20e88c",
+      "/registry/connectors/sftp.download_files.json": "c6aeb31b4a5d41b618fc8f6f3a30e743e1ace6db892f8baa9200a64c50ac9455",
+      "/registry/connectors/sftp.download_files.md": "c5b583940e4a392f90d16330c5abba6e067a451435f27c6d4930f824bd5018a6",
+      "/registry/connectors/sftp.json": "28c92c328b5711066950ce0c539501bd68d2444f9c4a0a2cd0fa6edb98e3fb19",
+      "/registry/connectors/sftp.md": "b834338d203e6a0749f19ad35cbd18ee1c811f36a62f3da0daf0eeb25bd74f16",
+      "/registry/connectors/sftp.upload_files.json": "2240af82e7fcee8f6bacfdbdd8a75363c1b7229e640caa92deb49656ac6480ee",
+      "/registry/connectors/sftp.upload_files.md": "cd9c2d9bceb6080c262536a2a1199ea1b1e2bff898a20270d5c9bce957fabbc8",
+      "/registry/connectors/sqlite.json": "6e45d00ec88507ccc02aec7137f0e0e5f7f51561cfa280e25e50b638d1091ffa",
+      "/registry/connectors/sqlite.md": "933472e8391235f32f31632dcad2b34830ea5c4a1b9e2985da83a17db5ad823e",
+      "/registry/connectors/ssh.json": "851aed08277e6497cf7b203004cd148e859138608a0c9422a2923463842802ae",
+      "/registry/connectors/ssh.md": "f2625722496eddffa112716eefa5c2dc386953a1764ecd381dc4999865e7a10b",
+      "/registry/connectors/test.json": "417a5e607429aaa4a6330720a67cefa0b9fae090a22def21fec68f5d1da64469",
+      "/registry/connectors/test.md": "2645a235b2aec47a483efcfa3d674a173e8a7f2558bb70c85f67b01be1fb4687",
+      "/registry/connectors/train.classify.json": "d7134def7eba62c8d9cbab5622dc5d4cd0278987fc04b7cca2c337b23503094e",
+      "/registry/connectors/train.classify.md": "05d45b432fa2c257621b4d943fb4c3ed2c39ce9cd39ec92ede6ea824b9538a3b",
+      "/registry/connectors/train.extract.json": "e3fc3ffb123fdef3c18db66d4a31a1b55b4c4da24e79af9017e767b0cba164a4",
+      "/registry/connectors/train.extract.md": "d65bba74778e0562bc70233bf6c4813a19784d3a99bd08b76e2e94d9dce816f1",
+      "/registry/connectors/train.lookup.json": "94db20b80d76c809505e702f9c125f790106b473502c9aa034e5e95f6bf780c2",
+      "/registry/connectors/train.lookup.md": "c0b328c82ae8d6a88338b089c496b5ed8d710effe00e411b266d186b7191a873",
+      "/registry/connectors/train.meta_data.json": "57e378470059fba0fb45cb54ae673dbeeda99a1ec53c01751f1f02e3bb1819bd",
+      "/registry/connectors/train.meta_data.md": "d30ee93f430b42fc86a3065ff984590022302625af6d649d22f1a63dd0dbed74",
+      "/registry/connectors/train.standardize.json": "3aaaf62e99fe4804905585d6afd6f75059161db116504450f34eab41258c4835",
+      "/registry/connectors/train.standardize.md": "f0f99cb47e3f6d8986e8c73cf37e787b059fc257d066c5088a5a4dc450674099",
+      "/registry/connectors/union.json": "f35e17beab3b197654f4822e4a53f269afbd616fd9812a758b775c9cb781ace9",
+      "/registry/connectors/union.md": "44d430d758ce01a7cd4c8e2cfbfa0827f130d5369db12c0803cd89aa6df85060",
+      "/registry/contracts/accordion.json": "e1f021cdde80295523af609ad92e153febc6d2b6232134d464be35d87b58cded",
+      "/registry/contracts/ai/answers.json": "00f13d5efa26b0a9236d7cba13cffb2ae630102e3d030c08a3957e2088c282ea",
+      "/registry/contracts/ai/choose.json": "faffe310bf43c6f99e2165a10b6a0e266c2feabbd8577fc90e74ec74b1b3fd78",
+      "/registry/contracts/ai/score.json": "f16c0f86d369ba66d089ee4783bc77a7741f2781e65167da9af3f10a60510f81",
+      "/registry/contracts/ai/true-false.json": "8b35f2da644b6d219b47514047cef3e1ab1f5dab78954fec0b96d41309ba97b7",
+      "/registry/contracts/batch.json": "5183db903426f7839452e4f770ae08c2e0ebe46ccd9a3dba0bb78f2b3077a250",
+      "/registry/contracts/classify.json": "bf8ba51c15f9808f9bf6404e11e9e5161bc1e9c98a37823575eedc48c9f94143",
+      "/registry/contracts/clean-whitespaces.json": "1ba6ab3cde2c5c33df45a65d98022151ea9023709f198597e8d2ddd4e5ab5188",
+      "/registry/contracts/compare/lists.json": "9238dd1a83dfd53717db525131ce31a8a0181bb02ccdbf2e8f18be04965c4ef0",
+      "/registry/contracts/compare/text.json": "55a780c9114e37709f7bff5bc60e71bd32836b3c77019f180f7b2e3c501bcc77",
+      "/registry/contracts/compute/case-when.json": "01ffb3e2ec4c1f1428d2c09ac3231b7bb27d0399a93f1d505dbb64d2ce97f76a",
+      "/registry/contracts/compute/score-search-results.json": "b722c44b62fe9857359345d557becb7a3e31af54585dba9eea317915a3ac61b2",
+      "/registry/contracts/concurrent.json": "34e42f332717dab704da01296b90fc3849f35ef07d7758843bff7626c21385ff",
+      "/registry/contracts/convert/case.json": "8d43ef9fc3ded97a74237a850fa24f04074e6a1c7e6057ff8e41c249d9e9cd3f",
+      "/registry/contracts/convert/data-type.json": "576d237984778e8ad45a33a4d2ad92250e15a901f1112b7c27badec4a1f9c8d5",
+      "/registry/contracts/convert/fraction-to-decimal.json": "92006bad38a9b6ee2a5d6183294055141c404126b85735fe64809d8d8ca9c23a",
+      "/registry/contracts/convert/from-json.json": "cd4c48c19f065804361c1cb3b48dd71e895df308888246ff4c859450d74f90ae",
+      "/registry/contracts/convert/from-yaml.json": "ac6840d2eb8ed20d2114ff024d3feca92215cf2b07ae46bdf1bb3e35739ef859",
+      "/registry/contracts/convert/parse.json": "9efb7133a65f4ba8a46a40778295874e4951019b2610c309a8f93df6e1052d13",
+      "/registry/contracts/convert/to-json.json": "8ebb9f173207db2f18fa59455027b2c9a914b442b34d57b9be78fe40472e15f4",
+      "/registry/contracts/convert/to-yaml.json": "1cd7cdbd5d6d1442432b2e3e4a00b37a9d4af637cd341fc741ba35b0330a1335",
+      "/registry/contracts/copy.json": "d671cdb1726a57381aaa8a902a48089bb5e89ae9067b53c3a9366add2366dfd3",
+      "/registry/contracts/create/bins.json": "f7cae299163e992b470b8826ef0021ea0c1f96b1bc3d2a5c95bdd3f5fa00ae90",
+      "/registry/contracts/create/column.json": "b62560e95d4dd2db752d33f3c5fc8c222464ec7f19ea8fd04522f3eab79d60a8",
+      "/registry/contracts/create/embeddings.json": "db87a467647653cf150540f74aa6a39a76b7e4464b9c691874f272622fdc3ad4",
+      "/registry/contracts/create/guid.json": "55f29502756a669cce8797434ec9694695add78bab3497bcce603ae9a75b5a5c",
+      "/registry/contracts/create/hash.json": "8909d09a7f9ad69c694d72f655b89949bebb2f7da866fdd140f06613c465d8ec",
+      "/registry/contracts/create/index.json": "142bbb0ff72a4cbfb43ff009ec08d9aa7fb1a19cf7763cd13d3f904096443200",
+      "/registry/contracts/create/jinja.json": "1be456409276cf7d881f692ffe8f0c6785e4d989e4590318eeb251f21057e362",
+      "/registry/contracts/create/uuid.json": "3916e418e6a7195e6a16295a1958a007e26ac3f6bf6b4192a990675ccca1d714",
+      "/registry/contracts/date-calculator.json": "9faf4a9e96fb2c0ae14ac9b88e15a9cf2b5c2fc7f0ae27df0bb094285f5eba2c",
+      "/registry/contracts/drop.json": "778b6ffe436e3c3c73963fa62bbd8c369614ec94eceaa83288f7dea2e6b95c95",
+      "/registry/contracts/explode.json": "2c17bc0019268c35c3c0b3be16df4ccde7084a8e0efc9bcc7c7e3796ccd7242c",
+      "/registry/contracts/extract/address.json": "05b5f6572bee479d9c0536ff118b310f6650fdfb7c6d67d39b60fd960c88b00d",
+      "/registry/contracts/extract/ai.json": "32ab679d5b6f4d6d05bc1dc6a1141eafbbb355311f26aff14602fac556a72475",
+      "/registry/contracts/extract/attributes.json": "fcfb48e01703bb6934af2f5cdcf26164d2f4ee9f28e59c3b11edfe57680a75d4",
+      "/registry/contracts/extract/brackets.json": "0b13ef03f11e335ca431f341ebcab58f2defc1bf720da20531247d34f1a9e366",
+      "/registry/contracts/extract/codes.json": "517a07eb766651b174e92d0629656254660fe0c4c18998686a4fe038ae7f7b14",
+      "/registry/contracts/extract/custom.json": "43d23bb5af4f4a5eac3c1e86f1e6fff3e4e6914398e7aa1f1ad0d6be3713a817",
+      "/registry/contracts/extract/date-properties.json": "0e09459fa6602e23ace27c4a5f7c4c2b8d7eae27ca6a65b87c9d4ec9732d0328",
+      "/registry/contracts/extract/date-range.json": "f032d20660555d85c03c9d8080ba4219e2fdf3b600c068935d5d7613ef004f7e",
+      "/registry/contracts/extract/html.json": "0b840e0373f1bd804e4436cca4b4e3cfc58058b202d93c3e710fa050893a56b4",
+      "/registry/contracts/extract/properties.json": "7e83a3ac3da5d7a5dbad975e9f0cc9f660a3d57ffd5f0d95aca2e70579be85ef",
+      "/registry/contracts/extract/regex.json": "acf7fd268447e2893509f428500f7eb0294fd2518e295f53257f6c3bde12134f",
+      "/registry/contracts/filter.json": "3dfe5206213758cab438bfc27f752b6aa3ac722cbe9dc6db6fdf3131219a6094",
+      "/registry/contracts/format/dates.json": "3b0234d342aa26dfc9f94d8f22e1b5020a36bc947f5a1ccbf9e9958d7838e6cf",
+      "/registry/contracts/format/pad.json": "bb9ca57cace4b899525de4fb9479d5a28524326e73e222d5d77e89e52c0c0ed1",
+      "/registry/contracts/format/prefix.json": "d852237446f4536517e9c5791f6dec5fb9d12d8e27ff35fb319a834e782bace7",
+      "/registry/contracts/format/price-breaks.json": "e31662b0350c0f8ba18117db499ed8f8b7d89a73cbe2e9e80d8da8defcd28810",
+      "/registry/contracts/format/remove-duplicates.json": "159b78ef0a6bdc5cb0d91ee24385e94de38056366a0c5d1d9c9b4236d66956c5",
+      "/registry/contracts/format/significant-figures.json": "ecb0698c5be36ff64e2a95278746169655a7d58016503ef98100329bc149ce6e",
+      "/registry/contracts/format/suffix.json": "86d7445aed664940783f3290191ef36a162a51c744bde8b1dc263ffd47e3ebe6",
+      "/registry/contracts/format/trim.json": "e305baee63aea45438bceefc841d91ce27fd7d889a0860c754f39bac3e078387",
+      "/registry/contracts/generate/ai.json": "ba66194e3bc5d610aede2c675965d27d05762bd2649553f293035963e9bd7c9b",
+      "/registry/contracts/huggingface.json": "6046f41a47fc7026b2eb10993ed762384be9b881cfb945af12fc267acb13a3ee",
+      "/registry/contracts/log.json": "53cf94b5266749b50c5f7e5508787305773b1c40d844eadc758c9eb99260a4bb",
+      "/registry/contracts/lookup.json": "672c54c198e7367b8668d29e11bcef30886ac1eca094d16f1f66ed8c8afd5613",
+      "/registry/contracts/lookup/key.json": "d159370fad4d023469252d760a0303fa2230eef0644ccfa6a14a977d8db7fbff",
+      "/registry/contracts/lookup/semantic.json": "8cffd1f01df18de81d2b10e8df251bc34c4647533ce2fd77b0a07a1781ede6b8",
+      "/registry/contracts/math.json": "ea5fed71a4a2b806321564fb088c3b4267083c6b22c6c824771b8e71905a5639",
+      "/registry/contracts/maths.json": "ea3c7e7d3e827637ef929805b90cfdcba6738848def3ab54093c5016d3583370",
+      "/registry/contracts/matrix.json": "12c7ea7ff2fb45878be61f9f57c3d51f2703a99611703a26198541fbc483e6e6",
+      "/registry/contracts/merge/coalesce.json": "cd61281714470c5ea85a297c2d03927b8db809a6f983763bda48b67fc480c186",
+      "/registry/contracts/merge/concatenate.json": "33482c3502ac44b801099f84ff6df09d1b369110b3063550b64772238754b342",
+      "/registry/contracts/merge/dictionaries.json": "e9f1fc17d97b80005e36c948936387a8d0575f42acb6d85a1772b3db23268f01",
+      "/registry/contracts/merge/key-value-pairs.json": "e912f99bc563bdf9538e98569cd96ac2d3250172912a27b2fa5fdb41a827d612",
+      "/registry/contracts/merge/lists.json": "3723702aaeb66dc85101d6bc87cf5889f0ece943833aceb2d942c62d935dc986",
+      "/registry/contracts/merge/to-dict.json": "4e09c474d17548e65860f48403846cb2e96a6b281eec94fa66e92708110a1590",
+      "/registry/contracts/merge/to-list.json": "c7a896a189815851c3020155e99691642ceee3f97751d35cc6d346d31e8d155c",
+      "/registry/contracts/python.json": "aad56c75087093413a0f9694c561a6fda0e1b4d320ea25c92c60c18f9ecd1320",
+      "/registry/contracts/recipe.json": "8ff61f4c0f848b44f739742d6823259913bea5a26da2d434b938f7122163b65a",
+      "/registry/contracts/reindex.json": "64ba266d2dfc0527d65d93d8cb228d322c065b986e3f0e127f5d9e55742717d0",
+      "/registry/contracts/remove-words.json": "4f83afb1697bf3b00e5f3c12734c87a583575ced32ded9a8dcd70aaebb370395",
+      "/registry/contracts/rename.json": "1b75feff728b25bd11bd92dc8ed794a175555f9783a56b16e5902b729542fe1b",
+      "/registry/contracts/replace.json": "864646eaa3ee15f66863a67845324dfa899d65bfbb5ae2f93fdaefaf71281fb0",
+      "/registry/contracts/round.json": "514c255831c657d51352db63411f070a58180b295c0af8b793ec29138e184585",
+      "/registry/contracts/search/ai-mode.json": "fa3e3d885baaf0858531c03ff7ee91a8051fd359965dc771cc223bf474afdad8",
+      "/registry/contracts/search/find-links.json": "ca4a78c064a377fbde6758afcc474527a99c4f4b8a07a48e424ad1fec5e833fe",
+      "/registry/contracts/search/retrieve-link-content.json": "1db4cfd96857f12323246d1c81e5448e1bc077278b70b4fdd4970381f8fc74e3",
+      "/registry/contracts/select/columns.json": "7143ad59ab54c9368ceb3aa54f66eda27f7f627b244dc8e2b1760342f138a21d",
+      "/registry/contracts/select/dictionary-element.json": "eb72501f221f48b6b1e5b0ad785f9848554c86cd97712d2ef01994b82bd552b3",
+      "/registry/contracts/select/element.json": "0bc7069d0d4933381c52c938810d671b9dac70980aee751231d529cbe72c4b0f",
+      "/registry/contracts/select/group-by.json": "ba5da3580d90fdbf6d463b8f69b7a923613c40e06c64e006f53c5edc66402403",
+      "/registry/contracts/select/head.json": "20c5451fcd4f40ce2f130271b66ccd1e44315189535fcbb2adac8bf93a569cc6",
+      "/registry/contracts/select/highest-confidence.json": "c3d4506fadec545057ed4d41086fb9c2194509b1add44af2d10244842cd8faf4",
+      "/registry/contracts/select/left.json": "ba1acf559f48c03f50cfe1cfef32b57e15770a9e9543df65930b98424326c1a8",
+      "/registry/contracts/select/length.json": "44f31640e31d02219c925eb80b297d7cd65da66d63b7358b4f62b52af098791f",
+      "/registry/contracts/select/list-element.json": "25345086504008ddb8d71c12b88cdf11687fe8ecdb74ec5f396761b122461daa",
+      "/registry/contracts/select/right.json": "11c8f323f49b4feb5cdf36b0d8d9647f95d985cd5d77469d5e797bb7dd5b178d",
+      "/registry/contracts/select/sample.json": "60dd7a2134f7548ef4b2b9060969c576c4610381e29131df0473b24471841c4c",
+      "/registry/contracts/select/substring.json": "bcba9e193dc5dda1da02483057f55754b6ca7b8d7b6a5fd40462f7c1d8c25ee9",
+      "/registry/contracts/select/tail.json": "d955fc492d3450c64e334ea935fa80d61b1efdb0538e08ea56b64093df8609e6",
+      "/registry/contracts/select/threshold.json": "2c84bc93006e9097eb5d08dedf5f3e1976b02558c0ac4c258e113dbbaaf44b12",
+      "/registry/contracts/similarity.json": "bb1cfc4266e35b9c5a34fc699fb9288ea334606ac451880283a3696d5d5875da",
+      "/registry/contracts/sort.json": "a25b39b47d60ca8e1d660d574776846e40d975503a086ba6bd04726b7d9f5a3a",
+      "/registry/contracts/split/dictionary.json": "bcd697677eae8d17fc79faa5e2abe8fee463d00873991d279ed7b3da7f00392e",
+      "/registry/contracts/split/list.json": "1eac7cfbbdd989398e48f18a0d0a0d647dda9d48281397a88159d3c6b9ed9bd6",
+      "/registry/contracts/split/text.json": "fd74afe8f275709f1eb569e60adbb48419fa39dfe7ebf30a31e6f769a5326379",
+      "/registry/contracts/split/tokenize.json": "371302d58e50e9651dd8fab48b7c55a7b0c36320603c0637fadc2b2720a5bfa6",
+      "/registry/contracts/sql.json": "51bf9e4d3b87aff5a2a584046fecde4ac824aecc1f1f6813b6aca9cf4a940edd",
+      "/registry/contracts/standardize.json": "59aad11bf5c59355df6818f1be29283cf64fb00b89fed688e3afe44d5d8deb08",
+      "/registry/contracts/standardize/clean.json": "49e6e3a8f7f4461af35c5f48332a16a5c0eb6a2dfac61fed54a00d9f97faba20",
+      "/registry/contracts/standardize/custom.json": "a13a4513097c8359348c652e69229d156f937b42927d9da2d7fbd89992eb9e89",
+      "/registry/contracts/translate.json": "ab70cfd7833d1b071d4a88a6d58211690cf8011f88921eb1e9b789dff08b2ff1",
+      "/registry/contracts/transpose.json": "21de33398dab73917765b9c7314c24fc13540a1a216039b4577761e66607e562",
+      "/registry/contracts/try.json": "1c0c57e58f1bc3f599a9e349ced54cd075d5521b5435cf7be93fdfac3f4ca3c6",
+      "/registry/runtime/reconciliation.json": "6824e7443df261b514e9a5e352a74546c2ec6fd2a0b6463888e5fc9ee1b0a486",
+      "/registry/runtime/wranglespy-source-schema.json": "1447357ab90407bfc1ba4be81c1d3d311834d1fad0b89e857b011b8968ee8683",
+      "/registry/runtime/wranglespy.json": "a69f977b417e17272c6c23f4aed4872758e394c92ab5d3f01949e2300446ed16",
       "/registry/schema/catalog-snapshot.schema.json": "08a563a348de58d7b0232856ce7b98f839def28f677119cbf3aaa3853b7f1125",
-      "/registry/schema/wrangle-contract.schema.json": "cfe4d4f555dc57a1d76b198653d0b2b8e4c289875df9ed4a9988250fac73fb88",
-      "/registry/schema/wrangle-entry.schema.json": "7839e5ba1d0086888afc3dc0f87102add3b1133bdf9574d8a288288b29f90f5f",
-      "/registry/schema/wrangles-runtime-manifest.schema.json": "fc05d2e44272311d3875421c5ae9b978185fcc05770d330cc4cd5bd261ec7538",
-      "/schemas/recipes/registry/recipe-writer.schema.json": "02de487d6e8eade0424b23a484bd0b1301871faf1974defae4b9970720e0eb74",
-      "/schemas/recipes/registry/schema.json": "72e4a09c3e713227c4410099fbf26dfbe351467455187cfa506e7e5bfb786ff3"
+      "/registry/schema/connector-entry.schema.json": "419046ea5fd4bc7ce65574f1ea3f076099b8a9a04f2a84e8a2d9fc7d34a9a145",
+      "/registry/schema/wrangle-contract.schema.json": "ca62ad31f52a0358b20900df9852ce179284a93f96879dd492a1415defe73162",
+      "/registry/schema/wrangle-entry.schema.json": "06f35ce7c8fa2b5e441fca6333db1483b0869b6e23d88293ca13bab068c3bee2",
+      "/registry/schema/wrangles-runtime-manifest.schema.json": "d333e4aa4fdb46dfe53f0606e1715a064aac9eec667c53b57ab8007926a6c413",
+      "/schemas/recipes/registry/recipe-writer.schema.json": "0b7b5e9653364c9e06e5cd112d3a73cf6abda2c11674304b50caf0666275783d",
+      "/schemas/recipes/registry/schema.json": "0e8fcbb94980f282fa9cf53c2610d83a771e252f79cd4f5c4778242df36d4c53"
     }
   },
   "bundle_checksum": {
     "algorithm": "sha256",
     "framing": "utf8-path-null-content-null-v1",
-    "value": "794fadbe4cc2d5cd74ac9906c910eb9ef2c26174f5e1da48c9bd3cf27d591630",
-    "member_count": 108,
+    "value": "372d0c0f843f54b96cde8636f2ef3868ebaa051f0c0e5dd9425e3b11eb5cc964",
+    "member_count": 211,
     "manifest_included": false
   }
 }

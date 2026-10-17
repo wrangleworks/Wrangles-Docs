@@ -31,13 +31,15 @@ capabilities:
   where_params: true
 parameters:
   - name: output
-    description: Name or list of names of new columns.
+    description: Name or list of names of new columns
     required: true
     param_group: I/O
     schema:
       type:
         - string
         - array
+      description: Name or list of names of new columns
+    runtime_required: true
 examples: []
 sources:
   - id: runtime
@@ -48,6 +50,26 @@ sources:
     resource: >-
       https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/create/_sources/uuid.md
     title: Archived create.uuid Markdown
+configuration_schema:
+  type: object
+  description: Create column(s) with a UUID.
+  additionalProperties: false
+  required:
+    - output
+  properties:
+    output:
+      type:
+        - string
+        - array
+      description: Name or list of names of new columns
+    if:
+      $ref: '#/$defs/wrangles/commonProperties/if'
+    where:
+      $ref: '#/$defs/wrangles/commonProperties/where'
+    where_params:
+      $ref: '#/$defs/wrangles/commonProperties/where_params'
+schema_origin: upstream-docstring
+schema_adjustments: []
 ---
 
 # UUID

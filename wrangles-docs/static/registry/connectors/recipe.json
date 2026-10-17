@@ -1,0 +1,142 @@
+{
+  "schema_version": "0.2",
+  "type": "connector",
+  "catalog_id": "129",
+  "catalog_key": "connector.recipe",
+  "catalog_kind": "connector",
+  "runtime_key": "recipe",
+  "status": "active",
+  "title": "Recipe",
+  "source": {
+    "repository": "https://github.com/wrangleworks/WranglesPY",
+    "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+    "version": "1.20.5",
+    "extraction": "static-python-ast"
+  },
+  "operations": {
+    "read": {
+      "anyOf": [
+        {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#"
+        },
+        {
+          "type": "object",
+          "required": [
+            "name"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "The name of the recipe to read from"
+            },
+            "variables": {
+              "type": "object",
+              "description": "A dictionary of variables to pass to the recipe"
+            },
+            "columns": {
+              "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/columns"
+            },
+            "not_columns": {
+              "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/not_columns"
+            },
+            "where": {
+              "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/where"
+            },
+            "where_params": {
+              "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/where_params"
+            },
+            "order_by": {
+              "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/order_by"
+            },
+            "if": {
+              "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/if"
+            }
+          }
+        }
+      ]
+    },
+    "run": {
+      "anyOf": [
+        {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#"
+        },
+        {
+          "type": "object",
+          "required": [
+            "name"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "The name of the recipe to execute"
+            },
+            "variables": {
+              "type": "object",
+              "description": "A dictionary of variables to pass to the recipe"
+            },
+            "if": {
+              "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/run/commonProperties/if"
+            }
+          }
+        }
+      ]
+    },
+    "write": {
+      "anyOf": [
+        {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#"
+        },
+        {
+          "type": "object",
+          "required": [
+            "name"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "The name of the recipe to read from"
+            },
+            "variables": {
+              "type": "object",
+              "description": "A dictionary of variables to pass to the recipe"
+            },
+            "columns": {
+              "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/columns"
+            },
+            "not_columns": {
+              "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/not_columns"
+            },
+            "where": {
+              "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/where"
+            },
+            "where_params": {
+              "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/where_params"
+            },
+            "order_by": {
+              "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/order_by"
+            },
+            "if": {
+              "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/if"
+            }
+          }
+        }
+      ]
+    }
+  },
+  "description": "Use recipe in recipe read, run, write operations.",
+  "slug": "connectors/recipe",
+  "visibility": "public",
+  "sources": [
+    {
+      "id": "runtime",
+      "resource": "https://github.com/wrangleworks/WranglesPY/tree/bd5f88fba479ec406b409cb2880689c54e72b298",
+      "title": "Pinned WranglesPY connector schema"
+    },
+    {
+      "id": "existing-docs",
+      "resource": "wrangles-docs/registry-docs/python/connectors/recipe.md",
+      "title": "Existing connector documentation"
+    }
+  ],
+  "guidance": "> Added **v0.5**\n\nThis connector allows you to trigger another recipe, from a recipe. Click [here](/py/recipe) for the wrangle equivalent of this connector.\n\n### Read\n### Recipe\n```yaml\nread:\n  - recipe:\n      name: my_recipe.wrgl.yml\n\n      # Optional\n      variables:\n        my_variables: my_value\n      columns:\n        - column1\n        - column2\n```\n\n### Function\n```python\nfrom wrangles.connectors import recipe\ndf = recipe.read('recipe.wrgl.yml')\n```\n\n### Write\n### Recipe\n```yaml\nwrite:\n  - recipe:\n      name: my_recipe.wrgl.yml\n\n      # Optional\n      variables:\n        my_variables: my_value\n      columns:\n        - column1\n        - column2\n```\n\n### Function\n```python\nfrom wrangles.connectors import recipe\nrecipe.write(\n    df,\n    name = 'recipe.wrgl.yml'\n)\n```\n\n### Run\n\n### Recipe\n```yaml\nrun:\n  on_start:\n    - recipe:\n        name: my_recipe.wrgl.yml\n\n        # Optional\n        variables:\n          my_variables: my_value\n```\n\n### Function\n```python\nfrom wrangles.connectors import recipe\nrecipe.run('recipe.wrgl.yml')\n```\n\n### Wrangles\n\n### Recipe\n```yaml\nwrangles:\n    - recipe:\n        name: my_recipe.wrgl.yml\n\n        # Optional\n        variables:\n          my_variables: my_value\n```\n\n### Function\n```python\nimport wrangles\nwrangles.recipe.run('recipe.wrgl.yml')\n```"
+}

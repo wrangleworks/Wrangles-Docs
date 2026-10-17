@@ -37,39 +37,39 @@ parameters:
     param_group: I/O
     runtime_default: null
     schema:
-      type:
-        - array
-        - 'null'
+      type: array
+      description: (Optional, default all columns) List of specific columns to log.
+    runtime_required: false
   - name: write
     description: (Optional) Allows for an intermediate output to a file/dataframe/database etc.
     required: false
     param_group: Options
     runtime_default: null
     schema:
-      type:
-        - array
-        - 'null'
+      type: array
+      description: (Optional) Allows for an intermediate output to a file/dataframe/database etc.
       minItems: 1
       items:
         $ref: '#/$defs/write/items'
+    runtime_required: false
   - name: warning
-    description: Log a warning to the console.
+    description: Log a warning to the console
     required: false
     param_group: Options
     runtime_default: null
     schema:
-      type:
-        - string
-        - 'null'
+      type: string
+      description: Log a warning to the console
+    runtime_required: false
   - name: info
-    description: Log info to the console.
+    description: Log info to the console
     required: false
     param_group: Options
     runtime_default: null
     schema:
-      type:
-        - string
-        - 'null'
+      type: string
+      description: Log info to the console
+    runtime_required: false
   - name: log_data
     description: >-
       Whether to log a sample of the contents of the dataframe. Default True if not logging to a
@@ -78,15 +78,19 @@ parameters:
     param_group: Options
     runtime_default: null
     schema:
-      type:
-        - boolean
-        - 'null'
+      type: boolean
+      description: >-
+        Whether to log a sample of the contents of the dataframe. Default True if not logging to a
+        write, error, warning or info. Default False otherwise.
+    runtime_required: false
   - name: error
-    description: Log an error to the console.
+    description: Log an error to the console
     required: false
     param_group: Options
     schema:
       type: string
+      description: Log an error to the console
+    runtime_required: false
 examples: []
 sources:
   - id: runtime
@@ -97,6 +101,42 @@ sources:
     resource: >-
       https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/utility/_sources/log.md
     title: Archived log Markdown
+configuration_schema:
+  type: object
+  description: Log the current status of the dataframe.
+  additionalProperties: false
+  properties:
+    columns:
+      type: array
+      description: (Optional, default all columns) List of specific columns to log.
+    write:
+      type: array
+      description: (Optional) Allows for an intermediate output to a file/dataframe/database etc.
+      minItems: 1
+      items:
+        $ref: '#/$defs/write/items'
+    error:
+      type: string
+      description: Log an error to the console
+    warning:
+      type: string
+      description: Log a warning to the console
+    info:
+      type: string
+      description: Log info to the console
+    log_data:
+      type: boolean
+      description: >-
+        Whether to log a sample of the contents of the dataframe. Default True if not logging to a
+        write, error, warning or info. Default False otherwise.
+    if:
+      $ref: '#/$defs/wrangles/commonProperties/if'
+    where:
+      $ref: '#/$defs/wrangles/commonProperties/where'
+    where_params:
+      $ref: '#/$defs/wrangles/commonProperties/where_params'
+schema_origin: upstream-docstring
+schema_adjustments: []
 ---
 
 # Log

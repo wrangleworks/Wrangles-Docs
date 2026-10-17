@@ -33,18 +33,91 @@ values rather than display-only formatting.
 | Name | Description | Accepted Values | Default | Required |
 | --- | --- | --- | --- | --- |
 | <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `input` | Name, index, or list of input columns. | string, integer, array | — | Yes |
-| `output` | Name or list of output columns. If omitted, each input column is overwritten. | string, array | `null` | No |
+| `input` | Name or list of input columns | string, integer, array | — | Yes |
+| `output` | Name or list of output columns | string, array | `null` | No |
 | <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `data_type` | Data type to produce. | string; one of:<ul className="ww-param-enum-values"><li>str</li><li>float</li><li>int</li><li>bool</li><li>datetime</li></ul> | `"str"` | No |
+| `data_type` | The new data type | string; one of:<ul className="ww-param-enum-values"><li>str</li><li>float</li><li>int</li><li>bool</li><li>datetime</li></ul> | `"str"` | Yes |
 | <span className="ww-param-group-label">Errors</span> |  |  |  |  |
-| `default` | Value returned when conversion fails. If omitted, the original value is retained. | string, number, array, object, boolean, null | `null` | No |
+| `default` | Set the default value to return if the input data <br />cannot be converted to the specified data_type. | string, number, array, boolean | `null` | No |
 | <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
 | `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
 | `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
 
 </div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+<details className="ww-field-disclosure">
+
+<summary>Complete configuration schema</summary>
+
+Schema source: upstream-docstring. Conditional and cross-parameter
+rules below apply in addition to the parameter table. References resolve against
+the [complete recipe schema](/schemas/recipes/registry/schema.json).
+
+Compatibility correction: JSON Schema has no datetime primitive; JSON timestamps use string.
+
+```json
+{
+  "type": "object",
+  "description": "Change the data type of the input.",
+  "additionalProperties": false,
+  "required": [
+    "input",
+    "data_type"
+  ],
+  "properties": {
+    "input": {
+      "type": [
+        "string",
+        "integer",
+        "array"
+      ],
+      "description": "Name or list of input columns"
+    },
+    "output": {
+      "type": [
+        "string",
+        "array"
+      ],
+      "description": "Name or list of output columns"
+    },
+    "data_type": {
+      "type": "string",
+      "description": "The new data type",
+      "enum": [
+        "str",
+        "float",
+        "int",
+        "bool",
+        "datetime"
+      ]
+    },
+    "default": {
+      "type": [
+        "string",
+        "number",
+        "array",
+        "boolean"
+      ],
+      "description": "Set the default value to return if the input data \ncannot be converted to the specified data_type."
+    },
+    "if": {
+      "$ref": "#/$defs/wrangles/commonProperties/if"
+    },
+    "where": {
+      "$ref": "#/$defs/wrangles/commonProperties/where"
+    },
+    "where_params": {
+      "$ref": "#/$defs/wrangles/commonProperties/where_params"
+    }
+  }
+}
+```
+
+</details>
 
 ## Examples
 
@@ -108,6 +181,7 @@ wrangles:
 | Documentation group | `convert` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.convert.data_type` |
+| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
 | Legacy UUID | `52384f01-7164-404f-8615-063e7677a588` |
 
 **Sources**

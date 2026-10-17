@@ -13,6 +13,13 @@
     "wrangles"
   ],
   "properties": {
+    "entry_sources": {
+      "type": "object",
+      "description": "Exact source revisions for entries retained or accepted during partial refresh.",
+      "additionalProperties": {
+        "type": "object"
+      }
+    },
     "$schema": {
       "type": "string",
       "format": "uri"
@@ -198,7 +205,11 @@
           "type": "string",
           "minLength": 1
         },
-        "default": {}
+        "default": {},
+        "default_expression": {
+          "type": "string",
+          "description": "Source expression for a non-JSON default sentinel; not a recipe default value."
+        }
       }
     }
   }

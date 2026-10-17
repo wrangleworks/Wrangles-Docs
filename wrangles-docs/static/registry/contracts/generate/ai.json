@@ -40,6 +40,101 @@
     "where": true,
     "where_params": true
   },
+  "configuration_schema": {
+    "type": "object",
+    "description": "Generate structured AI output for each recipe row.",
+    "additionalProperties": false,
+    "required": [
+      "api_key",
+      "output"
+    ],
+    "properties": {
+      "api_key": {
+        "type": "string",
+        "description": "OpenAI-compatible API key."
+      },
+      "input": {
+        "type": [
+          "string",
+          "array"
+        ],
+        "description": "Column(s) to concatenate into the prompt (defaults to all columns)."
+      },
+      "output": {
+        "type": [
+          "string",
+          "object",
+          "array"
+        ],
+        "description": "Target schema; string/array shorthands are expanded automatically."
+      },
+      "model": {
+        "type": "string",
+        "description": "Responses model name. Defaults to the generate.ai role in the AI configuration."
+      },
+      "threads": {
+        "type": "integer",
+        "description": "Maximum concurrent requests; defaults to the AI configuration."
+      },
+      "timeout": {
+        "type": "integer",
+        "description": "Per-request timeout in seconds."
+      },
+      "retries": {
+        "type": "integer",
+        "description": "Number of retry attempts on failure."
+      },
+      "messages": {
+        "type": "array",
+        "description": "The first message's content overrides the generation instructions."
+      },
+      "url": {
+        "type": "string",
+        "description": "Override for the OpenAI-compatible endpoint."
+      },
+      "strict": {
+        "type": "boolean",
+        "description": "Enforce JSON-schema validation on the response."
+      },
+      "web_search": {
+        "type": "boolean",
+        "description": "Enable DuckDuckGo context lookup per row."
+      },
+      "reasoning": {
+        "type": "object",
+        "description": "Responses API reasoning options, checked against configured model capabilities."
+      },
+      "examples": {
+        "type": "array",
+        "description": "Few-shot examples with input, output, and optional notes."
+      },
+      "previous_response": {
+        "type": "boolean",
+        "description": "Chain responses by reusing previous_response_id for field-by-field calls."
+      },
+      "summary": {
+        "type": "boolean",
+        "description": "Request summary text to be merged into the output."
+      },
+      "if": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/if"
+      },
+      "where": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/where"
+      },
+      "where_params": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/where_params"
+      }
+    }
+  },
+  "schema_origin": "upstream-docstring",
+  "schema_adjustments": [],
+  "schema_source": {
+    "repository": "https://github.com/wrangleworks/WranglesPY",
+    "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+    "version": "1.20.5",
+    "extraction": "static-python-ast"
+  },
   "parameters": [
     {
       "name": "api_key",
@@ -47,8 +142,10 @@
       "required": true,
       "param_group": "Details",
       "schema": {
-        "type": "string"
-      }
+        "type": "string",
+        "description": "OpenAI-compatible API key."
+      },
+      "runtime_required": true
     },
     {
       "name": "output",
@@ -58,10 +155,12 @@
       "schema": {
         "type": [
           "string",
-          "array",
-          "object"
-        ]
-      }
+          "object",
+          "array"
+        ],
+        "description": "Target schema; string/array shorthands are expanded automatically."
+      },
+      "runtime_required": true
     },
     {
       "name": "input",
@@ -72,84 +171,95 @@
       "schema": {
         "type": [
           "string",
-          "array",
-          "null"
-        ]
-      }
+          "array"
+        ],
+        "description": "Column(s) to concatenate into the prompt (defaults to all columns)."
+      },
+      "runtime_required": false
     },
     {
       "name": "model",
-      "description": "Responses model name (e.g. gpt-5-mini).",
+      "description": "Responses model name. Defaults to the generate.ai role in the AI configuration.",
       "required": false,
       "param_group": "Details",
-      "runtime_default": "gpt-5",
+      "runtime_default": null,
       "schema": {
-        "type": "string"
-      }
+        "type": "string",
+        "description": "Responses model name. Defaults to the generate.ai role in the AI configuration."
+      },
+      "runtime_required": false
     },
     {
       "name": "threads",
-      "description": "Maximum concurrent requests (default 20).",
+      "description": "Maximum concurrent requests; defaults to the AI configuration.",
       "required": false,
       "param_group": "Execution",
-      "runtime_default": 20,
+      "runtime_default": null,
       "schema": {
-        "type": "integer"
-      }
+        "type": "integer",
+        "description": "Maximum concurrent requests; defaults to the AI configuration."
+      },
+      "runtime_required": false
     },
     {
       "name": "timeout",
       "description": "Per-request timeout in seconds.",
       "required": false,
       "param_group": "Execution",
-      "runtime_default": 90,
+      "runtime_default": null,
       "schema": {
-        "type": "integer"
-      }
+        "type": "integer",
+        "description": "Per-request timeout in seconds."
+      },
+      "runtime_required": false
     },
     {
       "name": "retries",
       "description": "Number of retry attempts on failure.",
       "required": false,
       "param_group": "Errors",
-      "runtime_default": 0,
+      "runtime_default": null,
       "schema": {
-        "type": "integer"
-      }
+        "type": "integer",
+        "description": "Number of retry attempts on failure."
+      },
+      "runtime_required": false
     },
     {
       "name": "messages",
-      "description": "Optional extra messages forwarded to the inner generate helper.",
+      "description": "The first message's content overrides the generation instructions.",
       "required": false,
       "param_group": "Options",
       "runtime_default": null,
       "schema": {
-        "type": [
-          "array",
-          "object",
-          "null"
-        ]
-      }
+        "type": "array",
+        "description": "The first message's content overrides the generation instructions."
+      },
+      "runtime_required": false
     },
     {
       "name": "url",
       "description": "Override for the OpenAI-compatible endpoint.",
       "required": false,
       "param_group": "Details",
-      "runtime_default": "https://api.openai.com/v1/responses",
+      "runtime_default": null,
       "schema": {
-        "type": "string"
-      }
+        "type": "string",
+        "description": "Override for the OpenAI-compatible endpoint."
+      },
+      "runtime_required": false
     },
     {
       "name": "strict",
       "description": "Enforce JSON-schema validation on the response.",
       "required": false,
       "param_group": "Details",
-      "runtime_default": false,
+      "runtime_default": null,
       "schema": {
-        "type": "boolean"
-      }
+        "type": "boolean",
+        "description": "Enforce JSON-schema validation on the response."
+      },
+      "runtime_required": false
     },
     {
       "name": "web_search",
@@ -158,23 +268,22 @@
       "param_group": "Options",
       "runtime_default": false,
       "schema": {
-        "type": "boolean"
-      }
+        "type": "boolean",
+        "description": "Enable DuckDuckGo context lookup per row."
+      },
+      "runtime_required": false
     },
     {
       "name": "reasoning",
-      "description": "Responses API reasoning options (forwarded verbatim).",
+      "description": "Responses API reasoning options, checked against configured model capabilities.",
       "required": false,
       "param_group": "Details",
-      "runtime_default": {
-        "effort": "low"
-      },
+      "runtime_default": null,
       "schema": {
-        "type": [
-          "string",
-          "object"
-        ]
-      }
+        "type": "object",
+        "description": "Responses API reasoning options, checked against configured model capabilities."
+      },
+      "runtime_required": false
     },
     {
       "name": "previous_response",
@@ -183,8 +292,10 @@
       "param_group": "Details",
       "runtime_default": false,
       "schema": {
-        "type": "boolean"
-      }
+        "type": "boolean",
+        "description": "Chain responses by reusing previous_response_id for field-by-field calls."
+      },
+      "runtime_required": false
     },
     {
       "name": "summary",
@@ -193,8 +304,21 @@
       "param_group": "Options",
       "runtime_default": false,
       "schema": {
-        "type": "boolean"
-      }
+        "type": "boolean",
+        "description": "Request summary text to be merged into the output."
+      },
+      "runtime_required": false
+    },
+    {
+      "name": "examples",
+      "description": "Few-shot examples with input, output, and optional notes.",
+      "param_group": "Options",
+      "schema": {
+        "type": "array",
+        "description": "Few-shot examples with input, output, and optional notes."
+      },
+      "required": false,
+      "runtime_required": false
     },
     {
       "name": "if",

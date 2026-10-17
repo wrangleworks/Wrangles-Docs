@@ -23,11 +23,49 @@ Drop (Delete) selected column(s)
 | Name | Description | Accepted Values | Default | Required |
 | --- | --- | --- | --- | --- |
 | <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `columns` | Name of the column(s) to drop. | string, array | — | Yes |
+| `columns` | Name of the column(s) to drop | array, string | — | Yes |
 | <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
 | `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
 
 </div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+<details className="ww-field-disclosure">
+
+<summary>Complete configuration schema</summary>
+
+Schema source: upstream-docstring. Conditional and cross-parameter
+rules below apply in addition to the parameter table. References resolve against
+the [complete recipe schema](/schemas/recipes/registry/schema.json).
+
+
+
+```json
+{
+  "type": "object",
+  "description": "Drop (Delete) selected column(s)",
+  "additionalProperties": true,
+  "required": [
+    "columns"
+  ],
+  "properties": {
+    "columns": {
+      "type": [
+        "array",
+        "string"
+      ],
+      "description": "Name of the column(s) to drop"
+    },
+    "if": {
+      "$ref": "#/$defs/wrangles/commonProperties/if"
+    }
+  }
+}
+```
+
+</details>
 
 ## Examples
 
@@ -89,6 +127,7 @@ wrangles:
 | Documentation group | `select` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.pandas.drop` |
+| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
 | Legacy UUID | `363bffbf-397e-4975-8382-e9efa5e9eed6` |
 
 **Sources**

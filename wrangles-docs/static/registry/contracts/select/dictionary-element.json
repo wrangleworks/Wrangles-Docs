@@ -40,10 +40,71 @@
     "where": true,
     "where_params": true
   },
+  "configuration_schema": {
+    "type": "object",
+    "description": "Select one or more element of a dictionary.",
+    "additionalProperties": false,
+    "required": [
+      "input",
+      "element"
+    ],
+    "properties": {
+      "input": {
+        "type": [
+          "string",
+          "integer",
+          "array"
+        ],
+        "description": "Name of the input column"
+      },
+      "output": {
+        "type": [
+          "string",
+          "array"
+        ],
+        "description": "Name of the output column. If omitted, the input column will be replaced."
+      },
+      "element": {
+        "type": [
+          "string",
+          "array"
+        ],
+        "description": "The key or keys from the dictionary to select.\nIf a single key is provided, the value will be returned\nIf a lists of keys are selected,\nthe result will be a new dictionary."
+      },
+      "default": {
+        "type": [
+          "string",
+          "number",
+          "array",
+          "object",
+          "boolean",
+          "null"
+        ],
+        "description": "Set the default value to return if the specified element doesn't exist.\nIf selecting multiple elements, a dict of defaults can be set."
+      },
+      "if": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/if"
+      },
+      "where": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/where"
+      },
+      "where_params": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/where_params"
+      }
+    }
+  },
+  "schema_origin": "upstream-docstring",
+  "schema_adjustments": [],
+  "schema_source": {
+    "repository": "https://github.com/wrangleworks/WranglesPY",
+    "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+    "version": "1.20.5",
+    "extraction": "static-python-ast"
+  },
   "parameters": [
     {
       "name": "input",
-      "description": "Name of the input column.",
+      "description": "Name of the input column",
       "required": true,
       "param_group": "I/O",
       "schema": {
@@ -51,17 +112,24 @@
           "string",
           "integer",
           "array"
-        ]
-      }
+        ],
+        "description": "Name of the input column"
+      },
+      "runtime_required": true
     },
     {
       "name": "element",
-      "description": "The key or keys from the dictionary to select. If a single key is provided, the value will be returned If a lists of keys are selected, the result will be a new dictionary.",
+      "description": "The key or keys from the dictionary to select.\nIf a single key is provided, the value will be returned\nIf a lists of keys are selected,\nthe result will be a new dictionary.",
       "required": true,
       "param_group": "Options",
       "schema": {
-        "type": "string"
-      }
+        "type": [
+          "string",
+          "array"
+        ],
+        "description": "The key or keys from the dictionary to select.\nIf a single key is provided, the value will be returned\nIf a lists of keys are selected,\nthe result will be a new dictionary."
+      },
+      "runtime_required": true
     },
     {
       "name": "output",
@@ -72,14 +140,15 @@
       "schema": {
         "type": [
           "string",
-          "array",
-          "null"
-        ]
-      }
+          "array"
+        ],
+        "description": "Name of the output column. If omitted, the input column will be replaced."
+      },
+      "runtime_required": false
     },
     {
       "name": "default",
-      "description": "Set the default value to return if the specified element doesn't exist. If selecting multiple elements, a dict of defaults can be set.",
+      "description": "Set the default value to return if the specified element doesn't exist.\nIf selecting multiple elements, a dict of defaults can be set.",
       "required": false,
       "param_group": "Errors",
       "runtime_default": "",
@@ -91,8 +160,10 @@
           "object",
           "boolean",
           "null"
-        ]
-      }
+        ],
+        "description": "Set the default value to return if the specified element doesn't exist.\nIf selecting multiple elements, a dict of defaults can be set."
+      },
+      "runtime_required": false
     },
     {
       "name": "if",

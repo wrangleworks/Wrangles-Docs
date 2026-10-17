@@ -1,2 +1,3 @@
 pandas
-wrangles==1.20.2
+# Requested immutable source revision from registry/runtime/wranglespy.json.
+wrangles @ https://github.com/wrangleworks/WranglesPY/archive/bd5f88fba479ec406b409cb2880689c54e72b298.tar.gz

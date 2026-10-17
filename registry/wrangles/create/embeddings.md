@@ -35,13 +35,20 @@ parameters:
     required: true
     param_group: I/O
     schema:
-      type: string
+      type:
+        - string
+        - integer
+        - array
+      description: The column of text to create the embeddings for.
+    runtime_required: true
   - name: api_key
     description: The API key.
     required: true
     param_group: Details
     schema:
       type: string
+      description: The API key.
+    runtime_required: true
   - name: output
     description: The output column the embeddings will be saved as.
     required: false
@@ -50,23 +57,31 @@ parameters:
     schema:
       type:
         - string
-        - 'null'
+        - array
+      description: The output column the embeddings will be saved as.
+    runtime_required: false
   - name: batch_size
     description: The number of rows to submit per individual request.
     required: false
     param_group: Execution
-    runtime_default: 100
+    runtime_default: null
     schema:
       type: integer
+      description: The number of rows to submit per individual request.
+    runtime_required: false
   - name: threads
     description: >-
       The number of requests to submit in parallel. Each request contains the number of rows set as
       batch_size.
     required: false
     param_group: Execution
-    runtime_default: 10
+    runtime_default: null
     schema:
       type: integer
+      description: >-
+        The number of requests to submit in parallel. Each request contains the number of rows set
+        as batch_size.
+    runtime_required: false
   - name: output_type
     description: Output the embeddings as a numpy array or a python list Default - python list.
     required: false
@@ -74,25 +89,40 @@ parameters:
     runtime_default: python list
     schema:
       type: string
+      description: Output the embeddings as a numpy array or a python list Default - python list.
       enum:
         - numpy array
         - python list
+    runtime_required: false
   - name: model
-    description: The specific model to use to generate the embeddings.
+    description: >-
+      The embedding model. Defaults to the AI configuration for the resolved provider. Jina requires
+      an explicit model unless a default is configured.
     required: false
     param_group: Details
-    runtime_default: text-embedding-3-small
+    runtime_default: null
     schema:
       type: string
+      description: >-
+        The embedding model. Defaults to the AI configuration for the resolved provider. Jina
+        requires an explicit model unless a default is configured.
+    runtime_required: false
   - name: retries
     description: >-
-      The number of times to retry if the request fails. This will apply exponential backoff to help
-      with rate limiting.
+      Additional attempts after transient transport or HTTP errors. Defaults to the AI
+      configuration. Retries use exponential backoff and respect Retry-After. Permanent errors fail
+      immediately.
     required: false
     param_group: Errors
-    runtime_default: 0
+    runtime_default: null
     schema:
       type: integer
+      minimum: 0
+      description: >-
+        Additional attempts after transient transport or HTTP errors. Defaults to the AI
+        configuration. Retries use exponential backoff and respect Retry-After. Permanent errors
+        fail immediately.
+    runtime_required: false
   - name: url
     description: >-
       The endpoint to send embedding requests to. Defaults to the standard endpoint for the resolved
@@ -100,55 +130,87 @@ parameters:
       request/response format.
     required: false
     param_group: Details
-    runtime_default: https://api.openai.com/v1/embeddings
+    runtime_default: null
     schema:
       type: string
+      description: >-
+        The endpoint to send embedding requests to. Defaults to the standard endpoint for the
+        resolved provider. Setting a Jina URL without an explicit provider will automatically use
+        Jina's request/response format.
+    runtime_required: false
   - name: precision
     description: >-
-      The precision of the embeddings. Default is float32. This should be used with output_type
-      numpy array.
+      The precision of the embeddings. Defaults to the AI configuration. This should be used with
+      output_type numpy array.
     required: false
     param_group: Formatting
-    runtime_default: float32
+    runtime_default: null
     schema:
       type: string
+      description: >-
+        The precision of the embeddings. Defaults to the AI configuration. This should be used with
+        output_type numpy array.
       enum:
         - float16
         - float32
+    runtime_required: false
   - name: provider
     description: >-
-      Controls the request/response format for the embedding API. When omitted, inferred from url
-      (jina.ai → jina, otherwise openai). Setting provider also sets the default url for that
-      provider, so you only need one of provider or url for standard endpoints. Use both together
-      only when pointing to a custom endpoint that uses a non-default provider's API format (e.g. a
-      Jina-compatible proxy).
+      Controls the request/response format for the embedding API. When omitted, inferred from an
+      explicit url (jina.ai → jina, otherwise openai), or the AI configuration when no url is
+      supplied. Setting provider also sets the default url for that provider, so you only need one
+      of provider or url for standard endpoints. Use both together only when pointing to a custom
+      endpoint that uses a non-default provider's API format (e.g. a Jina-compatible proxy).
     required: false
     param_group: Details
     runtime_default: null
     schema:
-      type:
-        - string
-        - 'null'
+      type: string
+      description: >-
+        Controls the request/response format for the embedding API. When omitted, inferred from an
+        explicit url (jina.ai → jina, otherwise openai), or the AI configuration when no url is
+        supplied. Setting provider also sets the default url for that provider, so you only need one
+        of provider or url for standard endpoints. Use both together only when pointing to a custom
+        endpoint that uses a non-default provider's API format (e.g. a Jina-compatible proxy).
       enum:
         - openai
         - jina
+    runtime_required: false
   - name: task
     description: >-
       The task type for the embedding model. Only applicable for the Jina provider. Selects the
-      appropriate task-specific adapter.
+      appropriate task-specific adapter. Defaults and allowed values come from the selected model's
+      AI configuration. Jina v5 supports retrieval.query, retrieval.passage, text-matching,
+      classification, and clustering. Legacy models without a configured task enum also support
+      retrieval.query, retrieval.passage, text-matching, and classification, but use separation for
+      clustering.
     required: false
     param_group: Options
     runtime_default: null
     schema:
-      type:
-        - string
-        - 'null'
-      enum:
-        - retrieval.query
-        - retrieval.passage
-        - text-matching
-        - classification
-        - separation
+      type: string
+      description: >-
+        The task type for the embedding model. Only applicable for the Jina provider. Selects the
+        appropriate task-specific adapter. Defaults and allowed values come from the selected
+        model's AI configuration. Jina v5 supports retrieval.query, retrieval.passage,
+        text-matching, classification, and clustering. Legacy models without a configured task enum
+        also support retrieval.query, retrieval.passage, text-matching, and classification, but use
+        separation for clustering.
+    runtime_required: false
+  - name: timeout
+    description: >-
+      Request timeout in seconds for each attempt. Defaults to the AI configuration. Each retry
+      receives the full timeout; this is not a total batch deadline.
+    param_group: Options
+    schema:
+      type: number
+      exclusiveMinimum: 0
+      description: >-
+        Request timeout in seconds for each attempt. Defaults to the AI configuration. Each retry
+        receives the full timeout; this is not a total batch deadline.
+    required: false
+    runtime_default: null
+    runtime_required: false
 examples: []
 sources:
   - id: runtime
@@ -159,6 +221,101 @@ sources:
     resource: >-
       https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/create/_sources/embeddings.md
     title: Archived create.embeddings Markdown
+configuration_schema:
+  type: object
+  description: Create an embedding based on text input.
+  required:
+    - input
+    - api_key
+  properties:
+    input:
+      type:
+        - string
+        - integer
+        - array
+      description: The column of text to create the embeddings for.
+    output:
+      type:
+        - string
+        - array
+      description: The output column the embeddings will be saved as.
+    api_key:
+      type: string
+      description: The API key.
+    model:
+      type: string
+      description: >-
+        The embedding model. Defaults to the AI configuration for the resolved provider. Jina
+        requires an explicit model unless a default is configured.
+    batch_size:
+      type: integer
+      description: The number of rows to submit per individual request.
+    threads:
+      type: integer
+      description: >-
+        The number of requests to submit in parallel. Each request contains the number of rows set
+        as batch_size.
+    output_type:
+      type: string
+      description: Output the embeddings as a numpy array or a python list Default - python list.
+      enum:
+        - numpy array
+        - python list
+    retries:
+      type: integer
+      minimum: 0
+      description: >-
+        Additional attempts after transient transport or HTTP errors. Defaults to the AI
+        configuration. Retries use exponential backoff and respect Retry-After. Permanent errors
+        fail immediately.
+    timeout:
+      type: number
+      exclusiveMinimum: 0
+      description: >-
+        Request timeout in seconds for each attempt. Defaults to the AI configuration. Each retry
+        receives the full timeout; this is not a total batch deadline.
+    provider:
+      type: string
+      description: >-
+        Controls the request/response format for the embedding API. When omitted, inferred from an
+        explicit url (jina.ai → jina, otherwise openai), or the AI configuration when no url is
+        supplied. Setting provider also sets the default url for that provider, so you only need one
+        of provider or url for standard endpoints. Use both together only when pointing to a custom
+        endpoint that uses a non-default provider's API format (e.g. a Jina-compatible proxy).
+      enum:
+        - openai
+        - jina
+    url:
+      type: string
+      description: >-
+        The endpoint to send embedding requests to. Defaults to the standard endpoint for the
+        resolved provider. Setting a Jina URL without an explicit provider will automatically use
+        Jina's request/response format.
+    precision:
+      type: string
+      description: >-
+        The precision of the embeddings. Defaults to the AI configuration. This should be used with
+        output_type numpy array.
+      enum:
+        - float16
+        - float32
+    task:
+      type: string
+      description: >-
+        The task type for the embedding model. Only applicable for the Jina provider. Selects the
+        appropriate task-specific adapter. Defaults and allowed values come from the selected
+        model's AI configuration. Jina v5 supports retrieval.query, retrieval.passage,
+        text-matching, classification, and clustering. Legacy models without a configured task enum
+        also support retrieval.query, retrieval.passage, text-matching, and classification, but use
+        separation for clustering.
+    if:
+      $ref: '#/$defs/wrangles/commonProperties/if'
+    where:
+      $ref: '#/$defs/wrangles/commonProperties/where'
+    where_params:
+      $ref: '#/$defs/wrangles/commonProperties/where_params'
+schema_origin: upstream-docstring
+schema_adjustments: []
 ---
 
 # Embeddings

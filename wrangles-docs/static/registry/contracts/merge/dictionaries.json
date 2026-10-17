@@ -40,34 +40,82 @@
     "where": true,
     "where_params": true
   },
+  "configuration_schema": {
+    "type": "object",
+    "description": "Take dictionaries in multiple columns and merge them to a single dictionary.",
+    "additionalProperties": false,
+    "required": [
+      "input",
+      "output"
+    ],
+    "properties": {
+      "input": {
+        "type": "array",
+        "description": "list of input columns"
+      },
+      "output": {
+        "type": "string",
+        "description": "Name of the output column"
+      },
+      "skip_empty": {
+        "type": "boolean",
+        "description": "Whether to skip empty dictionaries when merging",
+        "default": false
+      },
+      "if": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/if"
+      },
+      "where": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/where"
+      },
+      "where_params": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/where_params"
+      }
+    }
+  },
+  "schema_origin": "upstream-docstring",
+  "schema_adjustments": [],
+  "schema_source": {
+    "repository": "https://github.com/wrangleworks/WranglesPY",
+    "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+    "version": "1.20.5",
+    "extraction": "static-python-ast"
+  },
   "parameters": [
     {
       "name": "input",
-      "description": "List of input columns.",
+      "description": "list of input columns",
       "required": true,
       "param_group": "I/O",
       "schema": {
-        "type": "array"
-      }
+        "type": "array",
+        "description": "list of input columns"
+      },
+      "runtime_required": true
     },
     {
       "name": "output",
-      "description": "Name of the output column.",
+      "description": "Name of the output column",
       "required": true,
       "param_group": "I/O",
       "schema": {
-        "type": "string"
-      }
+        "type": "string",
+        "description": "Name of the output column"
+      },
+      "runtime_required": true
     },
     {
       "name": "skip_empty",
-      "description": "Whether to skip empty dictionaries when merging.",
+      "description": "Whether to skip empty dictionaries when merging",
       "required": false,
       "param_group": "Options",
       "runtime_default": false,
       "schema": {
-        "type": "boolean"
-      }
+        "type": "boolean",
+        "description": "Whether to skip empty dictionaries when merging",
+        "default": false
+      },
+      "runtime_required": false
     },
     {
       "name": "if",
@@ -101,7 +149,7 @@
     }
   ],
   "examples": [],
-  "guidance": "Take dictionaries in multiple columns and merge them to a single dictionary.\n\n:::note\nFor duplicate keys, the last key in the input list takes precedence in the merged dictionary.\n:::\n\n## Migrated examples\n#### Using Named Columns\n\n##### Recipe\n\n```yaml\nwrangles:\n  - merge.dictionaries:\n      input:\n        - Dict 1\n        - Dict 2\n      output: Merged\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n| Dict 1 | Dict 2 |\n| --- | --- |\n| \\{'First': 'One'\\} | \\{'Second': 'Two'\\} |\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| Merged |\n| --- |\n| \\{'First': 'One', 'Second': 'Two'\\} |\n\n</div>\n\n</div>\n\n#### Using a Wildcard (*)\n\n##### Recipe\n\n```yaml\n# Using a Wildcard (*)\nwrangles:\n  - merge.dictionaries:\n      input: Dict *\n      output: Merged\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n| Dict 1 | Dict 2 |\n| --- | --- |\n| \\{'First': 'One'\\} | \\{'Second': 'Two'\\} |\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| Merged |\n| --- |\n| \\{'First': 'One', 'Second': 'Two'\\} |\n\n</div>\n\n</div>\n\n#### Using a Wildcard (*) With Not Columns\n\n##### Recipe\n\n```yaml\n# Using a Wildcard (*)\nwrangles:\n  - merge.dictionaries:\n      input:\n        - Dict *\n        - -Dict 2\n      output: Merged\n```\n\nNote the extra dash in front of `Dict 2` excludes that column from the wildcard selection.\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n| Dict 1 | Dict 2 | Dict 3 |\n| --- | --- | --- |\n| \\{'First': 'One'\\} | \\{'Second': 'Two'\\} | \\{'Third': 'Three'\\} |\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| Merged |\n| --- |\n| \\{'First': 'One', 'Third': 'Three'\\} |\n\n</div>\n\n</div>",
+  "guidance": "Take dictionaries in multiple columns and merge them to a single dictionary.\n\n:::note\nFor duplicate keys, the last key in the input list takes precedence in the merged dictionary.\n:::\n\n## Migrated examples\n#### Using Named Columns\n\n##### Recipe\n\n```yaml\nwrangles:\n  - merge.dictionaries:\n      input:\n        - Dict 1\n        - Dict 2\n      output: Merged\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n| Dict 1 | Dict 2 |\n| --- | --- |\n| \\{'First': 'One'\\} | \\{'Second': 'Two'\\} |\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| Merged |\n| --- |\n| \\{'First': 'One', 'Second': 'Two'\\} |\n\n</div>\n\n</div>\n\n#### Using a Wildcard (*)\n\n##### Recipe\n\n```yaml\n# Using a Wildcard (*)\nwrangles:\n  - merge.dictionaries:\n      input: [Dict *]\n      output: Merged\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n| Dict 1 | Dict 2 |\n| --- | --- |\n| \\{'First': 'One'\\} | \\{'Second': 'Two'\\} |\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| Merged |\n| --- |\n| \\{'First': 'One', 'Second': 'Two'\\} |\n\n</div>\n\n</div>\n\n#### Using a Wildcard (*) With Not Columns\n\n##### Recipe\n\n```yaml\n# Using a Wildcard (*)\nwrangles:\n  - merge.dictionaries:\n      input:\n        - Dict *\n        - -Dict 2\n      output: Merged\n```\n\nNote the extra dash in front of `Dict 2` excludes that column from the wildcard selection.\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n| Dict 1 | Dict 2 | Dict 3 |\n| --- | --- | --- |\n| \\{'First': 'One'\\} | \\{'Second': 'Two'\\} | \\{'Third': 'Three'\\} |\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| Merged |\n| --- |\n| \\{'First': 'One', 'Third': 'Three'\\} |\n\n</div>\n\n</div>",
   "sources": [
     {
       "id": "runtime",

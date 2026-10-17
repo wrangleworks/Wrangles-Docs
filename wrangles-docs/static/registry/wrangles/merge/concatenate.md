@@ -31,27 +31,33 @@ capabilities:
   where_params: true
 parameters:
   - name: input
-    description: Either a single column name or list of columns.
+    description: Either a single column name or list of columns
     required: true
     param_group: I/O
     schema:
       type:
+        - array
         - string
         - integer
-        - array
+      description: Either a single column name or list of columns
+    runtime_required: true
   - name: output
-    description: Name of the output column.
+    description: Name of the output column
     required: true
     param_group: I/O
     schema:
       type: string
+      description: Name of the output column
+    runtime_required: true
   - name: char
-    description: (Optional) Character to add between successive values.
-    required: false
+    description: (Optional) Character to add between successive values
+    required: true
     param_group: Formatting
     runtime_default: ','
     schema:
       type: string
+      description: (Optional) Character to add between successive values
+    runtime_required: false
   - name: skip_empty
     description: Whether to skip empty values, defaults to false.
     required: false
@@ -60,6 +66,8 @@ parameters:
     schema:
       type: boolean
       desription: Whether to skip empty values
+      default: false
+    runtime_required: false
 examples: []
 sources:
   - id: runtime
@@ -70,6 +78,39 @@ sources:
     resource: >-
       https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/merge/_sources/concatenate.md
     title: Archived merge.concatenate Markdown
+configuration_schema:
+  type: object
+  description: Concatenate a list of columns or a list within a single column.
+  additionalProperties: false
+  required:
+    - input
+    - output
+    - char
+  properties:
+    input:
+      type:
+        - array
+        - string
+        - integer
+      description: Either a single column name or list of columns
+    output:
+      type: string
+      description: Name of the output column
+    char:
+      type: string
+      description: (Optional) Character to add between successive values
+    skip_empty:
+      type: boolean
+      desription: Whether to skip empty values
+      default: false
+    if:
+      $ref: '#/$defs/wrangles/commonProperties/if'
+    where:
+      $ref: '#/$defs/wrangles/commonProperties/where'
+    where_params:
+      $ref: '#/$defs/wrangles/commonProperties/where_params'
+schema_origin: upstream-docstring
+schema_adjustments: []
 ---
 
 # Concatenate

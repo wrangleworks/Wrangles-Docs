@@ -27,18 +27,92 @@ Add or subtract time from a date.
 | Name | Description | Accepted Values | Default | Required |
 | --- | --- | --- | --- | --- |
 | <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `input` | Name of the dates column. | string | — | Yes |
-| `output` | Name of the output column of dates. | string, null | `null` | No |
+| `input` | Name of the dates column | string, integer | — | Yes |
+| `output` | Name of the output column of dates | string | `null` | No |
 | <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `operation` | Date operation. | string; one of:<ul className="ww-param-enum-values"><li>add</li><li>subtract</li></ul> | `"add"` | No |
-| `time_unit` | Time unit for operation. | string, null; one of:<ul className="ww-param-enum-values"><li>years</li><li>months</li><li>weeks</li><li>days</li><li>hours</li><li>minutes</li><li>seconds</li><li>milliseconds</li></ul> | `null` | No |
-| `time_value` | Time unit value for operation. | number, null | `null` | No |
+| `operation` | Date operation | string; one of:<ul className="ww-param-enum-values"><li>add</li><li>subtract</li></ul> | `"add"` | No |
+| `time_unit` | time unit for operation | string; one of:<ul className="ww-param-enum-values"><li>years</li><li>months</li><li>weeks</li><li>days</li><li>hours</li><li>minutes</li><li>seconds</li><li>milliseconds</li></ul> | `null` | No |
+| `time_value` | time unit value for operation | number | `null` | No |
 | <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
 | `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
 | `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
 | `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
 
 </div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+<details className="ww-field-disclosure">
+
+<summary>Complete configuration schema</summary>
+
+Schema source: upstream-docstring. Conditional and cross-parameter
+rules below apply in addition to the parameter table. References resolve against
+the [complete recipe schema](/schemas/recipes/registry/schema.json).
+
+
+
+```json
+{
+  "type": "object",
+  "description": "Add or Subtract time from a date",
+  "additionalProperties": false,
+  "required": [
+    "input"
+  ],
+  "properties": {
+    "input": {
+      "type": [
+        "string",
+        "integer"
+      ],
+      "description": "Name of the dates column"
+    },
+    "operation": {
+      "type": "string",
+      "description": "Date operation",
+      "enum": [
+        "add",
+        "subtract"
+      ]
+    },
+    "output": {
+      "type": "string",
+      "description": "Name of the output column of dates"
+    },
+    "time_unit": {
+      "type": "string",
+      "description": "time unit for operation",
+      "enum": [
+        "years",
+        "months",
+        "weeks",
+        "days",
+        "hours",
+        "minutes",
+        "seconds",
+        "milliseconds"
+      ]
+    },
+    "time_value": {
+      "type": "number",
+      "description": "time unit value for operation"
+    },
+    "if": {
+      "$ref": "#/$defs/wrangles/commonProperties/if"
+    },
+    "where": {
+      "$ref": "#/$defs/wrangles/commonProperties/where"
+    },
+    "where_params": {
+      "$ref": "#/$defs/wrangles/commonProperties/where_params"
+    }
+  }
+}
+```
+
+</details>
 
 ### Examples
 
@@ -101,6 +175,7 @@ wrangles:
 | Documentation group | `date` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.date_calculator` |
+| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
 | Legacy UUID | `19cfeb4f-02af-4ab2-895c-0ff2bb5cce19` |
 
 **Sources**

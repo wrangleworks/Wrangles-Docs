@@ -23,10 +23,16 @@
     "access",
     "capabilities",
     "parameters",
+    "configuration_schema",
+    "schema_origin",
+    "schema_adjustments",
     "examples",
     "sources"
   ],
   "properties": {
+    "configuration_schema": {"type": "object", "description": "Complete source-aligned configuration schema, including shared controls and cross-parameter rules."},
+    "schema_origin": {"enum": ["upstream-docstring", "deprecated-alias:math", "signature-derived"]},
+    "schema_adjustments": {"type": "array", "items": {"type": "string"}},
     "schema_version": {"const": "0.2"},
     "type": {"const": "wrangle"},
     "id": {
@@ -126,10 +132,10 @@
         "requires_external_api_key"
       ],
       "properties": {
-        "ai_powered": {"type": "boolean"},
-        "requires_account": {"type": "boolean"},
-        "requires_subscription": {"type": "boolean"},
-        "requires_external_api_key": {"type": "boolean"}
+        "ai_powered": {"type": ["boolean", "null"]},
+        "requires_account": {"type": ["boolean", "null"]},
+        "requires_subscription": {"type": ["boolean", "null"]},
+        "requires_external_api_key": {"type": ["boolean", "null"]}
       }
     },
     "capabilities": {
@@ -176,6 +182,7 @@
         },
         "description": {"type": "string", "minLength": 1},
         "required": {"type": "boolean"},
+        "runtime_required": {"type": "boolean", "description": "Whether the Python callable requires this argument; independent of schema validation."},
         "param_group": {
           "type": "string",
           "enum": [
@@ -192,7 +199,7 @@
           "$ref": "#/$defs/column_semantics"
         },
         "runtime_default": {},
-        "schema": {"type": "object", "minProperties": 1}
+        "schema": {"type": "object"}
       }
     },
     "column_semantics": {

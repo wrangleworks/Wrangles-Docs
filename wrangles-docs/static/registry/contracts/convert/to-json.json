@@ -40,6 +40,62 @@
     "where": true,
     "where_params": true
   },
+  "configuration_schema": {
+    "type": "object",
+    "description": "Convert an object to a JSON representation.",
+    "required": [
+      "input"
+    ],
+    "properties": {
+      "input": {
+        "type": [
+          "string",
+          "integer",
+          "array"
+        ],
+        "description": "Name of the input column."
+      },
+      "output": {
+        "type": [
+          "string",
+          "array"
+        ],
+        "description": "Name of the output column. If omitted, the input column will be overwritten"
+      },
+      "indent": {
+        "type": [
+          "string",
+          "integer"
+        ],
+        "description": "If indent is a non-negative integer or string, then JSON array elements and object members will be pretty-printed  with that indent level. An indent level of 0, negative, or \"\" will only insert newlines. None (the default) selects the most  compact representation. Using a positive integer indent indents that many spaces per level. If indent is a string (such as '\\t'),  that string is used to indent each level."
+      },
+      "sort_keys": {
+        "type": "boolean",
+        "description": "If sort_keys is true (defaults to False), then the output of dictionaries will be sorted by key."
+      },
+      "ensure_ascii": {
+        "type": "boolean",
+        "description": "If true, non-ASCII characters will be escaped. Default is false"
+      },
+      "if": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/if"
+      },
+      "where": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/where"
+      },
+      "where_params": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/where_params"
+      }
+    }
+  },
+  "schema_origin": "upstream-docstring",
+  "schema_adjustments": [],
+  "schema_source": {
+    "repository": "https://github.com/wrangleworks/WranglesPY",
+    "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+    "version": "1.20.5",
+    "extraction": "static-python-ast"
+  },
   "parameters": [
     {
       "name": "input",
@@ -51,44 +107,51 @@
           "string",
           "integer",
           "array"
-        ]
-      }
+        ],
+        "description": "Name of the input column."
+      },
+      "runtime_required": true
     },
     {
       "name": "output",
-      "description": "Name of the output column. If omitted, the input column will be overwritten.",
+      "description": "Name of the output column. If omitted, the input column will be overwritten",
       "required": false,
       "param_group": "I/O",
       "runtime_default": null,
       "schema": {
         "type": [
           "string",
-          "array",
-          "null"
-        ]
-      }
+          "array"
+        ],
+        "description": "Name of the output column. If omitted, the input column will be overwritten"
+      },
+      "runtime_required": false
     },
     {
       "name": "ensure_ascii",
-      "description": "If true, non-ASCII characters will be escaped. Default is false.",
+      "description": "If true, non-ASCII characters will be escaped. Default is false",
       "required": false,
       "param_group": "Formatting",
       "runtime_default": false,
       "schema": {
-        "type": "boolean"
-      }
+        "type": "boolean",
+        "description": "If true, non-ASCII characters will be escaped. Default is false"
+      },
+      "runtime_required": false
     },
     {
       "name": "indent",
-      "description": "If indent is a non-negative integer or string, then JSON array elements and object members will be pretty-printed with that indent level. An indent level of 0, negative, or \"\" will only insert newlines. None (the default) selects the most compact representation. Using a positive integer indent indents that many spaces per level. If indent is a string (such as '\\t'), that string is used to indent each level.",
+      "description": "If indent is a non-negative integer or string, then JSON array elements and object members will be pretty-printed  with that indent level. An indent level of 0, negative, or \"\" will only insert newlines. None (the default) selects the most  compact representation. Using a positive integer indent indents that many spaces per level. If indent is a string (such as '\\t'),  that string is used to indent each level.",
       "required": false,
       "param_group": "Formatting",
       "schema": {
         "type": [
           "string",
           "integer"
-        ]
-      }
+        ],
+        "description": "If indent is a non-negative integer or string, then JSON array elements and object members will be pretty-printed  with that indent level. An indent level of 0, negative, or \"\" will only insert newlines. None (the default) selects the most  compact representation. Using a positive integer indent indents that many spaces per level. If indent is a string (such as '\\t'),  that string is used to indent each level."
+      },
+      "runtime_required": false
     },
     {
       "name": "sort_keys",
@@ -96,8 +159,10 @@
       "required": false,
       "param_group": "Formatting",
       "schema": {
-        "type": "boolean"
-      }
+        "type": "boolean",
+        "description": "If sort_keys is true (defaults to False), then the output of dictionaries will be sorted by key."
+      },
+      "runtime_required": false
     },
     {
       "name": "if",

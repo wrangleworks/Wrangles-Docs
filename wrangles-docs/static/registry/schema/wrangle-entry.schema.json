@@ -23,10 +23,30 @@
     "access",
     "capabilities",
     "parameters",
+    "configuration_schema",
+    "schema_origin",
+    "schema_adjustments",
     "examples",
     "sources"
   ],
   "properties": {
+    "configuration_schema": {
+      "type": "object",
+      "description": "Complete source-aligned configuration schema, including shared controls and cross-parameter rules."
+    },
+    "schema_origin": {
+      "enum": [
+        "upstream-docstring",
+        "deprecated-alias:math",
+        "signature-derived"
+      ]
+    },
+    "schema_adjustments": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
     "schema_version": {
       "const": "0.2"
     },
@@ -185,16 +205,28 @@
       ],
       "properties": {
         "ai_powered": {
-          "type": "boolean"
+          "type": [
+            "boolean",
+            "null"
+          ]
         },
         "requires_account": {
-          "type": "boolean"
+          "type": [
+            "boolean",
+            "null"
+          ]
         },
         "requires_subscription": {
-          "type": "boolean"
+          "type": [
+            "boolean",
+            "null"
+          ]
         },
         "requires_external_api_key": {
-          "type": "boolean"
+          "type": [
+            "boolean",
+            "null"
+          ]
         }
       }
     },
@@ -271,6 +303,10 @@
         "required": {
           "type": "boolean"
         },
+        "runtime_required": {
+          "type": "boolean",
+          "description": "Whether the Python callable requires this argument; independent of schema validation."
+        },
         "param_group": {
           "type": "string",
           "enum": [
@@ -288,8 +324,7 @@
         },
         "runtime_default": {},
         "schema": {
-          "type": "object",
-          "minProperties": 1
+          "type": "object"
         }
       }
     },

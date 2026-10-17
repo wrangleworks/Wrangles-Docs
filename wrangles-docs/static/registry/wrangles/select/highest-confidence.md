@@ -33,19 +33,23 @@ capabilities:
   where_params: true
 parameters:
   - name: input
-    description: List of the input columns to select from.
+    description: List of the input columns to select from
     required: true
     param_group: I/O
     schema:
       type: array
+      description: List of the input columns to select from
+    runtime_required: true
   - name: output
-    description: If two columns; the result and confidence. If one column; [result, confidence].
+    description: If two columns; the result and confidence. If one column; [result, confidence]
     required: true
     param_group: I/O
     schema:
       type:
-        - string
         - array
+        - string
+      description: If two columns; the result and confidence. If one column; [result, confidence]
+    runtime_required: true
 examples: []
 sources:
   - id: runtime
@@ -56,6 +60,32 @@ sources:
     resource: >-
       https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/select/_sources/highest-confidence.md
     title: Archived select.highest_confidence Markdown
+configuration_schema:
+  type: object
+  description: >-
+    Select the option with the highest confidence from multiple columns. Inputs are expected to be
+    of the form [<<value>>, <<confidence_score>>].
+  additionalProperties: false
+  required:
+    - input
+    - output
+  properties:
+    input:
+      type: array
+      description: List of the input columns to select from
+    output:
+      type:
+        - array
+        - string
+      description: If two columns; the result and confidence. If one column; [result, confidence]
+    if:
+      $ref: '#/$defs/wrangles/commonProperties/if'
+    where:
+      $ref: '#/$defs/wrangles/commonProperties/where'
+    where_params:
+      $ref: '#/$defs/wrangles/commonProperties/where_params'
+schema_origin: upstream-docstring
+schema_adjustments: []
 ---
 
 # Highest Confidence

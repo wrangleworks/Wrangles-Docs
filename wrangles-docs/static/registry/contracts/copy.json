@@ -40,35 +40,80 @@
     "where": true,
     "where_params": true
   },
+  "configuration_schema": {
+    "type": "object",
+    "description": "Make a copy of a column or a list of columns",
+    "additionalProperties": false,
+    "required": [
+      "input",
+      "output"
+    ],
+    "properties": {
+      "input": {
+        "type": [
+          "string",
+          "integer",
+          "array"
+        ],
+        "description": "Name of the input columns or columns"
+      },
+      "output": {
+        "type": [
+          "string",
+          "array"
+        ],
+        "description": "Name of the output columns or columns"
+      },
+      "if": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/if"
+      },
+      "where": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/where"
+      },
+      "where_params": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/where_params"
+      }
+    }
+  },
+  "schema_origin": "upstream-docstring",
+  "schema_adjustments": [],
+  "schema_source": {
+    "repository": "https://github.com/wrangleworks/WranglesPY",
+    "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+    "version": "1.20.5",
+    "extraction": "static-python-ast"
+  },
   "parameters": [
     {
       "name": "input",
-      "description": "Name of the input columns or columns.",
-      "required": false,
+      "description": "Name of the input columns or columns",
+      "required": true,
       "param_group": "I/O",
       "runtime_default": null,
       "schema": {
         "type": [
           "string",
           "integer",
-          "array",
-          "null"
-        ]
-      }
+          "array"
+        ],
+        "description": "Name of the input columns or columns"
+      },
+      "runtime_required": false
     },
     {
       "name": "output",
-      "description": "Name of the output columns or columns.",
-      "required": false,
+      "description": "Name of the output columns or columns",
+      "required": true,
       "param_group": "I/O",
       "runtime_default": null,
       "schema": {
         "type": [
           "string",
-          "array",
-          "null"
-        ]
-      }
+          "array"
+        ],
+        "description": "Name of the output columns or columns"
+      },
+      "runtime_required": false
     },
     {
       "name": "if",
@@ -102,7 +147,7 @@
     }
   ],
   "examples": [],
-  "guidance": "Create a copy of columns in a dataframe.\n\n## Migrated examples\n#### Copying a Column With Input and Output\n\n##### Recipe\n\n```yaml\nwrangles:\n  - copy:\n      input: Product Data\n      output: Product Data (copy)\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n| Product Data |\n| --- |\n| SKF ball brg |\n| brg seal |\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| Product Data | Product Data (copy) |\n| --- | --- |\n| SKF ball bearing | SKF ball bearing |\n| bearing seal | bearing seal |\n\n</div>\n\n</div>\n\n#### Copying a Column Express as a Dictionary\n\n##### Recipe\n\n```yaml\nwrangles:\n  - copy:\n      Product Data: Product Data (copy)\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n| Product Data |\n| --- |\n| SKF ball brg |\n| brg seal |\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| Product Data | Product Data (copy) |\n| --- | --- |\n| SKF ball bearing | SKF ball bearing |\n| bearing seal | bearing seal |\n\n</div>\n\n</div>",
+  "guidance": "Create a copy of columns in a dataframe.\n\n## Migrated examples\n#### Copying a Column With Input and Output\n\n##### Recipe\n\n```yaml\nwrangles:\n  - copy:\n      input: Product Data\n      output: Product Data (copy)\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n| Product Data |\n| --- |\n| SKF ball brg |\n| brg seal |\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| Product Data | Product Data (copy) |\n| --- | --- |\n| SKF ball bearing | SKF ball bearing |\n| bearing seal | bearing seal |\n\n</div>\n\n</div>\n\n#### Schema-compatible Copy Parameters\n\nThe runtime also accepts dictionary shorthand, but the upstream recipe schema\nrequires explicit `input` and `output`. Use this form for schema-validated recipes.\n\n##### Recipe\n\n```yaml\nwrangles:\n  - copy:\n      input: Product Data\n      output: Product Data (copy)\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n| Product Data |\n| --- |\n| SKF ball brg |\n| brg seal |\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| Product Data | Product Data (copy) |\n| --- | --- |\n| SKF ball bearing | SKF ball bearing |\n| bearing seal | bearing seal |\n\n</div>\n\n</div>",
   "sources": [
     {
       "id": "runtime",

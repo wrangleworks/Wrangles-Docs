@@ -33,7 +33,7 @@ capabilities:
   where_params: true
 parameters:
   - name: input
-    description: Name or list of input column.
+    description: Name or list of input column
     required: true
     param_group: I/O
     schema:
@@ -41,20 +41,26 @@ parameters:
         - string
         - integer
         - array
+      description: Name or list of input column
+    runtime_required: true
   - name: find
-    description: Pattern to find using regex.
+    description: Pattern to find using regex
     required: true
     param_group: Options
     schema:
       type: string
+      description: Pattern to find using regex
+    runtime_required: true
   - name: replace
-    description: Value to replace the pattern found.
+    description: Value to replace the pattern found
     required: true
     param_group: Options
     schema:
       type: string
+      description: Value to replace the pattern found
+    runtime_required: true
   - name: output
-    description: Name or list of output column.
+    description: Name or list of output column
     required: false
     param_group: I/O
     runtime_default: null
@@ -62,7 +68,8 @@ parameters:
       type:
         - string
         - array
-        - 'null'
+      description: Name or list of output column
+    runtime_required: false
 examples: []
 sources:
   - id: runtime
@@ -73,6 +80,42 @@ sources:
     resource: >-
       https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/format/_sources/replace.md
     title: Archived replace Markdown
+configuration_schema:
+  type: object
+  description: >-
+    Quick find and replace for simple values. Can use regex if 'input' in params and
+    isinstance(params['input'], list):in the find field.
+  additionalProperties: false
+  required:
+    - input
+    - find
+    - replace
+  properties:
+    input:
+      type:
+        - string
+        - integer
+        - array
+      description: Name or list of input column
+    output:
+      type:
+        - string
+        - array
+      description: Name or list of output column
+    find:
+      type: string
+      description: Pattern to find using regex
+    replace:
+      type: string
+      description: Value to replace the pattern found
+    if:
+      $ref: '#/$defs/wrangles/commonProperties/if'
+    where:
+      $ref: '#/$defs/wrangles/commonProperties/where'
+    where_params:
+      $ref: '#/$defs/wrangles/commonProperties/where_params'
+schema_origin: upstream-docstring
+schema_adjustments: []
 ---
 
 # Replace

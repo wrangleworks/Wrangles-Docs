@@ -24,18 +24,95 @@ Use a model from huggingface
 | --- | --- | --- | --- | --- |
 | <span className="ww-param-group-label">I/O</span> |  |  |  |  |
 | `input` | Name of the input column. | string, integer, array | — | Yes |
-| `output` | Name of the output column. If not provided, will overwrite the input column. | string, array, null | `null` | No |
+| `output` | Name of the output column. If not provided, will overwrite the input column<br /> | string, array | `null` | No |
 | <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `parameters` | Optionally, provide additional parameters to define the model behaviour. | object, null | `null` | No |
+| `parameters` | Optionally, provide additional parameters to define the model behaviour | object | `null` | No |
+| `timeout` | Request timeout in seconds; defaults to the AI configuration. | number | `null` | No |
+| `retries` | Additional attempts after transient failures; defaults to the AI configuration. | integer | `null` | No |
 | <span className="ww-param-group-label">Details</span> |  |  |  |  |
-| `api_token` | Huggingface API Token. | string | — | Yes |
-| `model` | Name of the model to use. e.g. facebook/bart-large-cnn. | string | — | Yes |
+| `api_token` | Huggingface API Token | string | — | Yes |
+| `model` | Name of the model to use. e.g. facebook/bart-large-cnn | string | — | Yes |
 | <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
 | `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
 | `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
 | `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
 
 </div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+<details className="ww-field-disclosure">
+
+<summary>Complete configuration schema</summary>
+
+Schema source: upstream-docstring. Conditional and cross-parameter
+rules below apply in addition to the parameter table. References resolve against
+the [complete recipe schema](/schemas/recipes/registry/schema.json).
+
+
+
+```json
+{
+  "type": "object",
+  "description": "Use a model from huggingface",
+  "required": [
+    "input",
+    "api_token",
+    "model"
+  ],
+  "properties": {
+    "input": {
+      "type": [
+        "string",
+        "integer",
+        "array"
+      ],
+      "description": "Name of the input column."
+    },
+    "output": {
+      "type": [
+        "string",
+        "array"
+      ],
+      "description": "Name of the output column. If not provided, will overwrite the input column\n"
+    },
+    "model": {
+      "type": "string",
+      "description": "Name of the model to use. e.g. facebook/bart-large-cnn"
+    },
+    "api_token": {
+      "type": "string",
+      "description": "Huggingface API Token"
+    },
+    "parameters": {
+      "type": "object",
+      "description": "Optionally, provide additional parameters to define the model behaviour"
+    },
+    "timeout": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "description": "Request timeout in seconds; defaults to the AI configuration."
+    },
+    "retries": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Additional attempts after transient failures; defaults to the AI configuration."
+    },
+    "if": {
+      "$ref": "#/$defs/wrangles/commonProperties/if"
+    },
+    "where": {
+      "$ref": "#/$defs/wrangles/commonProperties/where"
+    },
+    "where_params": {
+      "$ref": "#/$defs/wrangles/commonProperties/where_params"
+    }
+  }
+}
+```
+
+</details>
 
 ## Examples
 
@@ -105,6 +182,7 @@ _Template based on the documented parameters; no published source example is cur
 | Documentation group | `ai` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.huggingface` |
+| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
 | Legacy UUID | `ae12cf20-4934-428f-84a9-a6898cb7ffe0` |
 
 **Sources**

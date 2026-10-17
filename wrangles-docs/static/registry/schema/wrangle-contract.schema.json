@@ -26,6 +26,9 @@
     "access",
     "capabilities",
     "parameters",
+    "configuration_schema",
+    "schema_origin",
+    "schema_adjustments",
     "examples",
     "sources",
     "catalog_id",
@@ -43,6 +46,23 @@
     },
     "registry_version": {
       "const": "0.3.0"
+    },
+    "configuration_schema": {
+      "type": "object",
+      "description": "Complete source-aligned configuration schema, including shared controls and cross-parameter rules."
+    },
+    "schema_origin": {
+      "enum": [
+        "upstream-docstring",
+        "deprecated-alias:math",
+        "signature-derived"
+      ]
+    },
+    "schema_adjustments": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
     },
     "schema_version": {
       "const": "0.3"
@@ -194,16 +214,28 @@
       ],
       "properties": {
         "ai_powered": {
-          "type": "boolean"
+          "type": [
+            "boolean",
+            "null"
+          ]
         },
         "requires_account": {
-          "type": "boolean"
+          "type": [
+            "boolean",
+            "null"
+          ]
         },
         "requires_subscription": {
-          "type": "boolean"
+          "type": [
+            "boolean",
+            "null"
+          ]
         },
         "requires_external_api_key": {
-          "type": "boolean"
+          "type": [
+            "boolean",
+            "null"
+          ]
         }
       }
     },
@@ -233,9 +265,12 @@
       }
     },
     "catalog_id": {
-      "type": "string",
+      "type": [
+        "string",
+        "null"
+      ],
       "pattern": "^[1-9][0-9]*$",
-      "description": "API Core BIGINT identity represented as a decimal string."
+      "description": "API Core BIGINT identity as a decimal string, or null while awaiting registration."
     },
     "catalog_key": {
       "type": "string",
@@ -255,6 +290,9 @@
     },
     "guidance": {
       "type": "string"
+    },
+    "schema_source": {
+      "type": "object"
     }
   },
   "$defs": {
@@ -285,6 +323,10 @@
         "required": {
           "type": "boolean"
         },
+        "runtime_required": {
+          "type": "boolean",
+          "description": "Whether the Python callable requires this argument; independent of schema validation."
+        },
         "param_group": {
           "type": "string",
           "enum": [
@@ -302,8 +344,7 @@
         },
         "runtime_default": {},
         "schema": {
-          "type": "object",
-          "minProperties": 1
+          "type": "object"
         }
       }
     },

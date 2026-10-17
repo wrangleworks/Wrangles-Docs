@@ -33,7 +33,7 @@ parameters:
   - name: input
     description: >-
       Name of the column(s) to explode. If multiple columns are included they must contain lists of
-      the same length.
+      the same length
     required: true
     param_group: I/O
     schema:
@@ -41,6 +41,10 @@ parameters:
         - string
         - integer
         - array
+      description: >-
+        Name of the column(s) to explode. If multiple columns are included they must contain lists
+        of the same length
+    runtime_required: true
   - name: reset_index
     description: Reset the index after exploding. Default True.
     required: false
@@ -48,15 +52,23 @@ parameters:
     runtime_default: true
     schema:
       type: boolean
+      description: Reset the index after exploding. Default True.
+    runtime_required: false
   - name: drop_empty
-    description: >-
-      If true, any rows that contain an empty list will be dropped. If false, rows that contain
-      empty lists will keep 1 row with an empty value. Default False.
+    description: |-
+      If true, any rows that contain an empty list will be dropped.
+      If false, rows that contain empty lists will keep 1 row with an empty value.
+      Default False.
     required: false
     param_group: Options
     runtime_default: false
     schema:
       type: boolean
+      description: |-
+        If true, any rows that contain an empty list will be dropped.
+        If false, rows that contain empty lists will keep 1 row with an empty value.
+        Default False.
+    runtime_required: false
 examples: []
 sources:
   - id: runtime
@@ -67,6 +79,38 @@ sources:
     resource: >-
       https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/split/_sources/explode.md
     title: Archived explode Markdown
+configuration_schema:
+  type: object
+  description: Explode a column of lists into rows
+  additionalProperties: false
+  required:
+    - input
+  properties:
+    input:
+      type:
+        - string
+        - integer
+        - array
+      description: >-
+        Name of the column(s) to explode. If multiple columns are included they must contain lists
+        of the same length
+    reset_index:
+      type: boolean
+      description: Reset the index after exploding. Default True.
+    drop_empty:
+      type: boolean
+      description: |-
+        If true, any rows that contain an empty list will be dropped.
+        If false, rows that contain empty lists will keep 1 row with an empty value.
+        Default False.
+    if:
+      $ref: '#/$defs/wrangles/commonProperties/if'
+    where:
+      $ref: '#/$defs/wrangles/commonProperties/where'
+    where_params:
+      $ref: '#/$defs/wrangles/commonProperties/where_params'
+schema_origin: upstream-docstring
+schema_adjustments: []
 ---
 
 # Explode

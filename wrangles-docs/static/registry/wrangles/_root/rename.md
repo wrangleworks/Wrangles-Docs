@@ -44,11 +44,8 @@ parameters:
         - string
         - integer
         - array
-        - 'null'
-      items:
-        type:
-          - string
-          - integer
+      description: Name or list of input columns.
+    runtime_required: false
   - name: output
     description: Name or list of output columns.
     required: false
@@ -61,24 +58,28 @@ parameters:
       type:
         - string
         - array
-        - 'null'
-      items:
-        type: string
+      description: Name or list of output columns.
+    runtime_required: false
   - name: wrangles
-    description: >-
-      Use wrangles to transform the column names. The input is named 'columns' and the final result
-      must also include the column named 'columns'. This can only be used instead of the standard
-      rename.
+    description: |-
+      Use wrangles to transform the column names.
+      The input is named 'columns' and the final result
+      must also include the column named 'columns'.
+      This can only be used instead of the standard rename.
     required: false
     param_group: Execution
     runtime_default: null
     schema:
-      type:
-        - array
-        - 'null'
+      type: array
+      description: |-
+        Use wrangles to transform the column names.
+        The input is named 'columns' and the final result
+        must also include the column named 'columns'.
+        This can only be used instead of the standard rename.
       minItems: 1
       items:
         $ref: '#/$defs/wrangles/items'
+    runtime_required: false
 examples: []
 sources:
   - id: runtime
@@ -89,6 +90,35 @@ sources:
     resource: >-
       https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/transform/_sources/rename.md
     title: Archived rename Markdown
+configuration_schema:
+  type: object
+  description: Rename a column or list of columns.
+  properties:
+    input:
+      type:
+        - string
+        - integer
+        - array
+      description: Name or list of input columns.
+    output:
+      type:
+        - string
+        - array
+      description: Name or list of output columns.
+    wrangles:
+      type: array
+      description: |-
+        Use wrangles to transform the column names.
+        The input is named 'columns' and the final result
+        must also include the column named 'columns'.
+        This can only be used instead of the standard rename.
+      minItems: 1
+      items:
+        $ref: '#/$defs/wrangles/items'
+    if:
+      $ref: '#/$defs/wrangles/commonProperties/if'
+schema_origin: upstream-docstring
+schema_adjustments: []
 ---
 
 # Rename

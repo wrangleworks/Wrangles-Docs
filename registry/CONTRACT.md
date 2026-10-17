@@ -43,16 +43,17 @@ editorial content from `wrangles/`. The compiler validates the joins and emits
 separate reconciliation reports; none of these inputs is silently rewritten.
 
 The previous `_sources` Markdown has been retired and is not a compiler input.
-Code determines executable names, accepted explicit parameters, required
-status, defaults, and behavior. The embedded schema supplies public `**kwargs`
-and constraints that code does not express mechanically. Registry Markdown is
+Code identifies executable names and records Python signatures/defaults for
+diagnostics. The schema determines documented Required status and accepted
+configuration constraints, even when Python defaults differ. Registry Markdown is
 the sole editorial source for descriptions, examples, access metadata, tags,
 and additional guidance.
 
 API Core allocates `catalog_id` as a positive PostgreSQL `BIGINT`. Every JSON
 artifact represents it as a decimal string so JavaScript consumers cannot lose
 integer precision. The compiler joins catalog rows to callable entries by exact
-`wrangle_key`; missing rows, duplicate identities, key conflicts, kind
+`wrangle_key`; missing rows use a null catalog ID and pending-registration status.
+Duplicate identities, key conflicts, kind
 conflicts, and title conflicts fail the build. The compiler never allocates or
 changes catalog IDs.
 
@@ -62,9 +63,50 @@ model ID, is not a catalog ID, and must not be used for execution selection.
 
 ## Parameter contract
 
-The callable recipe surface is the authority boundary. WranglesPY must emit a
-versioned runtime manifest by enumerating `wrangles.recipe._recipe_wrangles`
-directly. That manifest supplies the mechanical runtime facts: callable recipe
+### Connector extension
+
+Connector identities come from the current API-Core `{catalog: [...]}` response
+in `catalog/api-core.json`. The compiler normalizes this response for existing
+wrangle consumers; the full response is also published separately. Identity is
+the catalog key, so `connector.recipe` and `recipe` remain separate even though
+their `wranglesPY_key` values match. Runtime-key uniqueness is not a database
+catalog invariant (`lookup.key` and `lookup.semantic` both map to `lookup`).
+
+`connectors/*.md` records use the same Markdown/YAML-frontmatter authoring
+convention as wrangles. Their frontmatter conforms to
+`schema/connector-entry.schema.json`; explanations and examples live in the
+Markdown body. Both use the shared `registry-markdown.cjs` parser.
+Their operation contracts are statically extracted from a pinned WranglesPY
+checkout and compared exactly with `runtime/wranglespy-source-schema.json`.
+Catalog IDs, kinds, keys, status, source revision, operation coverage, and schema
+contents must agree. Titles, descriptions, sources, and Markdown bodies are
+editorial content preserved during imports. Missing rows, JSON source records,
+handwritten parameter tables, or schema drift fail compilation.
+
+Connector references are published under `/py/connectors/`, and contracts under
+`/registry/connectors/` as generated JSON and raw Markdown. Legacy connector guide
+URLs redirect to these canonical Registry pages; old guide Markdown files are removed.
+The bundle manifest lists connector entries and their
+source separately from existing wrangle entries. The general recipe schema
+includes connector operation schemas and common controls; the restricted Recipe
+Writer schema retains its existing stock-wrangle eligibility rules. Schema
+validation does not execute external connectors or verify supplied credentials.
+
+Wrangles and connectors share WranglesPY 1.20.5 at
+`bd5f88fba479ec406b409cb2880689c54e72b298` as the initial baseline. Current counts
+are in the generated reconciliation report. Valid new schemas are automatically
+published; unsupported/missing schemas are reported and skipped. Six baseline source
+definitions lack literal schemas; their signatures and source text are retained.
+Registry constraint drift fails compilation. Upstream schema/signature
+contradictions are reported separately; source syntax corrections and the two
+schema fallbacks are explicit in the reconciliation report and README.
+
+### Wrangle runtime contract
+
+The callable recipe surface is the authority boundary. The Docs importer creates
+a versioned runtime manifest from statically extracted recipe-wrangle source
+definitions and controls in the saved pinned snapshot, without installing or
+executing WranglesPY. That manifest supplies the mechanical runtime facts: recipe
 keys, Python symbols, signature parameters, required/optional status, defaults,
 and common-control capabilities. During migration it also exports the current
 embedded Python schema docstring so CI can prove that no existing coverage was
@@ -76,17 +118,24 @@ service. A lower-level function is an implementation detail and is never
 required for Registry inclusion. Its signature and tests may be used for parity
 checks, but the Registry pipeline must not depend on finding one.
 
-Registry Markdown keeps the full parameter records, including descriptions,
-presentation groups, accepted-value constraints that cannot be inferred
-reliably from Python annotations, and examples. The compiler merges those
-records with the runtime manifest, rejects name/required/default drift, and
-generates the recipe JSON Schema from the merged result.
+Registry Markdown keeps the full `configuration_schema` and parameter records,
+including descriptions, presentation groups and examples. Parameter constraints
+and schema `required` flags are projections of the upstream configuration schema;
+`runtime_required` and `runtime_default` independently describe the callable.
+The compiler preserves conditional rules, recursive references and upstream
+additional-property behavior. It rejects any unaccounted schema drift.
 
-The current embedded JSON Schema docstrings in `recipe_wrangles` are migration
-input, not a second permanent authoring source. Their complete overview and
-parameter coverage must first be migrated into Registry records and verified
-by parity tests. They can then be generated as a compatibility view from the
-compiled contract, or removed once no supported consumer reads them directly.
+Published wrangle configuration schemas, parameter schemas and connector operation
+schemas qualify their references against the complete recipe schema URL. Consumers
+can register that recipe schema and compile an individual contract independently.
+Qualification applies only to schema nodes; literal values inside examples,
+defaults, constants and enums are preserved unchanged.
+
+The pinned WranglesPY schema docstrings are the validation authority, imported
+into Markdown frontmatter. Editorial content is Docs-owned. Common controls are
+added using the same references as the upstream recipe schema generator. Full
+schema parity tests cover source-to-Markdown-to-generated output, independently
+of the Python signature reconciliation.
 
 The runtime-owned parts of `parameters` are checked automatically against the
 manifest. Entries that agree are marked `verified`. The compiled Markdown and
@@ -397,3 +446,15 @@ following outcomes:
 10. Ownership, release, rollback, and deprecation procedures are documented;
     the first production Registry version is tagged before this status changes
     to `production`.
+## Partial refresh representation
+
+Generated `catalog_id` can be null for a newly documented wrangle awaiting
+API-Core registration; `catalog_status` is then `pending-registration`. Use
+`catalog_key`/`wrangle_key` as unique identities, never null catalog IDs. Existing
+numeric catalog IDs remain decimal strings. No database rows are fabricated.
+
+Access booleans can be null when unreviewed (null does not mean false).
+Generated wrangle contracts include `schema_source`. The runtime manifest's
+`entry_sources` and source snapshot's `connector_sources`/`recipe_base_source`
+identify actual accepted revisions during partial refreshes. Top-level source
+alone does not identify the provenance of a retained older entry.

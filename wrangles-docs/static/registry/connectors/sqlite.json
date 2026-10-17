@@ -1,0 +1,137 @@
+{
+  "schema_version": "0.2",
+  "type": "connector",
+  "catalog_id": "137",
+  "catalog_key": "connector.sqlite",
+  "catalog_kind": "connector",
+  "runtime_key": "sqlite",
+  "status": "active",
+  "title": "SQLite",
+  "source": {
+    "repository": "https://github.com/wrangleworks/WranglesPY",
+    "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+    "version": "1.20.5",
+    "extraction": "static-python-ast"
+  },
+  "operations": {
+    "read": {
+      "type": "object",
+      "description": "Import data from a SQLite Database",
+      "required": [
+        "database",
+        "command"
+      ],
+      "properties": {
+        "database": {
+          "type": "string",
+          "description": "The database to connect to including the file path. e.g. directory/database.db"
+        },
+        "command": {
+          "type": "string",
+          "description": "Table name or SQL command to select data.\nNote - using variables here can make your recipe vulnerable\nto sql injection. Use params if using variables from\nuntrusted sources."
+        },
+        "columns": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/columns"
+        },
+        "not_columns": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/not_columns"
+        },
+        "where": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/where"
+        },
+        "where_params": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/where_params"
+        },
+        "order_by": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/order_by"
+        },
+        "if": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/if"
+        }
+      }
+    },
+    "run": {
+      "type": "object",
+      "description": "Run a command against a SQLite Database",
+      "required": [
+        "database",
+        "command"
+      ],
+      "properties": {
+        "database": {
+          "type": "string",
+          "description": "The database to connect to including the file path. e.g. directory/database.db"
+        },
+        "command": {
+          "type": [
+            "string",
+            "array"
+          ],
+          "description": "SQL command or a list of SQL commands to execute"
+        },
+        "params": {
+          "type": [
+            "array",
+            "object"
+          ],
+          "description": "Variables to pass to a parameterized query.\nThis may use %s or %(name)s syntax"
+        },
+        "if": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/run/commonProperties/if"
+        }
+      }
+    },
+    "write": {
+      "type": "object",
+      "description": "Export data to a SQLite Database",
+      "required": [
+        "database",
+        "table"
+      ],
+      "properties": {
+        "database": {
+          "type": "string",
+          "description": "The database to connect to including the file path. e.g. directory/database.db"
+        },
+        "table": {
+          "type": "string",
+          "description": "The table to write to"
+        },
+        "columns": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/columns"
+        },
+        "not_columns": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/not_columns"
+        },
+        "where": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/where"
+        },
+        "where_params": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/where_params"
+        },
+        "order_by": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/order_by"
+        },
+        "if": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/if"
+        }
+      }
+    }
+  },
+  "description": "Import data from a SQLite Database",
+  "slug": "connectors/sqlite",
+  "visibility": "public",
+  "sources": [
+    {
+      "id": "runtime",
+      "resource": "https://github.com/wrangleworks/WranglesPY/tree/bd5f88fba479ec406b409cb2880689c54e72b298",
+      "title": "Pinned WranglesPY connector schema"
+    },
+    {
+      "id": "existing-docs",
+      "resource": "wrangles-docs/registry-docs/python/connectors/sqlite.md",
+      "title": "Existing connector documentation"
+    }
+  ],
+  "guidance": "The sqlite connector supports read and writing to/from a sqlite database.\n\n### Read\nImport data from a SQLite Database\n\n### Recipe\n```yaml\nread:\n  - sqlite:\n      database: './tests/test.db'\n      command: SELECT * from my_table\n```\n\n### Function\n```python\nfrom wrangles.connectors import sqlite\ndf = sqlite.read(\n    database = './tests/test.db',\n    command = 'SELECT * from my_table'\n)\n```\n\n### Write\nExport data to a SQLite Database\n\n### Recipe\n```yaml\nwrite:\n  - sqlite:\n      database: './sample/fake.db'\n      table: my_table\n```\n\n### Function\n```python\nfrom wrangles.connectors import sqlite\nsqlite.write(\n    df = df,\n    database = './sample/fake.db',\n    table = 'my_table'\n)\n```\n\n### Run\nRun a command on a SQLite Database.\n\n### Recipe\n```yaml\nrun:\n  on_start:\n    - sqlite:\n        database: './sample/my_db.db'\n        command: CREATE TABLE test_table_copy AS SELECT * FROM test_table\n```\n\n### Function\n```python\nfrom wrangles.connectors import sqlite\nsqlite.run(\n    database = './temp/fake.db',\n    command = 'CREATE TABLE test_table_copy AS SELECT * FROM test_table'\n)\n```"
+}

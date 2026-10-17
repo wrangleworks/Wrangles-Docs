@@ -40,27 +40,90 @@
     "where": true,
     "where_params": true
   },
+  "configuration_schema": {
+    "type": "object",
+    "description": "Output text using a jinja template",
+    "additionalProperties": false,
+    "required": [
+      "output",
+      "template"
+    ],
+    "properties": {
+      "input": {
+        "type": [
+          "string",
+          "integer"
+        ],
+        "description": "Specify a name of column containing a dictionary of elements to be used in jinja template.\nOtherwise, the column headers will be used as keys.\n"
+      },
+      "output": {
+        "type": "string",
+        "description": "Name of the column to be output to."
+      },
+      "template": {
+        "type": "object",
+        "description": "A dictionary which defines the template/location as well as the form which the template is input.\nIf any keys use a space, they must be replaced with an underscore.  Note: spaces within column names\nare replaced by underscores (_).\n",
+        "additionalProperties": false,
+        "properties": {
+          "file": {
+            "type": "string",
+            "description": "A .jinja file containing the template"
+          },
+          "column": {
+            "type": "string",
+            "description": "A column containing the jinja template - this will apply to the corresponding row."
+          },
+          "string": {
+            "type": "string",
+            "description": "A string which is used as the jinja template"
+          }
+        }
+      },
+      "if": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/if"
+      },
+      "where": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/where"
+      },
+      "where_params": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/where_params"
+      }
+    }
+  },
+  "schema_origin": "upstream-docstring",
+  "schema_adjustments": [],
+  "schema_source": {
+    "repository": "https://github.com/wrangleworks/WranglesPY",
+    "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+    "version": "1.20.5",
+    "extraction": "static-python-ast"
+  },
   "parameters": [
     {
       "name": "template",
-      "description": "A dictionary which defines the template/location as well as the form which the template is input. If any keys use a space, they must be replaced with an underscore. Note: spaces within column names are replaced by underscores (_).",
+      "description": "A dictionary which defines the template/location as well as the form which the template is input.\nIf any keys use a space, they must be replaced with an underscore.  Note: spaces within column names\nare replaced by underscores (_).\n",
       "required": true,
       "param_group": "Options",
       "schema": {
         "type": "object",
+        "description": "A dictionary which defines the template/location as well as the form which the template is input.\nIf any keys use a space, they must be replaced with an underscore.  Note: spaces within column names\nare replaced by underscores (_).\n",
         "additionalProperties": false,
         "properties": {
           "file": {
-            "type": "string"
+            "type": "string",
+            "description": "A .jinja file containing the template"
           },
           "column": {
-            "type": "string"
+            "type": "string",
+            "description": "A column containing the jinja template - this will apply to the corresponding row."
           },
           "string": {
-            "type": "string"
+            "type": "string",
+            "description": "A string which is used as the jinja template"
           }
         }
-      }
+      },
+      "runtime_required": true
     },
     {
       "name": "output",
@@ -68,21 +131,25 @@
       "required": true,
       "param_group": "I/O",
       "schema": {
-        "type": "array"
-      }
+        "type": "string",
+        "description": "Name of the column to be output to."
+      },
+      "runtime_required": true
     },
     {
       "name": "input",
-      "description": "Specify a name of column containing a dictionary of elements to be used in jinja template. Otherwise, the column headers will be used as keys.",
+      "description": "Specify a name of column containing a dictionary of elements to be used in jinja template.\nOtherwise, the column headers will be used as keys.\n",
       "required": false,
       "param_group": "I/O",
       "runtime_default": null,
       "schema": {
         "type": [
           "string",
-          "null"
-        ]
-      }
+          "integer"
+        ],
+        "description": "Specify a name of column containing a dictionary of elements to be used in jinja template.\nOtherwise, the column headers will be used as keys.\n"
+      },
+      "runtime_required": false
     },
     {
       "name": "if",

@@ -1,0 +1,77 @@
+{
+  "schema_version": "0.2",
+  "type": "connector",
+  "catalog_id": "126",
+  "catalog_key": "connector.notification.telegram",
+  "catalog_kind": "connector",
+  "runtime_key": "notification.telegram",
+  "status": "active",
+  "title": "Telegram",
+  "source": {
+    "repository": "https://github.com/wrangleworks/WranglesPY",
+    "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+    "version": "1.20.5",
+    "extraction": "static-python-ast"
+  },
+  "operations": {
+    "run": {
+      "type": "object",
+      "description": "Send a telegram message. See https://core.telegram.org/bots",
+      "required": [
+        "bot_token",
+        "chat_id",
+        "title",
+        "body"
+      ],
+      "properties": {
+        "bot_token": {
+          "type": "string",
+          "description": "The token for the bot. See https://core.telegram.org/bots"
+        },
+        "chat_id": {
+          "type": "string",
+          "description": "The ID of the chat. See https://core.telegram.org/bots"
+        },
+        "title": {
+          "type": "string",
+          "description": "The title of the notification"
+        },
+        "body": {
+          "type": "string",
+          "description": "The body of the notification"
+        },
+        "attachment": {
+          "type": [
+            "string",
+            "array"
+          ],
+          "description": "A file path & name to attach to the message. Supports a single file or a list of files. Must be supported by the specific notification type."
+        },
+        "format": {
+          "type": "string",
+          "description": "The format of the message. One of 'text', 'markdown' or 'html'. Default is 'text'",
+          "default": "text"
+        },
+        "if": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/run/commonProperties/if"
+        }
+      }
+    }
+  },
+  "description": "Send a telegram message. See https://core.telegram.org/bots",
+  "slug": "connectors/notification.telegram",
+  "visibility": "public",
+  "sources": [
+    {
+      "id": "runtime",
+      "resource": "https://github.com/wrangleworks/WranglesPY/tree/bd5f88fba479ec406b409cb2880689c54e72b298",
+      "title": "Pinned WranglesPY connector schema"
+    },
+    {
+      "id": "existing-docs",
+      "resource": "wrangles-docs/registry-docs/python/connectors/notification/telegram.md",
+      "title": "Existing connector documentation"
+    }
+  ],
+  "guidance": "> Added **v0.5**\n\nSend a telegram notification - such as to alert someone when a recipe is finished or if it fails.\n\nSee [docs](https://core.telegram.org/bots) for how to setup and get required keys.\n\n### Run\n### Recipe\n```yaml\nrun:\n  on_failure:\n    - notification.telegram:\n        bot_token: 1234567890:AAA-a0a...\n        chat_id: '1234567890'\n        title: title\n        body: body\n```\n\n### Function\n```python\nfrom wrangles.connectors.notification import telegram\ntelegram.run(\n    bot_token = '1234567890:AAA-a0a...',\n    chat_id = '1234567890',\n    title = 'title',\n    body = 'body'\n)\n```"
+}

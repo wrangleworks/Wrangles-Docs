@@ -31,29 +31,35 @@ capabilities:
   where_params: true
 parameters:
   - name: output
-    description: Name or list of names of new columns.
+    description: Name or list of names of new columns
     required: true
     param_group: I/O
     schema:
       type:
         - string
         - array
+      description: Name or list of names of new columns
+    runtime_required: true
   - name: start
-    description: (Optional; default 1) Starting number for the index.
+    description: (Optional; default 1) Starting number for the index
     required: false
     param_group: Options
     runtime_default: 1
     schema:
       type: integer
+      description: (Optional; default 1) Starting number for the index
+    runtime_required: false
   - name: step
-    description: (Optional; default 1) Step between successive rows.
+    description: (Optional; default 1) Step between successive rows
     required: false
     param_group: Options
     runtime_default: 1
     schema:
       type: integer
+      description: (Optional; default 1) Step between successive rows
+    runtime_required: false
   - name: by
-    description: Optional. Cluster the created indexes by one or more columns.
+    description: Optional. Cluster the created indexes by one or more columns
     required: false
     param_group: I/O
     runtime_default: null
@@ -61,7 +67,8 @@ parameters:
       type:
         - string
         - array
-        - 'null'
+      description: Optional. Cluster the created indexes by one or more columns
+    runtime_required: false
 examples: []
 sources:
   - id: runtime
@@ -72,6 +79,37 @@ sources:
     resource: >-
       https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/create/_sources/index.md
     title: Archived create.index Markdown
+configuration_schema:
+  type: object
+  description: Create column(s) with an incremental index. e.g. 1,2,3...
+  additionalProperties: false
+  required:
+    - output
+  properties:
+    output:
+      type:
+        - string
+        - array
+      description: Name or list of names of new columns
+    start:
+      type: integer
+      description: (Optional; default 1) Starting number for the index
+    step:
+      type: integer
+      description: (Optional; default 1) Step between successive rows
+    by:
+      type:
+        - string
+        - array
+      description: Optional. Cluster the created indexes by one or more columns
+    if:
+      $ref: '#/$defs/wrangles/commonProperties/if'
+    where:
+      $ref: '#/$defs/wrangles/commonProperties/where'
+    where_params:
+      $ref: '#/$defs/wrangles/commonProperties/where_params'
+schema_origin: upstream-docstring
+schema_adjustments: []
 ---
 
 # Index

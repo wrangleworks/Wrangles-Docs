@@ -33,23 +33,32 @@ capabilities:
   where_params: true
 parameters:
   - name: wrangles
-    description: >-
-      The wrangles to execute on the data. Each series of wrangles will be run against the data in
-      batches of the size defined by batch_size.
+    description: |-
+      The wrangles to execute on the data. Each series of wrangles
+      will be run agaisnst the data in batches of the size
+      defined by batch_size.
     required: true
     param_group: Execution
     schema:
       type: array
+      description: |-
+        The wrangles to execute on the data. Each series of wrangles
+        will be run agaisnst the data in batches of the size
+        defined by batch_size.
       minItems: 1
       items:
         $ref: '#/$defs/wrangles/items'
+    runtime_required: true
   - name: batch_size
-    description: The number of rows to split each batch into.
+    description: The number of rows to split each batch into
     required: false
     param_group: Execution
     runtime_default: 1000
     schema:
       type: integer
+      description: The number of rows to split each batch into
+      default: 1000
+    runtime_required: false
   - name: threads
     description: The number of threads to use for parallel processing. Default 1.
     required: false
@@ -57,33 +66,37 @@ parameters:
     runtime_default: 1
     schema:
       type: integer
+      description: The number of threads to use for parallel processing. Default 1.
+    runtime_required: false
   - name: on_error
     description: >-
       A dictionary of column_name: value to return if an error occurs while attempting to run a
-      batch.
+      batch
     required: false
     param_group: Errors
     runtime_default: null
     schema:
-      type:
-        - object
-        - 'null'
+      type: object
+      description: >-
+        A dictionary of column_name: value to return if an error occurs while attempting to run a
+        batch
+    runtime_required: false
   - name: timeout
-    description: The number of seconds to wait for a batch to complete before raising an error.
+    description: The number of seconds to wait for a batch to complete before raising an error
     required: false
     param_group: Execution
     runtime_default: null
     schema:
-      type:
-        - number
-        - 'null'
+      type: number
+      description: The number of seconds to wait for a batch to complete before raising an error
+    runtime_required: false
   - name: use_multiprocessing
     description: Use process-based workers instead of threads. This is an advanced runtime option.
     required: false
     param_group: Execution
     runtime_default: false
-    schema:
-      type: boolean
+    schema: {}
+    runtime_required: false
 examples: []
 sources:
   - id: runtime
@@ -94,6 +107,47 @@ sources:
     resource: >-
       https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/utility/_sources/batch.md
     title: Archived batch Markdown
+configuration_schema:
+  type: object
+  description: >-
+    Split the data into batches for executing a list of wrangles. Use this in situations such as
+    where the intermediate data is too large to fit in memory.
+  additionalProperties: false
+  required:
+    - wrangles
+  properties:
+    batch_size:
+      type: integer
+      description: The number of rows to split each batch into
+      default: 1000
+    wrangles:
+      type: array
+      description: |-
+        The wrangles to execute on the data. Each series of wrangles
+        will be run agaisnst the data in batches of the size
+        defined by batch_size.
+      minItems: 1
+      items:
+        $ref: '#/$defs/wrangles/items'
+    threads:
+      type: integer
+      description: The number of threads to use for parallel processing. Default 1.
+    on_error:
+      type: object
+      description: >-
+        A dictionary of column_name: value to return if an error occurs while attempting to run a
+        batch
+    timeout:
+      type: number
+      description: The number of seconds to wait for a batch to complete before raising an error
+    if:
+      $ref: '#/$defs/wrangles/commonProperties/if'
+    where:
+      $ref: '#/$defs/wrangles/commonProperties/where'
+    where_params:
+      $ref: '#/$defs/wrangles/commonProperties/where_params'
+schema_origin: upstream-docstring
+schema_adjustments: []
 ---
 
 # Batch

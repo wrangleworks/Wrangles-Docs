@@ -1,0 +1,329 @@
+{
+  "schema_version": "0.2",
+  "type": "connector",
+  "catalog_id": "115",
+  "catalog_key": "connector.http",
+  "catalog_kind": "connector",
+  "runtime_key": "http",
+  "status": "active",
+  "title": "HTTP",
+  "source": {
+    "repository": "https://github.com/wrangleworks/WranglesPY",
+    "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+    "version": "1.20.5",
+    "extraction": "static-python-ast"
+  },
+  "operations": {
+    "read": {
+      "type": "object",
+      "description": "Get data from a HTTP(S) endpoint.",
+      "required": [
+        "url"
+      ],
+      "properties": {
+        "url": {
+          "type": "string",
+          "description": "The URL to make the request to"
+        },
+        "method": {
+          "type": "string",
+          "description": "The http method to use. Default GET.",
+          "enum": [
+            "GET",
+            "POST",
+            "PUT",
+            "PATCH",
+            "DELETE",
+            "HEAD",
+            "OPTIONS"
+          ]
+        },
+        "headers": {
+          "type": "object",
+          "description": "Headers to pass as part of the request"
+        },
+        "params": {
+          "type": "object",
+          "description": "Pass URL encoded parameters"
+        },
+        "json": {
+          "type": "object",
+          "description": "Pass data as a JSON encoded request body."
+        },
+        "json_key": {
+          "type": "string",
+          "description": "Select sub-elements from the response JSON. Multiple levels can be specified with e.g. key1.key2.key3"
+        },
+        "orient": {
+          "type": "string",
+          "description": "The format of the JSON to be converted to a dataframe. Default records.",
+          "enum": [
+            "records",
+            "columns",
+            "tight"
+          ]
+        },
+        "oauth": {
+          "type": "object",
+          "required": [
+            "url"
+          ],
+          "description": "Make a request to get an OAuth token prior to sending the main request",
+          "properties": {
+            "url": {
+              "type": "string",
+              "description": "The URL to make the request to"
+            },
+            "method": {
+              "type": "string",
+              "description": "The http method to use. Default POST.",
+              "enum": [
+                "GET",
+                "POST",
+                "PUT",
+                "PATCH",
+                "DELETE",
+                "HEAD",
+                "OPTIONS"
+              ]
+            },
+            "headers": {
+              "type": "object",
+              "description": "Headers to pass as part of the request"
+            },
+            "params": {
+              "type": "object",
+              "description": "Pass URL encoded parameters"
+            },
+            "json": {
+              "type": "object",
+              "description": "Pass data as a JSON encoded request body."
+            }
+          }
+        },
+        "columns": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/columns"
+        },
+        "not_columns": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/not_columns"
+        },
+        "where": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/where"
+        },
+        "where_params": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/where_params"
+        },
+        "order_by": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/order_by"
+        },
+        "if": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/if"
+        }
+      }
+    },
+    "run": {
+      "type": "object",
+      "description": "Issue a HTTP(S) request e.g. issue a request to a webhook on success or failure.",
+      "required": [
+        "url"
+      ],
+      "properties": {
+        "url": {
+          "type": "string",
+          "description": "The URL to make the request to"
+        },
+        "method": {
+          "type": "string",
+          "description": "The http method to use. Default GET.",
+          "enum": [
+            "GET",
+            "POST",
+            "PUT",
+            "PATCH",
+            "DELETE",
+            "HEAD",
+            "OPTIONS"
+          ]
+        },
+        "headers": {
+          "type": "object",
+          "description": "Headers to pass as part of the request"
+        },
+        "params": {
+          "type": "object",
+          "description": "Pass URL encoded parameters"
+        },
+        "json": {
+          "type": "object",
+          "description": "Pass data as a JSON encoded request body."
+        },
+        "oauth": {
+          "type": "object",
+          "required": [
+            "url"
+          ],
+          "description": "Make a request to get an OAuth token prior to sending the main request",
+          "properties": {
+            "url": {
+              "type": "string",
+              "description": "The URL to make the request to"
+            },
+            "method": {
+              "type": "string",
+              "description": "The http method to use. Default POST.",
+              "enum": [
+                "GET",
+                "POST",
+                "PUT",
+                "PATCH",
+                "DELETE",
+                "HEAD",
+                "OPTIONS"
+              ]
+            },
+            "headers": {
+              "type": "object",
+              "description": "Headers to pass as part of the request"
+            },
+            "params": {
+              "type": "object",
+              "description": "Pass URL encoded parameters"
+            },
+            "json": {
+              "type": "object",
+              "description": "Pass data as a JSON encoded request body."
+            }
+          }
+        },
+        "if": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/run/commonProperties/if"
+        }
+      }
+    },
+    "write": {
+      "type": "object",
+      "description": "Write data to a HTTP endpoint.",
+      "required": [
+        "url"
+      ],
+      "properties": {
+        "url": {
+          "type": "string",
+          "description": "The URL to make the request to"
+        },
+        "method": {
+          "type": "string",
+          "description": "The http method to use. Default POST.",
+          "enum": [
+            "GET",
+            "POST",
+            "PUT",
+            "PATCH",
+            "DELETE",
+            "HEAD",
+            "OPTIONS"
+          ]
+        },
+        "headers": {
+          "type": "object",
+          "description": "Headers to pass as part of the request"
+        },
+        "params": {
+          "type": "object",
+          "description": "Pass URL encoded parameters"
+        },
+        "orient": {
+          "type": "string",
+          "description": "The format of the JSON to send. Default records.\nFor allowed values see:\nhttps://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_json.html#pandas.DataFrame.to_json",
+          "enum": [
+            "records",
+            "split",
+            "index",
+            "columns",
+            "values",
+            "table"
+          ]
+        },
+        "batch": {
+          "type": [
+            "boolean",
+            "integer"
+          ],
+          "description": "If True, send the entire DataFrame as a single request. If False, send each row as a separate request. If an integer, send the DataFrame in batches of that size. default: True"
+        },
+        "oauth": {
+          "type": "object",
+          "required": [
+            "url"
+          ],
+          "description": "Make a request to get an OAuth token prior to sending the main request",
+          "properties": {
+            "url": {
+              "type": "string",
+              "description": "The URL to make the request to"
+            },
+            "method": {
+              "type": "string",
+              "description": "The http method to use. Default POST.",
+              "enum": [
+                "GET",
+                "POST",
+                "PUT",
+                "PATCH",
+                "DELETE",
+                "HEAD",
+                "OPTIONS"
+              ]
+            },
+            "headers": {
+              "type": "object",
+              "description": "Headers to pass as part of the request"
+            },
+            "params": {
+              "type": "object",
+              "description": "Pass URL encoded parameters"
+            },
+            "json": {
+              "type": "object",
+              "description": "Pass data as a JSON encoded request body."
+            }
+          }
+        },
+        "columns": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/columns"
+        },
+        "not_columns": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/not_columns"
+        },
+        "where": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/where"
+        },
+        "where_params": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/where_params"
+        },
+        "order_by": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/order_by"
+        },
+        "if": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/if"
+        }
+      }
+    }
+  },
+  "description": "Get data from a HTTP(S) endpoint.",
+  "slug": "connectors/http",
+  "visibility": "public",
+  "sources": [
+    {
+      "id": "runtime",
+      "resource": "https://github.com/wrangleworks/WranglesPY/tree/bd5f88fba479ec406b409cb2880689c54e72b298",
+      "title": "Pinned WranglesPY connector schema"
+    },
+    {
+      "id": "existing-docs",
+      "resource": "wrangles-docs/registry-docs/python/connectors/http.md",
+      "title": "Existing connector documentation"
+    }
+  ],
+  "guidance": "The http connector allows users to issue http(s) requests.\n\n### Read\nGet data from a HTTP(S) endpoint.\n\n### Recipe\n```yaml\nread:\n  - http:\n      url: https://data.example.com\n      method: GET\n```\n\n### Function\n```python\nfrom wrangles.connectors import http\ndf = http.read(\n    url='https://data.example.com',\n    method='GET'\n)\n```\n\n### Write\nWrite data to a HTTP(S) endpoint.\n\n### Recipe\n```yaml\nread:\n  - http:\n      url: https://data.example.com\n      method: POST\n```\n\n### Function\n```python\nfrom wrangles.connectors import http\ndf = http.read(\n    url='https://data.example.com',\n    method='POST'\n)\n```"
+}

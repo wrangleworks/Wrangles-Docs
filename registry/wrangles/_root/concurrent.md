@@ -35,29 +35,33 @@ capabilities:
   where_params: true
 parameters:
   - name: wrangles
-    description: The wrangles section of a recipe to execute for each combination of variables.
+    description: The wrangles section of a recipe to execute for each combination of variables
     required: true
     param_group: Execution
     schema:
       type: array
+      description: The wrangles section of a recipe to execute for each combination of variables
       minItems: 1
       items:
-        $ref: '#/$defs/wrangles/items'
+        - $ref: '#/$defs/wrangles/items'
+    runtime_required: true
   - name: max_concurrency
-    description: The maximum number of wrangles to execute in parallel.
+    description: The maximum number of wrangles to execute in parallel
     required: false
     param_group: Execution
     runtime_default: 10
     schema:
       type: integer
+      description: The maximum number of wrangles to execute in parallel
       minimum: 1
+    runtime_required: false
   - name: use_multiprocessing
     description: Use process-based workers instead of threads. This is an advanced runtime option.
     required: false
     param_group: Execution
     runtime_default: false
-    schema:
-      type: boolean
+    schema: {}
+    runtime_required: false
 examples: []
 sources:
   - id: runtime
@@ -68,13 +72,42 @@ sources:
     resource: >-
       https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/utility/_sources/concurrent.md
     title: Archived concurrent Markdown
+configuration_schema:
+  type: object
+  description: >-
+    Run multiple wrangles concurrently rather than sequentially. Wrangles must specify output
+    columns to be used concurrently. When using concurrent, Wrangles may not complete in a
+    predictable order and it is not recommended to update overlapping columns with different
+    wrangles.
+  additionalProperties: false
+  required:
+    - wrangles
+  properties:
+    wrangles:
+      type: array
+      description: The wrangles section of a recipe to execute for each combination of variables
+      minItems: 1
+      items:
+        - $ref: '#/$defs/wrangles/items'
+    max_concurrency:
+      type: integer
+      description: The maximum number of wrangles to execute in parallel
+      minimum: 1
+    if:
+      $ref: '#/$defs/wrangles/commonProperties/if'
+    where:
+      $ref: '#/$defs/wrangles/commonProperties/where'
+    where_params:
+      $ref: '#/$defs/wrangles/commonProperties/where_params'
+schema_origin: upstream-docstring
+schema_adjustments: []
 ---
 
 # Concurrent
 
 Run multiple wrangles concurrently instead of sequentially. Concurrent wrangles must declare output columns, may finish in any order, and should not update overlapping columns.
 
-See the [Concurrent connector](/py/python/connectors/concurrent) for the connector equivalent.
+See the [Concurrent connector](/py/connectors/concurrent) for the connector equivalent.
 
 ## Migrated examples
 #### Run Extraction Wrangles Concurrently

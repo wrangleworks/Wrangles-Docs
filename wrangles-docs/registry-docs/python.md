@@ -27,18 +27,85 @@ This wrangle evaluates the Python command. Be cautious when including variables 
 | Name | Description | Accepted Values | Default | Required |
 | --- | --- | --- | --- | --- |
 | <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `output` | Name or list of output column(s). To output multiple columns, return a list of the corresponding length. | string, array | — | Yes |
-| `input` | Name or list of input column(s) to filter the data available to the command. Useful in conjunction with kwargs to target a variable range of columns. If not specified, all columns will be available. | string, integer, array, null | `null` | No |
+| `output` | Name or list of output column(s). To output multiple columns,<br />return a list of the corresponding length. | string, array | — | Yes |
+| `input` | Name or list of input column(s) to filter the data available<br />to the command. Useful in conjunction with kwargs to target<br />a variable range of columns.<br />If not specified, all columns will be available. | string, integer, array | `null` | No |
 | <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `command` | Python command. This must return a value. Note: any non-alphanumeric characters in variable names are replaced by underscores (_). | string | — | Yes |
+| `command` | Python command. This must return a value.<br />Note: any non-alphanumeric characters in variable names<br />are replaced by underscores (_). | string | — | Yes |
 | <span className="ww-param-group-label">Errors</span> |  |  |  |  |
-| `except` | Value to return for the row if an exception occurs during the evaluation. If not provided, an exception will be raised as normal. If multiple output columns are specified, this must match the length. | string, array, number, integer, boolean, object | — | No |
+| `except` | Value to return for the row if an exception occurs during the evaluation.<br />If not provided, an exception will be raised as normal.<br />If multiple output columns are specified, this must match the length. | string, array, number, integer, boolean, object | — | No |
 | <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
 | `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
 | `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
 | `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
 
 </div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+<details className="ww-field-disclosure">
+
+<summary>Complete configuration schema</summary>
+
+Schema source: upstream-docstring. Conditional and cross-parameter
+rules below apply in addition to the parameter table. References resolve against
+the [complete recipe schema](/schemas/recipes/registry/schema.json).
+
+
+
+```json
+{
+  "type": "object",
+  "description": "Apply a simple single-line python command. For more complex python use a custom function.\nNote, this evaluates the python command - be especially cautious including\nvariables from untrusted sources within the command string.\nThe python command will be evaluated once for each row and the result returned.\nReference column values by using their name.\nNon-alphanumeric characters within column names are replaced by underscores (_)\nAdditionally, all columns are available as a dict named kwargs.\nAdditional parameters set for the wrangle will also be available to the command.",
+  "required": [
+    "command",
+    "output"
+  ],
+  "properties": {
+    "input": {
+      "type": [
+        "string",
+        "integer",
+        "array"
+      ],
+      "description": "Name or list of input column(s) to filter the data available\nto the command. Useful in conjunction with kwargs to target\na variable range of columns.\nIf not specified, all columns will be available."
+    },
+    "output": {
+      "type": [
+        "string",
+        "array"
+      ],
+      "description": "Name or list of output column(s). To output multiple columns,\nreturn a list of the corresponding length."
+    },
+    "command": {
+      "type": "string",
+      "description": "Python command. This must return a value.\nNote: any non-alphanumeric characters in variable names\nare replaced by underscores (_)."
+    },
+    "except": {
+      "type": [
+        "string",
+        "array",
+        "number",
+        "integer",
+        "boolean",
+        "object"
+      ],
+      "description": "Value to return for the row if an exception occurs during the evaluation.\nIf not provided, an exception will be raised as normal.\nIf multiple output columns are specified, this must match the length."
+    },
+    "if": {
+      "$ref": "#/$defs/wrangles/commonProperties/if"
+    },
+    "where": {
+      "$ref": "#/$defs/wrangles/commonProperties/where"
+    },
+    "where_params": {
+      "$ref": "#/$defs/wrangles/commonProperties/where_params"
+    }
+  }
+}
+```
+
+</details>
 
 ## Examples
 
@@ -128,6 +195,7 @@ _No sample available._
 | Documentation group | `compute` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.python` |
+| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
 | Legacy UUID | `c0398a11-7731-4e47-8df0-b07eea0b1d6c` |
 
 **Sources**

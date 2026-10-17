@@ -1,0 +1,158 @@
+{
+  "schema_version": "0.2",
+  "type": "connector",
+  "catalog_id": "133",
+  "catalog_key": "connector.salesforce",
+  "catalog_kind": "connector",
+  "runtime_key": "salesforce",
+  "status": "active",
+  "title": "Salesforce",
+  "source": {
+    "repository": "https://github.com/wrangleworks/WranglesPY",
+    "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+    "version": "1.20.5",
+    "extraction": "static-python-ast"
+  },
+  "operations": {
+    "read": {
+      "type": "object",
+      "description": "Import data from Salesforce",
+      "required": [
+        "instance",
+        "user",
+        "password",
+        "token",
+        "object",
+        "command"
+      ],
+      "properties": {
+        "instance": {
+          "type": "string",
+          "description": "The salesforce instance to read from. e.g. <custom>.my.salesforce.com"
+        },
+        "user": {
+          "type": "string",
+          "description": "User with read permission"
+        },
+        "password": {
+          "type": "string",
+          "description": "Password for the user"
+        },
+        "token": {
+          "type": "string",
+          "description": "Security token for the user"
+        },
+        "object": {
+          "type": "string",
+          "description": "Object to read data from e.g. Contact"
+        },
+        "command": {
+          "type": "string",
+          "description": "SOQL query"
+        },
+        "columns": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/columns"
+        },
+        "params": {
+          "type": "object",
+          "description": "(Optional) Parameters to be used in the SOQL query Use {my_key} in the command to insert a parameter."
+        },
+        "domain": {
+          "type": "string",
+          "description": "(Optional) Use test to connect to a sandbox instance."
+        },
+        "not_columns": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/not_columns"
+        },
+        "where": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/where"
+        },
+        "where_params": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/where_params"
+        },
+        "order_by": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/order_by"
+        },
+        "if": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/if"
+        }
+      }
+    },
+    "write": {
+      "type": "object",
+      "description": "Write data to Salesforce",
+      "required": [
+        "instance",
+        "user",
+        "password",
+        "token",
+        "object",
+        "id"
+      ],
+      "properties": {
+        "instance": {
+          "type": "string",
+          "description": "The salesforce instance to write to e.g. <custom>.my.salesforce.com"
+        },
+        "user": {
+          "type": "string",
+          "description": "User with write permission"
+        },
+        "password": {
+          "type": "string",
+          "description": "Password for the user"
+        },
+        "token": {
+          "type": "string",
+          "description": "Security token for the user"
+        },
+        "object": {
+          "type": "string",
+          "description": "Object to write the data to e.g. Contact"
+        },
+        "id": {
+          "type": "string",
+          "description": "Indicate the Id field. If the Id exists and is provided, the record will be updated, otherwise inserted."
+        },
+        "columns": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/columns"
+        },
+        "domain": {
+          "type": "string",
+          "description": "(Optional) Use test to connect to a sandbox instance"
+        },
+        "not_columns": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/not_columns"
+        },
+        "where": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/where"
+        },
+        "where_params": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/where_params"
+        },
+        "order_by": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/order_by"
+        },
+        "if": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/if"
+        }
+      }
+    }
+  },
+  "description": "Import data from Salesforce",
+  "slug": "connectors/salesforce",
+  "visibility": "public",
+  "sources": [
+    {
+      "id": "runtime",
+      "resource": "https://github.com/wrangleworks/WranglesPY/tree/bd5f88fba479ec406b409cb2880689c54e72b298",
+      "title": "Pinned WranglesPY connector schema"
+    },
+    {
+      "id": "existing-docs",
+      "resource": "wrangles-docs/registry-docs/python/connectors/salesforce.md",
+      "title": "Existing connector documentation"
+    }
+  ],
+  "guidance": "> Added **v0.5**\n\nThe salesforce connector supports reading and writing to/from Salesforce using [SOQL](https://developer.salesforce.com/docs/atlas.en-us.soql_sosl.meta/soql_sosl/sforce_api_calls_soql.htm).\n\n### Read\n### Recipe\n```yaml\nread:\n  - salesforce:\n      instance: sf.domain\n      user: user\n      password: password\n      token: token\n      object: Contact\n      command: |\n        SELECT Id, Email, Name\n        FROM Contact\n```\n\n### Function\n```python\nfrom wrangles.connectors import salesforce\ndf = salesforce.read(\n    instance='sf.domain',\n    object='object',\n    user='user',\n    password='password',\n    token='token',\n    command='SELECT Id, Name FROM Contact'\n)\n```\n\n### Write\n\n### Recipe\n```yaml\nwrite:\n  - salesforce:\n      instance: sf.domain\n      user: user\n      password: password\n      token: token\n      object: Contact\n      id: Id\n```\n\n### Function\n```python\nfrom wrangles.connectors import salesforce\nsalesforce.write(\n    df,\n    instance='sf.domain',\n    user='user',\n    password='password',\n    token='token',\n    object='Contact',\n    id='Id'\n)\n```"
+}

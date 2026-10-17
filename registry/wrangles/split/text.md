@@ -31,16 +31,21 @@ capabilities:
   where_params: true
 parameters:
   - name: input
-    description: Name of the column to be split.
+    description: Name of the column to be split
     required: true
     param_group: I/O
     schema:
       type: string
+      description: Name of the column to be split
+    runtime_required: true
   - name: output
-    description: >-
-      Name of the output column(s) If a single column is provided, the results will be returned as a
-      list If multiple columns are listed, the results will be separated into the columns. If
-      omitted, will overwrite the input.
+    description: |-
+      Name of the output column(s)
+      If a single column is provided,
+      the results will be returned as a list
+      If multiple columns are listed,
+      the results will be separated into the columns.
+      If omitted, will overwrite the input.
     required: false
     param_group: I/O
     runtime_default: null
@@ -48,16 +53,29 @@ parameters:
       type:
         - string
         - array
-        - 'null'
+      description: |-
+        Name of the output column(s)
+        If a single column is provided,
+        the results will be returned as a list
+        If multiple columns are listed,
+        the results will be separated into the columns.
+        If omitted, will overwrite the input.
+    runtime_required: false
   - name: char
-    description: >-
-      Set the character(s) to split on. Default comma (,) Can also prefix with "regex:" to split on
-      a pattern.
+    description: |-
+      Set the character(s) to split on.
+      Default comma (,)
+      Can also prefix with "regex:" to split on a pattern.
     required: false
     param_group: Options
     runtime_default: ','
     schema:
       type: string
+      description: |-
+        Set the character(s) to split on.
+        Default comma (,)
+        Can also prefix with "regex:" to split on a pattern.
+    runtime_required: false
   - name: pad
     description: >-
       Choose whether to pad to ensure a consistent length. Default true if outputting to columns,
@@ -66,35 +84,45 @@ parameters:
     param_group: Formatting
     runtime_default: null
     schema:
-      type:
-        - boolean
-        - 'null'
+      type: boolean
+      description: >-
+        Choose whether to pad to ensure a consistent length. Default true if outputting to columns,
+        false for lists.
+    runtime_required: false
   - name: element
     description: >-
       Select a specific element or range after splitting using slicing syntax. e.g. 0, ":5", "5:",
-      "2:8:2".
+      "2:8:2"
     required: false
     param_group: Options
     runtime_default: null
     schema:
       type:
-        - string
         - integer
-        - 'null'
+        - string
+      description: >-
+        Select a specific element or range after splitting using slicing syntax. e.g. 0, ":5", "5:",
+        "2:8:2"
+    runtime_required: false
   - name: inclusive
-    description: If true, include the split character in the output. Default False.
+    description: If true, include the split character in the output. Default False
     required: false
     param_group: Options
     runtime_default: false
     schema:
       type: boolean
+      description: If true, include the split character in the output. Default False
+    runtime_required: false
   - name: skip_empty
-    description: Whether to skip empty values.
+    description: Whether to skip empty values
     required: false
     param_group: Options
     runtime_default: false
     schema:
       type: boolean
+      description: Whether to skip empty values
+      default: false
+    runtime_required: false
 examples: []
 sources:
   - id: runtime
@@ -105,6 +133,60 @@ sources:
     resource: >-
       https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/split/_sources/text.md
     title: Archived split.text Markdown
+configuration_schema:
+  type: object
+  description: Split a string to multiple columns or a list.
+  additionalProperties: false
+  required:
+    - input
+  properties:
+    input:
+      type: string
+      description: Name of the column to be split
+    output:
+      type:
+        - string
+        - array
+      description: |-
+        Name of the output column(s)
+        If a single column is provided,
+        the results will be returned as a list
+        If multiple columns are listed,
+        the results will be separated into the columns.
+        If omitted, will overwrite the input.
+    char:
+      type: string
+      description: |-
+        Set the character(s) to split on.
+        Default comma (,)
+        Can also prefix with "regex:" to split on a pattern.
+    pad:
+      type: boolean
+      description: >-
+        Choose whether to pad to ensure a consistent length. Default true if outputting to columns,
+        false for lists.
+    element:
+      type:
+        - integer
+        - string
+      description: >-
+        Select a specific element or range after splitting using slicing syntax. e.g. 0, ":5", "5:",
+        "2:8:2"
+    inclusive:
+      type: boolean
+      description: If true, include the split character in the output. Default False
+    skip_empty:
+      type: boolean
+      description: Whether to skip empty values
+      default: false
+    if:
+      $ref: '#/$defs/wrangles/commonProperties/if'
+    where:
+      $ref: '#/$defs/wrangles/commonProperties/where'
+    where_params:
+      $ref: '#/$defs/wrangles/commonProperties/where_params'
+schema_origin: upstream-docstring
+schema_adjustments: []
 ---
 
 # Text

@@ -25,7 +25,7 @@ Create column(s) with a user defined value. Defaults to `None` (empty). If you n
 | <span className="ww-param-group-label">I/O</span> |  |  |  |  |
 | `output` | Name or list of names of new columns or column_name: value pairs. | string, array | — | Yes |
 | <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `value` | (Optional) Value(s) to add in the new column(s). If using a dictionary in output, value can only be a string. | string, number, object, array, boolean, null | `null` | No |
+| `value` | (Optional) Value(s) to add in the new column(s). If using a dictionary in output, value can only be a string. | string, number, object, array, boolean | `null` | No |
 | `value_if_exists` | Determines behaviour when the output column already exists. existing (default): leave the column unchanged. coalesce: fill empty/null cells with the new value, keeping non-null cells. new: overwrite the entire column with the new value. | string; one of:<ul className="ww-param-enum-values"><li>existing</li><li>coalesce</li><li>new</li></ul> | `"existing"` | No |
 | `coalesce_value` | Only used when value_if_exists is coalesce. Determines which side is preferred when both the existing and new values are non-empty. existing (default): keep the existing value, only fill empty/null cells with the new value. new: keep the new value, only fall back to the existing value where the new value is empty/null. | string; one of:<ul className="ww-param-enum-values"><li>existing</li><li>new</li></ul> | `"existing"` | No |
 | <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
@@ -34,6 +34,77 @@ Create column(s) with a user defined value. Defaults to `None` (empty). If you n
 | `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
 
 </div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+<details className="ww-field-disclosure">
+
+<summary>Complete configuration schema</summary>
+
+Schema source: upstream-docstring. Conditional and cross-parameter
+rules below apply in addition to the parameter table. References resolve against
+the [complete recipe schema](/schemas/recipes/registry/schema.json).
+
+
+
+```json
+{
+  "type": "object",
+  "description": "Create column(s) with a user defined value. Defaults to None (empty).",
+  "additionalProperties": false,
+  "required": [
+    "output"
+  ],
+  "properties": {
+    "output": {
+      "type": [
+        "string",
+        "array"
+      ],
+      "description": "Name or list of names of new columns or column_name: value pairs."
+    },
+    "value": {
+      "type": [
+        "string",
+        "number",
+        "object",
+        "array",
+        "boolean"
+      ],
+      "description": "(Optional) Value(s) to add in the new column(s). If using a dictionary in output, value can only be a string."
+    },
+    "value_if_exists": {
+      "type": "string",
+      "description": "Determines behaviour when the output column already exists. existing (default): leave the column unchanged. coalesce: fill empty/null cells with the new value, keeping non-null cells. new: overwrite the entire column with the new value.",
+      "enum": [
+        "existing",
+        "coalesce",
+        "new"
+      ]
+    },
+    "coalesce_value": {
+      "type": "string",
+      "description": "Only used when value_if_exists is coalesce. Determines which side is preferred when both the existing and new values are non-empty. existing (default): keep the existing value, only fill empty/null cells with the new value. new: keep the new value, only fall back to the existing value where the new value is empty/null.",
+      "enum": [
+        "existing",
+        "new"
+      ]
+    },
+    "if": {
+      "$ref": "#/$defs/wrangles/commonProperties/if"
+    },
+    "where": {
+      "$ref": "#/$defs/wrangles/commonProperties/where"
+    },
+    "where_params": {
+      "$ref": "#/$defs/wrangles/commonProperties/where_params"
+    }
+  }
+}
+```
+
+</details>
 
 ## Examples
 
@@ -175,6 +246,7 @@ Columns of empty lists can also be created by passing an empty list (`[]`) as th
 | Documentation group | `create` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.create.column` |
+| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
 | Legacy UUID | `5a18e2c8-ec7c-45f5-88fd-bb5c358a8b40` |
 
 **Sources**

@@ -31,7 +31,7 @@ You can stop a recipe during its run using the escape key.
 
 Writing a recipe in Excel is very similar to writing a recipe in Python, but there are some minor exceptions.
 
-First, recipes in Excel output data next to the selected range of values by default. To output to a new sheet, see the [excel connector](/py/python/connectors/excel).
+First, recipes in Excel output data next to the selected range of values by default. To output to a new sheet, see the [excel connector](/py/connectors/excel.sheet).
 
 In Excel there are also tabs called Edit, Secrets, Functions, and Variables as well as a Compare button. The below screen shot shows the Wrangles Task Pane for writing a recipe.
 
@@ -271,7 +271,7 @@ The Batch Size setting determines how many rows of data are passed through the r
 
 ### Excel Connector
 
-The **[Excel connector](/py/python/connectors/excel)** allows users to write to different sheets and much more. Click the link for more details.
+The **[Excel connector](/py/connectors/excel.sheet)** allows users to write to different sheets and much more. Click the link for more details.
 
 > **Warning**: When setting a sheet name to longer than 31 characters (Excel's limit), the sheet name is cut short. This will causes errors if the recipe is run more than once without deleting prior generated sheets.
 

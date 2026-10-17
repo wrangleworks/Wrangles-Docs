@@ -31,7 +31,7 @@ capabilities:
   where_params: true
 parameters:
   - name: input
-    description: Name of the input column.
+    description: Name of the input column
     required: true
     param_group: I/O
     schema:
@@ -39,12 +39,15 @@ parameters:
         - string
         - integer
         - array
+      description: Name of the input column
+    runtime_required: true
   - name: property
-    description: Property to extract from date.
+    description: Property to extract from date
     required: true
     param_group: Options
     schema:
       type: string
+      description: Property to extract from date
       enum:
         - day
         - day_of_year
@@ -54,15 +57,18 @@ parameters:
         - week_day_name
         - week_year
         - quarter
+    runtime_required: true
   - name: output
-    description: Name of the output columns.
+    description: Name of the output columns
     required: false
     param_group: I/O
     runtime_default: null
     schema:
       type:
         - string
-        - 'null'
+        - array
+      description: Name of the output columns
+    runtime_required: false
 examples: []
 sources:
   - id: runtime
@@ -73,6 +79,45 @@ sources:
     resource: >-
       https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/extract/_sources/date-properties.md
     title: Archived extract.date_properties Markdown
+configuration_schema:
+  type: object
+  description: Extract date properties from a date (day, month, year, etc...)
+  additionalProperties: false
+  required:
+    - input
+    - property
+  properties:
+    input:
+      type:
+        - string
+        - integer
+        - array
+      description: Name of the input column
+    output:
+      type:
+        - string
+        - array
+      description: Name of the output columns
+    property:
+      type: string
+      description: Property to extract from date
+      enum:
+        - day
+        - day_of_year
+        - month
+        - month_name
+        - weekday
+        - week_day_name
+        - week_year
+        - quarter
+    if:
+      $ref: '#/$defs/wrangles/commonProperties/if'
+    where:
+      $ref: '#/$defs/wrangles/commonProperties/where'
+    where_params:
+      $ref: '#/$defs/wrangles/commonProperties/where_params'
+schema_origin: upstream-docstring
+schema_adjustments: []
 ---
 
 # Date Properties

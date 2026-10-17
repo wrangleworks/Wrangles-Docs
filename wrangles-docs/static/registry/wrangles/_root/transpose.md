@@ -42,6 +42,11 @@ parameters:
         - string
         - integer
         - 'null'
+      description: >-
+        Name or position of the column that will be used as the column headings for the transposed
+        DataFrame. Default 0 (first column). Use header_column = null to not use any column as
+        header.
+    runtime_required: false
 examples: []
 sources:
   - id: runtime
@@ -52,6 +57,29 @@ sources:
     resource: >-
       https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/transform/_sources/transpose.md
     title: Archived transpose Markdown
+configuration_schema:
+  type: object
+  description: Transpose the DataFrame (swap columns to rows)
+  additionalProperties: false
+  properties:
+    header_column:
+      type:
+        - string
+        - integer
+        - 'null'
+      description: >-
+        Name or position of the column that will be used as the column headings for the transposed
+        DataFrame. Default 0 (first column). Use header_column = null to not use any column as
+        header.
+    if:
+      $ref: '#/$defs/wrangles/commonProperties/if'
+    where:
+      $ref: '#/$defs/wrangles/commonProperties/where_special'
+    where_params:
+      $ref: '#/$defs/wrangles/commonProperties/where_params'
+schema_origin: upstream-docstring
+schema_adjustments:
+  - Normalize schema type null to null.
 ---
 
 # Transpose

@@ -23,22 +23,22 @@ Group and aggregate the data
 | Name | Description | Accepted Values | Default | Required |
 | --- | --- | --- | --- | --- |
 | <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `by` | List of the input columns to group on. | string, array | `[]` | No |
+| `by` | List of the input columns to group on | string, array | `[]` | No |
 | <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `list` | Group and return all values for these column(s) as a list. | string, array | — | No |
-| `first` | The first value for these column(s). | string, array | — | No |
-| `last` | The last value for these column(s). | string, array | — | No |
-| `min` | The minimum value for these column(s). | string, array | — | No |
-| `max` | The maximum value for these column(s). | string, array | — | No |
-| `mean` | The mean (average) value for these column(s). | string, array | — | No |
-| `median` | The median value for these column(s). | string, array | — | No |
-| `nunique` | The count of unique values for these column(s). | string, array | — | No |
-| `count` | The count of values for these column(s). | string, array | — | No |
+| `list` | Group and return all values for these column(s) as a list | string, array | — | No |
+| `first` | The first value for these column(s) | string, array | — | No |
+| `last` | The last value for these column(s) | string, array | — | No |
+| `min` | The minimum value for these column(s) | string, array | — | No |
+| `max` | The maximum value for these column(s) | string, array | — | No |
+| `mean` | The mean (average) value for these column(s) | string, array | — | No |
+| `median` | The median value for these column(s) | string, array | — | No |
+| `nunique` | The count of unique values for these column(s) | string, array | — | No |
+| `count` | The count of values for these column(s) | string, array | — | No |
 | `counts` | Return a dictionary containing the count of each distinct value for these column(s). Keys are converted to JSON-safe strings; missing values use the key "null" and booleans use lowercase "true"/"false". | string, array | — | No |
-| `std` | The standard deviation of values for these column(s). | string, array | — | No |
-| `sum` | The total of values for these column(s). | string, array | — | No |
-| `any` | Return true if any of the values for these column(s) are true. | string, array | — | No |
-| `all` | Return true if all of the values for these column(s) are true. | string, array | — | No |
+| `std` | The standard deviation of values for these column(s) | string, array | — | No |
+| `sum` | The total of values for these column(s) | string, array | — | No |
+| `any` | Return true if any of the values for these column(s) are true | string, array | — | No |
+| `all` | Return true if all of the values for these column(s) are true | string, array | — | No |
 | `p75` | Get a percentile. Note, you can use any integer here for the corresponding percentile. | string, array | — | No |
 | `custom.*` | Placeholder for custom functions. Replace 'placeholder' with the name of the function. | string, array | — | No |
 | <span className="ww-param-group-label">Formatting</span> |  |  |  |  |
@@ -49,6 +49,162 @@ Group and aggregate the data
 | `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
 
 </div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+<details className="ww-field-disclosure">
+
+<summary>Complete configuration schema</summary>
+
+Schema source: upstream-docstring. Conditional and cross-parameter
+rules below apply in addition to the parameter table. References resolve against
+the [complete recipe schema](/schemas/recipes/registry/schema.json).
+
+
+
+```json
+{
+  "type": "object",
+  "description": "Group and aggregate the data",
+  "properties": {
+    "by": {
+      "type": [
+        "string",
+        "array"
+      ],
+      "description": "List of the input columns to group on"
+    },
+    "list": {
+      "type": [
+        "string",
+        "array"
+      ],
+      "description": "Group and return all values for these column(s) as a list"
+    },
+    "first": {
+      "type": [
+        "string",
+        "array"
+      ],
+      "description": "The first value for these column(s)"
+    },
+    "last": {
+      "type": [
+        "string",
+        "array"
+      ],
+      "description": "The last value for these column(s)"
+    },
+    "min": {
+      "type": [
+        "string",
+        "array"
+      ],
+      "description": "The minimum value for these column(s)"
+    },
+    "max": {
+      "type": [
+        "string",
+        "array"
+      ],
+      "description": "The maximum value for these column(s)"
+    },
+    "mean": {
+      "type": [
+        "string",
+        "array"
+      ],
+      "description": "The mean (average) value for these column(s)"
+    },
+    "median": {
+      "type": [
+        "string",
+        "array"
+      ],
+      "description": "The median value for these column(s)"
+    },
+    "nunique": {
+      "type": [
+        "string",
+        "array"
+      ],
+      "description": "The count of unique values for these column(s)"
+    },
+    "count": {
+      "type": [
+        "string",
+        "array"
+      ],
+      "description": "The count of values for these column(s)"
+    },
+    "counts": {
+      "type": [
+        "string",
+        "array"
+      ],
+      "description": "Return a dictionary containing the count of each distinct value for these column(s). Keys are converted to JSON-safe strings; missing values use the key \"null\" and booleans use lowercase \"true\"/\"false\"."
+    },
+    "std": {
+      "type": [
+        "string",
+        "array"
+      ],
+      "description": "The standard deviation of values for these column(s)"
+    },
+    "sum": {
+      "type": [
+        "string",
+        "array"
+      ],
+      "description": "The total of values for these column(s)"
+    },
+    "any": {
+      "type": [
+        "string",
+        "array"
+      ],
+      "description": "Return true if any of the values for these column(s) are true"
+    },
+    "all": {
+      "type": [
+        "string",
+        "array"
+      ],
+      "description": "Return true if all of the values for these column(s) are true"
+    },
+    "p75": {
+      "type": [
+        "string",
+        "array"
+      ],
+      "description": "Get a percentile. Note, you can use any integer here for the corresponding percentile."
+    },
+    "custom.placeholder": {
+      "type": [
+        "string",
+        "array"
+      ],
+      "description": "Placeholder for custom functions. Replace 'placeholder' with the name of the function."
+    },
+    "auto_rename_columns": {
+      "type": "boolean",
+      "description": "If true (default), aggregated column names include the operation as a suffix (e.g. Value.sum). If false, column names are left as-is; use a dictionary entry to supply a custom output name (e.g. - Value: Total)."
+    },
+    "if": {
+      "$ref": "#/$defs/wrangles/commonProperties/if"
+    },
+    "where": {
+      "$ref": "#/$defs/wrangles/commonProperties/where_special"
+    },
+    "where_params": {
+      "$ref": "#/$defs/wrangles/commonProperties/where_params"
+    }
+  }
+}
+```
+
+</details>
 
 ## Examples
 
@@ -149,6 +305,7 @@ wrangles:
 | Documentation group | `select` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.select.group_by` |
+| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
 | Legacy UUID | `c0af10b1-423a-416c-8cb5-7e7fe1164964` |
 
 **Sources**

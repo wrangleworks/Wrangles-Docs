@@ -1,0 +1,58 @@
+{
+  "schema_version": "0.2",
+  "type": "connector",
+  "catalog_id": "148",
+  "catalog_key": "connector.dataframe",
+  "catalog_kind": "connector",
+  "runtime_key": "dataframe",
+  "status": "active",
+  "title": "Dataframe",
+  "source": {
+    "repository": "https://github.com/wrangleworks/WranglesPY",
+    "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+    "version": "1.20.5",
+    "extraction": "static-python-ast"
+  },
+  "operations": {
+    "write": {
+      "type": "object",
+      "description": "Define the dataframe returned from recipe.run(). Retains its generic Python return-value behavior. In Excel this is also legacy columns-mode syntax; prefer excel.columns for an explicit spreadsheet write mode.",
+      "properties": {
+        "columns": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/columns"
+        },
+        "not_columns": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/not_columns"
+        },
+        "where": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/where"
+        },
+        "where_params": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/where_params"
+        },
+        "order_by": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/order_by"
+        },
+        "if": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/if"
+        }
+      }
+    }
+  },
+  "description": "Define the dataframe returned from recipe.run(). Retains its generic Python return-value behavior. In Excel this is also legacy columns-mode syntax; prefer excel.columns for an explicit spreadsheet write mode.",
+  "slug": "connectors/dataframe",
+  "visibility": "public",
+  "sources": [
+    {
+      "id": "runtime",
+      "resource": "https://github.com/wrangleworks/WranglesPY/tree/bd5f88fba479ec406b409cb2880689c54e72b298",
+      "title": "Pinned WranglesPY connector schema"
+    },
+    {
+      "id": "existing-docs",
+      "resource": "wrangles-docs/registry-docs/python/recipes/write.md",
+      "title": "Existing connector documentation"
+    }
+  ],
+  "guidance": "By default, the output data can be returned as a Pandas Dataframe for further manipulation.\n\n```python\ndf = wrangles.recipe.run('recipe.wrgl.yml')\n```\n\nIt is possible to define the returned dataframe within the `write` section. If omitted, all columns will be included.\n\n```yaml\n# Return a Dataframe with specified columns\nwrite:\n  - dataframe:\n      columns:\n        - ID Number\n        - Product Properties\n        - Product Name in French\n```"
+}

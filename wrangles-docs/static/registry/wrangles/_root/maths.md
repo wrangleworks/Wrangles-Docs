@@ -32,23 +32,59 @@ capabilities:
   where_params: true
 parameters:
   - name: input
-    description: Name, index, or list of input columns.
+    description: |
+      The mathematical expression using column names. e.g. column1 * column2
+      + column3.  Note: spaces within column names are replaced by underscores (_).
     required: true
     param_group: I/O
     schema:
-      type: string
+      type:
+        - string
+        - integer
+      description: |
+        The mathematical expression using column names. e.g. column1 * column2
+        + column3.  Note: spaces within column names are replaced by underscores (_).
+    runtime_required: true
   - name: output
-    description: Name or list of output columns.
+    description: The column to output the results to
     required: true
     param_group: I/O
     schema:
       type: string
+      description: The column to output the results to
+    runtime_required: true
 examples: []
 sources:
   - id: runtime
     resource: >-
       https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/main.py
     title: WranglesPY maths implementation
+configuration_schema:
+  type: object
+  description: Apply a mathematical calculation.
+  additionalProperties: false
+  required:
+    - input
+    - output
+  properties:
+    input:
+      type:
+        - string
+        - integer
+      description: |
+        The mathematical expression using column names. e.g. column1 * column2
+        + column3.  Note: spaces within column names are replaced by underscores (_).
+    output:
+      type: string
+      description: The column to output the results to
+    if:
+      $ref: '#/$defs/wrangles/commonProperties/if'
+    where:
+      $ref: '#/$defs/wrangles/commonProperties/where'
+    where_params:
+      $ref: '#/$defs/wrangles/commonProperties/where_params'
+schema_origin: deprecated-alias:math
+schema_adjustments: []
 ---
 
 # Maths

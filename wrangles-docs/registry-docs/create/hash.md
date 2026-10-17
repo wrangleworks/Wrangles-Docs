@@ -23,16 +23,78 @@ Create a hash of a column.
 | Name | Description | Accepted Values | Default | Required |
 | --- | --- | --- | --- | --- |
 | <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `input` | Name of input column. | string, integer, array | — | Yes |
-| `output` | Name of new column. | string, array | — | Yes |
+| `input` | Name of input column | string, integer, array | — | Yes |
+| `output` | Name of new column | string, array | — | No |
 | <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `method` | The method to use to hash the input (Default: md5). | string; one of:<ul className="ww-param-enum-values"><li>md5</li><li>sha1</li><li>sha256</li><li>sha512</li></ul> | `"md5"` | No |
+| `method` | The method to use to hash the input (Default: md5) | string; one of:<ul className="ww-param-enum-values"><li>md5</li><li>sha1</li><li>sha256</li><li>sha512</li></ul> | `"md5"` | No |
 | <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
 | `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
 | `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
 | `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
 
 </div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+<details className="ww-field-disclosure">
+
+<summary>Complete configuration schema</summary>
+
+Schema source: upstream-docstring. Conditional and cross-parameter
+rules below apply in addition to the parameter table. References resolve against
+the [complete recipe schema](/schemas/recipes/registry/schema.json).
+
+
+
+```json
+{
+  "type": "object",
+  "description": "Create a hash of a column",
+  "additionalProperties": false,
+  "required": [
+    "input"
+  ],
+  "properties": {
+    "input": {
+      "type": [
+        "string",
+        "integer",
+        "array"
+      ],
+      "description": "Name of input column"
+    },
+    "output": {
+      "type": [
+        "string",
+        "array"
+      ],
+      "description": "Name of new column"
+    },
+    "method": {
+      "type": "string",
+      "description": "The method to use to hash the input (Default: md5)",
+      "enum": [
+        "md5",
+        "sha1",
+        "sha256",
+        "sha512"
+      ]
+    },
+    "if": {
+      "$ref": "#/$defs/wrangles/commonProperties/if"
+    },
+    "where": {
+      "$ref": "#/$defs/wrangles/commonProperties/where"
+    },
+    "where_params": {
+      "$ref": "#/$defs/wrangles/commonProperties/where_params"
+    }
+  }
+}
+```
+
+</details>
 
 ## Examples
 
@@ -95,6 +157,7 @@ wrangles:
 | Documentation group | `create` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.create.hash` |
+| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
 | Legacy UUID | `11e8fc13-00d2-4779-8d87-6288b07de7e7` |
 
 **Sources**

@@ -28,16 +28,84 @@ Apply a series of wrangles to the individual elements of one or more lists.
 | --- | --- | --- | --- | --- |
 | <span className="ww-param-group-label">I/O</span> |  |  |  |  |
 | `input` | The column(s) containing the list(s) that the wrangles will be applied to the elements of. | string, integer, array | — | Yes |
-| `output` | Output of the wrangles to save back to the dataframe. | string, array, null | `null` | No |
-| `propagate` | Limit the column(s) that will be available to the wrangles and replicated for each element. If not specified, all columns will be propogated. This may be useful to limit the memory use for large datasets. | string, array, null | `null` | No |
+| `output` | Output of the wrangles to save back to the dataframe. | string, array | `null` | No |
+| `propagate` | Limit the column(s) that will be available to the wrangles and replicated for each element. If not specified, all columns will be propogated. This may be useful to limit the memory use for large datasets. | string, array | `null` | No |
 | <span className="ww-param-group-label">Execution</span> |  |  |  |  |
-| `wrangles` | List of wrangles to apply. | array | — | Yes |
+| `wrangles` | List of wrangles to apply | array | — | Yes |
 | <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
 | `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
 | `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
 | `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
 
 </div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+<details className="ww-field-disclosure">
+
+<summary>Complete configuration schema</summary>
+
+Schema source: upstream-docstring. Conditional and cross-parameter
+rules below apply in addition to the parameter table. References resolve against
+the [complete recipe schema](/schemas/recipes/registry/schema.json).
+
+
+
+```json
+{
+  "type": "object",
+  "description": "Apply a series of wrangles to column(s) containing lists. The wrangles will be applied to each element in the list and the results will be returned back as a list.",
+  "additionalProperties": false,
+  "required": [
+    "input",
+    "wrangles"
+  ],
+  "properties": {
+    "input": {
+      "type": [
+        "string",
+        "integer",
+        "array"
+      ],
+      "description": "The column(s) containing the list(s) that the wrangles will be applied to the elements of."
+    },
+    "propagate": {
+      "type": [
+        "string",
+        "array"
+      ],
+      "description": "Limit the column(s) that will be available to the wrangles and replicated for each element. If not specified, all columns will be propogated. This may be useful to limit the memory use for large datasets."
+    },
+    "output": {
+      "type": [
+        "string",
+        "array"
+      ],
+      "description": "Output of the wrangles to save back to the dataframe."
+    },
+    "wrangles": {
+      "type": "array",
+      "description": "List of wrangles to apply",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/wrangles/items"
+      }
+    },
+    "if": {
+      "$ref": "#/$defs/wrangles/commonProperties/if"
+    },
+    "where": {
+      "$ref": "#/$defs/wrangles/commonProperties/where"
+    },
+    "where_params": {
+      "$ref": "#/$defs/wrangles/commonProperties/where_params"
+    }
+  }
+}
+```
+
+</details>
 
 ### Examples
 
@@ -109,6 +177,7 @@ wrangles:
 | Documentation group | `utility` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.accordion` |
+| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
 | Legacy UUID | None |
 
 **Sources**
@@ -134,19 +203,81 @@ Execute a series of wrangles in batches. Batches can run in parallel with `threa
 | Name | Description | Accepted Values | Default | Required |
 | --- | --- | --- | --- | --- |
 | <span className="ww-param-group-label">Execution</span> |  |  |  |  |
-| `wrangles` | The wrangles to execute on the data. Each series of wrangles will be run against the data in batches of the size defined by batch_size. | array | — | Yes |
-| `batch_size` | The number of rows to split each batch into. | integer | `1000` | No |
+| `wrangles` | The wrangles to execute on the data. Each series of wrangles<br />will be run agaisnst the data in batches of the size<br />defined by batch_size. | array | — | Yes |
+| `batch_size` | The number of rows to split each batch into | integer | `1000` | No |
 | `threads` | The number of threads to use for parallel processing. Default 1. | integer | `1` | No |
-| `timeout` | The number of seconds to wait for a batch to complete before raising an error. | number, null | `null` | No |
-| `use_multiprocessing` | Use process-based workers instead of threads. This is an advanced runtime option. | boolean | `false` | No |
+| `timeout` | The number of seconds to wait for a batch to complete before raising an error | number | `null` | No |
+| `use_multiprocessing` | Use process-based workers instead of threads. This is an advanced runtime option. | Any JSON value (not constrained upstream) | `false` | No |
 | <span className="ww-param-group-label">Errors</span> |  |  |  |  |
-| `on_error` | A dictionary of column_name: value to return if an error occurs while attempting to run a batch. | object, null | `null` | No |
+| `on_error` | A dictionary of column_name: value to return if an error occurs while attempting to run a batch | object | `null` | No |
 | <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
 | `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
 | `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
 | `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
 
 </div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+<details className="ww-field-disclosure">
+
+<summary>Complete configuration schema</summary>
+
+Schema source: upstream-docstring. Conditional and cross-parameter
+rules below apply in addition to the parameter table. References resolve against
+the [complete recipe schema](/schemas/recipes/registry/schema.json).
+
+
+
+```json
+{
+  "type": "object",
+  "description": "Split the data into batches for executing a list of wrangles. Use this in situations such as where the intermediate data is too large to fit in memory.",
+  "additionalProperties": false,
+  "required": [
+    "wrangles"
+  ],
+  "properties": {
+    "batch_size": {
+      "type": "integer",
+      "description": "The number of rows to split each batch into",
+      "default": 1000
+    },
+    "wrangles": {
+      "type": "array",
+      "description": "The wrangles to execute on the data. Each series of wrangles\nwill be run agaisnst the data in batches of the size\ndefined by batch_size.",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/wrangles/items"
+      }
+    },
+    "threads": {
+      "type": "integer",
+      "description": "The number of threads to use for parallel processing. Default 1."
+    },
+    "on_error": {
+      "type": "object",
+      "description": "A dictionary of column_name: value to return if an error occurs while attempting to run a batch"
+    },
+    "timeout": {
+      "type": "number",
+      "description": "The number of seconds to wait for a batch to complete before raising an error"
+    },
+    "if": {
+      "$ref": "#/$defs/wrangles/commonProperties/if"
+    },
+    "where": {
+      "$ref": "#/$defs/wrangles/commonProperties/where"
+    },
+    "where_params": {
+      "$ref": "#/$defs/wrangles/commonProperties/where_params"
+    }
+  }
+}
+```
+
+</details>
 
 ### Examples
 
@@ -224,6 +355,7 @@ wrangles:
 | Documentation group | `utility` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.batch` |
+| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
 | Legacy UUID | None |
 
 **Sources**
@@ -242,7 +374,7 @@ Run multiple wrangles concurrently rather than sequentially. Wrangles must speci
 
 Run multiple wrangles concurrently instead of sequentially. Concurrent wrangles must declare output columns, may finish in any order, and should not update overlapping columns.
 
-See the [Concurrent connector](/py/python/connectors/concurrent) for the connector equivalent.
+See the [Concurrent connector](/py/connectors/concurrent) for the connector equivalent.
 
 ### Parameters
 
@@ -251,15 +383,67 @@ See the [Concurrent connector](/py/python/connectors/concurrent) for the connect
 | Name | Description | Accepted Values | Default | Required |
 | --- | --- | --- | --- | --- |
 | <span className="ww-param-group-label">Execution</span> |  |  |  |  |
-| `wrangles` | The wrangles section of a recipe to execute for each combination of variables. | array | — | Yes |
-| `max_concurrency` | The maximum number of wrangles to execute in parallel. | integer | `10` | No |
-| `use_multiprocessing` | Use process-based workers instead of threads. This is an advanced runtime option. | boolean | `false` | No |
+| `wrangles` | The wrangles section of a recipe to execute for each combination of variables | array | — | Yes |
+| `max_concurrency` | The maximum number of wrangles to execute in parallel | integer | `10` | No |
+| `use_multiprocessing` | Use process-based workers instead of threads. This is an advanced runtime option. | Any JSON value (not constrained upstream) | `false` | No |
 | <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
 | `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
 | `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
 | `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
 
 </div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+<details className="ww-field-disclosure">
+
+<summary>Complete configuration schema</summary>
+
+Schema source: upstream-docstring. Conditional and cross-parameter
+rules below apply in addition to the parameter table. References resolve against
+the [complete recipe schema](/schemas/recipes/registry/schema.json).
+
+
+
+```json
+{
+  "type": "object",
+  "description": "Run multiple wrangles concurrently rather than sequentially. Wrangles must specify output columns to be used concurrently. When using concurrent, Wrangles may not complete in a predictable order and it is not recommended to update overlapping columns with different wrangles.",
+  "additionalProperties": false,
+  "required": [
+    "wrangles"
+  ],
+  "properties": {
+    "wrangles": {
+      "type": "array",
+      "description": "The wrangles section of a recipe to execute for each combination of variables",
+      "minItems": 1,
+      "items": [
+        {
+          "$ref": "#/$defs/wrangles/items"
+        }
+      ]
+    },
+    "max_concurrency": {
+      "type": "integer",
+      "description": "The maximum number of wrangles to execute in parallel",
+      "minimum": 1
+    },
+    "if": {
+      "$ref": "#/$defs/wrangles/commonProperties/if"
+    },
+    "where": {
+      "$ref": "#/$defs/wrangles/commonProperties/where"
+    },
+    "where_params": {
+      "$ref": "#/$defs/wrangles/commonProperties/where_params"
+    }
+  }
+}
+```
+
+</details>
 
 ### Examples
 
@@ -329,6 +513,7 @@ wrangles:
 | Documentation group | `utility` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.concurrent` |
+| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
 | Legacy UUID | None |
 
 **Sources**
@@ -354,19 +539,81 @@ Print the current status of the dataframe. Only a sample of rows is logged.
 | Name | Description | Accepted Values | Default | Required |
 | --- | --- | --- | --- | --- |
 | <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `columns` | (Optional, default all columns) List of specific columns to log. | array, null | `null` | No |
+| `columns` | (Optional, default all columns) List of specific columns to log. | array | `null` | No |
 | <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `write` | (Optional) Allows for an intermediate output to a file/dataframe/database etc. | array, null | `null` | No |
-| `warning` | Log a warning to the console. | string, null | `null` | No |
-| `info` | Log info to the console. | string, null | `null` | No |
-| `log_data` | Whether to log a sample of the contents of the dataframe. Default True if not logging to a write, error, warning or info. Default False otherwise. | boolean, null | `null` | No |
-| `error` | Log an error to the console. | string | — | No |
+| `write` | (Optional) Allows for an intermediate output to a file/dataframe/database etc. | array | `null` | No |
+| `warning` | Log a warning to the console | string | `null` | No |
+| `info` | Log info to the console | string | `null` | No |
+| `log_data` | Whether to log a sample of the contents of the dataframe. Default True if not logging to a write, error, warning or info. Default False otherwise. | boolean | `null` | No |
+| `error` | Log an error to the console | string | — | No |
 | <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
 | `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
 | `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
 | `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
 
 </div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+<details className="ww-field-disclosure">
+
+<summary>Complete configuration schema</summary>
+
+Schema source: upstream-docstring. Conditional and cross-parameter
+rules below apply in addition to the parameter table. References resolve against
+the [complete recipe schema](/schemas/recipes/registry/schema.json).
+
+
+
+```json
+{
+  "type": "object",
+  "description": "Log the current status of the dataframe.",
+  "additionalProperties": false,
+  "properties": {
+    "columns": {
+      "type": "array",
+      "description": "(Optional, default all columns) List of specific columns to log."
+    },
+    "write": {
+      "type": "array",
+      "description": "(Optional) Allows for an intermediate output to a file/dataframe/database etc.",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/write/items"
+      }
+    },
+    "error": {
+      "type": "string",
+      "description": "Log an error to the console"
+    },
+    "warning": {
+      "type": "string",
+      "description": "Log a warning to the console"
+    },
+    "info": {
+      "type": "string",
+      "description": "Log info to the console"
+    },
+    "log_data": {
+      "type": "boolean",
+      "description": "Whether to log a sample of the contents of the dataframe. Default True if not logging to a write, error, warning or info. Default False otherwise."
+    },
+    "if": {
+      "$ref": "#/$defs/wrangles/commonProperties/if"
+    },
+    "where": {
+      "$ref": "#/$defs/wrangles/commonProperties/where"
+    },
+    "where_params": {
+      "$ref": "#/$defs/wrangles/commonProperties/where_params"
+    }
+  }
+}
+```
+
+</details>
 
 ### Examples
 
@@ -489,6 +736,7 @@ _Logs a sample of rows or status information to the configured destination._
 | Documentation group | `utility` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.log` |
+| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
 | Legacy UUID | `6177808e-aa2d-4d0b-8385-858b16948a5d` |
 
 **Sources**
@@ -507,7 +755,7 @@ Apply a matrix of wrangles to the dataframe. This will run the wrangles for each
 
 Apply a matrix of wrangles to the dataframe. Each wrangle runs for the configured combinations of variables, including recipe variables and variables declared by the `variables` parameter.
 
-See the [Matrix connector](/py/python/connectors/matrix) for the connector equivalent.
+See the [Matrix connector](/py/connectors/matrix) for the connector equivalent.
 
 ### Parameters
 
@@ -516,16 +764,73 @@ See the [Matrix connector](/py/python/connectors/matrix) for the connector equiv
 | Name | Description | Accepted Values | Default | Required |
 | --- | --- | --- | --- | --- |
 | <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `strategy` | Determines how to combine variables when there are multiple. loop (default) iterates over each set of variables, repeating shorter lists until the longest is completed. permutations uses the combination of all variables against all other variables. | string; one of:<ul className="ww-param-enum-values"><li>permutations</li><li>loop</li></ul> | `"loop"` | No |
+| `strategy` | Determines how to combine variables when there are multiple. loop (default) iterates over each set of variables, repeating shorter lists  until the longest is completed. permutations uses the combination of all  variables against all other variables. | string; one of:<ul className="ww-param-enum-values"><li>permutations</li><li>loop</li></ul> | `"loop"` | No |
 | <span className="ww-param-group-label">Execution</span> |  |  |  |  |
-| `variables` | A dictionary of variables to pass to the wrangle. The key is the variable name and the value is a list of values. | object | — | Yes |
-| `wrangles` | The wrangles to apply to the dataframe. Each wrangle will be run for each combination of the variables. | array | — | Yes |
+| `variables` | A dictionary of variables to pass to the wrangle.<br />The key is the variable name and the value is a list of values. | object | — | Yes |
+| `wrangles` | The wrangles to apply to the dataframe.<br />Each wrangle will be run for each combination of the variables. | array | — | Yes |
 | <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
 | `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
 | `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
 | `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
 
 </div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+<details className="ww-field-disclosure">
+
+<summary>Complete configuration schema</summary>
+
+Schema source: upstream-docstring. Conditional and cross-parameter
+rules below apply in addition to the parameter table. References resolve against
+the [complete recipe schema](/schemas/recipes/registry/schema.json).
+
+
+
+```json
+{
+  "type": "object",
+  "description": "Apply a matrix of wrangles to the dataframe.\nThis will run the wrangles for each combination of the variables.",
+  "required": [
+    "variables",
+    "wrangles"
+  ],
+  "properties": {
+    "variables": {
+      "type": "object",
+      "description": "A dictionary of variables to pass to the wrangle.\nThe key is the variable name and the value is a list of values."
+    },
+    "wrangles": {
+      "type": "array",
+      "description": "The wrangles to apply to the dataframe.\nEach wrangle will be run for each combination of the variables.",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/wrangles/items"
+      }
+    },
+    "strategy": {
+      "type": "string",
+      "enum": [
+        "permutations",
+        "loop"
+      ],
+      "description": "Determines how to combine variables when there are multiple. loop (default) iterates over each set of variables, repeating shorter lists  until the longest is completed. permutations uses the combination of all  variables against all other variables."
+    },
+    "if": {
+      "$ref": "#/$defs/wrangles/commonProperties/if"
+    },
+    "where": {
+      "$ref": "#/$defs/wrangles/commonProperties/where"
+    },
+    "where_params": {
+      "$ref": "#/$defs/wrangles/commonProperties/where_params"
+    }
+  }
+}
+```
+
+</details>
 
 ### Examples
 
@@ -660,6 +965,7 @@ wrangles:
 | Documentation group | `utility` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.matrix` |
+| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
 | Legacy UUID | None |
 
 **Sources**
@@ -689,18 +995,70 @@ This guidance was derived from the callable signature and its embedded Python sc
 | Name | Description | Accepted Values | Default | Required |
 | --- | --- | --- | --- | --- |
 | <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `input` | Name, index, or list of input columns. | string, integer, array, null | `null` | No |
-| `output` | Name or list of output columns. | string, array, null | `null` | No |
+| `input` | Name, index, or list of input columns. | Any JSON value (not constrained upstream) | `null` | No |
+| `output` | Name or list of output columns. | Any JSON value (not constrained upstream) | `null` | No |
 | <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `name` | File name of the recipe. | string, null | `null` | No |
+| `name` | file name of the recipe | string | `null` | Conditional; see schema |
 | <span className="ww-param-group-label">Execution</span> |  |  |  |  |
-| `variables` | A dictionary of variables to pass to the recipe. | object, null | `null` | No |
+| `variables` | A dictionary of variables to pass to the recipe | object | `null` | No |
 | <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
 | `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
 | `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
 | `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
 
 </div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+<details className="ww-field-disclosure">
+
+<summary>Complete configuration schema</summary>
+
+Schema source: upstream-docstring. Conditional and cross-parameter
+rules below apply in addition to the parameter table. References resolve against
+the [complete recipe schema](/schemas/recipes/registry/schema.json).
+
+
+
+```json
+{
+  "anyOf": [
+    {
+      "$ref": "#"
+    },
+    {
+      "type": "object",
+      "description": "Run a recipe as a Wrangle. Recipe-ception,",
+      "additionalProperties": false,
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "file name of the recipe"
+        },
+        "variables": {
+          "type": "object",
+          "description": "A dictionary of variables to pass to the recipe"
+        },
+        "if": {
+          "$ref": "#/$defs/wrangles/commonProperties/if"
+        },
+        "where": {
+          "$ref": "#/$defs/wrangles/commonProperties/where"
+        },
+        "where_params": {
+          "$ref": "#/$defs/wrangles/commonProperties/where_params"
+        }
+      }
+    }
+  ]
+}
+```
+
+</details>
 
 
 
@@ -734,6 +1092,7 @@ This guidance was derived from the callable signature and its embedded Python sc
 | Documentation group | `utility` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.recipe` |
+| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
 | Legacy UUID | None |
 
 **Sources**
@@ -751,6 +1110,9 @@ Try a list of wrangles and catch any errors that occur.
 
 Run a list of wrangles and catch errors. When `except` is provided, its wrangles or fallback column values run after an error; otherwise, the error is logged and the recipe continues.
 
+The runtime supports both forms, but the pinned upstream schema only permits a
+dictionary for `except`. Use fallback column values for schema-validated recipes.
+
 ### Parameters
 
 <div className="ww-parameters-table">
@@ -758,10 +1120,10 @@ Run a list of wrangles and catch errors. When `except` is provided, its wrangles
 | Name | Description | Accepted Values | Default | Required |
 | --- | --- | --- | --- | --- |
 | <span className="ww-param-group-label">Execution</span> |  |  |  |  |
-| `wrangles` | List of wrangles to apply. | array | — | Yes |
+| `wrangles` | List of wrangles to apply | array | — | Yes |
 | <span className="ww-param-group-label">Errors</span> |  |  |  |  |
 | `retries` | Number of times to retry the wrangles if an error occurs. Default 0. | integer | `0` | No |
-| `except` | An action to take if the wrangles encounter an error. This can contain a list of wrangles or a dictionary of column names and values. If except is not provided, the error will be logged and the recipe will continue. | object | — | No |
+| `except` | An action to take if the wrangles encounter an error.<br />This can contain a list of wrangles or a dictionary of column names and values.<br />If except is not provided, the error will be logged and the recipe will continue. | object | — | No |
 | <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
 | `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
 | `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
@@ -769,17 +1131,76 @@ Run a list of wrangles and catch errors. When `except` is provided, its wrangles
 
 </div>
 
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+<details className="ww-field-disclosure">
+
+<summary>Complete configuration schema</summary>
+
+Schema source: upstream-docstring. Conditional and cross-parameter
+rules below apply in addition to the parameter table. References resolve against
+the [complete recipe schema](/schemas/recipes/registry/schema.json).
+
+
+
+```json
+{
+  "type": "object",
+  "description": "Try a list of wrangles and catch any errors that occur",
+  "required": [
+    "wrangles"
+  ],
+  "properties": {
+    "wrangles": {
+      "type": "array",
+      "description": "List of wrangles to apply",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/wrangles/items"
+      }
+    },
+    "except": {
+      "type": [
+        "object"
+      ],
+      "description": "An action to take if the wrangles encounter an error.\nThis can contain a list of wrangles or a dictionary of column names and values.\nIf except is not provided, the error will be logged and the recipe will continue.",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/wrangles/items"
+      }
+    },
+    "retries": {
+      "type": "integer",
+      "description": "Number of times to retry the wrangles if an error occurs. Default 0.",
+      "minimum": 0
+    },
+    "if": {
+      "$ref": "#/$defs/wrangles/commonProperties/if"
+    },
+    "where": {
+      "$ref": "#/$defs/wrangles/commonProperties/where"
+    },
+    "where_params": {
+      "$ref": "#/$defs/wrangles/commonProperties/where_params"
+    }
+  }
+}
+```
+
+</details>
+
 ### Examples
 
 ```yaml
 wrangles:
   - try:
       wrangles:
-        - risky_wrangle:
+        - convert.data_type:
             input: column
+            data_type: int
       except:
-        - backup_wrangle:
-            input: column
+        column: unavailable
 ```
 
 <div className="ww-sample-grid">
@@ -828,6 +1249,7 @@ _The primary result is returned on success; the `except` result is returned afte
 | Documentation group | `utility` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.Try` |
+| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
 | Legacy UUID | None |
 
 **Sources**

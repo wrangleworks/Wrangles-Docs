@@ -41,24 +41,70 @@
     "where": true,
     "where_params": true
   },
+  "configuration_schema": {
+    "type": "object",
+    "description": "Apply a mathematical calculation.",
+    "additionalProperties": false,
+    "required": [
+      "input",
+      "output"
+    ],
+    "properties": {
+      "input": {
+        "type": [
+          "string",
+          "integer"
+        ],
+        "description": "The mathematical expression using column names. e.g. column1 * column2\n+ column3.  Note: spaces within column names are replaced by underscores (_).\n"
+      },
+      "output": {
+        "type": "string",
+        "description": "The column to output the results to"
+      },
+      "if": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/if"
+      },
+      "where": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/where"
+      },
+      "where_params": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/where_params"
+      }
+    }
+  },
+  "schema_origin": "deprecated-alias:math",
+  "schema_adjustments": [],
+  "schema_source": {
+    "repository": "https://github.com/wrangleworks/WranglesPY",
+    "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+    "version": "1.20.5",
+    "extraction": "static-python-ast"
+  },
   "parameters": [
     {
       "name": "input",
-      "description": "Name, index, or list of input columns.",
+      "description": "The mathematical expression using column names. e.g. column1 * column2\n+ column3.  Note: spaces within column names are replaced by underscores (_).\n",
       "required": true,
       "param_group": "I/O",
       "schema": {
-        "type": "string"
-      }
+        "type": [
+          "string",
+          "integer"
+        ],
+        "description": "The mathematical expression using column names. e.g. column1 * column2\n+ column3.  Note: spaces within column names are replaced by underscores (_).\n"
+      },
+      "runtime_required": true
     },
     {
       "name": "output",
-      "description": "Name or list of output columns.",
+      "description": "The column to output the results to",
       "required": true,
       "param_group": "I/O",
       "schema": {
-        "type": "string"
-      }
+        "type": "string",
+        "description": "The column to output the results to"
+      },
+      "runtime_required": true
     },
     {
       "name": "if",

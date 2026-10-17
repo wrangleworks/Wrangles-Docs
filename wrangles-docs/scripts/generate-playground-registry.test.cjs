@@ -15,10 +15,11 @@ test('generates every Playground entry from the compiled Registry', () => {
 
   assert.equal(result.registryVersion, '0.3.0');
   assert.equal(result.contractVersion, '0.3');
-  assert.equal(result.catalog.length, 98);
-  assert.equal(new Set(result.catalog.map((entry) => entry.catalogId)).size, 98);
-  assert.equal(new Set(result.catalog.map((entry) => entry.catalogKey)).size, 98);
-  assert.equal(new Set(result.catalog.map((entry) => entry.type)).size, 98);
+  assert.equal(result.catalog.length, require(MANIFEST_PATH).entry_count);
+  const ids = result.catalog.map(entry => entry.catalogId).filter(id => id !== null);
+  assert.equal(new Set(ids).size, ids.length);
+  assert.equal(new Set(result.catalog.map((entry) => entry.catalogKey)).size, result.catalog.length);
+  assert.equal(new Set(result.catalog.map((entry) => entry.type)).size, result.catalog.length);
   assert.ok(result.catalog.every((entry) => entry.registryRoute.startsWith('/py/')));
 });
 

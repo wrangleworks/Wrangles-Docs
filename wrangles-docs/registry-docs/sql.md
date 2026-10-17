@@ -28,16 +28,64 @@ SQL does not currently work with objects. If your table contains objects, use `c
 | --- | --- | --- | --- | --- |
 | <span className="ww-param-group-label">Options</span> |  |  |  |  |
 | `command` | SQL Command. The table is called df. For specific SQL syntax, this uses the SQLite dialect. | string | — | Yes |
-| `params` | Variables to use in conjunctions with query. This allows the query to be parameterized. This uses sqlite syntax (? or :name). | array, object, null | `null` | No |
-| `preserve_data_types` | Preserve Data Types value accepted by the runtime. | boolean | `true` | No |
+| `params` | Variables to use in conjunctions with query.<br />This allows the query to be parameterized.<br />This uses sqlite syntax (? or :name) | array, object | `null` | No |
+| `preserve_data_types` | Preserve Data Types value accepted by the runtime. | Any JSON value (not constrained upstream) | `true` | No |
 | <span className="ww-param-group-label">Formatting</span> |  |  |  |  |
-| `preserve_index` | Preserve Index value accepted by the runtime. | boolean | `false` | No |
+| `preserve_index` | Preserve Index value accepted by the runtime. | Any JSON value (not constrained upstream) | `false` | No |
 | <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
 | `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
 | `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
 | `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
 
 </div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+<details className="ww-field-disclosure">
+
+<summary>Complete configuration schema</summary>
+
+Schema source: upstream-docstring. Conditional and cross-parameter
+rules below apply in addition to the parameter table. References resolve against
+the [complete recipe schema](/schemas/recipes/registry/schema.json).
+
+
+
+```json
+{
+  "type": "object",
+  "description": "Apply a SQL command to the current dataframe. Only SELECT statements are supported - the result will be the output.",
+  "additionalProperties": false,
+  "required": [
+    "command"
+  ],
+  "properties": {
+    "command": {
+      "type": "string",
+      "description": "SQL Command. The table is called df. For specific SQL syntax, this uses the SQLite dialect."
+    },
+    "params": {
+      "type": [
+        "array",
+        "object"
+      ],
+      "description": "Variables to use in conjunctions with query.\nThis allows the query to be parameterized.\nThis uses sqlite syntax (? or :name)"
+    },
+    "if": {
+      "$ref": "#/$defs/wrangles/commonProperties/if"
+    },
+    "where": {
+      "$ref": "#/$defs/wrangles/commonProperties/where_special"
+    },
+    "where_params": {
+      "$ref": "#/$defs/wrangles/commonProperties/where_params"
+    }
+  }
+}
+```
+
+</details>
 
 ## Examples
 
@@ -102,6 +150,7 @@ wrangles:
 | Documentation group | `compute` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.sql` |
+| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
 | Legacy UUID | `467a06b1-a697-4d31-8061-7d83a719fd79` |
 
 **Sources**

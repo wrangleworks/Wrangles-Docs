@@ -40,10 +40,53 @@
     "where": true,
     "where_params": true
   },
+  "configuration_schema": {
+    "type": "object",
+    "description": "Explode a column of lists into rows",
+    "additionalProperties": false,
+    "required": [
+      "input"
+    ],
+    "properties": {
+      "input": {
+        "type": [
+          "string",
+          "integer",
+          "array"
+        ],
+        "description": "Name of the column(s) to explode. If multiple columns are included they must contain lists of the same length"
+      },
+      "reset_index": {
+        "type": "boolean",
+        "description": "Reset the index after exploding. Default True."
+      },
+      "drop_empty": {
+        "type": "boolean",
+        "description": "If true, any rows that contain an empty list will be dropped.\nIf false, rows that contain empty lists will keep 1 row with an empty value.\nDefault False."
+      },
+      "if": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/if"
+      },
+      "where": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/where"
+      },
+      "where_params": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/where_params"
+      }
+    }
+  },
+  "schema_origin": "upstream-docstring",
+  "schema_adjustments": [],
+  "schema_source": {
+    "repository": "https://github.com/wrangleworks/WranglesPY",
+    "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+    "version": "1.20.5",
+    "extraction": "static-python-ast"
+  },
   "parameters": [
     {
       "name": "input",
-      "description": "Name of the column(s) to explode. If multiple columns are included they must contain lists of the same length.",
+      "description": "Name of the column(s) to explode. If multiple columns are included they must contain lists of the same length",
       "required": true,
       "param_group": "I/O",
       "schema": {
@@ -51,8 +94,10 @@
           "string",
           "integer",
           "array"
-        ]
-      }
+        ],
+        "description": "Name of the column(s) to explode. If multiple columns are included they must contain lists of the same length"
+      },
+      "runtime_required": true
     },
     {
       "name": "reset_index",
@@ -61,18 +106,22 @@
       "param_group": "Formatting",
       "runtime_default": true,
       "schema": {
-        "type": "boolean"
-      }
+        "type": "boolean",
+        "description": "Reset the index after exploding. Default True."
+      },
+      "runtime_required": false
     },
     {
       "name": "drop_empty",
-      "description": "If true, any rows that contain an empty list will be dropped. If false, rows that contain empty lists will keep 1 row with an empty value. Default False.",
+      "description": "If true, any rows that contain an empty list will be dropped.\nIf false, rows that contain empty lists will keep 1 row with an empty value.\nDefault False.",
       "required": false,
       "param_group": "Options",
       "runtime_default": false,
       "schema": {
-        "type": "boolean"
-      }
+        "type": "boolean",
+        "description": "If true, any rows that contain an empty list will be dropped.\nIf false, rows that contain empty lists will keep 1 row with an empty value.\nDefault False."
+      },
+      "runtime_required": false
     },
     {
       "name": "if",

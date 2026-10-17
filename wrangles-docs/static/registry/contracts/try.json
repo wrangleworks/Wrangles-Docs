@@ -41,19 +41,70 @@
     "where": true,
     "where_params": true
   },
+  "configuration_schema": {
+    "type": "object",
+    "description": "Try a list of wrangles and catch any errors that occur",
+    "required": [
+      "wrangles"
+    ],
+    "properties": {
+      "wrangles": {
+        "type": "array",
+        "description": "List of wrangles to apply",
+        "minItems": 1,
+        "items": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/items"
+        }
+      },
+      "except": {
+        "type": [
+          "object"
+        ],
+        "description": "An action to take if the wrangles encounter an error.\nThis can contain a list of wrangles or a dictionary of column names and values.\nIf except is not provided, the error will be logged and the recipe will continue.",
+        "minItems": 1,
+        "items": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/items"
+        }
+      },
+      "retries": {
+        "type": "integer",
+        "description": "Number of times to retry the wrangles if an error occurs. Default 0.",
+        "minimum": 0
+      },
+      "if": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/if"
+      },
+      "where": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/where"
+      },
+      "where_params": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/where_params"
+      }
+    }
+  },
+  "schema_origin": "upstream-docstring",
+  "schema_adjustments": [],
+  "schema_source": {
+    "repository": "https://github.com/wrangleworks/WranglesPY",
+    "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+    "version": "1.20.5",
+    "extraction": "static-python-ast"
+  },
   "parameters": [
     {
       "name": "wrangles",
-      "description": "List of wrangles to apply.",
+      "description": "List of wrangles to apply",
       "required": true,
       "param_group": "Execution",
       "schema": {
         "type": "array",
+        "description": "List of wrangles to apply",
         "minItems": 1,
         "items": {
-          "$ref": "#/$defs/wrangles/items"
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/items"
         }
-      }
+      },
+      "runtime_required": true
     },
     {
       "name": "retries",
@@ -63,21 +114,27 @@
       "runtime_default": 0,
       "schema": {
         "type": "integer",
+        "description": "Number of times to retry the wrangles if an error occurs. Default 0.",
         "minimum": 0
-      }
+      },
+      "runtime_required": false
     },
     {
       "name": "except",
-      "description": "An action to take if the wrangles encounter an error. This can contain a list of wrangles or a dictionary of column names and values. If except is not provided, the error will be logged and the recipe will continue.",
+      "description": "An action to take if the wrangles encounter an error.\nThis can contain a list of wrangles or a dictionary of column names and values.\nIf except is not provided, the error will be logged and the recipe will continue.",
       "required": false,
       "param_group": "Errors",
       "schema": {
-        "type": "object",
+        "type": [
+          "object"
+        ],
+        "description": "An action to take if the wrangles encounter an error.\nThis can contain a list of wrangles or a dictionary of column names and values.\nIf except is not provided, the error will be logged and the recipe will continue.",
         "minItems": 1,
         "items": {
-          "$ref": "#/$defs/wrangles/items"
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/items"
         }
-      }
+      },
+      "runtime_required": false
     },
     {
       "name": "if",
@@ -111,7 +168,7 @@
     }
   ],
   "examples": [],
-  "guidance": "Run a list of wrangles and catch errors. When `except` is provided, its wrangles or fallback column values run after an error; otherwise, the error is logged and the recipe continues.\n\n## Migrated examples\n#### Use Fallback Wrangles After an Error\n\n##### Recipe\n\n```yaml\nwrangles:\n  - try:\n      wrangles:\n        - risky_wrangle:\n            input: column\n      except:\n        - backup_wrangle:\n            input: column\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n_The input dataframe is passed to the primary wrangles._\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n_The primary result is returned on success; the `except` result is returned after an error._\n\n</div>\n\n</div>",
+  "guidance": "Run a list of wrangles and catch errors. When `except` is provided, its wrangles or fallback column values run after an error; otherwise, the error is logged and the recipe continues.\n\nThe runtime supports both forms, but the pinned upstream schema only permits a\ndictionary for `except`. Use fallback column values for schema-validated recipes.\n\n## Migrated examples\n#### Use Fallback Column Values After an Error\n\n##### Recipe\n\n```yaml\nwrangles:\n  - try:\n      wrangles:\n        - convert.data_type:\n            input: column\n            data_type: int\n      except:\n        column: unavailable\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n_The input dataframe is passed to the primary wrangles._\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n_The primary result is returned on success; the `except` result is returned after an error._\n\n</div>\n\n</div>",
   "sources": [
     {
       "id": "runtime",

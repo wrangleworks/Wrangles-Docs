@@ -34,7 +34,11 @@ parameters:
     required: true
     param_group: I/O
     schema:
-      type: string
+      type:
+        - string
+        - integer
+      description: Name of the column(s) to lookup.
+    runtime_required: true
   - name: output
     description: >-
       Name of the output column(s). When n is provided and the output list length equals n, each
@@ -47,16 +51,20 @@ parameters:
       type:
         - string
         - array
-        - 'null'
+      description: >-
+        Name of the output column(s). When n is provided and the output list length equals n, each
+        output column receives the corresponding match. A single output containing a wildcard (*) is
+        expanded into n columns, e.g. "Top *" with n: 3 becomes "Top 1", "Top 2", "Top 3".
+    runtime_required: false
   - name: model_id
-    description: The model_id to use lookup against.
-    required: false
+    description: The model_id to use lookup against
+    required: true
     param_group: Details
     runtime_default: null
     schema:
-      type:
-        - string
-        - 'null'
+      type: string
+      description: The model_id to use lookup against
+    runtime_required: false
   - name: lookup_mode
     description: >-
       How to perform lookups. 'by_row' (default): lookup each row individually. 'by_dataframe':
@@ -67,11 +75,16 @@ parameters:
     runtime_default: by_row
     schema:
       type: string
+      description: >-
+        How to perform lookups. 'by_row' (default): lookup each row individually. 'by_dataframe':
+        lookup unique values once, copy results to all rows. 'by_matrix': lookup once per matrix
+        permutation.
       enum:
         - by_row
         - by_matrix
         - by_dataframe
-  - name: n
+    runtime_required: false
+  - name: 'n'
     description: >-
       Number of matches to return per input value. When the output list length equals n, each output
       column receives the corresponding match. Otherwise all n matches are stored as a list in each
@@ -80,9 +93,12 @@ parameters:
     param_group: Options
     runtime_default: null
     schema:
-      type:
-        - integer
-        - 'null'
+      type: integer
+      description: >-
+        Number of matches to return per input value. When the output list length equals n, each
+        output column receives the corresponding match. Otherwise all n matches are stored as a list
+        in each output column.
+    runtime_required: false
 examples: []
 sources:
   - id: runtime
@@ -93,6 +109,55 @@ sources:
     resource: >-
       https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/lookup/_sources/lookup.md
     title: Archived lookup Markdown
+configuration_schema:
+  type: object
+  description: >-
+    Deprecated: Use lookup.key for key lookup models or lookup.semantic for semantic lookup models
+    instead. Lookup values from a saved lookup wrangle.
+  required:
+    - input
+    - model_id
+  properties:
+    input:
+      type:
+        - string
+        - integer
+      description: Name of the column(s) to lookup.
+    model_id:
+      type: string
+      description: The model_id to use lookup against
+    output:
+      type:
+        - string
+        - array
+      description: >-
+        Name of the output column(s). When n is provided and the output list length equals n, each
+        output column receives the corresponding match. A single output containing a wildcard (*) is
+        expanded into n columns, e.g. "Top *" with n: 3 becomes "Top 1", "Top 2", "Top 3".
+    'n':
+      type: integer
+      description: >-
+        Number of matches to return per input value. When the output list length equals n, each
+        output column receives the corresponding match. Otherwise all n matches are stored as a list
+        in each output column.
+    lookup_mode:
+      type: string
+      description: >-
+        How to perform lookups. 'by_row' (default): lookup each row individually. 'by_dataframe':
+        lookup unique values once, copy results to all rows. 'by_matrix': lookup once per matrix
+        permutation.
+      enum:
+        - by_row
+        - by_matrix
+        - by_dataframe
+    if:
+      $ref: '#/$defs/wrangles/commonProperties/if'
+    where:
+      $ref: '#/$defs/wrangles/commonProperties/where'
+    where_params:
+      $ref: '#/$defs/wrangles/commonProperties/where_params'
+schema_origin: upstream-docstring
+schema_adjustments: []
 ---
 
 # Lookup

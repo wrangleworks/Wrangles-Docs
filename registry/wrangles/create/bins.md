@@ -31,32 +31,35 @@ capabilities:
   where_params: true
 parameters:
   - name: input
-    description: Name of input column.
+    description: Name of input column
     required: true
     param_group: I/O
     schema:
       type:
-        - string
-        - integer
         - array
+      description: Name of input column
+    runtime_required: true
   - name: output
-    description: Name of new column.
+    description: Name of new column
     required: true
     param_group: I/O
     schema:
       type:
-        - string
         - array
+      description: Name of new column
+    runtime_required: true
   - name: bins
-    description: Defines the number of equal-width bins in the range.
+    description: Defines the number of equal-width bins in the range
     required: true
     param_group: Options
     schema:
       type:
         - integer
         - array
+      description: Defines the number of equal-width bins in the range
+    runtime_required: true
   - name: labels
-    description: Labels for the returned bins.
+    description: Labels for the returned bins
     required: false
     param_group: Options
     runtime_default: null
@@ -64,7 +67,8 @@ parameters:
       type:
         - string
         - array
-        - 'null'
+      description: Labels for the returned bins
+    runtime_required: false
 examples: []
 sources:
   - id: runtime
@@ -75,6 +79,41 @@ sources:
     resource: >-
       https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/create/_sources/bins.md
     title: Archived create.bins Markdown
+configuration_schema:
+  type: object
+  description: Create a column that groups data into bins
+  additionalProperties: false
+  required:
+    - input
+    - output
+    - bins
+  properties:
+    input:
+      type:
+        - array
+      description: Name of input column
+    output:
+      type:
+        - array
+      description: Name of new column
+    bins:
+      type:
+        - integer
+        - array
+      description: Defines the number of equal-width bins in the range
+    labels:
+      type:
+        - string
+        - array
+      description: Labels for the returned bins
+    if:
+      $ref: '#/$defs/wrangles/commonProperties/if'
+    where:
+      $ref: '#/$defs/wrangles/commonProperties/where'
+    where_params:
+      $ref: '#/$defs/wrangles/commonProperties/where_params'
+schema_origin: upstream-docstring
+schema_adjustments: []
 ---
 
 # Bins
@@ -89,8 +128,8 @@ Creates a column that segments and sorts data values into bins. `bins` can be an
 ```yaml
 wrangles:
   - create.bins:
-      input: Data
-      output: Category
+      input: [Data]
+      output: [Category]
       bins: 3
       labels:
         - Bad
@@ -132,8 +171,8 @@ _No sample available._
 ```yaml
 wrangles:
   - create.bins:
-      input: Grades
-      output: Letter Grade
+      input: [Grades]
+      output: [Letter Grade]
       bins:
         - 0
         - 60

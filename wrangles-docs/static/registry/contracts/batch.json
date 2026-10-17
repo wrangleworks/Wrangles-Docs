@@ -40,29 +40,86 @@
     "where": true,
     "where_params": true
   },
+  "configuration_schema": {
+    "type": "object",
+    "description": "Split the data into batches for executing a list of wrangles. Use this in situations such as where the intermediate data is too large to fit in memory.",
+    "additionalProperties": false,
+    "required": [
+      "wrangles"
+    ],
+    "properties": {
+      "batch_size": {
+        "type": "integer",
+        "description": "The number of rows to split each batch into",
+        "default": 1000
+      },
+      "wrangles": {
+        "type": "array",
+        "description": "The wrangles to execute on the data. Each series of wrangles\nwill be run agaisnst the data in batches of the size\ndefined by batch_size.",
+        "minItems": 1,
+        "items": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/items"
+        }
+      },
+      "threads": {
+        "type": "integer",
+        "description": "The number of threads to use for parallel processing. Default 1."
+      },
+      "on_error": {
+        "type": "object",
+        "description": "A dictionary of column_name: value to return if an error occurs while attempting to run a batch"
+      },
+      "timeout": {
+        "type": "number",
+        "description": "The number of seconds to wait for a batch to complete before raising an error"
+      },
+      "if": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/if"
+      },
+      "where": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/where"
+      },
+      "where_params": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/where_params"
+      }
+    }
+  },
+  "schema_origin": "upstream-docstring",
+  "schema_adjustments": [],
+  "schema_source": {
+    "repository": "https://github.com/wrangleworks/WranglesPY",
+    "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+    "version": "1.20.5",
+    "extraction": "static-python-ast"
+  },
   "parameters": [
     {
       "name": "wrangles",
-      "description": "The wrangles to execute on the data. Each series of wrangles will be run against the data in batches of the size defined by batch_size.",
+      "description": "The wrangles to execute on the data. Each series of wrangles\nwill be run agaisnst the data in batches of the size\ndefined by batch_size.",
       "required": true,
       "param_group": "Execution",
       "schema": {
         "type": "array",
+        "description": "The wrangles to execute on the data. Each series of wrangles\nwill be run agaisnst the data in batches of the size\ndefined by batch_size.",
         "minItems": 1,
         "items": {
-          "$ref": "#/$defs/wrangles/items"
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/items"
         }
-      }
+      },
+      "runtime_required": true
     },
     {
       "name": "batch_size",
-      "description": "The number of rows to split each batch into.",
+      "description": "The number of rows to split each batch into",
       "required": false,
       "param_group": "Execution",
       "runtime_default": 1000,
       "schema": {
-        "type": "integer"
-      }
+        "type": "integer",
+        "description": "The number of rows to split each batch into",
+        "default": 1000
+      },
+      "runtime_required": false
     },
     {
       "name": "threads",
@@ -71,34 +128,34 @@
       "param_group": "Execution",
       "runtime_default": 1,
       "schema": {
-        "type": "integer"
-      }
+        "type": "integer",
+        "description": "The number of threads to use for parallel processing. Default 1."
+      },
+      "runtime_required": false
     },
     {
       "name": "on_error",
-      "description": "A dictionary of column_name: value to return if an error occurs while attempting to run a batch.",
+      "description": "A dictionary of column_name: value to return if an error occurs while attempting to run a batch",
       "required": false,
       "param_group": "Errors",
       "runtime_default": null,
       "schema": {
-        "type": [
-          "object",
-          "null"
-        ]
-      }
+        "type": "object",
+        "description": "A dictionary of column_name: value to return if an error occurs while attempting to run a batch"
+      },
+      "runtime_required": false
     },
     {
       "name": "timeout",
-      "description": "The number of seconds to wait for a batch to complete before raising an error.",
+      "description": "The number of seconds to wait for a batch to complete before raising an error",
       "required": false,
       "param_group": "Execution",
       "runtime_default": null,
       "schema": {
-        "type": [
-          "number",
-          "null"
-        ]
-      }
+        "type": "number",
+        "description": "The number of seconds to wait for a batch to complete before raising an error"
+      },
+      "runtime_required": false
     },
     {
       "name": "use_multiprocessing",
@@ -106,9 +163,8 @@
       "required": false,
       "param_group": "Execution",
       "runtime_default": false,
-      "schema": {
-        "type": "boolean"
-      }
+      "schema": {},
+      "runtime_required": false
     },
     {
       "name": "if",

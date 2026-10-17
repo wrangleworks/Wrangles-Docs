@@ -36,27 +36,27 @@ parameters:
     param_group: Options
     runtime_default: null
     schema:
-      type:
-        - array
-        - 'null'
+      type: array
+      description: New labels / index to conform the axis specified by ‘axis’ to.
+    runtime_required: false
   - name: index
     description: New labels for the index. Preferably an Index object to avoid duplicating data.
     required: false
     param_group: Options
     runtime_default: null
     schema:
-      type:
-        - array
-        - 'null'
+      type: array
+      description: New labels for the index. Preferably an Index object to avoid duplicating data.
+    runtime_required: false
   - name: columns
     description: New labels for the columns. Preferably an Index object to avoid duplicating data.
     required: false
     param_group: I/O
     runtime_default: null
     schema:
-      type:
-        - array
-        - 'null'
+      type: array
+      description: New labels for the columns. Preferably an Index object to avoid duplicating data.
+    runtime_required: false
   - name: axis
     description: Axis to target. Can be either the axis name (‘index’, ‘columns’) or number (0, 1).
     required: false
@@ -64,9 +64,10 @@ parameters:
     runtime_default: null
     schema:
       type:
+        - number
         - string
-        - integer
-        - 'null'
+      description: Axis to target. Can be either the axis name (‘index’, ‘columns’) or number (0, 1).
+    runtime_required: false
 examples: []
 sources:
   - id: runtime
@@ -77,6 +78,29 @@ sources:
     resource: >-
       https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/transform/_sources/reindex.md
     title: Archived reindex Markdown
+configuration_schema:
+  type: object
+  description: Changes the row labels and column labels of a DataFrame.
+  additionalProperties: false
+  properties:
+    labels:
+      type: array
+      description: New labels / index to conform the axis specified by ‘axis’ to.
+    index:
+      type: array
+      description: New labels for the index. Preferably an Index object to avoid duplicating data.
+    columns:
+      type: array
+      description: New labels for the columns. Preferably an Index object to avoid duplicating data.
+    axis:
+      type:
+        - number
+        - string
+      description: Axis to target. Can be either the axis name (‘index’, ‘columns’) or number (0, 1).
+    if:
+      $ref: '#/$defs/wrangles/commonProperties/if'
+schema_origin: upstream-docstring
+schema_adjustments: []
 ---
 
 # Reindex

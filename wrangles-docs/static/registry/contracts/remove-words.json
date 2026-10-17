@@ -40,10 +40,66 @@
     "where": true,
     "where_params": true
   },
+  "configuration_schema": {
+    "type": "object",
+    "description": "Remove all the elements that occur in one list from another.",
+    "additionalProperties": false,
+    "required": [
+      "input",
+      "to_remove",
+      "output"
+    ],
+    "properties": {
+      "input": {
+        "type": [
+          "string",
+          "integer",
+          "array"
+        ],
+        "description": "Name of column to remove words from"
+      },
+      "to_remove": {
+        "type": "array",
+        "description": "Column or list of columns with a list of words to be removed"
+      },
+      "output": {
+        "type": [
+          "string",
+          "array"
+        ],
+        "description": "Name of the output columns"
+      },
+      "tokenize_to_remove": {
+        "type": "boolean",
+        "description": "Tokenize all to_remove inputs"
+      },
+      "ignore_case": {
+        "type": "boolean",
+        "description": "Ignore input and to_remove case"
+      },
+      "if": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/if"
+      },
+      "where": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/where"
+      },
+      "where_params": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/where_params"
+      }
+    }
+  },
+  "schema_origin": "upstream-docstring",
+  "schema_adjustments": [],
+  "schema_source": {
+    "repository": "https://github.com/wrangleworks/WranglesPY",
+    "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+    "version": "1.20.5",
+    "extraction": "static-python-ast"
+  },
   "parameters": [
     {
       "name": "input",
-      "description": "Name of column to remove words from.",
+      "description": "Name of column to remove words from",
       "required": true,
       "param_group": "I/O",
       "schema": {
@@ -51,51 +107,60 @@
           "string",
           "integer",
           "array"
-        ]
-      }
+        ],
+        "description": "Name of column to remove words from"
+      },
+      "runtime_required": true
     },
     {
       "name": "to_remove",
-      "description": "Column or list of columns with a list of words to be removed.",
+      "description": "Column or list of columns with a list of words to be removed",
       "required": true,
       "param_group": "I/O",
       "schema": {
-        "type": "string"
-      }
+        "type": "array",
+        "description": "Column or list of columns with a list of words to be removed"
+      },
+      "runtime_required": true
     },
     {
       "name": "output",
-      "description": "Name of the output columns.",
-      "required": false,
+      "description": "Name of the output columns",
+      "required": true,
       "param_group": "I/O",
       "runtime_default": null,
       "schema": {
         "type": [
           "string",
-          "array",
-          "null"
-        ]
-      }
+          "array"
+        ],
+        "description": "Name of the output columns"
+      },
+      "runtime_required": false
     },
     {
       "name": "tokenize_to_remove",
-      "description": "Tokenize all to_remove inputs.",
+      "description": "Tokenize all to_remove inputs",
       "required": false,
       "param_group": "Options",
       "runtime_default": false,
       "schema": {
-        "type": "boolean"
-      }
+        "type": "boolean",
+        "description": "Tokenize all to_remove inputs"
+      },
+      "runtime_required": false
     },
     {
       "name": "ignore_case",
-      "description": "Ignore input and to_remove case.",
+      "description": "Ignore input and to_remove case",
       "required": false,
       "param_group": "Options",
       "runtime_default": true,
       "schema": {
-        "type": "boolean"
-      }
+        "type": "boolean",
+        "description": "Ignore input and to_remove case"
+      },
+      "runtime_required": false
     },
     {
       "name": "if",

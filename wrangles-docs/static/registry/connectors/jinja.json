@@ -1,0 +1,72 @@
+{
+  "schema_version": "0.2",
+  "type": "connector",
+  "catalog_id": "117",
+  "catalog_key": "connector.jinja",
+  "catalog_kind": "connector",
+  "runtime_key": "jinja",
+  "status": "active",
+  "title": "Jinja",
+  "source": {
+    "repository": "https://github.com/wrangleworks/WranglesPY",
+    "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+    "version": "1.20.5",
+    "extraction": "static-python-ast"
+  },
+  "operations": {
+    "run": {
+      "type": "object",
+      "description": "Use a Jinja template with a context to create a file",
+      "additionalProperties": false,
+      "required": [
+        "template",
+        "context",
+        "output_file"
+      ],
+      "properties": {
+        "template": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "The template to apply the values to. Either a file or string.",
+          "properties": {
+            "file": {
+              "type": "string",
+              "description": "A .jinja file containing the template"
+            },
+            "string": {
+              "type": "string",
+              "description": "A string which is used as the jinja template"
+            }
+          }
+        },
+        "context": {
+          "type": "object",
+          "description": "A dictionary used to define the output template"
+        },
+        "output_file": {
+          "type": "string",
+          "description": "File name/path for the file to be output"
+        },
+        "if": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/run/commonProperties/if"
+        }
+      }
+    }
+  },
+  "description": "Use a Jinja template with a context to create a file",
+  "slug": "connectors/jinja",
+  "visibility": "public",
+  "sources": [
+    {
+      "id": "runtime",
+      "resource": "https://github.com/wrangleworks/WranglesPY/tree/bd5f88fba479ec406b409cb2880689c54e72b298",
+      "title": "Pinned WranglesPY connector schema"
+    },
+    {
+      "id": "existing-docs",
+      "resource": "wrangles-docs/registry-docs/python/connectors/jinja.md",
+      "title": "Existing connector documentation"
+    }
+  ],
+  "guidance": "Use a Jinja template with a context to create a file.\n\n### Run\n### Recipe\n```yaml\nrun:\n  on_start:\n    - jinja:\n        template:\n          string: >-\n            {% if Brand is defined %} {{ Brand }} {% endif %} {% if ProductType is defined %} {{\n            ProductType }}, {% endif %}\n        context:\n          Brand: Brand\n          ProductType: Product Type\n        output_file: my_template.jinja\n```\n\n### Function\n```python\nfrom wrangles.connectors import ckan\n\ntemplate_string = '{% if Brand is defined %} {{ Brand }} {% endif %} {% if ProductType is defined %} {{ ProductType }}, {% endif %}'\n\ndf = jinja.run(\n    template={'string': template_string},\n    context={'Brand': 'Brand', 'ProductType': 'Product Type'},\n    output_file='my_template.jinja'\n)\n```\n\n#### Template Parameters"
+}

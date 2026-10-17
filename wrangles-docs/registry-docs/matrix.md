@@ -16,7 +16,7 @@ Apply a matrix of wrangles to the dataframe. This will run the wrangles for each
 
 Apply a matrix of wrangles to the dataframe. Each wrangle runs for the configured combinations of variables, including recipe variables and variables declared by the `variables` parameter.
 
-See the [Matrix connector](/py/python/connectors/matrix) for the connector equivalent.
+See the [Matrix connector](/py/connectors/matrix) for the connector equivalent.
 
 ## Parameters
 
@@ -25,16 +25,73 @@ See the [Matrix connector](/py/python/connectors/matrix) for the connector equiv
 | Name | Description | Accepted Values | Default | Required |
 | --- | --- | --- | --- | --- |
 | <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `strategy` | Determines how to combine variables when there are multiple. loop (default) iterates over each set of variables, repeating shorter lists until the longest is completed. permutations uses the combination of all variables against all other variables. | string; one of:<ul className="ww-param-enum-values"><li>permutations</li><li>loop</li></ul> | `"loop"` | No |
+| `strategy` | Determines how to combine variables when there are multiple. loop (default) iterates over each set of variables, repeating shorter lists  until the longest is completed. permutations uses the combination of all  variables against all other variables. | string; one of:<ul className="ww-param-enum-values"><li>permutations</li><li>loop</li></ul> | `"loop"` | No |
 | <span className="ww-param-group-label">Execution</span> |  |  |  |  |
-| `variables` | A dictionary of variables to pass to the wrangle. The key is the variable name and the value is a list of values. | object | — | Yes |
-| `wrangles` | The wrangles to apply to the dataframe. Each wrangle will be run for each combination of the variables. | array | — | Yes |
+| `variables` | A dictionary of variables to pass to the wrangle.<br />The key is the variable name and the value is a list of values. | object | — | Yes |
+| `wrangles` | The wrangles to apply to the dataframe.<br />Each wrangle will be run for each combination of the variables. | array | — | Yes |
 | <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
 | `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
 | `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
 | `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
 
 </div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+<details className="ww-field-disclosure">
+
+<summary>Complete configuration schema</summary>
+
+Schema source: upstream-docstring. Conditional and cross-parameter
+rules below apply in addition to the parameter table. References resolve against
+the [complete recipe schema](/schemas/recipes/registry/schema.json).
+
+
+
+```json
+{
+  "type": "object",
+  "description": "Apply a matrix of wrangles to the dataframe.\nThis will run the wrangles for each combination of the variables.",
+  "required": [
+    "variables",
+    "wrangles"
+  ],
+  "properties": {
+    "variables": {
+      "type": "object",
+      "description": "A dictionary of variables to pass to the wrangle.\nThe key is the variable name and the value is a list of values."
+    },
+    "wrangles": {
+      "type": "array",
+      "description": "The wrangles to apply to the dataframe.\nEach wrangle will be run for each combination of the variables.",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/wrangles/items"
+      }
+    },
+    "strategy": {
+      "type": "string",
+      "enum": [
+        "permutations",
+        "loop"
+      ],
+      "description": "Determines how to combine variables when there are multiple. loop (default) iterates over each set of variables, repeating shorter lists  until the longest is completed. permutations uses the combination of all  variables against all other variables."
+    },
+    "if": {
+      "$ref": "#/$defs/wrangles/commonProperties/if"
+    },
+    "where": {
+      "$ref": "#/$defs/wrangles/commonProperties/where"
+    },
+    "where_params": {
+      "$ref": "#/$defs/wrangles/commonProperties/where_params"
+    }
+  }
+}
+```
+
+</details>
 
 ## Examples
 
@@ -169,6 +226,7 @@ wrangles:
 | Documentation group | `utility` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.matrix` |
+| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
 | Legacy UUID | None |
 
 **Sources**

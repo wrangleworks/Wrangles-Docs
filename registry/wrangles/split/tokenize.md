@@ -33,7 +33,7 @@ capabilities:
   where_params: true
 parameters:
   - name: input
-    description: Column(s) to be split into tokens.
+    description: Column(s) to be split into tokens
     required: true
     param_group: I/O
     schema:
@@ -41,8 +41,10 @@ parameters:
         - string
         - integer
         - array
+      description: Column(s) to be split into tokens
+    runtime_required: true
   - name: output
-    description: Name of the output column.
+    description: Name of the output column
     required: false
     param_group: I/O
     runtime_default: null
@@ -50,7 +52,8 @@ parameters:
       type:
         - string
         - array
-        - 'null'
+      description: Name of the output column
+    runtime_required: false
   - name: method
     description: >-
       Method to split the list. Options include `space`, `boundary`, `boundary_ignore_space`, custom
@@ -65,7 +68,14 @@ parameters:
             - space
             - boundary
             - boundary_ignore_space
+          description: >-
+            Method to split the list. Options: space, boundary, boundary_ignore_space or use a
+            custom function with custom.<function> or use a regex pattern with regex:<pattern>
         - type: string
+          description: >-
+            Method to split the list. Options: space, boundary, boundary_ignore_space or use a
+            custom function with custom.<function> or use a regex pattern with regex:<pattern>
+    runtime_required: false
 examples: []
 sources:
   - id: runtime
@@ -76,6 +86,48 @@ sources:
     resource: >-
       https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/split/_sources/tokenize.md
     title: Archived split.tokenize Markdown
+configuration_schema:
+  type: object
+  description: >-
+    Split text into tokens. A variety of methods are available. The default method is to split on
+    spaces.
+  additionalProperties: false
+  required:
+    - input
+  properties:
+    input:
+      type:
+        - string
+        - integer
+        - array
+      description: Column(s) to be split into tokens
+    output:
+      type:
+        - string
+        - array
+      description: Name of the output column
+    method:
+      anyOf:
+        - type: string
+          enum:
+            - space
+            - boundary
+            - boundary_ignore_space
+          description: >-
+            Method to split the list. Options: space, boundary, boundary_ignore_space or use a
+            custom function with custom.<function> or use a regex pattern with regex:<pattern>
+        - type: string
+          description: >-
+            Method to split the list. Options: space, boundary, boundary_ignore_space or use a
+            custom function with custom.<function> or use a regex pattern with regex:<pattern>
+    if:
+      $ref: '#/$defs/wrangles/commonProperties/if'
+    where:
+      $ref: '#/$defs/wrangles/commonProperties/where'
+    where_params:
+      $ref: '#/$defs/wrangles/commonProperties/where_params'
+schema_origin: upstream-docstring
+schema_adjustments: []
 ---
 
 # Tokenize

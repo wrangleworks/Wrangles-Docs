@@ -1,0 +1,124 @@
+---
+schema_version: '0.2'
+type: connector
+catalog_id: '112'
+catalog_key: connector.excel.sheet
+catalog_kind: connector
+runtime_key: excel.sheet
+status: active
+title: Excel Sheet
+source:
+  repository: https://github.com/wrangleworks/WranglesPY
+  revision: bd5f88fba479ec406b409cb2880689c54e72b298
+  version: 1.20.5
+  extraction: static-python-ast
+operations:
+  write:
+    type: object
+    description: >-
+      Spreadsheet write mode: sheet. Write all requested columns to an Excel sheet/range, including
+      unchanged input columns.
+    additionalProperties: false
+    properties:
+      name:
+        type: string
+        description: Name of the sheet to write to. If omitted, will default to the name of the recipe.
+      cell:
+        type: string
+        description: The top left cell to write the data from. Default A1.
+      action:
+        type: string
+        description: |-
+          Action to take when writing the data if the sheet already exists. Default append.
+          append - add to the existing sheet.
+          increment - add a new sheet with an incrementing number.
+          overwrite - replace existing sheet.
+        enum:
+          - overwrite
+          - append
+          - increment
+      freezepanes:
+        type: boolean
+        description: If true, will freeze the first row. Default false.
+      as_table:
+        type: boolean
+        description: If true, will write the data as an Excel table. Default true.
+      formatting:
+        type: object
+        description: >-
+          Formatting to apply to named columns in WranglesXL. Option names and values follow the
+          same Polars/XlsxWriter formatting syntax used by the `file` connector's
+          `formatting.column_formats`.
+        additionalProperties: false
+        required:
+          - columns
+        properties:
+          columns:
+            type: object
+            description: Column headings mapped to their formatting options.
+            minProperties: 1
+            additionalProperties:
+              type: object
+              additionalProperties: false
+              minProperties: 1
+              properties:
+                align:
+                  type: string
+                  description: Horizontal alignment for the column values.
+                  enum:
+                    - general
+                    - left
+                    - center
+                    - right
+                num_format:
+                  type: string
+                  minLength: 1
+                  description: >-
+                    Excel number format code for the column values. Matches the `num_format` key
+                    used by the Polars/XlsxWriter `column_formats` formatting syntax on the `file`
+                    connector.
+                bold:
+                  type: boolean
+                  description: Whether the column values should be bold.
+                checkbox:
+                  type: boolean
+                  description: Whether boolean column values should display as checkboxes.
+                text_wrap:
+                  type: boolean
+                  description: Whether the column values should wrap text within the cell.
+description: >-
+  Spreadsheet write mode: sheet. Write all requested columns to an Excel sheet/range, including
+  unchanged input columns.
+slug: connectors/excel.sheet
+visibility: public
+sources:
+  - id: runtime
+    resource: https://github.com/wrangleworks/WranglesPY/tree/bd5f88fba479ec406b409cb2880689c54e72b298
+    title: Pinned WranglesPY connector schema
+  - id: existing-docs
+    resource: wrangles-docs/registry-docs/python/connectors/excel.md
+    title: Existing connector documentation
+---
+
+# Excel Sheet
+
+> Note: The Excel connector is only to be used in recipes within WranglesXL and will not function properly otherwise.
+
+The Excel connector allows users to define which sheet and where to write the output, write to multiple sheets, write to sheets dynamically or return data at different stages of the recipe. More configuration options will be added over time.
+
+### Write
+#### Recipe
+```yml
+write:
+  - excel.sheet:
+      name: NewSheet
+      cell: C3
+```
+
+#### Function
+The Excel connector can be utilized in a custom function but please remember that it was built only to function within WranglesXL and will not function properly otherwise.
+
+```python
+from wrangles.connectors import excel
+excel.sheet.write(df=my_dataframe, name='NewSheet', cell = 'C3')
+```

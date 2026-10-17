@@ -1,27 +1,25 @@
 ---
 schema_version: '0.2'
-type: wrangle
-id: e8e96b76-86bf-41dc-8d16-825dcff9688b
-wrangle_name: custom
-namespace: extract
-title: Custom
-description: >-
-  Extract data from the input using a DIY or bespoke extraction wrangle. Requires WrangleWorks
-  Account and Subscription.
-wrangle_key: extract.custom
+type: 'wrangle'
+id: 'e8e96b76-86bf-41dc-8d16-825dcff9688b'
+wrangle_name: 'custom'
+namespace: 'extract'
+title: 'Custom'
+description: 'Extract data from the input using a DIY or bespoke extraction wrangle. Requires WrangleWorks Account and Subscription.'
+wrangle_key: 'extract.custom'
 aliases: []
-slug: extract/custom
-status: active
-visibility: public
+slug: 'extract/custom'
+status: 'active'
+visibility: 'public'
 recipe_writer:
   eligible: true
 tags:
-  - extract
-  - custom
+  - 'extract'
+  - 'custom'
 runtime:
-  package: wrangles
-  symbol: wrangles.recipe_wrangles.extract.custom
-  contract_status: verified
+  package: 'wrangles'
+  symbol: 'wrangles.recipe_wrangles.extract.custom'
+  contract_status: 'verified'
 access:
   ai_powered: false
   requires_account: true
@@ -32,122 +30,213 @@ capabilities:
   where: true
   where_params: true
 parameters:
-  - name: input
-    description: Name or list of input columns.
+  - name: 'input'
+    description: 'Name or list of input columns.'
     required: true
-    param_group: I/O
+    param_group: 'I/O'
     schema:
       type:
-        - string
-        - integer
-        - array
-  - name: model_id
-    description: The ID of the wrangle to use.
+        - 'string'
+        - 'integer'
+        - 'array'
+      description: 'Name or list of input columns.'
+    runtime_required: true
+  - name: 'model_id'
+    description: 'The ID of the wrangle to use'
     required: true
-    param_group: Details
+    param_group: 'Details'
     schema:
       type:
-        - string
-        - array
-  - name: output
-    description: Name or list of output columns.
+        - 'string'
+        - 'array'
+      description: 'The ID of the wrangle to use'
+    runtime_required: true
+  - name: 'output'
+    description: 'Name or list of output columns'
     required: false
-    param_group: I/O
+    param_group: 'I/O'
     runtime_default: null
     schema:
       type:
-        - string
-        - array
-        - 'null'
-  - name: use_labels
-    description: 'Use Labels in the extract output {label: value}.'
+        - 'string'
+        - 'array'
+      description: 'Name or list of output columns'
+    runtime_required: false
+  - name: 'use_labels'
+    description: 'Use Labels in the extract output {label: value}'
     required: false
-    param_group: Formatting
+    param_group: 'Formatting'
     runtime_default: false
     schema:
-      type: boolean
-  - name: first_element
-    description: Get the first element from results.
+      type: 'boolean'
+      description: 'Use Labels in the extract output {label: value}'
+    runtime_required: false
+  - name: 'first_element'
+    description: 'Get the first element from results'
     required: false
-    param_group: Formatting
+    param_group: 'Formatting'
     runtime_default: false
     schema:
-      type: boolean
-  - name: case_sensitive
-    description: Allows the wrangle to be case sensitive if set to True, default is False.
+      type: 'boolean'
+      description: 'Get the first element from results'
+    runtime_required: false
+  - name: 'case_sensitive'
+    description: 'Allows the wrangle to be case sensitive if set to True, default is False.'
     required: false
-    param_group: Options
+    param_group: 'Options'
     runtime_default: false
     schema:
-      type: boolean
-  - name: extract_raw
-    description: Extract the raw data from the wrangle.
+      type: 'boolean'
+      description: 'Allows the wrangle to be case sensitive if set to True, default is False.'
+    runtime_required: false
+  - name: 'extract_raw'
+    description: 'Extract the raw data from the wrangle'
     required: false
-    param_group: Options
+    param_group: 'Options'
     runtime_default: false
     schema:
-      type: boolean
-  - name: use_spellcheck
-    description: Use spellcheck to also find minor mispellings compared to the reference data.
+      type: 'boolean'
+      description: 'Extract the raw data from the wrangle'
+    runtime_required: false
+  - name: 'use_spellcheck'
+    description: 'Use spellcheck to also find minor mispellings compared to the reference data'
     required: false
-    param_group: Options
+    param_group: 'Options'
     runtime_default: false
     schema:
-      type: boolean
-  - name: include_empty_labels
-    description: Include labels with no found values in the output when using use_labels=True.
+      type: 'boolean'
+      description: 'Use spellcheck to also find minor mispellings compared to the reference data'
+    runtime_required: false
+  - name: 'include_empty_labels'
+    description: 'Include labels with no found values in the output when using use_labels=True'
     required: false
-    param_group: Formatting
+    param_group: 'Formatting'
     runtime_default: true
     schema:
-      type: boolean
-  - name: sort
-    description: Sort the results.
+      type: 'boolean'
+      description: 'Include labels with no found values in the output when using use_labels=True'
+    runtime_required: false
+  - name: 'sort'
+    description: 'Sort the results'
     required: false
-    param_group: Options
-    runtime_default: training_order
+    param_group: 'Options'
+    runtime_default: 'training_order'
     schema:
-      type: string
+      type: 'string'
+      description: 'Sort the results'
       enum:
-        - training_order
-        - input_order
-        - longest
-        - shortest
-        - alphabetical
-        - reverse_alphabetical
-        - ascending
-        - descending
-  - name: output_format
-    description: Format of the extract output.
+        - 'training_order'
+        - 'input_order'
+        - 'longest'
+        - 'shortest'
+        - 'alphabetical'
+        - 'reverse_alphabetical'
+        - 'ascending'
+        - 'descending'
+    runtime_required: false
+  - name: 'output_format'
+    description: 'Format of the extract output'
     required: false
-    param_group: Formatting
+    param_group: 'Formatting'
     runtime_default: null
     schema:
-      type:
-        - string
-        - 'null'
+      type: 'string'
+      description: 'Format of the extract output'
       enum:
-        - list
-        - dictionary
-        - columns
-        - concatenate
-  - name: char
-    description: Character to use when output_format is concatenate.
+        - 'list'
+        - 'dictionary'
+        - 'columns'
+        - 'concatenate'
+    runtime_required: false
+  - name: 'char'
+    description: 'Character to use when output_format is concatenate'
     required: false
-    param_group: Formatting
+    param_group: 'Formatting'
     runtime_default: ', '
     schema:
-      type: string
+      type: 'string'
+      description: 'Character to use when output_format is concatenate'
+    runtime_required: false
 examples: []
 sources:
-  - id: runtime
-    resource: >-
-      https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/extract.py
-    title: WranglesPY extract.custom implementation
-  - id: legacy-docs-archive
-    resource: >-
-      https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/extract/_sources/custom.md
-    title: Archived extract.custom Markdown
+  - id: 'runtime'
+    resource: 'https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/extract.py'
+    title: 'WranglesPY extract.custom implementation'
+  - id: 'legacy-docs-archive'
+    resource: 'https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/extract/_sources/custom.md'
+    title: 'Archived extract.custom Markdown'
+configuration_schema:
+  type: 'object'
+  description: 'Extract data from the input using a DIY or bespoke extraction wrangle. Requires WrangleWorks Account and Subscription.'
+  required:
+    - 'input'
+    - 'model_id'
+  properties:
+    input:
+      type:
+        - 'string'
+        - 'integer'
+        - 'array'
+      description: 'Name or list of input columns.'
+    output:
+      type:
+        - 'string'
+        - 'array'
+      description: 'Name or list of output columns'
+    model_id:
+      type:
+        - 'string'
+        - 'array'
+      description: 'The ID of the wrangle to use'
+    use_labels:
+      type: 'boolean'
+      description: 'Use Labels in the extract output {label: value}'
+    first_element:
+      type: 'boolean'
+      description: 'Get the first element from results'
+    case_sensitive:
+      type: 'boolean'
+      description: 'Allows the wrangle to be case sensitive if set to True, default is False.'
+    extract_raw:
+      type: 'boolean'
+      description: 'Extract the raw data from the wrangle'
+    use_spellcheck:
+      type: 'boolean'
+      description: 'Use spellcheck to also find minor mispellings compared to the reference data'
+    sort:
+      type: 'string'
+      description: 'Sort the results'
+      enum:
+        - 'training_order'
+        - 'input_order'
+        - 'longest'
+        - 'shortest'
+        - 'alphabetical'
+        - 'reverse_alphabetical'
+        - 'ascending'
+        - 'descending'
+    output_format:
+      type: 'string'
+      description: 'Format of the extract output'
+      enum:
+        - 'list'
+        - 'dictionary'
+        - 'columns'
+        - 'concatenate'
+    char:
+      type: 'string'
+      description: 'Character to use when output_format is concatenate'
+    include_empty_labels:
+      type: 'boolean'
+      description: 'Include labels with no found values in the output when using use_labels=True'
+    if:
+      $ref: '#/$defs/wrangles/commonProperties/if'
+    where:
+      $ref: '#/$defs/wrangles/commonProperties/where'
+    where_params:
+      $ref: '#/$defs/wrangles/commonProperties/where_params'
+schema_origin: 'upstream-docstring'
+schema_adjustments: []
 ---
 
 # Custom

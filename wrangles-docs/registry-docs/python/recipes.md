@@ -64,7 +64,7 @@ write:
       name: file.xlsx
 ```
 
-> To run a recipe from a recipe, see the [recipe connector](/py/python/connectors/recipe)
+> To run a recipe from a recipe, see the [recipe connector](/py/connectors/recipe)
 
 ### Dynamic Column Selections
 

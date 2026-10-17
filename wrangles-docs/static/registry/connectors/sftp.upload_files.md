@@ -1,0 +1,67 @@
+---
+schema_version: '0.2'
+type: connector
+catalog_id: '136'
+catalog_key: connector.sftp.upload_files
+catalog_kind: connector
+runtime_key: sftp.upload_files
+status: active
+title: Sftp Upload Files
+source:
+  repository: https://github.com/wrangleworks/WranglesPY
+  revision: bd5f88fba479ec406b409cb2880689c54e72b298
+  version: 1.20.5
+  extraction: static-python-ast
+operations:
+  run:
+    type: object
+    description: Upload files from the local file system to an SFTP host.
+    required:
+      - host
+      - user
+      - password
+      - files
+    properties:
+      host:
+        type: string
+        description: The hostname of the SFTP server.
+        examples:
+          - sftp.domain.com
+      user:
+        type: string
+        description: The user to authenticate as.
+      password:
+        type: string
+        description: The password for the user.
+      files:
+        type:
+          - string
+          - array
+        description: >-
+          A file, or list of files, to upload. If remote is not specified, they will be saved to the
+          SFTP user's default directory.
+      remote:
+        type:
+          - string
+          - array
+        description: (Optional) The remote filename(s) to save the files as.
+      port:
+        type: integer
+        description: The port to connect to. Default 22.
+description: Upload files from the local file system to an SFTP host.
+slug: connectors/sftp.upload_files
+visibility: public
+sources:
+  - id: runtime
+    resource: https://github.com/wrangleworks/WranglesPY/tree/bd5f88fba479ec406b409cb2880689c54e72b298
+    title: Pinned WranglesPY connector schema
+  - id: documentation-search
+    resource: https://wrangles.io/python/connectors/sftp/upload_files
+    title: >-
+      Checked for matching guide; no matching material retrieved. Description derived from pinned
+      schema.
+---
+
+# Sftp Upload Files
+
+Upload files from the local file system to an SFTP host.

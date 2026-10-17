@@ -40,31 +40,92 @@
     "where": true,
     "where_params": true
   },
+  "configuration_schema": {
+    "type": "object",
+    "description": "Apply a simple single-line python command. For more complex python use a custom function.\nNote, this evaluates the python command - be especially cautious including\nvariables from untrusted sources within the command string.\nThe python command will be evaluated once for each row and the result returned.\nReference column values by using their name.\nNon-alphanumeric characters within column names are replaced by underscores (_)\nAdditionally, all columns are available as a dict named kwargs.\nAdditional parameters set for the wrangle will also be available to the command.",
+    "required": [
+      "command",
+      "output"
+    ],
+    "properties": {
+      "input": {
+        "type": [
+          "string",
+          "integer",
+          "array"
+        ],
+        "description": "Name or list of input column(s) to filter the data available\nto the command. Useful in conjunction with kwargs to target\na variable range of columns.\nIf not specified, all columns will be available."
+      },
+      "output": {
+        "type": [
+          "string",
+          "array"
+        ],
+        "description": "Name or list of output column(s). To output multiple columns,\nreturn a list of the corresponding length."
+      },
+      "command": {
+        "type": "string",
+        "description": "Python command. This must return a value.\nNote: any non-alphanumeric characters in variable names\nare replaced by underscores (_)."
+      },
+      "except": {
+        "type": [
+          "string",
+          "array",
+          "number",
+          "integer",
+          "boolean",
+          "object"
+        ],
+        "description": "Value to return for the row if an exception occurs during the evaluation.\nIf not provided, an exception will be raised as normal.\nIf multiple output columns are specified, this must match the length."
+      },
+      "if": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/if"
+      },
+      "where": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/where"
+      },
+      "where_params": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/where_params"
+      }
+    }
+  },
+  "schema_origin": "upstream-docstring",
+  "schema_adjustments": [],
+  "schema_source": {
+    "repository": "https://github.com/wrangleworks/WranglesPY",
+    "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+    "version": "1.20.5",
+    "extraction": "static-python-ast"
+  },
   "parameters": [
     {
       "name": "command",
-      "description": "Python command. This must return a value. Note: any non-alphanumeric characters in variable names are replaced by underscores (_).",
+      "description": "Python command. This must return a value.\nNote: any non-alphanumeric characters in variable names\nare replaced by underscores (_).",
       "required": true,
       "param_group": "Options",
       "schema": {
-        "type": "string"
-      }
+        "type": "string",
+        "description": "Python command. This must return a value.\nNote: any non-alphanumeric characters in variable names\nare replaced by underscores (_)."
+      },
+      "runtime_required": true
     },
     {
       "name": "output",
-      "description": "Name or list of output column(s). To output multiple columns, return a list of the corresponding length.",
+      "description": "Name or list of output column(s). To output multiple columns,\nreturn a list of the corresponding length.",
       "required": true,
       "param_group": "I/O",
       "schema": {
         "type": [
           "string",
           "array"
-        ]
-      }
+        ],
+        "description": "Name or list of output column(s). To output multiple columns,\nreturn a list of the corresponding length."
+      },
+      "runtime_required": true
     },
     {
       "name": "input",
-      "description": "Name or list of input column(s) to filter the data available to the command. Useful in conjunction with kwargs to target a variable range of columns. If not specified, all columns will be available.",
+      "description": "Name or list of input column(s) to filter the data available\nto the command. Useful in conjunction with kwargs to target\na variable range of columns.\nIf not specified, all columns will be available.",
       "required": false,
       "param_group": "I/O",
       "runtime_default": null,
@@ -72,14 +133,15 @@
         "type": [
           "string",
           "integer",
-          "array",
-          "null"
-        ]
-      }
+          "array"
+        ],
+        "description": "Name or list of input column(s) to filter the data available\nto the command. Useful in conjunction with kwargs to target\na variable range of columns.\nIf not specified, all columns will be available."
+      },
+      "runtime_required": false
     },
     {
       "name": "except",
-      "description": "Value to return for the row if an exception occurs during the evaluation. If not provided, an exception will be raised as normal. If multiple output columns are specified, this must match the length.",
+      "description": "Value to return for the row if an exception occurs during the evaluation.\nIf not provided, an exception will be raised as normal.\nIf multiple output columns are specified, this must match the length.",
       "required": false,
       "param_group": "Errors",
       "schema": {
@@ -90,8 +152,10 @@
           "integer",
           "boolean",
           "object"
-        ]
-      }
+        ],
+        "description": "Value to return for the row if an exception occurs during the evaluation.\nIf not provided, an exception will be raised as normal.\nIf multiple output columns are specified, this must match the length."
+      },
+      "runtime_required": false
     },
     {
       "name": "if",

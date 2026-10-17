@@ -1,5 +1,5 @@
 ---
-schema_version: "0.2"
+schema_version: '0.2'
 type: wrangle
 id: 12ff4120-3613-4801-8653-99c793477fbc
 wrangle_name: case
@@ -27,35 +27,46 @@ access:
   requires_subscription: false
   requires_external_api_key: false
 capabilities:
+  if: true
   where: true
   where_params: true
-  if: true
 parameters:
   - name: input
-    description: Name, index, or list of input columns.
+    description: Name or list of input columns
     required: true
     param_group: I/O
     schema:
-      type: [string, integer, array]
-      items:
-        type: [string, integer]
+      type:
+        - string
+        - integer
+        - array
+      description: Name or list of input columns
+    runtime_required: true
   - name: output
-    description: Name or list of output columns. If omitted, each input column is overwritten.
+    description: Name or list of output columns
     required: false
     param_group: I/O
     runtime_default: null
     schema:
-      type: [string, array]
-      items:
-        type: string
+      type:
+        - string
+        - array
+      description: Name or list of output columns
+    runtime_required: false
   - name: case
-    description: Letter case to apply. Sentence case lowercases the value and capitalizes sentence starts.
-    required: false
+    description: The case to convert to. lower, upper, title or sentence
+    required: true
     param_group: Options
     runtime_default: lower
     schema:
       type: string
-      enum: [lower, upper, title, sentence]
+      description: The case to convert to. lower, upper, title or sentence
+      enum:
+        - lower
+        - upper
+        - title
+        - sentence
+    runtime_required: false
 examples:
   - id: uppercase-output
     title: Write uppercase text to a new column
@@ -70,11 +81,47 @@ examples:
     verification: static
 sources:
   - id: runtime
-    resource: https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/convert.py
+    resource: >-
+      https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/convert.py
     title: WranglesPY convert.case implementation
   - id: legacy-docs
     resource: https://wrangles.io/python/recipes/wrangles/convert#case
     title: Legacy convert.case documentation
+configuration_schema:
+  type: object
+  description: Change the case of the input.
+  additionalProperties: false
+  required:
+    - input
+    - case
+  properties:
+    input:
+      type:
+        - string
+        - integer
+        - array
+      description: Name or list of input columns
+    output:
+      type:
+        - string
+        - array
+      description: Name or list of output columns
+    case:
+      type: string
+      description: The case to convert to. lower, upper, title or sentence
+      enum:
+        - lower
+        - upper
+        - title
+        - sentence
+    if:
+      $ref: '#/$defs/wrangles/commonProperties/if'
+    where:
+      $ref: '#/$defs/wrangles/commonProperties/where'
+    where_params:
+      $ref: '#/$defs/wrangles/commonProperties/where_params'
+schema_origin: upstream-docstring
+schema_adjustments: []
 ---
 
 # Convert Case

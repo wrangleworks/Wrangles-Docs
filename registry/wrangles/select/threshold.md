@@ -31,25 +31,31 @@ capabilities:
   where_params: true
 parameters:
   - name: input
-    description: List of the input columns to select from.
+    description: List of the input columns to select from
     required: true
     param_group: I/O
     schema:
       type: array
+      description: List of the input columns to select from
+    runtime_required: true
   - name: output
-    description: Name of the output column.
+    description: Name of the output column
     required: true
     param_group: I/O
     schema:
       type: string
+      description: Name of the output column
+    runtime_required: true
   - name: threshold
-    description: Threshold above which to choose the first option, otherwise the second.
+    description: Threshold above which to choose the first option, otherwise the second
     required: true
     param_group: Options
     schema:
       type: number
+      description: Threshold above which to choose the first option, otherwise the second
       minimum: 0
       maximum: 1
+    runtime_required: true
 examples: []
 sources:
   - id: runtime
@@ -60,6 +66,34 @@ sources:
     resource: >-
       https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/select/_sources/threshold.md
     title: Archived select.threshold Markdown
+configuration_schema:
+  type: object
+  description: Select the first option if it exceeds a given threshold, else the second option.
+  additionalProperties: false
+  required:
+    - input
+    - output
+    - threshold
+  properties:
+    input:
+      type: array
+      description: List of the input columns to select from
+    output:
+      type: string
+      description: Name of the output column
+    threshold:
+      type: number
+      description: Threshold above which to choose the first option, otherwise the second
+      minimum: 0
+      maximum: 1
+    if:
+      $ref: '#/$defs/wrangles/commonProperties/if'
+    where:
+      $ref: '#/$defs/wrangles/commonProperties/where'
+    where_params:
+      $ref: '#/$defs/wrangles/commonProperties/where_params'
+schema_origin: upstream-docstring
+schema_adjustments: []
 ---
 
 # Threshold

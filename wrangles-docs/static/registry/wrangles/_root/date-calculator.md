@@ -31,39 +31,44 @@ capabilities:
   where_params: true
 parameters:
   - name: input
-    description: Name of the dates column.
+    description: Name of the dates column
     required: true
     param_group: I/O
     schema:
-      type: string
+      type:
+        - string
+        - integer
+      description: Name of the dates column
+    runtime_required: true
   - name: operation
-    description: Date operation.
+    description: Date operation
     required: false
     param_group: Options
     runtime_default: add
     schema:
       type: string
+      description: Date operation
       enum:
         - add
         - subtract
+    runtime_required: false
   - name: output
-    description: Name of the output column of dates.
+    description: Name of the output column of dates
     required: false
     param_group: I/O
     runtime_default: null
     schema:
-      type:
-        - string
-        - 'null'
+      type: string
+      description: Name of the output column of dates
+    runtime_required: false
   - name: time_unit
-    description: Time unit for operation.
+    description: time unit for operation
     required: false
     param_group: Options
     runtime_default: null
     schema:
-      type:
-        - string
-        - 'null'
+      type: string
+      description: time unit for operation
       enum:
         - years
         - months
@@ -73,15 +78,16 @@ parameters:
         - minutes
         - seconds
         - milliseconds
+    runtime_required: false
   - name: time_value
-    description: Time unit value for operation.
+    description: time unit value for operation
     required: false
     param_group: Options
     runtime_default: null
     schema:
-      type:
-        - number
-        - 'null'
+      type: number
+      description: time unit value for operation
+    runtime_required: false
 examples: []
 sources:
   - id: runtime
@@ -92,6 +98,50 @@ sources:
     resource: >-
       https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/date/_sources/date-calculator.md
     title: Archived date_calculator Markdown
+configuration_schema:
+  type: object
+  description: Add or Subtract time from a date
+  additionalProperties: false
+  required:
+    - input
+  properties:
+    input:
+      type:
+        - string
+        - integer
+      description: Name of the dates column
+    operation:
+      type: string
+      description: Date operation
+      enum:
+        - add
+        - subtract
+    output:
+      type: string
+      description: Name of the output column of dates
+    time_unit:
+      type: string
+      description: time unit for operation
+      enum:
+        - years
+        - months
+        - weeks
+        - days
+        - hours
+        - minutes
+        - seconds
+        - milliseconds
+    time_value:
+      type: number
+      description: time unit value for operation
+    if:
+      $ref: '#/$defs/wrangles/commonProperties/if'
+    where:
+      $ref: '#/$defs/wrangles/commonProperties/where'
+    where_params:
+      $ref: '#/$defs/wrangles/commonProperties/where_params'
+schema_origin: upstream-docstring
+schema_adjustments: []
 ---
 
 # Date Calculator

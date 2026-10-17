@@ -41,6 +41,8 @@ parameters:
         - string
         - integer
         - array
+      description: Name of the input column(s).
+    runtime_required: true
   - name: output
     description: Name of the output column(s).
     required: false
@@ -50,7 +52,8 @@ parameters:
       type:
         - string
         - array
-        - 'null'
+      description: Name of the output column(s).
+    runtime_required: false
 examples: []
 sources:
   - id: runtime
@@ -61,6 +64,33 @@ sources:
     resource: >-
       https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/select/_sources/length.md
     title: Archived select.length Markdown
+configuration_schema:
+  type: object
+  description: >-
+    Calculate the lengths of data in a column. The length depends on the data type e.g. text will be
+    the length of the text, lists will be the number of elements in the list.
+  required:
+    - input
+  properties:
+    input:
+      type:
+        - string
+        - integer
+        - array
+      description: Name of the input column(s).
+    output:
+      type:
+        - string
+        - array
+      description: Name of the output column(s).
+    if:
+      $ref: '#/$defs/wrangles/commonProperties/if'
+    where:
+      $ref: '#/$defs/wrangles/commonProperties/where'
+    where_params:
+      $ref: '#/$defs/wrangles/commonProperties/where_params'
+schema_origin: upstream-docstring
+schema_adjustments: []
 ---
 
 # Length

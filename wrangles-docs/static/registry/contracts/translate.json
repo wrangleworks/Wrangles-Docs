@@ -40,39 +40,34 @@
     "where": true,
     "where_params": true
   },
-  "parameters": [
-    {
-      "name": "input",
-      "description": "Name of the column to translate.",
-      "required": true,
-      "param_group": "I/O",
-      "schema": {
+  "configuration_schema": {
+    "type": "object",
+    "description": "Translate the input to a different language. Requires WrangleWorks Account and DeepL API Key (A free account for up to 500,000 characters per month is available).",
+    "additionalProperties": false,
+    "required": [
+      "input",
+      "output",
+      "target_language"
+    ],
+    "properties": {
+      "input": {
         "type": [
           "string",
           "integer",
           "array"
-        ]
-      }
-    },
-    {
-      "name": "output",
-      "description": "Name of the output column.",
-      "required": true,
-      "param_group": "I/O",
-      "schema": {
+        ],
+        "description": "Name of the column to translate"
+      },
+      "output": {
         "type": [
           "string",
           "array"
-        ]
-      }
-    },
-    {
-      "name": "target_language",
-      "description": "Code of the language to translate to.",
-      "required": true,
-      "param_group": "Options",
-      "schema": {
+        ],
+        "description": "Name of the output column"
+      },
+      "target_language": {
         "type": "string",
+        "description": "Code of the language to translate to",
         "enum": [
           "Bulgarian",
           "Chinese",
@@ -101,16 +96,10 @@
           "Spanish",
           "Swedish"
         ]
-      }
-    },
-    {
-      "name": "source_language",
-      "description": "Code of the language to translate from. If omitted, automatically detects the input language.",
-      "required": false,
-      "param_group": "Options",
-      "runtime_default": "AUTO",
-      "schema": {
+      },
+      "source_language": {
         "type": "string",
+        "description": "Code of the language to translate from. If omitted, automatically detects the input language",
         "enum": [
           "Auto",
           "Bulgarian",
@@ -138,7 +127,133 @@
           "Spanish",
           "Swedish"
         ]
+      },
+      "if": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/if"
+      },
+      "where": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/where"
+      },
+      "where_params": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/where_params"
       }
+    }
+  },
+  "schema_origin": "upstream-docstring",
+  "schema_adjustments": [],
+  "schema_source": {
+    "repository": "https://github.com/wrangleworks/WranglesPY",
+    "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+    "version": "1.20.5",
+    "extraction": "static-python-ast"
+  },
+  "parameters": [
+    {
+      "name": "input",
+      "description": "Name of the column to translate",
+      "required": true,
+      "param_group": "I/O",
+      "schema": {
+        "type": [
+          "string",
+          "integer",
+          "array"
+        ],
+        "description": "Name of the column to translate"
+      },
+      "runtime_required": true
+    },
+    {
+      "name": "output",
+      "description": "Name of the output column",
+      "required": true,
+      "param_group": "I/O",
+      "schema": {
+        "type": [
+          "string",
+          "array"
+        ],
+        "description": "Name of the output column"
+      },
+      "runtime_required": true
+    },
+    {
+      "name": "target_language",
+      "description": "Code of the language to translate to",
+      "required": true,
+      "param_group": "Options",
+      "schema": {
+        "type": "string",
+        "description": "Code of the language to translate to",
+        "enum": [
+          "Bulgarian",
+          "Chinese",
+          "Czech",
+          "Danish",
+          "Dutch",
+          "English (American)",
+          "English (British)",
+          "Estonian",
+          "Finnish",
+          "French",
+          "German",
+          "Greek",
+          "Hungarian",
+          "Italian",
+          "Japanese",
+          "Latvian",
+          "Lithuanian",
+          "Polish",
+          "Portuguese",
+          "Portuguese (Brazilian)",
+          "Romanian",
+          "Russian",
+          "Slovak",
+          "Slovenian",
+          "Spanish",
+          "Swedish"
+        ]
+      },
+      "runtime_required": true
+    },
+    {
+      "name": "source_language",
+      "description": "Code of the language to translate from. If omitted, automatically detects the input language",
+      "required": false,
+      "param_group": "Options",
+      "runtime_default": "AUTO",
+      "schema": {
+        "type": "string",
+        "description": "Code of the language to translate from. If omitted, automatically detects the input language",
+        "enum": [
+          "Auto",
+          "Bulgarian",
+          "Chinese",
+          "Czech",
+          "Danish",
+          "Dutch",
+          "English",
+          "Estonian",
+          "Finnish",
+          "French",
+          "German",
+          "Greek",
+          "Hungarian",
+          "Italian",
+          "Japanese",
+          "Latvian",
+          "Lithuanian",
+          "Polish",
+          "Portuguese",
+          "Romanian",
+          "Russian",
+          "Slovak",
+          "Slovenian",
+          "Spanish",
+          "Swedish"
+        ]
+      },
+      "runtime_required": false
     },
     {
       "name": "case",
@@ -146,12 +261,8 @@
       "required": false,
       "param_group": "Options",
       "runtime_default": null,
-      "schema": {
-        "type": [
-          "string",
-          "null"
-        ]
-      }
+      "schema": {},
+      "runtime_required": false
     },
     {
       "name": "if",

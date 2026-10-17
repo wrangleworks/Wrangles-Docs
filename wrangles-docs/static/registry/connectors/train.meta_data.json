@@ -1,0 +1,98 @@
+{
+  "schema_version": "0.2",
+  "type": "connector",
+  "catalog_id": "143",
+  "catalog_key": "connector.train.meta_data",
+  "catalog_kind": "connector",
+  "runtime_key": "train.meta_data",
+  "status": "active",
+  "title": "Train Meta Data",
+  "source": {
+    "repository": "https://github.com/wrangleworks/WranglesPY",
+    "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+    "version": "1.20.5",
+    "extraction": "static-python-ast"
+  },
+  "operations": {
+    "read": {
+      "type": "object",
+      "description": "Read the metadata for a Wrangle model.\nReturns a DataFrame with the following columns:\n    - id\n    - name\n    - type\n    - purpose\n    - status\n    - path\n    - batch_size\n    - tags\n    - notes\n    - created_by\n    - date_created\n    - modified_by\n    - date_modified\n    - variant\n    - settings\n",
+      "additionalProperties": false,
+      "required": [
+        "model_id"
+      ],
+      "properties": {
+        "model_id": {
+          "type": "string",
+          "description": "Specific model to read"
+        },
+        "columns": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/columns"
+        },
+        "not_columns": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/not_columns"
+        },
+        "where": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/where"
+        },
+        "where_params": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/where_params"
+        },
+        "order_by": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/order_by"
+        },
+        "if": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/if"
+        }
+      }
+    },
+    "write": {
+      "type": "object",
+      "description": "Update the metadata for a Wrangle model.\nThe following fields can be updated:\n    - name\n    - batch_size\n    - tags\n    - notes\n    - settings\n",
+      "additionalProperties": false,
+      "required": [
+        "model_id"
+      ],
+      "properties": {
+        "model_id": {
+          "type": "string",
+          "description": "Model to update"
+        },
+        "columns": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/columns"
+        },
+        "not_columns": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/not_columns"
+        },
+        "where": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/where"
+        },
+        "where_params": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/where_params"
+        },
+        "order_by": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/order_by"
+        },
+        "if": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/if"
+        }
+      }
+    }
+  },
+  "description": "Read the metadata for a Wrangle model.\nReturns a DataFrame with the following columns:\n    - id\n    - name\n    - type\n    - purpose\n    - status\n    - path\n    - batch_size\n    - tags\n    - notes\n    - created_by\n    - date_created\n    - modified_by\n    - date_modified\n    - variant\n    - settings",
+  "slug": "connectors/train.meta_data",
+  "visibility": "public",
+  "sources": [
+    {
+      "id": "runtime",
+      "resource": "https://github.com/wrangleworks/WranglesPY/tree/bd5f88fba479ec406b409cb2880689c54e72b298",
+      "title": "Pinned WranglesPY connector schema"
+    },
+    {
+      "id": "documentation-search",
+      "resource": "https://wrangles.io/python/connectors/train/meta_data",
+      "title": "Checked for matching guide; no matching material retrieved. Description derived from pinned schema."
+    }
+  ],
+  "guidance": "Read the metadata for a Wrangle model.\nReturns a DataFrame with the following columns:\n    - id\n    - name\n    - type\n    - purpose\n    - status\n    - path\n    - batch_size\n    - tags\n    - notes\n    - created_by\n    - date_created\n    - modified_by\n    - date_modified\n    - variant\n    - settings"
+}

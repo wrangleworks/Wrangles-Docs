@@ -31,24 +31,33 @@ capabilities:
   where_params: true
 parameters:
   - name: input
-    description: List of input columns.
+    description: List of input columns
     required: true
     param_group: I/O
     schema:
-      type: array
+      type:
+        - array
+        - string
+        - integer
+      description: List of input columns
+    runtime_required: true
   - name: output
-    description: Name of the output column.
+    description: Name of the output column
     required: true
     param_group: I/O
     schema:
       type: string
+      description: Name of the output column
+    runtime_required: true
   - name: include_empty
-    description: Whether to include empty columns in the created list.
+    description: Whether to include empty columns in the created list
     required: false
     param_group: Options
     runtime_default: false
     schema:
       type: boolean
+      description: Whether to include empty columns in the created list
+    runtime_required: false
 examples: []
 sources:
   - id: runtime
@@ -59,6 +68,34 @@ sources:
     resource: >-
       https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/merge/_sources/to-list.md
     title: Archived merge.to_list Markdown
+configuration_schema:
+  type: object
+  description: Take multiple columns and merge them to a list.
+  additionalProperties: false
+  required:
+    - input
+    - output
+  properties:
+    input:
+      type:
+        - array
+        - string
+        - integer
+      description: List of input columns
+    output:
+      type: string
+      description: Name of the output column
+    include_empty:
+      type: boolean
+      description: Whether to include empty columns in the created list
+    if:
+      $ref: '#/$defs/wrangles/commonProperties/if'
+    where:
+      $ref: '#/$defs/wrangles/commonProperties/where'
+    where_params:
+      $ref: '#/$defs/wrangles/commonProperties/where_params'
+schema_origin: upstream-docstring
+schema_adjustments: []
 ---
 
 # To List

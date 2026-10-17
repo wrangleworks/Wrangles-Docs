@@ -34,120 +34,267 @@ capabilities:
 parameters:
   - name: input
     description: >-
-      List of 3 to 5 columns -> [results, suppliers, part_codes, mpns (optional), descriptions
-      (optional)].
+      Three to five ordered column names: results, suppliers, part_codes, optional MPNs, optional
+      descriptions. Results cells contain lists of payloads with search_metadata and search_results.
+      Text-input cells accept scalar values or lists. To use descriptions without an MPN, provide
+      five inputs and leave the fourth column's values blank.
     required: true
     param_group: I/O
     schema:
       type: array
+      minItems: 3
+      maxItems: 5
+      items:
+        type: string
+      description: >-
+        Three to five ordered column names: results, suppliers, part_codes, optional MPNs, optional
+        descriptions. Results cells contain lists of payloads with search_metadata and
+        search_results. Text-input cells accept scalar values or lists. To use descriptions without
+        an MPN, provide five inputs and leave the fourth column's values blank.
+    runtime_required: true
   - name: output
     description: >-
-      Output column for the dictionaries. If a list of 2 is provided, outputs [dicts_column,
-      pretty_strings_column].
+      One name or a one-element list receives scored dictionaries. Two names receive parallel
+      dictionary and formatted-summary lists in that order. Each row retains its result lists;
+      results are not expanded into rows. Part-code evidence and counts remain nested in each
+      dictionary, not in a third output column. Empty or non-list results cells produce empty lists.
     required: true
     param_group: I/O
     schema:
       type:
         - string
         - array
+      minItems: 1
+      maxItems: 2
+      items:
+        type: string
+      description: >-
+        One name or a one-element list receives scored dictionaries. Two names receive parallel
+        dictionary and formatted-summary lists in that order. Each row retains its result lists;
+        results are not expanded into rows. Part-code evidence and counts remain nested in each
+        dictionary, not in a third output column. Empty or non-list results cells produce empty
+        lists.
+    runtime_required: true
   - name: must_match_part_code
-    description: If true, filters out results that don't satisfy the allowed match types.
+    description: >-
+      If true, mark results filtered when their scoring match category is not allowed. If false,
+      keep such results eligible, while part_code_found still reports category eligibility.
+      Blacklisting applies in both cases. Filtered dictionaries remain in the output with their
+      scores and reasons.
     required: false
     param_group: Options
     runtime_default: true
     schema:
       type: boolean
+      default: true
+      description: >-
+        If true, mark results filtered when their scoring match category is not allowed. If false,
+        keep such results eligible, while part_code_found still reports category eligibility.
+        Blacklisting applies in both cases. Filtered dictionaries remain in the output with their
+        scores and reasons.
+    runtime_required: false
   - name: allow_mpn_exact
-    description: Treat exact MPN matches as valid part code matches.
+    description: >-
+      Allow the mpn_exact scoring category. Containment of an MPN with at least four normalized
+      characters can receive this category even when its diagnostic evidence is partial. Does not
+      change scores or evidence.
     required: false
     param_group: Options
     runtime_default: true
     schema:
       type: boolean
+      default: true
+      description: >-
+        Allow the mpn_exact scoring category. Containment of an MPN with at least four normalized
+        characters can receive this category even when its diagnostic evidence is partial. Does not
+        change scores or evidence.
+    runtime_required: false
   - name: allow_mpn_partial
-    description: Treat partial MPN matches as valid part code matches.
+    description: >-
+      Allow the mpn_partial scoring category, not every partial diagnostic evidence record. MPN
+      categories take precedence over other-code categories.
     required: false
     param_group: Options
     runtime_default: true
     schema:
       type: boolean
+      default: true
+      description: >-
+        Allow the mpn_partial scoring category, not every partial diagnostic evidence record. MPN
+        categories take precedence over other-code categories.
+    runtime_required: false
   - name: allow_other_exact
-    description: Treat exact other part code matches as valid part code matches.
+    description: >-
+      Allow other_code_exact when no positive MPN match is recognized. Normalized containment can
+      receive exact points. Disallowing an MPN category does not fall back to this category.
     required: false
     param_group: Options
     runtime_default: true
     schema:
       type: boolean
+      default: true
+      description: >-
+        Allow other_code_exact when no positive MPN match is recognized. Normalized containment can
+        receive exact points. Disallowing an MPN category does not fall back to this category.
+    runtime_required: false
   - name: allow_other_partial
-    description: Treat partial other part code matches as valid part code matches.
+    description: >-
+      Allow other_code_partial when no positive MPN match is recognized. Applies to the scoring
+      category, not the diagnostic match_level.
     required: false
     param_group: Options
     runtime_default: true
     schema:
       type: boolean
+      default: true
+      description: >-
+        Allow other_code_partial when no positive MPN match is recognized. Applies to the scoring
+        category, not the diagnostic match_level.
+    runtime_required: false
   - name: blacklist_keywords
-    description: Comma-separated list or array of keywords to filter out URLs containing them.
+    description: >-
+      Literal substrings of the full lowercased URL to mark as filtered. A comma-separated string is
+      trimmed and lowercased; list entries are used as supplied, so provide trimmed lowercase
+      strings. Does not match titles or snippets and applies even when must_match_part_code is
+      false.
     required: false
     param_group: Options
     runtime_default: ''
     schema:
-      type: string
+      type:
+        - string
+        - array
+      items:
+        type: string
+      default: ''
+      description: >-
+        Literal substrings of the full lowercased URL to mark as filtered. A comma-separated string
+        is trimmed and lowercased; list entries are used as supplied, so provide trimmed lowercase
+        strings. Does not match titles or snippets and applies even when must_match_part_code is
+        false.
+    runtime_required: false
   - name: mpn_exact_score
-    description: Mpn Exact Score value accepted by the runtime.
+    description: >-
+      Exact-score MPN points, including normalized containment for inputs of at least four
+      characters. Only the higher MPN or other-code contribution is added; a tie prefers the MPN
+      explanation. Keep exact weights positive.
     required: false
     param_group: Options
     runtime_default: 8
     schema:
       type: number
+      default: 8
+      description: >-
+        Exact-score MPN points, including normalized containment for inputs of at least four
+        characters. Only the higher MPN or other-code contribution is added; a tie prefers the MPN
+        explanation. Keep exact weights positive.
+    runtime_required: false
   - name: mpn_partial_base
-    description: Mpn Partial Base value accepted by the runtime.
+    description: >-
+      Base points for partial/variant MPN scoring. Ordinary normalized containment already receives
+      exact points; this is not a weight for every partial diagnostic evidence record.
     required: false
     param_group: Options
     runtime_default: 4
     schema:
       type: number
+      default: 4
+      description: >-
+        Base points for partial/variant MPN scoring. Ordinary normalized containment already
+        receives exact points; this is not a weight for every partial diagnostic evidence record.
+    runtime_required: false
   - name: part_code_exact_score
-    description: Part Code Exact Score value accepted by the runtime.
+    description: >-
+      Exact-score other-code points, including normalized containment for inputs of at least four
+      characters. Not added on top of the MPN score.
     required: false
     param_group: Options
     runtime_default: 6
     schema:
       type: number
+      default: 6
+      description: >-
+        Exact-score other-code points, including normalized containment for inputs of at least four
+        characters. Not added on top of the MPN score.
+    runtime_required: false
   - name: part_code_partial_base
-    description: Part Code Partial Base value accepted by the runtime.
+    description: >-
+      Base points for partial/variant other-code scoring. Does not change diagnostic levels;
+      containment can already receive exact points.
     required: false
     param_group: Options
     runtime_default: 2
     schema:
       type: number
+      default: 2
+      description: >-
+        Base points for partial/variant other-code scoring. Does not change diagnostic levels;
+        containment can already receive exact points.
+    runtime_required: false
   - name: supplier_exact_score
-    description: Supplier Exact Score value accepted by the runtime.
+    description: >-
+      Points when a normalized supplier name equals a complete title, snippet, or URL field. An
+      embedded name instead uses supplier_partial_base.
     required: false
     param_group: Options
     runtime_default: 3
     schema:
       type: number
+      default: 3
+      description: >-
+        Points when a normalized supplier name equals a complete title, snippet, or URL field. An
+        embedded name instead uses supplier_partial_base.
+    runtime_required: false
   - name: supplier_partial_base
-    description: Supplier Partial Base value accepted by the runtime.
+    description: >-
+      Base for embedded supplier text; reverse containment uses 95 percent of the base, and fuzzy
+      matches at the fixed 0.8 cutoff use their similarity times the base. Only the strongest text
+      match contributes.
     required: false
     param_group: Options
     runtime_default: 1
     schema:
       type: number
+      default: 1
+      description: >-
+        Base for embedded supplier text; reverse containment uses 95 percent of the base, and fuzzy
+        matches at the fixed 0.8 cutoff use their similarity times the base. Only the strongest text
+        match contributes.
+    runtime_required: false
   - name: context_match_base
-    description: Context Match Base value accepted by the runtime.
+    description: >-
+      Points when all normalized unique input context terms match. Terms include suppliers, codes,
+      MPNs, full descriptions, and description words longer than two characters. The matched
+      fraction times this base is rounded to one decimal place; repeated occurrences do not add
+      points.
     required: false
     param_group: Options
     runtime_default: 2
     schema:
       type: number
+      default: 2
+      description: >-
+        Points when all normalized unique input context terms match. Terms include suppliers, codes,
+        MPNs, full descriptions, and description words longer than two characters. The matched
+        fraction times this base is rounded to one decimal place; repeated occurrences do not add
+        points.
+    runtime_required: false
   - name: fuzzy_match_threshold
-    description: Fuzzy Match Threshold value accepted by the runtime.
+    description: >-
+      Similarity cutoff for context terms and supplier-text recognition in brand_found. Does not
+      change the fixed supplier fuzzy-scoring cutoff, part-code evidence levels, or allowed scoring
+      categories. Domain evidence can set brand_found independently of this threshold.
     required: false
     param_group: Options
     runtime_default: 0.8
     schema:
       type: number
+      default: 0.8
+      description: >-
+        Similarity cutoff for context terms and supplier-text recognition in brand_found. Does not
+        change the fixed supplier fuzzy-scoring cutoff, part-code evidence levels, or allowed
+        scoring categories. Domain evidence can set brand_found independently of this threshold.
+    runtime_required: false
 examples: []
 sources:
   - id: runtime
@@ -158,6 +305,153 @@ sources:
     resource: >-
       https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/compute/_sources/score-search-results.md
     title: Archived compute.score_search_results Markdown
+configuration_schema:
+  type: object
+  description: >-
+    Deduplicates and ranks structured search results using part-number, supplier text, context,
+    original-rank, query-order, supplier-domain, and product-URL signals. Unfiltered results come
+    first; filtered results are retained at the end, with each group sorted by descending score.
+    Each result contains summary, scoring_details, pricing, metadata, reduced part_code_matches, and
+    part_code_match_count before evidence reduction. Numeric part-match categories use broad
+    normalized containment and can differ from the exact, stripped, and partial diagnostic evidence
+    levels. Does not search again or visit result pages. See docs/search_result_scoring.md for the
+    full contract.
+  additionalProperties: false
+  required:
+    - input
+    - output
+  properties:
+    input:
+      type: array
+      minItems: 3
+      maxItems: 5
+      items:
+        type: string
+      description: >-
+        Three to five ordered column names: results, suppliers, part_codes, optional MPNs, optional
+        descriptions. Results cells contain lists of payloads with search_metadata and
+        search_results. Text-input cells accept scalar values or lists. To use descriptions without
+        an MPN, provide five inputs and leave the fourth column's values blank.
+    output:
+      type:
+        - string
+        - array
+      minItems: 1
+      maxItems: 2
+      items:
+        type: string
+      description: >-
+        One name or a one-element list receives scored dictionaries. Two names receive parallel
+        dictionary and formatted-summary lists in that order. Each row retains its result lists;
+        results are not expanded into rows. Part-code evidence and counts remain nested in each
+        dictionary, not in a third output column. Empty or non-list results cells produce empty
+        lists.
+    must_match_part_code:
+      type: boolean
+      default: true
+      description: >-
+        If true, mark results filtered when their scoring match category is not allowed. If false,
+        keep such results eligible, while part_code_found still reports category eligibility.
+        Blacklisting applies in both cases. Filtered dictionaries remain in the output with their
+        scores and reasons.
+    allow_mpn_exact:
+      type: boolean
+      default: true
+      description: >-
+        Allow the mpn_exact scoring category. Containment of an MPN with at least four normalized
+        characters can receive this category even when its diagnostic evidence is partial. Does not
+        change scores or evidence.
+    allow_mpn_partial:
+      type: boolean
+      default: true
+      description: >-
+        Allow the mpn_partial scoring category, not every partial diagnostic evidence record. MPN
+        categories take precedence over other-code categories.
+    allow_other_exact:
+      type: boolean
+      default: true
+      description: >-
+        Allow other_code_exact when no positive MPN match is recognized. Normalized containment can
+        receive exact points. Disallowing an MPN category does not fall back to this category.
+    allow_other_partial:
+      type: boolean
+      default: true
+      description: >-
+        Allow other_code_partial when no positive MPN match is recognized. Applies to the scoring
+        category, not the diagnostic match_level.
+    blacklist_keywords:
+      type:
+        - string
+        - array
+      items:
+        type: string
+      default: ''
+      description: >-
+        Literal substrings of the full lowercased URL to mark as filtered. A comma-separated string
+        is trimmed and lowercased; list entries are used as supplied, so provide trimmed lowercase
+        strings. Does not match titles or snippets and applies even when must_match_part_code is
+        false.
+    mpn_exact_score:
+      type: number
+      default: 8
+      description: >-
+        Exact-score MPN points, including normalized containment for inputs of at least four
+        characters. Only the higher MPN or other-code contribution is added; a tie prefers the MPN
+        explanation. Keep exact weights positive.
+    mpn_partial_base:
+      type: number
+      default: 4
+      description: >-
+        Base points for partial/variant MPN scoring. Ordinary normalized containment already
+        receives exact points; this is not a weight for every partial diagnostic evidence record.
+    part_code_exact_score:
+      type: number
+      default: 6
+      description: >-
+        Exact-score other-code points, including normalized containment for inputs of at least four
+        characters. Not added on top of the MPN score.
+    part_code_partial_base:
+      type: number
+      default: 2
+      description: >-
+        Base points for partial/variant other-code scoring. Does not change diagnostic levels;
+        containment can already receive exact points.
+    supplier_exact_score:
+      type: number
+      default: 3
+      description: >-
+        Points when a normalized supplier name equals a complete title, snippet, or URL field. An
+        embedded name instead uses supplier_partial_base.
+    supplier_partial_base:
+      type: number
+      default: 1
+      description: >-
+        Base for embedded supplier text; reverse containment uses 95 percent of the base, and fuzzy
+        matches at the fixed 0.8 cutoff use their similarity times the base. Only the strongest text
+        match contributes.
+    context_match_base:
+      type: number
+      default: 2
+      description: >-
+        Points when all normalized unique input context terms match. Terms include suppliers, codes,
+        MPNs, full descriptions, and description words longer than two characters. The matched
+        fraction times this base is rounded to one decimal place; repeated occurrences do not add
+        points.
+    fuzzy_match_threshold:
+      type: number
+      default: 0.8
+      description: >-
+        Similarity cutoff for context terms and supplier-text recognition in brand_found. Does not
+        change the fixed supplier fuzzy-scoring cutoff, part-code evidence levels, or allowed
+        scoring categories. Domain evidence can set brand_found independently of this threshold.
+    if:
+      $ref: '#/$defs/wrangles/commonProperties/if'
+    where:
+      $ref: '#/$defs/wrangles/commonProperties/where'
+    where_params:
+      $ref: '#/$defs/wrangles/commonProperties/where_params'
+schema_origin: upstream-docstring
+schema_adjustments: []
 ---
 
 # Score Search Results

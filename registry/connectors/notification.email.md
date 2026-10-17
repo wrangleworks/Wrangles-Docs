@@ -1,0 +1,126 @@
+---
+schema_version: '0.2'
+type: connector
+catalog_id: '124'
+catalog_key: connector.notification.email
+catalog_kind: connector
+runtime_key: notification.email
+status: active
+title: Email
+source:
+  repository: https://github.com/wrangleworks/WranglesPY
+  revision: bd5f88fba479ec406b409cb2880689c54e72b298
+  version: 1.20.5
+  extraction: static-python-ast
+operations:
+  run:
+    type: object
+    description: Send an email
+    required:
+      - user
+      - password
+      - subject
+      - body
+    properties:
+      user:
+        type: string
+        description: >-
+          The user to send the email from. This may be your full email address, but depends on your
+          service
+      password:
+        type: string
+        description: The password for the user to send from
+      subject:
+        type: string
+        description: The subject of the email
+      body:
+        type: string
+        description: The body of the notification
+      host:
+        type: string
+        description: >-
+          The SMTP server for your service. This may be omitted for common services such as yahoo,
+          gmail or hotmail but will be needed otherwise.
+      to:
+        type:
+          - string
+          - array
+        description: >-
+          An email or list of emails to send the email to. If omitted, the email will be sent to the
+          sender.
+      cc:
+        type:
+          - string
+          - array
+        description: An email or list of emails to cc the email to.
+      bcc:
+        type:
+          - string
+          - array
+        description: Blind Carbon Copy email address(es).
+      name:
+        type: string
+        description: The name to show the email as being from. If omitted, defaults to the user.
+      domain:
+        type: string
+        description: The domain to send the email under. If omitted, it will be inferred from the user
+      attachment:
+        type:
+          - string
+          - array
+        description: >-
+          A file path & name to attach to the message. Supports a single file or a list of files.
+          Must be supported by the specific notification type.
+      format:
+        type: string
+        description: The format of the message. One of 'text', 'markdown' or 'html'. Default is 'text'
+        default: text
+description: Send an email
+slug: connectors/notification.email
+visibility: public
+sources:
+  - id: runtime
+    resource: https://github.com/wrangleworks/WranglesPY/tree/bd5f88fba479ec406b409cb2880689c54e72b298
+    title: Pinned WranglesPY connector schema
+  - id: existing-docs
+    resource: wrangles-docs/registry-docs/python/connectors/notification/email.md
+    title: Existing connector documentation
+---
+
+# Email
+
+> Added **v0.5**
+
+Send an email - such as to alert someone when a recipe is finished or if it fails.
+
+### Run
+### Recipe
+```yaml
+run:
+  on_failure:
+    - notification.email:
+        user: user@domain.com
+        password: password
+        subject: subject
+        body: body
+        host: smtp.service
+        to: example@email.com
+        cc:
+          - example@email.com
+          - example2@email.com
+        bcc:
+          - boss@email.com
+        name: Joe Bloggs
+        domain: my_domain.com
+```
+
+### Function
+```python
+from wrangles.connectors.notification import email
+email.run(
+    user = 'user@domain.com',
+    password = 'password',
+    subject = 'subject',
+    body = 'body'
+)
+```

@@ -40,6 +40,44 @@
     "where": true,
     "where_params": true
   },
+  "configuration_schema": {
+    "type": "object",
+    "description": "Apply a SQL command to the current dataframe. Only SELECT statements are supported - the result will be the output.",
+    "additionalProperties": false,
+    "required": [
+      "command"
+    ],
+    "properties": {
+      "command": {
+        "type": "string",
+        "description": "SQL Command. The table is called df. For specific SQL syntax, this uses the SQLite dialect."
+      },
+      "params": {
+        "type": [
+          "array",
+          "object"
+        ],
+        "description": "Variables to use in conjunctions with query.\nThis allows the query to be parameterized.\nThis uses sqlite syntax (? or :name)"
+      },
+      "if": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/if"
+      },
+      "where": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/where_special"
+      },
+      "where_params": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/where_params"
+      }
+    }
+  },
+  "schema_origin": "upstream-docstring",
+  "schema_adjustments": [],
+  "schema_source": {
+    "repository": "https://github.com/wrangleworks/WranglesPY",
+    "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+    "version": "1.20.5",
+    "extraction": "static-python-ast"
+  },
   "parameters": [
     {
       "name": "command",
@@ -47,22 +85,25 @@
       "required": true,
       "param_group": "Options",
       "schema": {
-        "type": "string"
-      }
+        "type": "string",
+        "description": "SQL Command. The table is called df. For specific SQL syntax, this uses the SQLite dialect."
+      },
+      "runtime_required": true
     },
     {
       "name": "params",
-      "description": "Variables to use in conjunctions with query. This allows the query to be parameterized. This uses sqlite syntax (? or :name).",
+      "description": "Variables to use in conjunctions with query.\nThis allows the query to be parameterized.\nThis uses sqlite syntax (? or :name)",
       "required": false,
       "param_group": "Options",
       "runtime_default": null,
       "schema": {
         "type": [
           "array",
-          "object",
-          "null"
-        ]
-      }
+          "object"
+        ],
+        "description": "Variables to use in conjunctions with query.\nThis allows the query to be parameterized.\nThis uses sqlite syntax (? or :name)"
+      },
+      "runtime_required": false
     },
     {
       "name": "preserve_index",
@@ -70,9 +111,8 @@
       "required": false,
       "param_group": "Formatting",
       "runtime_default": false,
-      "schema": {
-        "type": "boolean"
-      }
+      "schema": {},
+      "runtime_required": false
     },
     {
       "name": "preserve_data_types",
@@ -80,9 +120,8 @@
       "required": false,
       "param_group": "Options",
       "runtime_default": true,
-      "schema": {
-        "type": "boolean"
-      }
+      "schema": {},
+      "runtime_required": false
     },
     {
       "name": "if",

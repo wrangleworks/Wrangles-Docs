@@ -1,0 +1,145 @@
+{
+  "schema_version": "0.2",
+  "type": "connector",
+  "catalog_id": "108",
+  "catalog_key": "connector.concurrent",
+  "catalog_kind": "connector",
+  "runtime_key": "concurrent",
+  "status": "active",
+  "title": "Concurrent",
+  "source": {
+    "repository": "https://github.com/wrangleworks/WranglesPY",
+    "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+    "version": "1.20.5",
+    "extraction": "static-python-ast"
+  },
+  "operations": {
+    "read": {
+      "type": "object",
+      "description": "The concurrent connector lets you read multiple sources simultaneously rather than sequentially. If the outputs of the reads are not otherwise aggregated, they will be merged together via a union.",
+      "required": [
+        "read"
+      ],
+      "properties": {
+        "read": {
+          "type": "array",
+          "description": "Reads to be run concurrently",
+          "minItems": 1,
+          "items": [
+            {
+              "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/read/items"
+            }
+          ]
+        },
+        "max_concurrency": {
+          "type": "integer",
+          "description": "The maximum number to execute in parallel. If there are more than this, the rest will be queued.",
+          "minimum": 1
+        },
+        "columns": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/columns"
+        },
+        "not_columns": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/not_columns"
+        },
+        "where": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/where"
+        },
+        "where_params": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/where_params"
+        },
+        "order_by": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/order_by"
+        },
+        "if": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/if"
+        }
+      }
+    },
+    "run": {
+      "type": "object",
+      "description": "The concurrent connector lets you run multiple actions simultaneously rather than sequentially",
+      "required": [
+        "run"
+      ],
+      "properties": {
+        "run": {
+          "type": "array",
+          "description": "Actions to run concurrently",
+          "minItems": 1,
+          "items": [
+            {
+              "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/run/items"
+            }
+          ]
+        },
+        "max_concurrency": {
+          "type": "integer",
+          "description": "The maximum number to execute in parallel. If there are more than this, the rest will be queued.",
+          "minimum": 1
+        },
+        "if": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/run/commonProperties/if"
+        }
+      }
+    },
+    "write": {
+      "type": "object",
+      "description": "The concurrent connector lets you run multiple write connectors in parallel rather than sequentially",
+      "required": [
+        "write"
+      ],
+      "properties": {
+        "write": {
+          "type": "array",
+          "description": "Writes to run concurrently",
+          "minItems": 1,
+          "items": [
+            {
+              "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/items"
+            }
+          ]
+        },
+        "max_concurrency": {
+          "type": "integer",
+          "description": "The maximum number to execute in parallel. If there are more than this, the rest will be queued.",
+          "minimum": 1
+        },
+        "columns": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/columns"
+        },
+        "not_columns": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/not_columns"
+        },
+        "where": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/where"
+        },
+        "where_params": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/where_params"
+        },
+        "order_by": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/order_by"
+        },
+        "if": {
+          "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/write/commonProperties/if"
+        }
+      }
+    }
+  },
+  "description": "The concurrent connector lets you read multiple sources simultaneously rather than sequentially. If the outputs of the reads are not otherwise aggregated, they will be merged together via a union.",
+  "slug": "connectors/concurrent",
+  "visibility": "public",
+  "sources": [
+    {
+      "id": "runtime",
+      "resource": "https://github.com/wrangleworks/WranglesPY/tree/bd5f88fba479ec406b409cb2880689c54e72b298",
+      "title": "Pinned WranglesPY connector schema"
+    },
+    {
+      "id": "existing-docs",
+      "resource": "wrangles-docs/registry-docs/python/connectors/concurrent.md",
+      "title": "Existing connector documentation"
+    }
+  ],
+  "guidance": "By default, all functions executed by a recipe happen sequentially. The concurrent connector allows functions to be executed in parallel.\n\nClick [here](/py/concurrent) to learn about the concurrent wrangle.\n\n### Read\n### Recipe\n```yaml\nread:\n  - union:\n      sources:\n        - concurrent:\n            read:\n              - file:\n                  name: file1.xlsx\n              - file:\n                  name: file2.xlsx\n              - file:\n                  name: file3.csv\n```\n\n### Write\n### Recipe\n```yaml\nwrite:\n  - concurrent:\n      write:\n        - file:\n            name: file1.xlsx\n            columns:\n              - col1\n              - col2\n        - file:\n            name: file2.xlsx\n            columns:\n              - col3\n              - col4\n```\n\n### Run\n\nRun multiple actions concurrently.\n\n### Recipe\n```yaml\nrun:\n  on_start:\n    - concurrent:\n        run:\n          - custom.my_function:\n              category: Hand Tools\n          - custom.my_function:\n              category: Power Tools\n          - custom.my_function:\n              category: Hardware\n```"
+}

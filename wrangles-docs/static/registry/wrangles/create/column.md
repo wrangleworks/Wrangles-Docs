@@ -38,6 +38,8 @@ parameters:
       type:
         - string
         - array
+      description: 'Name or list of names of new columns or column_name: value pairs.'
+    runtime_required: true
   - name: value
     description: >-
       (Optional) Value(s) to add in the new column(s). If using a dictionary in output, value can
@@ -52,7 +54,10 @@ parameters:
         - object
         - array
         - boolean
-        - 'null'
+      description: >-
+        (Optional) Value(s) to add in the new column(s). If using a dictionary in output, value can
+        only be a string.
+    runtime_required: false
   - name: value_if_exists
     description: >-
       Determines behaviour when the output column already exists. existing (default): leave the
@@ -63,10 +68,15 @@ parameters:
     runtime_default: existing
     schema:
       type: string
+      description: >-
+        Determines behaviour when the output column already exists. existing (default): leave the
+        column unchanged. coalesce: fill empty/null cells with the new value, keeping non-null
+        cells. new: overwrite the entire column with the new value.
       enum:
         - existing
         - coalesce
         - new
+    runtime_required: false
   - name: coalesce_value
     description: >-
       Only used when value_if_exists is coalesce. Determines which side is preferred when both the
@@ -78,9 +88,15 @@ parameters:
     runtime_default: existing
     schema:
       type: string
+      description: >-
+        Only used when value_if_exists is coalesce. Determines which side is preferred when both the
+        existing and new values are non-empty. existing (default): keep the existing value, only
+        fill empty/null cells with the new value. new: keep the new value, only fall back to the
+        existing value where the new value is empty/null.
       enum:
         - existing
         - new
+    runtime_required: false
 examples: []
 sources:
   - id: runtime
@@ -91,6 +107,56 @@ sources:
     resource: >-
       https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/create/_sources/column.md
     title: Archived create.column Markdown
+configuration_schema:
+  type: object
+  description: Create column(s) with a user defined value. Defaults to None (empty).
+  additionalProperties: false
+  required:
+    - output
+  properties:
+    output:
+      type:
+        - string
+        - array
+      description: 'Name or list of names of new columns or column_name: value pairs.'
+    value:
+      type:
+        - string
+        - number
+        - object
+        - array
+        - boolean
+      description: >-
+        (Optional) Value(s) to add in the new column(s). If using a dictionary in output, value can
+        only be a string.
+    value_if_exists:
+      type: string
+      description: >-
+        Determines behaviour when the output column already exists. existing (default): leave the
+        column unchanged. coalesce: fill empty/null cells with the new value, keeping non-null
+        cells. new: overwrite the entire column with the new value.
+      enum:
+        - existing
+        - coalesce
+        - new
+    coalesce_value:
+      type: string
+      description: >-
+        Only used when value_if_exists is coalesce. Determines which side is preferred when both the
+        existing and new values are non-empty. existing (default): keep the existing value, only
+        fill empty/null cells with the new value. new: keep the new value, only fall back to the
+        existing value where the new value is empty/null.
+      enum:
+        - existing
+        - new
+    if:
+      $ref: '#/$defs/wrangles/commonProperties/if'
+    where:
+      $ref: '#/$defs/wrangles/commonProperties/where'
+    where_params:
+      $ref: '#/$defs/wrangles/commonProperties/where_params'
+schema_origin: upstream-docstring
+schema_adjustments: []
 ---
 
 # Column

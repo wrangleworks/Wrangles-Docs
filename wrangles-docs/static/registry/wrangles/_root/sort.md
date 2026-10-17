@@ -35,16 +35,18 @@ parameters:
     required: false
     param_group: Formatting
     runtime_default: true
-    schema:
-      type: boolean
+    schema: {}
+    runtime_required: false
   - name: by
-    description: Name or list of the column(s) to sort by.
+    description: Name or list of the column(s) to sort by
     required: true
     param_group: I/O
     schema:
       type:
         - string
         - array
+      description: Name or list of the column(s) to sort by
+    runtime_required: false
   - name: ascending
     description: >-
       Sort ascending vs. descending. Specify a list to sort multiple columns in different orders. If
@@ -57,6 +59,10 @@ parameters:
         - array
       items:
         type: boolean
+      description: >-
+        Sort ascending vs. descending. Specify a list to sort multiple columns in different orders.
+        If this is a list of bools then it must match the length of the by.
+    runtime_required: false
 examples: []
 sources:
   - id: runtime
@@ -67,6 +73,35 @@ sources:
     resource: >-
       https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/select/_sources/sort.md
     title: Archived sort Markdown
+configuration_schema:
+  type: object
+  description: Sort the data
+  additionalProperties: true
+  required:
+    - by
+  properties:
+    by:
+      type:
+        - string
+        - array
+      description: Name or list of the column(s) to sort by
+    ascending:
+      type:
+        - boolean
+        - array
+      items:
+        type: boolean
+      description: >-
+        Sort ascending vs. descending. Specify a list to sort multiple columns in different orders.
+        If this is a list of bools then it must match the length of the by.
+    if:
+      $ref: '#/$defs/wrangles/commonProperties/if'
+    where:
+      $ref: '#/$defs/wrangles/commonProperties/where_special'
+    where_params:
+      $ref: '#/$defs/wrangles/commonProperties/where_params'
+schema_origin: upstream-docstring
+schema_adjustments: []
 ---
 
 # Sort

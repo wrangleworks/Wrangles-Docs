@@ -13,6 +13,10 @@ This is the public, agent-readable pre-production bundle. Use `manifest.json`
 for structured discovery.
 
 - [`accordion`](wrangles/_root/accordion.md): Apply a series of wrangles to column(s) containing lists. The wrangles will be applied to each element in the list and the results will be returned back as a list.
+- [`ai.answers`](wrangles/ai/answers.md): Answers any combination of `choose`, `score`, and `true_false` questions about the input with structured results. Accepts multiple named questions in one provider request per row. Question labels determine default output names.
+- [`ai.choose`](wrangles/ai/choose.md): Answers which option best fits the input, with the choice, confidence, and complete probabilities. Accepts multiple named questions in one provider request per row. Question labels determine default output names.
+- [`ai.score`](wrangles/ai/score.md): Answers where the input falls along ordered criteria, with the native score, confidence, and complete probabilities. Accepts multiple named questions in one provider request per row. Question labels determine default output names.
+- [`ai.true_false`](wrangles/ai/true-false.md): Answers how likely a statement is to be true for the input, with probability_true and the supplied true_criteria. Accepts multiple named questions in one provider request per row. Question labels determine default output names.
 - [`batch`](wrangles/_root/batch.md): Split the data into batches for executing a list of wrangles. Use this in situations such as where the intermediate data is too large to fit in memory.
 - [`classify`](wrangles/_root/classify.md): Run classify wrangles on the specified columns. Requires WrangleWorks Account and Subscription.
 - [`clean_whitespaces`](wrangles/_root/clean-whitespaces.md): Condense multiple spaces to a single space and convert special space characters to a standard space.
@@ -26,6 +30,7 @@ for structured discovery.
 - [`convert.fraction_to_decimal`](wrangles/convert/fraction-to-decimal.md): Convert fractions to decimals.
 - [`convert.from_json`](wrangles/convert/from-json.md): Parse JSON text into lists, objects, scalars, booleans, or null values.
 - [`convert.from_yaml`](wrangles/convert/from-yaml.md): Convert a YAML representation into an object.
+- [`convert.parse`](wrangles/convert/parse.md): Parse JSON, Python, YAML, or human-readable JSON-like structures into JSON-compatible Python values. YAML-only numeric forms such as 00123 and 12:34 remain strings. YAML anchors, aliases, and explicit tags are not supported. Parsed values retain their Python types, preserving integer precision in mixed columns. Excessively nested inputs use the configured default or raise a contextual ValueError.
 - [`convert.to_json`](wrangles/convert/to-json.md): Convert an object to a JSON representation.
 - [`convert.to_yaml`](wrangles/convert/to-yaml.md): Convert an object to a YAML representation.
 - [`copy`](wrangles/_root/copy.md): Make a copy of a column or a list of columns.
@@ -64,6 +69,8 @@ for structured discovery.
 - [`huggingface`](wrangles/_root/huggingface.md): Use a model from huggingface.
 - [`log`](wrangles/_root/log.md): Log the current status of the dataframe.
 - [`lookup`](wrangles/_root/lookup.md): Lookup values from a saved lookup wrangle.
+- [`lookup.key`](wrangles/lookup/key.md): Look up values using a saved key lookup model. Requires a WrangleWorks account and a model with purpose lookup and stored variant key. Missing or unknown variants are rejected; use lookup for legacy models.
+- [`lookup.semantic`](wrangles/lookup/semantic.md): Look up values using a saved semantic lookup model. Requires a WrangleWorks account and a model with purpose lookup and stored variant embedding. Missing or unknown variants are rejected; use lookup for legacy models.
 - [`math`](wrangles/_root/math.md): Apply a mathematical calculation.
 - [`maths`](wrangles/_root/maths.md): Deprecated alias for `math`; evaluate an expression and write its result to an output column.
 - [`matrix`](wrangles/_root/matrix.md): Apply a matrix of wrangles to the dataframe. This will run the wrangles for each combination of the variables.
@@ -81,6 +88,7 @@ for structured discovery.
 - [`rename`](wrangles/_root/rename.md): Rename a column or list of columns.
 - [`replace`](wrangles/_root/replace.md): Quick find and replace for simple values. Can use regex if 'input' in params and isinstance(params['input'], list):in the find field.
 - [`round`](wrangles/_root/round.md): Round column(s) to the specified decimals.
+- [`search.ai_mode`](wrangles/search/ai-mode.md): Retrieve Google AI Mode Markdown and metadata. Use standardize.clean and extract.ai afterwards for cleanup and structuring.
 - [`search.find_links`](wrangles/search/find-links.md): Perform web searches to find links. Returns structured search results with titles, links, snippets, and optional pricing.
 - [`search.retrieve_link_content`](wrangles/search/retrieve-link-content.md): Retrieves targeted content from web pages using LLM URL extraction. Can optionally output a second column containing a clean, human-readable text summary of the retrieved data.
 - [`select.columns`](wrangles/select/columns.md): Select columns from the dataframe.
@@ -110,3 +118,52 @@ for structured discovery.
 - [`translate`](wrangles/_root/translate.md): Translate the input to a different language. Requires WrangleWorks Account and DeepL API Key (A free account for up to 500,000 characters per month is available).
 - [`transpose`](wrangles/_root/transpose.md): Transpose the DataFrame (swap columns to rows).
 - [`try`](wrangles/_root/try.md): Try a list of wrangles and catch any errors that occur.
+
+## Connectors
+
+- [`access`](connectors/access.json): read, run, write
+- [`akeneo`](connectors/akeneo.json): read, write
+- [`ckan.download`](connectors/ckan.download.json): run
+- [`ckan`](connectors/ckan.json): read, write
+- [`ckan.upload`](connectors/ckan.upload.json): run
+- [`concatenate`](connectors/concatenate.json): read
+- [`concurrent`](connectors/concurrent.json): read, run, write
+- [`dataframe`](connectors/dataframe.json): write
+- [`duckdb`](connectors/duckdb.json): read, run, write
+- [`excel.columns`](connectors/excel.columns.json): write
+- [`excel.selected_data`](connectors/excel.selected_data.json): read
+- [`excel.sheet`](connectors/excel.sheet.json): write
+- [`file`](connectors/file.json): read, write
+- [`grid.selected_data`](connectors/grid.selected_data.json): read
+- [`http`](connectors/http.json): read, run, write
+- [`input`](connectors/input.json): read
+- [`jinja`](connectors/jinja.json): run
+- [`join`](connectors/join.json): read
+- [`matrix`](connectors/matrix.json): read, run, write
+- [`memory`](connectors/memory.json): read, write
+- [`mongodb`](connectors/mongodb.json): read, write
+- [`mssql`](connectors/mssql.json): read, run, write
+- [`mysql`](connectors/mysql.json): read, write
+- [`notification.email`](connectors/notification.email.json): run
+- [`notification`](connectors/notification.json): run
+- [`notification.slack`](connectors/notification.slack.json): run
+- [`notification.telegram`](connectors/notification.telegram.json): run
+- [`postgres`](connectors/postgres.json): read, run, write
+- [`pricefx`](connectors/pricefx.json): read, write
+- [`recipe`](connectors/recipe.json): read, run, write
+- [`s3.download_files`](connectors/s3.download_files.json): run
+- [`s3`](connectors/s3.json): read, write
+- [`s3.upload_files`](connectors/s3.upload_files.json): run
+- [`salesforce`](connectors/salesforce.json): read, write
+- [`sftp.download_files`](connectors/sftp.download_files.json): run
+- [`sftp`](connectors/sftp.json): read, write
+- [`sftp.upload_files`](connectors/sftp.upload_files.json): run
+- [`sqlite`](connectors/sqlite.json): read, run, write
+- [`ssh`](connectors/ssh.json): run
+- [`test`](connectors/test.json): read
+- [`train.classify`](connectors/train.classify.json): read, write
+- [`train.extract`](connectors/train.extract.json): read, write
+- [`train.lookup`](connectors/train.lookup.json): read, write
+- [`train.meta_data`](connectors/train.meta_data.json): read, write
+- [`train.standardize`](connectors/train.standardize.json): read, write
+- [`union`](connectors/union.json): read
