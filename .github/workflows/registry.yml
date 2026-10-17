@@ -7,12 +7,14 @@ on:
       - 'wrangles-docs/registry-docs/**'
       - 'wrangles-docs/static/registry/**'
       - 'wrangles-docs/static/schemas/recipes/**'
-      - 'wrangles-docs/scripts/compile-registry.cjs'
+      - 'wrangles-docs/scripts/**'
+      - 'scripts/**'
       - 'wrangles-docs/docusaurus.config.js'
       - 'wrangles-docs/sidebarsRegistry.js'
       - 'wrangles-docs/package.json'
       - 'wrangles-docs/package-lock.json'
       - '.github/workflows/registry.yml'
+      - '.github/workflows/refresh-registry.yml'
   push:
     branches:
       - main
@@ -21,12 +23,14 @@ on:
       - 'wrangles-docs/registry-docs/**'
       - 'wrangles-docs/static/registry/**'
       - 'wrangles-docs/static/schemas/recipes/**'
-      - 'wrangles-docs/scripts/compile-registry.cjs'
+      - 'wrangles-docs/scripts/**'
+      - 'scripts/**'
       - 'wrangles-docs/docusaurus.config.js'
       - 'wrangles-docs/sidebarsRegistry.js'
       - 'wrangles-docs/package.json'
       - 'wrangles-docs/package-lock.json'
       - '.github/workflows/registry.yml'
+      - '.github/workflows/refresh-registry.yml'
 
 jobs:
   registry:
@@ -56,3 +60,6 @@ jobs:
       - name: Build documentation site
         working-directory: wrangles-docs
         run: npm run build
+
+      - name: Test partial refresh and new-page creation
+        run: REGISTRY_REFRESH_INTEGRATION=1 python3 scripts/test_refresh_registry.py
