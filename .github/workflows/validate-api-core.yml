@@ -31,7 +31,12 @@ jobs:
       - name: Install dependencies before connecting VPN
         run: |
           sudo apt-get update -qq
-          sudo apt-get install -y wireguard-tools openresolv
+          # Ubuntu 24.04 supplies resolvconf compatibility via systemd-resolved.
+          sudo apt-get install -y wireguard-tools systemd-resolved
+          sudo systemctl start systemd-resolved
+          command -v wg-quick
+          command -v resolvconf
+          systemctl is-active --quiet systemd-resolved
           npm ci --prefix wrangles-docs
       - name: Fetch live catalog over WireGuard
         timeout-minutes: 4
