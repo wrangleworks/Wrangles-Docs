@@ -1,0 +1,95 @@
+name: Validate Registry against live API-Core
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: api-core-wireguard-validation
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    if: github.ref == 'refs/heads/main'
+    environment: api-core-validation
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 22.x
+          cache: npm
+          cache-dependency-path: wrangles-docs/package-lock.json
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Install dependencies before connecting VPN
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y wireguard-tools openresolv
+          npm ci --prefix wrangles-docs
+      - name: Fetch live catalog over WireGuard
+        timeout-minutes: 4
+        env:
+          WIREGUARD_CONFIG: ${{ secrets.WIREGUARD_CONFIG }}
+          API_CORE_TOKEN: ${{ secrets.API_CORE_TOKEN }}
+          API_CORE_API_KEY: ${{ secrets.API_CORE_API_KEY }}
+          API_CORE_URL: https://internal-api.wrangle.works
+        run: bash scripts/fetch_catalog_wireguard.sh
+      # Defense in depth if the fetching step was interrupted before its trap ran.
+      - name: Ensure VPN and secret files are removed
+        if: always()
+        run: |
+          if sudo test -f /etc/wireguard/wg-catalog.conf; then
+            sudo wg-quick down wg-catalog >/dev/null 2>&1 || true
+            sudo rm -f /etc/wireguard/wg-catalog.conf
+          fi
+          rm -f "$RUNNER_TEMP/catalog-vpn.log"
+      - name: Import live response (no saved-snapshot fallback)
+        run: node wrangles-docs/scripts/import-catalog-snapshot.cjs "$RUNNER_TEMP/api-core-live.json"
+      - name: Generate and validate against live catalog
+        working-directory: wrangles-docs
+        run: |
+          npm run compile:registry
+          npm run generate:playground-registry
+          npm run check:registry
+          npm run build
+      - name: Report catalog coverage
+        run: |
+          node - <<'JS'
+          const fs = require('node:fs');
+          const report = JSON.parse(fs.readFileSync('registry/reports/catalog-reconciliation.json'));
+          fs.mkdirSync('api-core-validation-report', {recursive: true});
+          fs.writeFileSync('api-core-validation-report/summary.json', JSON.stringify({
+            source: 'live-api-core-dev', fetched_at: new Date().toISOString(),
+            summary: report.summary,
+          }, null, 2) + '\n');
+          fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY,
+            '## Live API-Core validation (dev endpoint)\n\n' +
+            'Fetched over WireGuard; no database writes, commits or deployment.\n\n' +
+            Object.entries(report.summary).map(([key, value]) => `- ${key}: ${value}`).join('\n') + '\n');
+          if (report.summary.pending_registration || report.summary.conflicting_entries) {
+            throw new Error('Catalog registration is incomplete or conflicting; see report.');
+          }
+          if (report.summary.entries_with_status_differences || report.summary.entries_with_runtime_binding_differences) {
+            console.log('::warning::Catalog identity coverage passed, but lifecycle/runtime-binding differences require review.');
+          }
+          JS
+      - name: Remove downloaded catalog
+        if: always()
+        run: rm -f "$RUNNER_TEMP/api-core-live.json"
+      - name: Upload counts-only report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: api-core-validation-${{ github.run_id }}
+          path: api-core-validation-report/summary.json
+          if-no-files-found: ignore
+          retention-days: 7
+      # Raw DB data and detailed internal reports are deliberately not uploaded
+      # as public-repository artifacts. Counts are in the job summary.
