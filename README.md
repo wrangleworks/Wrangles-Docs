@@ -59,6 +59,14 @@ Restrict deployment branches to **main** and configure required reviewers.
 Add `WIREGUARD_CONFIG` as an **environment secret** containing the complete
 WireGuard config. This is an Actions secret, not a Codespaces secret. Optional
 `API_CORE_TOKEN` or `API_CORE_API_KEY` can be added there if required (not both).
+Add `DATABASE_URL` to the same environment for direct database fallback, preferably
+using a user granted SELECT only on `public.wrangles_catalog`. The URL must point
+to the intended catalog database; fallback cannot prove which DB the API uses.
+On API HTTP 404/5xx or connection failure, the exporter reads that table in a
+read-only transaction while the VPN is still connected. HTTP 401/403 and invalid
+API payloads do not trigger fallback. If both sources fail, the workflow fails.
+The job summary/artifact identifies `direct-database` and explicitly marks the API
+fetch unsuccessful. A successful DB comparison does not mean API-Core works.
 Protect main and review changes to workflow/helper code before approving access.
 Anyone who can run modified code with the secret can potentially disclose it;
 log masking is not an authorization boundary.
@@ -72,7 +80,7 @@ cleanup happen immediately after catalog download, with a second always-run
 cleanup step. No cached-catalog fallback is used on connection failure.
 
 Run **Actions → Validate Registry against live API-Core → Run workflow → main**.
-Only a counts-only report is uploaded; raw catalog data, VPN config, VPN logs and
+Only source/status metadata and a counts-only report are uploaded; raw catalog data, VPN config, VPN logs and
 detailed internal reports are not published as artifacts in this public repo.
 The existing schema-refresh workflow remains separate and uses the saved snapshot.
 

@@ -37,13 +37,16 @@ jobs:
           command -v wg-quick
           command -v resolvconf
           systemctl is-active --quiet systemd-resolved
+          python3 -m pip install 'psycopg[binary]>=3.2,<4'
           npm ci --prefix wrangles-docs
+          python3 scripts/test_export_api_core_catalog.py
       - name: Fetch live catalog over WireGuard
         timeout-minutes: 4
         env:
           WIREGUARD_CONFIG: ${{ secrets.WIREGUARD_CONFIG }}
           API_CORE_TOKEN: ${{ secrets.API_CORE_TOKEN }}
           API_CORE_API_KEY: ${{ secrets.API_CORE_API_KEY }}
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
           API_CORE_URL: https://internal-api.wrangle.works
         run: bash scripts/fetch_catalog_wireguard.sh
       # Defense in depth if the fetching step was interrupted before its trap ran.
@@ -55,6 +58,21 @@ jobs:
             sudo rm -f /etc/wireguard/wg-catalog.conf
           fi
           rm -f "$RUNNER_TEMP/catalog-vpn.log"
+      - name: Record actual catalog source
+        run: |
+          mkdir -p api-core-validation-report
+          cp "$RUNNER_TEMP/catalog-source.json" api-core-validation-report/source.json
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          report = json.loads(Path('api-core-validation-report/source.json').read_text())
+          with open(os.environ['GITHUB_STEP_SUMMARY'], 'a') as summary:
+              summary.write('## Catalog source\n\nSource: `' + report['source'] + '`\n\n')
+              if not report['api_core_fetch_succeeded']:
+                  summary.write('**API-Core fetch failed. Direct database fallback was used; this is not a successful API-Core validation.**\n\n')
+          if not report['api_core_fetch_succeeded']:
+              print('::warning::API-Core fetch failed; catalog fetched through read-only DB fallback.')
+          PY
       - name: Import live response (no saved-snapshot fallback)
         run: node wrangles-docs/scripts/import-catalog-snapshot.cjs "$RUNNER_TEMP/api-core-live.json"
       - name: Generate and validate against live catalog
@@ -69,13 +87,14 @@ jobs:
           node - <<'JS'
           const fs = require('node:fs');
           const report = JSON.parse(fs.readFileSync('registry/reports/catalog-reconciliation.json'));
+          const acquisition = JSON.parse(fs.readFileSync('api-core-validation-report/source.json'));
           fs.mkdirSync('api-core-validation-report', {recursive: true});
           fs.writeFileSync('api-core-validation-report/summary.json', JSON.stringify({
-            source: 'live-api-core-dev', fetched_at: new Date().toISOString(),
+            ...acquisition,
             summary: report.summary,
           }, null, 2) + '\n');
           fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY,
-            '## Live API-Core validation (dev endpoint)\n\n' +
+            '## Registry comparison with live catalog\n\n' +
             'Fetched over WireGuard; no database writes, commits or deployment.\n\n' +
             Object.entries(report.summary).map(([key, value]) => `- ${key}: ${value}`).join('\n') + '\n');
           if (report.summary.pending_registration || report.summary.conflicting_entries) {
@@ -87,13 +106,13 @@ jobs:
           JS
       - name: Remove downloaded catalog
         if: always()
-        run: rm -f "$RUNNER_TEMP/api-core-live.json"
+        run: rm -f "$RUNNER_TEMP/api-core-live.json" "$RUNNER_TEMP/catalog-source.json"
       - name: Upload counts-only report
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: api-core-validation-${{ github.run_id }}
-          path: api-core-validation-report/summary.json
+          path: api-core-validation-report/*.json
           if-no-files-found: ignore
           retention-days: 7
       # Raw DB data and detailed internal reports are deliberately not uploaded
