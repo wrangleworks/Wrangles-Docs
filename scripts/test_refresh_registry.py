@@ -114,6 +114,7 @@ for name, kind in (("broken", "bad"), ("valid", "good")):
         root = Path(__file__).resolve().parents[1]
         with tempfile.TemporaryDirectory(prefix='registry-refresh-test-') as directory:
             fixture = Path(directory)
+            shutil.copy2(root / 'frontmatter.json', fixture / 'frontmatter.json')
             for folder in ('registry', 'scripts', 'wrangles-docs'):
                 shutil.copytree(root / folder, fixture / folder,
                                 ignore=shutil.ignore_patterns('node_modules', '.venv', 'build', '.docusaurus', '__pycache__'))

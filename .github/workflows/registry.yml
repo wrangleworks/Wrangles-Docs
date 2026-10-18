@@ -4,6 +4,7 @@ on:
   pull_request:
     paths:
       - 'registry/**'
+      - 'frontmatter.json'
       - 'wrangles-docs/registry-docs/**'
       - 'wrangles-docs/static/registry/**'
       - 'wrangles-docs/static/schemas/recipes/**'
@@ -20,6 +21,7 @@ on:
       - main
     paths:
       - 'registry/**'
+      - 'frontmatter.json'
       - 'wrangles-docs/registry-docs/**'
       - 'wrangles-docs/static/registry/**'
       - 'wrangles-docs/static/schemas/recipes/**'

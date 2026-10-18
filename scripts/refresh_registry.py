@@ -105,7 +105,7 @@ def documentation_lookup(root, key):
     """Find existing prose first. Never scrape arbitrary HTML into Markdown."""
     matches = []
     filename = key.split('.')[-1].replace('_', '-').lower()
-    for directory in ('wrangles-docs/docs', 'wrangles-docs/wrangle-docs'):
+    for directory in ('wrangles-docs/docs', 'wrangles-docs/registry-docs/python'):
         for path in (root / directory).rglob('*.md'):
             if path.stem.lower().replace('_', '-') == filename:
                 matches.append(str(path.relative_to(root)))
@@ -133,6 +133,7 @@ def refresh(root, checkout, report_dir, skip_build=False):
         original_inputs = fingerprint(root)
         with tempfile.TemporaryDirectory(prefix='wrangles-registry-refresh-') as temporary:
             stage = Path(temporary)
+            shutil.copy2(root / 'frontmatter.json', stage / 'frontmatter.json')
             for directory in ('registry', 'scripts', 'wrangles-docs'):
                 shutil.copytree(root / directory, stage / directory,
                                 ignore=shutil.ignore_patterns('node_modules', '.venv', 'build', '.docusaurus', '__pycache__'))

@@ -47,57 +47,24 @@
     }
   ],
   "frontMatter.framework.id": "docusaurus",
-  "frontMatter.content.publicFolder": "static",
+  "frontMatter.content.publicFolder": "wrangles-docs/static",
   "frontMatter.preview.host": "http://localhost:3000",
   "frontMatter.content.pageFolders": [
     {
       "path": "[[workspace]]/wrangles-docs/docs",
-      "title": "docs"
+      "title": "XL and account guides"
     },
     {
-      "path": "[[workspace]]/wrangles-docs/docs/waas"
+      "path": "[[workspace]]/wrangles-docs/registry-docs/python",
+      "title": "Python guides"
     },
     {
-      "path": "[[workspace]]/wrangles-docs/docs/tutorials"
+      "path": "[[workspace]]/registry/wrangles",
+      "title": "Registry wrangles"
     },
     {
-      "path": "[[workspace]]/wrangles-docs/docs/python"
-    },
-    {
-      "path": "[[workspace]]/wrangles-docs/docs/excel"
-    },
-    {
-      "path": "[[workspace]]/wrangles-docs/docs/account"
-    },
-    {
-      "path": "[[workspace]]/wrangles-docs/docs/ADI"
-    },
-    {
-      "path": "[[workspace]]/wrangles-docs/docs/python/connectors"
-    },
-    {
-      "path": "[[workspace]]/wrangles-docs/docs/python/recipes"
-    },
-    {
-      "path": "[[workspace]]/wrangles-docs/docs/excel/my_wrangles"
-    },
-    {
-      "path": "[[workspace]]/wrangles-docs/docs/excel/in-depth-examples"
-    },
-    {
-      "path": "[[workspace]]/wrangles-docs/docs/excel/Let's-Get-Ready-To-Wrangle"
-    },
-    {
-      "path": "[[workspace]]/wrangles-docs/docs/python/recipes/wrangles"
-    },
-    {
-      "path": "[[workspace]]/wrangles-docs/docs/python/recipes/custom-functions"
-    },
-    {
-      "path": "[[workspace]]/wrangles-docs/docs/python/connectors/notification"
-    },
-    {
-      "path": "[[workspace]]/wrangles-docs/docs/excel/in-depth-examples/example-1"
+      "path": "[[workspace]]/registry/connectors",
+      "title": "Registry connectors"
     }
   ],
   "frontMatter.git.enabled": true
