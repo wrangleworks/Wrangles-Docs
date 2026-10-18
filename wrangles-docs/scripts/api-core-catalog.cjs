@@ -21,6 +21,7 @@ function normalizeApiCatalog(payload, schemaId) {
     entry_count: payload.catalog.length,
     entries: payload.catalog.map(row => ({catalog_id: row.catalog_id, catalog_key: row.catalog_key,
       kind: row.catalog_kind, wrangle_key: row.catalog_kind === 'wrangle' ? row.catalog_key : null,
+      runtime_key: row.wranglesPY_key,
       title: null, registry_path: row.okf_path, status: row.status, source: 'API Core',
       created_at: row.created_at, updated_at: row.updated_at}))};
 }

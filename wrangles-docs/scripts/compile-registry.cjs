@@ -272,6 +272,7 @@ function validateCatalogSnapshot(snapshot, schema) {
   const catalogKeys = new Set();
   const wrangleKeys = new Set();
   const entryFields = new Set([
+    'runtime_key',
     'catalog_id', 'catalog_key', 'kind', 'wrangle_key', 'title', 'registry_path',
     'status', 'source', 'created_at', 'updated_at',
   ]);
@@ -314,6 +315,9 @@ function validateCatalogSnapshot(snapshot, schema) {
       if (typeof entry[field] !== 'string' || !entry[field]) {
         fail(catalogSnapshotPath, `${label}.${field} must be a non-empty string`);
       }
+    }
+    if (hasOwn(entry, 'runtime_key') && (typeof entry.runtime_key !== 'string' || !entry.runtime_key)) {
+      fail(catalogSnapshotPath, `${label}.runtime_key must be a non-empty string`);
     }
     for (const field of ['created_at', 'updated_at']) {
       if (!/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?Z$/.test(entry[field] || '')) {
@@ -1934,6 +1938,10 @@ function reconcileCatalog(entries, catalogSnapshot, connectors = []) {
 
     const expectedRegistryPath = posixPath(path.relative(repositoryRoot, entry.sourceFile));
     const differences = [];
+    if (catalog.runtime_key && catalog.runtime_key !== key) {
+      differences.push({code: 'runtime_binding_difference', catalog: catalog.runtime_key,
+        registry: key});
+    }
     if (catalog.status !== entry.metadata.status) {
       differences.push({
         code: 'status_difference',
@@ -1955,6 +1963,7 @@ function reconcileCatalog(entries, catalogSnapshot, connectors = []) {
       wrangle_key: key,
       title: catalog.title,
       catalog_status: catalog.status,
+      catalog_runtime_key: catalog.runtime_key || null,
       registry_status: entry.metadata.status,
       expected_registry_path: expectedRegistryPath,
       catalog_registry_path: catalog.registry_path,
@@ -1992,6 +2001,8 @@ function reconcileCatalog(entries, catalogSnapshot, connectors = []) {
       conflicting_entries: matchedEntries.filter((entry) => entry.status === 'conflict').length,
       entries_with_status_differences: matchedEntries.filter((entry) =>
         entry.differences.some((difference) => difference.code === 'status_difference')).length,
+      entries_with_runtime_binding_differences: matchedEntries.filter((entry) =>
+        entry.differences.some((difference) => difference.code === 'runtime_binding_difference')).length,
       entries_without_catalog_registry_path: matchedEntries.filter((entry) =>
         entry.catalog_registry_path === null).length,
       catalog_only_entries: catalogOnlyEntries.length,
@@ -2076,6 +2087,9 @@ ${upstreamRows}
 }
 
 function renderCatalogReconciliationReport(report) {
+  const bindingRows = report.matched_entries.flatMap(entry => entry.differences
+    .filter(difference => difference.code === 'runtime_binding_difference')
+    .map(difference => `| \`${entry.catalog_id}\` | \`${entry.catalog_key}\` | \`${difference.catalog}\` | \`${difference.registry}\` |`)).join('\n');
   const statusDifferenceRows = report.matched_entries.flatMap((entry) =>
     entry.differences
       .filter((difference) => difference.code === 'status_difference')
@@ -2099,6 +2113,7 @@ Generated file. Do not edit directly.
 - Connector matches: ${report.summary.matched_connector_entries}
 - Identity conflicts: ${report.summary.conflicting_entries}
 - Lifecycle/status differences: ${report.summary.entries_with_status_differences}
+- Runtime binding differences requiring review: ${report.summary.entries_with_runtime_binding_differences}
 - Missing catalog registry paths: ${report.summary.entries_without_catalog_registry_path}
 - Catalog-only rows: ${report.summary.catalog_only_entries}
 
@@ -2118,6 +2133,22 @@ the JSON report under \`matched_connectors\`.
 | Catalog ID | Wrangle key | API Core status | Registry lifecycle |
 | --- | --- | --- | --- |
 ${statusDifferenceRows || '| — | none | — | — |'}
+
+## Missing catalog entries
+
+${report.pending_registration.map(key => `- \`${key}\``).join('\n') || 'None.'}
+
+Allocate IDs in the database; do not copy or guess IDs from documentation.
+
+## Runtime bindings requiring review
+
+| Catalog ID | Catalog key | API-Core wranglesPY_key | Documented callable key |
+| --- | --- | --- | --- |
+${bindingRows || '| — | none | — | — |'}
+
+Different keys can be intentional aliases. Review the implementation before
+changing a binding; this report does not rewrite API-Core data. Missing
+\`okf_path\` values are optional publication metadata, not missing schemas.
 
 ## Catalog-only rows
 

@@ -261,7 +261,16 @@ test('catalog-only records and source differences remain explicit', () => {
   const reconciliation = JSON.parse(fs.readFileSync(catalogReconciliationPath, 'utf8'));
   const map = snapshot.entries.find((entry) => entry.catalog_key === 'map');
 
-  assert.equal(snapshot.entry_count, 147);
+  assert.equal(snapshot.entry_count, 153);
+  const manifest = JSON.parse(fs.readFileSync(registryManifestPath, 'utf8'));
+  for (const [key, id] of Object.entries({
+    'ai.answers': '149', 'ai.choose': '150', 'ai.score': '151',
+    'ai.true_false': '152', 'convert.parse': '153', 'search.ai_mode': '154',
+  })) {
+    const entry = manifest.entries.find(record => record.wrangle_key === key);
+    assert.equal(entry.catalog_id, id);
+    assert.equal(entry.catalog_status, 'active');
+  }
   assert.equal(reconciliation.summary.matched_connector_entries, 46);
   assert.equal(map.catalog_id, '99');
   assert.equal(typeof map.catalog_id, 'string');

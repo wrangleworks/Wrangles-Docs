@@ -276,7 +276,7 @@ const GENERATED_REGISTRY_CATALOG = [
   },
   {
     "type": "convert.parse",
-    "catalogId": null,
+    "catalogId": "153",
     "catalogKey": "convert.parse",
     "registryRoute": "/py/namespaces/convert#parse",
     "recipeWriterEligible": false,
@@ -5182,7 +5182,7 @@ const GENERATED_REGISTRY_CATALOG = [
   },
   {
     "type": "search.ai_mode",
-    "catalogId": null,
+    "catalogId": "154",
     "catalogKey": "search.ai_mode",
     "registryRoute": "/py/namespaces/search#ai-mode",
     "recipeWriterEligible": false,
@@ -6598,7 +6598,7 @@ const GENERATED_REGISTRY_CATALOG = [
   },
   {
     "type": "ai.answers",
-    "catalogId": null,
+    "catalogId": "149",
     "catalogKey": "ai.answers",
     "registryRoute": "/py/namespaces/ai#answers",
     "recipeWriterEligible": false,
@@ -6714,7 +6714,7 @@ const GENERATED_REGISTRY_CATALOG = [
   },
   {
     "type": "ai.choose",
-    "catalogId": null,
+    "catalogId": "150",
     "catalogKey": "ai.choose",
     "registryRoute": "/py/namespaces/ai#choose",
     "recipeWriterEligible": false,
@@ -6830,7 +6830,7 @@ const GENERATED_REGISTRY_CATALOG = [
   },
   {
     "type": "ai.score",
-    "catalogId": null,
+    "catalogId": "151",
     "catalogKey": "ai.score",
     "registryRoute": "/py/namespaces/ai#score",
     "recipeWriterEligible": false,
@@ -6946,7 +6946,7 @@ const GENERATED_REGISTRY_CATALOG = [
   },
   {
     "type": "ai.true_false",
-    "catalogId": null,
+    "catalogId": "152",
     "catalogKey": "ai.true_false",
     "registryRoute": "/py/namespaces/ai#true-false",
     "recipeWriterEligible": false,

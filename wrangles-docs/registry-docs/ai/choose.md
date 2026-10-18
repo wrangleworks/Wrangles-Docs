@@ -320,10 +320,10 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 
 | Field | Value |
 | --- | --- |
-| Catalog ID | Pending API-Core registration |
+| Catalog ID | `150` |
 | Catalog key | `ai.choose` |
 | Recipe key | `ai.choose` |
-| Catalog status | pending-registration |
+| Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | No |
 | Recipe Writer exclusion | Automatically documented from schema; execution eligibility requires review. |

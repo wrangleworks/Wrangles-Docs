@@ -145,7 +145,7 @@ test('connector reconciliation rejects missing rows, identity drift and schema d
 
 test('catalog normalization retains separate lookup identities and rejects duplicate IDs', () => {
   const normalized = normalizeApiCatalog(catalog, 'test');
-  assert.equal(normalized.entry_count, 147);
+  assert.equal(normalized.entry_count, 153);
   assert.equal(normalized.entries.find(x => x.catalog_key === 'lookup.key').wrangle_key, 'lookup.key');
   assert.equal(normalized.entries.find(x => x.catalog_key === 'connector.recipe').wrangle_key, null);
   const duplicate = structuredClone(catalog);

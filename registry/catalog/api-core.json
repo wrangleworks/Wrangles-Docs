@@ -1,6 +1,78 @@
 {
   "catalog": [
     {
+      "catalog_id": "149",
+      "catalog_key": "ai.answers",
+      "catalog_kind": "wrangle",
+      "wranglesPY_key": "ai.answers",
+      "okf_path": null,
+      "status": "active",
+      "created_at": "2026-10-18T10:01:30Z",
+      "updated_at": "2026-10-18T10:01:30Z",
+      "wrangle_type": "recipe",
+      "notes": null
+    },
+    {
+      "catalog_id": "150",
+      "catalog_key": "ai.choose",
+      "catalog_kind": "wrangle",
+      "wranglesPY_key": "ai.choose",
+      "okf_path": null,
+      "status": "active",
+      "created_at": "2026-10-18T10:01:30Z",
+      "updated_at": "2026-10-18T10:01:30Z",
+      "wrangle_type": "recipe",
+      "notes": null
+    },
+    {
+      "catalog_id": "151",
+      "catalog_key": "ai.score",
+      "catalog_kind": "wrangle",
+      "wranglesPY_key": "ai.score",
+      "okf_path": null,
+      "status": "active",
+      "created_at": "2026-10-18T10:01:30Z",
+      "updated_at": "2026-10-18T10:01:30Z",
+      "wrangle_type": "recipe",
+      "notes": null
+    },
+    {
+      "catalog_id": "152",
+      "catalog_key": "ai.true_false",
+      "catalog_kind": "wrangle",
+      "wranglesPY_key": "ai.true_false",
+      "okf_path": null,
+      "status": "active",
+      "created_at": "2026-10-18T10:01:30Z",
+      "updated_at": "2026-10-18T10:01:30Z",
+      "wrangle_type": "recipe",
+      "notes": null
+    },
+    {
+      "catalog_id": "153",
+      "catalog_key": "convert.parse",
+      "catalog_kind": "wrangle",
+      "wranglesPY_key": "convert.parse",
+      "okf_path": null,
+      "status": "active",
+      "created_at": "2026-10-18T10:01:30Z",
+      "updated_at": "2026-10-18T10:01:30Z",
+      "wrangle_type": "recipe",
+      "notes": null
+    },
+    {
+      "catalog_id": "154",
+      "catalog_key": "search.ai_mode",
+      "catalog_kind": "wrangle",
+      "wranglesPY_key": "search.ai_mode",
+      "okf_path": null,
+      "status": "active",
+      "created_at": "2026-10-18T10:01:30Z",
+      "updated_at": "2026-10-18T10:01:30Z",
+      "wrangle_type": "recipe",
+      "notes": null
+    },
+    {
       "catalog_id": "69",
       "catalog_kind": "wrangle",
       "wrangle_type": "recipe",

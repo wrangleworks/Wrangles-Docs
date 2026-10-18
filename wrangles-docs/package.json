@@ -13,7 +13,7 @@
     "clear": "docusaurus clear",
     "compile:registry": "node ./scripts/compile-registry.cjs",
     "import:catalog-snapshot": "node ./scripts/import-catalog-snapshot.cjs",
-    "test:registry": "python3 ../scripts/test_refresh_registry.py && node --test ./scripts/compile-registry.test.cjs ./scripts/connector-registry.test.cjs ./scripts/schema-alignment.test.cjs ./scripts/generate-playground-registry.test.cjs",
+    "test:registry": "python3 ../scripts/test_refresh_registry.py && node --test ./scripts/compile-registry.test.cjs ./scripts/connector-registry.test.cjs ./scripts/schema-alignment.test.cjs ./scripts/generate-playground-registry.test.cjs ./scripts/repository-layout.test.cjs",
     "check:registry": "node ./scripts/import-runtime-snapshot.cjs --check && npm run test:registry && node ./scripts/compile-registry.cjs --check && npm run generate:playground-registry -- --check",
     "import:runtime-snapshot": "node ./scripts/import-runtime-snapshot.cjs",
     "prebuild": "npm run compile:registry && npm run generate:playground-registry",
@@ -40,10 +40,7 @@
     "@docusaurus/module-type-aliases": "^3.0.0",
     "@docusaurus/tsconfig": "^3.0.0",
     "@docusaurus/types": "^3.0.0",
-    "remark-mdx": "^3.1.1",
-    "remark-parse": "^11.0.0",
-    "typescript": "~5.2.2",
-    "unified": "^11.0.5"
+    "typescript": "~5.2.2"
   },
   "browserslist": {
     "production": [
