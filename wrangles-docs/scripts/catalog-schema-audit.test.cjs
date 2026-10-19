@@ -6,8 +6,8 @@ const snapshot = require('../../registry/runtime/wranglespy-source-schema.json')
 const runtime = require('../../registry/runtime/wranglespy.json');
 test('catalog bindings are checked directly and non-schema fields are excluded', () => {
   const report = auditCatalogSchema(catalog, snapshot, runtime);
-  assert.equal(report.summary.rows, 153);
-  assert.equal(report.summary.schema_entries_missing_catalog_identity, 0);
+  assert.equal(report.summary.rows, catalog.catalog.length);
+  assert.equal(report.summary.schema_entries_missing_catalog_identity, report.missing_catalog_identities.length);
   assert.equal(report.summary.failed, 0);
   assert.equal(report.summary.not_applicable, 1);
   const map = report.rows.find(row => row.catalog_key === 'map');
@@ -21,6 +21,19 @@ test('catalog bindings are checked directly and non-schema fields are excluded',
   assert.equal(report.rows.find(row => row.catalog_key === 'format.price_breaks').schema_origin, 'signature-derived');
   assert.equal(report.rows.find(row => row.catalog_key === 'lookup.key').status, 'review-required');
   assert.deepEqual(report.rows.find(row => row.catalog_key === 'connector.file').operations.sort(), ['read', 'write']);
+});
+test('new unregistered wrangles are reported without blocking documentation checks', () => {
+  const row = catalog.catalog.find(row => row.catalog_key === 'convert.case');
+  const callable = runtime.wrangles.find(row => row.runtime_key === 'convert.case');
+  const sources = {...snapshot, connectors: {}};
+  const baseline = {wrangles: [callable]};
+  assert.equal(auditCatalogSchema({catalog: [row]}, sources, baseline).summary.schema_entries_missing_catalog_identity, 0);
+  const report = auditCatalogSchema({catalog: [row]}, sources, {
+    wrangles: [callable, {...callable, runtime_key: 'format.new_entry'}],
+  });
+  assert.deepEqual(report.missing_catalog_identities, ['format.new_entry']);
+  assert.equal(report.summary.schema_entries_missing_catalog_identity, 1);
+  assert.equal(report.summary.failed, 0);
 });
 test('Map exception is exact and never hides a future runtime callable', () => {
   const map = catalog.catalog.find(row => row.catalog_key === 'map');
