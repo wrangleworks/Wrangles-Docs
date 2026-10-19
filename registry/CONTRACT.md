@@ -375,7 +375,7 @@ terminated by one newline (`utf8-newline-separated-sorted-v1`).
 
 ## Versioning and lifecycle
 
-The pre-production Registry version is `0.3.0`. Version `0.2.0` makes the
+The pre-production Registry version is `0.3.1`. Version `0.2.0` makes the
 fail-closed Recipe Writer eligibility decision required for every entry and
 adds the compiled-contract and integrity metadata consumed by Registry clients.
 Version `0.2.1` introduces optional column-role and cardinality metadata plus
@@ -386,6 +386,10 @@ contract's canonical UUID field with string-valued `catalog_id` and
 `catalog_key`, and retains old UUIDs only as `legacy_id`. It also publishes
 catalog reconciliation as a checksummed bundle artifact. Source Markdown stays
 on schema 0.2 during this migration; generated contracts use contract 0.3.
+Version `0.3.1` adds direct catalog-to-pinned-WranglesPY auditing and explicitly
+reports the Excel Map model category as not applicable to recipe-schema checks.
+It retains contract 0.3 and source schema 0.2 compatibility. The release tag is
+`registry-v0.3.1`; generated artifacts in that tag pin the reproducible bundle.
 A production release will
 contain:
 

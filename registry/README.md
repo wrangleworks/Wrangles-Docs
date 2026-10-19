@@ -48,7 +48,7 @@ registry/catalog/api-core.json + registry/runtime/wranglespy.json + registry/wra
         -> npm run compile:registry
 wrangles-docs/registry-docs/     (human-facing pages)
 wrangles-docs/static/registry/   (machine-facing artifacts)
-wrangles-docs/src/components/WrangleFlowPlayground/wrangleCatalog.generated.js
+wrangles-docs/src/components/WrangleFlowPlayground/registryCatalog.generated.js
                                   (Registry-backed Playground catalog)
 ```
 
@@ -99,12 +99,14 @@ remain unchanged. `maths` uses its documented `math` alias schema;
 `format.price_breaks` uses a clearly labeled signature-derived schema because
 upstream supplies none. These are not claims of unmodified upstream parity.
 
-`catalog/api-core.json` preserves the 147-row `{ "catalog": [...] }` API
+`catalog/api-core.json` preserves the 153-row `{ "catalog": [...] }` API
 response supplied from the VPN. The compiler normalizes it internally and
 publishes both the normalized snapshot and original response. Duplicate runtime
 keys are valid: `lookup`, `lookup.key`, and `lookup.semantic` have distinct
-catalog identities. The catalog-only report currently lists `map`, `lookup.key`,
-and `lookup.semantic`; all 46 connectors are matched.
+catalog identities. The catalog-only report currently lists `map`; all 106
+callable Registry entries and all 46 connectors are matched. The direct schema
+audit reports the documented Excel `map` feature as not applicable to recipe
+schema validation, not as passed. Lookup alias bindings remain review warnings.
 
 Run these commands from `wrangles-docs`:
 

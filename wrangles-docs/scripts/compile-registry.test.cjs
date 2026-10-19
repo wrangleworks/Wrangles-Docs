@@ -230,7 +230,7 @@ test('compiled Registry publishes API Core catalog identities as strings', () =>
   const catalogIds = manifest.entries.map((entry) => entry.catalog_id).filter(id => id !== null);
   const convertCase = manifest.entries.find((entry) => entry.wrangle_key === 'convert.case');
 
-  assert.equal(manifest.registry_version, '0.3.0');
+  assert.equal(manifest.registry_version, '0.3.1');
   assert.equal(manifest.contract_version, '0.3');
   assert.ok(manifest.entry_count >= 98);
   assert.equal(new Set(catalogIds).size, catalogIds.length);

@@ -11,6 +11,7 @@ test('retired migration and alternate production scripts cannot return unnoticed
     'scripts/seed_connector_catalog.py', 'scripts/seed_wranglesio_content.py',
     'scripts/seed_wrangle_examples.py', 'scripts/generate_wrangle_docs_from_db.py',
     'scripts/test_api_core_paths.sh', 'scripts/test_api_core_all_paths.sh',
+    'scripts/probe_api_core.sh',
     'wrangles-docs/scripts/convert-recipe-examples.cjs',
     'wrangles-docs/scripts/start-prod.cjs', 'wrangles-docs/deploy/default.conf',
   ]) assert.equal(fs.existsSync(path.join(root, file)), false, file);

@@ -2,7 +2,7 @@
 // Source: static/registry/manifest.json and its referenced contracts.
 // Do not edit by hand. Put UI-specific tweaks in registryCatalog.overrides.js.
 
-export const PLAYGROUND_REGISTRY_VERSION = "0.3.0";
+export const PLAYGROUND_REGISTRY_VERSION = "0.3.1";
 export const PLAYGROUND_CONTRACT_VERSION = "0.3";
 
 const GENERATED_REGISTRY_CATALOG = [

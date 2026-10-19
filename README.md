@@ -42,8 +42,13 @@ python3 scripts/refresh_registry.py --checkout /path/to/WranglesPY
 The manual **Refresh Registry from WranglesPY** GitHub workflow runs the same
 refresh, validation and build. Its default is an artifact-only preview;
 committing and publishing are explicit options. WranglesPY is read without
-installing or importing it. Live API-Core validation and upstream push triggers
-are not connected yet.
+installing or importing it. Live catalog validation is a separate manual workflow;
+automatic upstream push triggers are not connected yet.
+
+Registry release: **0.3.1** (pre-production), tag `registry-v0.3.1`.
+Contract version remains `0.3`; source entry schema remains `0.2`.
+The tagged source archive includes generated Registry artifacts and their
+integrity manifest. Use the tag for reproducibility, not the moving main branch.
 
 ### Manual live API-Core validation over WireGuard
 
@@ -53,6 +58,27 @@ to the database, commit files, or deploy. A successful run confirms catalog
 identity coverage and schema/build checks, not universal runtime correctness.
 Lifecycle and runtime-binding differences are reported as warnings; missing
 wrangle registrations and identity conflicts fail the run.
+
+The workflow also compares catalog bindings directly against the saved pinned
+WranglesPY schema/runtime, independently of Registry Markdown. The generated
+`registry/reports/catalog-schema-audit.json` records kind/binding existence,
+identity coverage, connector operations available in the schema, and explicit
+schema fallbacks/normalizations. It does not infer DB lifecycle, model types
+(`wrangle_type`), IDs, dates, paths or notes from schemas. The table has no
+parameter contracts to compare. Different catalog/runtime keys require alias
+review; a valid target key alone does not prove the intended behavior.
+The workflow uploads this key-level audit (no credentials or DB notes) and fails
+its direct catalog/schema gate for missing bindings or registration identities.
+The exact `map` identity/binding with kind `wrangle` and type `map` is reported
+as `not-applicable`, not passed: API-Core maps model purpose `schema` to this
+documented Excel column-mapping feature (`wrangles-docs/docs/excel/map.md`).
+Only its missing recipe callable/schema check is excluded; normal catalog
+identity/duplicate validation remains. It is not added to Recipe Writer or
+deleted from the DB. Other missing bindings still fail. If WranglesPY adds a
+`map` callable, it is validated normally rather than excluded.
+Docs builds can still generate the diagnostic report without publishing a false
+all-catalog-bindings-passed claim. This checks the recorded upstream revision,
+not automatically the latest WranglesPY main or the deployed API-Core version.
 
 Before running, create **Settings → Environments → api-core-validation**.
 Restrict deployment branches to **main** and configure required reviewers.
@@ -80,14 +106,13 @@ cleanup happen immediately after catalog download, with a second always-run
 cleanup step. No cached-catalog fallback is used on connection failure.
 
 Run **Actions → Validate Registry against live API-Core → Run workflow → main**.
-Only source/status metadata and a counts-only report are uploaded; raw catalog data, VPN config, VPN logs and
+Only source/status metadata, schema-audit keys/reasons and a counts report are uploaded; raw catalog data, VPN config, VPN logs and
 detailed internal reports are not published as artifacts in this public repo.
 The existing schema-refresh workflow remains separate and uses the saved snapshot.
 
 For a fresh catalog snapshot from a VPN-connected computer, use
 `scripts/export_api_core_catalog.py`, then import the result with
-`wrangles-docs/scripts/import-catalog-snapshot.cjs`. The optional
-`scripts/probe_api_core.sh` remains a connectivity diagnostic.
+`wrangles-docs/scripts/import-catalog-snapshot.cjs`.
 
 [Catalog reconciliation](registry/reports/catalog-reconciliation.md) lists
 missing entries, lifecycle differences and bindings requiring review.

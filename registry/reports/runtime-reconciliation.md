@@ -4,7 +4,7 @@ Generated file. Do not edit directly.
 
 - Runtime version: `1.20.5`
 - Runtime source: [`bd5f88fba479ec406b409cb2880689c54e72b298`](https://github.com/wrangleworks/WranglesPY/commit/bd5f88fba479ec406b409cb2880689c54e72b298)
-- Registry version: `0.3.0`
+- Registry version: `0.3.1`
 - Runtime entries: 106
 - Embedded Python schema docstrings: 104
 - Registry entries: 106

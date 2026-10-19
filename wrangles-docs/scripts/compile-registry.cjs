@@ -11,7 +11,7 @@ const {loadConnectors, withConnectors, renderConnector, compiledConnector} = req
 const {configurationSchema, objectBranch, parameterProperties, schemaRequired, conditionallyRequired, qualifySchemaReferences} = require('./wrangle-schema.cjs');
 const sourceSnapshot = require('../../registry/runtime/wranglespy-source-schema.json');
 
-const REGISTRY_VERSION = '0.3.0';
+const REGISTRY_VERSION = '0.3.1';
 const SOURCE_ENTRY_SCHEMA_VERSION = '0.2';
 const CONTRACT_VERSION = '0.3';
 const PUBLIC_ORIGIN = 'https://docs.wrangles.com';
@@ -2583,6 +2583,11 @@ function buildOutputs(
   addGeneratedFile(
     path.join(reportsOutputRoot, 'catalog-reconciliation.md'),
     renderCatalogReconciliationReport(catalogReconciliation),
+  );
+  addGeneratedFile(
+    path.join(reportsOutputRoot, 'catalog-schema-audit.json'),
+    JSON.stringify(require('./catalog-schema-audit.cjs').auditCatalogSchema(
+      catalogResponse, sourceSchema, runtimeManifest), null, 2),
   );
 }
 

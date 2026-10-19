@@ -88,15 +88,25 @@ jobs:
           const fs = require('node:fs');
           const report = JSON.parse(fs.readFileSync('registry/reports/catalog-reconciliation.json'));
           const acquisition = JSON.parse(fs.readFileSync('api-core-validation-report/source.json'));
+          const schemaAudit = JSON.parse(fs.readFileSync('registry/reports/catalog-schema-audit.json'));
           fs.mkdirSync('api-core-validation-report', {recursive: true});
+          fs.writeFileSync('api-core-validation-report/schema-audit.json', JSON.stringify(schemaAudit, null, 2) + '\n');
           fs.writeFileSync('api-core-validation-report/summary.json', JSON.stringify({
             ...acquisition,
             summary: report.summary,
+            catalog_schema_validation: schemaAudit.summary,
+            wranglespy_source: schemaAudit.source,
           }, null, 2) + '\n');
           fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY,
             '## Registry comparison with live catalog\n\n' +
             'Fetched over WireGuard; no database writes, commits or deployment.\n\n' +
             Object.entries(report.summary).map(([key, value]) => `- ${key}: ${value}`).join('\n') + '\n');
+          fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY,
+            '\n## Direct catalog → pinned WranglesPY schema check\n\n' +
+            Object.entries(schemaAudit.summary).map(([key, value]) => `- ${key}: ${value}`).join('\n') + '\n');
+          if (schemaAudit.summary.failed || schemaAudit.summary.schema_entries_missing_catalog_identity) {
+            throw new Error('Catalog/schema validation failed. See schema-audit.json for exact keys and reasons. No DB changes were made.');
+          }
           if (report.summary.pending_registration || report.summary.conflicting_entries) {
             throw new Error('Catalog registration is incomplete or conflicting; see report.');
           }
@@ -107,7 +117,7 @@ jobs:
       - name: Remove downloaded catalog
         if: always()
         run: rm -f "$RUNNER_TEMP/api-core-live.json" "$RUNNER_TEMP/catalog-source.json"
-      - name: Upload counts-only report
+      - name: Upload catalog validation reports
         if: always()
         uses: actions/upload-artifact@v4
         with:
@@ -115,5 +125,5 @@ jobs:
           path: api-core-validation-report/*.json
           if-no-files-found: ignore
           retention-days: 7
-      # Raw DB data and detailed internal reports are deliberately not uploaded
-      # as public-repository artifacts. Counts are in the job summary.
+      # Only source metadata, counts and schema-audit keys/reasons are uploaded.
+      # Raw catalog rows, credentials and VPN logs are not public artifacts.
