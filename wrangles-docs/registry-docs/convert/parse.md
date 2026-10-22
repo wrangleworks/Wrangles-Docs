@@ -16,28 +16,6 @@ Parse JSON, Python, YAML, or human-readable JSON-like structures into JSON-compa
 
 Usage guidance and examples have not yet been reviewed.
 
-## Parameters
-
-<div className="ww-parameters-table">
-
-| Name | Description | Accepted Values | Default | Required |
-| --- | --- | --- | --- | --- |
-| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `input` | Name or list of input columns. | string, integer, array | — | Yes |
-| `output` | Name or list of output columns. If omitted, the input columns will be overwritten. | string, array | `null` | No |
-| <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `default` | Value to return for missing, invalid, or type-mismatched rows. If input is a list, default may be a single value applied to every column or a list containing one value per input column. Defaults must be JSON-compatible; NumPy values are normalized and mutable defaults are copied independently for each row. | string, array, object, number, boolean, null | — | No |
-| `expected` | Required result category. Use any, dictionary, list, or scalar. A list may provide one category per input column. | string; one of:<ul className="ww-param-enum-values"><li>any</li><li>dictionary</li><li>list</li><li>scalar</li></ul> or array | `"any"` | No |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
-| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-
-</div>
-
-Required follows the recipe schema. Default records the Python argument default;
-a schema may require an argument even when Python provides a default.
-
 <details className="ww-field-disclosure">
 
 <summary>Complete configuration schema</summary>
@@ -126,6 +104,32 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 </details>
 
 
+
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
+
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
+| --- | --- | --- | --- | --- |
+| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
+| `input` | Name or list of input columns. | string, integer, array | — | Yes |
+| `output` | Name or list of output columns. If omitted, the input columns will be overwritten. | string, array | `null` | No |
+| <span className="ww-param-group-label">Options</span> |  |  |  |  |
+| `default` | Value to return for missing, invalid, or type-mismatched rows. If input is a list, default may be a single value applied to every column or a list containing one value per input column. Defaults must be JSON-compatible; NumPy values are normalized and mutable defaults are copied independently for each row. | string, array, object, number, boolean, null | — | No |
+| `expected` | Required result category. Use any, dictionary, list, or scalar. A list may provide one category per input column. | string; one of:<ul className="ww-param-enum-values"><li>any</li><li>dictionary</li><li>list</li><li>scalar</li></ul> or array | `"any"` | No |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
+
+</div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+</details>
 
 <details className="ww-field-disclosure">
 

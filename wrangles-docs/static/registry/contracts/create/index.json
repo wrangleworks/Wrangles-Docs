@@ -175,7 +175,7 @@
     }
   ],
   "examples": [],
-  "guidance": "Create a new incremental index.\n\n## Migrated examples\n#### Creating a New Index Column\n\n##### Recipe\n\n```yaml\nwrangles:\n  - create.index:\n      output: New Index\n      start: 1    # optional\n      step: 1     # optional\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n_No sample available._\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| New Index |\n| --- |\n| 1 |\n| 2 |\n\n</div>\n\n</div>",
+  "guidance": "Create a new incremental index.\n\n## Migrated examples\n#### Creating a New Index Column\n\n##### Recipe\n\n```yaml\nwrangles:\n  - create.index:\n      output: New Index\n      start: 1    # optional\n      step: 1     # optional\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n| Product |\n| --- |\n| Hammer |\n| Drill |\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| New Index |\n| --- |\n| 1 |\n| 2 |\n\n</div>\n\n</div>",
   "sources": [
     {
       "id": "runtime",

@@ -12,31 +12,7 @@ import CopyableCode from '@site/src/components/CopyableCode';
 
 # Column <CopyableCode value="create.column" />
 
-Create column(s) with a user defined value. Defaults to None (empty).
-
 Create column(s) with a user defined value. Defaults to `None` (empty). If you need to copy an existing column, use the copy wrangle instead.
-
-## Parameters
-
-<div className="ww-parameters-table">
-
-| Name | Description | Accepted Values | Default | Required |
-| --- | --- | --- | --- | --- |
-| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `output` | Name or list of names of new columns or column_name: value pairs. | string, array | — | Yes |
-| <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `value` | (Optional) Value(s) to add in the new column(s). If using a dictionary in output, value can only be a string. | string, number, object, array, boolean | `null` | No |
-| `value_if_exists` | Determines behaviour when the output column already exists. existing (default): leave the column unchanged. coalesce: fill empty/null cells with the new value, keeping non-null cells. new: overwrite the entire column with the new value. | string; one of:<ul className="ww-param-enum-values"><li>existing</li><li>coalesce</li><li>new</li></ul> | `"existing"` | No |
-| `coalesce_value` | Only used when value_if_exists is coalesce. Determines which side is preferred when both the existing and new values are non-empty. existing (default): keep the existing value, only fill empty/null cells with the new value. new: keep the new value, only fall back to the existing value where the new value is empty/null. | string; one of:<ul className="ww-param-enum-values"><li>existing</li><li>new</li></ul> | `"existing"` | No |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
-| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-
-</div>
-
-Required follows the recipe schema. Default records the Python argument default;
-a schema may require an argument even when Python provides a default.
 
 <details className="ww-field-disclosure">
 
@@ -216,6 +192,32 @@ wrangles:
 </div>
 
 Columns of empty lists can also be created by passing an empty list (`[]`) as the column value.
+
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
+
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
+| --- | --- | --- | --- | --- |
+| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
+| `output` | Name or list of names of new columns or column_name: value pairs. | string, array | — | Yes |
+| <span className="ww-param-group-label">Options</span> |  |  |  |  |
+| `value` | (Optional) Value(s) to add in the new column(s). If using a dictionary in output, value can only be a string. | string, number, object, array, boolean | `null` | No |
+| `value_if_exists` | Determines behaviour when the output column already exists. existing (default): leave the column unchanged. coalesce: fill empty/null cells with the new value, keeping non-null cells. new: overwrite the entire column with the new value. | string; one of:<ul className="ww-param-enum-values"><li>existing</li><li>coalesce</li><li>new</li></ul> | `"existing"` | No |
+| `coalesce_value` | Only used when value_if_exists is coalesce. Determines which side is preferred when both the existing and new values are non-empty. existing (default): keep the existing value, only fill empty/null cells with the new value. new: keep the new value, only fall back to the existing value where the new value is empty/null. | string; one of:<ul className="ww-param-enum-values"><li>existing</li><li>new</li></ul> | `"existing"` | No |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
+
+</div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+</details>
 
 <details className="ww-field-disclosure">
 

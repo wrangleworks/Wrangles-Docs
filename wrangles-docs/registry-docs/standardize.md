@@ -16,32 +16,7 @@ import CopyableCode from '@site/src/components/CopyableCode';
 This compatibility wrangle remains available for existing recipes. Use [`standardize.custom`](/py/namespaces/standardize#custom) for new recipes.
 :::
 
-Deprecated compatibility key for `standardize.custom`, which standardizes data using a trained DIY or bespoke model.
-
 Run a standardize wrangle, such as one that expands abbreviations. A standardization wrangle must be trained first.
-
-## Parameters
-
-<div className="ww-parameters-table">
-
-| Name | Description | Accepted Values | Default | Required |
-| --- | --- | --- | --- | --- |
-| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `input` | Name or list of input columns. | string, integer, array | — | Yes |
-| `output` | Name or list of output columns | string, array | `null` | No |
-| <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `case_sensitive` | Allows the wrangle to be case sensitive if set to True, default is False. | boolean | `false` | No |
-| <span className="ww-param-group-label">Details</span> |  |  |  |  |
-| `model_id` | The ID of the wrangle to use (do not include 'find' and 'replace') | string, array | — | No |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
-| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-
-</div>
-
-Required follows the recipe schema. Default records the Python argument default;
-a schema may require an argument even when Python provides a default.
 
 <details className="ww-field-disclosure">
 
@@ -133,6 +108,33 @@ wrangles:
 </div>
 
 </div>
+
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
+
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
+| --- | --- | --- | --- | --- |
+| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
+| `input` | Name or list of input columns. | string, integer, array | — | Yes |
+| `output` | Name or list of output columns | string, array | `null` | No |
+| <span className="ww-param-group-label">Options</span> |  |  |  |  |
+| `case_sensitive` | Allows the wrangle to be case sensitive if set to True, default is False. | boolean | `false` | No |
+| <span className="ww-param-group-label">Details</span> |  |  |  |  |
+| `model_id` | The ID of the wrangle to use (do not include 'find' and 'replace') | string, array | — | No |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
+
+</div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+</details>
 
 <details className="ww-field-disclosure">
 

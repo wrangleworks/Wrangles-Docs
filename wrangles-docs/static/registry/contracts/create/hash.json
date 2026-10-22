@@ -172,7 +172,7 @@
     }
   ],
   "examples": [],
-  "guidance": "Create a hash of a column.\n\n## Migrated examples\n#### Creating a New Hash Column\n\n##### Recipe\n\n```yaml\nwrangles:\n  - create.hash:\n      input: Description\n      output: hash\n      method: md5\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n| Description |\n| --- |\n| The wrench is blue |\n| The hammer is yellow |\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| New Column |\n| --- |\n| ce114e4501d2f4e2dcea3e17b546f339 |\n| a54d88e06612d820bc3be72877c74f257b561b19 |\n\n</div>\n\n</div>",
+  "guidance": "Create a hash of a column.\n\n## Migrated examples\n#### Creating a New Hash Column\n\n##### Recipe\n\n```yaml\nwrangles:\n  - create.hash:\n      input: Description\n      output: hash\n      method: md5\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n| Description |\n| --- |\n| The wrench is blue |\n| The hammer is yellow |\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| hash |\n| --- |\n| 512612f9ed5f71c9c13bd63eb140783a |\n| 65820c4addbaaef6a067cdcf5c856706 |\n\n</div>\n\n</div>",
   "sources": [
     {
       "id": "runtime",

@@ -64,7 +64,9 @@ df = test.read(rows=2, values={'header1':'a','header2':'b'})
 - **\&lt;int(1-10)>** : Random integers - *(1-10)* sets the range. Default 1-100.
 - **&lt;random(["a","b","c"])>** : Randomly selected from the list.
 
-## Parameters
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
 
 ### Read
 
@@ -134,6 +136,8 @@ Create a test dataframe
   }
 }
 ```
+
+</details>
 
 </details>
 

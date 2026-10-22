@@ -18,44 +18,6 @@ Generate wrangles, with recipe examples, parameters, and behavior.
 
 Generate structured AI output for each recipe row.
 
-
-
-### Parameters
-
-<div className="ww-parameters-table">
-
-| Name | Description | Accepted Values | Default | Required |
-| --- | --- | --- | --- | --- |
-| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `output` | Target schema; string/array shorthands are expanded automatically. | string, object, array | — | Yes |
-| `input` | Column(s) to concatenate into the prompt (defaults to all columns). | string, array | `null` | No |
-| <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `messages` | The first message's content overrides the generation instructions. | array | `null` | No |
-| `web_search` | Enable DuckDuckGo context lookup per row. | boolean | `false` | No |
-| `summary` | Request summary text to be merged into the output. | boolean | `false` | No |
-| `examples` | Few-shot examples with input, output, and optional notes. | array | — | No |
-| <span className="ww-param-group-label">Execution</span> |  |  |  |  |
-| `threads` | Maximum concurrent requests; defaults to the AI configuration. | integer | `null` | No |
-| `timeout` | Per-request timeout in seconds. | integer | `null` | No |
-| <span className="ww-param-group-label">Errors</span> |  |  |  |  |
-| `retries` | Number of retry attempts on failure. | integer | `null` | No |
-| <span className="ww-param-group-label">Details</span> |  |  |  |  |
-| `api_key` | OpenAI-compatible API key. | string | — | Yes |
-| `model` | Responses model name. Defaults to the generate.ai role in the AI configuration. | string | `null` | No |
-| `url` | Override for the OpenAI-compatible endpoint. | string | `null` | No |
-| `strict` | Enforce JSON-schema validation on the response. | boolean | `null` | No |
-| `reasoning` | Responses API reasoning options, checked against configured model capabilities. | object | `null` | No |
-| `previous_response` | Chain responses by reusing previous_response_id for field-by-field calls. | boolean | `false` | No |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
-| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-
-</div>
-
-Required follows the recipe schema. Default records the Python argument default;
-a schema may require an argument even when Python provides a default.
-
 <details className="ww-field-disclosure">
 
 <summary>Complete configuration schema</summary>
@@ -198,6 +160,46 @@ wrangles:
 </div>
 
 _Template based on the documented parameters; no published source example is currently available._
+
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
+
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
+| --- | --- | --- | --- | --- |
+| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
+| `output` | Target schema; string/array shorthands are expanded automatically. | string, object, array | — | Yes |
+| `input` | Column(s) to concatenate into the prompt (defaults to all columns). | string, array | `null` | No |
+| <span className="ww-param-group-label">Options</span> |  |  |  |  |
+| `messages` | The first message's content overrides the generation instructions. | array | `null` | No |
+| `web_search` | Enable DuckDuckGo context lookup per row. | boolean | `false` | No |
+| `summary` | Request summary text to be merged into the output. | boolean | `false` | No |
+| `examples` | Few-shot examples with input, output, and optional notes. | array | — | No |
+| <span className="ww-param-group-label">Execution</span> |  |  |  |  |
+| `threads` | Maximum concurrent requests; defaults to the AI configuration. | integer | `null` | No |
+| `timeout` | Per-request timeout in seconds. | integer | `null` | No |
+| <span className="ww-param-group-label">Errors</span> |  |  |  |  |
+| `retries` | Number of retry attempts on failure. | integer | `null` | No |
+| <span className="ww-param-group-label">Details</span> |  |  |  |  |
+| `api_key` | OpenAI-compatible API key. | string | — | Yes |
+| `model` | Responses model name. Defaults to the generate.ai role in the AI configuration. | string | `null` | No |
+| `url` | Override for the OpenAI-compatible endpoint. | string | `null` | No |
+| `strict` | Enforce JSON-schema validation on the response. | boolean | `null` | No |
+| `reasoning` | Responses API reasoning options, checked against configured model capabilities. | object | `null` | No |
+| `previous_response` | Chain responses by reusing previous_response_id for field-by-field calls. | boolean | `false` | No |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
+
+</div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+</details>
 
 <details className="ww-field-disclosure">
 

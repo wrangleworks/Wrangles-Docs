@@ -16,25 +16,7 @@ Select wrangles, with recipe examples, parameters, and behavior.
 
 ## Drop <CopyableCode value="drop" /> {#drop}
 
-Drop (Delete) selected column(s).
-
 Drop (Delete) selected column(s)
-
-### Parameters
-
-<div className="ww-parameters-table">
-
-| Name | Description | Accepted Values | Default | Required |
-| --- | --- | --- | --- | --- |
-| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `columns` | Name of the column(s) to drop | array, string | — | Yes |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-
-</div>
-
-Required follows the recipe schema. Default records the Python argument default;
-a schema may require an argument even when Python provides a default.
 
 <details className="ww-field-disclosure">
 
@@ -95,12 +77,32 @@ wrangles:
 
 | Product Data |
 | --- |
-| SKF ball bearing |
-| bearing seal |
+| SKF ball brg |
+| brg seal |
 
 </div>
 
 </div>
+
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
+
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
+| --- | --- | --- | --- | --- |
+| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
+| `columns` | Name of the column(s) to drop | array, string | — | Yes |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+
+</div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+</details>
 
 <details className="ww-field-disclosure">
 
@@ -146,40 +148,7 @@ wrangles:
 
 ## Filter <CopyableCode value="filter" /> {#filter}
 
-Filter the dataframe based on the contents. If multiple filters are specified, all must be correct. For complex filters, use the where parameter.
-
 Filter the dataframe based on the contents.
-
-### Parameters
-
-<div className="ww-parameters-table">
-
-| Name | Description | Accepted Values | Default | Required |
-| --- | --- | --- | --- | --- |
-| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `input` | Name of the column to filter on.<br />If multiple are provided, all must match the criteria. | string, integer, array | `[]` | No |
-| <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `equal` | Select rows where the values equal a given value. | string, array, boolean, number | `null` | No |
-| `not_equal` | Select rows where the values do not equal a given value. | string, array, boolean, number | `null` | No |
-| `is_in` | Select rows where the values are in a given list. | array, string | `null` | No |
-| `not_in` | Select rows where the values are not in a given list. | array, string | `null` | No |
-| `greater_than` | Select rows where the values are greater than a specified value. Does include the value itself. | integer, number | `null` | No |
-| `greater_than_equal_to` | Select rows where the values are greater than a specified value. Does include the value itself. | integer, number | `null` | No |
-| `less_than` | Select rows where the values are less than a specified value. Does not include the value itself. | integer, number | `null` | No |
-| `less_than_equal_to` | Select rows where the values are less than a specified value. Does include the value itself. | integer, number | `null` | No |
-| `between` | Value or list of values to filter that are in between two parameter values | array | `null` | No |
-| `contains` | Select rows where the input contains the value. Allows regular expressions. | string | `null` | No |
-| `not_contains` | Select rows where the input does not contain the value. Allows regular expressions. | string | `null` | No |
-| `is_null` | If true, select all rows where the value is NULL. If false, where is not NULL. | boolean | `null` | No |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
-| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-
-</div>
-
-Required follows the recipe schema. Default records the Python argument default;
-a schema may require an argument even when Python provides a default.
 
 <details className="ww-field-disclosure">
 
@@ -335,6 +304,41 @@ wrangles:
 
 <details className="ww-field-disclosure">
 
+<summary>Parameters</summary>
+
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
+| --- | --- | --- | --- | --- |
+| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
+| `input` | Name of the column to filter on.<br />If multiple are provided, all must match the criteria. | string, integer, array | `[]` | No |
+| <span className="ww-param-group-label">Options</span> |  |  |  |  |
+| `equal` | Select rows where the values equal a given value. | string, array, boolean, number | `null` | No |
+| `not_equal` | Select rows where the values do not equal a given value. | string, array, boolean, number | `null` | No |
+| `is_in` | Select rows where the values are in a given list. | array, string | `null` | No |
+| `not_in` | Select rows where the values are not in a given list. | array, string | `null` | No |
+| `greater_than` | Select rows where the values are greater than a specified value. Does include the value itself. | integer, number | `null` | No |
+| `greater_than_equal_to` | Select rows where the values are greater than a specified value. Does include the value itself. | integer, number | `null` | No |
+| `less_than` | Select rows where the values are less than a specified value. Does not include the value itself. | integer, number | `null` | No |
+| `less_than_equal_to` | Select rows where the values are less than a specified value. Does include the value itself. | integer, number | `null` | No |
+| `between` | Value or list of values to filter that are in between two parameter values | array | `null` | No |
+| `contains` | Select rows where the input contains the value. Allows regular expressions. | string | `null` | No |
+| `not_contains` | Select rows where the input does not contain the value. Allows regular expressions. | string | `null` | No |
+| `is_null` | If true, select all rows where the value is NULL. If false, where is not NULL. | boolean | `null` | No |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
+
+</div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+</details>
+
+<details className="ww-field-disclosure">
+
 <summary>Access</summary>
 
 | Requirement | Value |
@@ -377,27 +381,7 @@ wrangles:
 
 ## Columns <CopyableCode value="select.columns" /> {#columns}
 
-Select columns from the dataframe.
-
 Select columns from the dataframe
-
-### Parameters
-
-<div className="ww-parameters-table">
-
-| Name | Description | Accepted Values | Default | Required |
-| --- | --- | --- | --- | --- |
-| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `input` | Name of the column(s) to select | string, integer, array | — | Yes |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
-| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-
-</div>
-
-Required follows the recipe schema. Default records the Python argument default;
-a schema may require an argument even when Python provides a default.
 
 <details className="ww-field-disclosure">
 
@@ -473,6 +457,28 @@ wrangles:
 
 <details className="ww-field-disclosure">
 
+<summary>Parameters</summary>
+
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
+| --- | --- | --- | --- | --- |
+| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
+| `input` | Name of the column(s) to select | string, integer, array | — | Yes |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
+
+</div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+</details>
+
+<details className="ww-field-disclosure">
+
 <summary>Access</summary>
 
 | Requirement | Value |
@@ -516,31 +522,6 @@ wrangles:
 ## Dictionary Element <CopyableCode value="select.dictionary_element" /> {#dictionary-element}
 
 Select one or more element of a dictionary.
-
-
-
-### Parameters
-
-<div className="ww-parameters-table">
-
-| Name | Description | Accepted Values | Default | Required |
-| --- | --- | --- | --- | --- |
-| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `input` | Name of the input column | string, integer, array | — | Yes |
-| `output` | Name of the output column. If omitted, the input column will be replaced. | string, array | `null` | No |
-| <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `element` | The key or keys from the dictionary to select.<br />If a single key is provided, the value will be returned<br />If a lists of keys are selected,<br />the result will be a new dictionary. | string, array | — | Yes |
-| <span className="ww-param-group-label">Errors</span> |  |  |  |  |
-| `default` | Set the default value to return if the specified element doesn't exist.<br />If selecting multiple elements, a dict of defaults can be set. | string, number, array, object, boolean, null | `""` | No |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
-| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-
-</div>
-
-Required follows the recipe schema. Default records the Python argument default;
-a schema may require an argument even when Python provides a default.
 
 <details className="ww-field-disclosure">
 
@@ -619,7 +600,7 @@ wrangles:
       output: Shapes
       element: shapes
       default: square
-      where: Part Number = 1234
+      where: '"Part Number" = 1234'
 ```
 
 <div className="ww-sample-grid">
@@ -686,7 +667,7 @@ wrangles:
 ```yaml
 wrangles:
   - select.dictionary_element:
-      input: Properties
+      input: Column
       output: Output Dict
       element:
         - Col*
@@ -704,9 +685,9 @@ wrangles:
 
 <div className="ww-sample-panel ww-sample-panel--output" data-sample-role="output">
 
-| Column | Output Dict |
-| --- | --- |
-| \{'Col1': 'A', 'Col2': 'B', 'Col3': 'C'\} | \{'Col1': 'A', 'Col2': 'B'\} |
+| Output Dict |
+| --- |
+| \{'Col1': 'A', 'Col2': 'B'\} |
 
 </div>
 
@@ -719,7 +700,7 @@ wrangles:
 ```yaml
 wrangles:
   - select.dictionary_element:
-      input: Properties
+      input: Column
       output: Output Dict
       element:
         - "regex: .*2"
@@ -752,7 +733,7 @@ wrangles:
 ```yaml
 wrangles:
   - select.dictionary_element:
-      input: Properties
+      input: Column
       output: Output Dict
       element:
         - Col1: Column 1
@@ -786,7 +767,7 @@ wrangles:
 ```yaml
 wrangles:
   - select.dictionary_element:
-      input: Properties
+      input: Column
       output: Output Dict
       element:
         - Col1
@@ -817,6 +798,33 @@ wrangles:
 </div>
 
 </div>
+
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
+
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
+| --- | --- | --- | --- | --- |
+| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
+| `input` | Name of the input column | string, integer, array | — | Yes |
+| `output` | Name of the output column. If omitted, the input column will be replaced. | string, array | `null` | No |
+| <span className="ww-param-group-label">Options</span> |  |  |  |  |
+| `element` | The key or keys from the dictionary to select.<br />If a single key is provided, the value will be returned<br />If a lists of keys are selected,<br />the result will be a new dictionary. | string, array | — | Yes |
+| <span className="ww-param-group-label">Errors</span> |  |  |  |  |
+| `default` | Set the default value to return if the specified element doesn't exist.<br />If selecting multiple elements, a dict of defaults can be set. | string, number, array, object, boolean, null | `""` | No |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
+
+</div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+</details>
 
 <details className="ww-field-disclosure">
 
@@ -862,30 +870,7 @@ wrangles:
 
 ## Element <CopyableCode value="select.element" /> {#element}
 
-Select elements of lists or dicts using python syntax like col[0]['key'].
-
 Select elements of lists or dictionaries using Python syntax like `col[1:3]['key']`.
-
-### Parameters
-
-<div className="ww-parameters-table">
-
-| Name | Description | Accepted Values | Default | Required |
-| --- | --- | --- | --- | --- |
-| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `input` | Name of the input column and sub elements This permits by index for lists or dict and by key for dicts e.g. col[0]['key'] // [&#123;"key":"val"&#125;] -&gt; "val" | string, integer, array | — | Yes |
-| `output` | Name of the output column(s) | string, array | `null` | No |
-| <span className="ww-param-group-label">Errors</span> |  |  |  |  |
-| `default` | Set the default value to return if the specified element doesn't exist. | string, number, array, object, boolean | `null` | No |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
-| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-
-</div>
-
-Required follows the recipe schema. Default records the Python argument default;
-a schema may require an argument even when Python provides a default.
 
 <details className="ww-field-disclosure">
 
@@ -962,8 +947,8 @@ wrangles:
 
 | Column A |
 | --- |
-| [A, 0.9] |
-| [B, 0.8] |
+| ["A", 0.9] |
+| ["B", 0.8] |
 
 </div>
 
@@ -977,6 +962,31 @@ wrangles:
 </div>
 
 </div>
+
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
+
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
+| --- | --- | --- | --- | --- |
+| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
+| `input` | Name of the input column and sub elements This permits by index for lists or dict and by key for dicts e.g. col[0]['key'] // [&#123;"key":"val"&#125;] -&gt; "val" | string, integer, array | — | Yes |
+| `output` | Name of the output column(s) | string, array | `null` | No |
+| <span className="ww-param-group-label">Errors</span> |  |  |  |  |
+| `default` | Set the default value to return if the specified element doesn't exist. | string, number, array, object, boolean | `null` | No |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
+
+</div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+</details>
 
 <details className="ww-field-disclosure">
 
@@ -1022,46 +1032,7 @@ wrangles:
 
 ## Group By <CopyableCode value="select.group_by" /> {#group-by}
 
-Group and aggregate the data.
-
 Group and aggregate the data
-
-### Parameters
-
-<div className="ww-parameters-table">
-
-| Name | Description | Accepted Values | Default | Required |
-| --- | --- | --- | --- | --- |
-| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `by` | List of the input columns to group on | string, array | `[]` | No |
-| <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `list` | Group and return all values for these column(s) as a list | string, array | — | No |
-| `first` | The first value for these column(s) | string, array | — | No |
-| `last` | The last value for these column(s) | string, array | — | No |
-| `min` | The minimum value for these column(s) | string, array | — | No |
-| `max` | The maximum value for these column(s) | string, array | — | No |
-| `mean` | The mean (average) value for these column(s) | string, array | — | No |
-| `median` | The median value for these column(s) | string, array | — | No |
-| `nunique` | The count of unique values for these column(s) | string, array | — | No |
-| `count` | The count of values for these column(s) | string, array | — | No |
-| `counts` | Return a dictionary containing the count of each distinct value for these column(s). Keys are converted to JSON-safe strings; missing values use the key "null" and booleans use lowercase "true"/"false". | string, array | — | No |
-| `std` | The standard deviation of values for these column(s) | string, array | — | No |
-| `sum` | The total of values for these column(s) | string, array | — | No |
-| `any` | Return true if any of the values for these column(s) are true | string, array | — | No |
-| `all` | Return true if all of the values for these column(s) are true | string, array | — | No |
-| `p75` | Get a percentile. Note, you can use any integer here for the corresponding percentile. | string, array | — | No |
-| `custom.*` | Placeholder for custom functions. Replace 'placeholder' with the name of the function. | string, array | — | No |
-| <span className="ww-param-group-label">Formatting</span> |  |  |  |  |
-| `auto_rename_columns` | If true (default), aggregated column names include the operation as a suffix (e.g. Value.sum). If false, column names are left as-is; use a dictionary entry to supply a custom output name (e.g. - Value: Total). | boolean | `true` | No |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
-| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-
-</div>
-
-Required follows the recipe schema. Default records the Python argument default;
-a schema may require an argument even when Python provides a default.
 
 <details className="ww-field-disclosure">
 
@@ -1253,6 +1224,13 @@ wrangles:
 
 
 
+The interactive runner loads `sum_times_two` from `customFunctions.py`:
+
+```python
+def sum_times_two(values):
+    return sum(values) * 2
+```
+
 
 
 ```yaml
@@ -1280,11 +1258,52 @@ wrangles:
 | Category | Quantity.sum_times_two |
 | --- | --- |
 | Hand Tools | 12 |
-| Power Tools | 4 |
+| Power Tools | 8 |
 
 </div>
 
 </div>
+
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
+
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
+| --- | --- | --- | --- | --- |
+| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
+| `by` | List of the input columns to group on | string, array | `[]` | No |
+| <span className="ww-param-group-label">Options</span> |  |  |  |  |
+| `list` | Group and return all values for these column(s) as a list | string, array | — | No |
+| `first` | The first value for these column(s) | string, array | — | No |
+| `last` | The last value for these column(s) | string, array | — | No |
+| `min` | The minimum value for these column(s) | string, array | — | No |
+| `max` | The maximum value for these column(s) | string, array | — | No |
+| `mean` | The mean (average) value for these column(s) | string, array | — | No |
+| `median` | The median value for these column(s) | string, array | — | No |
+| `nunique` | The count of unique values for these column(s) | string, array | — | No |
+| `count` | The count of values for these column(s) | string, array | — | No |
+| `counts` | Return a dictionary containing the count of each distinct value for these column(s). Keys are converted to JSON-safe strings; missing values use the key "null" and booleans use lowercase "true"/"false". | string, array | — | No |
+| `std` | The standard deviation of values for these column(s) | string, array | — | No |
+| `sum` | The total of values for these column(s) | string, array | — | No |
+| `any` | Return true if any of the values for these column(s) are true | string, array | — | No |
+| `all` | Return true if all of the values for these column(s) are true | string, array | — | No |
+| `p75` | Get a percentile. Note, you can use any integer here for the corresponding percentile. | string, array | — | No |
+| `custom.*` | Placeholder for custom functions. Replace 'placeholder' with the name of the function. | string, array | — | No |
+| <span className="ww-param-group-label">Formatting</span> |  |  |  |  |
+| `auto_rename_columns` | If true (default), aggregated column names include the operation as a suffix (e.g. Value.sum). If false, column names are left as-is; use a dictionary entry to supply a custom output name (e.g. - Value: Total). | boolean | `true` | No |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
+
+</div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+</details>
 
 <details className="ww-field-disclosure">
 
@@ -1330,27 +1349,7 @@ wrangles:
 
 ## Head <CopyableCode value="select.head" /> {#head}
 
-Return the first n rows.
-
 Return the first n rows
-
-### Parameters
-
-<div className="ww-parameters-table">
-
-| Name | Description | Accepted Values | Default | Required |
-| --- | --- | --- | --- | --- |
-| <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `n` | Number of rows to return | integer | — | Yes |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
-| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-
-</div>
-
-Required follows the recipe schema. Default records the Python argument default;
-a schema may require an argument even when Python provides a default.
 
 <details className="ww-field-disclosure">
 
@@ -1423,6 +1422,28 @@ wrangles:
 
 <details className="ww-field-disclosure">
 
+<summary>Parameters</summary>
+
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
+| --- | --- | --- | --- | --- |
+| <span className="ww-param-group-label">Options</span> |  |  |  |  |
+| `n` | Number of rows to return | integer | — | Yes |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
+
+</div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+</details>
+
+<details className="ww-field-disclosure">
+
 <summary>Access</summary>
 
 | Requirement | Value |
@@ -1465,28 +1486,7 @@ wrangles:
 
 ## Highest Confidence <CopyableCode value="select.highest_confidence" /> {#highest-confidence}
 
-Select the option with the highest confidence from multiple columns. Inputs are expected to be of the form [&lt;&lt;value&gt;&gt;, &lt;&lt;confidence_score&gt;&gt;].
-
 Select the option with the highest confidence from multiple columns. Inputs are expected to be of the form `[value, confidence_score]`.
-
-### Parameters
-
-<div className="ww-parameters-table">
-
-| Name | Description | Accepted Values | Default | Required |
-| --- | --- | --- | --- | --- |
-| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `input` | List of the input columns to select from | array | — | Yes |
-| `output` | If two columns; the result and confidence. If one column; [result, confidence] | array, string | — | Yes |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
-| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-
-</div>
-
-Required follows the recipe schema. Default records the Python argument default;
-a schema may require an argument even when Python provides a default.
 
 <details className="ww-field-disclosure">
 
@@ -1604,6 +1604,29 @@ wrangles:
 
 <details className="ww-field-disclosure">
 
+<summary>Parameters</summary>
+
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
+| --- | --- | --- | --- | --- |
+| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
+| `input` | List of the input columns to select from | array | — | Yes |
+| `output` | If two columns; the result and confidence. If one column; [result, confidence] | array, string | — | Yes |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
+
+</div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+</details>
+
+<details className="ww-field-disclosure">
+
 <summary>Access</summary>
 
 | Requirement | Value |
@@ -1646,30 +1669,7 @@ wrangles:
 
 ## Left <CopyableCode value="select.left" /> {#left}
 
-Return characters from the left of text. Strings shorter than the length defined will be unaffected.
-
 Select characters from the left of the input. Using a negative length reverses the side of selection, selecting from the right.
-
-### Parameters
-
-<div className="ww-parameters-table">
-
-| Name | Description | Accepted Values | Default | Required |
-| --- | --- | --- | --- | --- |
-| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `input` | Name of the column(s) to edit | string, integer, array | — | Yes |
-| `output` | Name of the output column(s) | string, array | `null` | No |
-| <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `length` | Number of characters to include from the left. If negative, this will remove the specified number of characters from the left. May not equal 0. | integer | — | Yes |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
-| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-
-</div>
-
-Required follows the recipe schema. Default records the Python argument default;
-a schema may require an argument even when Python provides a default.
 
 <details className="ww-field-disclosure">
 
@@ -1757,6 +1757,31 @@ wrangles:
 
 <details className="ww-field-disclosure">
 
+<summary>Parameters</summary>
+
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
+| --- | --- | --- | --- | --- |
+| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
+| `input` | Name of the column(s) to edit | string, integer, array | — | Yes |
+| `output` | Name of the output column(s) | string, array | `null` | No |
+| <span className="ww-param-group-label">Options</span> |  |  |  |  |
+| `length` | Number of characters to include from the left. If negative, this will remove the specified number of characters from the left. May not equal 0. | integer | — | Yes |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
+
+</div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+</details>
+
+<details className="ww-field-disclosure">
+
 <summary>Access</summary>
 
 | Requirement | Value |
@@ -1800,27 +1825,6 @@ wrangles:
 ## Length <CopyableCode value="select.length" /> {#length}
 
 Calculate the lengths of data in a column. The length depends on the data type e.g. text will be the length of the text, lists will be the number of elements in the list.
-
-
-
-### Parameters
-
-<div className="ww-parameters-table">
-
-| Name | Description | Accepted Values | Default | Required |
-| --- | --- | --- | --- | --- |
-| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `input` | Name of the input column(s). | string, integer, array | — | Yes |
-| `output` | Name of the output column(s). | string, array | `null` | No |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
-| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-
-</div>
-
-Required follows the recipe schema. Default records the Python argument default;
-a schema may require an argument even when Python provides a default.
 
 <details className="ww-field-disclosure">
 
@@ -1901,6 +1905,29 @@ wrangles:
 
 <details className="ww-field-disclosure">
 
+<summary>Parameters</summary>
+
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
+| --- | --- | --- | --- | --- |
+| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
+| `input` | Name of the input column(s). | string, integer, array | — | Yes |
+| `output` | Name of the output column(s). | string, array | `null` | No |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
+
+</div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+</details>
+
+<details className="ww-field-disclosure">
+
 <summary>Access</summary>
 
 | Requirement | Value |
@@ -1944,31 +1971,6 @@ wrangles:
 ## List Element <CopyableCode value="select.list_element" /> {#list-element}
 
 Select a numbered element of a list (zero indexed).
-
-
-
-### Parameters
-
-<div className="ww-parameters-table">
-
-| Name | Description | Accepted Values | Default | Required |
-| --- | --- | --- | --- | --- |
-| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `input` | Name of the input column | string, integer, array | — | Yes |
-| `output` | Name of the output column | string, array | `null` | No |
-| <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `element` | The numbered element of the list to select.<br />Starts from zero.<br />This may use python slicing syntax to select a subset of the list. | integer | `0` | Yes |
-| <span className="ww-param-group-label">Errors</span> |  |  |  |  |
-| `default` | Set the default value to return if the specified element doesn't exist. | string, number, array, object, boolean, null | `""` | No |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
-| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-
-</div>
-
-Required follows the recipe schema. Default records the Python argument default;
-a schema may require an argument even when Python provides a default.
 
 <details className="ww-field-disclosure">
 
@@ -2041,7 +2043,7 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 wrangles:
   - select.list_element:
       input: Col1
-      output: Second Element
+      output: Third Element
       element: 2 # Zero indexed
       default: F
 ```
@@ -2067,6 +2069,33 @@ wrangles:
 </div>
 
 </div>
+
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
+
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
+| --- | --- | --- | --- | --- |
+| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
+| `input` | Name of the input column | string, integer, array | — | Yes |
+| `output` | Name of the output column | string, array | `null` | No |
+| <span className="ww-param-group-label">Options</span> |  |  |  |  |
+| `element` | The numbered element of the list to select.<br />Starts from zero.<br />This may use python slicing syntax to select a subset of the list. | integer | `0` | Yes |
+| <span className="ww-param-group-label">Errors</span> |  |  |  |  |
+| `default` | Set the default value to return if the specified element doesn't exist. | string, number, array, object, boolean, null | `""` | No |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
+
+</div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+</details>
 
 <details className="ww-field-disclosure">
 
@@ -2112,30 +2141,7 @@ wrangles:
 
 ## Right <CopyableCode value="select.right" /> {#right}
 
-Return characters from the right of text. Strings shorter than the length defined will be unaffected.
-
 Select characters from the right of the input. Using a negative length reverses the side of selection, selecting from the left.
-
-### Parameters
-
-<div className="ww-parameters-table">
-
-| Name | Description | Accepted Values | Default | Required |
-| --- | --- | --- | --- | --- |
-| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `input` | Name of the column(s) to edit | string, integer, array | — | Yes |
-| `output` | Name of the output column(s) | string, array | `null` | No |
-| <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `length` | Number of characters to include from the right. If negative, this will remove the specified number of characters from the right. May not equal 0. | integer | — | Yes |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
-| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-
-</div>
-
-Required follows the recipe schema. Default records the Python argument default;
-a schema may require an argument even when Python provides a default.
 
 <details className="ww-field-disclosure">
 
@@ -2223,6 +2229,31 @@ wrangles:
 
 <details className="ww-field-disclosure">
 
+<summary>Parameters</summary>
+
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
+| --- | --- | --- | --- | --- |
+| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
+| `input` | Name of the column(s) to edit | string, integer, array | — | Yes |
+| `output` | Name of the output column(s) | string, array | `null` | No |
+| <span className="ww-param-group-label">Options</span> |  |  |  |  |
+| `length` | Number of characters to include from the right. If negative, this will remove the specified number of characters from the right. May not equal 0. | integer | — | Yes |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
+
+</div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+</details>
+
+<details className="ww-field-disclosure">
+
 <summary>Access</summary>
 
 | Requirement | Value |
@@ -2265,27 +2296,7 @@ wrangles:
 
 ## Sample <CopyableCode value="select.sample" /> {#sample}
 
-Return a random sample of the rows.
-
 Return a random sample of the rows
-
-### Parameters
-
-<div className="ww-parameters-table">
-
-| Name | Description | Accepted Values | Default | Required |
-| --- | --- | --- | --- | --- |
-| <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `rows` | If a whole number, will select that number of rows.<br />If a decimal between 0 and 1 will select that fraction <br />of the rows e.g. 0.1 =&gt; 10% of rows will be returned | integer, number | — | Yes |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
-| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-
-</div>
-
-Required follows the recipe schema. Default records the Python argument default;
-a schema may require an argument even when Python provides a default.
 
 <details className="ww-field-disclosure">
 
@@ -2330,6 +2341,10 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 
 ### Examples
 
+The output is illustrative: each run can select different rows. Two rows are selected without replacement, with their column values unchanged.
+
+
+
 ```yaml
 wrangles:
   - select.sample:
@@ -2362,6 +2377,8 @@ wrangles:
 
 
 
+The output is illustrative: each run can select a different row. With four input rows, 25% selects one row.
+
 
 
 ```yaml
@@ -2392,6 +2409,28 @@ wrangles:
 </div>
 
 </div>
+
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
+
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
+| --- | --- | --- | --- | --- |
+| <span className="ww-param-group-label">Options</span> |  |  |  |  |
+| `rows` | If a whole number, will select that number of rows.<br />If a decimal between 0 and 1 will select that fraction <br />of the rows e.g. 0.1 =&gt; 10% of rows will be returned | integer, number | — | Yes |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
+
+</div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+</details>
 
 <details className="ww-field-disclosure">
 
@@ -2438,30 +2477,6 @@ wrangles:
 ## Substring <CopyableCode value="select.substring" /> {#substring}
 
 Return characters from the middle of text.
-
-
-
-### Parameters
-
-<div className="ww-parameters-table">
-
-| Name | Description | Accepted Values | Default | Required |
-| --- | --- | --- | --- | --- |
-| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `input` | Name of the column(s) to edit | string, integer, array | — | Yes |
-| `output` | Name of the output column(s) | string, array | `null` | No |
-| <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `start` | The position of the first character to select.<br />If ommited will start from the beginning and length must <br />be provided.<br /> | integer | `null` | Yes |
-| `length` | The length of the string to select. If ommited<br />will select to the end of the string and start must be provided.<br /> | integer | `null` | Yes |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
-| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-
-</div>
-
-Required follows the recipe schema. Default records the Python argument default;
-a schema may require an argument even when Python provides a default.
 
 <details className="ww-field-disclosure">
 
@@ -2628,6 +2643,32 @@ wrangles:
 
 <details className="ww-field-disclosure">
 
+<summary>Parameters</summary>
+
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
+| --- | --- | --- | --- | --- |
+| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
+| `input` | Name of the column(s) to edit | string, integer, array | — | Yes |
+| `output` | Name of the output column(s) | string, array | `null` | No |
+| <span className="ww-param-group-label">Options</span> |  |  |  |  |
+| `start` | The position of the first character to select.<br />If ommited will start from the beginning and length must <br />be provided.<br /> | integer | `null` | Yes |
+| `length` | The length of the string to select. If ommited<br />will select to the end of the string and start must be provided.<br /> | integer | `null` | Yes |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
+
+</div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+</details>
+
+<details className="ww-field-disclosure">
+
 <summary>Access</summary>
 
 | Requirement | Value |
@@ -2670,27 +2711,7 @@ wrangles:
 
 ## Tail <CopyableCode value="select.tail" /> {#tail}
 
-Return the last n rows.
-
 Return the last n rows
-
-### Parameters
-
-<div className="ww-parameters-table">
-
-| Name | Description | Accepted Values | Default | Required |
-| --- | --- | --- | --- | --- |
-| <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `n` | Number of rows to return | integer | — | Yes |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
-| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-
-</div>
-
-Required follows the recipe schema. Default records the Python argument default;
-a schema may require an argument even when Python provides a default.
 
 <details className="ww-field-disclosure">
 
@@ -2763,6 +2784,28 @@ wrangles:
 
 <details className="ww-field-disclosure">
 
+<summary>Parameters</summary>
+
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
+| --- | --- | --- | --- | --- |
+| <span className="ww-param-group-label">Options</span> |  |  |  |  |
+| `n` | Number of rows to return | integer | — | Yes |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
+
+</div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+</details>
+
+<details className="ww-field-disclosure">
+
 <summary>Access</summary>
 
 | Requirement | Value |
@@ -2806,29 +2849,6 @@ wrangles:
 ## Threshold <CopyableCode value="select.threshold" /> {#threshold}
 
 Select the first option if it exceeds a given threshold, else the second option.
-
-
-
-### Parameters
-
-<div className="ww-parameters-table">
-
-| Name | Description | Accepted Values | Default | Required |
-| --- | --- | --- | --- | --- |
-| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `input` | List of the input columns to select from | array | — | Yes |
-| `output` | Name of the output column | string | — | Yes |
-| <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `threshold` | Threshold above which to choose the first option, otherwise the second | number | — | Yes |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
-| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-
-</div>
-
-Required follows the recipe schema. Default records the Python argument default;
-a schema may require an argument even when Python provides a default.
 
 <details className="ww-field-disclosure">
 
@@ -2914,6 +2934,31 @@ wrangles:
 
 <details className="ww-field-disclosure">
 
+<summary>Parameters</summary>
+
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
+| --- | --- | --- | --- | --- |
+| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
+| `input` | List of the input columns to select from | array | — | Yes |
+| `output` | Name of the output column | string | — | Yes |
+| <span className="ww-param-group-label">Options</span> |  |  |  |  |
+| `threshold` | Threshold above which to choose the first option, otherwise the second | number | — | Yes |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
+
+</div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+</details>
+
+<details className="ww-field-disclosure">
+
 <summary>Access</summary>
 
 | Requirement | Value |
@@ -2956,31 +3001,7 @@ wrangles:
 
 ## Sort <CopyableCode value="sort" /> {#sort}
 
-Sort the data.
-
 Sort the data
-
-### Parameters
-
-<div className="ww-parameters-table">
-
-| Name | Description | Accepted Values | Default | Required |
-| --- | --- | --- | --- | --- |
-| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `by` | Name or list of the column(s) to sort by | string, array | — | Yes |
-| <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `ascending` | Sort ascending vs. descending. Specify a list to sort multiple columns in different orders. If this is a list of bools then it must match the length of the by. | boolean, array | — | No |
-| <span className="ww-param-group-label">Formatting</span> |  |  |  |  |
-| `ignore_index` | Ignore Index value accepted by the runtime. | Any JSON value (not constrained upstream) | `true` | No |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
-| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-
-</div>
-
-Required follows the recipe schema. Default records the Python argument default;
-a schema may require an argument even when Python provides a default.
 
 <details className="ww-field-disclosure">
 
@@ -3069,6 +3090,32 @@ wrangles:
 </div>
 
 </div>
+
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
+
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
+| --- | --- | --- | --- | --- |
+| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
+| `by` | Name or list of the column(s) to sort by | string, array | — | Yes |
+| <span className="ww-param-group-label">Options</span> |  |  |  |  |
+| `ascending` | Sort ascending vs. descending. Specify a list to sort multiple columns in different orders. If this is a list of bools then it must match the length of the by. | boolean, array | — | No |
+| <span className="ww-param-group-label">Formatting</span> |  |  |  |  |
+| `ignore_index` | Ignore Index value accepted by the runtime. | Any JSON value (not constrained upstream) | `true` | No |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
+
+</div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+</details>
 
 <details className="ww-field-disclosure">
 

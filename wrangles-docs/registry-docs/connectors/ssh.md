@@ -38,7 +38,9 @@ ssh.run(
 )
 ```
 
-## Parameters
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
 
 ### Run
 
@@ -101,6 +103,8 @@ Issue commands over SSH
   }
 }
 ```
+
+</details>
 
 </details>
 

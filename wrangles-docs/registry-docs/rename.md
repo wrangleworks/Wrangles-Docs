@@ -14,27 +14,6 @@ import CopyableCode from '@site/src/components/CopyableCode';
 
 Rename a column or list of columns.
 
-
-
-## Parameters
-
-<div className="ww-parameters-table">
-
-| Name | Description | Accepted Values | Default | Required |
-| --- | --- | --- | --- | --- |
-| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `input` | Name or list of input columns. | string, integer, array | `null` | No |
-| `output` | Name or list of output columns. | string, array | `null` | No |
-| <span className="ww-param-group-label">Execution</span> |  |  |  |  |
-| `wrangles` | Use wrangles to transform the column names.<br />The input is named 'columns' and the final result<br />must also include the column named 'columns'.<br />This can only be used instead of the standard rename. | array | `null` | No |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-
-</div>
-
-Required follows the recipe schema. Default records the Python argument default;
-a schema may require an argument even when Python provides a default.
-
 <details className="ww-field-disclosure">
 
 <summary>Complete configuration schema</summary>
@@ -192,6 +171,29 @@ wrangles:
 </div>
 
 </div>
+
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
+
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
+| --- | --- | --- | --- | --- |
+| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
+| `input` | Name or list of input columns. | string, integer, array | `null` | No |
+| `output` | Name or list of output columns. | string, array | `null` | No |
+| <span className="ww-param-group-label">Execution</span> |  |  |  |  |
+| `wrangles` | Use wrangles to transform the column names.<br />The input is named 'columns' and the final result<br />must also include the column named 'columns'.<br />This can only be used instead of the standard rename. | array | `null` | No |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+
+</div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+</details>
 
 <details className="ww-field-disclosure">
 

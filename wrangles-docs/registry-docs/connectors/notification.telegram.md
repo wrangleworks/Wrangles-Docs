@@ -40,7 +40,9 @@ telegram.run(
 )
 ```
 
-## Parameters
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
 
 ### Run
 
@@ -104,6 +106,8 @@ Send a telegram message. See https://core.telegram.org/bots
   }
 }
 ```
+
+</details>
 
 </details>
 

@@ -23,7 +23,9 @@ read:
         - Col3
 ```
 
-## Parameters
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
 
 ### Read
 
@@ -67,6 +69,8 @@ This connector can be used to reference the default dataframe that was passed to
   }
 }
 ```
+
+</details>
 
 </details>
 

@@ -39,7 +39,7 @@ Each fact has one authoring authority:
 The compiled Registry bundle is the complete consumption source for people and
 agents. It joins three pinned inputs: API Core catalog identity from
 `catalog/api-core.json`, runtime facts from `runtime/wranglespy.json`, and
-editorial content from `wrangles/`. The compiler validates the joins and emits
+editorial content from `input_wrangles/`. The compiler validates the joins and emits
 separate reconciliation reports; none of these inputs is silently rewritten.
 
 The previous `_sources` Markdown has been retired and is not a compiler input.
@@ -72,7 +72,7 @@ the catalog key, so `connector.recipe` and `recipe` remain separate even though
 their `wranglesPY_key` values match. Runtime-key uniqueness is not a database
 catalog invariant (`lookup.key` and `lookup.semantic` both map to `lookup`).
 
-`connectors/*.md` records use the same Markdown/YAML-frontmatter authoring
+`input_connectors/*.md` records use the same Markdown/YAML-frontmatter authoring
 convention as wrangles. Their frontmatter conforms to
 `schema/connector-entry.schema.json`; explanations and examples live in the
 Markdown body. Both use the shared `registry-markdown.cjs` parser.
@@ -156,7 +156,7 @@ registry/
   reports/
     runtime-reconciliation.json
     runtime-reconciliation.md
-  wrangles/
+  input_wrangles/
     _root/
       lookup.md
     convert/

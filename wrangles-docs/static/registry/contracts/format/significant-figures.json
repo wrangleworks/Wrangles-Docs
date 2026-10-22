@@ -165,7 +165,7 @@
     }
   ],
   "examples": [],
-  "guidance": "Format a value to a specific number of significant figures\n\n## Migrated examples\n#### Rounding to Significant Figures\n\n##### Recipe\n\n```yaml\nwrangles:\n  - format.significant_figures:\n      input: Data\n      significant_figures: 2\n      output: Data to 2 Figures\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n| Data |\n| --- |\n| 1.25 |\n| 12.3 |\n| 55.6 |\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| Data | Data to 2 Figures |\n| --- | --- |\n| 1.25 | 1.2 |\n| 12.3 | 12 |\n| 55.6 | 55 |\n\n</div>\n\n</div>",
+  "guidance": "Format a value to a specific number of significant figures\n\n## Migrated examples\n#### Rounding to Significant Figures\n\n##### Recipe\n\n```yaml\nwrangles:\n  - format.significant_figures:\n      input: Data\n      significant_figures: 2\n      output: Data to 2 Figures\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n| Data |\n| --- |\n| 1.25 |\n| 12.3 |\n| 55.6 |\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| Data | Data to 2 Figures |\n| --- | --- |\n| 1.25 | 1.2 |\n| 12.3 | 12 |\n| 55.6 | 56 |\n\n</div>\n\n</div>",
   "sources": [
     {
       "id": "runtime",

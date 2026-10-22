@@ -279,9 +279,9 @@ _No sample available._
 
 ##### Output Sample
 
-| Tools (input) | Attributes (span )(output) |
+| tools | attributes |
 | --- | --- |
-| hammer 5kg, 0.5m | \{'length': ['0.5m'], 'mass': ['5kg']\} |
+| hammer 5kg, 0.5m | \{'length': ['0.5m'], 'weight': ['5kg']\} |
 
 </div>
 
@@ -313,9 +313,9 @@ _No sample available._
 
 ##### Output Sample
 
-| Tools (input) | Attributes (Object) (output) |
+| tools | attributes |
 | --- | --- |
-| hammer 5kg, 0.5m | \{'length': [\{'unit': 'metre', 'value': 0.5\}], 'mass': [\{'unit': 'kilogram', 'value': 5.0\}]\} |
+| hammer 5kg, 0.5m | \{'length': [\{'span': '0.5m', 'standard': '0.5 m', 'symbol': 'm', 'unit': 'metre', 'value': 0.5\}], 'weight': [\{'span': '5kg', 'standard': '5 kg', 'symbol': 'kg', 'unit': 'kilogram', 'value': 5.0\}]\} |
 
 </div>
 

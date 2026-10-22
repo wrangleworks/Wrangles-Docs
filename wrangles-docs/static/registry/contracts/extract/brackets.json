@@ -225,7 +225,7 @@
     }
   ],
   "examples": [],
-  "guidance": "Extract text in brackets from the input.\n\n## Migrated examples\n#### Extracting Data Within Brackets\n\n##### Recipe\n\n```yaml\nwrangles:\n  - extract.brackets:\n      input: Data\n      output: Output\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n_No sample available._\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| Data | Output |\n| --- | --- |\n| `{Hello}` | Hello |\n| `[Wrangles]` | Wrangles |\n| `(!)` | ! |\n| `<!>` | ! |\n\n</div>\n\n</div>",
+  "guidance": "Extract text in brackets from the input.\n\n## Migrated examples\n#### Extracting Data Within Brackets\n\n##### Recipe\n\n```yaml\nwrangles:\n  - extract.brackets:\n      input: Data\n      output: Output\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n| Data |\n| --- |\n| `{Hello}` |\n| `[Wrangles]` |\n| `(!)` |\n| `<!>` |\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| Data | Output |\n| --- | --- |\n| `{Hello}` | [\"Hello\"] |\n| `[Wrangles]` | [\"Wrangles\"] |\n| `(!)` | [\"!\"] |\n| `<!>` | [\"!\"] |\n\n</div>\n\n</div>",
   "sources": [
     {
       "id": "runtime",

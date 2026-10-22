@@ -2,6 +2,15 @@
 
 Consistency is a repository requirement for every change, not an optional cleanup.
 
+- Hand-edit Registry documentation in `registry/input_wrangles/` and
+  `registry/input_connectors/`. Keep generated pages and public artifact URLs
+  separate from these input folder names. Sidebar entries within Wrangles and
+  Connectors must be alphabetical.
+- Page introductions come from the editorial Markdown body, never an additional
+  rendering of schema or frontmatter descriptions. Refresh may seed a missing
+  introduction (prefer existing editorial metadata, then schema), but must never
+  replace existing prose. Frontmatter descriptions remain machine/search summaries.
+
 - Registry wrangles and connectors use Markdown (`.md`) with YAML frontmatter as
   their authoritative authoring format. Metadata belongs in frontmatter;
   explanations, guidance, and examples belong in the Markdown body. Do not add

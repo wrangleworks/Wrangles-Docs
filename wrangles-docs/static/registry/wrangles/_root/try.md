@@ -126,6 +126,8 @@ dictionary for `except`. Use fallback column values for schema-validated recipes
 ## Migrated examples
 #### Use Fallback Column Values After an Error
 
+This input deliberately lacks `column`, so the conversion raises a missing-column error and `except` creates it with the fallback value. Invalid numeric text alone does not trigger this fallback: `convert.data_type` retains unconvertible values unless a default is provided.
+
 ##### Recipe
 
 ```yaml
@@ -145,7 +147,9 @@ wrangles:
 
 ##### Input Sample
 
-_The input dataframe is passed to the primary wrangles._
+| Product |
+| --- |
+| Hammer |
 
 </div>
 
@@ -153,7 +157,48 @@ _The input dataframe is passed to the primary wrangles._
 
 ##### Output Sample
 
-_The primary result is returned on success; the `except` result is returned after an error._
+| column |
+| --- |
+| unavailable |
+
+</div>
+
+</div>
+
+#### Successful Conversion Without Fallback
+
+The same recipe preserves a successful conversion rather than applying the fallback.
+
+```yaml
+wrangles:
+  - try:
+      wrangles:
+        - convert.data_type:
+            input: column
+            data_type: int
+      except:
+        column: unavailable
+```
+
+<div className="ww-sample-grid">
+
+<div className="ww-sample-panel">
+
+##### Input Sample
+
+| column |
+| --- |
+| "42" |
+
+</div>
+
+<div className="ww-sample-panel">
+
+##### Output Sample
+
+| column |
+| --- |
+| 42 |
 
 </div>
 

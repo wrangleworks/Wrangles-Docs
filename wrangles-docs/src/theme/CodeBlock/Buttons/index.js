@@ -10,28 +10,11 @@ import Button from '@theme/CodeBlock/Buttons/Button';
 import WordWrapButton from '@theme/CodeBlock/Buttons/WordWrapButton';
 import {useRecipePlayground} from '@site/src/components/RecipePlayground/context';
 import {runRecipeRequest} from '@site/src/components/recipeRunnerClient';
+import runPolicy from '@site/src/components/recipeRunPolicy.cjs';
 import styles from './styles.module.css';
 
 const WRANGLE_FLOW_TRANSFER_KEY = 'wrangle-flow-playground-transfer';
-const RUN_DISABLED_WRANGLES = {
-  batch: 'This example requires an external API key.',
-  classify: 'This example requires a configured model ID and model service.',
-  'create.embeddings': 'This example requires an external AI API key.',
-  'extract.ai': 'This example requires an external AI API key or configured model.',
-  'extract.custom': 'This example requires a configured model ID and model service.',
-  'extract.date_range': 'This example does not include runnable input sample data yet.',
-  'generate.ai': 'This example requires an external AI API key.',
-  huggingface:
-    'This example depends on an external model service that is unavailable in the interactive runner.',
-  lookup: 'This example requires a configured model ID and model service.',
-  matrix: 'This example requires custom functions that are not loaded by the interactive runner.',
-  'merge.dictionaries': 'This example does not include runnable dictionary input data yet.',
-  'search.find_links': 'This example requires an external SerpApi API key.',
-  'search.retrieve_link_content': 'This example requires an external Google API key.',
-  standardize: 'This example requires a configured model ID and model service.',
-  'standardize.custom': 'This example requires a configured model ID and model service.',
-  try: 'This example uses placeholder wrangles and cannot be executed as written.',
-};
+const {getRunDisabledReason} = runPolicy;
 
 function normalizeRecipe(recipe) {
   return String(recipe || '').replace(/\t/g, '  ');
@@ -52,24 +35,6 @@ function isRecipeYaml(metadata) {
 
   const parsed = parseRecipe(metadata.code);
   return Array.isArray(parsed?.wrangles) && parsed.wrangles.length > 0;
-}
-
-function getRunDisabledReason(recipe) {
-  const source = normalizeRecipe(recipe);
-  const parsed = parseRecipe(source);
-  const wrangles = Array.isArray(parsed?.wrangles) ? parsed.wrangles : [];
-  for (const step of wrangles) {
-    const key = step && typeof step === 'object' ? Object.keys(step)[0] : null;
-    if (key && RUN_DISABLED_WRANGLES[key]) {
-      return RUN_DISABLED_WRANGLES[key];
-    }
-  }
-
-  if (/\$\{[^}]+\}/.test(source)) {
-    return 'This example requires a variable or secret before it can run.';
-  }
-
-  return '';
 }
 
 function fallbackInputTable(recipe) {
@@ -310,13 +275,13 @@ function RunButton() {
           message: 'Run recipe example',
           description: 'The ARIA label for the recipe run button on code blocks',
         })}
-        title={translate({
+        title={runDisabledReason || translate({
           id: 'theme.CodeBlock.runRecipeTitle',
           message: 'Run',
           description: 'The title for the recipe run button on code blocks',
         })}
         className={styles.runButton}
-        disabled={isRunning}
+        disabled={isRunning || Boolean(runDisabledReason)}
         onClick={runRecipe}>
         <span className={styles.runButtonLabel}>{isRunning ? 'Running' : 'Run'}</span>
       </Button>

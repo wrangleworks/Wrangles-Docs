@@ -78,6 +78,8 @@ Return a random sample of the rows
 ## Migrated examples
 #### Selecting 2 Random Rows
 
+The output is illustrative: each run can select different rows. Two rows are selected without replacement, with their column values unchanged.
+
 ##### Recipe
 
 ```yaml
@@ -115,6 +117,8 @@ wrangles:
 </div>
 
 #### Selecting a Random 25% of All Rows
+
+The output is illustrative: each run can select a different row. With four input rows, 25% selects one row.
 
 ##### Recipe
 

@@ -120,11 +120,11 @@ Cannot specify both `axis` and any of `index` or `columns`. Reindex is not compa
 wrangles:
   - reindex:
       index:
-        - 5
         - 4
         - 3
         - 2
         - 1
+        - 0
 ```
 
 <div className="ww-sample-grid">
@@ -133,13 +133,13 @@ wrangles:
 
 ##### Input Sample
 
-|  | Material | Product Data |
-| --- | --- | --- |
-| 1 | Ceramic | SKF ball brg |
-| 2 | Rubber | brg seal |
-| 3 | Brass | Ball valve |
-| 4 | Ceramic | Ceramic cartridge |
-| 5 | Stainless Steel | Needle Bearing |
+| Material | Product Data |
+| --- | --- |
+| Ceramic | SKF ball brg |
+| Rubber | brg seal |
+| Brass | Ball valve |
+| Ceramic | Ceramic cartridge |
+| Stainless Steel | Needle Bearing |
 
 </div>
 
@@ -147,13 +147,13 @@ wrangles:
 
 ##### Output Sample
 
-|  | Material | Product Data |
-| --- | --- | --- |
-| 5 | Stainless Steel | Needle Bearing |
-| 4 | Ceramic | Ceramic cartridge |
-| 3 | Brass | Ball valve |
-| 2 | Rubber | brg seal |
-| 1 | Ceramic | SKF ball brg |
+| Material | Product Data |
+| --- | --- |
+| Stainless Steel | Needle Bearing |
+| Ceramic | Ceramic cartridge |
+| Brass | Ball valve |
+| Rubber | brg seal |
+| Ceramic | SKF ball brg |
 
 </div>
 

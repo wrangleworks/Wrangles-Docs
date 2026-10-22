@@ -18,35 +18,6 @@ Define named questions with `instructions` describing the statement to evaluate.
 
 Guidance adapted from the [original AI Wrangles documentation](https://wrangles.io/en/python/recipes/wrangles/ai). Parameter tables and nested validation rules are generated from the pinned WranglesPY schema, not maintained separately here.
 
-## Parameters
-
-<div className="ww-parameters-table">
-
-| Name | Description | Accepted Values | Default | Required |
-| --- | --- | --- | --- | --- |
-| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `input` | Input column(s) sent as the shared provider state; omit to supply all columns. Question templates and for_each sources can reference other columns in the row. | string, integer, array | `null` | No |
-| <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `questions` | Questions to answer for each input row, keyed by their distinct labels. | object | — | Yes |
-| `api_key` | Typesafe API key; defaults to TYPESAFE_API_KEY. | string | `null` | No |
-| `model` | Model ID; defaults to this wrangle's AI catalog selection. | string | `null` | No |
-| `provider` | Provider resolved through the AI catalog; currently typesafe. | string; one of:<ul className="ww-param-enum-values"><li>typesafe</li></ul> | `null` | No |
-| `protocol` | Provider protocol selected through the AI catalog. | string; one of:<ul className="ww-param-enum-values"><li>systemone</li></ul> | `null` | No |
-| `threads` | Maximum row requests in parallel; defaults to the AI catalog. | integer | `null` | No |
-| `timeout` | Per-attempt request timeout in seconds; defaults to the AI catalog. | number | `null` | No |
-| `retries` | Additional attempts for retryable failures; defaults to the AI catalog. | integer | `null` | No |
-| `cache` | Reuse identical successful requests through the shared AI cache. Off by default for Typesafe; set true to enable. | boolean | `null` | No |
-| `cache_ttl` | Override the cache result lifetime in seconds. | number | `null` | No |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
-| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-
-</div>
-
-Required follows the recipe schema. Default records the Python argument default;
-a schema may require an argument even when Python provides a default.
-
 <details className="ww-field-disclosure">
 
 <summary>Complete configuration schema</summary>
@@ -295,6 +266,39 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 </details>
 
 
+
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
+
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
+| --- | --- | --- | --- | --- |
+| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
+| `input` | Input column(s) sent as the shared provider state; omit to supply all columns. Question templates and for_each sources can reference other columns in the row. | string, integer, array | `null` | No |
+| <span className="ww-param-group-label">Options</span> |  |  |  |  |
+| `questions` | Questions to answer for each input row, keyed by their distinct labels. | object | — | Yes |
+| `api_key` | Typesafe API key; defaults to TYPESAFE_API_KEY. | string | `null` | No |
+| `model` | Model ID; defaults to this wrangle's AI catalog selection. | string | `null` | No |
+| `provider` | Provider resolved through the AI catalog; currently typesafe. | string; one of:<ul className="ww-param-enum-values"><li>typesafe</li></ul> | `null` | No |
+| `protocol` | Provider protocol selected through the AI catalog. | string; one of:<ul className="ww-param-enum-values"><li>systemone</li></ul> | `null` | No |
+| `threads` | Maximum row requests in parallel; defaults to the AI catalog. | integer | `null` | No |
+| `timeout` | Per-attempt request timeout in seconds; defaults to the AI catalog. | number | `null` | No |
+| `retries` | Additional attempts for retryable failures; defaults to the AI catalog. | integer | `null` | No |
+| `cache` | Reuse identical successful requests through the shared AI cache. Off by default for Typesafe; set true to enable. | boolean | `null` | No |
+| `cache_ttl` | Override the cache result lifetime in seconds. | number | `null` | No |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
+
+</div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+</details>
 
 <details className="ww-field-disclosure">
 

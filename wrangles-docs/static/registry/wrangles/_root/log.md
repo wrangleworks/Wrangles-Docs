@@ -159,7 +159,10 @@ wrangles:
 
 ##### Input Sample
 
-_Logging side-effect; no tabular input sample._
+| Product | Quantity |
+| --- | --- |
+| Hammer | 2 |
+| Drill | 3 |
 
 </div>
 
@@ -167,7 +170,12 @@ _Logging side-effect; no tabular input sample._
 
 ##### Output Sample
 
-_Logs a sample of rows or status information to the configured destination._
+| Product | Quantity |
+| --- | --- |
+| Hammer | 2 |
+| Drill | 3 |
+
+The data is returned unchanged. A sample of the dataframe is written to the server log, not added to the result table.
 
 </div>
 
@@ -191,7 +199,10 @@ wrangles:
 
 ##### Input Sample
 
-_Logging side-effect; no tabular input sample._
+| column1 | column2 |
+| --- | --- |
+| Hammer | 3 |
+| Drill | 2 |
 
 </div>
 
@@ -199,7 +210,12 @@ _Logging side-effect; no tabular input sample._
 
 ##### Output Sample
 
-_Logs a sample of rows or status information to the configured destination._
+The input data is returned unchanged; the selected columns are also logged.
+
+| column1 | column2 |
+| --- | --- |
+| Hammer | 3 |
+| Drill | 2 |
 
 </div>
 

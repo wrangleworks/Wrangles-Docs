@@ -1202,6 +1202,83 @@ h4.tabset {
   color: var(--ww-code-foreground);
 }
 
+/* Python sidebar: gold headings, neutral child pills with 70% transparency. */
+.theme-doc-sidebar-menu:has(.registry-sidebar-intro) {
+  padding: 0.6rem;
+  background: var(--ww-blue-800);
+}
+
+.theme-doc-sidebar-menu:has(.registry-sidebar-intro) .menu__list {
+  background: transparent;
+  margin: 0;
+  padding: 0 0 0 0.65rem;
+}
+
+.theme-doc-sidebar-menu:has(.registry-sidebar-intro) .menu__list-item {
+  margin: 0.4rem 0;
+}
+
+.theme-doc-sidebar-menu:has(.registry-sidebar-intro) .menu__link,
+.theme-doc-sidebar-menu:has(.registry-sidebar-intro) .menu__list-item-collapsible {
+  border: 0;
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgb(165 228 255 / 30%), rgb(50 164 226 / 30%));
+  color: #ffffff;
+  box-shadow: none;
+}
+
+.theme-doc-sidebar-menu:has(.registry-sidebar-intro) .menu__link,
+.theme-doc-sidebar-menu:has(.registry-sidebar-intro) .menu__list .menu__link {
+  padding: 0.7rem 1rem;
+  color: #f5fcff;
+  text-shadow: none;
+}
+
+.theme-doc-sidebar-menu:has(.registry-sidebar-intro) .menu__list-item-collapsible > .menu__link {
+  background: transparent;
+  box-shadow: none;
+}
+
+.theme-doc-sidebar-menu:has(.registry-sidebar-intro) > .registry-sidebar-section > .menu__list-item-collapsible {
+  background: var(--ww-gold-500);
+  color: #143f56;
+  box-shadow: none;
+}
+
+.theme-doc-sidebar-menu:has(.registry-sidebar-intro) > .registry-sidebar-section > .menu__list-item-collapsible > .menu__link {
+  color: #143f56;
+  text-shadow: none;
+}
+
+.theme-doc-sidebar-menu:has(.registry-sidebar-intro) .menu__link[aria-current='page'] {
+  position: relative;
+  padding-right: 2.5rem;
+}
+
+.theme-doc-sidebar-menu:has(.registry-sidebar-intro) .menu__link[aria-current='page']::after {
+  content: '';
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0.85rem;
+  height: 0.85rem;
+  margin: 0;
+  border-radius: 0;
+  background: #8cdeff;
+  clip-path: polygon(0 38%, 55% 38%, 55% 10%, 100% 50%, 55% 90%, 55% 62%, 0 62%);
+  box-shadow: none;
+}
+
+.theme-doc-sidebar-menu:has(.registry-sidebar-intro) > :is(.registry-sidebar-intro, .registry-sidebar-section) .menu__caret {
+  border-radius: 999px;
+}
+
+.theme-doc-sidebar-menu:has(.registry-sidebar-intro) > .registry-sidebar-section > .menu__list-item-collapsible > .menu__caret::before,
+.theme-doc-sidebar-menu:has(.registry-sidebar-intro) > .registry-sidebar-section > .menu__list-item-collapsible > .menu__link--sublist-caret::after {
+  filter: brightness(0);
+}
+
 .theme-doc-markdown .theme-code-block.language-yaml button:hover,
 .theme-doc-markdown .theme-code-block.language-yaml button:focus-visible {
   background: #21262d;

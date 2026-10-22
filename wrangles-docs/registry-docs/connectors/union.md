@@ -60,7 +60,9 @@ read:
 
 > Union is the default aggregation for multiple reads.
 
-## Parameters
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
 
 ### Read
 
@@ -116,6 +118,8 @@ Combine two or more data sets together, stacked vertically. Equivalent to a unio
   }
 }
 ```
+
+</details>
 
 </details>
 

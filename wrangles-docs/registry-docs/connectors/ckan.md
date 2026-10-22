@@ -59,7 +59,9 @@ ckan.write(
 )
 ```
 
-## Parameters
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
 
 ### Read
 
@@ -199,6 +201,8 @@ Write a file to a dataset in CKAN
   }
 }
 ```
+
+</details>
 
 </details>
 

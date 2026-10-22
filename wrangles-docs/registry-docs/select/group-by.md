@@ -12,46 +12,7 @@ import CopyableCode from '@site/src/components/CopyableCode';
 
 # Group By <CopyableCode value="select.group_by" />
 
-Group and aggregate the data.
-
 Group and aggregate the data
-
-## Parameters
-
-<div className="ww-parameters-table">
-
-| Name | Description | Accepted Values | Default | Required |
-| --- | --- | --- | --- | --- |
-| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `by` | List of the input columns to group on | string, array | `[]` | No |
-| <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `list` | Group and return all values for these column(s) as a list | string, array | — | No |
-| `first` | The first value for these column(s) | string, array | — | No |
-| `last` | The last value for these column(s) | string, array | — | No |
-| `min` | The minimum value for these column(s) | string, array | — | No |
-| `max` | The maximum value for these column(s) | string, array | — | No |
-| `mean` | The mean (average) value for these column(s) | string, array | — | No |
-| `median` | The median value for these column(s) | string, array | — | No |
-| `nunique` | The count of unique values for these column(s) | string, array | — | No |
-| `count` | The count of values for these column(s) | string, array | — | No |
-| `counts` | Return a dictionary containing the count of each distinct value for these column(s). Keys are converted to JSON-safe strings; missing values use the key "null" and booleans use lowercase "true"/"false". | string, array | — | No |
-| `std` | The standard deviation of values for these column(s) | string, array | — | No |
-| `sum` | The total of values for these column(s) | string, array | — | No |
-| `any` | Return true if any of the values for these column(s) are true | string, array | — | No |
-| `all` | Return true if all of the values for these column(s) are true | string, array | — | No |
-| `p75` | Get a percentile. Note, you can use any integer here for the corresponding percentile. | string, array | — | No |
-| `custom.*` | Placeholder for custom functions. Replace 'placeholder' with the name of the function. | string, array | — | No |
-| <span className="ww-param-group-label">Formatting</span> |  |  |  |  |
-| `auto_rename_columns` | If true (default), aggregated column names include the operation as a suffix (e.g. Value.sum). If false, column names are left as-is; use a dictionary entry to supply a custom output name (e.g. - Value: Total). | boolean | `true` | No |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
-| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-
-</div>
-
-Required follows the recipe schema. Default records the Python argument default;
-a schema may require an argument even when Python provides a default.
 
 <details className="ww-field-disclosure">
 
@@ -243,6 +204,13 @@ wrangles:
 
 
 
+The interactive runner loads `sum_times_two` from `customFunctions.py`:
+
+```python
+def sum_times_two(values):
+    return sum(values) * 2
+```
+
 
 
 ```yaml
@@ -270,11 +238,52 @@ wrangles:
 | Category | Quantity.sum_times_two |
 | --- | --- |
 | Hand Tools | 12 |
-| Power Tools | 4 |
+| Power Tools | 8 |
 
 </div>
 
 </div>
+
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
+
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
+| --- | --- | --- | --- | --- |
+| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
+| `by` | List of the input columns to group on | string, array | `[]` | No |
+| <span className="ww-param-group-label">Options</span> |  |  |  |  |
+| `list` | Group and return all values for these column(s) as a list | string, array | — | No |
+| `first` | The first value for these column(s) | string, array | — | No |
+| `last` | The last value for these column(s) | string, array | — | No |
+| `min` | The minimum value for these column(s) | string, array | — | No |
+| `max` | The maximum value for these column(s) | string, array | — | No |
+| `mean` | The mean (average) value for these column(s) | string, array | — | No |
+| `median` | The median value for these column(s) | string, array | — | No |
+| `nunique` | The count of unique values for these column(s) | string, array | — | No |
+| `count` | The count of values for these column(s) | string, array | — | No |
+| `counts` | Return a dictionary containing the count of each distinct value for these column(s). Keys are converted to JSON-safe strings; missing values use the key "null" and booleans use lowercase "true"/"false". | string, array | — | No |
+| `std` | The standard deviation of values for these column(s) | string, array | — | No |
+| `sum` | The total of values for these column(s) | string, array | — | No |
+| `any` | Return true if any of the values for these column(s) are true | string, array | — | No |
+| `all` | Return true if all of the values for these column(s) are true | string, array | — | No |
+| `p75` | Get a percentile. Note, you can use any integer here for the corresponding percentile. | string, array | — | No |
+| `custom.*` | Placeholder for custom functions. Replace 'placeholder' with the name of the function. | string, array | — | No |
+| <span className="ww-param-group-label">Formatting</span> |  |  |  |  |
+| `auto_rename_columns` | If true (default), aggregated column names include the operation as a suffix (e.g. Value.sum). If false, column names are left as-is; use a dictionary entry to supply a custom output name (e.g. - Value: Total). | boolean | `true` | No |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
+
+</div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+</details>
 
 <details className="ww-field-disclosure">
 

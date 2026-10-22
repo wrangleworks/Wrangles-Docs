@@ -82,7 +82,9 @@ train.standardize.write(df = df, name = 'Menu Updates')
 
 > Note both name and model_id **cannot** be used together. Name is used when creating models and model_id is used when updating an existing model.
 
-## Parameters
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
 
 ### Read
 
@@ -191,6 +193,8 @@ Train a new or existing Standardize Wrangle
   }
 }
 ```
+
+</details>
 
 </details>
 

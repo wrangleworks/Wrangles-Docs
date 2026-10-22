@@ -13,7 +13,9 @@ import CopyableCode from '@site/src/components/CopyableCode';
 
 Read the selected Excel data supplied to this recipe invocation. Grid applications supply the current batch of selected rows. Within a recipe wrangle, this is the current parent dataframe, including any preceding transformations. Missing or empty selected data raises an error.
 
-## Parameters
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
 
 ### Read
 
@@ -58,6 +60,8 @@ Read the selected Excel data supplied to this recipe invocation. Grid applicatio
   }
 }
 ```
+
+</details>
 
 </details>
 

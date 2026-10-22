@@ -155,7 +155,7 @@
     }
   ],
   "examples": [],
-  "guidance": "Explode a column of lists into rows\n\n## Migrated examples\n#### Exploding a Column\n\n##### Recipe\n\n```yaml\nwrangles:\n  - explode:\n      input: Products\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n| Products | Manufacturer |\n| --- | --- |\n| [Ball Bearing, Bearing Seal] | SKF |\n| [Angle Grinder, Drill, Impact Driver] | Milwaukee |\n| Solid State Relay | Schneider |\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| Products | Manufacturer |\n| --- | --- |\n| Ball Bearing | SKF |\n| Bearing Seal | SKF |\n| Angle Grinder | Milwaukee |\n| Drill | Milwaukee |\n| Impact Driver | Milwaukee |\n| Solid State Relay | Schneider |\n\n</div>\n\n</div>",
+  "guidance": "Explode a column of lists into rows\n\n## Migrated examples\n#### Exploding a Column\n\n##### Recipe\n\n```yaml\nwrangles:\n  - explode:\n      input: Products\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n| Products | Manufacturer |\n| --- | --- |\n| [\"Ball Bearing\", \"Bearing Seal\"] | SKF |\n| [\"Angle Grinder\", \"Drill\", \"Impact Driver\"] | Milwaukee |\n| Solid State Relay | Schneider |\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| Products | Manufacturer |\n| --- | --- |\n| Ball Bearing | SKF |\n| Bearing Seal | SKF |\n| Angle Grinder | Milwaukee |\n| Drill | Milwaukee |\n| Impact Driver | Milwaukee |\n| Solid State Relay | Schneider |\n\n</div>\n\n</div>",
   "sources": [
     {
       "id": "runtime",

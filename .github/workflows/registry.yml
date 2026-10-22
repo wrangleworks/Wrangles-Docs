@@ -16,6 +16,7 @@ on:
       - 'wrangles-docs/package-lock.json'
       - '.github/workflows/registry.yml'
       - '.github/workflows/refresh-registry.yml'
+      - '.github/workflows/compile-registry.yml'
   push:
     branches:
       - main
@@ -33,6 +34,7 @@ on:
       - 'wrangles-docs/package-lock.json'
       - '.github/workflows/registry.yml'
       - '.github/workflows/refresh-registry.yml'
+      - '.github/workflows/compile-registry.yml'
 
 jobs:
   registry:
@@ -57,7 +59,10 @@ jobs:
 
       - name: Validate Registry artifacts
         working-directory: wrangles-docs
-        run: npm run check:registry
+        run: |
+          npm run compile:registry
+          npm run generate:playground-registry
+          npm run check:registry
 
       - name: Build documentation site
         working-directory: wrangles-docs

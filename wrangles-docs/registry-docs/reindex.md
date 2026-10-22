@@ -12,29 +12,7 @@ import CopyableCode from '@site/src/components/CopyableCode';
 
 # Reindex <CopyableCode value="reindex" />
 
-Changes the row labels and column labels of a DataFrame.
-
 Conform a DataFrame to a new index with optional filling logic.
-
-## Parameters
-
-<div className="ww-parameters-table">
-
-| Name | Description | Accepted Values | Default | Required |
-| --- | --- | --- | --- | --- |
-| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `columns` | New labels for the columns. Preferably an Index object to avoid duplicating data. | array | `null` | No |
-| <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `labels` | New labels / index to conform the axis specified by ‘axis’ to. | array | `null` | No |
-| `index` | New labels for the index. Preferably an Index object to avoid duplicating data. | array | `null` | No |
-| `axis` | Axis to target. Can be either the axis name (‘index’, ‘columns’) or number (0, 1). | number, string | `null` | No |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-
-</div>
-
-Required follows the recipe schema. Default records the Python argument default;
-a schema may require an argument even when Python provides a default.
 
 <details className="ww-field-disclosure">
 
@@ -94,40 +72,64 @@ Cannot specify both `axis` and any of `index` or `columns`. Reindex is not compa
 wrangles:
   - reindex:
       index:
-        - 5
         - 4
         - 3
         - 2
         - 1
+        - 0
 ```
 
 <div className="ww-sample-grid">
 
 <div className="ww-sample-panel ww-sample-panel--input" data-sample-role="input">
 
-|  | Material | Product Data |
-| --- | --- | --- |
-| 1 | Ceramic | SKF ball brg |
-| 2 | Rubber | brg seal |
-| 3 | Brass | Ball valve |
-| 4 | Ceramic | Ceramic cartridge |
-| 5 | Stainless Steel | Needle Bearing |
+| Material | Product Data |
+| --- | --- |
+| Ceramic | SKF ball brg |
+| Rubber | brg seal |
+| Brass | Ball valve |
+| Ceramic | Ceramic cartridge |
+| Stainless Steel | Needle Bearing |
 
 </div>
 
 <div className="ww-sample-panel ww-sample-panel--output" data-sample-role="output">
 
-|  | Material | Product Data |
-| --- | --- | --- |
-| 5 | Stainless Steel | Needle Bearing |
-| 4 | Ceramic | Ceramic cartridge |
-| 3 | Brass | Ball valve |
-| 2 | Rubber | brg seal |
-| 1 | Ceramic | SKF ball brg |
+| Material | Product Data |
+| --- | --- |
+| Stainless Steel | Needle Bearing |
+| Ceramic | Ceramic cartridge |
+| Brass | Ball valve |
+| Rubber | brg seal |
+| Ceramic | SKF ball brg |
 
 </div>
 
 </div>
+
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
+
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
+| --- | --- | --- | --- | --- |
+| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
+| `columns` | New labels for the columns. Preferably an Index object to avoid duplicating data. | array | `null` | No |
+| <span className="ww-param-group-label">Options</span> |  |  |  |  |
+| `labels` | New labels / index to conform the axis specified by ‘axis’ to. | array | `null` | No |
+| `index` | New labels for the index. Preferably an Index object to avoid duplicating data. | array | `null` | No |
+| `axis` | Axis to target. Can be either the axis name (‘index’, ‘columns’) or number (0, 1). | number, string | `null` | No |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+
+</div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+</details>
 
 <details className="ww-field-disclosure">
 

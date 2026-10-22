@@ -12,58 +12,11 @@ import CopyableCode from '@site/src/components/CopyableCode';
 
 # AI <CopyableCode value="extract.ai" />
 
-Extract structured data from each input row using an AI model. Define the desired fields with output, or reuse a saved definition with model_id.
-
 Use AI to extract meaningful structured data. `extract.ai` can be used recipe-first, where the output schema is defined in the recipe, or model-first, where a saved extract.ai model is called by `model_id`.
 
 :::info
 For saved extract.ai models, this is the preferred calling pattern compared with using `extract.custom`.
 :::
-
-## Parameters
-
-<div className="ww-parameters-table">
-
-| Name | Description | Accepted Values | Default | Required |
-| --- | --- | --- | --- | --- |
-| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `input` | Input column name, column index, or list of columns supplied together as DATA for each row. If omitted, all dataframe columns are supplied. | string, integer, array | `null` | No |
-| `output` | Desired extraction. Use an object keyed by output column name for structured fields, a string for one prompted value, or an array of field names/definitions. Each field may use the schema options below. | object, string, array | `null` | Conditional; see schema |
-| <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `record_examples` | Whole-record examples. Each example has a separate input value or record and the complete expected output record. Optional name and notes provide model-visible context. Use &#123;name: ..., notes: ..., input: ..., output: ...&#125;. Omitted nullable output fields are completed with null. Required non-null nested properties must be supplied. This differs from examples nested under one output field, which teach only that field. | array, object | `null` | No |
-| `web_search` | Enable OpenAI Responses web search; the model decides when searching helps. When true, every row also receives web_search_sources: a deduplicated list of &#123;title, url&#125; objects in source order, or an empty list when no source was used. This reserved column is automatic. Requires protocol responses. Defaults to false. | boolean | `false` | No |
-| `instructions` | General instructions applied to every input row, in addition to any GeneralInstructions in the saved model. Use this for decision rules, evidence priorities, normalization requirements, or other behavior that applies to the complete extraction. | string, array | `null` | No |
-| `metadata` | Labels attached to OpenAI requests, such as recipe_name and wrangles_user. Available recipe name and Wrangles user are added automatically. Explicit labels override those defaults; an empty object disables automatic labels. These appear with stored logs and are separate from model instructions. Up to 16 string pairs; keys may contain up to 64 characters and values up to 512 characters. Does not enable workflow tracing. | object | — | No |
-| <span className="ww-param-group-label">Formatting</span> |  |  |  |  |
-| `output_format` | How extracted fields are written. columns writes one dataframe column per field (default); dictionary keeps one object; concatenate joins fields into one string using char. | string; one of:<ul className="ww-param-enum-values"><li>dictionary</li><li>columns</li><li>concatenate</li></ul> | `null` | No |
-| `char` | Separator used only when output_format is concatenate. Defaults to comma-space. | string | `", "` | No |
-| <span className="ww-param-group-label">Execution</span> |  |  |  |  |
-| `threads` | Maximum number of row-level requests sent in parallel. The configured default is 32. | integer | — | No |
-| `timeout` | Network timeout in seconds for each HTTP attempt. The configured default is 12. Each retry uses the same timeout. | number | — | No |
-| <span className="ww-param-group-label">Errors</span> |  |  |  |  |
-| `retries` | Number of additional attempts per row after a retryable failure. The configured default is 1. Retry delays are separate from timeout. | integer | — | No |
-| <span className="ww-param-group-label">Details</span> |  |  |  |  |
-| `api_key` | OpenAI API key used for this wrangle, normally supplied through a recipe variable. | string | — | Yes |
-| `model_id` | ID of a saved extract.ai definition. Use it instead of defining an output schema. When output is also supplied with model_id in a recipe, output names the destination column or columns for the saved fields. | string | `null` | Conditional; see schema |
-| `model` | OpenAI model ID for this call. If omitted, uses the configured extract.ai default; a saved model definition may supply its own model. | string | — | No |
-| `url` | Override the endpoint for the selected protocol. A chat/completions URL<br />selects the legacy protocol only when protocol is omitted; new recipes<br />should use the configured Responses endpoint. | string | — | No |
-| `provider` | AI service provider. Currently only OpenAI is supported. | string; one of:<ul className="ww-param-enum-values"><li>openai</li></ul> | — | No |
-| `protocol` | OpenAI API protocol. Responses is the configured default and is required for web_search; chat_completions remains available for legacy definitions. | string; one of:<ul className="ww-param-enum-values"><li>responses</li><li>chat_completions</li></ul> | — | No |
-| `store` | Whether OpenAI may store Responses API results. Defaults to true. | boolean | — | No |
-| `cache` | Reuse identical successful results from the bounded warm-instance cache. Defaults to true. Set false when fresh model or web results are required. | boolean | — | No |
-| `cache_ttl` | Maximum age in seconds for a cached result used by this call. Applies to extracted values and web_search_sources together. | number | — | No |
-| `strict` | Require OpenAI structured-output strict mode. Defaults to true. Definitions with dynamic dictionary keys automatically switch to non-strict provider mode and are still validated locally. | boolean | — | No |
-| `reasoning` | Reasoning effort, such as none or low, or an object with effort and other reasoning options. Both forms are equivalent for setting effort. Defaults to none for every model. Explicit settings are always sent to the provider; unsupported settings produce a provider error. | string; one of:<ul className="ww-param-enum-values"><li>none</li><li>minimal</li><li>low</li><li>medium</li><li>high</li><li>xhigh</li><li>max</li></ul> or object | — | No |
-| `verbosity` | Responses API text verbosity for compatible models. Defaults to low when supported; ignored with a warning for incompatible models. | string; one of:<ul className="ww-param-enum-values"><li>low</li><li>medium</li><li>high</li></ul> | — | No |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
-| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-
-</div>
-
-Required follows the recipe schema. Default records the Python argument default;
-a schema may require an argument even when Python provides a default.
 
 <details className="ww-field-disclosure">
 
@@ -579,6 +532,55 @@ wrangles:
 </div>
 
 </div>
+
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
+
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
+| --- | --- | --- | --- | --- |
+| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
+| `input` | Input column name, column index, or list of columns supplied together as DATA for each row. If omitted, all dataframe columns are supplied. | string, integer, array | `null` | No |
+| `output` | Desired extraction. Use an object keyed by output column name for structured fields, a string for one prompted value, or an array of field names/definitions. Each field may use the schema options below. | object, string, array | `null` | Conditional; see schema |
+| <span className="ww-param-group-label">Options</span> |  |  |  |  |
+| `record_examples` | Whole-record examples. Each example has a separate input value or record and the complete expected output record. Optional name and notes provide model-visible context. Use &#123;name: ..., notes: ..., input: ..., output: ...&#125;. Omitted nullable output fields are completed with null. Required non-null nested properties must be supplied. This differs from examples nested under one output field, which teach only that field. | array, object | `null` | No |
+| `web_search` | Enable OpenAI Responses web search; the model decides when searching helps. When true, every row also receives web_search_sources: a deduplicated list of &#123;title, url&#125; objects in source order, or an empty list when no source was used. This reserved column is automatic. Requires protocol responses. Defaults to false. | boolean | `false` | No |
+| `instructions` | General instructions applied to every input row, in addition to any GeneralInstructions in the saved model. Use this for decision rules, evidence priorities, normalization requirements, or other behavior that applies to the complete extraction. | string, array | `null` | No |
+| `metadata` | Labels attached to OpenAI requests, such as recipe_name and wrangles_user. Available recipe name and Wrangles user are added automatically. Explicit labels override those defaults; an empty object disables automatic labels. These appear with stored logs and are separate from model instructions. Up to 16 string pairs; keys may contain up to 64 characters and values up to 512 characters. Does not enable workflow tracing. | object | — | No |
+| <span className="ww-param-group-label">Formatting</span> |  |  |  |  |
+| `output_format` | How extracted fields are written. columns writes one dataframe column per field (default); dictionary keeps one object; concatenate joins fields into one string using char. | string; one of:<ul className="ww-param-enum-values"><li>dictionary</li><li>columns</li><li>concatenate</li></ul> | `null` | No |
+| `char` | Separator used only when output_format is concatenate. Defaults to comma-space. | string | `", "` | No |
+| <span className="ww-param-group-label">Execution</span> |  |  |  |  |
+| `threads` | Maximum number of row-level requests sent in parallel. The configured default is 32. | integer | — | No |
+| `timeout` | Network timeout in seconds for each HTTP attempt. The configured default is 12. Each retry uses the same timeout. | number | — | No |
+| <span className="ww-param-group-label">Errors</span> |  |  |  |  |
+| `retries` | Number of additional attempts per row after a retryable failure. The configured default is 1. Retry delays are separate from timeout. | integer | — | No |
+| <span className="ww-param-group-label">Details</span> |  |  |  |  |
+| `api_key` | OpenAI API key used for this wrangle, normally supplied through a recipe variable. | string | — | Yes |
+| `model_id` | ID of a saved extract.ai definition. Use it instead of defining an output schema. When output is also supplied with model_id in a recipe, output names the destination column or columns for the saved fields. | string | `null` | Conditional; see schema |
+| `model` | OpenAI model ID for this call. If omitted, uses the configured extract.ai default; a saved model definition may supply its own model. | string | — | No |
+| `url` | Override the endpoint for the selected protocol. A chat/completions URL<br />selects the legacy protocol only when protocol is omitted; new recipes<br />should use the configured Responses endpoint. | string | — | No |
+| `provider` | AI service provider. Currently only OpenAI is supported. | string; one of:<ul className="ww-param-enum-values"><li>openai</li></ul> | — | No |
+| `protocol` | OpenAI API protocol. Responses is the configured default and is required for web_search; chat_completions remains available for legacy definitions. | string; one of:<ul className="ww-param-enum-values"><li>responses</li><li>chat_completions</li></ul> | — | No |
+| `store` | Whether OpenAI may store Responses API results. Defaults to true. | boolean | — | No |
+| `cache` | Reuse identical successful results from the bounded warm-instance cache. Defaults to true. Set false when fresh model or web results are required. | boolean | — | No |
+| `cache_ttl` | Maximum age in seconds for a cached result used by this call. Applies to extracted values and web_search_sources together. | number | — | No |
+| `strict` | Require OpenAI structured-output strict mode. Defaults to true. Definitions with dynamic dictionary keys automatically switch to non-strict provider mode and are still validated locally. | boolean | — | No |
+| `reasoning` | Reasoning effort, such as none or low, or an object with effort and other reasoning options. Both forms are equivalent for setting effort. Defaults to none for every model. Explicit settings are always sent to the provider; unsupported settings produce a provider error. | string; one of:<ul className="ww-param-enum-values"><li>none</li><li>minimal</li><li>low</li><li>medium</li><li>high</li><li>xhigh</li><li>max</li></ul> or object | — | No |
+| `verbosity` | Responses API text verbosity for compatible models. Defaults to low when supported; ignored with a warning for incompatible models. | string; one of:<ul className="ww-param-enum-values"><li>low</li><li>medium</li><li>high</li></ul> | — | No |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
+
+</div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+</details>
 
 <details className="ww-field-disclosure">
 

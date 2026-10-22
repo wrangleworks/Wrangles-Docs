@@ -201,13 +201,13 @@ wrangles:
   - compute.case_when:
       output: Letter Grade
       cases:
-        - condition: (Grade > .89) & (Attendance == 'Good')
+        - condition: (Grade >= 90) & (Attendance == 'Good')
           value: 'A'
-        - condition: (.90 > Grade > .79) & (Attendance == 'Good')
+        - condition: (90 > Grade >= 80) & (Attendance == 'Good')
           value: 'B'
-        - condition: (.80 > Grade > .69) & (Attendance == 'Good')
+        - condition: (80 > Grade >= 70) & (Attendance == 'Good')
           value: 'C'
-        - condition: (.70 > Grade) or (Attendance == 'Poor')
+        - condition: (70 > Grade) or (Attendance == 'Poor')
           value: 'F'
 ```
 

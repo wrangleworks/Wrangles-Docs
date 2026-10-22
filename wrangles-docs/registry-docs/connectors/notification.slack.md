@@ -38,7 +38,9 @@ slack.run(
 )
 ```
 
-## Parameters
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
 
 ### Run
 
@@ -90,6 +92,8 @@ Send a message to Slack
   }
 }
 ```
+
+</details>
 
 </details>
 

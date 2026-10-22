@@ -52,7 +52,9 @@ from wrangles.connectors import file
 file.write(df, 'file.xlsx')
 ```
 
-## Parameters
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
 
 ### Read
 
@@ -265,6 +267,8 @@ Export data to a file
   }
 }
 ```
+
+</details>
 
 </details>
 

@@ -12,40 +12,7 @@ import CopyableCode from '@site/src/components/CopyableCode';
 
 # Filter <CopyableCode value="filter" />
 
-Filter the dataframe based on the contents. If multiple filters are specified, all must be correct. For complex filters, use the where parameter.
-
 Filter the dataframe based on the contents.
-
-## Parameters
-
-<div className="ww-parameters-table">
-
-| Name | Description | Accepted Values | Default | Required |
-| --- | --- | --- | --- | --- |
-| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `input` | Name of the column to filter on.<br />If multiple are provided, all must match the criteria. | string, integer, array | `[]` | No |
-| <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `equal` | Select rows where the values equal a given value. | string, array, boolean, number | `null` | No |
-| `not_equal` | Select rows where the values do not equal a given value. | string, array, boolean, number | `null` | No |
-| `is_in` | Select rows where the values are in a given list. | array, string | `null` | No |
-| `not_in` | Select rows where the values are not in a given list. | array, string | `null` | No |
-| `greater_than` | Select rows where the values are greater than a specified value. Does include the value itself. | integer, number | `null` | No |
-| `greater_than_equal_to` | Select rows where the values are greater than a specified value. Does include the value itself. | integer, number | `null` | No |
-| `less_than` | Select rows where the values are less than a specified value. Does not include the value itself. | integer, number | `null` | No |
-| `less_than_equal_to` | Select rows where the values are less than a specified value. Does include the value itself. | integer, number | `null` | No |
-| `between` | Value or list of values to filter that are in between two parameter values | array | `null` | No |
-| `contains` | Select rows where the input contains the value. Allows regular expressions. | string | `null` | No |
-| `not_contains` | Select rows where the input does not contain the value. Allows regular expressions. | string | `null` | No |
-| `is_null` | If true, select all rows where the value is NULL. If false, where is not NULL. | boolean | `null` | No |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
-| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-
-</div>
-
-Required follows the recipe schema. Default records the Python argument default;
-a schema may require an argument even when Python provides a default.
 
 <details className="ww-field-disclosure">
 
@@ -198,6 +165,41 @@ wrangles:
 </div>
 
 </div>
+
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
+
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
+| --- | --- | --- | --- | --- |
+| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
+| `input` | Name of the column to filter on.<br />If multiple are provided, all must match the criteria. | string, integer, array | `[]` | No |
+| <span className="ww-param-group-label">Options</span> |  |  |  |  |
+| `equal` | Select rows where the values equal a given value. | string, array, boolean, number | `null` | No |
+| `not_equal` | Select rows where the values do not equal a given value. | string, array, boolean, number | `null` | No |
+| `is_in` | Select rows where the values are in a given list. | array, string | `null` | No |
+| `not_in` | Select rows where the values are not in a given list. | array, string | `null` | No |
+| `greater_than` | Select rows where the values are greater than a specified value. Does include the value itself. | integer, number | `null` | No |
+| `greater_than_equal_to` | Select rows where the values are greater than a specified value. Does include the value itself. | integer, number | `null` | No |
+| `less_than` | Select rows where the values are less than a specified value. Does not include the value itself. | integer, number | `null` | No |
+| `less_than_equal_to` | Select rows where the values are less than a specified value. Does include the value itself. | integer, number | `null` | No |
+| `between` | Value or list of values to filter that are in between two parameter values | array | `null` | No |
+| `contains` | Select rows where the input contains the value. Allows regular expressions. | string | `null` | No |
+| `not_contains` | Select rows where the input does not contain the value. Allows regular expressions. | string | `null` | No |
+| `is_null` | If true, select all rows where the value is NULL. If false, where is not NULL. | boolean | `null` | No |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
+
+</div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+</details>
 
 <details className="ww-field-disclosure">
 

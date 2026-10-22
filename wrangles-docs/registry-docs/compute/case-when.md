@@ -14,29 +14,6 @@ import CopyableCode from '@site/src/components/CopyableCode';
 
 Assign values to a column based on conditional logic.
 
-
-
-## Parameters
-
-<div className="ww-parameters-table">
-
-| Name | Description | Accepted Values | Default | Required |
-| --- | --- | --- | --- | --- |
-| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `output` | Name of the output column | string | — | Yes |
-| <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `cases` | List of conditions and corresponding values | array | — | Yes |
-| `default` | Value to assign if no conditions are met. Default None. | string, number, integer, boolean, null | `null` | No |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
-| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-
-</div>
-
-Required follows the recipe schema. Default records the Python argument default;
-a schema may require an argument even when Python provides a default.
-
 <details className="ww-field-disclosure">
 
 <summary>Complete configuration schema</summary>
@@ -167,13 +144,13 @@ wrangles:
   - compute.case_when:
       output: Letter Grade
       cases:
-        - condition: (Grade > .89) & (Attendance == 'Good')
+        - condition: (Grade >= 90) & (Attendance == 'Good')
           value: 'A'
-        - condition: (.90 > Grade > .79) & (Attendance == 'Good')
+        - condition: (90 > Grade >= 80) & (Attendance == 'Good')
           value: 'B'
-        - condition: (.80 > Grade > .69) & (Attendance == 'Good')
+        - condition: (80 > Grade >= 70) & (Attendance == 'Good')
           value: 'C'
-        - condition: (.70 > Grade) or (Attendance == 'Poor')
+        - condition: (70 > Grade) or (Attendance == 'Poor')
           value: 'F'
 ```
 
@@ -202,6 +179,31 @@ wrangles:
 </div>
 
 </div>
+
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
+
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
+| --- | --- | --- | --- | --- |
+| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
+| `output` | Name of the output column | string | — | Yes |
+| <span className="ww-param-group-label">Options</span> |  |  |  |  |
+| `cases` | List of conditions and corresponding values | array | — | Yes |
+| `default` | Value to assign if no conditions are met. Default None. | string, number, integer, boolean, null | `null` | No |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
+
+</div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+</details>
 
 <details className="ww-field-disclosure">
 

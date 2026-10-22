@@ -98,7 +98,7 @@
     }
   ],
   "examples": [],
-  "guidance": "Drop (Delete) selected column(s)\n\n## Migrated examples\n#### Dropping a Column\n\n##### Recipe\n\n```yaml\nwrangles:\n  - drop:\n      columns:\n        - Material\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n| Material | Product Data |\n| --- | --- |\n| Ceramic | SKF ball brg |\n| Rubber | brg seal |\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| Product Data |\n| --- |\n| SKF ball bearing |\n| bearing seal |\n\n</div>\n\n</div>",
+  "guidance": "Drop (Delete) selected column(s)\n\n## Migrated examples\n#### Dropping a Column\n\n##### Recipe\n\n```yaml\nwrangles:\n  - drop:\n      columns:\n        - Material\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n| Material | Product Data |\n| --- | --- |\n| Ceramic | SKF ball brg |\n| Rubber | brg seal |\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| Product Data |\n| --- |\n| SKF ball brg |\n| brg seal |\n\n</div>\n\n</div>",
   "sources": [
     {
       "id": "runtime",

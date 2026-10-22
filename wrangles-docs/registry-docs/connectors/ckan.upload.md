@@ -13,7 +13,9 @@ import CopyableCode from '@site/src/components/CopyableCode';
 
 Upload a file or list of files to a CKAN dataset
 
-## Parameters
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
 
 ### Run
 
@@ -74,6 +76,8 @@ Upload a file or list of files to a CKAN dataset
   }
 }
 ```
+
+</details>
 
 </details>
 

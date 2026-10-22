@@ -171,7 +171,7 @@ _No sample available._
 ```yaml
 wrangles:
   - create.bins:
-      input: [Grades]
+      input: [Grade]
       output: [Letter Grade]
       bins:
         - 0

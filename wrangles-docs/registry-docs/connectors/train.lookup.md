@@ -78,7 +78,9 @@ train.lookup.write(df = df, name = 'Menu Updates', settings = {'variant': 'key'}
 
 > Note both name and model_id **cannot** be used together. Name is used when creating models and model_id is used when updating an existing model.
 
-## Parameters
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
 
 ### Read
 
@@ -206,6 +208,8 @@ Train a new or existing Lookup Wrangle
   }
 }
 ```
+
+</details>
 
 </details>
 

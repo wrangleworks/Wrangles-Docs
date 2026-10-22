@@ -214,7 +214,7 @@
     }
   ],
   "examples": [],
-  "guidance": "Extract date range frequency from two dates.\n\n## Migrated examples\n#### Extracting Number of Months From Range\n\n##### Recipe\n\n```yaml\nwrangles:\n  - extract.date_range:\n      start_time: Start\n      end_time: End\n      output: Output\n      range: months\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n_No sample available._\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| End | Start | Output |\n| --- | --- | --- |\n| 2023-08-13 00:00:00 | 1992-08-13 00:00:00 | 371 |\n\n</div>\n\n</div>",
+  "guidance": "Extract date range frequency from two dates.\n\n## Migrated examples\n#### Extracting Number of Months From Range\n\n##### Recipe\n\n```yaml\nwrangles:\n  - extract.date_range:\n      start_time: Start\n      end_time: End\n      output: Output\n      range: months\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n| Start | End |\n| --- | --- |\n| 1992-08-13 00:00:00 | 2023-08-13 00:00:00 |\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| End | Start | Output |\n| --- | --- | --- |\n| 2023-08-13 00:00:00 | 1992-08-13 00:00:00 | 371 |\n\n</div>\n\n</div>",
   "sources": [
     {
       "id": "runtime",

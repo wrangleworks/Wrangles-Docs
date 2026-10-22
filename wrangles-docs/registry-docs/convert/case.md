@@ -12,8 +12,6 @@ import CopyableCode from '@site/src/components/CopyableCode';
 
 # Convert Case <CopyableCode value="convert.case" />
 
-Change the letter case of text values.
-
 Use `convert.case` to normalize capitalization while keeping the source column
 or writing the result to a new column.
 
@@ -23,27 +21,6 @@ or writing the result to a new column.
 - Omitting `output` overwrites the input column.
 - Input and output lists must have equal lengths.
 - Non-string values are passed through unchanged and produce a warning.
-
-## Parameters
-
-<div className="ww-parameters-table">
-
-| Name | Description | Accepted Values | Default | Required |
-| --- | --- | --- | --- | --- |
-| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `input` | Name or list of input columns | string, integer, array | — | Yes |
-| `output` | Name or list of output columns | string, array | `null` | No |
-| <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `case` | The case to convert to. lower, upper, title or sentence | string; one of:<ul className="ww-param-enum-values"><li>lower</li><li>upper</li><li>title</li><li>sentence</li></ul> | `"lower"` | Yes |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
-| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-
-</div>
-
-Required follows the recipe schema. Default records the Python argument default;
-a schema may require an argument even when Python provides a default.
 
 <details className="ww-field-disclosure">
 
@@ -136,6 +113,31 @@ wrangles:
 </div>
 
 </div>
+
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
+
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
+| --- | --- | --- | --- | --- |
+| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
+| `input` | Name or list of input columns | string, integer, array | — | Yes |
+| `output` | Name or list of output columns | string, array | `null` | No |
+| <span className="ww-param-group-label">Options</span> |  |  |  |  |
+| `case` | The case to convert to. lower, upper, title or sentence | string; one of:<ul className="ww-param-enum-values"><li>lower</li><li>upper</li><li>title</li><li>sentence</li></ul> | `"lower"` | Yes |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
+
+</div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+</details>
 
 <details className="ww-field-disclosure">
 

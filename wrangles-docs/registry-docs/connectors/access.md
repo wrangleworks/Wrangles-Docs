@@ -13,7 +13,9 @@ import CopyableCode from '@site/src/components/CopyableCode';
 
 Import data from a Microsoft Access Database
 
-## Parameters
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
 
 ### Read
 
@@ -234,6 +236,8 @@ Export data to a Microsoft Access Database
   }
 }
 ```
+
+</details>
 
 </details>
 

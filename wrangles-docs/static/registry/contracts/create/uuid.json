@@ -121,7 +121,7 @@
     }
   ],
   "examples": [],
-  "guidance": "Create a column with a UUID (Universally Unique Identifier).\n\n## Migrated examples\n#### Creating a New GUID Column\n\n##### Recipe\n\n```yaml\nwrangles:\n  - create.guid:\n      output: GUID Column\n\n  # OR\n\n  - create.uuid:\n      output: GUID Column\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n_No sample available._\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| GUID Column |\n| --- |\n| 9a13b4dd-1993-4bd2-8974-3f9a0f006d86 |\n| 1528d918-ecd7-457c-b44d-3d30705696d3 |\n\n</div>\n\n</div>",
+  "guidance": "Create a column with a UUID (Universally Unique Identifier).\n\n## Migrated examples\n#### Creating a New GUID Column\n\nA new random UUID is generated for each input row. The values below are illustrative and change on every run.\n\n##### Recipe\n\n```yaml\nwrangles:\n  - create.uuid:\n      output: GUID Column\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n| Product |\n| --- |\n| Hammer |\n| Drill |\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| GUID Column |\n| --- |\n| 9a13b4dd-1993-4bd2-8974-3f9a0f006d86 |\n| 1528d918-ecd7-457c-b44d-3d30705696d3 |\n\n</div>\n\n</div>",
   "sources": [
     {
       "id": "runtime",

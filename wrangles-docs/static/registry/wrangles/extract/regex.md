@@ -179,7 +179,10 @@ wrangles:
 
 ##### Input Sample
 
-_No sample available._
+| Product |
+| --- |
+| 3.4 gpm water pump |
+| 2gpm water pump |
 
 </div>
 
@@ -189,8 +192,8 @@ _No sample available._
 
 | GPM | Product |
 | --- | --- |
-| 3.4 gpm | 3.4 gpm water pump |
-| 2gpm | 2gpm water pump |
+| ["3.4 gpm"] | 3.4 gpm water pump |
+| ["2gpm"] | 2gpm water pump |
 
 </div>
 
@@ -215,7 +218,10 @@ wrangles:
 
 ##### Input Sample
 
-_No sample available._
+| Product |
+| --- |
+| 3.4 gpm water pump for 5.5 gallon tank |
+| 2gpm water pump for 2 gal tank |
 
 </div>
 
@@ -225,8 +231,8 @@ _No sample available._
 
 | GPM | Product |
 | --- | --- |
-| 3.4 Gallons Per Minute | 3.4 gpm water pump for 5.5 gallon tank |
-| 2 Gallons Per Minute | 2gpm water pump for 2 gal tank |
+| ["3.4 Gallons Per Minute"] | 3.4 gpm water pump for 5.5 gallon tank |
+| ["2 Gallons Per Minute"] | 2gpm water pump for 2 gal tank |
 
 </div>
 

@@ -43,3 +43,6 @@ yarn.lock
 .pnpm-debug.log
 registry-refresh-report/
 .upstream-wranglespy/
+
+# Local audit reports, spreadsheets and browser screenshots
+/audits/

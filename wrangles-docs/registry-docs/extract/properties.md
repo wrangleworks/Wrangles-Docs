@@ -12,35 +12,7 @@ import CopyableCode from '@site/src/components/CopyableCode';
 
 # Properties <CopyableCode value="extract.properties" />
 
-Extract text properties from the input. Requires WrangleWorks Account.
-
 Extract categorical properties from unstructured text, such as colours or materials. Requires WrangleWorks Account.
-
-## Parameters
-
-<div className="ww-parameters-table">
-
-| Name | Description | Accepted Values | Default | Required |
-| --- | --- | --- | --- | --- |
-| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `input` | Name of the input column | string, integer, array | — | Yes |
-| `output` | Name of the output columns | string, array | — | Yes |
-| <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `property_type` | The specific type of properties to extract | string; one of:<ul className="ww-param-enum-values"><li>Colours</li><li>Materials</li><li>Shapes</li><li>Standards</li></ul> | `null` | No |
-| <span className="ww-param-group-label">Formatting</span> |  |  |  |  |
-| `return_data_type` | Legacy format option. Prefer output_format. | string; one of:<ul className="ww-param-enum-values"><li>list</li><li>string</li></ul> | `"list"` | No |
-| `first_element` | Get the first element from results | boolean | `false` | No |
-| `output_format` | Format of the extract output | string; one of:<ul className="ww-param-enum-values"><li>list</li><li>dictionary</li><li>columns</li><li>concatenate</li></ul> | `null` | No |
-| `char` | Character to use when output_format is concatenate | string | `", "` | No |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
-| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-
-</div>
-
-Required follows the recipe schema. Default records the Python argument default;
-a schema may require an argument even when Python provides a default.
 
 <details className="ww-field-disclosure">
 
@@ -185,6 +157,36 @@ _No sample available._
 </div>
 
 </div>
+
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
+
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
+| --- | --- | --- | --- | --- |
+| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
+| `input` | Name of the input column | string, integer, array | — | Yes |
+| `output` | Name of the output columns | string, array | — | Yes |
+| <span className="ww-param-group-label">Options</span> |  |  |  |  |
+| `property_type` | The specific type of properties to extract | string; one of:<ul className="ww-param-enum-values"><li>Colours</li><li>Materials</li><li>Shapes</li><li>Standards</li></ul> | `null` | No |
+| <span className="ww-param-group-label">Formatting</span> |  |  |  |  |
+| `return_data_type` | Legacy format option. Prefer output_format. | string; one of:<ul className="ww-param-enum-values"><li>list</li><li>string</li></ul> | `"list"` | No |
+| `first_element` | Get the first element from results | boolean | `false` | No |
+| `output_format` | Format of the extract output | string; one of:<ul className="ww-param-enum-values"><li>list</li><li>dictionary</li><li>columns</li><li>concatenate</li></ul> | `null` | No |
+| `char` | Character to use when output_format is concatenate | string | `", "` | No |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
+
+</div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+</details>
 
 <details className="ww-field-disclosure">
 

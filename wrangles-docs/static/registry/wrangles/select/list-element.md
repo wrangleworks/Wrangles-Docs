@@ -149,7 +149,7 @@ Select a numbered element of a list (zero indexed).
 wrangles:
   - select.list_element:
       input: Col1
-      output: Second Element
+      output: Third Element
       element: 2 # Zero indexed
       default: F
 ```

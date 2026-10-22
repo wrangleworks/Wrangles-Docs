@@ -145,10 +145,10 @@ wrangles:
 
 ##### Output Sample
 
-| New Column |
+| hash |
 | --- |
-| ce114e4501d2f4e2dcea3e17b546f339 |
-| a54d88e06612d820bc3be72877c74f257b561b19 |
+| 512612f9ed5f71c9c13bd63eb140783a |
+| 65820c4addbaaef6a067cdcf5c856706 |
 
 </div>
 

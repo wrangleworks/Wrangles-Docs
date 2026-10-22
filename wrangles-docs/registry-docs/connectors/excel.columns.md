@@ -13,7 +13,9 @@ import CopyableCode from '@site/src/components/CopyableCode';
 
 Spreadsheet write mode: columns. Insert new or changed output columns alongside the selected rows in Excel. The output must retain row alignment with the selection. Unchanged input columns are not duplicated.
 
-## Parameters
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
 
 ### Write
 
@@ -58,6 +60,8 @@ Spreadsheet write mode: columns. Insert new or changed output columns alongside 
   }
 }
 ```
+
+</details>
 
 </details>
 

@@ -476,6 +476,9 @@ wrangles:
         - Scored Results
       allow_other_exact: true
       must_match_part_code: true
+  - select.element:
+      input: Scored Results[0]['summary']['score']
+      output: Score
 ```
 
 <div className="ww-sample-grid">
@@ -486,7 +489,7 @@ wrangles:
 
 | Search Results | Suppliers | Part Codes |
 | --- | --- | --- |
-| `[{"title": "SKF 6202 bearing", "link": "https://example.com/6202"}]` | `["SKF"]` | `["6202"]` |
+| `[{"search_results": [{"title": "SKF 6202 bearing", "link": "https://example.com/6202", "snippet": "SKF 6202 bearing"}]}]` | `["SKF"]` | `["6202"]` |
 
 </div>
 
@@ -494,12 +497,14 @@ wrangles:
 
 ##### Output Sample
 
-| Search Results | Suppliers | Part Codes | Scored Results |
-| --- | --- | --- | --- |
-| `[{"title": "SKF 6202 bearing", "link": "https://example.com/6202"}]` | `["SKF"]` | `["6202"]` | Ranked result dictionaries |
+| Score |
+| --- |
+| 12.0 |
 
 </div>
 
 </div>
 
-_Template based on the documented parameters; no published source example is currently available._
+The input contains search-response objects, each with a `search_results` list, not a flat list of results. This local example scores supplied data without visiting the URL. The final step selects the first result's score for a compact output table; the full result remains in `Scored Results`.
+
+Example verified with the pinned WranglesPY runtime. Include a string `snippet`: the pinned runtime's result formatter raises an error when it is missing or null.

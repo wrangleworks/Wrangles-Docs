@@ -43,98 +43,83 @@ wrangles:
 # Dataframe Level Functions
 Dataframe level functions take in the dataframe as a variable and run on the dataframe as a whole. Dataframe level functions must return a dataframe.
 
-<table>
-<tr><th></th><th></th><th></th></tr>
-<tr><td>
-
-| Products   |
-|:----------:|
-| Hammer |
-
-</td><td>
-→ 
-</td><td>
-  
-| Products |Stock   |
-|:---------|------:|
-| Hammer | Hammer is out of stock |
-  
-</td></tr>
-</table>
-
 ```python
-def function(df, input, output):
-		df[output] = df[input] + ' is out of stock'
+def stock_status_dataframe(df, input, output):
+    df[output] = df[input] + ' is out of stock'
     return df
 ```
 
 ```yaml
 wrangles:
-  - custom.function:
+  - custom.stock_status_dataframe:
       input: Products
       output: Stock
 ```
 
-# Row Level Functions
-Row level functions are performed row by row and therefore do not take the dataframe in as a variable. Row level functions do not return a dataframe but instead return the values that will fill the output column.
+<div className="ww-sample-grid">
+<div className="ww-sample-panel">
 
-<table>
-<tr><th></th><th></th><th></th></tr>
-<tr><td>
+##### Input Sample
 
 | Products   |
 |:----------:|
 | Hammer |
 
-</td><td>
-→ 
-</td><td>
-  
+</div>
+<div className="ww-sample-panel">
+
+##### Output Sample
+
 | Products |Stock   |
 |:---------|------:|
 | Hammer | Hammer is out of stock |
-  
-</td></tr>
-</table>
+
+</div>
+</div>
+
+# Row Level Functions
+Row level functions are performed row by row and therefore do not take the dataframe in as a variable. Row level functions do not return a dataframe but instead return the values that will fill the output column.
 
 ```python
-def function(Products):
+def stock_status(Products):
     return Products + ' is out of stock'
 ```
 
 ```yaml
 wrangles:
-  - custom.function:
+  - custom.stock_status:
       input: Products
       output: Stock
 ```
 
-> The two examples above have the same outcome but it is important to note the difference in the use of input, output and the dataframe itself.
+<div className="ww-sample-grid">
+<div className="ww-sample-panel">
 
-# Using **kwargs
-The function variable kwargs is a dictionary that stores wildcard function variables. That is, it allows you to pass variables into functions without explicitly naming them. 
-
-<table>
-<tr><th></th><th></th><th></th></tr>
-<tr><td>
+##### Input Sample
 
 | Products   |
 |:----------:|
 | Hammer |
 
-</td><td>
-→ 
-</td><td>
-  
+</div>
+<div className="ww-sample-panel">
+
+##### Output Sample
+
 | Products |Stock   |
 |:---------|------:|
 | Hammer | Hammer is out of stock |
-  
-</td></tr>
-</table>
+
+</div>
+</div>
+
+> The two examples above have the same outcome but it is important to note the difference in the use of input, output and the dataframe itself.
+
+# Using **kwargs
+The function variable kwargs is a dictionary that stores wildcard function variables. That is, it allows you to pass variables into functions without explicitly naming them.
 
 ```python
-def function(Products, **kwargs):
+def append_fields(Products, **kwargs):
     outputString = ''
     for value in kwargs.values():
         outputString += Products + ' ' + value
@@ -143,36 +128,38 @@ def function(Products, **kwargs):
 
 ```yaml
 wrangles:
-  - custom.function:
+  - custom.append_fields:
       input: Products
       string: is out of stock
       output: Stock
 ```
 
-# Recipe Parameters
-Recipe parameters can be passed to a custom function as variables.
+<div className="ww-sample-grid">
+<div className="ww-sample-panel">
 
-<table>
-<tr><th></th><th></th><th></th></tr>
-<tr><td>
+##### Input Sample
 
 | Products   |
 |:----------:|
 | Hammer |
 
-</td><td>
-→ 
-</td><td>
-  
-| Products | Products with suffix |
+</div>
+<div className="ww-sample-panel">
+
+##### Output Sample
+
+| Products |Stock   |
 |:---------|------:|
-| Hammer | Hammer abc |
-  
-</td></tr>
-</table>
+| Hammer | Hammer is out of stock |
+
+</div>
+</div>
+
+# Recipe Parameters
+Recipe parameters can be passed to a custom function as variables.
 
 ```python
-def function(Products, suffix):
+def append_suffix(Products, suffix):
     """ 
     Append suffix to each row in Products column
     """
@@ -181,10 +168,31 @@ def function(Products, suffix):
 
 ```yaml
 wrangles:
-  - custom.function:
-      suffix: abc
+  - custom.append_suffix:
+      suffix: ' abc'
       output: Products with suffix
 ```
+
+<div className="ww-sample-grid">
+<div className="ww-sample-panel">
+
+##### Input Sample
+
+| Products   |
+|:----------:|
+| Hammer |
+
+</div>
+<div className="ww-sample-panel">
+
+##### Output Sample
+
+| Products | Products with suffix |
+|:---------|------:|
+| Hammer | Hammer abc |
+
+</div>
+</div>
 
 # Samples
 ```python
@@ -223,25 +231,6 @@ def function_name(df, example_param, **kwargs):
 
 ## Reverse Strings (Dataframe Level)
 
-<table>
-<tr><th></th><th></th><th></th></tr>
-<tr><td>
-
-| Strings         |
-|:---------------:|
-| Reverse Reverse |
-
-</td><td>
-→ 
-</td><td>
-  
-|Reverse         |
-|:---------------:|
-|esreveR esreveR |
-  
-</td></tr>
-</table>
-
 ```python
 def reverse_strings(df, input, output):
     """
@@ -262,26 +251,28 @@ wrangles:
       output: Reverse
 ```
 
-## Reverse Strings (Row Level)
+<div className="ww-sample-grid">
+<div className="ww-sample-panel">
 
-<table>
-<tr><th></th><th></th><th></th></tr>
-<tr><td>
+##### Input Sample
 
 | Strings         |
 |:---------------:|
 | Reverse Reverse |
 
-</td><td>
-→ 
-</td><td>
-  
+</div>
+<div className="ww-sample-panel">
+
+##### Output Sample
+
 |Reverse         |
 |:---------------:|
 |esreveR esreveR |
-  
-</td></tr>
-</table>
+
+</div>
+</div>
+
+## Reverse Strings (Row Level)
 
 ```python
 def reverse_strings(Strings):
@@ -301,3 +292,24 @@ wrangles:
   	  input: Strings
       output: Reverse
 ```
+
+<div className="ww-sample-grid">
+<div className="ww-sample-panel">
+
+##### Input Sample
+
+| Strings         |
+|:---------------:|
+| Reverse Reverse |
+
+</div>
+<div className="ww-sample-panel">
+
+##### Output Sample
+
+|Reverse         |
+|:---------------:|
+|esreveR esreveR |
+
+</div>
+</div>

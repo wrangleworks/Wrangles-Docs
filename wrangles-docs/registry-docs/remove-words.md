@@ -14,31 +14,6 @@ import CopyableCode from '@site/src/components/CopyableCode';
 
 Remove all the elements that occur in one list from another.
 
-
-
-## Parameters
-
-<div className="ww-parameters-table">
-
-| Name | Description | Accepted Values | Default | Required |
-| --- | --- | --- | --- | --- |
-| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `input` | Name of column to remove words from | string, integer, array | — | Yes |
-| `to_remove` | Column or list of columns with a list of words to be removed | array | — | Yes |
-| `output` | Name of the output columns | string, array | `null` | Yes |
-| <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `tokenize_to_remove` | Tokenize all to_remove inputs | boolean | `false` | No |
-| `ignore_case` | Ignore input and to_remove case | boolean | `true` | No |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
-| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-
-</div>
-
-Required follows the recipe schema. Default records the Python argument default;
-a schema may require an argument even when Python provides a default.
-
 <details className="ww-field-disclosure">
 
 <summary>Complete configuration schema</summary>
@@ -137,6 +112,33 @@ wrangles:
 </div>
 
 </div>
+
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
+
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
+| --- | --- | --- | --- | --- |
+| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
+| `input` | Name of column to remove words from | string, integer, array | — | Yes |
+| `to_remove` | Column or list of columns with a list of words to be removed | array | — | Yes |
+| `output` | Name of the output columns | string, array | `null` | Yes |
+| <span className="ww-param-group-label">Options</span> |  |  |  |  |
+| `tokenize_to_remove` | Tokenize all to_remove inputs | boolean | `false` | No |
+| `ignore_case` | Ignore input and to_remove case | boolean | `true` | No |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
+
+</div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+</details>
 
 <details className="ww-field-disclosure">
 

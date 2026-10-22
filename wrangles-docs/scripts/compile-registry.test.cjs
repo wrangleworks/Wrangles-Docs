@@ -3,7 +3,69 @@ const fs = require('node:fs');
 const path = require('node:path');
 const test = require('node:test');
 
-const {validateColumnSemantics} = require('./compile-registry.cjs');
+const {validateColumnSemantics, sampleValue} = require('./compile-registry.cjs');
+
+test('page introductions come from editorial Markdown, without a second metadata description', () => {
+  const {normalizePublicBody} = require('./compile-registry.cjs');
+  assert.equal(normalizePublicBody('# Title\n\nOriginal introduction.'), 'Original introduction.');
+  for (const [slug, original, duplicate] of [
+    ['select/group-by', 'Group and aggregate the data', 'Group and aggregate the data.'],
+    ['copy', 'Create a copy of columns in a dataframe.', 'Make a copy of a column or a list of columns.'],
+  ]) {
+    const page = fs.readFileSync(path.join(__dirname, '../registry-docs', slug + '.md'), 'utf8');
+    const prose = page.split("import CopyableCode")[1].split('<details')[0];
+    assert.ok(prose.includes(original));
+    assert.ok(!prose.includes(duplicate));
+  }
+});
+
+test('schema descriptions seed missing introductions once and preserve manual edits', () => {
+  const {seedMissingIntroduction} = require('./registry-markdown.cjs');
+  const metadata = {title: 'Test', wrangle_key: 'test', description: 'Manual summary.'};
+  const body = '# Test\n\nOriginal manual prose.\n\n## Examples\n';
+  assert.equal(seedMissingIntroduction(metadata, body, 'Schema prose.'), body);
+  assert.equal(metadata.description, 'Manual summary.');
+  const underHeading = '# Test\n\n## Behavior\n\nOriginal manual prose.';
+  assert.equal(seedMissingIntroduction(metadata, underHeading, 'Schema prose.'), underHeading);
+  assert.match(seedMissingIntroduction(metadata, '# Test\n\n## Examples', 'Schema prose.'), /Manual summary\./);
+  const fresh = {title: 'Test', wrangle_key: 'test'};
+  const seeded = seedMissingIntroduction(fresh, '# Test\n\n## Examples', 'Schema prose.');
+  assert.match(seeded, /Schema prose\./);
+  assert.equal(seedMissingIntroduction(fresh, seeded, 'Changed schema prose.'), seeded);
+  const edited = seeded.replace('Schema prose.', 'My edited prose.');
+  assert.equal(seedMissingIntroduction(fresh, edited, 'Changed schema prose.'), edited);
+  const editorialOnly = {title: 'Test', wrangle_key: 'test'};
+  assert.equal(seedMissingIntroduction(editorialOnly, body, 'Schema prose.'), body);
+  assert.equal(editorialOnly.description, 'Original manual prose.');
+});
+
+test('parameter disclosures follow examples and precede access and technical details', () => {
+  const page = fs.readFileSync(path.join(__dirname, '../registry-docs/convert/case.md'), 'utf8');
+  const parameters = page.indexOf('<summary>Parameters</summary>');
+  assert.ok(page.indexOf('## Examples') < parameters);
+  assert.ok(parameters < page.indexOf('<summary>Access</summary>'));
+  assert.ok(page.indexOf('<summary>Access</summary>') < page.indexOf('<summary>Technical details</summary>'));
+  assert.match(page, /<details className="ww-field-disclosure">\s*<summary>Parameters<\/summary>/);
+  const connector = fs.readFileSync(path.join(__dirname, '../registry-docs/connectors/file.md'), 'utf8');
+  assert.match(connector, /<details className="ww-field-disclosure">\s*<summary>Parameters<\/summary>/);
+});
+
+test('fixture JSON strings survive Markdown rendering without losing escapes', async () => {
+  const {unified} = await import('unified');
+  const {default: remarkParse} = await import('remark-parse');
+  const {default: remarkGfm} = await import('remark-gfm');
+  for (const value of [
+    '{"material":"steel","voltage":18}',
+    '["corded","variable speed"]',
+    JSON.stringify({path: 'C:\\temp', quoted: '"hello"', pipe: 'a|b', newline: 'a\nb'}),
+  ]) {
+    const source = `| value |\n| --- |\n| ${sampleValue(value)} |`;
+    const tree = unified().use(remarkParse).use(remarkGfm).parse(source);
+    const cell = tree.children[0].children[1].children[0];
+    const text = cell.children.map(node => node.value || '').join('');
+    assert.equal(JSON.parse(text), value);
+  }
+});
 
 const siteRoot = path.resolve(__dirname, '..');
 const repositoryRoot = path.resolve(siteRoot, '..');

@@ -1,0 +1,59 @@
+name: Compile Registry content
+
+on:
+  push:
+    branches: ['**']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: compile-registry-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  compile:
+    if: github.ref_type == 'branch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: ${{ github.ref_name }}
+          fetch-depth: 0
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 22.x
+          cache: npm
+          cache-dependency-path: wrangles-docs/package-lock.json
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Install dependencies
+        working-directory: wrangles-docs
+        run: npm ci
+      - name: Generate from saved sources, validate and build
+        working-directory: wrangles-docs
+        run: |
+          npm run compile:registry
+          npm run generate:playground-registry
+          npm run check:registry
+          npm run build
+      - name: Commit generated outputs to the same branch
+        env:
+          TARGET_BRANCH: ${{ github.ref_name }}
+        run: |
+          git add registry/reports wrangles-docs/registry-docs wrangles-docs/static/registry wrangles-docs/static/schemas/recipes/registry wrangles-docs/static/py wrangles-docs/sidebarsRegistry.js wrangles-docs/src/components/WrangleFlowPlayground/registryCatalog.generated.js
+          if git diff --cached --quiet; then
+            echo 'Generated Registry outputs are already current.' >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'docs: compile Registry content'
+          # Never force-push over an edit made while this build was running.
+          git push origin "HEAD:refs/heads/$TARGET_BRANCH"
+          echo 'Generated Registry outputs committed to the source branch.' >> "$GITHUB_STEP_SUMMARY"
+      # GITHUB_TOKEN commits do not trigger another push workflow. Validation
+      # and main publishing independently regenerate before checking/building.

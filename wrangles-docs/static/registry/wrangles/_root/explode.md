@@ -136,8 +136,8 @@ wrangles:
 
 | Products | Manufacturer |
 | --- | --- |
-| [Ball Bearing, Bearing Seal] | SKF |
-| [Angle Grinder, Drill, Impact Driver] | Milwaukee |
+| ["Ball Bearing", "Bearing Seal"] | SKF |
+| ["Angle Grinder", "Drill", "Impact Driver"] | Milwaukee |
 | Solid State Relay | Schneider |
 
 </div>

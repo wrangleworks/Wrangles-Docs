@@ -12,33 +12,10 @@ import CopyableCode from '@site/src/components/CopyableCode';
 
 # Try <CopyableCode value="try" />
 
-Try a list of wrangles and catch any errors that occur.
-
 Run a list of wrangles and catch errors. When `except` is provided, its wrangles or fallback column values run after an error; otherwise, the error is logged and the recipe continues.
 
 The runtime supports both forms, but the pinned upstream schema only permits a
 dictionary for `except`. Use fallback column values for schema-validated recipes.
-
-## Parameters
-
-<div className="ww-parameters-table">
-
-| Name | Description | Accepted Values | Default | Required |
-| --- | --- | --- | --- | --- |
-| <span className="ww-param-group-label">Execution</span> |  |  |  |  |
-| `wrangles` | List of wrangles to apply | array | — | Yes |
-| <span className="ww-param-group-label">Errors</span> |  |  |  |  |
-| `retries` | Number of times to retry the wrangles if an error occurs. Default 0. | integer | `0` | No |
-| `except` | An action to take if the wrangles encounter an error.<br />This can contain a list of wrangles or a dictionary of column names and values.<br />If except is not provided, the error will be logged and the recipe will continue. | object | — | No |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
-| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-
-</div>
-
-Required follows the recipe schema. Default records the Python argument default;
-a schema may require an argument even when Python provides a default.
 
 <details className="ww-field-disclosure">
 
@@ -98,6 +75,10 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 
 ## Examples
 
+This input deliberately lacks `column`, so the conversion raises a missing-column error and `except` creates it with the fallback value. Invalid numeric text alone does not trigger this fallback: `convert.data_type` retains unconvertible values unless a default is provided.
+
+
+
 ```yaml
 wrangles:
   - try:
@@ -113,17 +94,81 @@ wrangles:
 
 <div className="ww-sample-panel ww-sample-panel--input" data-sample-role="input">
 
-_The input dataframe is passed to the primary wrangles._
+| Product |
+| --- |
+| Hammer |
 
 </div>
 
 <div className="ww-sample-panel ww-sample-panel--output" data-sample-role="output">
 
-_The primary result is returned on success; the `except` result is returned after an error._
+| column |
+| --- |
+| unavailable |
 
 </div>
 
 </div>
+
+
+
+The same recipe preserves a successful conversion rather than applying the fallback.
+
+```yaml
+wrangles:
+  - try:
+      wrangles:
+        - convert.data_type:
+            input: column
+            data_type: int
+      except:
+        column: unavailable
+```
+
+<div className="ww-sample-grid">
+
+<div className="ww-sample-panel ww-sample-panel--input" data-sample-role="input">
+
+| column |
+| --- |
+| "42" |
+
+</div>
+
+<div className="ww-sample-panel ww-sample-panel--output" data-sample-role="output">
+
+| column |
+| --- |
+| 42 |
+
+</div>
+
+</div>
+
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
+
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
+| --- | --- | --- | --- | --- |
+| <span className="ww-param-group-label">Execution</span> |  |  |  |  |
+| `wrangles` | List of wrangles to apply | array | — | Yes |
+| <span className="ww-param-group-label">Errors</span> |  |  |  |  |
+| `retries` | Number of times to retry the wrangles if an error occurs. Default 0. | integer | `0` | No |
+| `except` | An action to take if the wrangles encounter an error.<br />This can contain a list of wrangles or a dictionary of column names and values.<br />If except is not provided, the error will be logged and the recipe will continue. | object | — | No |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
+
+</div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+</details>
 
 <details className="ww-field-disclosure">
 

@@ -75,7 +75,9 @@ mysql.write(
 )
 ```
 
-## Parameters
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
 
 ### Read
 
@@ -245,6 +247,8 @@ Write data to a MySQL Server
   }
 }
 ```
+
+</details>
 
 </details>
 

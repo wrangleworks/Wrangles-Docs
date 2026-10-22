@@ -10,7 +10,7 @@ can produce new Markdown pages before API-Core registration; their catalog ID
 remains null until a real catalog row exists.
 Every Registry record is authoritative editorial content.
 
-The Registry also contains 46 Markdown connector contracts in `connectors/`. Each record
+The Registry also contains 46 Markdown connector contracts in `input_connectors/`. Each record
 joins the API-Core catalog ID to separate `read`, `write`, and/or `run` schemas.
 Connector schemas are pinned to WranglesPY 1.20.5, revision
 `bd5f88fba479ec406b409cb2880689c54e72b298`. Wrangle runtime contracts use that
@@ -35,8 +35,8 @@ The similarly named Registry directories have different responsibilities:
 | Directory | Responsibility | Edit directly? |
 | --- | --- | --- |
 | `registry/catalog/api-core.json` | Sanitized, pinned projection of API Core `public.wrangles_catalog` | Import from API Core export |
-| `registry/wrangles/` | Authoritative Markdown records for wrangle metadata, parameters, guidance, examples, and lifecycle | Yes |
-| `registry/connectors/` | Authoritative `.md` records: YAML metadata and operation schemas, Markdown explanations/examples | Edit editorial content; import schemas |
+| `registry/input_wrangles/` | Authoritative Markdown records for wrangle metadata, parameters, guidance, examples, and lifecycle | Yes |
+| `registry/input_connectors/` | Authoritative `.md` records: YAML metadata and operation schemas, Markdown explanations/examples | Edit editorial content; import schemas |
 | `registry/runtime/wranglespy-source-schema.json` | Static extraction of connector schemas, literal wrangle schemas, recipe base and unresolved source definitions | Regenerate from pinned checkout |
 | `wrangles-docs/registry-docs/` | Docusaurus pages generated from the authoritative records | No |
 | `wrangles-docs/static/registry/` | Public machine-readable Markdown, JSON contracts, schemas, fixtures, and discovery metadata | No |
@@ -44,7 +44,7 @@ The similarly named Registry directories have different responsibilities:
 The normal flow is therefore:
 
 ```text
-registry/catalog/api-core.json + registry/runtime/wranglespy.json + registry/wrangles/
+registry/catalog/api-core.json + registry/runtime/wranglespy.json + registry/input_wrangles/
         -> npm run compile:registry
 wrangles-docs/registry-docs/     (human-facing pages)
 wrangles-docs/static/registry/   (machine-facing artifacts)
@@ -139,9 +139,9 @@ Progress is tracked in
 ### Documentation source cutover
 
 The previous `_sources`-based wrangle documentation has been retired. The site,
-compiler, and authoring workflow now use `registry/wrangles/` as the only stock
+compiler, and authoring workflow now use `registry/input_wrangles/` as the only stock
 wrangle documentation source. Connector reference pages are generated from
-`registry/connectors/`. Existing connector guide content has been migrated into
+`registry/input_connectors/`. Existing connector guide content has been migrated into
 those Markdown sources. Legacy Python connector URLs redirect to canonical
 Registry pages; there are no duplicate connector guide pages. Pandas guides
 remain ordinary Python documentation. Both entity kinds share the Markdown
@@ -154,7 +154,7 @@ repository-wide consistency rule.
 The embedded `_schema` JSON Schema docstrings in WranglesPY remain migration
 input today. Runtime behavior and callable signatures continue to be owned by
 WranglesPY; descriptions, parameter guidance, accepted-value constraints, and
-examples move to `registry/wrangles/`.
+examples move to `registry/input_wrangles/`.
 
 The Registry contract remains **pre-production** until these steps are
 complete:
@@ -240,8 +240,8 @@ the outputs. Locally it never commits or pushes. Reports go to the ignored
 
 ### Editable files and ownership
 
-For `format.clean_text`, edit `registry/wrangles/format/clean-text.md`.
-For a connector, edit `registry/connectors/<runtime_key>.md`. Titles, introductory
+For `format.clean_text`, edit `registry/input_wrangles/format/clean-text.md`.
+For a connector, edit `registry/input_connectors/<runtime_key>.md`. Titles, introductory
 descriptions, and Markdown explanations/examples survive refreshes. Parameter
 descriptions, types, requiredness and configuration rules are schema-owned.
 Tables, website pages and JSON contracts are generated, not separately authored.
@@ -252,6 +252,13 @@ migration are reported to avoid creating duplicate canonical documentation.
 wrangles.io is checked and its URL/result recorded; web prose requires review,
 not blind HTML copying. New execution eligibility is disabled; unknown access
 requirements are null and displayed as **Not reviewed**.
+
+Visible page explanations come only from the editorial Markdown body. The
+frontmatter description is a search/machine summary, not a second introduction.
+Refresh seeds missing prose into Markdown once (existing editorial summary first,
+then schema); it never replaces an existing explanation, including text under a
+Behavior heading. New pages also render this saved, editable Markdown, not a
+live schema description. Complete configuration schemas remain intact.
 
 ### Partial refresh rules
 

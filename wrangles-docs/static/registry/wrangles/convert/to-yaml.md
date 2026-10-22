@@ -145,15 +145,9 @@ wrangles:
 
 ##### Input Sample
 
-```python
-{
-  'Product Specs': {
-    'length': '6 inch',
-    'voltage': '24V',
-    'weight': '3lb'
-  }
-}
-```
+| column 1 |
+| --- |
+| `{'Product Specs': {'length': '6 inch', 'voltage': '24V', 'weight': '3lb'}}` |
 
 </div>
 
@@ -161,12 +155,11 @@ wrangles:
 
 ##### Output Sample
 
-```yaml
-Product Specs:
-  length: 6 inch
-  voltage: 24V
-  weight: 3lb
-```
+| column 1 |
+| --- |
+| `"Product Specs:\n  length: 6 inch\n  voltage: 24V\n  weight: 3lb\n"` |
+
+The table shows the YAML string with escaped newlines (`\n`); the returned string contains actual line breaks.
 
 </div>
 

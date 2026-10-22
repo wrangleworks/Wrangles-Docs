@@ -12,27 +12,7 @@ import CopyableCode from '@site/src/components/CopyableCode';
 
 # Sample <CopyableCode value="select.sample" />
 
-Return a random sample of the rows.
-
 Return a random sample of the rows
-
-## Parameters
-
-<div className="ww-parameters-table">
-
-| Name | Description | Accepted Values | Default | Required |
-| --- | --- | --- | --- | --- |
-| <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `rows` | If a whole number, will select that number of rows.<br />If a decimal between 0 and 1 will select that fraction <br />of the rows e.g. 0.1 =&gt; 10% of rows will be returned | integer, number | — | Yes |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
-| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-
-</div>
-
-Required follows the recipe schema. Default records the Python argument default;
-a schema may require an argument even when Python provides a default.
 
 <details className="ww-field-disclosure">
 
@@ -77,6 +57,10 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 
 ## Examples
 
+The output is illustrative: each run can select different rows. Two rows are selected without replacement, with their column values unchanged.
+
+
+
 ```yaml
 wrangles:
   - select.sample:
@@ -109,6 +93,8 @@ wrangles:
 
 
 
+The output is illustrative: each run can select a different row. With four input rows, 25% selects one row.
+
 
 
 ```yaml
@@ -139,6 +125,28 @@ wrangles:
 </div>
 
 </div>
+
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
+
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
+| --- | --- | --- | --- | --- |
+| <span className="ww-param-group-label">Options</span> |  |  |  |  |
+| `rows` | If a whole number, will select that number of rows.<br />If a decimal between 0 and 1 will select that fraction <br />of the rows e.g. 0.1 =&gt; 10% of rows will be returned | integer, number | — | Yes |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
+
+</div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+</details>
 
 <details className="ww-field-disclosure">
 

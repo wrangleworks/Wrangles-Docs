@@ -16,28 +16,7 @@ Merge wrangles, with recipe examples, parameters, and behavior.
 
 ## Coalesce <CopyableCode value="merge.coalesce" /> {#coalesce}
 
-Take the first non-empty value from a series of columns or lists.
-
 Take the first non-empty value from a series of columns.
-
-### Parameters
-
-<div className="ww-parameters-table">
-
-| Name | Description | Accepted Values | Default | Required |
-| --- | --- | --- | --- | --- |
-| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `input` | List of input columns or a single column containing lists | array, string, integer | — | Yes |
-| `output` | Name of the output columns. This is required if multiple input columns are provided. | string | `null` | No |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
-| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-
-</div>
-
-Required follows the recipe schema. Default records the Python argument default;
-a schema may require an argument even when Python provides a default.
 
 <details className="ww-field-disclosure">
 
@@ -124,6 +103,29 @@ wrangles:
 
 <details className="ww-field-disclosure">
 
+<summary>Parameters</summary>
+
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
+| --- | --- | --- | --- | --- |
+| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
+| `input` | List of input columns or a single column containing lists | array, string, integer | — | Yes |
+| `output` | Name of the output columns. This is required if multiple input columns are provided. | string | `null` | No |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
+
+</div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+</details>
+
+<details className="ww-field-disclosure">
+
 <summary>Access</summary>
 
 | Requirement | Value |
@@ -166,32 +168,7 @@ wrangles:
 
 ## Concatenate <CopyableCode value="merge.concatenate" /> {#concatenate}
 
-Concatenate a list of columns or a list within a single column.
-
 If the input is a list of columns, concatenate multiple columns into one as a delimited string. If the input is a single column, concatenate a list within that column into a delimited string.
-
-### Parameters
-
-<div className="ww-parameters-table">
-
-| Name | Description | Accepted Values | Default | Required |
-| --- | --- | --- | --- | --- |
-| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `input` | Either a single column name or list of columns | array, string, integer | — | Yes |
-| `output` | Name of the output column | string | — | Yes |
-| <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `skip_empty` | Whether to skip empty values, defaults to false. | boolean | `false` | No |
-| <span className="ww-param-group-label">Formatting</span> |  |  |  |  |
-| `char` | (Optional) Character to add between successive values | string | `","` | Yes |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
-| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-
-</div>
-
-Required follows the recipe schema. Default records the Python argument default;
-a schema may require an argument even when Python provides a default.
 
 <details className="ww-field-disclosure">
 
@@ -319,6 +296,33 @@ wrangles:
 
 <details className="ww-field-disclosure">
 
+<summary>Parameters</summary>
+
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
+| --- | --- | --- | --- | --- |
+| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
+| `input` | Either a single column name or list of columns | array, string, integer | — | Yes |
+| `output` | Name of the output column | string | — | Yes |
+| <span className="ww-param-group-label">Options</span> |  |  |  |  |
+| `skip_empty` | Whether to skip empty values, defaults to false. | boolean | `false` | No |
+| <span className="ww-param-group-label">Formatting</span> |  |  |  |  |
+| `char` | (Optional) Character to add between successive values | string | `","` | Yes |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
+
+</div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+</details>
+
+<details className="ww-field-disclosure">
+
 <summary>Access</summary>
 
 | Requirement | Value |
@@ -366,27 +370,6 @@ Take dictionaries in multiple columns and merge them to a single dictionary.
 :::note
 For duplicate keys, the last key in the input list takes precedence in the merged dictionary.
 :::
-
-### Parameters
-
-<div className="ww-parameters-table">
-
-| Name | Description | Accepted Values | Default | Required |
-| --- | --- | --- | --- | --- |
-| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `input` | list of input columns | array | — | Yes |
-| `output` | Name of the output column | string | — | Yes |
-| <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `skip_empty` | Whether to skip empty dictionaries when merging | boolean | `false` | No |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
-| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-
-</div>
-
-Required follows the recipe schema. Default records the Python argument default;
-a schema may require an argument even when Python provides a default.
 
 <details className="ww-field-disclosure">
 
@@ -541,6 +524,31 @@ Note the extra dash in front of `Dict 2` excludes that column from the wildcard 
 
 <details className="ww-field-disclosure">
 
+<summary>Parameters</summary>
+
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
+| --- | --- | --- | --- | --- |
+| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
+| `input` | list of input columns | array | — | Yes |
+| `output` | Name of the output column | string | — | Yes |
+| <span className="ww-param-group-label">Options</span> |  |  |  |  |
+| `skip_empty` | Whether to skip empty dictionaries when merging | boolean | `false` | No |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
+
+</div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+</details>
+
+<details className="ww-field-disclosure">
+
 <summary>Access</summary>
 
 | Requirement | Value |
@@ -583,30 +591,7 @@ Note the extra dash in front of `Dict 2` excludes that column from the wildcard 
 
 ## Key Value Pairs <CopyableCode value="merge.key_value_pairs" /> {#key-value-pairs}
 
-Create a dictionary from keys and values in paired columns e.g. COLUMN_NAME_1, COLUMN_VALUE_1, COLUMN_NAME_2, COLUMN_VALUE_2 ...
-
 Create a dictionary from keys and values in paired columns.
-
-### Parameters
-
-<div className="ww-parameters-table">
-
-| Name | Description | Accepted Values | Default | Required |
-| --- | --- | --- | --- | --- |
-| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `input` | Matched pairs of key and value columns | object | — | Yes |
-| `output` | Name of the output column | string | — | Yes |
-| <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `skip_empty` | Whether to skip empty keys or values when creating the dictionary | boolean | `false` | No |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
-| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-
-</div>
-
-Required follows the recipe schema. Default records the Python argument default;
-a schema may require an argument even when Python provides a default.
 
 <details className="ww-field-disclosure">
 
@@ -729,6 +714,31 @@ wrangles:
 
 <details className="ww-field-disclosure">
 
+<summary>Parameters</summary>
+
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
+| --- | --- | --- | --- | --- |
+| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
+| `input` | Matched pairs of key and value columns | object | — | Yes |
+| `output` | Name of the output column | string | — | Yes |
+| <span className="ww-param-group-label">Options</span> |  |  |  |  |
+| `skip_empty` | Whether to skip empty keys or values when creating the dictionary | boolean | `false` | No |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
+
+</div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+</details>
+
+<details className="ww-field-disclosure">
+
 <summary>Access</summary>
 
 | Requirement | Value |
@@ -772,31 +782,6 @@ wrangles:
 ## Lists <CopyableCode value="merge.lists" /> {#lists}
 
 Take lists in multiple columns and merge them to a single list.
-
-
-
-### Parameters
-
-<div className="ww-parameters-table">
-
-| Name | Description | Accepted Values | Default | Required |
-| --- | --- | --- | --- | --- |
-| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `input` | List of input columns | array | — | Yes |
-| `output` | Name of the output column | string | — | Yes |
-| <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `remove_duplicates` | Whether to remove duplicates from the created list | boolean | `false` | No |
-| `ignore_case` | Ignore case when removing duplicates | boolean | `false` | No |
-| `include_empty` | Whether to include empty values in the created list | boolean | `true` | No |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
-| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-
-</div>
-
-Required follows the recipe schema. Default records the Python argument default;
-a schema may require an argument even when Python provides a default.
 
 <details className="ww-field-disclosure">
 
@@ -887,6 +872,33 @@ wrangles:
 
 <details className="ww-field-disclosure">
 
+<summary>Parameters</summary>
+
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
+| --- | --- | --- | --- | --- |
+| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
+| `input` | List of input columns | array | — | Yes |
+| `output` | Name of the output column | string | — | Yes |
+| <span className="ww-param-group-label">Options</span> |  |  |  |  |
+| `remove_duplicates` | Whether to remove duplicates from the created list | boolean | `false` | No |
+| `ignore_case` | Ignore case when removing duplicates | boolean | `false` | No |
+| `include_empty` | Whether to include empty values in the created list | boolean | `true` | No |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
+
+</div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+</details>
+
+<details className="ww-field-disclosure">
+
 <summary>Access</summary>
 
 | Requirement | Value |
@@ -930,29 +942,6 @@ wrangles:
 ## To Dict <CopyableCode value="merge.to_dict" /> {#to-dict}
 
 Take multiple columns and merge them to a dictionary (aka object) using the column headers as keys.
-
-
-
-### Parameters
-
-<div className="ww-parameters-table">
-
-| Name | Description | Accepted Values | Default | Required |
-| --- | --- | --- | --- | --- |
-| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `input` | List of input columns | array, string, integer | — | Yes |
-| `output` | Name of the output column | string | — | Yes |
-| <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `include_empty` | Whether to include empty columns in the created dictionary | boolean | `false` | No |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
-| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-
-</div>
-
-Required follows the recipe schema. Default records the Python argument default;
-a schema may require an argument even when Python provides a default.
 
 <details className="ww-field-disclosure">
 
@@ -1038,6 +1027,31 @@ wrangles:
 
 <details className="ww-field-disclosure">
 
+<summary>Parameters</summary>
+
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
+| --- | --- | --- | --- | --- |
+| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
+| `input` | List of input columns | array, string, integer | — | Yes |
+| `output` | Name of the output column | string | — | Yes |
+| <span className="ww-param-group-label">Options</span> |  |  |  |  |
+| `include_empty` | Whether to include empty columns in the created dictionary | boolean | `false` | No |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
+
+</div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+</details>
+
+<details className="ww-field-disclosure">
+
 <summary>Access</summary>
 
 | Requirement | Value |
@@ -1081,29 +1095,6 @@ wrangles:
 ## To List <CopyableCode value="merge.to_list" /> {#to-list}
 
 Take multiple columns and merge them to a list.
-
-
-
-### Parameters
-
-<div className="ww-parameters-table">
-
-| Name | Description | Accepted Values | Default | Required |
-| --- | --- | --- | --- | --- |
-| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `input` | List of input columns | array, string, integer | — | Yes |
-| `output` | Name of the output column | string | — | Yes |
-| <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `include_empty` | Whether to include empty columns in the created list | boolean | `false` | No |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
-| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-
-</div>
-
-Required follows the recipe schema. Default records the Python argument default;
-a schema may require an argument even when Python provides a default.
 
 <details className="ww-field-disclosure">
 
@@ -1187,6 +1178,31 @@ wrangles:
 </div>
 
 </div>
+
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
+
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
+| --- | --- | --- | --- | --- |
+| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
+| `input` | List of input columns | array, string, integer | — | Yes |
+| `output` | Name of the output column | string | — | Yes |
+| <span className="ww-param-group-label">Options</span> |  |  |  |  |
+| `include_empty` | Whether to include empty columns in the created list | boolean | `false` | No |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
+
+</div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+</details>
 
 <details className="ww-field-disclosure">
 

@@ -44,7 +44,9 @@ df = jinja.run(
 
 #### Template Parameters
 
-## Parameters
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
 
 ### Run
 
@@ -100,6 +102,8 @@ Use a Jinja template with a context to create a file
   }
 }
 ```
+
+</details>
 
 </details>
 

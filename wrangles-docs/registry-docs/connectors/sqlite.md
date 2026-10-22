@@ -75,7 +75,9 @@ sqlite.run(
 )
 ```
 
-## Parameters
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
 
 ### Read
 
@@ -242,6 +244,8 @@ Export data to a SQLite Database
   }
 }
 ```
+
+</details>
 
 </details>
 

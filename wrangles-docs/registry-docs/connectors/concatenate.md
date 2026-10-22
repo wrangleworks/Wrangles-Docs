@@ -54,7 +54,9 @@ read:
 </table>
 </div>
 
-## Parameters
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
 
 ### Read
 
@@ -110,6 +112,8 @@ Combine two or more data sets together, stacked horizontally.
   }
 }
 ```
+
+</details>
 
 </details>
 

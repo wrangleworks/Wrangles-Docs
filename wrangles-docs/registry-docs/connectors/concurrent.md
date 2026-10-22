@@ -67,7 +67,9 @@ run:
               category: Hardware
 ```
 
-## Parameters
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
 
 ### Read
 
@@ -241,6 +243,8 @@ The concurrent connector lets you run multiple write connectors in parallel rath
   }
 }
 ```
+
+</details>
 
 </details>
 

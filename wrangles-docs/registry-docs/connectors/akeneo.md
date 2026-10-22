@@ -45,7 +45,9 @@ akeneo.write(
 )
 ```
 
-## Parameters
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
 
 ### Read
 
@@ -248,6 +250,8 @@ Write data into an Akeneo PIM
   }
 }
 ```
+
+</details>
 
 </details>
 

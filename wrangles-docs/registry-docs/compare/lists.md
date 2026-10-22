@@ -14,31 +14,6 @@ import CopyableCode from '@site/src/components/CopyableCode';
 
 Compare multiple lists and return the intersection, difference, or union.
 
-
-
-## Parameters
-
-<div className="ww-parameters-table">
-
-| Name | Description | Accepted Values | Default | Required |
-| --- | --- | --- | --- | --- |
-| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `input` | List of input columns containing lists to compare | array | — | Yes |
-| `output` | Name of the output column | string | — | Yes |
-| <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `method` | Type of comparison to perform | string; one of:<ul className="ww-param-enum-values"><li>intersection</li><li>difference</li><li>union</li></ul> | `"intersection"` | Yes |
-| `remove_duplicates` | Remove duplicates from the result | boolean | `false` | No |
-| `ignore_case` | Ignore case when comparing string items | boolean | `false` | No |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
-| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-
-</div>
-
-Required follows the recipe schema. Default records the Python argument default;
-a schema may require an argument even when Python provides a default.
-
 <details className="ww-field-disclosure">
 
 <summary>Complete configuration schema</summary>
@@ -117,9 +92,9 @@ wrangles:
 
 | Col1 | Col2 |
 | --- | --- |
-| [A, B, C] | [C, D, E] |
-| [H, I, J, K] | [H, I, J] |
-| [X, Y, Z] | [1, 2, 3] |
+| ["A", "B", "C"] | ["C", "D", "E"] |
+| ["H", "I", "J", "K"] | ["H", "I", "J"] |
+| ["X", "Y", "Z"] | [1, 2, 3] |
 
 </div>
 
@@ -127,9 +102,9 @@ wrangles:
 
 | Difference |
 | --- |
-| [A, B] |
-| [K] |
-| [X, Y, Z] |
+| ["A", "B"] |
+| ["K"] |
+| ["X", "Y", "Z"] |
 
 </div>
 
@@ -155,9 +130,9 @@ wrangles:
 
 | Col1 | Col2 |
 | --- | --- |
-| [A, B, C] | [C, D, E] |
-| [H, I, J, K] | [H, I, J] |
-| [X, Y, Z] | [1, 2, 3] |
+| ["A", "B", "C"] | ["C", "D", "E"] |
+| ["H", "I", "J", "K"] | ["H", "I", "J"] |
+| ["X", "Y", "Z"] | [1, 2, 3] |
 
 </div>
 
@@ -165,8 +140,8 @@ wrangles:
 
 | Intersection |
 | --- |
-| [C] |
-| [H, I, J] |
+| ["C"] |
+| ["H", "I", "J"] |
 | [] |
 
 </div>
@@ -193,9 +168,9 @@ wrangles:
 
 | Col1 | Col2 |
 | --- | --- |
-| [A, B, C] | [C, D, E] |
-| [H, I, J, K] | [H, I, J] |
-| [X, Y, Z] | [1, 2, 3] |
+| ["A", "B", "C"] | ["C", "D", "E"] |
+| ["H", "I", "J", "K"] | ["H", "I", "J"] |
+| ["X", "Y", "Z"] | [1, 2, 3] |
 
 </div>
 
@@ -203,13 +178,40 @@ wrangles:
 
 | Union |
 | --- |
-| [A, B, C, D, E] |
-| [H, I, J, K] |
-| [X, Y, Z, 1, 2, 3] |
+| ["A", "B", "C", "D", "E"] |
+| ["H", "I", "J", "K"] |
+| ["X", "Y", "Z", 1, 2, 3] |
 
 </div>
 
 </div>
+
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
+
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
+| --- | --- | --- | --- | --- |
+| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
+| `input` | List of input columns containing lists to compare | array | — | Yes |
+| `output` | Name of the output column | string | — | Yes |
+| <span className="ww-param-group-label">Options</span> |  |  |  |  |
+| `method` | Type of comparison to perform | string; one of:<ul className="ww-param-enum-values"><li>intersection</li><li>difference</li><li>union</li></ul> | `"intersection"` | Yes |
+| `remove_duplicates` | Remove duplicates from the result | boolean | `false` | No |
+| `ignore_case` | Ignore case when comparing string items | boolean | `false` | No |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
+
+</div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+</details>
 
 <details className="ww-field-disclosure">
 

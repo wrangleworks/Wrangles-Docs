@@ -13,7 +13,9 @@ import CopyableCode from '@site/src/components/CopyableCode';
 
 Upload files from the local file system to an SFTP host.
 
-## Parameters
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
 
 ### Run
 
@@ -82,6 +84,8 @@ Upload files from the local file system to an SFTP host.
   }
 }
 ```
+
+</details>
 
 </details>
 

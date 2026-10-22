@@ -1,0 +1,266 @@
+---
+schema_version: '0.2'
+type: wrangle
+id: 6177808e-aa2d-4d0b-8385-858b16948a5d
+wrangle_name: log
+namespace: null
+title: Log
+description: Log the current status of the dataframe.
+wrangle_key: log
+aliases: []
+slug: log
+status: active
+visibility: public
+recipe_writer:
+  eligible: false
+  reason: Operational logging steps are not authored in the baseline.
+tags:
+  - utility
+  - log
+runtime:
+  package: wrangles
+  symbol: wrangles.recipe_wrangles.main.log
+  contract_status: verified
+access:
+  ai_powered: false
+  requires_account: false
+  requires_subscription: false
+  requires_external_api_key: false
+capabilities:
+  if: true
+  where: true
+  where_params: true
+parameters:
+  - name: columns
+    description: (Optional, default all columns) List of specific columns to log.
+    required: false
+    param_group: I/O
+    runtime_default: null
+    schema:
+      type: array
+      description: (Optional, default all columns) List of specific columns to log.
+    runtime_required: false
+  - name: write
+    description: (Optional) Allows for an intermediate output to a file/dataframe/database etc.
+    required: false
+    param_group: Options
+    runtime_default: null
+    schema:
+      type: array
+      description: (Optional) Allows for an intermediate output to a file/dataframe/database etc.
+      minItems: 1
+      items:
+        $ref: '#/$defs/write/items'
+    runtime_required: false
+  - name: warning
+    description: Log a warning to the console
+    required: false
+    param_group: Options
+    runtime_default: null
+    schema:
+      type: string
+      description: Log a warning to the console
+    runtime_required: false
+  - name: info
+    description: Log info to the console
+    required: false
+    param_group: Options
+    runtime_default: null
+    schema:
+      type: string
+      description: Log info to the console
+    runtime_required: false
+  - name: log_data
+    description: >-
+      Whether to log a sample of the contents of the dataframe. Default True if not logging to a
+      write, error, warning or info. Default False otherwise.
+    required: false
+    param_group: Options
+    runtime_default: null
+    schema:
+      type: boolean
+      description: >-
+        Whether to log a sample of the contents of the dataframe. Default True if not logging to a
+        write, error, warning or info. Default False otherwise.
+    runtime_required: false
+  - name: error
+    description: Log an error to the console
+    required: false
+    param_group: Options
+    schema:
+      type: string
+      description: Log an error to the console
+    runtime_required: false
+examples: []
+sources:
+  - id: runtime
+    resource: >-
+      https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/main.py
+    title: WranglesPY log implementation
+  - id: legacy-docs-archive
+    resource: >-
+      https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/utility/_sources/log.md
+    title: Archived log Markdown
+configuration_schema:
+  type: object
+  description: Log the current status of the dataframe.
+  additionalProperties: false
+  properties:
+    columns:
+      type: array
+      description: (Optional, default all columns) List of specific columns to log.
+    write:
+      type: array
+      description: (Optional) Allows for an intermediate output to a file/dataframe/database etc.
+      minItems: 1
+      items:
+        $ref: '#/$defs/write/items'
+    error:
+      type: string
+      description: Log an error to the console
+    warning:
+      type: string
+      description: Log a warning to the console
+    info:
+      type: string
+      description: Log info to the console
+    log_data:
+      type: boolean
+      description: >-
+        Whether to log a sample of the contents of the dataframe. Default True if not logging to a
+        write, error, warning or info. Default False otherwise.
+    if:
+      $ref: '#/$defs/wrangles/commonProperties/if'
+    where:
+      $ref: '#/$defs/wrangles/commonProperties/where'
+    where_params:
+      $ref: '#/$defs/wrangles/commonProperties/where_params'
+schema_origin: upstream-docstring
+schema_adjustments: []
+---
+
+# Log
+
+Print the current status of the dataframe. Only a sample of rows is logged.
+
+## Migrated examples
+#### Logging All Columns to Terminal
+
+##### Recipe
+
+```yaml
+wrangles:
+  - log: {}
+```
+
+<div className="ww-sample-grid">
+
+<div className="ww-sample-panel">
+
+##### Input Sample
+
+| Product | Quantity |
+| --- | --- |
+| Hammer | 2 |
+| Drill | 3 |
+
+</div>
+
+<div className="ww-sample-panel">
+
+##### Output Sample
+
+| Product | Quantity |
+| --- | --- |
+| Hammer | 2 |
+| Drill | 3 |
+
+The data is returned unchanged. A sample of the dataframe is written to the server log, not added to the result table.
+
+</div>
+
+</div>
+
+#### Logging Specific Columns to Terminal
+
+##### Recipe
+
+```yaml
+wrangles:
+  - log:
+      columns:
+        - column1
+        - column2
+```
+
+<div className="ww-sample-grid">
+
+<div className="ww-sample-panel">
+
+##### Input Sample
+
+| column1 | column2 |
+| --- | --- |
+| Hammer | 3 |
+| Drill | 2 |
+
+</div>
+
+<div className="ww-sample-panel">
+
+##### Output Sample
+
+The input data is returned unchanged; the selected columns are also logged.
+
+| column1 | column2 |
+| --- | --- |
+| Hammer | 3 |
+| Drill | 2 |
+
+</div>
+
+</div>
+
+#### Logging to a File
+
+##### Recipe
+
+```yaml
+wrangles:
+  - log:
+      write:
+        - file:
+            name: output/filepath
+            columns:
+              - column 1
+              - column 2
+```
+
+<div className="ww-sample-grid">
+
+<div className="ww-sample-panel">
+
+##### Input Sample
+
+_Logging side-effect; no tabular input sample._
+
+</div>
+
+<div className="ww-sample-panel">
+
+##### Output Sample
+
+_Logs a sample of rows or status information to the configured destination._
+
+</div>
+
+</div>
+
+#### Native Variables
+
+| Variable | Function |
+| --- | --- |
+| `${column_count}` | Number of columns. |
+| `${columns}` | List of all columns. |
+| `${df}` | Current dataframe. |
+| `${row_count}` | Number of visible rows processed in each batch. |

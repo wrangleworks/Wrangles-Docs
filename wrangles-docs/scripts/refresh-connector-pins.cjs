@@ -7,8 +7,8 @@ const root = path.resolve(__dirname, '../..');
 const filename = path.join(root, 'registry/runtime/wranglespy-source-schema.json');
 const snapshot = JSON.parse(fs.readFileSync(filename));
 snapshot.connector_sources ||= {};
-for (const name of fs.readdirSync(path.join(root, 'registry/connectors')).filter(name => name.endsWith('.md'))) {
-  const file = path.join(root, 'registry/connectors', name);
+for (const name of fs.readdirSync(path.join(root, 'registry/input_connectors')).filter(name => name.endsWith('.md'))) {
+  const file = path.join(root, 'registry/input_connectors', name);
   const {metadata, body} = parseRegistryMarkdown(fs.readFileSync(file, 'utf8'));
   snapshot.connector_sources[metadata.runtime_key] ||= metadata.source;
   if (process.argv[2] === metadata.runtime_key) {

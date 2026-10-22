@@ -12,35 +12,11 @@ import CopyableCode from '@site/src/components/CopyableCode';
 
 # SQL <CopyableCode value="sql" />
 
-Apply a SQL command to the current dataframe. Only SELECT statements are supported - the result will be the output.
-
 Apply a SQL command to the current dataframe. Only `SELECT` statements are supported; the result becomes the output. The current table is called `df`.
 
 :::info
 SQL does not currently work with objects. If your table contains objects, use `convert.to_json` before using SQL. SQL is not compatible with `where` filtering.
 :::
-
-## Parameters
-
-<div className="ww-parameters-table">
-
-| Name | Description | Accepted Values | Default | Required |
-| --- | --- | --- | --- | --- |
-| <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `command` | SQL Command. The table is called df. For specific SQL syntax, this uses the SQLite dialect. | string | — | Yes |
-| `params` | Variables to use in conjunctions with query.<br />This allows the query to be parameterized.<br />This uses sqlite syntax (? or :name) | array, object | `null` | No |
-| `preserve_data_types` | Preserve Data Types value accepted by the runtime. | Any JSON value (not constrained upstream) | `true` | No |
-| <span className="ww-param-group-label">Formatting</span> |  |  |  |  |
-| `preserve_index` | Preserve Index value accepted by the runtime. | Any JSON value (not constrained upstream) | `false` | No |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
-| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-
-</div>
-
-Required follows the recipe schema. Default records the Python argument default;
-a schema may require an argument even when Python provides a default.
 
 <details className="ww-field-disclosure">
 
@@ -120,6 +96,32 @@ wrangles:
 </div>
 
 </div>
+
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
+
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
+| --- | --- | --- | --- | --- |
+| <span className="ww-param-group-label">Options</span> |  |  |  |  |
+| `command` | SQL Command. The table is called df. For specific SQL syntax, this uses the SQLite dialect. | string | — | Yes |
+| `params` | Variables to use in conjunctions with query.<br />This allows the query to be parameterized.<br />This uses sqlite syntax (? or :name) | array, object | `null` | No |
+| `preserve_data_types` | Preserve Data Types value accepted by the runtime. | Any JSON value (not constrained upstream) | `true` | No |
+| <span className="ww-param-group-label">Formatting</span> |  |  |  |  |
+| `preserve_index` | Preserve Index value accepted by the runtime. | Any JSON value (not constrained upstream) | `false` | No |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
+
+</div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+</details>
 
 <details className="ww-field-disclosure">
 

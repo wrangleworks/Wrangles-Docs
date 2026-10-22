@@ -82,7 +82,9 @@ train.classify.write(df = df, name = 'Fruits and Veggies')
 
 > Note both name and model_id **cannot** be used together. Name is used when creating models and model_id is used when updating an existing model.
 
-## Parameters
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
 
 ### Read
 
@@ -191,6 +193,8 @@ Train a new or existing Classify Wrangle
   }
 }
 ```
+
+</details>
 
 </details>
 

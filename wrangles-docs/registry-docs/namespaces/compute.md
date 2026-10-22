@@ -18,29 +18,6 @@ Compute wrangles, with recipe examples, parameters, and behavior.
 
 Assign values to a column based on conditional logic.
 
-
-
-### Parameters
-
-<div className="ww-parameters-table">
-
-| Name | Description | Accepted Values | Default | Required |
-| --- | --- | --- | --- | --- |
-| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `output` | Name of the output column | string | — | Yes |
-| <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `cases` | List of conditions and corresponding values | array | — | Yes |
-| `default` | Value to assign if no conditions are met. Default None. | string, number, integer, boolean, null | `null` | No |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
-| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-
-</div>
-
-Required follows the recipe schema. Default records the Python argument default;
-a schema may require an argument even when Python provides a default.
-
 <details className="ww-field-disclosure">
 
 <summary>Complete configuration schema</summary>
@@ -171,13 +148,13 @@ wrangles:
   - compute.case_when:
       output: Letter Grade
       cases:
-        - condition: (Grade > .89) & (Attendance == 'Good')
+        - condition: (Grade >= 90) & (Attendance == 'Good')
           value: 'A'
-        - condition: (.90 > Grade > .79) & (Attendance == 'Good')
+        - condition: (90 > Grade >= 80) & (Attendance == 'Good')
           value: 'B'
-        - condition: (.80 > Grade > .69) & (Attendance == 'Good')
+        - condition: (80 > Grade >= 70) & (Attendance == 'Good')
           value: 'C'
-        - condition: (.70 > Grade) or (Attendance == 'Poor')
+        - condition: (70 > Grade) or (Attendance == 'Poor')
           value: 'F'
 ```
 
@@ -206,6 +183,31 @@ wrangles:
 </div>
 
 </div>
+
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
+
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
+| --- | --- | --- | --- | --- |
+| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
+| `output` | Name of the output column | string | — | Yes |
+| <span className="ww-param-group-label">Options</span> |  |  |  |  |
+| `cases` | List of conditions and corresponding values | array | — | Yes |
+| `default` | Value to assign if no conditions are met. Default None. | string, number, integer, boolean, null | `null` | No |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
+
+</div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+</details>
 
 <details className="ww-field-disclosure">
 
@@ -252,42 +254,6 @@ wrangles:
 ## Score Search Results <CopyableCode value="compute.score_search_results" /> {#score-search-results}
 
 Scores and filters search results based on progressive partial/exact matching. Can return dictionaries or a parallel list of formatted strings.
-
-
-
-### Parameters
-
-<div className="ww-parameters-table">
-
-| Name | Description | Accepted Values | Default | Required |
-| --- | --- | --- | --- | --- |
-| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `input` | Three to five ordered column names: results, suppliers, part_codes, optional MPNs, optional descriptions. Results cells contain lists of payloads with search_metadata and search_results. Text-input cells accept scalar values or lists. To use descriptions without an MPN, provide five inputs and leave the fourth column's values blank. | array | — | Yes |
-| `output` | One name or a one-element list receives scored dictionaries. Two names receive parallel dictionary and formatted-summary lists in that order. Each row retains its result lists; results are not expanded into rows. Part-code evidence and counts remain nested in each dictionary, not in a third output column. Empty or non-list results cells produce empty lists. | string, array | — | Yes |
-| <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `must_match_part_code` | If true, mark results filtered when their scoring match category is not allowed. If false, keep such results eligible, while part_code_found still reports category eligibility. Blacklisting applies in both cases. Filtered dictionaries remain in the output with their scores and reasons. | boolean | `true` | No |
-| `allow_mpn_exact` | Allow the mpn_exact scoring category. Containment of an MPN with at least four normalized characters can receive this category even when its diagnostic evidence is partial. Does not change scores or evidence. | boolean | `true` | No |
-| `allow_mpn_partial` | Allow the mpn_partial scoring category, not every partial diagnostic evidence record. MPN categories take precedence over other-code categories. | boolean | `true` | No |
-| `allow_other_exact` | Allow other_code_exact when no positive MPN match is recognized. Normalized containment can receive exact points. Disallowing an MPN category does not fall back to this category. | boolean | `true` | No |
-| `allow_other_partial` | Allow other_code_partial when no positive MPN match is recognized. Applies to the scoring category, not the diagnostic match_level. | boolean | `true` | No |
-| `blacklist_keywords` | Literal substrings of the full lowercased URL to mark as filtered. A comma-separated string is trimmed and lowercased; list entries are used as supplied, so provide trimmed lowercase strings. Does not match titles or snippets and applies even when must_match_part_code is false. | string, array | `""` | No |
-| `mpn_exact_score` | Exact-score MPN points, including normalized containment for inputs of at least four characters. Only the higher MPN or other-code contribution is added; a tie prefers the MPN explanation. Keep exact weights positive. | number | `8` | No |
-| `mpn_partial_base` | Base points for partial/variant MPN scoring. Ordinary normalized containment already receives exact points; this is not a weight for every partial diagnostic evidence record. | number | `4` | No |
-| `part_code_exact_score` | Exact-score other-code points, including normalized containment for inputs of at least four characters. Not added on top of the MPN score. | number | `6` | No |
-| `part_code_partial_base` | Base points for partial/variant other-code scoring. Does not change diagnostic levels; containment can already receive exact points. | number | `2` | No |
-| `supplier_exact_score` | Points when a normalized supplier name equals a complete title, snippet, or URL field. An embedded name instead uses supplier_partial_base. | number | `3` | No |
-| `supplier_partial_base` | Base for embedded supplier text; reverse containment uses 95 percent of the base, and fuzzy matches at the fixed 0.8 cutoff use their similarity times the base. Only the strongest text match contributes. | number | `1` | No |
-| `context_match_base` | Points when all normalized unique input context terms match. Terms include suppliers, codes, MPNs, full descriptions, and description words longer than two characters. The matched fraction times this base is rounded to one decimal place; repeated occurrences do not add points. | number | `2` | No |
-| `fuzzy_match_threshold` | Similarity cutoff for context terms and supplier-text recognition in brand_found. Does not change the fixed supplier fuzzy-scoring cutoff, part-code evidence levels, or allowed scoring categories. Domain evidence can set brand_found independently of this threshold. | number | `0.8` | No |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
-| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-
-</div>
-
-Required follows the recipe schema. Default records the Python argument default;
-a schema may require an argument even when Python provides a default.
 
 <details className="ww-field-disclosure">
 
@@ -438,6 +404,9 @@ wrangles:
         - Scored Results
       allow_other_exact: true
       must_match_part_code: true
+  - select.element:
+      input: Scored Results[0]['summary']['score']
+      output: Score
 ```
 
 <div className="ww-sample-grid">
@@ -446,21 +415,61 @@ wrangles:
 
 | Search Results | Suppliers | Part Codes |
 | --- | --- | --- |
-| `[{"title": "SKF 6202 bearing", "link": "https://example.com/6202"}]` | `["SKF"]` | `["6202"]` |
+| `[{"search_results": [{"title": "SKF 6202 bearing", "link": "https://example.com/6202", "snippet": "SKF 6202 bearing"}]}]` | `["SKF"]` | `["6202"]` |
 
 </div>
 
 <div className="ww-sample-panel ww-sample-panel--output" data-sample-role="output">
 
-| Scored Results |
+| Score |
 | --- |
-| Ranked result dictionaries |
+| 12.0 |
 
 </div>
 
 </div>
 
-_Template based on the documented parameters; no published source example is currently available._
+The input contains search-response objects, each with a `search_results` list, not a flat list of results. This local example scores supplied data without visiting the URL. The final step selects the first result's score for a compact output table; the full result remains in `Scored Results`.
+
+Example verified with the pinned WranglesPY runtime. Include a string `snippet`: the pinned runtime's result formatter raises an error when it is missing or null.
+
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
+
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
+| --- | --- | --- | --- | --- |
+| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
+| `input` | Three to five ordered column names: results, suppliers, part_codes, optional MPNs, optional descriptions. Results cells contain lists of payloads with search_metadata and search_results. Text-input cells accept scalar values or lists. To use descriptions without an MPN, provide five inputs and leave the fourth column's values blank. | array | — | Yes |
+| `output` | One name or a one-element list receives scored dictionaries. Two names receive parallel dictionary and formatted-summary lists in that order. Each row retains its result lists; results are not expanded into rows. Part-code evidence and counts remain nested in each dictionary, not in a third output column. Empty or non-list results cells produce empty lists. | string, array | — | Yes |
+| <span className="ww-param-group-label">Options</span> |  |  |  |  |
+| `must_match_part_code` | If true, mark results filtered when their scoring match category is not allowed. If false, keep such results eligible, while part_code_found still reports category eligibility. Blacklisting applies in both cases. Filtered dictionaries remain in the output with their scores and reasons. | boolean | `true` | No |
+| `allow_mpn_exact` | Allow the mpn_exact scoring category. Containment of an MPN with at least four normalized characters can receive this category even when its diagnostic evidence is partial. Does not change scores or evidence. | boolean | `true` | No |
+| `allow_mpn_partial` | Allow the mpn_partial scoring category, not every partial diagnostic evidence record. MPN categories take precedence over other-code categories. | boolean | `true` | No |
+| `allow_other_exact` | Allow other_code_exact when no positive MPN match is recognized. Normalized containment can receive exact points. Disallowing an MPN category does not fall back to this category. | boolean | `true` | No |
+| `allow_other_partial` | Allow other_code_partial when no positive MPN match is recognized. Applies to the scoring category, not the diagnostic match_level. | boolean | `true` | No |
+| `blacklist_keywords` | Literal substrings of the full lowercased URL to mark as filtered. A comma-separated string is trimmed and lowercased; list entries are used as supplied, so provide trimmed lowercase strings. Does not match titles or snippets and applies even when must_match_part_code is false. | string, array | `""` | No |
+| `mpn_exact_score` | Exact-score MPN points, including normalized containment for inputs of at least four characters. Only the higher MPN or other-code contribution is added; a tie prefers the MPN explanation. Keep exact weights positive. | number | `8` | No |
+| `mpn_partial_base` | Base points for partial/variant MPN scoring. Ordinary normalized containment already receives exact points; this is not a weight for every partial diagnostic evidence record. | number | `4` | No |
+| `part_code_exact_score` | Exact-score other-code points, including normalized containment for inputs of at least four characters. Not added on top of the MPN score. | number | `6` | No |
+| `part_code_partial_base` | Base points for partial/variant other-code scoring. Does not change diagnostic levels; containment can already receive exact points. | number | `2` | No |
+| `supplier_exact_score` | Points when a normalized supplier name equals a complete title, snippet, or URL field. An embedded name instead uses supplier_partial_base. | number | `3` | No |
+| `supplier_partial_base` | Base for embedded supplier text; reverse containment uses 95 percent of the base, and fuzzy matches at the fixed 0.8 cutoff use their similarity times the base. Only the strongest text match contributes. | number | `1` | No |
+| `context_match_base` | Points when all normalized unique input context terms match. Terms include suppliers, codes, MPNs, full descriptions, and description words longer than two characters. The matched fraction times this base is rounded to one decimal place; repeated occurrences do not add points. | number | `2` | No |
+| `fuzzy_match_threshold` | Similarity cutoff for context terms and supplier-text recognition in brand_found. Does not change the fixed supplier fuzzy-scoring cutoff, part-code evidence levels, or allowed scoring categories. Domain evidence can set brand_found independently of this threshold. | number | `0.8` | No |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
+
+</div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+</details>
 
 <details className="ww-field-disclosure">
 
@@ -506,32 +515,11 @@ _Template based on the documented parameters; no published source example is cur
 
 ## Math <CopyableCode value="math" /> {#math}
 
-Apply a mathematical calculation.
-
 Apply mathematical calculations to columns. Also called as `maths`.
 
 :::info
 Spaces within column headers are replaced with underscores automatically. Account for this when writing expressions in `input`.
 :::
-
-### Parameters
-
-<div className="ww-parameters-table">
-
-| Name | Description | Accepted Values | Default | Required |
-| --- | --- | --- | --- | --- |
-| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `input` | The mathematical expression using column names. e.g. column1 * column2<br />+ column3.  Note: spaces within column names are replaced by underscores (_).<br /> | string, integer | — | Yes |
-| `output` | The column to output the results to | string | — | Yes |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
-| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-
-</div>
-
-Required follows the recipe schema. Default records the Python argument default;
-a schema may require an argument even when Python provides a default.
 
 <details className="ww-field-disclosure">
 
@@ -614,6 +602,29 @@ wrangles:
 
 <details className="ww-field-disclosure">
 
+<summary>Parameters</summary>
+
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
+| --- | --- | --- | --- | --- |
+| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
+| `input` | The mathematical expression using column names. e.g. column1 * column2<br />+ column3.  Note: spaces within column names are replaced by underscores (_).<br /> | string, integer | — | Yes |
+| `output` | The column to output the results to | string | — | Yes |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
+
+</div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+</details>
+
+<details className="ww-field-disclosure">
+
 <summary>Access</summary>
 
 | Requirement | Value |
@@ -656,36 +667,11 @@ wrangles:
 
 ## Python <CopyableCode value="python" /> {#python}
 
-Apply a simple single-line python command. For more complex python use a custom function. Note, this evaluates the python command - be especially cautious including variables from untrusted sources within the command string. The python command will be evaluated once for each row and the result returned. Reference column values by using their name. Non-alphanumeric characters within column names are replaced by underscores (_) Additionally, all columns are available as a dict named kwargs. Additional parameters set for the wrangle will also be available to the command.
-
 The Python wrangle executes simple Python commands inline within a recipe. Row values are referenced by column name and commands are evaluated once per row. Spaces within column names are replaced by underscores (`_`). All columns are also available as a dictionary named `kwargs`. For more complex Python, use custom functions.
 
 :::caution
 This wrangle evaluates the Python command. Be cautious when including variables from untrusted sources in the command string.
 :::
-
-### Parameters
-
-<div className="ww-parameters-table">
-
-| Name | Description | Accepted Values | Default | Required |
-| --- | --- | --- | --- | --- |
-| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `output` | Name or list of output column(s). To output multiple columns,<br />return a list of the corresponding length. | string, array | — | Yes |
-| `input` | Name or list of input column(s) to filter the data available<br />to the command. Useful in conjunction with kwargs to target<br />a variable range of columns.<br />If not specified, all columns will be available. | string, integer, array | `null` | No |
-| <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `command` | Python command. This must return a value.<br />Note: any non-alphanumeric characters in variable names<br />are replaced by underscores (_). | string | — | Yes |
-| <span className="ww-param-group-label">Errors</span> |  |  |  |  |
-| `except` | Value to return for the row if an exception occurs during the evaluation.<br />If not provided, an exception will be raised as normal.<br />If multiple output columns are specified, this must match the length. | string, array, number, integer, boolean, object | — | No |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
-| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-
-</div>
-
-Required follows the recipe schema. Default records the Python argument default;
-a schema may require an argument even when Python provides a default.
 
 <details className="ww-field-disclosure">
 
@@ -790,25 +776,59 @@ The Python wrangle supports parameters so values of unknown origin can be inject
 wrangles:
   - python:
       output: sliced
+      input: input_column
       command: input_column[:i]
-      i: ${var}
+      i: 3
 ```
 
 <div className="ww-sample-grid">
 
 <div className="ww-sample-panel ww-sample-panel--input" data-sample-role="input">
 
-_No sample available._
+| input_column |
+| --- |
+| Bearing |
+| Hammer |
 
 </div>
 
 <div className="ww-sample-panel ww-sample-panel--output" data-sample-role="output">
 
-_No sample available._
+| sliced |
+| --- |
+| Bea |
+| Ham |
 
 </div>
 
 </div>
+
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
+
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
+| --- | --- | --- | --- | --- |
+| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
+| `output` | Name or list of output column(s). To output multiple columns,<br />return a list of the corresponding length. | string, array | — | Yes |
+| `input` | Name or list of input column(s) to filter the data available<br />to the command. Useful in conjunction with kwargs to target<br />a variable range of columns.<br />If not specified, all columns will be available. | string, integer, array | `null` | No |
+| <span className="ww-param-group-label">Options</span> |  |  |  |  |
+| `command` | Python command. This must return a value.<br />Note: any non-alphanumeric characters in variable names<br />are replaced by underscores (_). | string | — | Yes |
+| <span className="ww-param-group-label">Errors</span> |  |  |  |  |
+| `except` | Value to return for the row if an exception occurs during the evaluation.<br />If not provided, an exception will be raised as normal.<br />If multiple output columns are specified, this must match the length. | string, array, number, integer, boolean, object | — | No |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
+
+</div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+</details>
 
 <details className="ww-field-disclosure">
 
@@ -854,35 +874,11 @@ _No sample available._
 
 ## SQL <CopyableCode value="sql" /> {#sql}
 
-Apply a SQL command to the current dataframe. Only SELECT statements are supported - the result will be the output.
-
 Apply a SQL command to the current dataframe. Only `SELECT` statements are supported; the result becomes the output. The current table is called `df`.
 
 :::info
 SQL does not currently work with objects. If your table contains objects, use `convert.to_json` before using SQL. SQL is not compatible with `where` filtering.
 :::
-
-### Parameters
-
-<div className="ww-parameters-table">
-
-| Name | Description | Accepted Values | Default | Required |
-| --- | --- | --- | --- | --- |
-| <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `command` | SQL Command. The table is called df. For specific SQL syntax, this uses the SQLite dialect. | string | — | Yes |
-| `params` | Variables to use in conjunctions with query.<br />This allows the query to be parameterized.<br />This uses sqlite syntax (? or :name) | array, object | `null` | No |
-| `preserve_data_types` | Preserve Data Types value accepted by the runtime. | Any JSON value (not constrained upstream) | `true` | No |
-| <span className="ww-param-group-label">Formatting</span> |  |  |  |  |
-| `preserve_index` | Preserve Index value accepted by the runtime. | Any JSON value (not constrained upstream) | `false` | No |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
-| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-
-</div>
-
-Required follows the recipe schema. Default records the Python argument default;
-a schema may require an argument even when Python provides a default.
 
 <details className="ww-field-disclosure">
 
@@ -965,6 +961,32 @@ wrangles:
 
 <details className="ww-field-disclosure">
 
+<summary>Parameters</summary>
+
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
+| --- | --- | --- | --- | --- |
+| <span className="ww-param-group-label">Options</span> |  |  |  |  |
+| `command` | SQL Command. The table is called df. For specific SQL syntax, this uses the SQLite dialect. | string | — | Yes |
+| `params` | Variables to use in conjunctions with query.<br />This allows the query to be parameterized.<br />This uses sqlite syntax (? or :name) | array, object | `null` | No |
+| `preserve_data_types` | Preserve Data Types value accepted by the runtime. | Any JSON value (not constrained upstream) | `true` | No |
+| <span className="ww-param-group-label">Formatting</span> |  |  |  |  |
+| `preserve_index` | Preserve Index value accepted by the runtime. | Any JSON value (not constrained upstream) | `false` | No |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
+
+</div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+</details>
+
+<details className="ww-field-disclosure">
+
 <summary>Access</summary>
 
 | Requirement | Value |
@@ -1011,32 +1033,11 @@ wrangles:
 This compatibility wrangle remains available for existing recipes. Use [`math`](/py/namespaces/compute#math) for new recipes.
 :::
 
-Deprecated alias for `math`; evaluate an expression and write its result to an output column.
-
 ### Behavior
 
 Deprecated alias for `math`; evaluate an expression and write its result to an output column.
 
 This guidance was derived from the callable signature.
-
-### Parameters
-
-<div className="ww-parameters-table">
-
-| Name | Description | Accepted Values | Default | Required |
-| --- | --- | --- | --- | --- |
-| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `input` | The mathematical expression using column names. e.g. column1 * column2<br />+ column3.  Note: spaces within column names are replaced by underscores (_).<br /> | string, integer | — | Yes |
-| `output` | The column to output the results to | string | — | Yes |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
-| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-
-</div>
-
-Required follows the recipe schema. Default records the Python argument default;
-a schema may require an argument even when Python provides a default.
 
 <details className="ww-field-disclosure">
 
@@ -1085,6 +1086,29 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 </details>
 
 
+
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
+
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
+| --- | --- | --- | --- | --- |
+| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
+| `input` | The mathematical expression using column names. e.g. column1 * column2<br />+ column3.  Note: spaces within column names are replaced by underscores (_).<br /> | string, integer | — | Yes |
+| `output` | The column to output the results to | string | — | Yes |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
+
+</div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+</details>
 
 <details className="ww-field-disclosure">
 

@@ -20,6 +20,7 @@ COPY wrangles-docs/requirements.txt ./
 RUN python -m pip install --no-cache-dir --disable-pip-version-check --no-compile -r requirements.txt
 
 COPY wrangles-docs/run_recipe.py ./run_recipe.py
+COPY wrangles-docs/customFunctions.py ./customFunctions.py
 COPY wrangles-docs/start_prod.py ./start_prod.py
 COPY --from=builder /app/build ./build
 

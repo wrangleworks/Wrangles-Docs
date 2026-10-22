@@ -135,7 +135,10 @@ wrangles:
 
 ##### Input Sample
 
-_No sample available._
+| Product |
+| --- |
+| Hammer |
+| Drill |
 
 </div>
 

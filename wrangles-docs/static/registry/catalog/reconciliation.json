@@ -29,14 +29,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "accordion",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/_root/accordion.md",
+      "expected_registry_path": "registry/input_wrangles/_root/accordion.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/_root/accordion.md",
+          "expected": "registry/input_wrangles/_root/accordion.md",
           "catalog": null
         }
       ]
@@ -49,14 +49,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "ai.answers",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/ai/answers.md",
+      "expected_registry_path": "registry/input_wrangles/ai/answers.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/ai/answers.md",
+          "expected": "registry/input_wrangles/ai/answers.md",
           "catalog": null
         }
       ]
@@ -69,14 +69,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "ai.choose",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/ai/choose.md",
+      "expected_registry_path": "registry/input_wrangles/ai/choose.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/ai/choose.md",
+          "expected": "registry/input_wrangles/ai/choose.md",
           "catalog": null
         }
       ]
@@ -89,14 +89,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "ai.score",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/ai/score.md",
+      "expected_registry_path": "registry/input_wrangles/ai/score.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/ai/score.md",
+          "expected": "registry/input_wrangles/ai/score.md",
           "catalog": null
         }
       ]
@@ -109,14 +109,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "ai.true_false",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/ai/true-false.md",
+      "expected_registry_path": "registry/input_wrangles/ai/true-false.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/ai/true-false.md",
+          "expected": "registry/input_wrangles/ai/true-false.md",
           "catalog": null
         }
       ]
@@ -129,14 +129,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "batch",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/_root/batch.md",
+      "expected_registry_path": "registry/input_wrangles/_root/batch.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/_root/batch.md",
+          "expected": "registry/input_wrangles/_root/batch.md",
           "catalog": null
         }
       ]
@@ -149,14 +149,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "classify",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/_root/classify.md",
+      "expected_registry_path": "registry/input_wrangles/_root/classify.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/_root/classify.md",
+          "expected": "registry/input_wrangles/_root/classify.md",
           "catalog": null
         }
       ]
@@ -169,14 +169,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "clean_whitespaces",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/_root/clean-whitespaces.md",
+      "expected_registry_path": "registry/input_wrangles/_root/clean-whitespaces.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/_root/clean-whitespaces.md",
+          "expected": "registry/input_wrangles/_root/clean-whitespaces.md",
           "catalog": null
         }
       ]
@@ -189,14 +189,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "compare.lists",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/compare/lists.md",
+      "expected_registry_path": "registry/input_wrangles/compare/lists.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/compare/lists.md",
+          "expected": "registry/input_wrangles/compare/lists.md",
           "catalog": null
         }
       ]
@@ -209,14 +209,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "compare.text",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/compare/text.md",
+      "expected_registry_path": "registry/input_wrangles/compare/text.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/compare/text.md",
+          "expected": "registry/input_wrangles/compare/text.md",
           "catalog": null
         }
       ]
@@ -229,14 +229,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "compute.case_when",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/compute/case-when.md",
+      "expected_registry_path": "registry/input_wrangles/compute/case-when.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/compute/case-when.md",
+          "expected": "registry/input_wrangles/compute/case-when.md",
           "catalog": null
         }
       ]
@@ -249,14 +249,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "compute.score_search_results",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/compute/score-search-results.md",
+      "expected_registry_path": "registry/input_wrangles/compute/score-search-results.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/compute/score-search-results.md",
+          "expected": "registry/input_wrangles/compute/score-search-results.md",
           "catalog": null
         }
       ]
@@ -269,14 +269,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "concurrent",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/_root/concurrent.md",
+      "expected_registry_path": "registry/input_wrangles/_root/concurrent.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/_root/concurrent.md",
+          "expected": "registry/input_wrangles/_root/concurrent.md",
           "catalog": null
         }
       ]
@@ -289,14 +289,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "convert.case",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/convert/case.md",
+      "expected_registry_path": "registry/input_wrangles/convert/case.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/convert/case.md",
+          "expected": "registry/input_wrangles/convert/case.md",
           "catalog": null
         }
       ]
@@ -309,14 +309,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "convert.data_type",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/convert/data-type.md",
+      "expected_registry_path": "registry/input_wrangles/convert/data-type.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/convert/data-type.md",
+          "expected": "registry/input_wrangles/convert/data-type.md",
           "catalog": null
         }
       ]
@@ -329,14 +329,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "convert.fraction_to_decimal",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/convert/fraction-to-decimal.md",
+      "expected_registry_path": "registry/input_wrangles/convert/fraction-to-decimal.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/convert/fraction-to-decimal.md",
+          "expected": "registry/input_wrangles/convert/fraction-to-decimal.md",
           "catalog": null
         }
       ]
@@ -349,14 +349,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "convert.from_json",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/convert/from-json.md",
+      "expected_registry_path": "registry/input_wrangles/convert/from-json.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/convert/from-json.md",
+          "expected": "registry/input_wrangles/convert/from-json.md",
           "catalog": null
         }
       ]
@@ -369,14 +369,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "convert.from_yaml",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/convert/from-yaml.md",
+      "expected_registry_path": "registry/input_wrangles/convert/from-yaml.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/convert/from-yaml.md",
+          "expected": "registry/input_wrangles/convert/from-yaml.md",
           "catalog": null
         }
       ]
@@ -389,14 +389,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "convert.parse",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/convert/parse.md",
+      "expected_registry_path": "registry/input_wrangles/convert/parse.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/convert/parse.md",
+          "expected": "registry/input_wrangles/convert/parse.md",
           "catalog": null
         }
       ]
@@ -409,14 +409,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "convert.to_json",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/convert/to-json.md",
+      "expected_registry_path": "registry/input_wrangles/convert/to-json.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/convert/to-json.md",
+          "expected": "registry/input_wrangles/convert/to-json.md",
           "catalog": null
         }
       ]
@@ -429,14 +429,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "convert.to_yaml",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/convert/to-yaml.md",
+      "expected_registry_path": "registry/input_wrangles/convert/to-yaml.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/convert/to-yaml.md",
+          "expected": "registry/input_wrangles/convert/to-yaml.md",
           "catalog": null
         }
       ]
@@ -449,14 +449,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "copy",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/_root/copy.md",
+      "expected_registry_path": "registry/input_wrangles/_root/copy.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/_root/copy.md",
+          "expected": "registry/input_wrangles/_root/copy.md",
           "catalog": null
         }
       ]
@@ -469,14 +469,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "create.bins",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/create/bins.md",
+      "expected_registry_path": "registry/input_wrangles/create/bins.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/create/bins.md",
+          "expected": "registry/input_wrangles/create/bins.md",
           "catalog": null
         }
       ]
@@ -489,14 +489,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "create.column",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/create/column.md",
+      "expected_registry_path": "registry/input_wrangles/create/column.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/create/column.md",
+          "expected": "registry/input_wrangles/create/column.md",
           "catalog": null
         }
       ]
@@ -509,14 +509,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "create.embeddings",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/create/embeddings.md",
+      "expected_registry_path": "registry/input_wrangles/create/embeddings.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/create/embeddings.md",
+          "expected": "registry/input_wrangles/create/embeddings.md",
           "catalog": null
         }
       ]
@@ -529,14 +529,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "create.guid",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/create/guid.md",
+      "expected_registry_path": "registry/input_wrangles/create/guid.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/create/guid.md",
+          "expected": "registry/input_wrangles/create/guid.md",
           "catalog": null
         }
       ]
@@ -549,14 +549,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "create.hash",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/create/hash.md",
+      "expected_registry_path": "registry/input_wrangles/create/hash.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/create/hash.md",
+          "expected": "registry/input_wrangles/create/hash.md",
           "catalog": null
         }
       ]
@@ -569,14 +569,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "create.index",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/create/index.md",
+      "expected_registry_path": "registry/input_wrangles/create/index.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/create/index.md",
+          "expected": "registry/input_wrangles/create/index.md",
           "catalog": null
         }
       ]
@@ -589,14 +589,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "create.jinja",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/create/jinja.md",
+      "expected_registry_path": "registry/input_wrangles/create/jinja.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/create/jinja.md",
+          "expected": "registry/input_wrangles/create/jinja.md",
           "catalog": null
         }
       ]
@@ -609,14 +609,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "create.uuid",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/create/uuid.md",
+      "expected_registry_path": "registry/input_wrangles/create/uuid.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/create/uuid.md",
+          "expected": "registry/input_wrangles/create/uuid.md",
           "catalog": null
         }
       ]
@@ -629,14 +629,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "date_calculator",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/_root/date-calculator.md",
+      "expected_registry_path": "registry/input_wrangles/_root/date-calculator.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/_root/date-calculator.md",
+          "expected": "registry/input_wrangles/_root/date-calculator.md",
           "catalog": null
         }
       ]
@@ -649,14 +649,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "drop",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/_root/drop.md",
+      "expected_registry_path": "registry/input_wrangles/_root/drop.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/_root/drop.md",
+          "expected": "registry/input_wrangles/_root/drop.md",
           "catalog": null
         }
       ]
@@ -669,14 +669,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "explode",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/_root/explode.md",
+      "expected_registry_path": "registry/input_wrangles/_root/explode.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/_root/explode.md",
+          "expected": "registry/input_wrangles/_root/explode.md",
           "catalog": null
         }
       ]
@@ -689,14 +689,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "extract.address",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/extract/address.md",
+      "expected_registry_path": "registry/input_wrangles/extract/address.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/extract/address.md",
+          "expected": "registry/input_wrangles/extract/address.md",
           "catalog": null
         }
       ]
@@ -709,14 +709,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "extract.ai",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/extract/ai.md",
+      "expected_registry_path": "registry/input_wrangles/extract/ai.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/extract/ai.md",
+          "expected": "registry/input_wrangles/extract/ai.md",
           "catalog": null
         }
       ]
@@ -729,14 +729,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "extract.attributes",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/extract/attributes.md",
+      "expected_registry_path": "registry/input_wrangles/extract/attributes.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/extract/attributes.md",
+          "expected": "registry/input_wrangles/extract/attributes.md",
           "catalog": null
         }
       ]
@@ -749,14 +749,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "extract.brackets",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/extract/brackets.md",
+      "expected_registry_path": "registry/input_wrangles/extract/brackets.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/extract/brackets.md",
+          "expected": "registry/input_wrangles/extract/brackets.md",
           "catalog": null
         }
       ]
@@ -769,14 +769,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "extract.codes",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/extract/codes.md",
+      "expected_registry_path": "registry/input_wrangles/extract/codes.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/extract/codes.md",
+          "expected": "registry/input_wrangles/extract/codes.md",
           "catalog": null
         }
       ]
@@ -789,14 +789,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "extract.custom",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/extract/custom.md",
+      "expected_registry_path": "registry/input_wrangles/extract/custom.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/extract/custom.md",
+          "expected": "registry/input_wrangles/extract/custom.md",
           "catalog": null
         }
       ]
@@ -809,14 +809,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "extract.date_properties",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/extract/date-properties.md",
+      "expected_registry_path": "registry/input_wrangles/extract/date-properties.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/extract/date-properties.md",
+          "expected": "registry/input_wrangles/extract/date-properties.md",
           "catalog": null
         }
       ]
@@ -829,14 +829,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "extract.date_range",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/extract/date-range.md",
+      "expected_registry_path": "registry/input_wrangles/extract/date-range.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/extract/date-range.md",
+          "expected": "registry/input_wrangles/extract/date-range.md",
           "catalog": null
         }
       ]
@@ -849,14 +849,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "extract.html",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/extract/html.md",
+      "expected_registry_path": "registry/input_wrangles/extract/html.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/extract/html.md",
+          "expected": "registry/input_wrangles/extract/html.md",
           "catalog": null
         }
       ]
@@ -869,14 +869,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "extract.properties",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/extract/properties.md",
+      "expected_registry_path": "registry/input_wrangles/extract/properties.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/extract/properties.md",
+          "expected": "registry/input_wrangles/extract/properties.md",
           "catalog": null
         }
       ]
@@ -889,14 +889,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "extract.regex",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/extract/regex.md",
+      "expected_registry_path": "registry/input_wrangles/extract/regex.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/extract/regex.md",
+          "expected": "registry/input_wrangles/extract/regex.md",
           "catalog": null
         }
       ]
@@ -909,14 +909,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "filter",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/_root/filter.md",
+      "expected_registry_path": "registry/input_wrangles/_root/filter.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/_root/filter.md",
+          "expected": "registry/input_wrangles/_root/filter.md",
           "catalog": null
         }
       ]
@@ -929,14 +929,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "format.dates",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/format/dates.md",
+      "expected_registry_path": "registry/input_wrangles/format/dates.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/format/dates.md",
+          "expected": "registry/input_wrangles/format/dates.md",
           "catalog": null
         }
       ]
@@ -949,14 +949,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "format.pad",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/format/pad.md",
+      "expected_registry_path": "registry/input_wrangles/format/pad.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/format/pad.md",
+          "expected": "registry/input_wrangles/format/pad.md",
           "catalog": null
         }
       ]
@@ -969,14 +969,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "format.prefix",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/format/prefix.md",
+      "expected_registry_path": "registry/input_wrangles/format/prefix.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/format/prefix.md",
+          "expected": "registry/input_wrangles/format/prefix.md",
           "catalog": null
         }
       ]
@@ -989,14 +989,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "format.price_breaks",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/format/price-breaks.md",
+      "expected_registry_path": "registry/input_wrangles/format/price-breaks.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/format/price-breaks.md",
+          "expected": "registry/input_wrangles/format/price-breaks.md",
           "catalog": null
         }
       ]
@@ -1009,14 +1009,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "format.remove_duplicates",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/format/remove-duplicates.md",
+      "expected_registry_path": "registry/input_wrangles/format/remove-duplicates.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/format/remove-duplicates.md",
+          "expected": "registry/input_wrangles/format/remove-duplicates.md",
           "catalog": null
         }
       ]
@@ -1029,14 +1029,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "format.significant_figures",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/format/significant-figures.md",
+      "expected_registry_path": "registry/input_wrangles/format/significant-figures.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/format/significant-figures.md",
+          "expected": "registry/input_wrangles/format/significant-figures.md",
           "catalog": null
         }
       ]
@@ -1049,14 +1049,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "format.suffix",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/format/suffix.md",
+      "expected_registry_path": "registry/input_wrangles/format/suffix.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/format/suffix.md",
+          "expected": "registry/input_wrangles/format/suffix.md",
           "catalog": null
         }
       ]
@@ -1069,14 +1069,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "format.trim",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/format/trim.md",
+      "expected_registry_path": "registry/input_wrangles/format/trim.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/format/trim.md",
+          "expected": "registry/input_wrangles/format/trim.md",
           "catalog": null
         }
       ]
@@ -1089,14 +1089,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "generate.ai",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/generate/ai.md",
+      "expected_registry_path": "registry/input_wrangles/generate/ai.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/generate/ai.md",
+          "expected": "registry/input_wrangles/generate/ai.md",
           "catalog": null
         }
       ]
@@ -1109,14 +1109,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "huggingface",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/_root/huggingface.md",
+      "expected_registry_path": "registry/input_wrangles/_root/huggingface.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/_root/huggingface.md",
+          "expected": "registry/input_wrangles/_root/huggingface.md",
           "catalog": null
         }
       ]
@@ -1129,14 +1129,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "log",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/_root/log.md",
+      "expected_registry_path": "registry/input_wrangles/_root/log.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/_root/log.md",
+          "expected": "registry/input_wrangles/_root/log.md",
           "catalog": null
         }
       ]
@@ -1149,14 +1149,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "lookup",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/_root/lookup.md",
+      "expected_registry_path": "registry/input_wrangles/_root/lookup.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/_root/lookup.md",
+          "expected": "registry/input_wrangles/_root/lookup.md",
           "catalog": null
         }
       ]
@@ -1169,7 +1169,7 @@
       "catalog_status": "active",
       "catalog_runtime_key": "lookup",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/lookup/key.md",
+      "expected_registry_path": "registry/input_wrangles/lookup/key.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
@@ -1181,7 +1181,7 @@
         },
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/lookup/key.md",
+          "expected": "registry/input_wrangles/lookup/key.md",
           "catalog": null
         }
       ]
@@ -1194,7 +1194,7 @@
       "catalog_status": "active",
       "catalog_runtime_key": "lookup",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/lookup/semantic.md",
+      "expected_registry_path": "registry/input_wrangles/lookup/semantic.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
@@ -1206,7 +1206,7 @@
         },
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/lookup/semantic.md",
+          "expected": "registry/input_wrangles/lookup/semantic.md",
           "catalog": null
         }
       ]
@@ -1219,14 +1219,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "math",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/_root/math.md",
+      "expected_registry_path": "registry/input_wrangles/_root/math.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/_root/math.md",
+          "expected": "registry/input_wrangles/_root/math.md",
           "catalog": null
         }
       ]
@@ -1239,7 +1239,7 @@
       "catalog_status": "active",
       "catalog_runtime_key": "maths",
       "registry_status": "deprecated",
-      "expected_registry_path": "registry/wrangles/_root/maths.md",
+      "expected_registry_path": "registry/input_wrangles/_root/maths.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
@@ -1251,7 +1251,7 @@
         },
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/_root/maths.md",
+          "expected": "registry/input_wrangles/_root/maths.md",
           "catalog": null
         }
       ]
@@ -1264,14 +1264,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "matrix",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/_root/matrix.md",
+      "expected_registry_path": "registry/input_wrangles/_root/matrix.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/_root/matrix.md",
+          "expected": "registry/input_wrangles/_root/matrix.md",
           "catalog": null
         }
       ]
@@ -1284,14 +1284,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "merge.coalesce",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/merge/coalesce.md",
+      "expected_registry_path": "registry/input_wrangles/merge/coalesce.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/merge/coalesce.md",
+          "expected": "registry/input_wrangles/merge/coalesce.md",
           "catalog": null
         }
       ]
@@ -1304,14 +1304,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "merge.concatenate",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/merge/concatenate.md",
+      "expected_registry_path": "registry/input_wrangles/merge/concatenate.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/merge/concatenate.md",
+          "expected": "registry/input_wrangles/merge/concatenate.md",
           "catalog": null
         }
       ]
@@ -1324,14 +1324,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "merge.dictionaries",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/merge/dictionaries.md",
+      "expected_registry_path": "registry/input_wrangles/merge/dictionaries.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/merge/dictionaries.md",
+          "expected": "registry/input_wrangles/merge/dictionaries.md",
           "catalog": null
         }
       ]
@@ -1344,14 +1344,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "merge.key_value_pairs",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/merge/key-value-pairs.md",
+      "expected_registry_path": "registry/input_wrangles/merge/key-value-pairs.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/merge/key-value-pairs.md",
+          "expected": "registry/input_wrangles/merge/key-value-pairs.md",
           "catalog": null
         }
       ]
@@ -1364,14 +1364,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "merge.lists",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/merge/lists.md",
+      "expected_registry_path": "registry/input_wrangles/merge/lists.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/merge/lists.md",
+          "expected": "registry/input_wrangles/merge/lists.md",
           "catalog": null
         }
       ]
@@ -1384,14 +1384,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "merge.to_dict",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/merge/to-dict.md",
+      "expected_registry_path": "registry/input_wrangles/merge/to-dict.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/merge/to-dict.md",
+          "expected": "registry/input_wrangles/merge/to-dict.md",
           "catalog": null
         }
       ]
@@ -1404,14 +1404,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "merge.to_list",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/merge/to-list.md",
+      "expected_registry_path": "registry/input_wrangles/merge/to-list.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/merge/to-list.md",
+          "expected": "registry/input_wrangles/merge/to-list.md",
           "catalog": null
         }
       ]
@@ -1424,14 +1424,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "python",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/_root/python.md",
+      "expected_registry_path": "registry/input_wrangles/_root/python.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/_root/python.md",
+          "expected": "registry/input_wrangles/_root/python.md",
           "catalog": null
         }
       ]
@@ -1444,14 +1444,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "recipe",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/_root/recipe.md",
+      "expected_registry_path": "registry/input_wrangles/_root/recipe.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/_root/recipe.md",
+          "expected": "registry/input_wrangles/_root/recipe.md",
           "catalog": null
         }
       ]
@@ -1464,14 +1464,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "reindex",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/_root/reindex.md",
+      "expected_registry_path": "registry/input_wrangles/_root/reindex.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/_root/reindex.md",
+          "expected": "registry/input_wrangles/_root/reindex.md",
           "catalog": null
         }
       ]
@@ -1484,14 +1484,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "remove_words",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/_root/remove-words.md",
+      "expected_registry_path": "registry/input_wrangles/_root/remove-words.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/_root/remove-words.md",
+          "expected": "registry/input_wrangles/_root/remove-words.md",
           "catalog": null
         }
       ]
@@ -1504,14 +1504,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "rename",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/_root/rename.md",
+      "expected_registry_path": "registry/input_wrangles/_root/rename.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/_root/rename.md",
+          "expected": "registry/input_wrangles/_root/rename.md",
           "catalog": null
         }
       ]
@@ -1524,14 +1524,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "replace",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/_root/replace.md",
+      "expected_registry_path": "registry/input_wrangles/_root/replace.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/_root/replace.md",
+          "expected": "registry/input_wrangles/_root/replace.md",
           "catalog": null
         }
       ]
@@ -1544,14 +1544,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "round",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/_root/round.md",
+      "expected_registry_path": "registry/input_wrangles/_root/round.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/_root/round.md",
+          "expected": "registry/input_wrangles/_root/round.md",
           "catalog": null
         }
       ]
@@ -1564,14 +1564,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "search.ai_mode",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/search/ai-mode.md",
+      "expected_registry_path": "registry/input_wrangles/search/ai-mode.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/search/ai-mode.md",
+          "expected": "registry/input_wrangles/search/ai-mode.md",
           "catalog": null
         }
       ]
@@ -1584,14 +1584,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "search.find_links",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/search/find-links.md",
+      "expected_registry_path": "registry/input_wrangles/search/find-links.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/search/find-links.md",
+          "expected": "registry/input_wrangles/search/find-links.md",
           "catalog": null
         }
       ]
@@ -1604,14 +1604,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "search.retrieve_link_content",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/search/retrieve-link-content.md",
+      "expected_registry_path": "registry/input_wrangles/search/retrieve-link-content.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/search/retrieve-link-content.md",
+          "expected": "registry/input_wrangles/search/retrieve-link-content.md",
           "catalog": null
         }
       ]
@@ -1624,14 +1624,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "select.columns",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/select/columns.md",
+      "expected_registry_path": "registry/input_wrangles/select/columns.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/select/columns.md",
+          "expected": "registry/input_wrangles/select/columns.md",
           "catalog": null
         }
       ]
@@ -1644,14 +1644,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "select.dictionary_element",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/select/dictionary-element.md",
+      "expected_registry_path": "registry/input_wrangles/select/dictionary-element.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/select/dictionary-element.md",
+          "expected": "registry/input_wrangles/select/dictionary-element.md",
           "catalog": null
         }
       ]
@@ -1664,14 +1664,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "select.element",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/select/element.md",
+      "expected_registry_path": "registry/input_wrangles/select/element.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/select/element.md",
+          "expected": "registry/input_wrangles/select/element.md",
           "catalog": null
         }
       ]
@@ -1684,14 +1684,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "select.group_by",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/select/group-by.md",
+      "expected_registry_path": "registry/input_wrangles/select/group-by.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/select/group-by.md",
+          "expected": "registry/input_wrangles/select/group-by.md",
           "catalog": null
         }
       ]
@@ -1704,14 +1704,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "select.head",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/select/head.md",
+      "expected_registry_path": "registry/input_wrangles/select/head.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/select/head.md",
+          "expected": "registry/input_wrangles/select/head.md",
           "catalog": null
         }
       ]
@@ -1724,14 +1724,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "select.highest_confidence",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/select/highest-confidence.md",
+      "expected_registry_path": "registry/input_wrangles/select/highest-confidence.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/select/highest-confidence.md",
+          "expected": "registry/input_wrangles/select/highest-confidence.md",
           "catalog": null
         }
       ]
@@ -1744,14 +1744,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "select.left",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/select/left.md",
+      "expected_registry_path": "registry/input_wrangles/select/left.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/select/left.md",
+          "expected": "registry/input_wrangles/select/left.md",
           "catalog": null
         }
       ]
@@ -1764,14 +1764,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "select.length",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/select/length.md",
+      "expected_registry_path": "registry/input_wrangles/select/length.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/select/length.md",
+          "expected": "registry/input_wrangles/select/length.md",
           "catalog": null
         }
       ]
@@ -1784,14 +1784,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "select.list_element",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/select/list-element.md",
+      "expected_registry_path": "registry/input_wrangles/select/list-element.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/select/list-element.md",
+          "expected": "registry/input_wrangles/select/list-element.md",
           "catalog": null
         }
       ]
@@ -1804,14 +1804,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "select.right",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/select/right.md",
+      "expected_registry_path": "registry/input_wrangles/select/right.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/select/right.md",
+          "expected": "registry/input_wrangles/select/right.md",
           "catalog": null
         }
       ]
@@ -1824,14 +1824,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "select.sample",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/select/sample.md",
+      "expected_registry_path": "registry/input_wrangles/select/sample.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/select/sample.md",
+          "expected": "registry/input_wrangles/select/sample.md",
           "catalog": null
         }
       ]
@@ -1844,14 +1844,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "select.substring",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/select/substring.md",
+      "expected_registry_path": "registry/input_wrangles/select/substring.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/select/substring.md",
+          "expected": "registry/input_wrangles/select/substring.md",
           "catalog": null
         }
       ]
@@ -1864,14 +1864,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "select.tail",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/select/tail.md",
+      "expected_registry_path": "registry/input_wrangles/select/tail.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/select/tail.md",
+          "expected": "registry/input_wrangles/select/tail.md",
           "catalog": null
         }
       ]
@@ -1884,14 +1884,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "select.threshold",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/select/threshold.md",
+      "expected_registry_path": "registry/input_wrangles/select/threshold.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/select/threshold.md",
+          "expected": "registry/input_wrangles/select/threshold.md",
           "catalog": null
         }
       ]
@@ -1904,14 +1904,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "similarity",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/_root/similarity.md",
+      "expected_registry_path": "registry/input_wrangles/_root/similarity.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/_root/similarity.md",
+          "expected": "registry/input_wrangles/_root/similarity.md",
           "catalog": null
         }
       ]
@@ -1924,14 +1924,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "sort",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/_root/sort.md",
+      "expected_registry_path": "registry/input_wrangles/_root/sort.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/_root/sort.md",
+          "expected": "registry/input_wrangles/_root/sort.md",
           "catalog": null
         }
       ]
@@ -1944,14 +1944,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "split.dictionary",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/split/dictionary.md",
+      "expected_registry_path": "registry/input_wrangles/split/dictionary.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/split/dictionary.md",
+          "expected": "registry/input_wrangles/split/dictionary.md",
           "catalog": null
         }
       ]
@@ -1964,14 +1964,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "split.list",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/split/list.md",
+      "expected_registry_path": "registry/input_wrangles/split/list.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/split/list.md",
+          "expected": "registry/input_wrangles/split/list.md",
           "catalog": null
         }
       ]
@@ -1984,14 +1984,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "split.text",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/split/text.md",
+      "expected_registry_path": "registry/input_wrangles/split/text.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/split/text.md",
+          "expected": "registry/input_wrangles/split/text.md",
           "catalog": null
         }
       ]
@@ -2004,14 +2004,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "split.tokenize",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/split/tokenize.md",
+      "expected_registry_path": "registry/input_wrangles/split/tokenize.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/split/tokenize.md",
+          "expected": "registry/input_wrangles/split/tokenize.md",
           "catalog": null
         }
       ]
@@ -2024,14 +2024,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "sql",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/_root/sql.md",
+      "expected_registry_path": "registry/input_wrangles/_root/sql.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/_root/sql.md",
+          "expected": "registry/input_wrangles/_root/sql.md",
           "catalog": null
         }
       ]
@@ -2044,7 +2044,7 @@
       "catalog_status": "active",
       "catalog_runtime_key": "standardize",
       "registry_status": "deprecated",
-      "expected_registry_path": "registry/wrangles/_root/standardize.md",
+      "expected_registry_path": "registry/input_wrangles/_root/standardize.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
@@ -2056,7 +2056,7 @@
         },
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/_root/standardize.md",
+          "expected": "registry/input_wrangles/_root/standardize.md",
           "catalog": null
         }
       ]
@@ -2069,14 +2069,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "standardize.clean",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/standardize/clean.md",
+      "expected_registry_path": "registry/input_wrangles/standardize/clean.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/standardize/clean.md",
+          "expected": "registry/input_wrangles/standardize/clean.md",
           "catalog": null
         }
       ]
@@ -2089,14 +2089,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "standardize.custom",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/standardize/custom.md",
+      "expected_registry_path": "registry/input_wrangles/standardize/custom.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/standardize/custom.md",
+          "expected": "registry/input_wrangles/standardize/custom.md",
           "catalog": null
         }
       ]
@@ -2109,14 +2109,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "translate",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/_root/translate.md",
+      "expected_registry_path": "registry/input_wrangles/_root/translate.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/_root/translate.md",
+          "expected": "registry/input_wrangles/_root/translate.md",
           "catalog": null
         }
       ]
@@ -2129,14 +2129,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "transpose",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/_root/transpose.md",
+      "expected_registry_path": "registry/input_wrangles/_root/transpose.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/_root/transpose.md",
+          "expected": "registry/input_wrangles/_root/transpose.md",
           "catalog": null
         }
       ]
@@ -2149,14 +2149,14 @@
       "catalog_status": "active",
       "catalog_runtime_key": "try",
       "registry_status": "active",
-      "expected_registry_path": "registry/wrangles/_root/try.md",
+      "expected_registry_path": "registry/input_wrangles/_root/try.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
         {
           "code": "registry_path_missing",
-          "expected": "registry/wrangles/_root/try.md",
+          "expected": "registry/input_wrangles/_root/try.md",
           "catalog": null
         }
       ]

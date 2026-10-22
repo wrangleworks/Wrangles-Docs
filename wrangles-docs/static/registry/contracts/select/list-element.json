@@ -192,7 +192,7 @@
     }
   ],
   "examples": [],
-  "guidance": "Select a numbered element of a list (zero indexed).\n\n## Migrated examples\n#### Selecting the Second Element in a List\n\n##### Recipe\n\n```yaml\nwrangles:\n  - select.list_element:\n      input: Col1\n      output: Second Element\n      element: 2 # Zero indexed\n      default: F\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n| Col1 |\n| --- |\n| ['A', 'B', 'C'] |\n| ['D', 'E'] |\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| Third Element |\n| --- |\n| C |\n| F |\n\n</div>\n\n</div>",
+  "guidance": "Select a numbered element of a list (zero indexed).\n\n## Migrated examples\n#### Selecting the Second Element in a List\n\n##### Recipe\n\n```yaml\nwrangles:\n  - select.list_element:\n      input: Col1\n      output: Third Element\n      element: 2 # Zero indexed\n      default: F\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n| Col1 |\n| --- |\n| ['A', 'B', 'C'] |\n| ['D', 'E'] |\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| Third Element |\n| --- |\n| C |\n| F |\n\n</div>\n\n</div>",
   "sources": [
     {
       "id": "runtime",

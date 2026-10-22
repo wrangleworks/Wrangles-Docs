@@ -170,7 +170,12 @@ wrangles:
 
 ##### Input Sample
 
-_No sample available._
+| Data |
+| --- |
+| `{Hello}` |
+| `[Wrangles]` |
+| `(!)` |
+| `<!>` |
 
 </div>
 
@@ -180,10 +185,10 @@ _No sample available._
 
 | Data | Output |
 | --- | --- |
-| `{Hello}` | Hello |
-| `[Wrangles]` | Wrangles |
-| `(!)` | ! |
-| `<!>` | ! |
+| `{Hello}` | ["Hello"] |
+| `[Wrangles]` | ["Wrangles"] |
+| `(!)` | ["!"] |
+| `<!>` | ["!"] |
 
 </div>
 

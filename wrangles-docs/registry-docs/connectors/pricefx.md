@@ -85,7 +85,9 @@ pricefx.write(
 )
 ```
 
-## Parameters
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
 
 ### Read
 
@@ -280,6 +282,8 @@ Write data to a PriceFx instance. The names of the columns must match to the nam
   }
 }
 ```
+
+</details>
 
 </details>
 

@@ -20,7 +20,7 @@ The Node development server and recipe runner remain under `wrangles-docs/script
 
 ## Sources and generated files
 
-- `registry/wrangles/` and `registry/connectors/`: canonical Markdown records.
+- `registry/input_wrangles/` and `registry/input_connectors/`: canonical Markdown records.
 - `registry/runtime/`: saved WranglesPY source and runtime snapshots.
 - `registry/catalog/api-core.json`: saved API-Core catalog response, not live DB access.
 - `wrangles-docs/docs/`: XL and account guides.
@@ -34,6 +34,18 @@ entries continue. See [Registry instructions](registry/README.md) and
 [the contract](registry/CONTRACT.md) for ownership and validation details.
 
 ## Refreshing the Registry
+
+### Automatic content compilation
+
+Every branch push runs **Compile Registry content**. It generates from saved
+inputs, validates and builds, then commits changed generated outputs to the same
+branch. It does not refresh upstream schemas or write to API-Core. No-change runs
+create no commit; bot commits do not retrigger push workflows. Protected branches
+must permit this automation or use their required review process. Concurrent
+edits are never force-pushed over. Validate Registry and Publish Latest regenerate
+in their own workspaces before checking, independently of the bot commit.
+
+See [Editing content on GitHub](docs/EDITING_WRANGLES_AND_CONNECTORS.md).
 
 ```sh
 python3 scripts/refresh_registry.py --checkout /path/to/WranglesPY

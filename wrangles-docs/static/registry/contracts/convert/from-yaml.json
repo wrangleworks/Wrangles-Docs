@@ -174,7 +174,7 @@
     }
   ],
   "examples": [],
-  "guidance": "Convert a YAML representation into an object.\n\n## Migrated examples\n#### Convert YAML To An Object\n\n##### Recipe\n\n```yaml\nwrangles:\n  - convert.from_yaml:\n      input: column 1\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n```yaml\nProduct Specs:\n  length: 6 inch\n  voltage: 24V\n  weight: 3lb\n```\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n```python\n{\n  'Product Specs': {\n    'length': '6 inch',\n    'voltage': '24V',\n    'weight': '3lb'\n  }\n}\n```\n\n</div>\n\n</div>",
+  "guidance": "Convert a YAML representation into an object.\n\n## Migrated examples\n#### Convert YAML To An Object\n\n##### Recipe\n\n```yaml\nwrangles:\n  - convert.from_yaml:\n      input: column 1\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n| column 1 |\n| --- |\n| `Product Specs: {length: 6 inch, voltage: 24V, weight: 3lb}` |\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| column 1 |\n| --- |\n| `{'Product Specs': {'length': '6 inch', 'voltage': '24V', 'weight': '3lb'}}` |\n\n</div>\n\n</div>",
   "sources": [
     {
       "id": "runtime",

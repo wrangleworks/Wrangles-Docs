@@ -14,39 +14,6 @@ import CopyableCode from '@site/src/components/CopyableCode';
 
 Retrieves targeted content from web pages using LLM URL extraction. Can optionally output a second column containing a clean, human-readable text summary of the retrieved data.
 
-
-
-## Parameters
-
-<div className="ww-parameters-table">
-
-| Name | Description | Accepted Values | Default | Required |
-| --- | --- | --- | --- | --- |
-| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `input` | Name or list of input columns containing URLs or Scored Search Result dictionaries. | string, array | — | Yes |
-| `output` | Name of the output column for the raw dictionaries. To output BOTH the raw dictionaries and the formatted text, provide a list of exactly two column names (e.g., [page_data, page_text]). | string, array | `null` | Yes |
-| <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `prompt` | Optional custom system prompt. Use &#123;&#123; column_name &#125;&#125; to insert values from the full input row, including columns not selected by input. Replace spaces and punctuation in column names with underscores; aliases must be ASCII identifiers. Dictionaries and lists are inserted as finite JSON text. Substitution is literal and single-pass, without expressions or filters. Missing or ambiguous references fail before retrieval. Omit to use the default prompt. | string | `null` | No |
-| `thinking_level` | Gemini thinking level. Defaults to the configured value, packaged as minimal. Supported levels depend on the selected model. | string; one of:<ul className="ww-param-enum-values"><li>minimal</li><li>low</li><li>medium</li><li>high</li></ul> | `null` | No |
-| `request_timeout_seconds` | Total deadline in seconds for each URL, including retries. Defaults to the configured value, packaged as 10 seconds. A batch may take longer when URLs run in several waves. | number | `null` | No |
-| <span className="ww-param-group-label">Formatting</span> |  |  |  |  |
-| `output_format` | The desired format for the extracted content. | string; one of:<ul className="ww-param-enum-values"><li>markdown</li><li>json</li></ul> | `"json"` | No |
-| <span className="ww-param-group-label">Execution</span> |  |  |  |  |
-| `threads` | Number of concurrent threads for parallel processing. Defaults to the AI configuration. | integer | `null` | No |
-| <span className="ww-param-group-label">Details</span> |  |  |  |  |
-| `client` | The retrieval provider to use. | string; one of:<ul className="ww-param-enum-values"><li>google_url_context</li></ul> | `"google_url_context"` | No |
-| `api_key` | API key for the provider. Can also be set as an environment variable (e.g., GOOGLE_API_KEY). | string | `null` | No |
-| `model_id` | The specific model ID to use. Defaults to the AI configuration. | string | `null` | No |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
-| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-
-</div>
-
-Required follows the recipe schema. Default records the Python argument default;
-a schema may require an argument even when Python provides a default.
-
 <details className="ww-field-disclosure">
 
 <summary>Complete configuration schema</summary>
@@ -184,6 +151,41 @@ wrangles:
 </div>
 
 _Template based on the documented parameters; no published source example is currently available._
+
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
+
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
+| --- | --- | --- | --- | --- |
+| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
+| `input` | Name or list of input columns containing URLs or Scored Search Result dictionaries. | string, array | — | Yes |
+| `output` | Name of the output column for the raw dictionaries. To output BOTH the raw dictionaries and the formatted text, provide a list of exactly two column names (e.g., [page_data, page_text]). | string, array | `null` | Yes |
+| <span className="ww-param-group-label">Options</span> |  |  |  |  |
+| `prompt` | Optional custom system prompt. Use &#123;&#123; column_name &#125;&#125; to insert values from the full input row, including columns not selected by input. Replace spaces and punctuation in column names with underscores; aliases must be ASCII identifiers. Dictionaries and lists are inserted as finite JSON text. Substitution is literal and single-pass, without expressions or filters. Missing or ambiguous references fail before retrieval. Omit to use the default prompt. | string | `null` | No |
+| `thinking_level` | Gemini thinking level. Defaults to the configured value, packaged as minimal. Supported levels depend on the selected model. | string; one of:<ul className="ww-param-enum-values"><li>minimal</li><li>low</li><li>medium</li><li>high</li></ul> | `null` | No |
+| `request_timeout_seconds` | Total deadline in seconds for each URL, including retries. Defaults to the configured value, packaged as 10 seconds. A batch may take longer when URLs run in several waves. | number | `null` | No |
+| <span className="ww-param-group-label">Formatting</span> |  |  |  |  |
+| `output_format` | The desired format for the extracted content. | string; one of:<ul className="ww-param-enum-values"><li>markdown</li><li>json</li></ul> | `"json"` | No |
+| <span className="ww-param-group-label">Execution</span> |  |  |  |  |
+| `threads` | Number of concurrent threads for parallel processing. Defaults to the AI configuration. | integer | `null` | No |
+| <span className="ww-param-group-label">Details</span> |  |  |  |  |
+| `client` | The retrieval provider to use. | string; one of:<ul className="ww-param-enum-values"><li>google_url_context</li></ul> | `"google_url_context"` | No |
+| `api_key` | API key for the provider. Can also be set as an environment variable (e.g., GOOGLE_API_KEY). | string | `null` | No |
+| `model_id` | The specific model ID to use. Defaults to the AI configuration. | string | `null` | No |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
+
+</div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+</details>
 
 <details className="ww-field-disclosure">
 

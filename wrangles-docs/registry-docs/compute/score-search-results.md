@@ -14,42 +14,6 @@ import CopyableCode from '@site/src/components/CopyableCode';
 
 Scores and filters search results based on progressive partial/exact matching. Can return dictionaries or a parallel list of formatted strings.
 
-
-
-## Parameters
-
-<div className="ww-parameters-table">
-
-| Name | Description | Accepted Values | Default | Required |
-| --- | --- | --- | --- | --- |
-| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `input` | Three to five ordered column names: results, suppliers, part_codes, optional MPNs, optional descriptions. Results cells contain lists of payloads with search_metadata and search_results. Text-input cells accept scalar values or lists. To use descriptions without an MPN, provide five inputs and leave the fourth column's values blank. | array | — | Yes |
-| `output` | One name or a one-element list receives scored dictionaries. Two names receive parallel dictionary and formatted-summary lists in that order. Each row retains its result lists; results are not expanded into rows. Part-code evidence and counts remain nested in each dictionary, not in a third output column. Empty or non-list results cells produce empty lists. | string, array | — | Yes |
-| <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `must_match_part_code` | If true, mark results filtered when their scoring match category is not allowed. If false, keep such results eligible, while part_code_found still reports category eligibility. Blacklisting applies in both cases. Filtered dictionaries remain in the output with their scores and reasons. | boolean | `true` | No |
-| `allow_mpn_exact` | Allow the mpn_exact scoring category. Containment of an MPN with at least four normalized characters can receive this category even when its diagnostic evidence is partial. Does not change scores or evidence. | boolean | `true` | No |
-| `allow_mpn_partial` | Allow the mpn_partial scoring category, not every partial diagnostic evidence record. MPN categories take precedence over other-code categories. | boolean | `true` | No |
-| `allow_other_exact` | Allow other_code_exact when no positive MPN match is recognized. Normalized containment can receive exact points. Disallowing an MPN category does not fall back to this category. | boolean | `true` | No |
-| `allow_other_partial` | Allow other_code_partial when no positive MPN match is recognized. Applies to the scoring category, not the diagnostic match_level. | boolean | `true` | No |
-| `blacklist_keywords` | Literal substrings of the full lowercased URL to mark as filtered. A comma-separated string is trimmed and lowercased; list entries are used as supplied, so provide trimmed lowercase strings. Does not match titles or snippets and applies even when must_match_part_code is false. | string, array | `""` | No |
-| `mpn_exact_score` | Exact-score MPN points, including normalized containment for inputs of at least four characters. Only the higher MPN or other-code contribution is added; a tie prefers the MPN explanation. Keep exact weights positive. | number | `8` | No |
-| `mpn_partial_base` | Base points for partial/variant MPN scoring. Ordinary normalized containment already receives exact points; this is not a weight for every partial diagnostic evidence record. | number | `4` | No |
-| `part_code_exact_score` | Exact-score other-code points, including normalized containment for inputs of at least four characters. Not added on top of the MPN score. | number | `6` | No |
-| `part_code_partial_base` | Base points for partial/variant other-code scoring. Does not change diagnostic levels; containment can already receive exact points. | number | `2` | No |
-| `supplier_exact_score` | Points when a normalized supplier name equals a complete title, snippet, or URL field. An embedded name instead uses supplier_partial_base. | number | `3` | No |
-| `supplier_partial_base` | Base for embedded supplier text; reverse containment uses 95 percent of the base, and fuzzy matches at the fixed 0.8 cutoff use their similarity times the base. Only the strongest text match contributes. | number | `1` | No |
-| `context_match_base` | Points when all normalized unique input context terms match. Terms include suppliers, codes, MPNs, full descriptions, and description words longer than two characters. The matched fraction times this base is rounded to one decimal place; repeated occurrences do not add points. | number | `2` | No |
-| `fuzzy_match_threshold` | Similarity cutoff for context terms and supplier-text recognition in brand_found. Does not change the fixed supplier fuzzy-scoring cutoff, part-code evidence levels, or allowed scoring categories. Domain evidence can set brand_found independently of this threshold. | number | `0.8` | No |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
-| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-
-</div>
-
-Required follows the recipe schema. Default records the Python argument default;
-a schema may require an argument even when Python provides a default.
-
 <details className="ww-field-disclosure">
 
 <summary>Complete configuration schema</summary>
@@ -199,6 +163,9 @@ wrangles:
         - Scored Results
       allow_other_exact: true
       must_match_part_code: true
+  - select.element:
+      input: Scored Results[0]['summary']['score']
+      output: Score
 ```
 
 <div className="ww-sample-grid">
@@ -207,21 +174,61 @@ wrangles:
 
 | Search Results | Suppliers | Part Codes |
 | --- | --- | --- |
-| `[{"title": "SKF 6202 bearing", "link": "https://example.com/6202"}]` | `["SKF"]` | `["6202"]` |
+| `[{"search_results": [{"title": "SKF 6202 bearing", "link": "https://example.com/6202", "snippet": "SKF 6202 bearing"}]}]` | `["SKF"]` | `["6202"]` |
 
 </div>
 
 <div className="ww-sample-panel ww-sample-panel--output" data-sample-role="output">
 
-| Scored Results |
+| Score |
 | --- |
-| Ranked result dictionaries |
+| 12.0 |
 
 </div>
 
 </div>
 
-_Template based on the documented parameters; no published source example is currently available._
+The input contains search-response objects, each with a `search_results` list, not a flat list of results. This local example scores supplied data without visiting the URL. The final step selects the first result's score for a compact output table; the full result remains in `Scored Results`.
+
+Example verified with the pinned WranglesPY runtime. Include a string `snippet`: the pinned runtime's result formatter raises an error when it is missing or null.
+
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
+
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
+| --- | --- | --- | --- | --- |
+| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
+| `input` | Three to five ordered column names: results, suppliers, part_codes, optional MPNs, optional descriptions. Results cells contain lists of payloads with search_metadata and search_results. Text-input cells accept scalar values or lists. To use descriptions without an MPN, provide five inputs and leave the fourth column's values blank. | array | — | Yes |
+| `output` | One name or a one-element list receives scored dictionaries. Two names receive parallel dictionary and formatted-summary lists in that order. Each row retains its result lists; results are not expanded into rows. Part-code evidence and counts remain nested in each dictionary, not in a third output column. Empty or non-list results cells produce empty lists. | string, array | — | Yes |
+| <span className="ww-param-group-label">Options</span> |  |  |  |  |
+| `must_match_part_code` | If true, mark results filtered when their scoring match category is not allowed. If false, keep such results eligible, while part_code_found still reports category eligibility. Blacklisting applies in both cases. Filtered dictionaries remain in the output with their scores and reasons. | boolean | `true` | No |
+| `allow_mpn_exact` | Allow the mpn_exact scoring category. Containment of an MPN with at least four normalized characters can receive this category even when its diagnostic evidence is partial. Does not change scores or evidence. | boolean | `true` | No |
+| `allow_mpn_partial` | Allow the mpn_partial scoring category, not every partial diagnostic evidence record. MPN categories take precedence over other-code categories. | boolean | `true` | No |
+| `allow_other_exact` | Allow other_code_exact when no positive MPN match is recognized. Normalized containment can receive exact points. Disallowing an MPN category does not fall back to this category. | boolean | `true` | No |
+| `allow_other_partial` | Allow other_code_partial when no positive MPN match is recognized. Applies to the scoring category, not the diagnostic match_level. | boolean | `true` | No |
+| `blacklist_keywords` | Literal substrings of the full lowercased URL to mark as filtered. A comma-separated string is trimmed and lowercased; list entries are used as supplied, so provide trimmed lowercase strings. Does not match titles or snippets and applies even when must_match_part_code is false. | string, array | `""` | No |
+| `mpn_exact_score` | Exact-score MPN points, including normalized containment for inputs of at least four characters. Only the higher MPN or other-code contribution is added; a tie prefers the MPN explanation. Keep exact weights positive. | number | `8` | No |
+| `mpn_partial_base` | Base points for partial/variant MPN scoring. Ordinary normalized containment already receives exact points; this is not a weight for every partial diagnostic evidence record. | number | `4` | No |
+| `part_code_exact_score` | Exact-score other-code points, including normalized containment for inputs of at least four characters. Not added on top of the MPN score. | number | `6` | No |
+| `part_code_partial_base` | Base points for partial/variant other-code scoring. Does not change diagnostic levels; containment can already receive exact points. | number | `2` | No |
+| `supplier_exact_score` | Points when a normalized supplier name equals a complete title, snippet, or URL field. An embedded name instead uses supplier_partial_base. | number | `3` | No |
+| `supplier_partial_base` | Base for embedded supplier text; reverse containment uses 95 percent of the base, and fuzzy matches at the fixed 0.8 cutoff use their similarity times the base. Only the strongest text match contributes. | number | `1` | No |
+| `context_match_base` | Points when all normalized unique input context terms match. Terms include suppliers, codes, MPNs, full descriptions, and description words longer than two characters. The matched fraction times this base is rounded to one decimal place; repeated occurrences do not add points. | number | `2` | No |
+| `fuzzy_match_threshold` | Similarity cutoff for context terms and supplier-text recognition in brand_found. Does not change the fixed supplier fuzzy-scoring cutoff, part-code evidence levels, or allowed scoring categories. Domain evidence can set brand_found independently of this threshold. | number | `0.8` | No |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
+
+</div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+</details>
 
 <details className="ww-field-disclosure">
 

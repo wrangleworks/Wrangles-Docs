@@ -16,28 +16,7 @@ Transform wrangles, with recipe examples, parameters, and behavior.
 
 ## Copy <CopyableCode value="copy" /> {#copy}
 
-Make a copy of a column or a list of columns.
-
 Create a copy of columns in a dataframe.
-
-### Parameters
-
-<div className="ww-parameters-table">
-
-| Name | Description | Accepted Values | Default | Required |
-| --- | --- | --- | --- | --- |
-| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `input` | Name of the input columns or columns | string, integer, array | `null` | Yes |
-| `output` | Name of the output columns or columns | string, array | `null` | Yes |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
-| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-
-</div>
-
-Required follows the recipe schema. Default records the Python argument default;
-a schema may require an argument even when Python provides a default.
 
 <details className="ww-field-disclosure">
 
@@ -111,10 +90,10 @@ wrangles:
 
 <div className="ww-sample-panel ww-sample-panel--output" data-sample-role="output">
 
-| Product Data | Product Data (copy) |
-| --- | --- |
-| SKF ball bearing | SKF ball bearing |
-| bearing seal | bearing seal |
+| Product Data (copy) |
+| --- |
+| SKF ball brg |
+| brg seal |
 
 </div>
 
@@ -147,14 +126,37 @@ wrangles:
 
 <div className="ww-sample-panel ww-sample-panel--output" data-sample-role="output">
 
-| Product Data | Product Data (copy) |
-| --- | --- |
-| SKF ball bearing | SKF ball bearing |
-| bearing seal | bearing seal |
+| Product Data (copy) |
+| --- |
+| SKF ball brg |
+| brg seal |
 
 </div>
 
 </div>
+
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
+
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
+| --- | --- | --- | --- | --- |
+| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
+| `input` | Name of the input columns or columns | string, integer, array | `null` | Yes |
+| `output` | Name of the output columns or columns | string, array | `null` | Yes |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
+
+</div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+</details>
 
 <details className="ww-field-disclosure">
 
@@ -200,29 +202,7 @@ wrangles:
 
 ## Reindex <CopyableCode value="reindex" /> {#reindex}
 
-Changes the row labels and column labels of a DataFrame.
-
 Conform a DataFrame to a new index with optional filling logic.
-
-### Parameters
-
-<div className="ww-parameters-table">
-
-| Name | Description | Accepted Values | Default | Required |
-| --- | --- | --- | --- | --- |
-| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `columns` | New labels for the columns. Preferably an Index object to avoid duplicating data. | array | `null` | No |
-| <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `labels` | New labels / index to conform the axis specified by ‘axis’ to. | array | `null` | No |
-| `index` | New labels for the index. Preferably an Index object to avoid duplicating data. | array | `null` | No |
-| `axis` | Axis to target. Can be either the axis name (‘index’, ‘columns’) or number (0, 1). | number, string | `null` | No |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-
-</div>
-
-Required follows the recipe schema. Default records the Python argument default;
-a schema may require an argument even when Python provides a default.
 
 <details className="ww-field-disclosure">
 
@@ -282,40 +262,64 @@ Cannot specify both `axis` and any of `index` or `columns`. Reindex is not compa
 wrangles:
   - reindex:
       index:
-        - 5
         - 4
         - 3
         - 2
         - 1
+        - 0
 ```
 
 <div className="ww-sample-grid">
 
 <div className="ww-sample-panel ww-sample-panel--input" data-sample-role="input">
 
-|  | Material | Product Data |
-| --- | --- | --- |
-| 1 | Ceramic | SKF ball brg |
-| 2 | Rubber | brg seal |
-| 3 | Brass | Ball valve |
-| 4 | Ceramic | Ceramic cartridge |
-| 5 | Stainless Steel | Needle Bearing |
+| Material | Product Data |
+| --- | --- |
+| Ceramic | SKF ball brg |
+| Rubber | brg seal |
+| Brass | Ball valve |
+| Ceramic | Ceramic cartridge |
+| Stainless Steel | Needle Bearing |
 
 </div>
 
 <div className="ww-sample-panel ww-sample-panel--output" data-sample-role="output">
 
-|  | Material | Product Data |
-| --- | --- | --- |
-| 5 | Stainless Steel | Needle Bearing |
-| 4 | Ceramic | Ceramic cartridge |
-| 3 | Brass | Ball valve |
-| 2 | Rubber | brg seal |
-| 1 | Ceramic | SKF ball brg |
+| Material | Product Data |
+| --- | --- |
+| Stainless Steel | Needle Bearing |
+| Ceramic | Ceramic cartridge |
+| Brass | Ball valve |
+| Rubber | brg seal |
+| Ceramic | SKF ball brg |
 
 </div>
 
 </div>
+
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
+
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
+| --- | --- | --- | --- | --- |
+| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
+| `columns` | New labels for the columns. Preferably an Index object to avoid duplicating data. | array | `null` | No |
+| <span className="ww-param-group-label">Options</span> |  |  |  |  |
+| `labels` | New labels / index to conform the axis specified by ‘axis’ to. | array | `null` | No |
+| `index` | New labels for the index. Preferably an Index object to avoid duplicating data. | array | `null` | No |
+| `axis` | Axis to target. Can be either the axis name (‘index’, ‘columns’) or number (0, 1). | number, string | `null` | No |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+
+</div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+</details>
 
 <details className="ww-field-disclosure">
 
@@ -362,27 +366,6 @@ wrangles:
 ## Rename <CopyableCode value="rename" /> {#rename}
 
 Rename a column or list of columns.
-
-
-
-### Parameters
-
-<div className="ww-parameters-table">
-
-| Name | Description | Accepted Values | Default | Required |
-| --- | --- | --- | --- | --- |
-| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `input` | Name or list of input columns. | string, integer, array | `null` | No |
-| `output` | Name or list of output columns. | string, array | `null` | No |
-| <span className="ww-param-group-label">Execution</span> |  |  |  |  |
-| `wrangles` | Use wrangles to transform the column names.<br />The input is named 'columns' and the final result<br />must also include the column named 'columns'.<br />This can only be used instead of the standard rename. | array | `null` | No |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-
-</div>
-
-Required follows the recipe schema. Default records the Python argument default;
-a schema may require an argument even when Python provides a default.
 
 <details className="ww-field-disclosure">
 
@@ -544,6 +527,29 @@ wrangles:
 
 <details className="ww-field-disclosure">
 
+<summary>Parameters</summary>
+
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
+| --- | --- | --- | --- | --- |
+| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
+| `input` | Name or list of input columns. | string, integer, array | `null` | No |
+| `output` | Name or list of output columns. | string, array | `null` | No |
+| <span className="ww-param-group-label">Execution</span> |  |  |  |  |
+| `wrangles` | Use wrangles to transform the column names.<br />The input is named 'columns' and the final result<br />must also include the column named 'columns'.<br />This can only be used instead of the standard rename. | array | `null` | No |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+
+</div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+</details>
+
+<details className="ww-field-disclosure">
+
 <summary>Access</summary>
 
 | Requirement | Value |
@@ -587,27 +593,7 @@ wrangles:
 
 ## Transpose <CopyableCode value="transpose" /> {#transpose}
 
-Transpose the DataFrame (swap columns to rows).
-
 Transpose a dataframe.
-
-### Parameters
-
-<div className="ww-parameters-table">
-
-| Name | Description | Accepted Values | Default | Required |
-| --- | --- | --- | --- | --- |
-| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `header_column` | Name or position of the column that will be used as the column headings for the transposed DataFrame. Default 0 (first column). Use header_column = null to not use any column as header. | string, integer, null | `0` | No |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
-| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-
-</div>
-
-Required follows the recipe schema. Default records the Python argument default;
-a schema may require an argument even when Python provides a default.
 
 <details className="ww-field-disclosure">
 
@@ -684,6 +670,28 @@ wrangles:
 </div>
 
 </div>
+
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
+
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
+| --- | --- | --- | --- | --- |
+| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
+| `header_column` | Name or position of the column that will be used as the column headings for the transposed DataFrame. Default 0 (first column). Use header_column = null to not use any column as header. | string, integer, null | `0` | No |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
+
+</div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+</details>
 
 <details className="ww-field-disclosure">
 

@@ -106,8 +106,8 @@ wrangles:
 
 | Product Data |
 | --- |
-| SKF ball bearing |
-| bearing seal |
+| SKF ball brg |
+| brg seal |
 
 </div>
 

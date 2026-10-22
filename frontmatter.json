@@ -59,11 +59,11 @@
       "title": "Python guides"
     },
     {
-      "path": "[[workspace]]/registry/wrangles",
+      "path": "[[workspace]]/registry/input_wrangles",
       "title": "Registry wrangles"
     },
     {
-      "path": "[[workspace]]/registry/connectors",
+      "path": "[[workspace]]/registry/input_connectors",
       "title": "Registry connectors"
     }
   ],

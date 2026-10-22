@@ -32,7 +32,9 @@ from wrangles.connectors import excel
 excel.sheet.write(df=my_dataframe, name='NewSheet', cell = 'C3')
 ```
 
-## Parameters
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
 
 ### Write
 
@@ -157,6 +159,8 @@ Spreadsheet write mode: sheet. Write all requested columns to an Excel sheet/ran
   }
 }
 ```
+
+</details>
 
 </details>
 

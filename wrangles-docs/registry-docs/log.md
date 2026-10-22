@@ -12,33 +12,7 @@ import CopyableCode from '@site/src/components/CopyableCode';
 
 # Log <CopyableCode value="log" />
 
-Log the current status of the dataframe.
-
 Print the current status of the dataframe. Only a sample of rows is logged.
-
-## Parameters
-
-<div className="ww-parameters-table">
-
-| Name | Description | Accepted Values | Default | Required |
-| --- | --- | --- | --- | --- |
-| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `columns` | (Optional, default all columns) List of specific columns to log. | array | `null` | No |
-| <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `write` | (Optional) Allows for an intermediate output to a file/dataframe/database etc. | array | `null` | No |
-| `warning` | Log a warning to the console | string | `null` | No |
-| `info` | Log info to the console | string | `null` | No |
-| `log_data` | Whether to log a sample of the contents of the dataframe. Default True if not logging to a write, error, warning or info. Default False otherwise. | boolean | `null` | No |
-| `error` | Log an error to the console | string | — | No |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
-| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-
-</div>
-
-Required follows the recipe schema. Default records the Python argument default;
-a schema may require an argument even when Python provides a default.
 
 <details className="ww-field-disclosure">
 
@@ -110,13 +84,21 @@ wrangles:
 
 <div className="ww-sample-panel ww-sample-panel--input" data-sample-role="input">
 
-_Logging side-effect; no tabular input sample._
+| Product | Quantity |
+| --- | --- |
+| Hammer | 2 |
+| Drill | 3 |
 
 </div>
 
 <div className="ww-sample-panel ww-sample-panel--output" data-sample-role="output">
 
-_Logs a sample of rows or status information to the configured destination._
+| Product | Quantity |
+| --- | --- |
+| Hammer | 2 |
+| Drill | 3 |
+
+The data is returned unchanged. A sample of the dataframe is written to the server log, not added to the result table.
 
 </div>
 
@@ -138,13 +120,21 @@ wrangles:
 
 <div className="ww-sample-panel ww-sample-panel--input" data-sample-role="input">
 
-_Logging side-effect; no tabular input sample._
+| column1 | column2 |
+| --- | --- |
+| Hammer | 3 |
+| Drill | 2 |
 
 </div>
 
 <div className="ww-sample-panel ww-sample-panel--output" data-sample-role="output">
 
-_Logs a sample of rows or status information to the configured destination._
+The input data is returned unchanged; the selected columns are also logged.
+
+| column1 | column2 |
+| --- | --- |
+| Hammer | 3 |
+| Drill | 2 |
 
 </div>
 
@@ -189,6 +179,34 @@ _Logs a sample of rows or status information to the configured destination._
 | `${columns}` | List of all columns. |
 | `${df}` | Current dataframe. |
 | `${row_count}` | Number of visible rows processed in each batch. |
+
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
+
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
+| --- | --- | --- | --- | --- |
+| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
+| `columns` | (Optional, default all columns) List of specific columns to log. | array | `null` | No |
+| <span className="ww-param-group-label">Options</span> |  |  |  |  |
+| `write` | (Optional) Allows for an intermediate output to a file/dataframe/database etc. | array | `null` | No |
+| `warning` | Log a warning to the console | string | `null` | No |
+| `info` | Log info to the console | string | `null` | No |
+| `log_data` | Whether to log a sample of the contents of the dataframe. Default True if not logging to a write, error, warning or info. Default False otherwise. | boolean | `null` | No |
+| `error` | Log an error to the console | string | — | No |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
+
+</div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+</details>
 
 <details className="ww-field-disclosure">
 

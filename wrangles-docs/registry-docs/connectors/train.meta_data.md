@@ -29,7 +29,9 @@ Returns a DataFrame with the following columns:
     - variant
     - settings
 
-## Parameters
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
 
 ### Read
 
@@ -136,6 +138,8 @@ Update the metadata for a Wrangle model. The following fields can be updated:   
   }
 }
 ```
+
+</details>
 
 </details>
 

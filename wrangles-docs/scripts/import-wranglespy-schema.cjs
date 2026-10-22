@@ -53,7 +53,7 @@ function write(filename, data) {
   fs.writeFileSync(filename, JSON.stringify(data, null, 2) + '\n');
 }
 const refreshedRecords = connectorRows.map(row => {
-  const filename = path.join(root, 'registry/connectors', row.wranglesPY_key + '.md');
+  const filename = path.join(root, 'registry/input_connectors', row.wranglesPY_key + '.md');
   // Editorial fields survive refresh; schema-owned operation contracts are replaced.
   if (!fs.existsSync(filename)) {
     throw new Error(`Missing Markdown source ${filename}. Reuse existing docs, check wrangles.io, then author a schema-based description if necessary before importing.`);

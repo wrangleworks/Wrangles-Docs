@@ -12,46 +12,11 @@ import CopyableCode from '@site/src/components/CopyableCode';
 
 # Standardize Clean <CopyableCode value="standardize.clean" />
 
-Repair common encoding, Unicode, HTML character reference, control character, and whitespace problems locally.
-
 ## Behavior
 
 Repair common encoding, Unicode, HTML character reference, control character, and whitespace problems locally.
 
 This guidance was derived from the callable signature and its embedded Python schema docstring.
-
-## Parameters
-
-<div className="ww-parameters-table">
-
-| Name | Description | Accepted Values | Default | Required |
-| --- | --- | --- | --- | --- |
-| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `input` | Name or list of input columns. | string, integer, array | — | Yes |
-| `output` | Name or list of output columns. Defaults to overwriting input. | string, integer, array | `null` | No |
-| <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `fix_encoding` | Repair mojibake and other reversible encoding errors. | boolean | `true` | No |
-| `unescape_html` | Decode HTML character references. Auto avoids decoding text that appears to contain HTML markup. | boolean or string; one of:<ul className="ww-param-enum-values"><li>auto</li></ul> | `"auto"` | No |
-| `normalization` | Unicode normalization form. | string, null; one of:<ul className="ww-param-enum-values"><li>NFC</li><li>NFKC</li><li>NFD</li><li>NFKD</li><li>null</li></ul> | `"NFC"` | No |
-| `fix_character_width` | Normalize fullwidth and halfwidth characters. | boolean | `true` | No |
-| `uncurl_quotes` | Replace typographic quotes with straight quotes. | boolean | `true` | No |
-| `remove_control_chars` | Remove C0 and C1 control characters. | boolean | `true` | No |
-| `collapse_whitespace` | Collapse runs of Unicode whitespace. | boolean | `true` | No |
-| `preserve_line_breaks` | Preserve line breaks while collapsing other whitespace. | boolean | `false` | No |
-| `trim` | Remove leading and trailing whitespace. | boolean | `true` | No |
-| `unescape_unicode` | Decode literal printable Unicode escapes in prose, preserving code and Markdown link destinations. | boolean | `false` | No |
-| `latex_to_text` | Convert supported inline LaTeX units, symbols and numeric fractions to readable text. Preserve numeric dollar amounts, ranges and explicit price qualifiers; remove extra dollar signs from other supported inline math. Preserve unsupported formulas. Set collapse_whitespace and trim to false to retain Markdown layout. | boolean | `false` | No |
-| <span className="ww-param-group-label">Formatting</span> |  |  |  |  |
-| `separator` | Text used to join multiple input columns into one output. | string | `" "` | No |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
-| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-
-</div>
-
-Required follows the recipe schema. Default records the Python argument default;
-a schema may require an argument even when Python provides a default.
 
 <details className="ww-field-disclosure">
 
@@ -183,6 +148,43 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 </details>
 
 
+
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
+
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
+| --- | --- | --- | --- | --- |
+| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
+| `input` | Name or list of input columns. | string, integer, array | — | Yes |
+| `output` | Name or list of output columns. Defaults to overwriting input. | string, integer, array | `null` | No |
+| <span className="ww-param-group-label">Options</span> |  |  |  |  |
+| `fix_encoding` | Repair mojibake and other reversible encoding errors. | boolean | `true` | No |
+| `unescape_html` | Decode HTML character references. Auto avoids decoding text that appears to contain HTML markup. | boolean or string; one of:<ul className="ww-param-enum-values"><li>auto</li></ul> | `"auto"` | No |
+| `normalization` | Unicode normalization form. | string, null; one of:<ul className="ww-param-enum-values"><li>NFC</li><li>NFKC</li><li>NFD</li><li>NFKD</li><li>null</li></ul> | `"NFC"` | No |
+| `fix_character_width` | Normalize fullwidth and halfwidth characters. | boolean | `true` | No |
+| `uncurl_quotes` | Replace typographic quotes with straight quotes. | boolean | `true` | No |
+| `remove_control_chars` | Remove C0 and C1 control characters. | boolean | `true` | No |
+| `collapse_whitespace` | Collapse runs of Unicode whitespace. | boolean | `true` | No |
+| `preserve_line_breaks` | Preserve line breaks while collapsing other whitespace. | boolean | `false` | No |
+| `trim` | Remove leading and trailing whitespace. | boolean | `true` | No |
+| `unescape_unicode` | Decode literal printable Unicode escapes in prose, preserving code and Markdown link destinations. | boolean | `false` | No |
+| `latex_to_text` | Convert supported inline LaTeX units, symbols and numeric fractions to readable text. Preserve numeric dollar amounts, ranges and explicit price qualifiers; remove extra dollar signs from other supported inline math. Preserve unsupported formulas. Set collapse_whitespace and trim to false to retain Markdown layout. | boolean | `false` | No |
+| <span className="ww-param-group-label">Formatting</span> |  |  |  |  |
+| `separator` | Text used to join multiple input columns into one output. | string | `" "` | No |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
+
+</div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+</details>
 
 <details className="ww-field-disclosure">
 

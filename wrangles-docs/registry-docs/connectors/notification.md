@@ -47,7 +47,9 @@ A variety of notifications for specific services are also available.
 - [Telegram *Send telegram messages.*](/py/connectors/notification.telegram)
 - [Slack *Send Slack messages*](/py/connectors/notification.slack)
 
-## Parameters
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
 
 ### Run
 
@@ -99,6 +101,8 @@ Send a notification
   }
 }
 ```
+
+</details>
 
 </details>
 

@@ -12,33 +12,7 @@ import CopyableCode from '@site/src/components/CopyableCode';
 
 # Batch <CopyableCode value="batch" />
 
-Split the data into batches for executing a list of wrangles. Use this in situations such as where the intermediate data is too large to fit in memory.
-
 Execute a series of wrangles in batches. Batches can run in parallel with `threads` and can provide fallback output when an error occurs.
-
-## Parameters
-
-<div className="ww-parameters-table">
-
-| Name | Description | Accepted Values | Default | Required |
-| --- | --- | --- | --- | --- |
-| <span className="ww-param-group-label">Execution</span> |  |  |  |  |
-| `wrangles` | The wrangles to execute on the data. Each series of wrangles<br />will be run agaisnst the data in batches of the size<br />defined by batch_size. | array | — | Yes |
-| `batch_size` | The number of rows to split each batch into | integer | `1000` | No |
-| `threads` | The number of threads to use for parallel processing. Default 1. | integer | `1` | No |
-| `timeout` | The number of seconds to wait for a batch to complete before raising an error | number | `null` | No |
-| `use_multiprocessing` | Use process-based workers instead of threads. This is an advanced runtime option. | Any JSON value (not constrained upstream) | `false` | No |
-| <span className="ww-param-group-label">Errors</span> |  |  |  |  |
-| `on_error` | A dictionary of column_name: value to return if an error occurs while attempting to run a batch | object | `null` | No |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
-| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-
-</div>
-
-Required follows the recipe schema. Default records the Python argument default;
-a schema may require an argument even when Python provides a default.
 
 <details className="ww-field-disclosure">
 
@@ -145,6 +119,34 @@ wrangles:
 </div>
 
 </div>
+
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
+
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
+| --- | --- | --- | --- | --- |
+| <span className="ww-param-group-label">Execution</span> |  |  |  |  |
+| `wrangles` | The wrangles to execute on the data. Each series of wrangles<br />will be run agaisnst the data in batches of the size<br />defined by batch_size. | array | — | Yes |
+| `batch_size` | The number of rows to split each batch into | integer | `1000` | No |
+| `threads` | The number of threads to use for parallel processing. Default 1. | integer | `1` | No |
+| `timeout` | The number of seconds to wait for a batch to complete before raising an error | number | `null` | No |
+| `use_multiprocessing` | Use process-based workers instead of threads. This is an advanced runtime option. | Any JSON value (not constrained upstream) | `false` | No |
+| <span className="ww-param-group-label">Errors</span> |  |  |  |  |
+| `on_error` | A dictionary of column_name: value to return if an error occurs while attempting to run a batch | object | `null` | No |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
+
+</div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+</details>
 
 <details className="ww-field-disclosure">
 

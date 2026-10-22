@@ -12,37 +12,7 @@ import CopyableCode from '@site/src/components/CopyableCode';
 
 # Attributes <CopyableCode value="extract.attributes" />
 
-Extract numeric attributes from the input such as weights or lengths. Requires WrangleWorks Account.
-
 Extract numeric attributes from unstructured text such as lengths, voltages, weights, or temperatures. Requires WrangleWorks Account.
-
-## Parameters
-
-<div className="ww-parameters-table">
-
-| Name | Description | Accepted Values | Default | Required |
-| --- | --- | --- | --- | --- |
-| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `input` | Name of the input column. | string, integer, array | — | Yes |
-| `output` | Name of the output column. | string, array | — | Yes |
-| <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `responseContent` | span - returns the text found. object - returns an object with the value and unit | string; one of:<ul className="ww-param-enum-values"><li>span</li><li>object</li></ul> | `"span"` | No |
-| `attribute_type` | Request only a specific type of attribute | string; one of:<ul className="ww-param-enum-values"><li>angle</li><li>area</li><li>capacitance</li><li>charge</li><li>current</li><li>data transfer rate</li><li>electrical conductance</li><li>electrical resistance</li><li>energy</li><li>force</li><li>frequency</li><li>inductance</li><li>instance frequency</li><li>length</li><li>luminous flux</li><li>weight</li><li>power</li><li>pressure</li><li>speed</li><li>velocity</li><li>temperature</li><li>time</li><li>voltage</li><li>volume</li><li>volumetric flow</li></ul> | `null` | No |
-| `desired_unit` | Convert the extracted unit to the desired unit | string | `null` | No |
-| `bound` | When returning an object, if the input is a range (e.g. 10-20mm) set the value to return. min, mid or max. Default mid. | string; one of:<ul className="ww-param-enum-values"><li>min</li><li>mid</li><li>max</li></ul> | `"mid"` | No |
-| <span className="ww-param-group-label">Formatting</span> |  |  |  |  |
-| `first_element` | Get the first element from results | boolean | `false` | No |
-| `output_format` | Format of the extract output | string; one of:<ul className="ww-param-enum-values"><li>list</li><li>dictionary</li><li>columns</li><li>concatenate</li></ul> | `null` | No |
-| `char` | Character to use when output_format is concatenate | string | `", "` | No |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
-| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-
-</div>
-
-Required follows the recipe schema. Default records the Python argument default;
-a schema may require an argument even when Python provides a default.
 
 <details className="ww-field-disclosure">
 
@@ -178,7 +148,7 @@ wrangles:
 
 <div className="ww-sample-panel ww-sample-panel--input" data-sample-role="input">
 
-| Tools (input) |
+| tools |
 | --- |
 | hammer 5kg, 0.5m |
 
@@ -186,9 +156,9 @@ wrangles:
 
 <div className="ww-sample-panel ww-sample-panel--output" data-sample-role="output">
 
-| Attributes (span )(output) |
+| attributes |
 | --- |
-| \{'length': ['0.5m'], 'mass': ['5kg']\} |
+| \{'length': ['0.5m'], 'weight': ['5kg']\} |
 
 </div>
 
@@ -210,7 +180,7 @@ wrangles:
 
 <div className="ww-sample-panel ww-sample-panel--input" data-sample-role="input">
 
-| Tools (input) |
+| tools |
 | --- |
 | hammer 5kg, 0.5m |
 
@@ -218,9 +188,9 @@ wrangles:
 
 <div className="ww-sample-panel ww-sample-panel--output" data-sample-role="output">
 
-| Attributes (Object) (output) |
+| attributes |
 | --- |
-| \{'length': [\{'unit': 'metre', 'value': 0.5\}], 'mass': [\{'unit': 'kilogram', 'value': 5.0\}]\} |
+| \{'length': [\{'span': '0.5m', 'standard': '0.5 m', 'symbol': 'm', 'unit': 'metre', 'value': 0.5\}], 'weight': [\{'span': '5kg', 'standard': '5 kg', 'symbol': 'kg', 'unit': 'kilogram', 'value': 5.0\}]\} |
 
 </div>
 
@@ -254,6 +224,38 @@ _No sample available._
 </div>
 
 </div>
+
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
+
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
+| --- | --- | --- | --- | --- |
+| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
+| `input` | Name of the input column. | string, integer, array | — | Yes |
+| `output` | Name of the output column. | string, array | — | Yes |
+| <span className="ww-param-group-label">Options</span> |  |  |  |  |
+| `responseContent` | span - returns the text found. object - returns an object with the value and unit | string; one of:<ul className="ww-param-enum-values"><li>span</li><li>object</li></ul> | `"span"` | No |
+| `attribute_type` | Request only a specific type of attribute | string; one of:<ul className="ww-param-enum-values"><li>angle</li><li>area</li><li>capacitance</li><li>charge</li><li>current</li><li>data transfer rate</li><li>electrical conductance</li><li>electrical resistance</li><li>energy</li><li>force</li><li>frequency</li><li>inductance</li><li>instance frequency</li><li>length</li><li>luminous flux</li><li>weight</li><li>power</li><li>pressure</li><li>speed</li><li>velocity</li><li>temperature</li><li>time</li><li>voltage</li><li>volume</li><li>volumetric flow</li></ul> | `null` | No |
+| `desired_unit` | Convert the extracted unit to the desired unit | string | `null` | No |
+| `bound` | When returning an object, if the input is a range (e.g. 10-20mm) set the value to return. min, mid or max. Default mid. | string; one of:<ul className="ww-param-enum-values"><li>min</li><li>mid</li><li>max</li></ul> | `"mid"` | No |
+| <span className="ww-param-group-label">Formatting</span> |  |  |  |  |
+| `first_element` | Get the first element from results | boolean | `false` | No |
+| `output_format` | Format of the extract output | string; one of:<ul className="ww-param-enum-values"><li>list</li><li>dictionary</li><li>columns</li><li>concatenate</li></ul> | `null` | No |
+| `char` | Character to use when output_format is concatenate | string | `", "` | No |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
+
+</div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+</details>
 
 <details className="ww-field-disclosure">
 

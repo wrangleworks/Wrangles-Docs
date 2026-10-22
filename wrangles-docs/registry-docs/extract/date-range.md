@@ -14,30 +14,6 @@ import CopyableCode from '@site/src/components/CopyableCode';
 
 Extract date range frequency from two dates.
 
-
-
-## Parameters
-
-<div className="ww-parameters-table">
-
-| Name | Description | Accepted Values | Default | Required |
-| --- | --- | --- | --- | --- |
-| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `start_time` | Name of the start date column | string | — | Yes |
-| `end_time` | Name of the end date column | string | — | Yes |
-| `output` | Name of the output column | string | — | Yes |
-| <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `range` | Type of frequency to count | string; one of:<ul className="ww-param-enum-values"><li>business days</li><li>days</li><li>weeks</li><li>months</li><li>semi months</li><li>business month ends</li><li>month starts</li><li>semi month starts</li><li>business month starts</li><li>quarters</li><li>quarter starts</li><li>years</li><li>business hours</li><li>hours</li><li>minutes</li><li>seconds</li><li>milliseconds</li></ul> | `"day"` | Yes |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
-| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-
-</div>
-
-Required follows the recipe schema. Default records the Python argument default;
-a schema may require an argument even when Python provides a default.
-
 <details className="ww-field-disclosure">
 
 <summary>Complete configuration schema</summary>
@@ -125,19 +101,47 @@ wrangles:
 
 <div className="ww-sample-panel ww-sample-panel--input" data-sample-role="input">
 
-_No sample available._
+| Start | End |
+| --- | --- |
+| 1992-08-13 00:00:00 | 2023-08-13 00:00:00 |
 
 </div>
 
 <div className="ww-sample-panel ww-sample-panel--output" data-sample-role="output">
 
-| End | Start | Output |
-| --- | --- | --- |
-| 2023-08-13 00:00:00 | 1992-08-13 00:00:00 | 371 |
+| Output |
+| --- |
+| 371 |
 
 </div>
 
 </div>
+
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
+
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
+| --- | --- | --- | --- | --- |
+| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
+| `start_time` | Name of the start date column | string | — | Yes |
+| `end_time` | Name of the end date column | string | — | Yes |
+| `output` | Name of the output column | string | — | Yes |
+| <span className="ww-param-group-label">Options</span> |  |  |  |  |
+| `range` | Type of frequency to count | string; one of:<ul className="ww-param-enum-values"><li>business days</li><li>days</li><li>weeks</li><li>months</li><li>semi months</li><li>business month ends</li><li>month starts</li><li>semi month starts</li><li>business month starts</li><li>quarters</li><li>quarter starts</li><li>years</li><li>business hours</li><li>hours</li><li>minutes</li><li>seconds</li><li>milliseconds</li></ul> | `"day"` | Yes |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
+
+</div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+</details>
 
 <details className="ww-field-disclosure">
 

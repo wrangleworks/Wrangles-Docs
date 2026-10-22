@@ -40,7 +40,10 @@ jobs:
 
       - name: Validate Registry Artifacts
         working-directory: ./wrangles-docs
-        run: npm run check:registry
+        run: |
+          npm run compile:registry
+          npm run generate:playground-registry
+          npm run check:registry
 
       - name: Build the App
         working-directory: ./wrangles-docs

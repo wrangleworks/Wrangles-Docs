@@ -174,7 +174,9 @@ wrangles:
 
 ##### Input Sample
 
-_No sample available._
+| Start | End |
+| --- | --- |
+| 1992-08-13 00:00:00 | 2023-08-13 00:00:00 |
 
 </div>
 

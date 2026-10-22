@@ -29,7 +29,9 @@ write:
         - Product Name in French
 ```
 
-## Parameters
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
 
 ### Write
 
@@ -73,6 +75,8 @@ Define the dataframe returned from recipe.run(). Retains its generic Python retu
   }
 }
 ```
+
+</details>
 
 </details>
 

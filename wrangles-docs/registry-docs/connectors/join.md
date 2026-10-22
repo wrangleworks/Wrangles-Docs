@@ -31,7 +31,9 @@ read:
             name: file2.xlsx
 ```
 
-## Parameters
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
 
 ### Read
 
@@ -119,6 +121,8 @@ Join two data sources on key(s). Equivalent to a join in SQL.
   }
 }
 ```
+
+</details>
 
 </details>
 

@@ -228,8 +228,9 @@ The Python wrangle supports parameters so values of unknown origin can be inject
 wrangles:
   - python:
       output: sliced
+      input: input_column
       command: input_column[:i]
-      i: ${var}
+      i: 3
 ```
 
 <div className="ww-sample-grid">
@@ -238,7 +239,10 @@ wrangles:
 
 ##### Input Sample
 
-_No sample available._
+| input_column |
+| --- |
+| Bearing |
+| Hammer |
 
 </div>
 
@@ -246,7 +250,10 @@ _No sample available._
 
 ##### Output Sample
 
-_No sample available._
+| sliced |
+| --- |
+| Bea |
+| Ham |
 
 </div>
 

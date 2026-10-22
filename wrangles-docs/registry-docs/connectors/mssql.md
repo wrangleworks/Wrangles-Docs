@@ -108,7 +108,9 @@ mssql.run(
 )
 ```
 
-## Parameters
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
 
 ### Read
 
@@ -350,6 +352,8 @@ Write data to a Microsoft SQL Server
   }
 }
 ```
+
+</details>
 
 </details>
 

@@ -57,7 +57,9 @@ memory.write(df=df, id='1234')
 memory.clear()
 ```
 
-## Parameters
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
 
 ### Read
 
@@ -180,6 +182,8 @@ The memory connector allows saving dataframes and variables in memory for commun
   }
 }
 ```
+
+</details>
 
 </details>
 

@@ -12,34 +12,11 @@ import CopyableCode from '@site/src/components/CopyableCode';
 
 # Jinja <CopyableCode value="create.jinja" />
 
-Output text using a jinja template.
-
 Makes use of a Jinja template to create a description, title, or summary based on your data.
 
 :::info
 Jinja templates do not allow variables with spaces. This wrangle automatically replaces spaces in column headers with underscores, so use underscores instead of spaces when referencing columns in the template.
 :::
-
-## Parameters
-
-<div className="ww-parameters-table">
-
-| Name | Description | Accepted Values | Default | Required |
-| --- | --- | --- | --- | --- |
-| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `output` | Name of the column to be output to. | string | — | Yes |
-| `input` | Specify a name of column containing a dictionary of elements to be used in jinja template.<br />Otherwise, the column headers will be used as keys.<br /> | string, integer | `null` | No |
-| <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `template` | A dictionary which defines the template/location as well as the form which the template is input.<br />If any keys use a space, they must be replaced with an underscore.  Note: spaces within column names<br />are replaced by underscores (_).<br /> | object | — | Yes |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
-| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-
-</div>
-
-Required follows the recipe schema. Default records the Python argument default;
-a schema may require an argument even when Python provides a default.
 
 <details className="ww-field-disclosure">
 
@@ -140,6 +117,31 @@ wrangles:
 </div>
 
 Using `|` in YAML denotes a multi-line string that preserves line breaks. Use `>` for a multi-line string when line breaks should not be preserved.
+
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
+
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
+| --- | --- | --- | --- | --- |
+| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
+| `output` | Name of the column to be output to. | string | — | Yes |
+| `input` | Specify a name of column containing a dictionary of elements to be used in jinja template.<br />Otherwise, the column headers will be used as keys.<br /> | string, integer | `null` | No |
+| <span className="ww-param-group-label">Options</span> |  |  |  |  |
+| `template` | A dictionary which defines the template/location as well as the form which the template is input.<br />If any keys use a space, they must be replaced with an underscore.  Note: spaces within column names<br />are replaced by underscores (_).<br /> | object | — | Yes |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
+
+</div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+</details>
 
 <details className="ww-field-disclosure">
 

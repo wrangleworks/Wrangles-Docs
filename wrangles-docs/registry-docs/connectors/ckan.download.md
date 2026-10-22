@@ -13,7 +13,9 @@ import CopyableCode from '@site/src/components/CopyableCode';
 
 Download data from CKAN and save to the local file system
 
-## Parameters
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
 
 ### Run
 
@@ -73,6 +75,8 @@ Download data from CKAN and save to the local file system
   }
 }
 ```
+
+</details>
 
 </details>
 

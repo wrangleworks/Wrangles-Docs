@@ -99,8 +99,8 @@ for name, kind in (("broken", "bad"), ("valid", "good")):
         self.assertEqual(properties({'then': {'properties': {'x': {'type': 'int'}}}}), {'x': {'type': 'int'}})
 
     def test_new_entry_paths_match_existing_authoring_convention(self):
-        self.assertEqual(source_file('format.clean_text'), Path('registry/wrangles/format/clean-text.md'))
-        self.assertEqual(source_file('round'), Path('registry/wrangles/_root/round.md'))
+        self.assertEqual(source_file('format.clean_text'), Path('registry/input_wrangles/format/clean-text.md'))
+        self.assertEqual(source_file('round'), Path('registry/input_wrangles/_root/round.md'))
         for key in ('../x', '/tmp/x', 'format.bad/name'):
             with self.assertRaises(ValueError):
                 source_file(key)
@@ -128,7 +128,7 @@ for name, kind in (("broken", "bad"), ("valid", "good")):
                 **definition, 'schema': {'type': 'object', 'properties': {'input': {'type': 'str'}, 'output': {'type': 'str'},
                     'schema_only': {'type': 'str', 'description': 'Schema-only parameter.'}},
                     'required': ['input', 'schema_only'], 'description': 'Schema refresh integration fixture.'}}
-            before = (fixture / 'registry/wrangles/format/trim.md').read_bytes()
+            before = (fixture / 'registry/input_wrangles/format/trim.md').read_bytes()
             real_run = refresh_registry.run
 
             def intercepted(command, cwd):
@@ -140,8 +140,8 @@ for name, kind in (("broken", "bad"), ("valid", "good")):
             with patch.dict(os.environ, {'REGISTRY_REFRESH_INTEGRATION': '0'}), patch.object(refresh_registry, 'run', side_effect=intercepted), patch.object(
                     refresh_registry, 'documentation_lookup', return_value={'found': False}):
                 report = refresh_registry.refresh(fixture, fixture, fixture / 'report', skip_build=True)
-            self.assertEqual((fixture / 'registry/wrangles/format/trim.md').read_bytes(), before)
-            self.assertTrue((fixture / 'registry/wrangles/format/refresh-test.md').exists())
+            self.assertEqual((fixture / 'registry/input_wrangles/format/trim.md').read_bytes(), before)
+            self.assertTrue((fixture / 'registry/input_wrangles/format/refresh-test.md').exists())
             self.assertTrue((fixture / 'wrangles-docs/registry-docs/format/refresh-test.md').exists())
             contract = json.loads((fixture / 'wrangles-docs/static/registry/contracts/format/refresh-test.json').read_text())
             self.assertIsNone(contract['catalog_id'])

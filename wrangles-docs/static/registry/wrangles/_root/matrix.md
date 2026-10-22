@@ -155,8 +155,8 @@ wrangles:
 ```
 
 ```python
-def test_fn(part_code, value):
-    return part_code + value
+def test_fn(Part_Code, value):
+    return str(Part_Code) + str(value)
 ```
 
 <div className="ww-sample-grid">

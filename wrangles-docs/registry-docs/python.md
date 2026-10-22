@@ -12,36 +12,11 @@ import CopyableCode from '@site/src/components/CopyableCode';
 
 # Python <CopyableCode value="python" />
 
-Apply a simple single-line python command. For more complex python use a custom function. Note, this evaluates the python command - be especially cautious including variables from untrusted sources within the command string. The python command will be evaluated once for each row and the result returned. Reference column values by using their name. Non-alphanumeric characters within column names are replaced by underscores (_) Additionally, all columns are available as a dict named kwargs. Additional parameters set for the wrangle will also be available to the command.
-
 The Python wrangle executes simple Python commands inline within a recipe. Row values are referenced by column name and commands are evaluated once per row. Spaces within column names are replaced by underscores (`_`). All columns are also available as a dictionary named `kwargs`. For more complex Python, use custom functions.
 
 :::caution
 This wrangle evaluates the Python command. Be cautious when including variables from untrusted sources in the command string.
 :::
-
-## Parameters
-
-<div className="ww-parameters-table">
-
-| Name | Description | Accepted Values | Default | Required |
-| --- | --- | --- | --- | --- |
-| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `output` | Name or list of output column(s). To output multiple columns,<br />return a list of the corresponding length. | string, array | — | Yes |
-| `input` | Name or list of input column(s) to filter the data available<br />to the command. Useful in conjunction with kwargs to target<br />a variable range of columns.<br />If not specified, all columns will be available. | string, integer, array | `null` | No |
-| <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `command` | Python command. This must return a value.<br />Note: any non-alphanumeric characters in variable names<br />are replaced by underscores (_). | string | — | Yes |
-| <span className="ww-param-group-label">Errors</span> |  |  |  |  |
-| `except` | Value to return for the row if an exception occurs during the evaluation.<br />If not provided, an exception will be raised as normal.<br />If multiple output columns are specified, this must match the length. | string, array, number, integer, boolean, object | — | No |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
-| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-
-</div>
-
-Required follows the recipe schema. Default records the Python argument default;
-a schema may require an argument even when Python provides a default.
 
 <details className="ww-field-disclosure">
 
@@ -146,25 +121,59 @@ The Python wrangle supports parameters so values of unknown origin can be inject
 wrangles:
   - python:
       output: sliced
+      input: input_column
       command: input_column[:i]
-      i: ${var}
+      i: 3
 ```
 
 <div className="ww-sample-grid">
 
 <div className="ww-sample-panel ww-sample-panel--input" data-sample-role="input">
 
-_No sample available._
+| input_column |
+| --- |
+| Bearing |
+| Hammer |
 
 </div>
 
 <div className="ww-sample-panel ww-sample-panel--output" data-sample-role="output">
 
-_No sample available._
+| sliced |
+| --- |
+| Bea |
+| Ham |
 
 </div>
 
 </div>
+
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
+
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
+| --- | --- | --- | --- | --- |
+| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
+| `output` | Name or list of output column(s). To output multiple columns,<br />return a list of the corresponding length. | string, array | — | Yes |
+| `input` | Name or list of input column(s) to filter the data available<br />to the command. Useful in conjunction with kwargs to target<br />a variable range of columns.<br />If not specified, all columns will be available. | string, integer, array | `null` | No |
+| <span className="ww-param-group-label">Options</span> |  |  |  |  |
+| `command` | Python command. This must return a value.<br />Note: any non-alphanumeric characters in variable names<br />are replaced by underscores (_). | string | — | Yes |
+| <span className="ww-param-group-label">Errors</span> |  |  |  |  |
+| `except` | Value to return for the row if an exception occurs during the evaluation.<br />If not provided, an exception will be raised as normal.<br />If multiple output columns are specified, this must match the length. | string, array, number, integer, boolean, object | — | No |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
+
+</div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+</details>
 
 <details className="ww-field-disclosure">
 

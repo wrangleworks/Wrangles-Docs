@@ -16,33 +16,7 @@ Extract wrangles, with recipe examples, parameters, and behavior.
 
 ## Address <CopyableCode value="extract.address" /> {#address}
 
-Extract parts of addresses. Requires WrangleWorks Account.
-
 Extract geographical information from unstructured text such as streets, cities, or countries. Requires WrangleWorks Account.
-
-### Parameters
-
-<div className="ww-parameters-table">
-
-| Name | Description | Accepted Values | Default | Required |
-| --- | --- | --- | --- | --- |
-| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `input` | Name of the input column. | string, integer, array | — | Yes |
-| `output` | Name of the output column. | string, array | — | Yes |
-| <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `dataType` | Specific part of the address to extract | string; one of:<ul className="ww-param-enum-values"><li>streets</li><li>cities</li><li>regions</li><li>countries</li></ul> | — | No |
-| <span className="ww-param-group-label">Formatting</span> |  |  |  |  |
-| `output_format` | Format of the extract output | string; one of:<ul className="ww-param-enum-values"><li>list</li><li>columns</li><li>concatenate</li></ul> | `null` | No |
-| `char` | Character to use when output_format is concatenate | string | `", "` | No |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
-| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-
-</div>
-
-Required follows the recipe schema. Default records the Python argument default;
-a schema may require an argument even when Python provides a default.
 
 <details className="ww-field-disclosure">
 
@@ -151,6 +125,34 @@ wrangles:
 
 <details className="ww-field-disclosure">
 
+<summary>Parameters</summary>
+
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
+| --- | --- | --- | --- | --- |
+| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
+| `input` | Name of the input column. | string, integer, array | — | Yes |
+| `output` | Name of the output column. | string, array | — | Yes |
+| <span className="ww-param-group-label">Options</span> |  |  |  |  |
+| `dataType` | Specific part of the address to extract | string; one of:<ul className="ww-param-enum-values"><li>streets</li><li>cities</li><li>regions</li><li>countries</li></ul> | — | No |
+| <span className="ww-param-group-label">Formatting</span> |  |  |  |  |
+| `output_format` | Format of the extract output | string; one of:<ul className="ww-param-enum-values"><li>list</li><li>columns</li><li>concatenate</li></ul> | `null` | No |
+| `char` | Character to use when output_format is concatenate | string | `", "` | No |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
+
+</div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+</details>
+
+<details className="ww-field-disclosure">
+
 <summary>Access</summary>
 
 | Requirement | Value |
@@ -193,58 +195,11 @@ wrangles:
 
 ## AI <CopyableCode value="extract.ai" /> {#ai}
 
-Extract structured data from each input row using an AI model. Define the desired fields with output, or reuse a saved definition with model_id.
-
 Use AI to extract meaningful structured data. `extract.ai` can be used recipe-first, where the output schema is defined in the recipe, or model-first, where a saved extract.ai model is called by `model_id`.
 
 :::info
 For saved extract.ai models, this is the preferred calling pattern compared with using `extract.custom`.
 :::
-
-### Parameters
-
-<div className="ww-parameters-table">
-
-| Name | Description | Accepted Values | Default | Required |
-| --- | --- | --- | --- | --- |
-| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `input` | Input column name, column index, or list of columns supplied together as DATA for each row. If omitted, all dataframe columns are supplied. | string, integer, array | `null` | No |
-| `output` | Desired extraction. Use an object keyed by output column name for structured fields, a string for one prompted value, or an array of field names/definitions. Each field may use the schema options below. | object, string, array | `null` | Conditional; see schema |
-| <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `record_examples` | Whole-record examples. Each example has a separate input value or record and the complete expected output record. Optional name and notes provide model-visible context. Use &#123;name: ..., notes: ..., input: ..., output: ...&#125;. Omitted nullable output fields are completed with null. Required non-null nested properties must be supplied. This differs from examples nested under one output field, which teach only that field. | array, object | `null` | No |
-| `web_search` | Enable OpenAI Responses web search; the model decides when searching helps. When true, every row also receives web_search_sources: a deduplicated list of &#123;title, url&#125; objects in source order, or an empty list when no source was used. This reserved column is automatic. Requires protocol responses. Defaults to false. | boolean | `false` | No |
-| `instructions` | General instructions applied to every input row, in addition to any GeneralInstructions in the saved model. Use this for decision rules, evidence priorities, normalization requirements, or other behavior that applies to the complete extraction. | string, array | `null` | No |
-| `metadata` | Labels attached to OpenAI requests, such as recipe_name and wrangles_user. Available recipe name and Wrangles user are added automatically. Explicit labels override those defaults; an empty object disables automatic labels. These appear with stored logs and are separate from model instructions. Up to 16 string pairs; keys may contain up to 64 characters and values up to 512 characters. Does not enable workflow tracing. | object | — | No |
-| <span className="ww-param-group-label">Formatting</span> |  |  |  |  |
-| `output_format` | How extracted fields are written. columns writes one dataframe column per field (default); dictionary keeps one object; concatenate joins fields into one string using char. | string; one of:<ul className="ww-param-enum-values"><li>dictionary</li><li>columns</li><li>concatenate</li></ul> | `null` | No |
-| `char` | Separator used only when output_format is concatenate. Defaults to comma-space. | string | `", "` | No |
-| <span className="ww-param-group-label">Execution</span> |  |  |  |  |
-| `threads` | Maximum number of row-level requests sent in parallel. The configured default is 32. | integer | — | No |
-| `timeout` | Network timeout in seconds for each HTTP attempt. The configured default is 12. Each retry uses the same timeout. | number | — | No |
-| <span className="ww-param-group-label">Errors</span> |  |  |  |  |
-| `retries` | Number of additional attempts per row after a retryable failure. The configured default is 1. Retry delays are separate from timeout. | integer | — | No |
-| <span className="ww-param-group-label">Details</span> |  |  |  |  |
-| `api_key` | OpenAI API key used for this wrangle, normally supplied through a recipe variable. | string | — | Yes |
-| `model_id` | ID of a saved extract.ai definition. Use it instead of defining an output schema. When output is also supplied with model_id in a recipe, output names the destination column or columns for the saved fields. | string | `null` | Conditional; see schema |
-| `model` | OpenAI model ID for this call. If omitted, uses the configured extract.ai default; a saved model definition may supply its own model. | string | — | No |
-| `url` | Override the endpoint for the selected protocol. A chat/completions URL<br />selects the legacy protocol only when protocol is omitted; new recipes<br />should use the configured Responses endpoint. | string | — | No |
-| `provider` | AI service provider. Currently only OpenAI is supported. | string; one of:<ul className="ww-param-enum-values"><li>openai</li></ul> | — | No |
-| `protocol` | OpenAI API protocol. Responses is the configured default and is required for web_search; chat_completions remains available for legacy definitions. | string; one of:<ul className="ww-param-enum-values"><li>responses</li><li>chat_completions</li></ul> | — | No |
-| `store` | Whether OpenAI may store Responses API results. Defaults to true. | boolean | — | No |
-| `cache` | Reuse identical successful results from the bounded warm-instance cache. Defaults to true. Set false when fresh model or web results are required. | boolean | — | No |
-| `cache_ttl` | Maximum age in seconds for a cached result used by this call. Applies to extracted values and web_search_sources together. | number | — | No |
-| `strict` | Require OpenAI structured-output strict mode. Defaults to true. Definitions with dynamic dictionary keys automatically switch to non-strict provider mode and are still validated locally. | boolean | — | No |
-| `reasoning` | Reasoning effort, such as none or low, or an object with effort and other reasoning options. Both forms are equivalent for setting effort. Defaults to none for every model. Explicit settings are always sent to the provider; unsupported settings produce a provider error. | string; one of:<ul className="ww-param-enum-values"><li>none</li><li>minimal</li><li>low</li><li>medium</li><li>high</li><li>xhigh</li><li>max</li></ul> or object | — | No |
-| `verbosity` | Responses API text verbosity for compatible models. Defaults to low when supported; ignored with a warning for incompatible models. | string; one of:<ul className="ww-param-enum-values"><li>low</li><li>medium</li><li>high</li></ul> | — | No |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
-| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-
-</div>
-
-Required follows the recipe schema. Default records the Python argument default;
-a schema may require an argument even when Python provides a default.
 
 <details className="ww-field-disclosure">
 
@@ -763,6 +718,55 @@ wrangles:
 
 <details className="ww-field-disclosure">
 
+<summary>Parameters</summary>
+
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
+| --- | --- | --- | --- | --- |
+| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
+| `input` | Input column name, column index, or list of columns supplied together as DATA for each row. If omitted, all dataframe columns are supplied. | string, integer, array | `null` | No |
+| `output` | Desired extraction. Use an object keyed by output column name for structured fields, a string for one prompted value, or an array of field names/definitions. Each field may use the schema options below. | object, string, array | `null` | Conditional; see schema |
+| <span className="ww-param-group-label">Options</span> |  |  |  |  |
+| `record_examples` | Whole-record examples. Each example has a separate input value or record and the complete expected output record. Optional name and notes provide model-visible context. Use &#123;name: ..., notes: ..., input: ..., output: ...&#125;. Omitted nullable output fields are completed with null. Required non-null nested properties must be supplied. This differs from examples nested under one output field, which teach only that field. | array, object | `null` | No |
+| `web_search` | Enable OpenAI Responses web search; the model decides when searching helps. When true, every row also receives web_search_sources: a deduplicated list of &#123;title, url&#125; objects in source order, or an empty list when no source was used. This reserved column is automatic. Requires protocol responses. Defaults to false. | boolean | `false` | No |
+| `instructions` | General instructions applied to every input row, in addition to any GeneralInstructions in the saved model. Use this for decision rules, evidence priorities, normalization requirements, or other behavior that applies to the complete extraction. | string, array | `null` | No |
+| `metadata` | Labels attached to OpenAI requests, such as recipe_name and wrangles_user. Available recipe name and Wrangles user are added automatically. Explicit labels override those defaults; an empty object disables automatic labels. These appear with stored logs and are separate from model instructions. Up to 16 string pairs; keys may contain up to 64 characters and values up to 512 characters. Does not enable workflow tracing. | object | — | No |
+| <span className="ww-param-group-label">Formatting</span> |  |  |  |  |
+| `output_format` | How extracted fields are written. columns writes one dataframe column per field (default); dictionary keeps one object; concatenate joins fields into one string using char. | string; one of:<ul className="ww-param-enum-values"><li>dictionary</li><li>columns</li><li>concatenate</li></ul> | `null` | No |
+| `char` | Separator used only when output_format is concatenate. Defaults to comma-space. | string | `", "` | No |
+| <span className="ww-param-group-label">Execution</span> |  |  |  |  |
+| `threads` | Maximum number of row-level requests sent in parallel. The configured default is 32. | integer | — | No |
+| `timeout` | Network timeout in seconds for each HTTP attempt. The configured default is 12. Each retry uses the same timeout. | number | — | No |
+| <span className="ww-param-group-label">Errors</span> |  |  |  |  |
+| `retries` | Number of additional attempts per row after a retryable failure. The configured default is 1. Retry delays are separate from timeout. | integer | — | No |
+| <span className="ww-param-group-label">Details</span> |  |  |  |  |
+| `api_key` | OpenAI API key used for this wrangle, normally supplied through a recipe variable. | string | — | Yes |
+| `model_id` | ID of a saved extract.ai definition. Use it instead of defining an output schema. When output is also supplied with model_id in a recipe, output names the destination column or columns for the saved fields. | string | `null` | Conditional; see schema |
+| `model` | OpenAI model ID for this call. If omitted, uses the configured extract.ai default; a saved model definition may supply its own model. | string | — | No |
+| `url` | Override the endpoint for the selected protocol. A chat/completions URL<br />selects the legacy protocol only when protocol is omitted; new recipes<br />should use the configured Responses endpoint. | string | — | No |
+| `provider` | AI service provider. Currently only OpenAI is supported. | string; one of:<ul className="ww-param-enum-values"><li>openai</li></ul> | — | No |
+| `protocol` | OpenAI API protocol. Responses is the configured default and is required for web_search; chat_completions remains available for legacy definitions. | string; one of:<ul className="ww-param-enum-values"><li>responses</li><li>chat_completions</li></ul> | — | No |
+| `store` | Whether OpenAI may store Responses API results. Defaults to true. | boolean | — | No |
+| `cache` | Reuse identical successful results from the bounded warm-instance cache. Defaults to true. Set false when fresh model or web results are required. | boolean | — | No |
+| `cache_ttl` | Maximum age in seconds for a cached result used by this call. Applies to extracted values and web_search_sources together. | number | — | No |
+| `strict` | Require OpenAI structured-output strict mode. Defaults to true. Definitions with dynamic dictionary keys automatically switch to non-strict provider mode and are still validated locally. | boolean | — | No |
+| `reasoning` | Reasoning effort, such as none or low, or an object with effort and other reasoning options. Both forms are equivalent for setting effort. Defaults to none for every model. Explicit settings are always sent to the provider; unsupported settings produce a provider error. | string; one of:<ul className="ww-param-enum-values"><li>none</li><li>minimal</li><li>low</li><li>medium</li><li>high</li><li>xhigh</li><li>max</li></ul> or object | — | No |
+| `verbosity` | Responses API text verbosity for compatible models. Defaults to low when supported; ignored with a warning for incompatible models. | string; one of:<ul className="ww-param-enum-values"><li>low</li><li>medium</li><li>high</li></ul> | — | No |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
+
+</div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+</details>
+
+<details className="ww-field-disclosure">
+
 <summary>Access</summary>
 
 | Requirement | Value |
@@ -805,37 +809,7 @@ wrangles:
 
 ## Attributes <CopyableCode value="extract.attributes" /> {#attributes}
 
-Extract numeric attributes from the input such as weights or lengths. Requires WrangleWorks Account.
-
 Extract numeric attributes from unstructured text such as lengths, voltages, weights, or temperatures. Requires WrangleWorks Account.
-
-### Parameters
-
-<div className="ww-parameters-table">
-
-| Name | Description | Accepted Values | Default | Required |
-| --- | --- | --- | --- | --- |
-| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `input` | Name of the input column. | string, integer, array | — | Yes |
-| `output` | Name of the output column. | string, array | — | Yes |
-| <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `responseContent` | span - returns the text found. object - returns an object with the value and unit | string; one of:<ul className="ww-param-enum-values"><li>span</li><li>object</li></ul> | `"span"` | No |
-| `attribute_type` | Request only a specific type of attribute | string; one of:<ul className="ww-param-enum-values"><li>angle</li><li>area</li><li>capacitance</li><li>charge</li><li>current</li><li>data transfer rate</li><li>electrical conductance</li><li>electrical resistance</li><li>energy</li><li>force</li><li>frequency</li><li>inductance</li><li>instance frequency</li><li>length</li><li>luminous flux</li><li>weight</li><li>power</li><li>pressure</li><li>speed</li><li>velocity</li><li>temperature</li><li>time</li><li>voltage</li><li>volume</li><li>volumetric flow</li></ul> | `null` | No |
-| `desired_unit` | Convert the extracted unit to the desired unit | string | `null` | No |
-| `bound` | When returning an object, if the input is a range (e.g. 10-20mm) set the value to return. min, mid or max. Default mid. | string; one of:<ul className="ww-param-enum-values"><li>min</li><li>mid</li><li>max</li></ul> | `"mid"` | No |
-| <span className="ww-param-group-label">Formatting</span> |  |  |  |  |
-| `first_element` | Get the first element from results | boolean | `false` | No |
-| `output_format` | Format of the extract output | string; one of:<ul className="ww-param-enum-values"><li>list</li><li>dictionary</li><li>columns</li><li>concatenate</li></ul> | `null` | No |
-| `char` | Character to use when output_format is concatenate | string | `", "` | No |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
-| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-
-</div>
-
-Required follows the recipe schema. Default records the Python argument default;
-a schema may require an argument even when Python provides a default.
 
 <details className="ww-field-disclosure">
 
@@ -971,7 +945,7 @@ wrangles:
 
 <div className="ww-sample-panel ww-sample-panel--input" data-sample-role="input">
 
-| Tools (input) |
+| tools |
 | --- |
 | hammer 5kg, 0.5m |
 
@@ -979,9 +953,9 @@ wrangles:
 
 <div className="ww-sample-panel ww-sample-panel--output" data-sample-role="output">
 
-| Attributes (span )(output) |
+| attributes |
 | --- |
-| \{'length': ['0.5m'], 'mass': ['5kg']\} |
+| \{'length': ['0.5m'], 'weight': ['5kg']\} |
 
 </div>
 
@@ -1003,7 +977,7 @@ wrangles:
 
 <div className="ww-sample-panel ww-sample-panel--input" data-sample-role="input">
 
-| Tools (input) |
+| tools |
 | --- |
 | hammer 5kg, 0.5m |
 
@@ -1011,9 +985,9 @@ wrangles:
 
 <div className="ww-sample-panel ww-sample-panel--output" data-sample-role="output">
 
-| Attributes (Object) (output) |
+| attributes |
 | --- |
-| \{'length': [\{'unit': 'metre', 'value': 0.5\}], 'mass': [\{'unit': 'kilogram', 'value': 5.0\}]\} |
+| \{'length': [\{'span': '0.5m', 'standard': '0.5 m', 'symbol': 'm', 'unit': 'metre', 'value': 0.5\}], 'weight': [\{'span': '5kg', 'standard': '5 kg', 'symbol': 'kg', 'unit': 'kilogram', 'value': 5.0\}]\} |
 
 </div>
 
@@ -1047,6 +1021,38 @@ _No sample available._
 </div>
 
 </div>
+
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
+
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
+| --- | --- | --- | --- | --- |
+| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
+| `input` | Name of the input column. | string, integer, array | — | Yes |
+| `output` | Name of the output column. | string, array | — | Yes |
+| <span className="ww-param-group-label">Options</span> |  |  |  |  |
+| `responseContent` | span - returns the text found. object - returns an object with the value and unit | string; one of:<ul className="ww-param-enum-values"><li>span</li><li>object</li></ul> | `"span"` | No |
+| `attribute_type` | Request only a specific type of attribute | string; one of:<ul className="ww-param-enum-values"><li>angle</li><li>area</li><li>capacitance</li><li>charge</li><li>current</li><li>data transfer rate</li><li>electrical conductance</li><li>electrical resistance</li><li>energy</li><li>force</li><li>frequency</li><li>inductance</li><li>instance frequency</li><li>length</li><li>luminous flux</li><li>weight</li><li>power</li><li>pressure</li><li>speed</li><li>velocity</li><li>temperature</li><li>time</li><li>voltage</li><li>volume</li><li>volumetric flow</li></ul> | `null` | No |
+| `desired_unit` | Convert the extracted unit to the desired unit | string | `null` | No |
+| `bound` | When returning an object, if the input is a range (e.g. 10-20mm) set the value to return. min, mid or max. Default mid. | string; one of:<ul className="ww-param-enum-values"><li>min</li><li>mid</li><li>max</li></ul> | `"mid"` | No |
+| <span className="ww-param-group-label">Formatting</span> |  |  |  |  |
+| `first_element` | Get the first element from results | boolean | `false` | No |
+| `output_format` | Format of the extract output | string; one of:<ul className="ww-param-enum-values"><li>list</li><li>dictionary</li><li>columns</li><li>concatenate</li></ul> | `null` | No |
+| `char` | Character to use when output_format is concatenate | string | `", "` | No |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
+
+</div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+</details>
 
 <details className="ww-field-disclosure">
 
@@ -1092,34 +1098,7 @@ _No sample available._
 
 ## Brackets <CopyableCode value="extract.brackets" /> {#brackets}
 
-Extract text properties in brackets from the input.
-
 Extract text in brackets from the input.
-
-### Parameters
-
-<div className="ww-parameters-table">
-
-| Name | Description | Accepted Values | Default | Required |
-| --- | --- | --- | --- | --- |
-| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `input` | Name of the input column | string, integer, array | — | Yes |
-| `output` | Name of the output columns | string, array | — | Yes |
-| <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `find` | (Optional) The type of brackets to find (round '()', square '[]', curly '&#123;&#125;', angled '&lt;&gt;'). Default is all brackets. | string, array | `"all"` | No |
-| `include_brackets` | (Optional) Include the brackets in the output | boolean | `false` | No |
-| <span className="ww-param-group-label">Formatting</span> |  |  |  |  |
-| `output_format` | Format of the extract output | string; one of:<ul className="ww-param-enum-values"><li>list</li><li>columns</li><li>concatenate</li></ul> | `null` | No |
-| `char` | Character to use when output_format is concatenate | string | `", "` | No |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
-| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-
-</div>
-
-Required follows the recipe schema. Default records the Python argument default;
-a schema may require an argument even when Python provides a default.
 
 <details className="ww-field-disclosure">
 
@@ -1221,14 +1200,43 @@ wrangles:
 
 | Output |
 | --- |
-| Hello |
-| Wrangles |
-| ! |
-| ! |
+| ["Hello"] |
+| ["Wrangles"] |
+| ["!"] |
+| ["!"] |
 
 </div>
 
 </div>
+
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
+
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
+| --- | --- | --- | --- | --- |
+| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
+| `input` | Name of the input column | string, integer, array | — | Yes |
+| `output` | Name of the output columns | string, array | — | Yes |
+| <span className="ww-param-group-label">Options</span> |  |  |  |  |
+| `find` | (Optional) The type of brackets to find (round '()', square '[]', curly '&#123;&#125;', angled '&lt;&gt;'). Default is all brackets. | string, array | `"all"` | No |
+| `include_brackets` | (Optional) Include the brackets in the output | boolean | `false` | No |
+| <span className="ww-param-group-label">Formatting</span> |  |  |  |  |
+| `output_format` | Format of the extract output | string; one of:<ul className="ww-param-enum-values"><li>list</li><li>columns</li><li>concatenate</li></ul> | `null` | No |
+| `char` | Character to use when output_format is concatenate | string | `", "` | No |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
+
+</div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+</details>
 
 <details className="ww-field-disclosure">
 
@@ -1274,40 +1282,7 @@ wrangles:
 
 ## Codes <CopyableCode value="extract.codes" /> {#codes}
 
-Extract alphanumeric codes from the input. Requires WrangleWorks Account.
-
 Extract alphanumeric codes from unstructured text. Can be performed on one column or multiple columns. Requires WrangleWorks Account.
-
-### Parameters
-
-<div className="ww-parameters-table">
-
-| Name | Description | Accepted Values | Default | Required |
-| --- | --- | --- | --- | --- |
-| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `input` | Name or list of input columns. | string, integer, array | — | Yes |
-| `output` | Name or list of output columns | string, array | — | Yes |
-| <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `min_length` | Minimum length of allowed results | integer, string | — | No |
-| `max_length` | Maximum length of allowed results | integer, string | — | No |
-| `strategy` | Controls filtering of likely false positives such as measurements. Lenient skips this filter; balanced and strict currently apply the same filter. Default is balanced. Unless min_length is provided, minimum lengths default to 3 for lenient, 4 for balanced, and 5 for strict. | string; one of:<ul className="ww-param-enum-values"><li>lenient</li><li>balanced</li><li>strict</li></ul> | — | No |
-| `disallowed_patterns` | A pattern or JSON array of regex patterns to not include in the found codes | string | — | No |
-| `include_multi_part_tokens` | Whether to include multi-part tokens that have a space. Default True. | boolean | — | No |
-| `extract_raw` | Whether to return tokens with their adjacent non-whitespace characters included, rather than the cleaned token. Default False. | boolean | — | No |
-| <span className="ww-param-group-label">Formatting</span> |  |  |  |  |
-| `first_element` | Get the first element from results | boolean | `false` | No |
-| `output_format` | Format of the extract output | string; one of:<ul className="ww-param-enum-values"><li>list</li><li>columns</li><li>concatenate</li></ul> | `null` | No |
-| `char` | Character to use when output_format is concatenate | string | `", "` | No |
-| `sort_order` | Default is input order. Also allows longest or shortest. | string; one of:<ul className="ww-param-enum-values"><li>input</li><li>longest</li><li>shortest</li></ul> | — | No |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
-| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-
-</div>
-
-Required follows the recipe schema. Default records the Python argument default;
-a schema may require an argument even when Python provides a default.
 
 <details className="ww-field-disclosure">
 
@@ -1485,6 +1460,41 @@ wrangles:
 
 <details className="ww-field-disclosure">
 
+<summary>Parameters</summary>
+
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
+| --- | --- | --- | --- | --- |
+| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
+| `input` | Name or list of input columns. | string, integer, array | — | Yes |
+| `output` | Name or list of output columns | string, array | — | Yes |
+| <span className="ww-param-group-label">Options</span> |  |  |  |  |
+| `min_length` | Minimum length of allowed results | integer, string | — | No |
+| `max_length` | Maximum length of allowed results | integer, string | — | No |
+| `strategy` | Controls filtering of likely false positives such as measurements. Lenient skips this filter; balanced and strict currently apply the same filter. Default is balanced. Unless min_length is provided, minimum lengths default to 3 for lenient, 4 for balanced, and 5 for strict. | string; one of:<ul className="ww-param-enum-values"><li>lenient</li><li>balanced</li><li>strict</li></ul> | — | No |
+| `disallowed_patterns` | A pattern or JSON array of regex patterns to not include in the found codes | string | — | No |
+| `include_multi_part_tokens` | Whether to include multi-part tokens that have a space. Default True. | boolean | — | No |
+| `extract_raw` | Whether to return tokens with their adjacent non-whitespace characters included, rather than the cleaned token. Default False. | boolean | — | No |
+| <span className="ww-param-group-label">Formatting</span> |  |  |  |  |
+| `first_element` | Get the first element from results | boolean | `false` | No |
+| `output_format` | Format of the extract output | string; one of:<ul className="ww-param-enum-values"><li>list</li><li>columns</li><li>concatenate</li></ul> | `null` | No |
+| `char` | Character to use when output_format is concatenate | string | `", "` | No |
+| `sort_order` | Default is input order. Also allows longest or shortest. | string; one of:<ul className="ww-param-enum-values"><li>input</li><li>longest</li><li>shortest</li></ul> | — | No |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
+
+</div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+</details>
+
+<details className="ww-field-disclosure">
+
 <summary>Access</summary>
 
 | Requirement | Value |
@@ -1527,45 +1537,11 @@ wrangles:
 
 ## Custom <CopyableCode value="extract.custom" /> {#custom}
 
-Extract data from the input using a DIY or bespoke extraction wrangle. Requires WrangleWorks Account and Subscription.
-
 Extract data from the input using a DIY or bespoke extraction wrangle. Can be performed on one column or multiple columns. Requires WrangleWorks Account and Subscription.
 
 :::info
 Non-regex pattern matching extracts whole-word matches separated by word boundaries. Word boundaries include anything that is not a letter, number, or underscore.
 :::
-
-### Parameters
-
-<div className="ww-parameters-table">
-
-| Name | Description | Accepted Values | Default | Required |
-| --- | --- | --- | --- | --- |
-| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `input` | Name or list of input columns. | string, integer, array | — | Yes |
-| `output` | Name or list of output columns | string, array | `null` | No |
-| <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `case_sensitive` | Allows the wrangle to be case sensitive if set to True, default is False. | boolean | `false` | No |
-| `extract_raw` | Extract the raw data from the wrangle | boolean | `false` | No |
-| `use_spellcheck` | Use spellcheck to also find minor mispellings compared to the reference data | boolean | `false` | No |
-| `sort` | Sort the results | string; one of:<ul className="ww-param-enum-values"><li>training_order</li><li>input_order</li><li>longest</li><li>shortest</li><li>alphabetical</li><li>reverse_alphabetical</li><li>ascending</li><li>descending</li></ul> | `"training_order"` | No |
-| <span className="ww-param-group-label">Formatting</span> |  |  |  |  |
-| `use_labels` | Use Labels in the extract output &#123;label: value&#125; | boolean | `false` | No |
-| `first_element` | Get the first element from results | boolean | `false` | No |
-| `include_empty_labels` | Include labels with no found values in the output when using use_labels=True | boolean | `true` | No |
-| `output_format` | Format of the extract output | string; one of:<ul className="ww-param-enum-values"><li>list</li><li>dictionary</li><li>columns</li><li>concatenate</li></ul> | `null` | No |
-| `char` | Character to use when output_format is concatenate | string | `", "` | No |
-| <span className="ww-param-group-label">Details</span> |  |  |  |  |
-| `model_id` | The ID of the wrangle to use | string, array | — | Yes |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
-| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-
-</div>
-
-Required follows the recipe schema. Default records the Python argument default;
-a schema may require an argument even when Python provides a default.
 
 <details className="ww-field-disclosure">
 
@@ -1783,6 +1759,42 @@ _No sample available._
 
 <details className="ww-field-disclosure">
 
+<summary>Parameters</summary>
+
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
+| --- | --- | --- | --- | --- |
+| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
+| `input` | Name or list of input columns. | string, integer, array | — | Yes |
+| `output` | Name or list of output columns | string, array | `null` | No |
+| <span className="ww-param-group-label">Options</span> |  |  |  |  |
+| `case_sensitive` | Allows the wrangle to be case sensitive if set to True, default is False. | boolean | `false` | No |
+| `extract_raw` | Extract the raw data from the wrangle | boolean | `false` | No |
+| `use_spellcheck` | Use spellcheck to also find minor mispellings compared to the reference data | boolean | `false` | No |
+| `sort` | Sort the results | string; one of:<ul className="ww-param-enum-values"><li>training_order</li><li>input_order</li><li>longest</li><li>shortest</li><li>alphabetical</li><li>reverse_alphabetical</li><li>ascending</li><li>descending</li></ul> | `"training_order"` | No |
+| <span className="ww-param-group-label">Formatting</span> |  |  |  |  |
+| `use_labels` | Use Labels in the extract output &#123;label: value&#125; | boolean | `false` | No |
+| `first_element` | Get the first element from results | boolean | `false` | No |
+| `include_empty_labels` | Include labels with no found values in the output when using use_labels=True | boolean | `true` | No |
+| `output_format` | Format of the extract output | string; one of:<ul className="ww-param-enum-values"><li>list</li><li>dictionary</li><li>columns</li><li>concatenate</li></ul> | `null` | No |
+| `char` | Character to use when output_format is concatenate | string | `", "` | No |
+| <span className="ww-param-group-label">Details</span> |  |  |  |  |
+| `model_id` | The ID of the wrangle to use | string, array | — | Yes |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
+
+</div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+</details>
+
+<details className="ww-field-disclosure">
+
 <summary>Access</summary>
 
 | Requirement | Value |
@@ -1825,30 +1837,7 @@ _No sample available._
 
 ## Date Properties <CopyableCode value="extract.date_properties" /> {#date-properties}
 
-Extract date properties from a date (day, month, year, etc...).
-
 Extract date properties from a date, such as day, month, year, weekday, or quarter.
-
-### Parameters
-
-<div className="ww-parameters-table">
-
-| Name | Description | Accepted Values | Default | Required |
-| --- | --- | --- | --- | --- |
-| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `input` | Name of the input column | string, integer, array | — | Yes |
-| `output` | Name of the output columns | string, array | `null` | No |
-| <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `property` | Property to extract from date | string; one of:<ul className="ww-param-enum-values"><li>day</li><li>day_of_year</li><li>month</li><li>month_name</li><li>weekday</li><li>week_day_name</li><li>week_year</li><li>quarter</li></ul> | — | Yes |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
-| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-
-</div>
-
-Required follows the recipe schema. Default records the Python argument default;
-a schema may require an argument even when Python provides a default.
 
 <details className="ww-field-disclosure">
 
@@ -1946,6 +1935,31 @@ wrangles:
 
 <details className="ww-field-disclosure">
 
+<summary>Parameters</summary>
+
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
+| --- | --- | --- | --- | --- |
+| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
+| `input` | Name of the input column | string, integer, array | — | Yes |
+| `output` | Name of the output columns | string, array | `null` | No |
+| <span className="ww-param-group-label">Options</span> |  |  |  |  |
+| `property` | Property to extract from date | string; one of:<ul className="ww-param-enum-values"><li>day</li><li>day_of_year</li><li>month</li><li>month_name</li><li>weekday</li><li>week_day_name</li><li>week_year</li><li>quarter</li></ul> | — | Yes |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
+
+</div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+</details>
+
+<details className="ww-field-disclosure">
+
 <summary>Access</summary>
 
 | Requirement | Value |
@@ -1989,30 +2003,6 @@ wrangles:
 ## Date Range <CopyableCode value="extract.date_range" /> {#date-range}
 
 Extract date range frequency from two dates.
-
-
-
-### Parameters
-
-<div className="ww-parameters-table">
-
-| Name | Description | Accepted Values | Default | Required |
-| --- | --- | --- | --- | --- |
-| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `start_time` | Name of the start date column | string | — | Yes |
-| `end_time` | Name of the end date column | string | — | Yes |
-| `output` | Name of the output column | string | — | Yes |
-| <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `range` | Type of frequency to count | string; one of:<ul className="ww-param-enum-values"><li>business days</li><li>days</li><li>weeks</li><li>months</li><li>semi months</li><li>business month ends</li><li>month starts</li><li>semi month starts</li><li>business month starts</li><li>quarters</li><li>quarter starts</li><li>years</li><li>business hours</li><li>hours</li><li>minutes</li><li>seconds</li><li>milliseconds</li></ul> | `"day"` | Yes |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
-| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-
-</div>
-
-Required follows the recipe schema. Default records the Python argument default;
-a schema may require an argument even when Python provides a default.
 
 <details className="ww-field-disclosure">
 
@@ -2101,19 +2091,47 @@ wrangles:
 
 <div className="ww-sample-panel ww-sample-panel--input" data-sample-role="input">
 
-_No sample available._
+| Start | End |
+| --- | --- |
+| 1992-08-13 00:00:00 | 2023-08-13 00:00:00 |
 
 </div>
 
 <div className="ww-sample-panel ww-sample-panel--output" data-sample-role="output">
 
-| End | Start | Output |
-| --- | --- | --- |
-| 2023-08-13 00:00:00 | 1992-08-13 00:00:00 | 371 |
+| Output |
+| --- |
+| 371 |
 
 </div>
 
 </div>
+
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
+
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
+| --- | --- | --- | --- | --- |
+| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
+| `start_time` | Name of the start date column | string | — | Yes |
+| `end_time` | Name of the end date column | string | — | Yes |
+| `output` | Name of the output column | string | — | Yes |
+| <span className="ww-param-group-label">Options</span> |  |  |  |  |
+| `range` | Type of frequency to count | string; one of:<ul className="ww-param-enum-values"><li>business days</li><li>days</li><li>weeks</li><li>months</li><li>semi months</li><li>business month ends</li><li>month starts</li><li>semi month starts</li><li>business month starts</li><li>quarters</li><li>quarter starts</li><li>years</li><li>business hours</li><li>hours</li><li>minutes</li><li>seconds</li><li>milliseconds</li></ul> | `"day"` | Yes |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
+
+</div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+</details>
 
 <details className="ww-field-disclosure">
 
@@ -2159,33 +2177,7 @@ _No sample available._
 
 ## HTML <CopyableCode value="extract.html" /> {#html}
 
-Extract elements from strings containing html. Requires WrangleWorks Account.
-
 Extract text and links from HTML elements. Requires WrangleWorks Account.
-
-### Parameters
-
-<div className="ww-parameters-table">
-
-| Name | Description | Accepted Values | Default | Required |
-| --- | --- | --- | --- | --- |
-| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `input` | Name or list of input columns. | string, integer, array | — | Yes |
-| `output` | Name or list of output columns | string, array | `null` | Yes |
-| <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `data_type` | The type of data to extract | string; one of:<ul className="ww-param-enum-values"><li>text</li><li>links</li></ul> | — | Yes |
-| <span className="ww-param-group-label">Formatting</span> |  |  |  |  |
-| `output_format` | Format of the extract output | string; one of:<ul className="ww-param-enum-values"><li>list</li><li>columns</li><li>concatenate</li></ul> | `null` | No |
-| `char` | Character to use when output_format is concatenate | string | `", "` | No |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
-| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-
-</div>
-
-Required follows the recipe schema. Default records the Python argument default;
-a schema may require an argument even when Python provides a default.
 
 <details className="ww-field-disclosure">
 
@@ -2322,6 +2314,34 @@ wrangles:
 
 <details className="ww-field-disclosure">
 
+<summary>Parameters</summary>
+
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
+| --- | --- | --- | --- | --- |
+| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
+| `input` | Name or list of input columns. | string, integer, array | — | Yes |
+| `output` | Name or list of output columns | string, array | `null` | Yes |
+| <span className="ww-param-group-label">Options</span> |  |  |  |  |
+| `data_type` | The type of data to extract | string; one of:<ul className="ww-param-enum-values"><li>text</li><li>links</li></ul> | — | Yes |
+| <span className="ww-param-group-label">Formatting</span> |  |  |  |  |
+| `output_format` | Format of the extract output | string; one of:<ul className="ww-param-enum-values"><li>list</li><li>columns</li><li>concatenate</li></ul> | `null` | No |
+| `char` | Character to use when output_format is concatenate | string | `", "` | No |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
+
+</div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+</details>
+
+<details className="ww-field-disclosure">
+
 <summary>Access</summary>
 
 | Requirement | Value |
@@ -2364,35 +2384,7 @@ wrangles:
 
 ## Properties <CopyableCode value="extract.properties" /> {#properties}
 
-Extract text properties from the input. Requires WrangleWorks Account.
-
 Extract categorical properties from unstructured text, such as colours or materials. Requires WrangleWorks Account.
-
-### Parameters
-
-<div className="ww-parameters-table">
-
-| Name | Description | Accepted Values | Default | Required |
-| --- | --- | --- | --- | --- |
-| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `input` | Name of the input column | string, integer, array | — | Yes |
-| `output` | Name of the output columns | string, array | — | Yes |
-| <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `property_type` | The specific type of properties to extract | string; one of:<ul className="ww-param-enum-values"><li>Colours</li><li>Materials</li><li>Shapes</li><li>Standards</li></ul> | `null` | No |
-| <span className="ww-param-group-label">Formatting</span> |  |  |  |  |
-| `return_data_type` | Legacy format option. Prefer output_format. | string; one of:<ul className="ww-param-enum-values"><li>list</li><li>string</li></ul> | `"list"` | No |
-| `first_element` | Get the first element from results | boolean | `false` | No |
-| `output_format` | Format of the extract output | string; one of:<ul className="ww-param-enum-values"><li>list</li><li>dictionary</li><li>columns</li><li>concatenate</li></ul> | `null` | No |
-| `char` | Character to use when output_format is concatenate | string | `", "` | No |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
-| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-
-</div>
-
-Required follows the recipe schema. Default records the Python argument default;
-a schema may require an argument even when Python provides a default.
 
 <details className="ww-field-disclosure">
 
@@ -2540,6 +2532,36 @@ _No sample available._
 
 <details className="ww-field-disclosure">
 
+<summary>Parameters</summary>
+
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
+| --- | --- | --- | --- | --- |
+| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
+| `input` | Name of the input column | string, integer, array | — | Yes |
+| `output` | Name of the output columns | string, array | — | Yes |
+| <span className="ww-param-group-label">Options</span> |  |  |  |  |
+| `property_type` | The specific type of properties to extract | string; one of:<ul className="ww-param-enum-values"><li>Colours</li><li>Materials</li><li>Shapes</li><li>Standards</li></ul> | `null` | No |
+| <span className="ww-param-group-label">Formatting</span> |  |  |  |  |
+| `return_data_type` | Legacy format option. Prefer output_format. | string; one of:<ul className="ww-param-enum-values"><li>list</li><li>string</li></ul> | `"list"` | No |
+| `first_element` | Get the first element from results | boolean | `false` | No |
+| `output_format` | Format of the extract output | string; one of:<ul className="ww-param-enum-values"><li>list</li><li>dictionary</li><li>columns</li><li>concatenate</li></ul> | `null` | No |
+| `char` | Character to use when output_format is concatenate | string | `", "` | No |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
+
+</div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+</details>
+
+<details className="ww-field-disclosure">
+
 <summary>Access</summary>
 
 | Requirement | Value |
@@ -2582,35 +2604,7 @@ _No sample available._
 
 ## Regex <CopyableCode value="extract.regex" /> {#regex}
 
-Extract matches or specific capture groups using regex.
-
 Extract single values, matches, or specific capture groups using regex.
-
-### Parameters
-
-<div className="ww-parameters-table">
-
-| Name | Description | Accepted Values | Default | Required |
-| --- | --- | --- | --- | --- |
-| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `input` | Name of the input column(s). | string, integer, array | — | Yes |
-| `output` | Name of the output column(s). | string, array | — | Yes |
-| <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `find` | Pattern to find using regex | string | — | Yes |
-| <span className="ww-param-group-label">Formatting</span> |  |  |  |  |
-| `output_pattern` | Specifies the format to output matches and specific capture groups using backreferences (e.g., `\1`, `\2`). Default is to return entire matches.<br /><br />**Example**: For a regex pattern `r'(\d+)\s(\w+)'` and `output_pattern = '\2 \1'`, with input `'120 volt'`, the output would be `'volt 120'`.<br /> | string | `null` | No |
-| `first_element` | Get the first element from results | boolean | `false` | No |
-| `output_format` | Format of the extract output | string; one of:<ul className="ww-param-enum-values"><li>list</li><li>columns</li><li>concatenate</li></ul> | `null` | No |
-| `char` | Character to use when output_format is concatenate | string | `", "` | No |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
-| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-
-</div>
-
-Required follows the recipe schema. Default records the Python argument default;
-a schema may require an argument even when Python provides a default.
 
 <details className="ww-field-disclosure">
 
@@ -2713,8 +2707,8 @@ wrangles:
 
 | GPM |
 | --- |
-| 3.4 gpm |
-| 2gpm |
+| ["3.4 gpm"] |
+| ["2gpm"] |
 
 </div>
 
@@ -2748,12 +2742,42 @@ wrangles:
 
 | GPM |
 | --- |
-| 3.4 Gallons Per Minute |
-| 2 Gallons Per Minute |
+| ["3.4 Gallons Per Minute"] |
+| ["2 Gallons Per Minute"] |
 
 </div>
 
 </div>
+
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
+
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
+| --- | --- | --- | --- | --- |
+| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
+| `input` | Name of the input column(s). | string, integer, array | — | Yes |
+| `output` | Name of the output column(s). | string, array | — | Yes |
+| <span className="ww-param-group-label">Options</span> |  |  |  |  |
+| `find` | Pattern to find using regex | string | — | Yes |
+| <span className="ww-param-group-label">Formatting</span> |  |  |  |  |
+| `output_pattern` | Specifies the format to output matches and specific capture groups using backreferences (e.g., `\1`, `\2`). Default is to return entire matches.<br /><br />**Example**: For a regex pattern `r'(\d+)\s(\w+)'` and `output_pattern = '\2 \1'`, with input `'120 volt'`, the output would be `'volt 120'`.<br /> | string | `null` | No |
+| `first_element` | Get the first element from results | boolean | `false` | No |
+| `output_format` | Format of the extract output | string; one of:<ul className="ww-param-enum-values"><li>list</li><li>columns</li><li>concatenate</li></ul> | `null` | No |
+| `char` | Character to use when output_format is concatenate | string | `", "` | No |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
+
+</div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+</details>
 
 <details className="ww-field-disclosure">
 

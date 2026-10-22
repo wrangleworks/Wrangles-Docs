@@ -99,7 +99,9 @@ import wrangles
 wrangles.recipe.run('recipe.wrgl.yml')
 ```
 
-## Parameters
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
 
 ### Read
 
@@ -270,6 +272,8 @@ wrangles.recipe.run('recipe.wrgl.yml')
   ]
 }
 ```
+
+</details>
 
 </details>
 

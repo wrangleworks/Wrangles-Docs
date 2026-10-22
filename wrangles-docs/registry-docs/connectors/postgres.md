@@ -76,7 +76,9 @@ postgres.write(
 )
 ```
 
-## Parameters
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
 
 ### Read
 
@@ -319,6 +321,8 @@ Write data to a PostgreSQL Server
   }
 }
 ```
+
+</details>
 
 </details>
 

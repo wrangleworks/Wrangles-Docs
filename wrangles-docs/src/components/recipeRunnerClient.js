@@ -1,3 +1,5 @@
+import runPolicy from './recipeRunPolicy.cjs';
+
 function previewText(rawText, limit = 240) {
   if (!rawText) {
     return '';
@@ -51,6 +53,8 @@ export async function readJsonResponse(response) {
 }
 
 export async function runRecipeRequest({runnerUrl, recipe, input, outputColumns}) {
+  const disabledReason = runPolicy.getRunDisabledReason(recipe);
+  if (disabledReason) throw new Error(disabledReason);
   const requestId = createRequestId();
   const requestBody = {
     recipe,

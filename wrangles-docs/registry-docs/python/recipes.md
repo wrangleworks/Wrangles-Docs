@@ -38,7 +38,7 @@ wrangles.recipe.run(recipe = 'my_recipe.wrgl.yml', variables = my_variables, dat
 | recipe | ✓ | str | YAML recipe, **filepath** to a YAML file containing the recipe, **url** to a YAML file containing the recipe or a **model id** to the recipe. | 
 | variables | | dict | (Optional) A dictionary of custom variables to override placeholders in the recipe. Variables can be indicated as $\{MY_VARIABLE\}. Variables can also be overwritten by Environment Variables. |
 | dataframe | | Pandas Dataframe | (Optional) Pass in a pandas dataframe, instead of defining a read section within the YAML |
-| functions | | list, dict | (Optional) A function or list of functions that can be called as part of the recipe. Functions can be referenced as custom.function_name |
+| functions | | callable, list, dict, str | (Optional) A function, list or dictionary of functions, or a Python file path. Functions can be referenced as custom.function_name. |
 | timeout | | str | (Optional) Set a timeout for the recipe in seconds. If not provided, the time is unlimited. |
 </div>
 

@@ -14,31 +14,6 @@ import CopyableCode from '@site/src/components/CopyableCode';
 
 Convert an object to a YAML representation.
 
-
-
-## Parameters
-
-<div className="ww-parameters-table">
-
-| Name | Description | Accepted Values | Default | Required |
-| --- | --- | --- | --- | --- |
-| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `input` | Name of the input column. | string, integer, array | — | Yes |
-| `output` | Name of the output column. If omitted, the input column will be overwritten | string, array | `null` | No |
-| <span className="ww-param-group-label">Formatting</span> |  |  |  |  |
-| `sort_keys` | If sort_keys is true (default: False), then the output of dictionaries will be sorted by key. | boolean | `false` | No |
-| `allow_unicode` | Allow Unicode value accepted by the runtime. | Any JSON value (not constrained upstream) | `true` | No |
-| `indent` | Specify the number of spaces for indentation to  specify nested elements | integer | — | No |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
-| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-
-</div>
-
-Required follows the recipe schema. Default records the Python argument default;
-a schema may require an argument even when Python provides a default.
-
 <details className="ww-field-disclosure">
 
 <summary>Complete configuration schema</summary>
@@ -108,30 +83,50 @@ wrangles:
 
 <div className="ww-sample-panel ww-sample-panel--input" data-sample-role="input">
 
-```python
-{
-  'Product Specs': {
-    'length': '6 inch',
-    'voltage': '24V',
-    'weight': '3lb'
-  }
-}
-```
+| column 1 |
+| --- |
+| `{'Product Specs': {'length': '6 inch', 'voltage': '24V', 'weight': '3lb'}}` |
 
 </div>
 
 <div className="ww-sample-panel ww-sample-panel--output" data-sample-role="output">
 
-```yaml
-Product Specs:
-  length: 6 inch
-  voltage: 24V
-  weight: 3lb
-```
+| column 1 |
+| --- |
+| `"Product Specs:\n  length: 6 inch\n  voltage: 24V\n  weight: 3lb\n"` |
+
+The table shows the YAML string with escaped newlines (`\n`); the returned string contains actual line breaks.
 
 </div>
 
 </div>
+
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
+
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
+| --- | --- | --- | --- | --- |
+| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
+| `input` | Name of the input column. | string, integer, array | — | Yes |
+| `output` | Name of the output column. If omitted, the input column will be overwritten | string, array | `null` | No |
+| <span className="ww-param-group-label">Formatting</span> |  |  |  |  |
+| `sort_keys` | If sort_keys is true (default: False), then the output of dictionaries will be sorted by key. | boolean | `false` | No |
+| `allow_unicode` | Allow Unicode value accepted by the runtime. | Any JSON value (not constrained upstream) | `true` | No |
+| `indent` | Specify the number of spaces for indentation to  specify nested elements | integer | — | No |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
+
+</div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+</details>
 
 <details className="ww-field-disclosure">
 

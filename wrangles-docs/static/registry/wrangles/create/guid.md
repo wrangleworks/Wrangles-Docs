@@ -79,16 +79,13 @@ Create a column with a GUID (Globally Unique Identifier).
 ## Migrated examples
 #### Creating a New GUID Column
 
+A new random UUID is generated for each input row. The values below are illustrative and change on every run.
+
 ##### Recipe
 
 ```yaml
 wrangles:
   - create.guid:
-      output: GUID Column
-
-  # OR
-
-  - create.uuid:
       output: GUID Column
 ```
 
@@ -98,7 +95,10 @@ wrangles:
 
 ##### Input Sample
 
-_No sample available._
+| Product |
+| --- |
+| Hammer |
+| Drill |
 
 </div>
 

@@ -12,7 +12,7 @@ const snapshot = require('../../registry/runtime/wranglespy-source-schema.json')
 const runtime = require('../../registry/runtime/wranglespy.json');
 const schema = require('../static/schemas/recipes/registry/schema.json');
 const walk = dir => fs.readdirSync(dir, {withFileTypes: true}).flatMap(item => item.isDirectory() ? walk(path.join(dir, item.name)) : [path.join(dir, item.name)]);
-const entries = walk(path.join(root, 'registry/wrangles')).filter(file => file.endsWith('.md')).map(file => ({...parseRegistryMarkdown(fs.readFileSync(file, 'utf8')), sourceFile: file}));
+const entries = walk(path.join(root, 'registry/input_wrangles')).filter(file => file.endsWith('.md')).map(file => ({...parseRegistryMarkdown(fs.readFileSync(file, 'utf8')), sourceFile: file}));
 const validate = new Ajv({strict: false, validateFormats: false, allErrors: true}).compile(schema);
 
 test('generated AI schemas retain nested question and conditional output rules', () => {

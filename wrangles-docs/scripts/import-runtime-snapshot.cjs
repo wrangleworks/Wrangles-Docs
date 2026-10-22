@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 // Generate the runtime inventory from the saved static source snapshot, without
-// importing WranglesPY or accessing API-Core. Editorial Markdown is not changed.
+// importing WranglesPY or accessing API-Core. Existing editorial prose is preserved.
 const fs = require('node:fs');
 const path = require('node:path');
-const {parseRegistryMarkdown, serializeRegistryMarkdown} = require('./registry-markdown.cjs');
+const {parseRegistryMarkdown, serializeRegistryMarkdown, seedMissingIntroduction} = require('./registry-markdown.cjs');
 const {configurationSchema, parameterProperties, schemaRequired} = require('./wrangle-schema.cjs');
 const root = path.resolve(__dirname, '../..');
 if (process.argv.includes('--check') && process.argv.includes('--sync-registry')) throw new Error('--check cannot be combined with --sync-registry');
@@ -58,7 +58,7 @@ if (process.argv.includes('--sync-registry')) {
     const name = parts.at(-1);
     const namespace = parts.length === 2 ? parts[0] : null;
     const slug = parts.map(part => part.replaceAll('_', '-')).join('/');
-    const filename = path.join(root, 'registry/wrangles', namespace || '_root', name.replaceAll('_', '-') + '.md');
+    const filename = path.join(root, 'registry/input_wrangles', namespace || '_root', name.replaceAll('_', '-') + '.md');
     if (!fs.existsSync(filename)) {
       const schema = configurationSchema(runtime, snapshot).schema;
       const title = typeof schema.title === 'string' ? schema.title : name.replaceAll('_', ' ').replace(/\b\w/g, c => c.toUpperCase());
@@ -75,7 +75,7 @@ if (process.argv.includes('--sync-registry')) {
       fs.writeFileSync(filename, serializeRegistryMarkdown(metadata, `# ${title}\n\n${description}\n\nUsage guidance and examples have not yet been reviewed.\n`));
     }
   }
-  for (const filename of walk(path.join(root, 'registry/wrangles')).filter(name => name.endsWith('.md'))) {
+  for (const filename of walk(path.join(root, 'registry/input_wrangles')).filter(name => name.endsWith('.md'))) {
     const original = fs.readFileSync(filename, 'utf8');
     const {metadata, body} = parseRegistryMarkdown(original, filename);
     if (only && metadata.wrangle_key !== only) continue;
@@ -117,7 +117,7 @@ if (process.argv.includes('--sync-registry')) {
     metadata.runtime.symbol = runtime.python_symbol;
     metadata.capabilities = {...metadata.capabilities, ...runtime.capabilities};
     // Editorial body, descriptions, titles and historical provenance are preserved.
-    const updated = serializeRegistryMarkdown(metadata, body);
+    const updated = serializeRegistryMarkdown(metadata, seedMissingIntroduction(metadata, body, schema.description));
     if (JSON.stringify(parseRegistryMarkdown(original)) !== JSON.stringify(parseRegistryMarkdown(updated))) {
       fs.writeFileSync(filename, updated);
       changed++;

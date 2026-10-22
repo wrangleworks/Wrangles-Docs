@@ -23,7 +23,7 @@ const RECIPE_WRITER_KEYS_CHECKSUM_FRAMING = 'utf8-newline-separated-sorted-v1';
 const siteRoot = path.resolve(__dirname, '..');
 const repositoryRoot = path.resolve(siteRoot, '..');
 const registryRoot = path.join(repositoryRoot, 'registry');
-const entriesRoot = path.join(registryRoot, 'wrangles');
+const entriesRoot = path.join(registryRoot, 'input_wrangles');
 const entrySchemaPath = path.join(registryRoot, 'schema', 'wrangle-entry.schema.json');
 const catalogSnapshotSchemaPath = path.join(
   registryRoot,
@@ -839,7 +839,9 @@ function sampleValue(value) {
   if (value === null || value === undefined) return '';
   if (typeof value === 'object') return escapeCell(JSON.stringify(value));
   if (typeof value === 'string' && /^[\[{]/.test(value.trim())) {
-    return escapeCell(JSON.stringify(value));
+    // Preserve JSON string escapes through Markdown so the runner decodes once
+    // to a string, rather than receiving invalid JSON or a pre-parsed object.
+    return escapeCell(JSON.stringify(value).replace(/\\/g, '\\\\'));
   }
   return escapeCell(String(value));
 }
@@ -1020,13 +1022,8 @@ ${renderFixturePanel('output', example._output_fixture, outputTable)}
 </div>`;
 }
 
-function normalizePublicBody(body, description, grouped = false) {
+function normalizePublicBody(body, grouped = false) {
   let content = rewriteSampleGrids(stripLeadingTitle(body));
-  const blocks = content.split(/\r?\n\r?\n/);
-  const normalizeText = (value) => value.replace(/\s+/g, ' ').trim();
-  if (blocks.length && normalizeText(blocks[0]) === normalizeText(description)) {
-    content = blocks.slice(1).join('\n\n').trim();
-  }
 
   let inMigratedExamples = false;
   return content.split(/\r?\n/).map((line) => {
@@ -1164,7 +1161,7 @@ function renderEntryContent(entry, controls, {grouped = false, entriesByKey = ne
     `| ${accessLabels[key] || escapeCell(key.replaceAll('_', ' '))} | ${value === null ? 'Not reviewed' : value ? 'Yes' : 'No'} |`,
   ).join('\n');
 
-  const normalizedBody = normalizePublicBody(entry.body, metadata.description, grouped);
+  const normalizedBody = normalizePublicBody(entry.body, grouped);
   const {guidance, examples: migratedExamples} = splitExamplesSection(
     normalizedBody,
     sectionHeading,
@@ -1193,22 +1190,7 @@ This wrangle is retained only to document historical recipes.${replacementLink ?
 ` : '';
   const entryHeading = grouped ?
     `## ${displayTitle} <CopyableCode value="${metadata.wrangle_key}" /> {#${entryAnchor(entry)}}\n\n` : '';
-  return `${entryHeading}${lifecycleNotice}${escapeMdxText(metadata.description)}
-
-${guidance}
-
-${sectionHeading} Parameters
-
-<div className="ww-parameters-table">
-
-| Name | Description | Accepted Values | Default | Required |
-| --- | --- | --- | --- | --- |
-${parameterRows.map((row) => `| ${row.join(' | ')} |`).join('\n')}
-
-</div>
-
-Required follows the recipe schema. Default records the Python argument default;
-a schema may require an argument even when Python provides a default.
+  return `${entryHeading}${lifecycleNotice}${guidance}
 
 <details className="ww-field-disclosure">
 
@@ -1227,6 +1209,23 @@ ${JSON.stringify(metadata.configuration_schema, null, 2)}
 </details>
 
 ${examplesSection}
+
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
+
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
+| --- | --- | --- | --- | --- |
+${parameterRows.map((row) => `| ${row.join(' | ')} |`).join('\n')}
+
+</div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+</details>
 
 <details className="ww-field-disclosure">
 
@@ -1338,10 +1337,16 @@ ${description}
 ${sections}`;
 }
 
-function renderRegistrySidebar(groups) {
+// Input folder names must not change published raw-Markdown URLs.
+function publicMarkdownPath(entry) {
+  return 'wrangles/' + posixPath(path.relative(entriesRoot, entry.sourceFile));
+}
+
+function renderRegistrySidebar(groups, connectors) {
   const pythonCategory = `    {
       type: 'category',
       label: 'Python',
+      className: 'registry-sidebar-intro',
       collapsed: true,
       items: [
         {type: 'doc', id: 'python/index', label: 'Python'},
@@ -1356,22 +1361,32 @@ function renderRegistrySidebar(groups) {
         {type: 'doc', id: 'python/functions', label: 'Python Functions'},
       ],
     },`;
-  const items = groups.map(({group}) => {
-    const namespace =
-      `    {type: 'doc', id: 'namespaces/${group}', label: '${groupLabel(group)}'},`;
-    return group === 'convert' ? `${pythonCategory}\n${namespace}` : namespace;
-  }).join('\n');
+  const items = [...groups].sort((a, b) => groupLabel(a.group).localeCompare(groupLabel(b.group))).map(({group}) =>
+    `        {type: 'doc', id: 'namespaces/${group}', label: '${groupLabel(group)}'},`,
+  ).join('\n');
   return `/** @type {import('@docusaurus/plugin-content-docs').SidebarsConfig} */
 const sidebarsRegistry = {
   registrySidebar: [
-    {type: 'doc', id: 'index', label: 'Registry'},
+    {type: 'doc', id: 'index', label: 'Registry', className: 'registry-sidebar-intro'},
+${pythonCategory}
+    {
+      type: 'category',
+      label: 'Wrangles',
+      className: 'registry-sidebar-section',
+      collapsible: true,
+      collapsed: false,
+      items: [
 ${items}
+      ],
+    },
     {
       type: 'category',
       label: 'Connectors',
+      className: 'registry-sidebar-section',
       link: {type: 'doc', id: 'namespaces/connectors'},
-      collapsed: true,
-      items: [{type: 'autogenerated', dirName: 'connectors'}],
+      collapsible: true,
+      collapsed: false,
+      items: ${JSON.stringify([...connectors].sort((a, b) => a.runtime_key.localeCompare(b.runtime_key)).map(entry => ({type: 'doc', id: `connectors/${entry.runtime_key}`, label: entry.runtime_key})))},
     },
   ],
 };
@@ -1410,7 +1425,7 @@ ${connectors.map(entry => `- [\`${entry.runtime_key}\`](/py/connectors/${entry.r
 
 function renderRawIndex(entries, connectors = []) {
   const rows = entries.map((entry) => {
-    const rawRelative = posixPath(path.relative(registryRoot, entry.sourceFile));
+    const rawRelative = publicMarkdownPath(entry);
     return `- [\`${entry.metadata.wrangle_key}\`](${rawRelative}): ${entry.metadata.description}`;
   }).join('\n');
   return `---
@@ -2335,7 +2350,7 @@ function buildOutputs(
   const bundleMembers = [];
 
   addGeneratedFile(path.join(docsOutputRoot, 'index.md'), renderDocsIndex(groups, connectors));
-  addGeneratedFile(registrySidebarPath, renderRegistrySidebar(groups));
+  addGeneratedFile(registrySidebarPath, renderRegistrySidebar(groups, connectors));
   for (const group of groups) {
     addGeneratedFile(
       path.join(docsOutputRoot, 'namespaces', `${group.group}.md`),
@@ -2347,7 +2362,7 @@ function buildOutputs(
       path.join(docsOutputRoot, entryOutputRelativePath(entry)),
       renderEntryPage(entry, controls, entriesByKey),
     );
-    const rawRelative = path.relative(registryRoot, entry.sourceFile);
+    const rawRelative = publicMarkdownPath(entry);
     addGeneratedFile(path.join(rawOutputRoot, rawRelative), entry.source);
     const contractRelative = entryContractRelativePath(entry);
     addBundleArtifact(
@@ -2459,7 +2474,7 @@ function buildOutputs(
       path.join(rawOutputRoot, 'connectors', `${connector.runtime_key}.json`), JSON.stringify(compiledConnector(connector), null, 2));
     addBundleArtifact(bundleMembers, `/registry/connectors/${connector.runtime_key}.md`,
       path.join(rawOutputRoot, 'connectors', `${connector.runtime_key}.md`),
-      require('node:fs').readFileSync(path.join(registryRoot, 'connectors', `${connector.runtime_key}.md`), 'utf8'));
+      require('node:fs').readFileSync(path.join(registryRoot, 'input_connectors', `${connector.runtime_key}.md`), 'utf8'));
     connectorRedirect(connector.runtime_key.replaceAll('.', '/'), `/py/${connector.slug}`);
   }
   function connectorRedirect(suffix, destination) {
@@ -2540,7 +2555,7 @@ function buildOutputs(
       tags: entry.metadata.tags,
       route: entryRoute(entry),
       contract_json: `/registry/${posixPath(entryContractRelativePath(entry))}`,
-      raw_markdown: `/registry/${posixPath(path.relative(registryRoot, entry.sourceFile))}`,
+      raw_markdown: `/registry/${publicMarkdownPath(entry)}`,
       runtime_symbol: entry.metadata.runtime.symbol,
       runtime_contract_status: entry.metadata.runtime.contract_status,
       example_count: entry.metadata.examples.length,
@@ -2691,4 +2706,4 @@ if (require.main === module) {
   });
 }
 
-module.exports = {validateColumnSemantics, compareEmbeddedSchema};
+module.exports = {validateColumnSemantics, compareEmbeddedSchema, sampleValue, normalizePublicBody};

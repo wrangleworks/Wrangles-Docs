@@ -13,7 +13,9 @@ import CopyableCode from '@site/src/components/CopyableCode';
 
 Download files from an SFTP host and save to the local file system.
 
-## Parameters
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
 
 ### Run
 
@@ -82,6 +84,8 @@ Download files from an SFTP host and save to the local file system.
   }
 }
 ```
+
+</details>
 
 </details>
 

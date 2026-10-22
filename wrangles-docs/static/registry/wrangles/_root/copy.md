@@ -127,8 +127,8 @@ wrangles:
 
 | Product Data | Product Data (copy) |
 | --- | --- |
-| SKF ball bearing | SKF ball bearing |
-| bearing seal | bearing seal |
+| SKF ball brg | SKF ball brg |
+| brg seal | brg seal |
 
 </div>
 
@@ -167,8 +167,8 @@ wrangles:
 
 | Product Data | Product Data (copy) |
 | --- | --- |
-| SKF ball bearing | SKF ball bearing |
-| bearing seal | bearing seal |
+| SKF ball brg | SKF ball brg |
+| brg seal | brg seal |
 
 </div>
 

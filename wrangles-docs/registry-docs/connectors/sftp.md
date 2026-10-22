@@ -76,7 +76,9 @@ sftp.write(
 
 > The SFTP connector also supports the same optional parameters as the file connector. See the [file connector](/py/connectors/file) for more details.
 
-## Parameters
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
 
 ### Read
 
@@ -263,6 +265,8 @@ Export a file to an SFTP server
   }
 }
 ```
+
+</details>
 
 </details>
 

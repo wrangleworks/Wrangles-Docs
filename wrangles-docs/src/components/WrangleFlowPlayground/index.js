@@ -4,6 +4,7 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import clsx from 'clsx';
 import yaml from 'js-yaml';
 import {runRecipeRequest} from '../recipeRunnerClient';
+import runPolicy from '../recipeRunPolicy.cjs';
 import REGISTRY_CATALOG, {WRANGLE_MAP} from './registryCatalog';
 import styles from './styles.module.css';
 
@@ -151,6 +152,7 @@ function consumePlaygroundTransfer() {
     return {
       blocks,
       table,
+      disabledReason: runPolicy.getRunDisabledReason(payload.recipe),
     };
   } catch (error) {
     console.error('[wrangle-flow-playground] Could not load transferred recipe example:', error);
@@ -798,6 +800,7 @@ export default function WrangleFlowPlayground() {
   const [error, setError] = useState('');
   const [notice, setNotice] = useState('');
   const [isRunning, setIsRunning] = useState(false);
+  const [transferDisabledReason, setTransferDisabledReason] = useState('');
 
   useEffect(() => {
     const transfer = consumePlaygroundTransfer();
@@ -806,6 +809,7 @@ export default function WrangleFlowPlayground() {
     }
 
     setTable(transfer.table);
+    setTransferDisabledReason(transfer.disabledReason);
     setBlocks(sanitizeInputValues(transfer.blocks, transfer.table.columns));
     setActiveBlockId(transfer.blocks[0]?.id ?? null);
     setNotice('Loaded the recipe example into the playground.');
@@ -828,6 +832,7 @@ export default function WrangleFlowPlayground() {
   }, [activeBlock, blocks, table.columns]);
 
   const recipeYaml = useMemo(() => buildRecipeYaml(blocks), [blocks]);
+  const runDisabledReason = transferDisabledReason || runPolicy.getRunDisabledReason(recipeYaml);
 
   function setCellValue(rowIndex, columnIndex, nextValue) {
     setTable((previousTable) => ({
@@ -952,6 +957,7 @@ export default function WrangleFlowPlayground() {
   }
 
   function resetBoard() {
+    setTransferDisabledReason('');
     setBlocks([]);
     setActiveBlockId(null);
     setTable(createInitialTable());
@@ -974,6 +980,10 @@ export default function WrangleFlowPlayground() {
   }
 
   async function runBoard() {
+    if (runDisabledReason) {
+      setError(runDisabledReason);
+      return;
+    }
     setError('');
     setNotice('');
 
@@ -1030,13 +1040,14 @@ export default function WrangleFlowPlayground() {
             type="button"
             className={styles.runButton}
             onClick={runBoard}
-            disabled={isRunning}
+            disabled={isRunning || Boolean(runDisabledReason)}
             aria-label={isRunning ? 'Recipe is running' : 'Run recipe'}
-            title={isRunning ? 'Recipe is running' : 'Run recipe'}>
+            title={runDisabledReason || (isRunning ? 'Recipe is running' : 'Run recipe')}>
             <PlayIcon />
           </button>
         </div>
       </header>
+      {runDisabledReason && <p role="status">{runDisabledReason}{transferDisabledReason ? ' Reset the board to start a different recipe.' : ''}</p>}
 
       <div className={styles.workspace}>
         <aside className={styles.leftPane}>

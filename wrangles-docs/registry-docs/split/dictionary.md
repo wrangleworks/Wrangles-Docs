@@ -12,32 +12,7 @@ import CopyableCode from '@site/src/components/CopyableCode';
 
 # Dictionary <CopyableCode value="split.dictionary" />
 
-Split one or more dictionaries into columns. The dictionary keys will be returned as the new column headers. If the dictionaries contain overlapping values, the last value will be returned.
-
 Split a dictionary into columns. The dictionary keys are used as the new column headers.
-
-## Parameters
-
-<div className="ww-parameters-table">
-
-| Name | Description | Accepted Values | Default | Required |
-| --- | --- | --- | --- | --- |
-| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `input` | Name or list of columns containing dictionaries or JSON object strings to split.<br />For overlapping keys, later input columns take precedence<br />before defaults are applied. | string, integer, array | — | Yes |
-| `output` | In columns output_format, this is an optional subset of keys to extract<br />from the dictionary. If not provided, all keys will be returned.<br />Columns can be renamed with the following syntax:<br />output:<br />  - key1: new_column_name1<br />  - key2: new_column_name2<br />In to_lists output_format, this must be two output columns for the keys<br />and values lists. If not provided, Keys and Values will be used. | string, array | `null` | No |
-| <span className="ww-param-group-label">Formatting</span> |  |  |  |  |
-| `output_format` | How to split the dictionary.<br />columns creates one output column for each dictionary key.<br />In recipes, remaining null cells are normalized to empty strings.<br />to_lists creates two output columns containing lists of keys and values.<br />Remaining null values inside these lists are preserved. | string; one of:<ul className="ww-param-enum-values"><li>columns</li><li>to_lists</li></ul> | `"columns"` | No |
-| <span className="ww-param-group-label">Errors</span> |  |  |  |  |
-| `default` | Provide defaults for missing top-level keys or keys with null values after merging the input dictionaries. Keys use their original names before output renaming. Non-null values, including 0, false, empty strings, lists, and dictionaries, are preserved. Nested values are not filled recursively. When default is supplied (including &#123;&#125;), invalid or non-dictionary input cells are treated as empty dictionaries, so valid values from other input columns are retained. Without default, invalid input raises an error. | object | `null` | No |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
-| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-
-</div>
-
-Required follows the recipe schema. Default records the Python argument default;
-a schema may require an argument even when Python provides a default.
 
 <details className="ww-field-disclosure">
 
@@ -286,6 +261,33 @@ wrangles:
 </div>
 
 </div>
+
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
+
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
+| --- | --- | --- | --- | --- |
+| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
+| `input` | Name or list of columns containing dictionaries or JSON object strings to split.<br />For overlapping keys, later input columns take precedence<br />before defaults are applied. | string, integer, array | — | Yes |
+| `output` | In columns output_format, this is an optional subset of keys to extract<br />from the dictionary. If not provided, all keys will be returned.<br />Columns can be renamed with the following syntax:<br />output:<br />  - key1: new_column_name1<br />  - key2: new_column_name2<br />In to_lists output_format, this must be two output columns for the keys<br />and values lists. If not provided, Keys and Values will be used. | string, array | `null` | No |
+| <span className="ww-param-group-label">Formatting</span> |  |  |  |  |
+| `output_format` | How to split the dictionary.<br />columns creates one output column for each dictionary key.<br />In recipes, remaining null cells are normalized to empty strings.<br />to_lists creates two output columns containing lists of keys and values.<br />Remaining null values inside these lists are preserved. | string; one of:<ul className="ww-param-enum-values"><li>columns</li><li>to_lists</li></ul> | `"columns"` | No |
+| <span className="ww-param-group-label">Errors</span> |  |  |  |  |
+| `default` | Provide defaults for missing top-level keys or keys with null values after merging the input dictionaries. Keys use their original names before output renaming. Non-null values, including 0, false, empty strings, lists, and dictionaries, are preserved. Nested values are not filled recursively. When default is supplied (including &#123;&#125;), invalid or non-dictionary input cells are treated as empty dictionaries, so valid values from other input columns are retained. Without default, invalid input raises an error. | object | `null` | No |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
+
+</div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+</details>
 
 <details className="ww-field-disclosure">
 

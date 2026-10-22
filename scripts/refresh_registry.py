@@ -98,7 +98,7 @@ def source_file(key):
     if not re.fullmatch(r'[a-z][a-z0-9_]*(\.[a-z][a-z0-9_]*)?', key):
         raise ValueError(f'Unsupported key/path: {key}')
     parts = key.split('.')
-    return Path('registry/wrangles') / (parts[0] if len(parts) == 2 else '_root') / (parts[-1].replace('_', '-') + '.md')
+    return Path('registry/input_wrangles') / (parts[0] if len(parts) == 2 else '_root') / (parts[-1].replace('_', '-') + '.md')
 
 
 def documentation_lookup(root, key):
@@ -182,7 +182,7 @@ def refresh(root, checkout, report_dir, skip_build=False):
                     report['rejected'].append({'key': key, 'action': 'skipped_new', 'error': str(error)})
                     continue
                 old_text = filename.read_text() if filename.exists() else None
-                alias_file = stage / 'registry/wrangles/_root/maths.md'
+                alias_file = stage / 'registry/input_wrangles/_root/maths.md'
                 alias_text = alias_file.read_text() if key == 'math' and alias_file.exists() else None
                 same_controls = all((key in candidate['controls'].get(control, [])) == (key in accepted['controls'].get(control, [])) for control in set(candidate['controls']) | set(accepted['controls']))
                 if (old_text is not None and definition == accepted['wrangle_definitions'].get(key)
@@ -244,7 +244,7 @@ def refresh(root, checkout, report_dir, skip_build=False):
                                               'error': 'Connector addition/removal needs catalog reconciliation; no database identity invented.'})
                     continue
                 previous = copy.deepcopy(accepted)
-                filename = stage / 'registry/connectors' / (key + '.md')
+                filename = stage / 'registry/input_connectors' / (key + '.md')
                 old_text = filename.read_text()
                 accepted['connectors'][key] = candidate['connectors'][key]
                 accepted['connector_sources'][key] = candidate['source']

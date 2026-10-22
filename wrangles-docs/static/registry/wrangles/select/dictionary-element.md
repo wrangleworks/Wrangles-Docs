@@ -164,7 +164,7 @@ wrangles:
       output: Shapes
       element: shapes
       default: square
-      where: Part Number = 1234
+      where: '"Part Number" = 1234'
 ```
 
 <div className="ww-sample-grid">
@@ -239,7 +239,7 @@ wrangles:
 ```yaml
 wrangles:
   - select.dictionary_element:
-      input: Properties
+      input: Column
       output: Output Dict
       element:
         - Col*
@@ -263,7 +263,7 @@ wrangles:
 
 | Column | Output Dict |
 | --- | --- |
-| \{'Col1': 'A', 'Col2': 'B', 'Col3': 'C'\} | \{'Col1': 'A', 'Col2': 'B'\} |
+| \{'Col1': 'A', 'Col2': 'B', 'Other3': 'C'\} | \{'Col1': 'A', 'Col2': 'B'\} |
 
 </div>
 
@@ -276,7 +276,7 @@ wrangles:
 ```yaml
 wrangles:
   - select.dictionary_element:
-      input: Properties
+      input: Column
       output: Output Dict
       element:
         - "regex: .*2"
@@ -313,7 +313,7 @@ wrangles:
 ```yaml
 wrangles:
   - select.dictionary_element:
-      input: Properties
+      input: Column
       output: Output Dict
       element:
         - Col1: Column 1
@@ -351,7 +351,7 @@ wrangles:
 ```yaml
 wrangles:
   - select.dictionary_element:
-      input: Properties
+      input: Column
       output: Output Dict
       element:
         - Col1

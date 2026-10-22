@@ -143,12 +143,9 @@ wrangles:
 
 ##### Input Sample
 
-```yaml
-Product Specs:
-  length: 6 inch
-  voltage: 24V
-  weight: 3lb
-```
+| column 1 |
+| --- |
+| `Product Specs: {length: 6 inch, voltage: 24V, weight: 3lb}` |
 
 </div>
 
@@ -156,15 +153,9 @@ Product Specs:
 
 ##### Output Sample
 
-```python
-{
-  'Product Specs': {
-    'length': '6 inch',
-    'voltage': '24V',
-    'weight': '3lb'
-  }
-}
-```
+| column 1 |
+| --- |
+| `{'Product Specs': {'length': '6 inch', 'voltage': '24V', 'weight': '3lb'}}` |
 
 </div>
 

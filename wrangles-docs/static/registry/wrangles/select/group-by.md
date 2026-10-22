@@ -389,6 +389,13 @@ wrangles:
 
 #### Grouping With Custom Function Aggregation
 
+The interactive runner loads `sum_times_two` from `customFunctions.py`:
+
+```python
+def sum_times_two(values):
+    return sum(values) * 2
+```
+
 ##### Recipe
 
 ```yaml
@@ -420,7 +427,7 @@ wrangles:
 | Category | Quantity.sum_times_two |
 | --- | --- |
 | Hand Tools | 12 |
-| Power Tools | 4 |
+| Power Tools | 8 |
 
 </div>
 

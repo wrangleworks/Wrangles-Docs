@@ -288,8 +288,8 @@ Compare two strings and return the intersection or difference, or use overlap to
 wrangles:
   - compare.text:
       input:
-        - col1
-        - col2
+        - Col1
+        - Col2
       output: Difference
       method: difference
 ```
@@ -330,8 +330,8 @@ wrangles:
 wrangles:
   - compare.text:
       input:
-        - col1
-        - col2
+        - Col1
+        - Col2
       output: Intersection
       method: intersection
 ```
@@ -366,6 +366,8 @@ wrangles:
 
 #### Comparing the overlap of two columns of text
 
+Overlap aligns matching character sequences rather than comparing only the same character positions. For example, the `K` in `SKF6202` also matches the `K` in `TMKN6202`.
+
 ##### Recipe
 
 ```yaml
@@ -398,9 +400,9 @@ wrangles:
 
 | Overlap |
 | --- |
-| ****6202 |
+| `**K*6202` |
 | X06-**-000 |
-| 7100E15-V-\**0/\* |
+| `7100E15-V-*2*0/*` |
 
 </div>
 

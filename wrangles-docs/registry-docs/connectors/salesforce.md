@@ -71,7 +71,9 @@ salesforce.write(
 )
 ```
 
-## Parameters
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
 
 ### Read
 
@@ -251,6 +253,8 @@ Write data to Salesforce
   }
 }
 ```
+
+</details>
 
 </details>
 

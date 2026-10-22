@@ -16,7 +16,7 @@ function readConnector(filename) {
 function loadConnectors(root, catalog, snapshot) {
   const validate = new Ajv({strict: false}).compile(JSON.parse(fs.readFileSync(
     path.join(root, 'registry/schema/connector-entry.schema.json'))));
-  const directory = path.join(root, 'registry/connectors');
+  const directory = path.join(root, 'registry/input_connectors');
   const files = fs.readdirSync(directory);
   if (files.some(name => name.endsWith('.json'))) throw new Error('Connector authoring records must be Markdown, not JSON.');
   const records = files.filter(name => name.endsWith('.md')).sort().map(name => {
@@ -103,7 +103,7 @@ function renderConnector(record, snapshot, slug = record.slug) {
   result += "import CopyableCode from '@site/src/components/CopyableCode';\n\n";
   result += `# ${text(record.title)} <CopyableCode value=${JSON.stringify(record.runtime_key)} />\n\n`;
   result += record.guidance.replace(/^# [^\n]+\n*/, '') + '\n\n';
-  result += '## Parameters\n\n';
+  result += '<details className="ww-field-disclosure">\n\n<summary>Parameters</summary>\n\n';
   for (const [op, original] of Object.entries(record.operations)) {
     const schema = operationSchema(original, op);
     const target = schema.properties ? schema : schema.anyOf?.at(-1) || schema;
@@ -123,6 +123,7 @@ function renderConnector(record, snapshot, slug = record.slug) {
     result += '\n<details>\n<summary>Full operation schema (including nested constraints)</summary>\n\n```json\n';
     result += JSON.stringify(schema, null, 2) + '\n```\n\n</details>\n\n';
   }
+  result += '</details>\n\n';
   result += `[Machine-readable contract](/registry/connectors/${record.runtime_key}.json) · `;
   result += `[WranglesPY source commit](https://github.com/wrangleworks/WranglesPY/tree/${record.source.revision})\n`;
   return result;

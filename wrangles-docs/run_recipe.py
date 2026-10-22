@@ -1,4 +1,5 @@
 import ast
+import contextlib
 import json
 import os
 import sys
@@ -93,7 +94,14 @@ def main() -> int:
         recipe_path = handle.name
 
     try:
-        result = wrangles.recipe.run(recipe=recipe_path, dataframe=dataframe)
+        # Upstream/custom print output is not the response protocol and may
+        # contain environment values. Discard it; never forward it to logs.
+        with open(os.devnull, 'w') as sink, contextlib.redirect_stdout(sink):
+            result = wrangles.recipe.run(
+                recipe=recipe_path,
+                dataframe=dataframe,
+                functions=str(site_dir / "customFunctions.py"),
+            )
         if not hasattr(result, "columns"):
             result = pd.DataFrame(result)
 

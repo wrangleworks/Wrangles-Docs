@@ -184,7 +184,7 @@
     }
   ],
   "examples": [],
-  "guidance": "Convert an object to a YAML representation.\n\n## Migrated examples\n#### Convert a Dictionary to YAML\n\n##### Recipe\n\n```yaml\nwrangles:\n  - convert.to_yaml:\n      input: column 1\n      indent: 2\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n```python\n{\n  'Product Specs': {\n    'length': '6 inch',\n    'voltage': '24V',\n    'weight': '3lb'\n  }\n}\n```\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n```yaml\nProduct Specs:\n  length: 6 inch\n  voltage: 24V\n  weight: 3lb\n```\n\n</div>\n\n</div>",
+  "guidance": "Convert an object to a YAML representation.\n\n## Migrated examples\n#### Convert a Dictionary to YAML\n\n##### Recipe\n\n```yaml\nwrangles:\n  - convert.to_yaml:\n      input: column 1\n      indent: 2\n```\n\n<div className=\"ww-sample-grid\">\n\n<div className=\"ww-sample-panel\">\n\n##### Input Sample\n\n| column 1 |\n| --- |\n| `{'Product Specs': {'length': '6 inch', 'voltage': '24V', 'weight': '3lb'}}` |\n\n</div>\n\n<div className=\"ww-sample-panel\">\n\n##### Output Sample\n\n| column 1 |\n| --- |\n| `\"Product Specs:\\n  length: 6 inch\\n  voltage: 24V\\n  weight: 3lb\\n\"` |\n\nThe table shows the YAML string with escaped newlines (`\\n`); the returned string contains actual line breaks.\n\n</div>\n\n</div>",
   "sources": [
     {
       "id": "runtime",

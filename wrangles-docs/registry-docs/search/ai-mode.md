@@ -16,37 +16,6 @@ Retrieve Google AI Mode Markdown and metadata. Use standardize.clean and extract
 
 Usage guidance and examples have not yet been reviewed.
 
-## Parameters
-
-<div className="ww-parameters-table">
-
-| Name | Description | Accepted Values | Default | Required |
-| --- | --- | --- | --- | --- |
-| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `output` | Outputs are ordered [ai_mode_results, ai_mode_metadata]. The first is<br />the untouched Markdown body; the optional second is the YAML frontmatter<br />as a JSON-compatible dictionary, with query, query_index, input_row_id,<br />search_id, status and error. Search requests output=md. It does not parse<br />headings, select references, clean the body or extract prices. Blank<br />queries have status Skipped. Missing/malformed metadata, provider errors<br />and empty successful answers are explicit errors; non-success rows must<br />not be passed to extraction. query_config and the previous three-output<br />compact/complete/Markdown contract are no longer supported. | string or array | `null` | Yes |
-| <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `queries` | Column containing one query string per row. Explode query lists before searching. | string | — | Yes |
-| `id` | Input row ID column, retained in metadata.input_row_id. | string | — | Yes |
-| `client` | The client parameter. | string; one of:<ul className="ww-param-enum-values"><li>serpapi</li></ul> | `"serpapi"` | No |
-| `api_key` | Search key; defaults to SERPAPI_API_KEY. | string | `null` | No |
-| `threads` | The threads parameter. | integer | `10` | No |
-| `include_raw_response` | Retain the untouched Markdown response including frontmatter under metadata.raw_response for trial capture and replay. | boolean | `false` | No |
-| `country` | Optional country code. Alias: gl. Null or empty means omit. | string, null | — | No |
-| `gl` | Optional country code; omitted unless supplied. | string, null | — | No |
-| `language` | Optional language code. Alias: hl. Null or empty means omit. | string, null | — | No |
-| `hl` | Optional language code; omitted unless supplied. | string, null | — | No |
-| `location` | Optional city or geographic location; omitted unless supplied. | string, null | — | No |
-| `device` | Optional device override. | string; one of:<ul className="ww-param-enum-values"><li>desktop</li><li>mobile</li><li>tablet</li></ul> | — | No |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
-| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-
-</div>
-
-Required follows the recipe schema. Default records the Python argument default;
-a schema may require an argument even when Python provides a default.
-
 <details className="ww-field-disclosure">
 
 <summary>Complete configuration schema</summary>
@@ -176,6 +145,41 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 </details>
 
 
+
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
+
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
+| --- | --- | --- | --- | --- |
+| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
+| `output` | Outputs are ordered [ai_mode_results, ai_mode_metadata]. The first is<br />the untouched Markdown body; the optional second is the YAML frontmatter<br />as a JSON-compatible dictionary, with query, query_index, input_row_id,<br />search_id, status and error. Search requests output=md. It does not parse<br />headings, select references, clean the body or extract prices. Blank<br />queries have status Skipped. Missing/malformed metadata, provider errors<br />and empty successful answers are explicit errors; non-success rows must<br />not be passed to extraction. query_config and the previous three-output<br />compact/complete/Markdown contract are no longer supported. | string or array | `null` | Yes |
+| <span className="ww-param-group-label">Options</span> |  |  |  |  |
+| `queries` | Column containing one query string per row. Explode query lists before searching. | string | — | Yes |
+| `id` | Input row ID column, retained in metadata.input_row_id. | string | — | Yes |
+| `client` | The client parameter. | string; one of:<ul className="ww-param-enum-values"><li>serpapi</li></ul> | `"serpapi"` | No |
+| `api_key` | Search key; defaults to SERPAPI_API_KEY. | string | `null` | No |
+| `threads` | The threads parameter. | integer | `10` | No |
+| `include_raw_response` | Retain the untouched Markdown response including frontmatter under metadata.raw_response for trial capture and replay. | boolean | `false` | No |
+| `country` | Optional country code. Alias: gl. Null or empty means omit. | string, null | — | No |
+| `gl` | Optional country code; omitted unless supplied. | string, null | — | No |
+| `language` | Optional language code. Alias: hl. Null or empty means omit. | string, null | — | No |
+| `hl` | Optional language code; omitted unless supplied. | string, null | — | No |
+| `location` | Optional city or geographic location; omitted unless supplied. | string, null | — | No |
+| `device` | Optional device override. | string; one of:<ul className="ww-param-enum-values"><li>desktop</li><li>mobile</li><li>tablet</li></ul> | — | No |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
+
+</div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+</details>
 
 <details className="ww-field-disclosure">
 

@@ -13,7 +13,9 @@ import CopyableCode from '@site/src/components/CopyableCode';
 
 Import data from a DuckDB Database
 
-## Parameters
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
 
 ### Read
 
@@ -198,6 +200,8 @@ Export data to a DuckDB Database
   }
 }
 ```
+
+</details>
 
 </details>
 

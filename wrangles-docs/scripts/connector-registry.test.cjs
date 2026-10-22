@@ -41,7 +41,7 @@ test('wrangles and connectors share the saved source pin and runtime signatures 
   assert.ok(embeddings.parameters.some(parameter => parameter.name === 'timeout'));
   const extract = runtime.wrangles.find(entry => entry.runtime_key === 'extract.ai');
   assert.ok(extract.docstring_schema.properties.metadata);
-  const extractRecord = parseRegistryMarkdown(fs.readFileSync(path.join(root, 'registry/wrangles/extract/ai.md'), 'utf8'));
+  const extractRecord = parseRegistryMarkdown(fs.readFileSync(path.join(root, 'registry/input_wrangles/extract/ai.md'), 'utf8'));
   assert.ok(extractRecord.metadata.parameters.some(parameter => parameter.name === 'metadata'));
   assert.ok(!extractRecord.metadata.parameters.some(parameter => parameter.name === 'deadline'));
   assert.ok(!extract.parameters.some(parameter => parameter.name === 'deadline'));
@@ -67,11 +67,11 @@ test('connectors have only canonical Registry pages and legacy URLs redirect', (
 });
 
 test('all connector sources are Markdown with the same shared frontmatter conventions as wrangles', () => {
-  const files = fs.readdirSync(path.join(root, 'registry/connectors'));
+  const files = fs.readdirSync(path.join(root, 'registry/input_connectors'));
   assert.equal(files.length, 46);
   assert.ok(files.every(name => name.endsWith('.md')));
   for (const file of files) {
-    const source = fs.readFileSync(path.join(root, 'registry/connectors', file), 'utf8');
+    const source = fs.readFileSync(path.join(root, 'registry/input_connectors', file), 'utf8');
     const parsed = parseRegistryMarkdown(source);
     assert.equal(parsed.metadata.type, 'connector');
     assert.equal(parsed.metadata.schema_version, '0.2');
@@ -154,7 +154,7 @@ test('catalog normalization retains separate lookup identities and rejects dupli
 });
 
 test('published connector contracts include common controls with resolvable schema references', () => {
-  const record = readConnector(path.join(root, 'registry/connectors/excel.columns.md'));
+  const record = readConnector(path.join(root, 'registry/input_connectors/excel.columns.md'));
   const compiled = compiledConnector(record);
   assert.equal(record.operations.write.properties.if, undefined);
   assert.equal(compiled.operations.write.properties.if.$ref,

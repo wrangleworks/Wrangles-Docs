@@ -188,7 +188,9 @@ def function(value):
 products_dataframe = matrix.run(variables={"input_var1": ["a", "b", "c"], "input_var2":'["a", "b", "c"]'}, run=[my_function], functions={"my_function": function})
 ```
 
-## Parameters
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
 
 ### Read
 
@@ -407,6 +409,8 @@ The matrix connector lets you use variables in a single write definition to auto
   }
 }
 ```
+
+</details>
 
 </details>
 

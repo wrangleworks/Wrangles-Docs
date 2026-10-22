@@ -53,7 +53,9 @@ df = http.read(
 )
 ```
 
-## Parameters
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
 
 ### Read
 
@@ -426,6 +428,8 @@ Write data to a HTTP endpoint.
   }
 }
 ```
+
+</details>
 
 </details>
 

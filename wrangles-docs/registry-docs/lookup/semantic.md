@@ -16,30 +16,6 @@ Look up values using a saved semantic lookup model. Requires a WrangleWorks acco
 
 Usage guidance and examples have not yet been reviewed.
 
-## Parameters
-
-<div className="ww-parameters-table">
-
-| Name | Description | Accepted Values | Default | Required |
-| --- | --- | --- | --- | --- |
-| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `input` | One input column, optionally expressed as a single-item list. | string, integer, array | — | Yes |
-| `output` | Output column or columns; defaults to the input column. Named lookup columns return their values; other names receive match dictionaries. With n greater than one, n output columns or a wildcard name such as 'Match *' distribute match dictionaries across columns. | string, array, null | `null` | No |
-| <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `model_id` | Existing saved semantic lookup model ID, not a catalog ID. | string | — | Yes |
-| `lookup_mode` | The lookup_mode parameter. |  | `"by_row"` | No |
-| `n` | Optional number of matches. Supported only with by_row. When greater than one, a single output contains a list of match dictionaries unless expanded with a wildcard. Each of n output columns receives one match. | integer, null | `null` | No |
-| `matrix_variables` | Columns that define the permutations for by_matrix mode. | array | — | Conditional; see schema |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
-| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-
-</div>
-
-Required follows the recipe schema. Default records the Python argument default;
-a schema may require an argument even when Python provides a default.
-
 <details className="ww-field-disclosure">
 
 <summary>Complete configuration schema</summary>
@@ -177,6 +153,34 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 </details>
 
 
+
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
+
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
+| --- | --- | --- | --- | --- |
+| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
+| `input` | One input column, optionally expressed as a single-item list. | string, integer, array | — | Yes |
+| `output` | Output column or columns; defaults to the input column. Named lookup columns return their values; other names receive match dictionaries. With n greater than one, n output columns or a wildcard name such as 'Match *' distribute match dictionaries across columns. | string, array, null | `null` | No |
+| <span className="ww-param-group-label">Options</span> |  |  |  |  |
+| `model_id` | Existing saved semantic lookup model ID, not a catalog ID. | string | — | Yes |
+| `lookup_mode` | The lookup_mode parameter. |  | `"by_row"` | No |
+| `n` | Optional number of matches. Supported only with by_row. When greater than one, a single output contains a list of match dictionaries unless expanded with a wildcard. Each of n output columns receives one match. | integer, null | `null` | No |
+| `matrix_variables` | Columns that define the permutations for by_matrix mode. | array | — | Conditional; see schema |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
+
+</div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+</details>
 
 <details className="ww-field-disclosure">
 

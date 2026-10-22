@@ -14,31 +14,6 @@ import CopyableCode from '@site/src/components/CopyableCode';
 
 Select one or more element of a dictionary.
 
-
-
-## Parameters
-
-<div className="ww-parameters-table">
-
-| Name | Description | Accepted Values | Default | Required |
-| --- | --- | --- | --- | --- |
-| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
-| `input` | Name of the input column | string, integer, array | — | Yes |
-| `output` | Name of the output column. If omitted, the input column will be replaced. | string, array | `null` | No |
-| <span className="ww-param-group-label">Options</span> |  |  |  |  |
-| `element` | The key or keys from the dictionary to select.<br />If a single key is provided, the value will be returned<br />If a lists of keys are selected,<br />the result will be a new dictionary. | string, array | — | Yes |
-| <span className="ww-param-group-label">Errors</span> |  |  |  |  |
-| `default` | Set the default value to return if the specified element doesn't exist.<br />If selecting multiple elements, a dict of defaults can be set. | string, number, array, object, boolean, null | `""` | No |
-| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
-| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
-| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
-| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
-
-</div>
-
-Required follows the recipe schema. Default records the Python argument default;
-a schema may require an argument even when Python provides a default.
-
 <details className="ww-field-disclosure">
 
 <summary>Complete configuration schema</summary>
@@ -116,7 +91,7 @@ wrangles:
       output: Shapes
       element: shapes
       default: square
-      where: Part Number = 1234
+      where: '"Part Number" = 1234'
 ```
 
 <div className="ww-sample-grid">
@@ -183,7 +158,7 @@ wrangles:
 ```yaml
 wrangles:
   - select.dictionary_element:
-      input: Properties
+      input: Column
       output: Output Dict
       element:
         - Col*
@@ -201,9 +176,9 @@ wrangles:
 
 <div className="ww-sample-panel ww-sample-panel--output" data-sample-role="output">
 
-| Column | Output Dict |
-| --- | --- |
-| \{'Col1': 'A', 'Col2': 'B', 'Col3': 'C'\} | \{'Col1': 'A', 'Col2': 'B'\} |
+| Output Dict |
+| --- |
+| \{'Col1': 'A', 'Col2': 'B'\} |
 
 </div>
 
@@ -216,7 +191,7 @@ wrangles:
 ```yaml
 wrangles:
   - select.dictionary_element:
-      input: Properties
+      input: Column
       output: Output Dict
       element:
         - "regex: .*2"
@@ -249,7 +224,7 @@ wrangles:
 ```yaml
 wrangles:
   - select.dictionary_element:
-      input: Properties
+      input: Column
       output: Output Dict
       element:
         - Col1: Column 1
@@ -283,7 +258,7 @@ wrangles:
 ```yaml
 wrangles:
   - select.dictionary_element:
-      input: Properties
+      input: Column
       output: Output Dict
       element:
         - Col1
@@ -314,6 +289,33 @@ wrangles:
 </div>
 
 </div>
+
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
+
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
+| --- | --- | --- | --- | --- |
+| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
+| `input` | Name of the input column | string, integer, array | — | Yes |
+| `output` | Name of the output column. If omitted, the input column will be replaced. | string, array | `null` | No |
+| <span className="ww-param-group-label">Options</span> |  |  |  |  |
+| `element` | The key or keys from the dictionary to select.<br />If a single key is provided, the value will be returned<br />If a lists of keys are selected,<br />the result will be a new dictionary. | string, array | — | Yes |
+| <span className="ww-param-group-label">Errors</span> |  |  |  |  |
+| `default` | Set the default value to return if the specified element doesn't exist.<br />If selecting multiple elements, a dict of defaults can be set. | string, number, array, object, boolean, null | `""` | No |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
+
+</div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+</details>
 
 <details className="ww-field-disclosure">
 
