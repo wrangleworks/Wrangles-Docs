@@ -134,7 +134,8 @@ def refresh(root, checkout, report_dir, skip_build=False):
         with tempfile.TemporaryDirectory(prefix='wrangles-registry-refresh-') as temporary:
             stage = Path(temporary)
             shutil.copy2(root / 'frontmatter.json', stage / 'frontmatter.json')
-            for directory in ('registry', 'scripts', 'wrangles-docs'):
+            # Repository-layout checks also validate the workflow definitions.
+            for directory in ('.github/workflows', 'registry', 'scripts', 'wrangles-docs'):
                 shutil.copytree(root / directory, stage / directory,
                                 ignore=shutil.ignore_patterns('node_modules', '.venv', 'build', '.docusaurus', '__pycache__'))
             (stage / 'wrangles-docs/node_modules').symlink_to(root / 'wrangles-docs/node_modules', target_is_directory=True)

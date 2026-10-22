@@ -115,7 +115,7 @@ for name, kind in (("broken", "bad"), ("valid", "good")):
         with tempfile.TemporaryDirectory(prefix='registry-refresh-test-') as directory:
             fixture = Path(directory)
             shutil.copy2(root / 'frontmatter.json', fixture / 'frontmatter.json')
-            for folder in ('registry', 'scripts', 'wrangles-docs'):
+            for folder in ('.github/workflows', 'registry', 'scripts', 'wrangles-docs'):
                 shutil.copytree(root / folder, fixture / folder,
                                 ignore=shutil.ignore_patterns('node_modules', '.venv', 'build', '.docusaurus', '__pycache__'))
             (fixture / 'wrangles-docs/node_modules').symlink_to(root / 'wrangles-docs/node_modules', target_is_directory=True)
