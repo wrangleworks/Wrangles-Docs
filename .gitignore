@@ -46,3 +46,7 @@ registry-refresh-report/
 
 # Local audit reports, spreadsheets and browser screenshots
 /audits/
+
+# Local reference checkout; not part of this repository
+/WranglesXL-main/
+/catalog-after-migration.json

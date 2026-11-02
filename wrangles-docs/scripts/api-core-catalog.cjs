@@ -5,6 +5,10 @@ function normalizeApiCatalog(payload, schemaId) {
   const ids = new Set();
   const keys = new Set();
   for (const row of payload.catalog) {
+    if (row.history !== undefined && (!row.history || typeof row.history !== 'object'
+        || Array.isArray(row.history) || Object.values(row.history).some(value => !['legacy', 'not-active'].includes(value)))) {
+      throw new Error(`Invalid catalog history: ${row.catalog_key}`);
+    }
     if (!/^[1-9][0-9]*$/.test(row.catalog_id) || ids.has(row.catalog_id)
         || !row.catalog_key || keys.has(row.catalog_key)
         || !['wrangle', 'connector'].includes(row.catalog_kind) || !row.wranglesPY_key
@@ -22,6 +26,7 @@ function normalizeApiCatalog(payload, schemaId) {
     entries: payload.catalog.map(row => ({catalog_id: row.catalog_id, catalog_key: row.catalog_key,
       kind: row.catalog_kind, wrangle_key: row.catalog_kind === 'wrangle' ? row.catalog_key : null,
       runtime_key: row.wranglesPY_key,
+      ...(row.history === undefined ? {} : {history: row.history}),
       title: null, registry_path: row.okf_path, status: row.status, source: 'API Core',
       created_at: row.created_at, updated_at: row.updated_at}))};
 }

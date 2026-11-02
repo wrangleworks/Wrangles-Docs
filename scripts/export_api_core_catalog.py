@@ -37,8 +37,9 @@ def fetch_database_catalog():
                 cursor.execute('SET TRANSACTION READ ONLY')
                 cursor.execute('''SELECT catalog_id, catalog_key, catalog_kind,
                     "wranglesPY_key", okf_path, status, created_at, updated_at,
-                    wrangle_type, notes
-                    FROM public.wrangles_catalog ORDER BY catalog_key''')
+                    wrangle_type, notes,
+                    COALESCE(to_jsonb(c)->'history', '{}'::jsonb) AS history
+                    FROM public.wrangles_catalog c ORDER BY catalog_key''')
                 columns = [column[0] for column in cursor.description]
                 rows = [dict(zip(columns, row)) for row in cursor.fetchall()]
         for row in rows:

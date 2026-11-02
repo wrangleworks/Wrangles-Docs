@@ -117,6 +117,15 @@
           "type": "string",
           "minLength": 1
         },
+        "history": {
+          "type": "object",
+          "additionalProperties": {
+            "enum": [
+              "legacy",
+              "not-active"
+            ]
+          }
+        },
         "source": {
           "type": "string",
           "minLength": 1

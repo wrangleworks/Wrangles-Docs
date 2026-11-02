@@ -153,6 +153,14 @@ test('catalog normalization retains separate lookup identities and rejects dupli
   assert.throws(() => normalizeApiCatalog(duplicate, 'test'), /duplicate/);
 });
 
+test('catalog history survives normalization and rejects invalid states', () => {
+  const payload = structuredClone(catalog);
+  payload.catalog[0].history = {'old.name': 'legacy'};
+  assert.deepEqual(normalizeApiCatalog(payload, 'test').entries[0].history, {'old.name': 'legacy'});
+  payload.catalog[0].history = {'old.name': 'active'};
+  assert.throws(() => normalizeApiCatalog(payload, 'test'), /Invalid catalog history/);
+});
+
 test('published connector contracts include common controls with resolvable schema references', () => {
   const record = readConnector(path.join(root, 'registry/input_connectors/excel.columns.md'));
   const compiled = compiledConnector(record);
