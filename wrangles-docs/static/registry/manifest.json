@@ -3623,8 +3623,8 @@
   "artifact_checksums": {
     "algorithm": "sha256",
     "files": {
-      "/registry/catalog/api-core-response.json": "39965bcae8d2a02746428bf1f21088484cfbdcc64f8963afe2f8c5e2a5c3917e",
-      "/registry/catalog/api-core.json": "9b993e92f6450dae39d600417d70b88cbb1dc99a270aa58a3b2e5e1ee1841735",
+      "/registry/catalog/api-core-response.json": "13d408a7b66fe4917830f60b501d34f658e8265ab1517e23f68de65fb01e4323",
+      "/registry/catalog/api-core.json": "72eec01868a06a57487b6ed2884477718c06f23d84564ea2341913ac7978907b",
       "/registry/catalog/reconciliation.json": "4c2050c3dd9f77ea6e8edb8a44de00037e922c716580bb0099b17a41020a20b8",
       "/registry/connectors/access.json": "ea7a836bc6535671221733fd697f38161bec30e2c4557721f1f59476366336bf",
       "/registry/connectors/access.md": "4c133b22c9e2eaa9a4c738fa4d69f23b4afba0cff4c0d650c411887b0c788a2c",
@@ -3839,7 +3839,7 @@
   "bundle_checksum": {
     "algorithm": "sha256",
     "framing": "utf8-path-null-content-null-v1",
-    "value": "42d14078394ec921526af59d36b22f7597e5d0b7fe157e5309e48f22a0147985",
+    "value": "df021b95d18db6053747b278bf10c86d3a3371b763b1965faeb8c4e1cce56a2f",
     "member_count": 211,
     "manifest_included": false
   }
