@@ -119,6 +119,14 @@ for name, kind in (("broken", "bad"), ("valid", "good")):
                 shutil.copytree(root / folder, fixture / folder,
                                 ignore=shutil.ignore_patterns('node_modules', '.venv', 'build', '.docusaurus', '__pycache__'))
             (fixture / 'wrangles-docs/node_modules').symlink_to(root / 'wrangles-docs/node_modules', target_is_directory=True)
+            # Exercise actual compiler/refresh consumers with the new DB column,
+            # not just the JSON normalizer. Keep the real catalog untouched.
+            catalog_path = fixture / 'registry/catalog/api-core.json'
+            catalog = json.loads(catalog_path.read_text())
+            for row in catalog['catalog']:
+                row['history'] = {}
+            catalog['catalog'][0]['history'] = {'previous.name': 'legacy'}
+            catalog_path.write_text(json.dumps(catalog))
             candidate = json.loads((fixture / 'registry/runtime/wranglespy-source-schema.json').read_text())
             candidate['wrangles']['format.trim']['schema']['properties']['input']['type'] = 'invalid-type'
             definition = copy.deepcopy(candidate['wrangle_definitions']['format.trim'])

@@ -133,3 +133,11 @@ are untouched. Missing definitions do not automatically deactivate rows: a
 missing schema is not sufficient proof of removal. Existing documentation
 generation and schema refresh workflows remain separate; refresh the pinned
 WranglesPY schema before expecting validation against renamed bindings to pass.
+
+**Current integration blocker:** adding `history` itself is supported, but the
+existing Registry reconciliation still counts catalog identities by their current
+keys rather than resolving legacy names through history. Simulating the five
+renames against the saved runtime reports five missing bindings and five missing
+old catalog identities. Updating the pinned schema alone does not address the
+history matching. Keep synchronization in preview mode until Registry matching
+also supports these shared identities; the local column migration is independent.

@@ -274,7 +274,7 @@ function validateCatalogSnapshot(snapshot, schema) {
   const entryFields = new Set([
     'runtime_key',
     'catalog_id', 'catalog_key', 'kind', 'wrangle_key', 'title', 'registry_path',
-    'status', 'source', 'created_at', 'updated_at',
+    'status', 'history', 'source', 'created_at', 'updated_at',
   ]);
   for (const [index, entry] of snapshot.entries.entries()) {
     const label = `entries[${index}]`;
