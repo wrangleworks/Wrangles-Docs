@@ -11,9 +11,31 @@ from unittest.mock import patch
 import refresh_registry
 from schema_functions import SchemaFunctions, generated_docstrings
 from refresh_registry import mismatches, properties, required, source_file
+from extract_wranglespy_schema import Extractor
 
 
 class RefreshPolicyTests(unittest.TestCase):
+    def test_imported_alias_names_preserve_shared_docstrings_without_execution(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            files = {
+                'wrangles/connectors/__init__.py': '',
+                'wrangles/recipe_wrangles/split.py': 'def dictionary(df):\n    """type: object\n    catalog_id: "63"\n    """\n    raise RuntimeError("never execute")\n',
+                'wrangles/recipe_wrangles/structure.py': 'from .split import dictionary as split_dictionary\n',
+                'wrangles/config.py': 'where_not_implemented = []\nwhere_overwrite_output = []\n',
+                'schema/generate_recipe_schema.py': '',
+                'schema/recipe_base_schema.json': '{}',
+                'setup.py': 'setup(version="test")',
+            }
+            for name, content in files.items():
+                target = root / name
+                target.parent.mkdir(parents=True, exist_ok=True)
+                target.write_text(content)
+            with patch('extract_wranglespy_schema.subprocess.check_output', return_value='revision'):
+                definitions = Extractor(root).extract()['wrangle_definitions']
+            self.assertEqual(definitions['split.dictionary']['docstring'], definitions['structure.split_dictionary']['docstring'])
+            self.assertEqual(definitions['structure.split_dictionary']['python_symbol'], 'wrangles.recipe_wrangles.structure.split_dictionary')
+
     def test_generated_docstrings_resolve_literal_imported_constants(self):
         tree = ast.parse('''
 from .. import ai as _ai
@@ -128,6 +150,13 @@ for name, kind in (("broken", "bad"), ("valid", "good")):
             catalog['catalog'][0]['history'] = {'previous.name': 'legacy'}
             catalog_path.write_text(json.dumps(catalog))
             candidate = json.loads((fixture / 'registry/runtime/wranglespy-source-schema.json').read_text())
+            # A second supported name gets its own page but shares an identity.
+            alias = 'format.refresh_alias'
+            candidate['wrangle_definitions'][alias] = copy.deepcopy(candidate['wrangle_definitions']['format.suffix'])
+            candidate['wrangles'][alias] = copy.deepcopy(candidate['wrangles']['format.suffix'])
+            catalog_row = next(row for row in catalog['catalog'] if row['catalog_key'] == 'format.suffix')
+            catalog_row['history'] = {alias: 'legacy'}
+            catalog_path.write_text(json.dumps(catalog))
             candidate['wrangles']['format.trim']['schema']['properties']['input']['type'] = 'invalid-type'
             definition = copy.deepcopy(candidate['wrangle_definitions']['format.trim'])
             definition['python_symbol'] = 'wrangles.recipe_wrangles.format.refresh_test'
@@ -151,6 +180,13 @@ for name, kind in (("broken", "bad"), ("valid", "good")):
             self.assertEqual((fixture / 'registry/input_wrangles/format/trim.md').read_bytes(), before)
             self.assertTrue((fixture / 'registry/input_wrangles/format/refresh-test.md').exists())
             self.assertTrue((fixture / 'wrangles-docs/registry-docs/format/refresh-test.md').exists())
+            legacy_page = fixture / 'wrangles-docs/registry-docs/format/refresh-alias.md'
+            self.assertIn('ww-legacy-pill', legacy_page.read_text())
+            self.assertTrue((fixture / 'registry/input_wrangles/format/suffix.md').exists())
+            alias_contract = json.loads((fixture / 'wrangles-docs/static/registry/contracts/format/refresh-alias.json').read_text())
+            self.assertEqual(alias_contract['catalog_id'], '37')
+            self.assertEqual(alias_contract['catalog_status'], 'active')
+            self.assertEqual(alias_contract['catalog_history'], {alias: 'legacy'})
             contract = json.loads((fixture / 'wrangles-docs/static/registry/contracts/format/refresh-test.json').read_text())
             self.assertIsNone(contract['catalog_id'])
             self.assertEqual(contract['catalog_status'], 'pending-registration')

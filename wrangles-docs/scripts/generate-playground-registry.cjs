@@ -362,21 +362,32 @@ function generateRegistryCatalog(manifestPath, options = {}) {
     throw new Error(`Invalid Registry manifest: ${absoluteManifestPath}`);
   }
 
-  const seenCatalogIds = new Set();
+  const seenCatalogIds = new Map();
   const seenWrangleKeys = new Set();
   const catalog = manifest.entries.map((entry) => {
     if (entry.type !== 'wrangle' || !entry.contract_json) {
       throw new Error(`Manifest entry is not a wrangle contract: ${entry.catalog_key || 'unknown'}`);
     }
-    if ((entry.catalog_id !== null && seenCatalogIds.has(String(entry.catalog_id))) || seenWrangleKeys.has(entry.wrangle_key)) {
+    if (seenWrangleKeys.has(entry.wrangle_key)) {
       throw new Error(`Duplicate Registry identity: ${entry.wrangle_key}`);
     }
-    if (entry.catalog_id !== null) seenCatalogIds.add(String(entry.catalog_id));
     seenWrangleKeys.add(entry.wrangle_key);
 
     const contractPath = path.join(staticRoot, entry.contract_json.replace(/^\//, ''));
     const contract = readJson(contractPath);
     validateContract(entry, contract, contractPath);
+    if (entry.catalog_id !== null) {
+      const previous = seenCatalogIds.get(String(entry.catalog_id)) || [];
+      for (const other of previous) {
+        const history = contract.catalog_history || {};
+        if (other.catalog_key !== contract.catalog_key ||
+            JSON.stringify(other.catalog_history || {}) !== JSON.stringify(history) ||
+            (history[other.wrangle_key] !== 'legacy' && history[contract.wrangle_key] !== 'legacy')) {
+          throw new Error(`Unrelated entries share a catalog ID: ${entry.wrangle_key}`);
+        }
+      }
+      seenCatalogIds.set(String(entry.catalog_id), [...previous, contract]);
+    }
     return createCatalogEntry(entry, contract, options);
   });
 

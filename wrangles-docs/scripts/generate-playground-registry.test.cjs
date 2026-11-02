@@ -1,6 +1,8 @@
 const assert = require('node:assert/strict');
 const path = require('node:path');
 const test = require('node:test');
+const fs = require('node:fs');
+const os = require('node:os');
 
 const {
   generateRegistryCatalog,
@@ -10,15 +12,46 @@ const {
 const SITE_ROOT = path.resolve(__dirname, '..');
 const MANIFEST_PATH = path.join(SITE_ROOT, 'static', 'registry', 'manifest.json');
 
+test('shared IDs require explicit legacy history and preserve both recipe names', () => {
+  const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'playground-alias-'));
+  try {
+    const manifest = JSON.parse(fs.readFileSync(MANIFEST_PATH));
+    const original = manifest.entries.find(entry => entry.wrangle_key === 'convert.case');
+    const contract = JSON.parse(fs.readFileSync(path.join(SITE_ROOT, 'static', original.contract_json)));
+    fs.mkdirSync(path.join(directory, 'registry'), {recursive: true});
+    const history = {'convert.old_case': 'legacy'};
+    manifest.entries = [
+      {...original, contract_json: '/registry/current.json'},
+      {...original, wrangle_key: 'convert.old_case', contract_json: '/registry/legacy.json'},
+    ];
+    manifest.entry_count = 2;
+    const filename = path.join(directory, 'registry/manifest.json');
+    fs.writeFileSync(filename, JSON.stringify(manifest));
+    fs.writeFileSync(path.join(directory, 'registry/current.json'), JSON.stringify({...contract, catalog_history: history}));
+    const legacy = {...contract, wrangle_key: 'convert.old_case', catalog_history: history};
+    const legacyFile = path.join(directory, 'registry/legacy.json');
+    fs.writeFileSync(legacyFile, JSON.stringify(legacy));
+    assert.deepEqual(generateRegistryCatalog(filename).catalog.map(entry => entry.type), ['convert.case', 'convert.old_case']);
+    delete legacy.catalog_history;
+    fs.writeFileSync(legacyFile, JSON.stringify(legacy));
+    assert.throws(() => generateRegistryCatalog(filename), /Unrelated entries/);
+  } finally {
+    fs.rmSync(directory, {recursive: true, force: true});
+  }
+});
+
 test('generates every Playground entry from the compiled Registry', () => {
   const result = generateRegistryCatalog(MANIFEST_PATH);
 
   assert.equal(result.registryVersion, '0.3.1');
   assert.equal(result.contractVersion, '0.3');
   assert.equal(result.catalog.length, require(MANIFEST_PATH).entry_count);
-  const ids = result.catalog.map(entry => entry.catalogId).filter(id => id !== null);
-  assert.equal(new Set(ids).size, ids.length);
-  assert.equal(new Set(result.catalog.map((entry) => entry.catalogKey)).size, result.catalog.length);
+  const keys = require(MANIFEST_PATH).entries.map(entry => entry.wrangle_key);
+  assert.equal(new Set(keys).size, keys.length);
+  for (const entry of result.catalog) {
+    assert.ok(result.catalog.filter(other => other.catalogKey === entry.catalogKey)
+      .every(other => other.catalogId === entry.catalogId));
+  }
   assert.equal(new Set(result.catalog.map((entry) => entry.type)).size, result.catalog.length);
   assert.ok(result.catalog.every((entry) => entry.registryRoute.startsWith('/py/')));
 });

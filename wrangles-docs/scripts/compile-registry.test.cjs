@@ -5,6 +5,27 @@ const test = require('node:test');
 
 const {validateColumnSemantics, sampleValue} = require('./compile-registry.cjs');
 
+test('legacy pages keep active catalog state and receive a pill without recipe changes', () => {
+  const {reconcileCatalog, legacyPill} = require('./compile-registry.cjs');
+  const make = key => ({sourceFile: '/tmp/' + key + '.md', metadata: {
+    wrangle_key: key, type: 'wrangle', status: 'active', title: key}});
+  const legacy = make('split.dictionary');
+  const current = make('structure.split_dictionary');
+  const report = reconcileCatalog([legacy, current], {source: {}, entries: [{
+    catalog_id: '63', catalog_key: 'structure.split_dictionary', wrangle_key: 'structure.split_dictionary',
+    runtime_key: 'structure.split_dictionary', kind: 'wrangle', title: null,
+    registry_path: null, status: 'active', history: {'split.dictionary': 'legacy'},
+  }]});
+  assert.equal(report.summary.matched_entries, 2);
+  assert.equal(report.summary.conflicting_entries, 0);
+  assert.equal(report.summary.entries_with_runtime_binding_differences, 0);
+  assert.equal(report.summary.catalog_only_entries, 0);
+  assert.match(legacyPill(legacy), />Legacy<\/span>/);
+  assert.equal(legacyPill(current), '');
+  assert.equal(legacy.catalog.status, 'active');
+  assert.equal(legacy.metadata.wrangle_key, 'split.dictionary');
+});
+
 test('page introductions come from editorial Markdown, without a second metadata description', () => {
   const {normalizePublicBody} = require('./compile-registry.cjs');
   assert.equal(normalizePublicBody('# Title\n\nOriginal introduction.'), 'Original introduction.');
@@ -295,7 +316,11 @@ test('compiled Registry publishes API Core catalog identities as strings', () =>
   assert.equal(manifest.registry_version, '0.3.1');
   assert.equal(manifest.contract_version, '0.3');
   assert.ok(manifest.entry_count >= 98);
-  assert.equal(new Set(catalogIds).size, catalogIds.length);
+  assert.equal(new Set(manifest.entries.map(entry => entry.wrangle_key)).size, manifest.entries.length);
+  for (const entry of manifest.entries.filter(entry => entry.catalog_id !== null)) {
+    const siblings = manifest.entries.filter(other => other !== entry && other.catalog_id === entry.catalog_id);
+    for (const other of siblings) assert.equal(other.catalog_key, entry.catalog_key);
+  }
   assert.ok(manifest.entries.filter(entry => entry.catalog_id === null).every(entry => entry.catalog_status === 'pending-registration'));
   assert.ok(catalogIds.every((catalogId) => /^[1-9][0-9]*$/.test(catalogId)));
   assert.equal(convertCase.catalog_id, '5');

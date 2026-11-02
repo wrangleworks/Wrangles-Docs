@@ -60,13 +60,14 @@ still needs its own review.
 
 ## What happens to the documentation?
 
-Find the existing document by catalog ID and preserve its manual content.
-Use `catalog_key` to determine its documentation group and location.
+Keep a separate document for each supported recipe name, including legacy names.
+Current and legacy names share the catalog ID. History marks the old page with
+a **Legacy** pill; it does not disable execution or change its examples.
 
 - If the document is missing, create a starter page from a valid schema.
 - If the group is missing, create the group too.
-- If the catalog key changes, move the existing document instead of duplicating
-  it, and preserve redirects from its old public URL.
+- Keep existing legacy documents and their URLs. Create a separate current-name
+  document when its valid schema is discovered; never overwrite the old prose.
 - Keep executable recipe keys tied to `wranglesPY_key`.
 - Do not invent examples or expected outputs for a new page.
 
@@ -134,10 +135,9 @@ missing schema is not sufficient proof of removal. Existing documentation
 generation and schema refresh workflows remain separate; refresh the pinned
 WranglesPY schema before expecting validation against renamed bindings to pass.
 
-**Current integration blocker:** adding `history` itself is supported, but the
-existing Registry reconciliation still counts catalog identities by their current
-keys rather than resolving legacy names through history. Simulating the five
-renames against the saved runtime reports five missing bindings and five missing
-old catalog identities. Updating the pinned schema alone does not address the
-history matching. Keep synchronization in preview mode until Registry matching
-also supports these shared identities; the local column migration is independent.
+Registry reconciliation resolves current and legacy names to the same ID using
+history. Both pages remain available. Legacy pills appear next to individual
+wrangle headings; a sidebar group gets a pill only when all its wrangles are
+legacy. Playground keeps separate recipe names and accepts shared IDs only for
+explicitly documented legacy aliases. Missing current runtime bindings still
+fail validation, so refresh the saved schema before applying renamed DB bindings.

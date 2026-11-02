@@ -7,6 +7,7 @@ Literal schemas and bounded data-only schema builders are interpreted without
 executing/importing upstream modules. Unsupported builders are reported per entry.
 """
 import ast
+import copy
 import json
 from pathlib import Path
 import subprocess
@@ -132,6 +133,30 @@ class Extractor:
                             wrangles[key]['generated_schema'] = result['schema']
                         else:
                             wrangles[key]['schema_extraction_error'] = result['error']
+        # Imported recipe aliases are public callable names too. Preserve each
+        # name and its shared schema without importing/executing upstream code.
+        def recipe_key(module, name):
+            return name if module in ('main', 'pandas') else module + '.' + name
+
+        aliases = []
+        for path in sorted((self.root / 'wrangles/recipe_wrangles').glob('*.py')):
+            if path.stem.startswith('_'):
+                continue
+            for node in ast.parse(path.read_text()).body:
+                if isinstance(node, ast.ImportFrom) and node.level == 1 and node.module:
+                    for item in node.names:
+                        name = item.asname or item.name
+                        if not name.startswith('_') and name != '*':
+                            aliases.append((recipe_key(path.stem, name), recipe_key(node.module, item.name), path.stem, name))
+        for _ in range(len(aliases)):
+            changed = False
+            for key, target, module, name in aliases:
+                if key not in wrangles and target in wrangles:
+                    wrangles[key] = copy.deepcopy(wrangles[target])
+                    wrangles[key]['python_symbol'] = 'wrangles.recipe_wrangles.' + module + '.' + name
+                    changed = True
+            if not changed:
+                break
         controls = {}
         for node in ast.parse((self.root / 'wrangles/config.py').read_text()).body:
             if isinstance(node, ast.Assign) and isinstance(node.targets[0], ast.Name):

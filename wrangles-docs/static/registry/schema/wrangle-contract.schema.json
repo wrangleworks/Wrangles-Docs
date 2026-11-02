@@ -280,6 +280,15 @@
       "type": "string",
       "minLength": 1
     },
+    "catalog_history": {
+      "type": "object",
+      "additionalProperties": {
+        "enum": [
+          "legacy",
+          "not-active"
+        ]
+      }
+    },
     "legacy_id": {
       "type": [
         "string",

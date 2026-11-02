@@ -30,4 +30,22 @@ function normalizeApiCatalog(payload, schemaId) {
       title: null, registry_path: row.okf_path, status: row.status, source: 'API Core',
       created_at: row.created_at, updated_at: row.updated_at}))};
 }
-module.exports = {normalizeApiCatalog};
+// A page retains its recipe name even when it shares a catalog identity.
+function catalogForName(rows, key, id = null, history = {}) {
+  const wrangles = rows.filter(row => row.kind === 'wrangle');
+  const named = row => row.catalog_key === key || row.runtime_key === key || row.history?.[key] === 'legacy';
+  let matches;
+  if (id !== null && id !== undefined) {
+    matches = wrangles.filter(row => String(row.catalog_id) === String(id));
+    if (matches.length && !named(matches[0]) && history[matches[0].runtime_key] !== 'legacy') {
+      throw new Error(`Catalog ID/name conflict: ${key}`);
+    }
+  } else {
+    matches = wrangles.filter(row => row.catalog_key === key || row.history?.[key] === 'legacy');
+    if (!matches.length) matches = wrangles.filter(row => row.runtime_key === key);
+  }
+  if (matches.length > 1) throw new Error(`Ambiguous catalog identity: ${key}`);
+  return matches[0] || null;
+}
+
+module.exports = {normalizeApiCatalog, catalogForName};

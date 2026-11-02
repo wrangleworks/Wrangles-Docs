@@ -5,7 +5,7 @@ const path = require('node:path');
 const crypto = require('node:crypto');
 const {isDeepStrictEqual} = require('node:util');
 const yaml = require('js-yaml');
-const {normalizeApiCatalog} = require('./api-core-catalog.cjs');
+const {normalizeApiCatalog, catalogForName} = require('./api-core-catalog.cjs');
 const {parseRegistryMarkdown} = require('./registry-markdown.cjs');
 const {loadConnectors, withConnectors, renderConnector, compiledConnector} = require('./connector-registry.cjs');
 const {configurationSchema, objectBranch, parameterProperties, schemaRequired, conditionallyRequired, qualifySchemaReferences} = require('./wrangle-schema.cjs');
@@ -1189,7 +1189,7 @@ This wrangle is retained only to document historical recipes.${replacementLink ?
 
 ` : '';
   const entryHeading = grouped ?
-    `## ${displayTitle} <CopyableCode value="${metadata.wrangle_key}" /> {#${entryAnchor(entry)}}\n\n` : '';
+    `## ${displayTitle}${legacyPill(entry)} <CopyableCode value="${metadata.wrangle_key}" /> {#${entryAnchor(entry)}}\n\n` : '';
   return `${entryHeading}${lifecycleNotice}${guidance}
 
 <details className="ww-field-disclosure">
@@ -1264,6 +1264,11 @@ ${sourceRows}
 `;
 }
 
+function legacyPill(entry) {
+  return entry.catalog?.history?.[entry.metadata.wrangle_key] === 'legacy'
+    ? ' <span className="ww-legacy-pill" title="Still supported; a newer name is available">Legacy</span>' : '';
+}
+
 function renderEntryPage(entry, controls, entriesByKey) {
   const metadata = entry.metadata;
   const lifecycleSuffix = metadata.status === 'deprecated' ? ' (Deprecated)' :
@@ -1281,7 +1286,7 @@ toc_max_heading_level: 3
 
 import CopyableCode from '@site/src/components/CopyableCode';
 
-# ${displayTitle} <CopyableCode value="${metadata.wrangle_key}" />
+# ${displayTitle}${legacyPill(entry)} <CopyableCode value="${metadata.wrangle_key}" />
 
 ${renderEntryContent(entry, controls, {entriesByKey})}`;
 }
@@ -1361,8 +1366,8 @@ function renderRegistrySidebar(groups, connectors) {
         {type: 'doc', id: 'python/functions', label: 'Python Functions'},
       ],
     },`;
-  const items = [...groups].sort((a, b) => groupLabel(a.group).localeCompare(groupLabel(b.group))).map(({group}) =>
-    `        {type: 'doc', id: 'namespaces/${group}', label: '${groupLabel(group)}'},`,
+  const items = [...groups].sort((a, b) => groupLabel(a.group).localeCompare(groupLabel(b.group))).map(({group, entries}) =>
+    `        {type: 'doc', id: 'namespaces/${group}', label: '${groupLabel(group)}'${entries.every(entry => legacyPill(entry)) ? ", className: 'registry-sidebar-legacy'" : ''}},`,
   ).join('\n');
   return `/** @type {import('@docusaurus/plugin-content-docs').SidebarsConfig} */
 const sidebarsRegistry = {
@@ -1605,6 +1610,7 @@ function buildCompiledContractSchema(entrySchema) {
         pattern: '^[a-z][a-z0-9_]*(\\.[a-z][a-z0-9_]*)*$',
       },
       catalog_status: {type: 'string', minLength: 1},
+      catalog_history: {type: 'object', additionalProperties: {enum: ['legacy', 'not-active']}},
       legacy_id: {
         type: ['string', 'null'],
         format: 'uuid',
@@ -1641,6 +1647,7 @@ function buildEntryContract(entry, controls) {
     catalog_id: entry.catalog.catalog_id,
     catalog_key: entry.catalog.catalog_key,
     catalog_status: entry.catalog.status,
+    ...(Object.keys(entry.catalog.history || {}).length ? {catalog_history: entry.catalog.history} : {}),
     legacy_id: metadata.id,
     wrangle_name: metadata.wrangle_name,
     namespace: metadata.namespace,
@@ -1907,26 +1914,22 @@ function reconcileRegistry(entries, runtimeManifest) {
 }
 
 function reconcileCatalog(entries, catalogSnapshot, connectors = []) {
-  const catalogByWrangleKey = new Map(
-    catalogSnapshot.entries
-      .filter((entry) => entry.wrangle_key !== null)
-      .map((entry) => [entry.wrangle_key, entry]),
-  );
-  const registryKeys = new Set(entries.map((entry) => entry.metadata.wrangle_key));
   const matchedEntries = [];
 
   for (const entry of [...entries].sort((left, right) =>
     left.metadata.wrangle_key.localeCompare(right.metadata.wrangle_key))) {
     const key = entry.metadata.wrangle_key;
-    const catalog = catalogByWrangleKey.get(key);
+    const sourceSchema = entry.metadata.configuration_schema || {};
+    const catalog = catalogForName(catalogSnapshot.entries, key, sourceSchema.catalog_id, sourceSchema.history);
     if (!catalog) {
       entry.catalog = {catalog_id: null, catalog_key: key, status: 'pending-registration'};
       continue;
     }
-    entry.catalog = catalog;
+    entry.catalog = {...catalog, history: {...(sourceSchema.catalog_id ? sourceSchema.history : {}), ...catalog.history}};
+    const declaredRename = sourceSchema.catalog_id && sourceSchema.history?.[catalog.runtime_key] === 'legacy';
 
     const conflicts = [];
-    if (catalog.catalog_key !== key) {
+    if (catalog.catalog_key !== key && catalog.runtime_key !== key && catalog.history?.[key] !== 'legacy' && !declaredRename) {
       conflicts.push({
         code: 'catalog_key_mismatch',
         registry: key,
@@ -1940,7 +1943,7 @@ function reconcileCatalog(entries, catalogSnapshot, connectors = []) {
         catalog: catalog.kind,
       });
     }
-    if (catalog.title !== null && catalog.title !== entry.metadata.title) {
+    if (catalog.history?.[key] !== 'legacy' && catalog.title !== null && catalog.title !== entry.metadata.title) {
       conflicts.push({
         code: 'title_mismatch',
         registry: entry.metadata.title,
@@ -1953,7 +1956,7 @@ function reconcileCatalog(entries, catalogSnapshot, connectors = []) {
 
     const expectedRegistryPath = posixPath(path.relative(repositoryRoot, entry.sourceFile));
     const differences = [];
-    if (catalog.runtime_key && catalog.runtime_key !== key) {
+    if (catalog.runtime_key && catalog.runtime_key !== key && catalog.history?.[key] !== 'legacy') {
       differences.push({code: 'runtime_binding_difference', catalog: catalog.runtime_key,
         registry: key});
     }
@@ -1991,7 +1994,7 @@ function reconcileCatalog(entries, catalogSnapshot, connectors = []) {
   const connectorKeys = new Set(connectors.map(entry => entry.catalog_key));
   const catalogOnlyEntries = catalogSnapshot.entries
     .filter((entry) => !connectorKeys.has(entry.catalog_key)
-      && (entry.wrangle_key === null || !registryKeys.has(entry.wrangle_key)))
+      && !matchedEntries.some(match => match.catalog_id === entry.catalog_id))
     .map((entry) => ({
       catalog_id: entry.catalog_id,
       catalog_key: entry.catalog_key,
@@ -2706,4 +2709,4 @@ if (require.main === module) {
   });
 }
 
-module.exports = {validateColumnSemantics, compareEmbeddedSchema, sampleValue, normalizePublicBody};
+module.exports = {validateColumnSemantics, compareEmbeddedSchema, sampleValue, normalizePublicBody, legacyPill, reconcileCatalog};

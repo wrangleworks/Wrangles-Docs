@@ -4,6 +4,23 @@ const {auditCatalogSchema} = require('./catalog-schema-audit.cjs');
 const catalog = require('../../registry/catalog/api-core.json');
 const snapshot = require('../../registry/runtime/wranglespy-source-schema.json');
 const runtime = require('../../registry/runtime/wranglespy.json');
+test('legacy history supplies identity coverage but cannot hide missing current callables', () => {
+  const changed = structuredClone(catalog);
+  const row = changed.catalog.find(row => row.catalog_key === 'split.dictionary');
+  row.history = {'split.dictionary': 'legacy'};
+  row.catalog_key = row.wranglesPY_key = 'structure.split_dictionary';
+  const report = auditCatalogSchema(changed, snapshot, runtime);
+  assert.ok(!report.missing_catalog_identities.includes('split.dictionary'));
+  assert.equal(report.summary.failed, 1);
+  const refreshedRuntime = structuredClone(runtime);
+  const refreshedSnapshot = structuredClone(snapshot);
+  refreshedRuntime.wrangles.push({...structuredClone(runtime.wrangles.find(item => item.runtime_key === 'split.dictionary')),
+    runtime_key: 'structure.split_dictionary'});
+  refreshedSnapshot.wrangles['structure.split_dictionary'] = structuredClone(snapshot.wrangles['split.dictionary']);
+  const refreshed = auditCatalogSchema(changed, refreshedSnapshot, refreshedRuntime);
+  assert.equal(refreshed.summary.failed, 0);
+  assert.deepEqual(refreshed.missing_catalog_identities, auditCatalogSchema(catalog, snapshot, runtime).missing_catalog_identities);
+});
 test('catalog bindings are checked directly and non-schema fields are excluded', () => {
   const report = auditCatalogSchema(catalog, snapshot, runtime);
   assert.equal(report.summary.rows, catalog.catalog.length);

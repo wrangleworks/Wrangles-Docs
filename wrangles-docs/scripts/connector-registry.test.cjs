@@ -161,6 +161,19 @@ test('catalog history survives normalization and rejects invalid states', () => 
   assert.throws(() => normalizeApiCatalog(payload, 'test'), /Invalid catalog history/);
 });
 
+test('current and legacy pages resolve to the same identity without ambiguous matches', () => {
+  const {catalogForName} = require('./api-core-catalog.cjs');
+  const row = {kind: 'wrangle', catalog_id: '63', catalog_key: 'structure.split_dictionary',
+    runtime_key: 'structure.split_dictionary', history: {'split.dictionary': 'legacy'}};
+  assert.equal(catalogForName([row], 'split.dictionary'), row);
+  assert.equal(catalogForName([row], 'structure.split_dictionary', '63'), row);
+  const beforeSync = {...row, catalog_key: 'split.dictionary', runtime_key: 'split.dictionary', history: {}};
+  assert.equal(catalogForName([beforeSync], 'structure.split_dictionary', '63', row.history), beforeSync);
+  assert.equal(catalogForName([row], 'missing'), null);
+  assert.throws(() => catalogForName([row], 'unrelated', '63'), /conflict/);
+  assert.throws(() => catalogForName([row, {...row, catalog_id: '64'}], 'split.dictionary'), /Ambiguous/);
+});
+
 test('published connector contracts include common controls with resolvable schema references', () => {
   const record = readConnector(path.join(root, 'registry/input_connectors/excel.columns.md'));
   const compiled = compiledConnector(record);

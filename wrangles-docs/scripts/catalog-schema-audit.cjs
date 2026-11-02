@@ -1,6 +1,7 @@
 // Compare DB identity/binding fields directly with pinned WranglesPY sources.
 // Database lifecycle, IDs, paths, notes and model types are not schema facts.
 const {configurationSchema} = require('./wrangle-schema.cjs');
+const {catalogForName} = require('./api-core-catalog.cjs');
 
 function auditCatalogSchema(catalog, snapshot, runtimeManifest) {
   const runtime = new Map(runtimeManifest.wrangles.map(item => [item.runtime_key, item]));
@@ -59,6 +60,23 @@ function auditCatalogSchema(catalog, snapshot, runtimeManifest) {
     return result;
   });
   const identities = new Set(catalog.catalog.map(row => `${row.catalog_kind}:${row.catalog_key}`));
+  for (const row of catalog.catalog.filter(row => row.catalog_kind === 'wrangle')) {
+    identities.add(`wrangle:${row.wranglesPY_key}`);
+    for (const [name, state] of Object.entries(row.history || {})) {
+      if (state === 'legacy') identities.add(`wrangle:${name}`);
+    }
+  }
+  const identityRows = catalog.catalog.map(row => ({...row, kind: row.catalog_kind, runtime_key: row.wranglesPY_key}));
+  for (const item of runtimeManifest.wrangles) {
+    const metadata = snapshot.wrangles[item.runtime_key]?.schema || {};
+    if (metadata.catalog_id) {
+      try {
+        if (catalogForName(identityRows, item.runtime_key, metadata.catalog_id, metadata.history)) {
+          identities.add(`wrangle:${item.runtime_key}`);
+        }
+      } catch { /* Conflicting identities remain missing and fail coverage. */ }
+    }
+  }
   const missing = [
     ...runtimeManifest.wrangles.filter(row => !identities.has(`wrangle:${row.runtime_key}`)).map(row => row.runtime_key),
     ...Object.keys(snapshot.connectors).filter(key => !identities.has(`connector:connector.${key}`)).map(key => `connector.${key}`),
