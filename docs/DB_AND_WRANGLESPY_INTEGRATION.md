@@ -44,7 +44,10 @@ navigation references and Playground entry. Directly deleted active names follow
 the same rule. If no names remain for an ID, the database row stays for history
 with status `not active`. Connectors and the catalog-only Excel Map are excluded.
 
-A present function with a missing/unreadable schema is an error, not a deletion.
+A present function missing from the generated schema produces a warning. Its
+existing DB row (including any shared aliases) is retained unchanged, while other
+valid identities continue syncing. A new name without a schema is skipped.
+An unreadable schema file or an identity conflict still stops the sync.
 Disappearance is checked against the complete callable inventory from the same
 upstream revision as the generated schema.
 

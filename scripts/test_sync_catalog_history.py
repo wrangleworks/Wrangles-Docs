@@ -47,11 +47,33 @@ class SyncTests(unittest.TestCase):
 
     def test_missing_inventory_or_schema_never_means_deleted(self):
         self.assertEqual(plan(schema({'other': {}}), [row()]), ([], ['other']))
-        with self.assertRaisesRegex(ValueError, 'schema is missing'):
-            plan(schema({'other': {}}), [row()], ['other', 'split.dictionary'])
+        warnings = []
+        self.assertEqual(plan(schema({'other': {}}), [row()], ['other', 'split.dictionary'], warnings),
+                         ([], ['other']))
+        self.assertEqual(warnings[0]['name'], 'split.dictionary')
         for entries, names in [({}, []), ({'other': {}}, ['different'])]:
             with self.assertRaises(ValueError):
                 plan(schema(entries), [row()], names)
+
+    def test_missing_schemas_retain_rows_while_valid_identities_sync(self):
+        rows = [row('83', 'maths'), row('34', 'format.price_breaks'), row()]
+        entries = {'split.dictionary': metadata(status='legacy'),
+                   'structure.split_dictionary': metadata(), 'new.valid': metadata('200')}
+        warnings = []
+        changes, skipped = plan(schema(entries), rows,
+                                [*entries, 'maths', 'format.price_breaks', 'new.no_schema'], warnings)
+        self.assertEqual({c['catalog_id'] for c in changes}, {'63', '200'})
+        self.assertEqual({w['name'] for w in warnings},
+                         {'maths', 'format.price_breaks', 'new.no_schema'})
+        self.assertEqual(skipped, [])
+        self.assertEqual(changes[0]['history'], {'split.dictionary': 'legacy'})
+
+    def test_missing_legacy_schema_retains_whole_shared_identity(self):
+        original = row(key='structure.split_dictionary', history={'split.dictionary': 'legacy'})
+        entries = {'structure.split_dictionary': metadata(), 'new.valid': metadata('200')}
+        changes, _ = plan(schema(entries), [original], [*entries, 'split.dictionary'])
+        self.assertEqual([c['catalog_id'] for c in changes], ['200'])
+        self.assertEqual(original['history'], {'split.dictionary': 'legacy'})
 
     def test_no_docstring_history_and_only_one_active_name(self):
         for entries in ({'a': {**metadata(), 'history': {}}},

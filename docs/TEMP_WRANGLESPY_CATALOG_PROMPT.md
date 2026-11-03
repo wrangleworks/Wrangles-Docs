@@ -58,4 +58,24 @@ name, contain no root `history`, and do not expose these metadata fields as reci
 arguments. Test old/current recipe behavior, signatures and defaults for all five
 pairs. Update old tests asserting function-object identity to test compatibility
 and independent metadata instead. Report unresolved mappings and test results.
-Keep this work on the WranglesPY branch for review and give me its branch name.
+The five existing thin wrappers and the two compatibility-test updates are
+approved exceptions to the docstring-only scope. Keep them. Do not make further
+implementation changes unless an existing test demonstrates a necessary fix.
+
+Keep the catalog snapshot, task-added metadata test file and temporary artifacts
+removed from WranglesPY. Preserve unrelated pre-existing edits. The supplied
+catalog is a reference for IDs, not a file to commit into WranglesPY.
+
+Report these known warnings without inventing schemas or IDs to silence them:
+- maths (83) and format.price_breaks (34) lack structured schemas.
+- map (99) remains catalog-only.
+- Lookup bindings 101/102 are corrected by the Docs synchronization workflow.
+- Connector metadata is unchanged; excel.table has no catalog row.
+
+The Docs DB sync retains existing rows for present functions whose schemas are
+missing, reports warnings, and continues with other valid identities. Missing
+schemas do not mean functions were deleted. Identity conflicts still block sync.
+
+Run the relevant existing tests and report changed files, results, warnings and
+the current branch name. Leave all changes uncommitted on codex/catalog-schema-ids.
+Do not commit, push or create PRs. I will commit and push the branch myself.

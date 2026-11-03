@@ -9,11 +9,11 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 
-def plan(schema, rows, inventory=None):
+def plan(schema, rows, inventory=None, warnings=None):
     """Derive DB lifecycle from per-name metadata, never from docstring history.
 
     Only a complete callable inventory authorizes disappearance detection.
-    Present callables with missing/unreadable schemas abort rather than retire.
+    Present callables with missing schemas retain their entire catalog row.
     """
     definitions = schema['$defs']['wrangles']['items']['properties']
     if not isinstance(definitions, dict) or not definitions:
@@ -25,6 +25,11 @@ def plan(schema, rows, inventory=None):
         if not set(definitions) <= inventory:
             raise ValueError('Schema and callable inventory disagree')
     groups, skipped, owners = {}, [], {}
+    warnings = warnings if warnings is not None else []
+    missing = inventory - set(definitions) if inventory is not None else set()
+    for name in sorted(missing):
+        warnings.append({'name': name, 'reason': 'Callable exists but its schema is missing',
+                         'action': 'retain_existing_row_or_skip_new'})
     existing = {str(row['catalog_id']): row for row in rows}
     if len(existing) != len(rows):
         raise ValueError('Duplicate catalog IDs')
@@ -66,6 +71,10 @@ def plan(schema, rows, inventory=None):
             raise ValueError('Run the history migration first')
         history = dict(old['history']) if old else {}
         known = set(history) | ({old['wranglesPY_key']} if old else set())
+        # An incomplete alias group cannot safely rename or retire its row.
+        # Other catalog identities can still synchronize independently.
+        if known & missing:
+            continue
         for name in known:
             if name in owners and owners[name] != identity:
                 # Historical lookup rows share the old binding; their explicit
@@ -75,8 +84,6 @@ def plan(schema, rows, inventory=None):
                 raise ValueError(f'Catalog identity conflict: {name}')
             if inventory is not None and name not in inventory:
                 history[name] = 'not active'
-            elif inventory is not None and name not in definitions:
-                raise ValueError(f'Callable exists but its schema is missing: {name}')
         for name, status in names.items():
             if status == 'legacy':
                 history[name] = 'legacy'
@@ -142,7 +149,8 @@ def main():
         else:
             connection.execute('SET TRANSACTION READ ONLY')
         rows = connection.execute('SELECT * FROM public.wrangles_catalog').fetchall()
-        changes, skipped = plan(schema, rows, inventory['names'])
+        warnings = []
+        changes, skipped = plan(schema, rows, inventory['names'], warnings)
         if args.apply:
             for change in changes:
                 values = (change['catalog_key'], change['wranglesPY_key'], change['status'], Jsonb(change['history']), int(change['catalog_id']))
@@ -168,7 +176,8 @@ def main():
                     row[field] = row[field].astimezone(timezone.utc).isoformat().replace('+00:00', 'Z')
     if args.apply and args.catalog_output:
         Path(args.catalog_output).write_text(json.dumps({'catalog': exported}, indent=2) + '\n')
-    print(json.dumps({'applied': args.apply, 'changes': changes, 'unregistered': skipped}, indent=2))
+    print(json.dumps({'applied': args.apply, 'changes': changes, 'unregistered': skipped,
+                      'warnings': warnings}, indent=2))
 
 
 if __name__ == '__main__':
