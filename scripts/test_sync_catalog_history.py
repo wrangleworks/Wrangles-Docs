@@ -1,5 +1,7 @@
 import unittest
+from types import SimpleNamespace
 from sync_catalog_history import plan
+from export_wranglespy_inventory import callable_names
 
 
 def schema(entries):
@@ -7,62 +9,93 @@ def schema(entries):
 
 
 def row(identity='63', key='split.dictionary', **extra):
-    return dict(catalog_id=identity, catalog_key=key, catalog_kind='wrangle',
-                wranglesPY_key=key, status='active', history={}, **extra)
+    return {**dict(catalog_id=identity, catalog_key=key, catalog_kind='wrangle',
+                   wranglesPY_key=key, status='active', history={}, wrangle_type='recipe'), **extra}
+
+
+def metadata(identity='63', status='active'):
+    return {'catalog_id': identity, 'status': status}
 
 
 class SyncTests(unittest.TestCase):
-    def test_alias_migration_and_idempotence(self):
-        metadata = {'catalog_id': '63', 'status': 'active', 'history': {'split.dictionary': 'legacy'}}
-        source = schema({'split.dictionary': metadata, 'structure.split_dictionary': metadata})
-        changes, skipped = plan(source, [row()])
+    def test_rename_legacy_deletion_and_idempotence(self):
+        entries = {'split.dictionary': metadata(status='legacy'), 'structure.split_dictionary': metadata()}
+        changes, skipped = plan(schema(entries), [row()], list(entries))
         self.assertEqual(skipped, [])
-        change = changes[0]
-        self.assertEqual(change['catalog_key'], 'structure.split_dictionary')
-        self.assertEqual(change['history'], {'split.dictionary': 'legacy'})
-        updated = row()
-        updated.update({k: v for k, v in change.items() if k != 'action'})
-        self.assertEqual(plan(source, [updated]), ([], []))
+        updated = {**row(), **{k: v for k, v in changes[0].items() if k != 'action'}}
+        self.assertEqual(updated['catalog_key'], 'structure.split_dictionary')
+        self.assertEqual(updated['history'], {'split.dictionary': 'legacy'})
+        self.assertEqual(updated['status'], 'active')
+        self.assertEqual(plan(schema(entries), [updated], list(entries)), ([], []))
+        del entries['split.dictionary']
+        changes, _ = plan(schema(entries), [updated], list(entries))
+        self.assertEqual(changes[0]['history'], {'split.dictionary': 'not active'})
+        self.assertEqual(changes[0]['status'], 'active')
 
-    def test_fallback_preserves_status_and_no_id_never_creates(self):
-        old = row()
-        old['status'] = 'inactive'
-        self.assertEqual(plan(schema({'split.dictionary': {}, 'new.function': {}}), [old]), ([], ['new.function']))
+    def test_direct_deletion_and_entire_identity_removal(self):
+        changes, _ = plan(schema({'other': {}}), [row()], ['other'])
+        self.assertEqual(changes[0]['status'], 'not active')
+        self.assertEqual(changes[0]['history'], {'split.dictionary': 'not active'})
+        entries = {'structure.split_dictionary': metadata()}
+        changes, _ = plan(schema(entries), [row()], list(entries))
+        self.assertEqual(changes[0]['history'], {'split.dictionary': 'not active'})
+        self.assertEqual(changes[0]['status'], 'active')
 
-    def test_shared_id_without_history_is_rejected(self):
-        with self.assertRaises(ValueError):
-            plan(schema({'a': {'catalog_id': '63'}, 'b': {'catalog_id': '63'}}), [row()])
+    def test_fallback_and_unregistered_names(self):
+        entries = {'split.dictionary': {}, 'new.function': {}}
+        self.assertEqual(plan(schema(entries), [row(status='inactive')], list(entries)), ([], ['new.function']))
 
-    def test_new_explicit_identity_and_custom_catalog_key(self):
-        changes, _ = plan(schema({'new.function': {'catalog_id': '200', 'status': 'active'}}), [])
-        self.assertEqual(changes[0]['action'], 'create')
-        old = row()
-        old['catalog_key'] = 'custom.dictionary'
-        changes, _ = plan(schema({'split.dictionary': {'catalog_id': '63', 'status': 'active'}}), [old])
-        self.assertEqual(changes, [])
-
-    def test_conflicts_and_invalid_history(self):
-        for metadata in ({'catalog_id': '63', 'history': {'missing': 'legacy'}},
-                         {'catalog_id': '63', 'history': []},
-                         {'catalog_id': '63', 'status': 'legacy'}):
-            with self.assertRaises(ValueError):
-                plan(schema({'split.dictionary': metadata}), [row()])
-        with self.assertRaises(ValueError):
-            plan(schema({'split.dictionary': {'catalog_id': '200', 'status': 'active'}}), [row()])
-
-    def test_missing_definitions_do_not_deactivate_rows(self):
+    def test_missing_inventory_or_schema_never_means_deleted(self):
         self.assertEqual(plan(schema({'other': {}}), [row()]), ([], ['other']))
+        with self.assertRaisesRegex(ValueError, 'schema is missing'):
+            plan(schema({'other': {}}), [row()], ['other', 'split.dictionary'])
+        for entries, names in [({}, []), ({'other': {}}, ['different'])]:
+            with self.assertRaises(ValueError):
+                plan(schema(entries), [row()], names)
 
-    def test_explicit_lookup_ids_fix_old_shared_bindings(self):
-        rows = [row('81', 'lookup'), row('101', 'lookup.key'), row('102', 'lookup.semantic')]
-        for existing in rows:
-            existing['wranglesPY_key'] = 'lookup'
-        source = schema({key: {'catalog_id': identity, 'status': 'active'}
-                         for identity, key in [('81', 'lookup'), ('101', 'lookup.key'), ('102', 'lookup.semantic')]})
-        changes, _ = plan(source, rows)
+    def test_no_docstring_history_and_only_one_active_name(self):
+        for entries in ({'a': {**metadata(), 'history': {}}},
+                        {'a': metadata(), 'b': metadata()},
+                        {'a': metadata(status='not active')}):
+            with self.assertRaises(ValueError):
+                plan(schema(entries), [row()], list(entries))
+
+    def test_new_legacy_identity_and_custom_catalog_key(self):
+        entries = {'new.name': metadata('200', 'legacy')}
+        changes, _ = plan(schema(entries), [], list(entries))
+        self.assertEqual(changes[0]['action'], 'create')
+        self.assertEqual(changes[0]['history'], {'new.name': 'legacy'})
+        entries = {'split.dictionary': metadata(status='legacy'), 'structure.split_dictionary': metadata()}
+        changes, _ = plan(schema(entries), [row(catalog_key='custom.dictionary')], list(entries))
+        self.assertEqual(changes[0]['catalog_key'], 'custom.dictionary')
+
+    def test_no_id_never_creates_and_conflicts_abort(self):
+        self.assertEqual(plan(schema({'new': {'status': 'active'}}), [], ['new']), ([], ['new']))
+        with self.assertRaises(ValueError):
+            plan(schema({'split.dictionary': metadata('200')}), [row()], ['split.dictionary'])
+
+    def test_lookup_ids_correct_old_shared_bindings(self):
+        rows = [row('81', 'lookup'), row('101', 'lookup.key', wranglesPY_key='lookup'),
+                row('102', 'lookup.semantic', wranglesPY_key='lookup')]
+        entries = {key: metadata(identity) for identity, key in [('81', 'lookup'), ('101', 'lookup.key'), ('102', 'lookup.semantic')]}
+        changes, _ = plan(schema(entries), rows, list(entries))
         self.assertEqual({c['wranglesPY_key'] for c in changes}, {'lookup.key', 'lookup.semantic'})
+        self.assertTrue(all(c['history'] == {} for c in changes))
         with self.assertRaises(ValueError):
             plan(schema({'lookup': {}}), rows)
+
+    def test_map_and_connectors_are_not_retired(self):
+        rows = [row('99', 'map', wrangle_type='map'), row('103', 'connector.access', catalog_kind='connector')]
+        self.assertEqual(plan(schema({'other': {}}), rows, ['other']), ([], ['other']))
+
+    def test_inventory_keeps_aliases_and_callables_without_schema(self):
+        def function():
+            pass
+        def nested():
+            pass
+        function.key = nested
+        self.assertEqual(callable_names(SimpleNamespace(old=function, current=function)),
+                         ['current', 'current.key', 'old', 'old.key'])
 
 
 if __name__ == '__main__':

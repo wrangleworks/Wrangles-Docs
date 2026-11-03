@@ -29,7 +29,10 @@ function auditCatalogSchema(catalog, snapshot, runtimeManifest) {
       const callable = runtime.get(key);
       // API-Core maps purpose=schema to the Excel Map feature, not a recipe callable.
       // If upstream ever adds a callable, validate it normally instead.
-      if (!callable && row.catalog_key === 'map' && key === 'map' && row.wrangle_type === 'map') {
+      if (!callable && row.status === 'not active') {
+        result.status = 'not-applicable';
+        result.reason = 'Removed upstream; retained catalog identity and history only.';
+      } else if (!callable && row.catalog_key === 'map' && key === 'map' && row.wrangle_type === 'map') {
         result.status = 'not-applicable';
         result.source = null;
         result.reason = 'Excel column mapping (API-Core purpose=schema); WranglesPY recipe schema validation does not apply.';
@@ -71,7 +74,7 @@ function auditCatalogSchema(catalog, snapshot, runtimeManifest) {
     const metadata = snapshot.wrangles[item.runtime_key]?.schema || {};
     if (metadata.catalog_id) {
       try {
-        if (catalogForName(identityRows, item.runtime_key, metadata.catalog_id, metadata.history)) {
+        if (catalogForName(identityRows, item.runtime_key, metadata.catalog_id)) {
           identities.add(`wrangle:${item.runtime_key}`);
         }
       } catch { /* Conflicting identities remain missing and fail coverage. */ }

@@ -1,44 +1,61 @@
-# Prompt for the WranglesPY session
+# Prompt for the WranglesPY AI
 
-Add catalog identity/lifecycle metadata to recipe wrangle schemas on this branch.
-Use the supplied `registry/catalog/api-core.json` from Wrangles-Docs as the
-existing-ID mapping. Do not change runtime behavior or add recipe arguments.
+Correct the catalog metadata implementation in your WranglesPY branch.
 
-- Put `catalog_id` (quoted decimal string), `status: active`, and `history: {}`
-  at the root of each YAML docstring schema, never inside `properties` or prose.
-- Derive names from the publicly exposed recipe functions. Do NOT add
-  `wranglesPY_key` or the rest of the database catalog to docstrings.
-- Preserve existing IDs. Match existing entries by their exact runtime key;
-  report ambiguous mappings rather than guessing. Lookup IDs are 81 for lookup,
-  101 for lookup.key, 102 for lookup.semantic; their DB bindings need correction.
-- These five pairs intentionally share an ID AND a docstring. Keep their row
-  status active; record ONLY the old name as legacy in their shared history:
-
-| ID | Current name | History |
-| --- | --- | --- |
-| 90 | standardize.replace | `{replace: legacy}` |
-| 63 | structure.split_dictionary | `{split.dictionary: legacy}` |
-| 64 | structure.split_list | `{split.list: legacy}` |
-| 65 | structure.split_text | `{split.text: legacy}` |
-| 66 | structure.tokenize | `{split.tokenize: legacy}` |
-
-For example, both exposed schemas for ID 63 must carry:
+Only TWO new fields belong at the root of each recipe function's YAML docstring
+schema: `catalog_id` and `status`. Remove `history` from ALL docstrings, schema
+builders, generated schemas, fixtures and tests that added it. Do not put these
+fields inside `properties`, signatures, titles or descriptions. Do not add
+`wranglesPY_key`; the exposed function name supplies that.
 
 ```yaml
-catalog_id: "63"
+type: object
+catalog_id: "3"
 status: active
-history:
-  split.dictionary: legacy
 ```
 
-Do not mark the shared function status legacy: that would affect its current
-name too. No wrappers or duplicate docstrings are necessary. Other existing
-aliases must be reported if identity allocation is ambiguous; do not silently
-assign two unrelated names one ID. Do not fabricate IDs for missing matches.
-The catalog-only `map` entry is not a recipe callable; do not invent one.
+Use the supplied `registry/catalog/api-core.json` from Wrangles-Docs for IDs.
+Keep all existing IDs; do not invent an ID for an unmatched existing name.
+Lookup IDs are 81 for `lookup`, 101 for `lookup.key`, and 102 for
+`lookup.semantic`; the last two database runtime bindings are awaiting correction.
+The database-only `map` entry is not a recipe callable: do not invent one.
 
-Ensure generated recipe schemas retain these root metadata fields for every
-exposed name, including dynamically generated docstrings. Keep signatures,
-descriptions, properties, defaults and validation behavior unchanged. Test schema
-metadata, alias parity, and unchanged recipe execution. Report unmatched names
-and IDs, run the appropriate tests, and open a PR; do not merge it yet.
+For these five pairs, the OLD name must have `status: legacy` and the CURRENT
+name must have `status: active`. Both names use the same catalog ID:
+
+| Catalog ID | Old name — legacy | Current name — active |
+| --- | --- | --- |
+| 90 | replace | standardize.replace |
+| 63 | split.dictionary | structure.split_dictionary |
+| 64 | split.list | structure.split_list |
+| 65 | split.text | structure.split_text |
+| 66 | split.tokenize | structure.tokenize |
+
+All other current names receive `status: active` unless an existing intentional
+legacy designation is documented. Report ambiguous identities rather than guessing.
+
+IMPORTANT: assigning two names to the same Python function object also shares
+its docstring, so it cannot give those names different statuses. Give old/current
+names independently documented callables (thin compatibility wrappers are fine),
+while preserving their existing signatures, defaults, behavior, and supported
+Python/recipe entry points. Do not copy the full implementation unnecessarily.
+Do not change a shared object's docstring twice and assume the names are separate.
+Ensure the static docstrings/schema builders expose the per-name metadata, so
+both runtime schema generation and this repo's static extraction see it.
+
+Database history is calculated entirely by workflows in Wrangles-Docs:
+- Old name present with legacy status -> DB history contains `"old.name": "legacy"`.
+- Old name absent -> DB history contains `"old.name": "not active"`.
+- Direct deletion without a legacy phase follows the same absence rule.
+- The current active name becomes the row's runtime binding; its ID stays unchanged.
+
+Do NOT implement database writes or lifecycle-sync workflows in WranglesPY.
+Do NOT put `history: {}` back into any docstring. Do NOT write `not active` on a
+function that still exists; absence is detected by the synchronization workflow.
+
+Test that generated schemas contain the correct ID/status for EVERY exposed
+name, contain no root `history`, and do not expose these metadata fields as recipe
+arguments. Test old/current recipe behavior, signatures and defaults for all five
+pairs. Update old tests asserting function-object identity to test compatibility
+and independent metadata instead. Report unresolved mappings and test results.
+Keep this work on the WranglesPY branch for review and give me its branch name.

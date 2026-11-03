@@ -122,7 +122,7 @@
           "additionalProperties": {
             "enum": [
               "legacy",
-              "not-active"
+              "not active"
             ]
           }
         },

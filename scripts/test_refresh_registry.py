@@ -154,8 +154,15 @@ for name, kind in (("broken", "bad"), ("valid", "good")):
             alias = 'format.refresh_alias'
             candidate['wrangle_definitions'][alias] = copy.deepcopy(candidate['wrangle_definitions']['format.suffix'])
             candidate['wrangles'][alias] = copy.deepcopy(candidate['wrangles']['format.suffix'])
+            candidate['wrangles'][alias]['schema'].update(catalog_id='37', status='legacy')
+            candidate['wrangles']['format.suffix']['schema'].update(catalog_id='37', status='active')
             catalog_row = next(row for row in catalog['catalog'] if row['catalog_key'] == 'format.suffix')
             catalog_row['history'] = {alias: 'legacy'}
+            # A direct deletion also retires its reviewed Recipe Writer entry.
+            retired = next(row for row in catalog['catalog'] if row['catalog_key'] == 'round')
+            retired.update(status='not active', history={'round': 'not active'})
+            for field in ('wrangles', 'wrangle_definitions'):
+                candidate[field].pop('round')
             catalog_path.write_text(json.dumps(catalog))
             candidate['wrangles']['format.trim']['schema']['properties']['input']['type'] = 'invalid-type'
             definition = copy.deepcopy(candidate['wrangle_definitions']['format.trim'])
@@ -187,6 +194,11 @@ for name, kind in (("broken", "bad"), ("valid", "good")):
             self.assertEqual(alias_contract['catalog_id'], '37')
             self.assertEqual(alias_contract['catalog_status'], 'active')
             self.assertEqual(alias_contract['catalog_history'], {alias: 'legacy'})
+            self.assertEqual(alias_contract['name_status'], 'legacy')
+            for filename in ('registry/input_wrangles/_root/round.md',
+                             'wrangles-docs/registry-docs/round.md',
+                             'wrangles-docs/static/registry/contracts/round.json'):
+                self.assertFalse((fixture / filename).exists(), filename)
             contract = json.loads((fixture / 'wrangles-docs/static/registry/contracts/format/refresh-test.json').read_text())
             self.assertIsNone(contract['catalog_id'])
             self.assertEqual(contract['catalog_status'], 'pending-registration')
@@ -198,6 +210,19 @@ for name, kind in (("broken", "bad"), ("valid", "good")):
             self.assertFalse(parameter['runtime_required'])
             self.assertTrue(any(item['key'] == 'format.trim' and item['action'] == 'retained_previous' for item in report['rejected']))
             self.assertTrue(any(item['key'] == 'format.refresh_test' and item['action'] == 'created' for item in report['accepted']))
+            # Removing the legacy function removes its page on the next sync,
+            # without removing the active page sharing the same catalog ID.
+            catalog_row['history'][alias] = 'not active'
+            catalog_path.write_text(json.dumps(catalog))
+            for field in ('wrangles', 'wrangle_definitions'):
+                candidate[field].pop(alias)
+            with patch.dict(os.environ, {'REGISTRY_REFRESH_INTEGRATION': '0'}), patch.object(refresh_registry, 'run', side_effect=intercepted):
+                refresh_registry.refresh(fixture, fixture, fixture / 'report', skip_build=True)
+            self.assertFalse(legacy_page.exists())
+            self.assertFalse((fixture / 'registry/input_wrangles/format/refresh-alias.md').exists())
+            self.assertTrue((fixture / 'wrangles-docs/registry-docs/format/suffix.md').exists())
+            manifest = json.loads((fixture / 'wrangles-docs/static/registry/manifest.json').read_text())
+            self.assertNotIn(alias, {entry['wrangle_key'] for entry in manifest['entries']})
 
 
 if __name__ == '__main__':

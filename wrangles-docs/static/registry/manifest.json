@@ -3827,9 +3827,9 @@
       "/registry/runtime/reconciliation.json": "1ef0a3807efa91960ec9601d6870dc985d9bc11f58c829383736e6772f5805f5",
       "/registry/runtime/wranglespy-source-schema.json": "1447357ab90407bfc1ba4be81c1d3d311834d1fad0b89e857b011b8968ee8683",
       "/registry/runtime/wranglespy.json": "a69f977b417e17272c6c23f4aed4872758e394c92ab5d3f01949e2300446ed16",
-      "/registry/schema/catalog-snapshot.schema.json": "a7a733bc08c4a02c01f52285fd96fa136aae930c5eeb12049fa9e54226ec8099",
+      "/registry/schema/catalog-snapshot.schema.json": "93f0b90d9c8db28ce2ae07968a397c82560b493b552947c735e425d315364939",
       "/registry/schema/connector-entry.schema.json": "419046ea5fd4bc7ce65574f1ea3f076099b8a9a04f2a84e8a2d9fc7d34a9a145",
-      "/registry/schema/wrangle-contract.schema.json": "4c5fe57e06bf2bad7e43a7ecec7e6b489622a6b174f8bb16189e57b8a9536e0c",
+      "/registry/schema/wrangle-contract.schema.json": "0f5c00006167e2b125bff44176dac1317ae340d24c9d8db6d40319aaa7f36d63",
       "/registry/schema/wrangle-entry.schema.json": "06f35ce7c8fa2b5e441fca6333db1483b0869b6e23d88293ca13bab068c3bee2",
       "/registry/schema/wrangles-runtime-manifest.schema.json": "d333e4aa4fdb46dfe53f0606e1715a064aac9eec667c53b57ab8007926a6c413",
       "/schemas/recipes/registry/recipe-writer.schema.json": "0b7b5e9653364c9e06e5cd112d3a73cf6abda2c11674304b50caf0666275783d",
@@ -3839,7 +3839,7 @@
   "bundle_checksum": {
     "algorithm": "sha256",
     "framing": "utf8-path-null-content-null-v1",
-    "value": "df021b95d18db6053747b278bf10c86d3a3371b763b1965faeb8c4e1cce56a2f",
+    "value": "05e60a42308fe0c825f333b9d3efe6104e95c610f919bc7076f8ad24024f4702",
     "member_count": 211,
     "manifest_included": false
   }

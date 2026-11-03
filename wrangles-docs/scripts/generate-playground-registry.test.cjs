@@ -12,7 +12,7 @@ const {
 const SITE_ROOT = path.resolve(__dirname, '..');
 const MANIFEST_PATH = path.join(SITE_ROOT, 'static', 'registry', 'manifest.json');
 
-test('shared IDs require explicit legacy history and preserve both recipe names', () => {
+test('shared IDs require a legacy name and preserve both recipe names', () => {
   const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'playground-alias-'));
   try {
     const manifest = JSON.parse(fs.readFileSync(MANIFEST_PATH));
@@ -27,12 +27,12 @@ test('shared IDs require explicit legacy history and preserve both recipe names'
     manifest.entry_count = 2;
     const filename = path.join(directory, 'registry/manifest.json');
     fs.writeFileSync(filename, JSON.stringify(manifest));
-    fs.writeFileSync(path.join(directory, 'registry/current.json'), JSON.stringify({...contract, catalog_history: history}));
-    const legacy = {...contract, wrangle_key: 'convert.old_case', catalog_history: history};
+    fs.writeFileSync(path.join(directory, 'registry/current.json'), JSON.stringify(contract));
+    const legacy = {...contract, wrangle_key: 'convert.old_case', name_status: 'legacy'};
     const legacyFile = path.join(directory, 'registry/legacy.json');
     fs.writeFileSync(legacyFile, JSON.stringify(legacy));
     assert.deepEqual(generateRegistryCatalog(filename).catalog.map(entry => entry.type), ['convert.case', 'convert.old_case']);
-    delete legacy.catalog_history;
+    delete legacy.name_status;
     fs.writeFileSync(legacyFile, JSON.stringify(legacy));
     assert.throws(() => generateRegistryCatalog(filename), /Unrelated entries/);
   } finally {

@@ -26,7 +26,7 @@ test('catalog bindings are checked directly and non-schema fields are excluded',
   assert.equal(report.summary.rows, catalog.catalog.length);
   assert.equal(report.summary.schema_entries_missing_catalog_identity, report.missing_catalog_identities.length);
   assert.equal(report.summary.failed, 0);
-  assert.equal(report.summary.not_applicable, 1);
+  assert.equal(report.summary.not_applicable, 1 + catalog.catalog.filter(row => row.status === 'not active').length);
   const map = report.rows.find(row => row.catalog_key === 'map');
   assert.equal(map.status, 'not-applicable');
   assert.equal(map.source, null);

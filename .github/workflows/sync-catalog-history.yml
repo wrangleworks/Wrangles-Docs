@@ -21,42 +21,65 @@ concurrency:
 
 jobs:
   schema:
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-24.04
     timeout-minutes: 20
+    outputs:
+      revision: ${{ steps.source.outputs.revision }}
     steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
       - uses: actions/checkout@v6
         with:
           repository: wrangleworks/WranglesPY
           ref: ${{ inputs.upstream_ref }}
+          path: .upstream-wranglespy
           persist-credentials: false
       - uses: actions/setup-python@v6
         with:
           python-version: '3.12'
       # Upstream code runs here, without VPN or database credentials.
       - name: Generate schema from the selected WranglesPY revision
+        id: source
+        working-directory: .upstream-wranglespy
         run: |
           python -m pip install . pyyaml jsonschema
           git rev-parse HEAD > schema/source-revision.txt
+          echo "revision=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+          python ../scripts/export_wranglespy_inventory.py . > schema/inventory.json
           cd schema
           python generate_recipe_schema.py
       - uses: actions/upload-artifact@v4
         with:
           name: catalog-upstream-schema
           path: |
-            schema/schema.json
-            schema/source-revision.txt
+            .upstream-wranglespy/schema/schema.json
+            .upstream-wranglespy/schema/source-revision.txt
+            .upstream-wranglespy/schema/inventory.json
           retention-days: 7
 
   sync:
     needs: schema
-    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/feat/catalog-history-sync'
+    if: github.ref == 'refs/heads/main'
+    permissions:
+      contents: write
     environment: api-core-validation
     runs-on: ubuntu-24.04
-    timeout-minutes: 10
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v6
         with:
+          ref: main
+      - uses: actions/checkout@v6
+        with:
+          repository: wrangleworks/WranglesPY
+          ref: ${{ needs.schema.outputs.revision }}
+          path: .upstream-wranglespy
           persist-credentials: false
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 22.x
       - uses: actions/setup-python@v6
         with:
           python-version: '3.12'
@@ -72,6 +95,7 @@ jobs:
           command -v resolvconf
           python -m pip install 'psycopg[binary]>=3.2,<4'
           python scripts/test_sync_catalog_history.py
+          npm ci --prefix wrangles-docs
       - name: Reconcile catalog over VPN
         env:
           WIREGUARD_CONFIG: ${{ secrets.WIREGUARD_CONFIG }}
@@ -95,14 +119,32 @@ jobs:
             echo 'VPN setup failed'; exit 1
           fi
           args=()
-          if [ "$APPLY_CHANGES" = true ]; then args+=(--apply); fi
-          python scripts/sync_catalog_history.py upstream-schema/schema.json "${args[@]}"
+          if [ "$APPLY_CHANGES" = true ]; then args+=(--apply --catalog-output "$RUNNER_TEMP/catalog-after-sync.json"); fi
+          python scripts/sync_catalog_history.py upstream-schema/schema.json --inventory upstream-schema/inventory.json "${args[@]}"
       - name: Ensure VPN cleanup
         if: always()
         run: |
           sudo wg-quick down wg-catalog >/dev/null 2>&1 || true
           sudo rm -f /etc/wireguard/wg-catalog.conf
           rm -f "$RUNNER_TEMP/catalog-vpn.log"
+      - name: Import catalog and refresh documentation from the same upstream revision
+        if: inputs.apply_changes
+        run: |
+          node wrangles-docs/scripts/import-catalog-snapshot.cjs "$RUNNER_TEMP/catalog-after-sync.json"
+          python scripts/refresh_registry.py --checkout .upstream-wranglespy
+      - name: Commit validated catalog and documentation to main
+        if: inputs.apply_changes
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add registry wrangles-docs/registry-docs wrangles-docs/static/registry wrangles-docs/static/schemas/recipes wrangles-docs/static/py wrangles-docs/sidebarsRegistry.js wrangles-docs/requirements.txt wrangles-docs/src/components/WrangleFlowPlayground/registryCatalog.generated.js
+          if ! git diff --cached --quiet; then
+            git commit -m 'docs: sync catalog lifecycle and refresh Registry'
+            git push origin HEAD:main
+          fi
+      - name: Remove temporary catalog response
+        if: always()
+        run: rm -f "$RUNNER_TEMP/catalog-after-sync.json"
       - name: Record upstream revision
         run: |
           echo 'WranglesPY source revision:' >> "$GITHUB_STEP_SUMMARY"

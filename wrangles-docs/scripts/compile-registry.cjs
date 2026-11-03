@@ -1265,7 +1265,7 @@ ${sourceRows}
 }
 
 function legacyPill(entry) {
-  return entry.catalog?.history?.[entry.metadata.wrangle_key] === 'legacy'
+  return (entry.catalog_name_status || entry.catalog?.history?.[entry.metadata.wrangle_key]) === 'legacy'
     ? ' <span className="ww-legacy-pill" title="Still supported; a newer name is available">Legacy</span>' : '';
 }
 
@@ -1610,7 +1610,8 @@ function buildCompiledContractSchema(entrySchema) {
         pattern: '^[a-z][a-z0-9_]*(\\.[a-z][a-z0-9_]*)*$',
       },
       catalog_status: {type: 'string', minLength: 1},
-      catalog_history: {type: 'object', additionalProperties: {enum: ['legacy', 'not-active']}},
+      catalog_history: {type: 'object', additionalProperties: {enum: ['legacy', 'not active']}},
+      name_status: {enum: ['active', 'legacy']},
       legacy_id: {
         type: ['string', 'null'],
         format: 'uuid',
@@ -1648,6 +1649,7 @@ function buildEntryContract(entry, controls) {
     catalog_key: entry.catalog.catalog_key,
     catalog_status: entry.catalog.status,
     ...(Object.keys(entry.catalog.history || {}).length ? {catalog_history: entry.catalog.history} : {}),
+    ...(entry.catalog_name_status === 'legacy' ? {name_status: 'legacy'} : {}),
     legacy_id: metadata.id,
     wrangle_name: metadata.wrangle_name,
     namespace: metadata.namespace,
@@ -1920,13 +1922,15 @@ function reconcileCatalog(entries, catalogSnapshot, connectors = []) {
     left.metadata.wrangle_key.localeCompare(right.metadata.wrangle_key))) {
     const key = entry.metadata.wrangle_key;
     const sourceSchema = entry.metadata.configuration_schema || {};
-    const catalog = catalogForName(catalogSnapshot.entries, key, sourceSchema.catalog_id, sourceSchema.history);
+    const catalog = catalogForName(catalogSnapshot.entries, key, sourceSchema.catalog_id);
     if (!catalog) {
       entry.catalog = {catalog_id: null, catalog_key: key, status: 'pending-registration'};
       continue;
     }
-    entry.catalog = {...catalog, history: {...(sourceSchema.catalog_id ? sourceSchema.history : {}), ...catalog.history}};
-    const declaredRename = sourceSchema.catalog_id && sourceSchema.history?.[catalog.runtime_key] === 'legacy';
+    entry.catalog = catalog;
+    entry.catalog_name_status = sourceSchema.status || catalog.history?.[key] || catalog.status;
+    const declaredRename = sourceSchema.catalog_id && String(sourceSchema.catalog_id) === catalog.catalog_id;
+    if (entry.catalog_name_status === 'not active') fail(entry.sourceFile, 'Inactive documentation must be retired by Registry refresh');
 
     const conflicts = [];
     if (catalog.catalog_key !== key && catalog.runtime_key !== key && catalog.history?.[key] !== 'legacy' && !declaredRename) {
@@ -2298,13 +2302,14 @@ async function readInputs() {
     .filter((entry) => entry.metadata.recipe_writer?.eligible === true)
     .map((entry) => entry.metadata.wrangle_key)
     .sort();
-  if (recipeWriterKeys.length !== RECIPE_WRITER_BASELINE_COUNT) {
+  const reviewedKeys = [...new Set([...recipeWriterKeys, ...(sourceSchema.retired_recipe_writer_keys || [])])].sort();
+  if (reviewedKeys.length !== RECIPE_WRITER_BASELINE_COUNT) {
     fail(
       registryRoot,
       `Recipe Writer eligibility must contain exactly ${RECIPE_WRITER_BASELINE_COUNT} entries; found ${recipeWriterKeys.length}`,
     );
   }
-  const recipeWriterChecksum = sortedLineChecksum(recipeWriterKeys);
+  const recipeWriterChecksum = sortedLineChecksum(reviewedKeys);
   if (recipeWriterChecksum !== RECIPE_WRITER_KEYS_CHECKSUM) {
     fail(
       registryRoot,
@@ -2614,6 +2619,21 @@ async function writeOutputs() {
     await fs.mkdir(path.dirname(filename), {recursive: true});
     await fs.writeFile(filename, content, 'utf8');
   }
+  for (const filename of await obsoleteOutputs()) await fs.unlink(filename);
+}
+
+async function obsoleteOutputs() {
+  const obsolete = [];
+  const manualPrefix = path.resolve(manualPythonDocsRoot) + path.sep;
+  for (const root of [docsOutputRoot, rawOutputRoot, schemaOutputRoot, reportsOutputRoot, connectorRedirectRoot]) {
+    for (const filename of await listFiles(root)) {
+      const resolved = path.resolve(filename);
+      if (!generatedFiles.has(resolved) && (!resolved.startsWith(manualPrefix)
+          || resolved === path.join(manualPythonDocsRoot, 'connectors.md')
+          || resolved.startsWith(path.join(manualPythonDocsRoot, 'connectors') + path.sep))) obsolete.push(filename);
+    }
+  }
+  return obsolete;
 }
 
 async function checkOutputs() {

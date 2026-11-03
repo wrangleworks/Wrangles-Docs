@@ -145,6 +145,35 @@ def refresh(root, checkout, report_dir, skip_build=False):
             candidate_path = stage / 'candidate.json'
             run(['node', 'scripts/import-wranglespy-schema.cjs', str(checkout), '--snapshot-only', str(candidate_path)], site)
             candidate = json.loads(candidate_path.read_text())
+            if not candidate.get('wrangle_definitions'):
+                raise ValueError('Empty upstream inventory; refusing retirement')
+            catalog = json.loads((stage / 'registry/catalog/api-core.json').read_text())['catalog']
+            inactive = {name for row in catalog if row['catalog_kind'] == 'wrangle'
+                        for name, status in row.get('history', {}).items() if status == 'not active'}
+            inactive.update(row['wranglesPY_key'] for row in catalog
+                            if row['catalog_kind'] == 'wrangle' and row['status'] == 'not active')
+            if inactive & set(candidate['wrangle_definitions']):
+                raise ValueError('Inactive catalog names still exist upstream; synchronize the catalog first')
+            retired_sources = []
+            for key in sorted(inactive & set(accepted['wrangle_definitions'])):
+                filename = stage / source_file(key)
+                if filename.exists():
+                    # Let the existing Markdown parser read eligibility before
+                    # removing this one authoritative source in the staged copy.
+                    eligible = run(['node', '-e',
+                        "const fs=require('fs');const {parseRegistryMarkdown}=require('./scripts/registry-markdown.cjs');"
+                        "console.log(JSON.stringify(parseRegistryMarkdown(fs.readFileSync(process.argv[1],'utf8')).metadata.recipe_writer?.eligible===true));",
+                        str(filename)], site).strip() == 'true'
+                    if eligible:
+                        accepted['retired_recipe_writer_keys'] = sorted(set(accepted.get('retired_recipe_writer_keys', [])) | {key})
+                    filename.unlink()
+                    retired_sources.append(source_file(key))
+                for field in ('wrangle_definitions', 'wrangles', 'entry_sources'):
+                    accepted.get(field, {}).pop(key, None)
+                for keys in accepted['controls'].values():
+                    if key in keys:
+                        keys.remove(key)
+                report['accepted'].append({'key': key, 'action': 'removed_not_active'})
             report['requested_source'] = candidate['source']
             report['observations'] = mismatches(candidate)
             # Each accepted entry records its exact pin; retained data is never
@@ -292,9 +321,14 @@ def refresh(root, checkout, report_dir, skip_build=False):
             # Copy only explicitly owned outputs. Never replace the workspace or
             # unrelated local changes. Rejected candidates' new outputs were removed above.
             applying = True
+            obsolete = generated_files(root) - {root / p.relative_to(stage) for p in generated_files(stage)}
             for relative in ('registry', 'wrangles-docs/registry-docs', 'wrangles-docs/static/registry',
                              'wrangles-docs/static/schemas/recipes', 'wrangles-docs/static/py'):
                 shutil.copytree(stage / relative, root / relative, dirs_exist_ok=True)
+            for filename in obsolete:
+                filename.unlink(missing_ok=True)
+            for relative in retired_sources:
+                (root / relative).unlink(missing_ok=True)
             for relative in ('wrangles-docs/sidebarsRegistry.js', 'wrangles-docs/requirements.txt',
                              'wrangles-docs/src/components/WrangleFlowPlayground/registryCatalog.generated.js'):
                 shutil.copy2(stage / relative, root / relative)

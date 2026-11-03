@@ -5,15 +5,35 @@ import json
 import os
 import re
 import sys
+from datetime import datetime, timezone
+from pathlib import Path
 
 
-def plan(schema, rows):
+def plan(schema, rows, inventory=None):
+    """Derive DB lifecycle from per-name metadata, never from docstring history.
+
+    Only a complete callable inventory authorizes disappearance detection.
+    Present callables with missing/unreadable schemas abort rather than retire.
+    """
     definitions = schema['$defs']['wrangles']['items']['properties']
     if not isinstance(definitions, dict) or not definitions:
         raise ValueError('Missing wrangle definitions')
-    groups = {}
-    skipped = []
+    if inventory is not None:
+        if not isinstance(inventory, list) or not inventory or any(not isinstance(n, str) for n in inventory):
+            raise ValueError('Invalid callable inventory')
+        inventory = set(inventory)
+        if not set(definitions) <= inventory:
+            raise ValueError('Schema and callable inventory disagree')
+    groups, skipped, owners = {}, [], {}
+    existing = {str(row['catalog_id']): row for row in rows}
+    if len(existing) != len(rows):
+        raise ValueError('Duplicate catalog IDs')
     for name, definition in definitions.items():
+        if 'history' in definition:
+            raise ValueError(f'Remove history from the WranglesPY docstring: {name}')
+        status = definition.get('status')
+        if status not in (None, 'active', 'legacy'):
+            raise ValueError(f'Invalid per-name status: {name}')
         identity = definition.get('catalog_id')
         if identity is None:
             matches = [r for r in rows if r['catalog_kind'] == 'wrangle' and r['wranglesPY_key'] == name]
@@ -23,69 +43,88 @@ def plan(schema, rows):
                 skipped.append(name)
                 continue
             identity = str(matches[0]['catalog_id'])
-        if not isinstance(identity, str) or not re.fullmatch(r'[1-9][0-9]*', identity):
+        if not isinstance(identity, str) or not re.fullmatch(r'[1-9][0-9]*', identity) or int(identity) > 9223372036854775807:
             raise ValueError(f'Invalid catalog_id: {name}')
-        if int(identity) > 9223372036854775807:
-            raise ValueError(f'catalog_id exceeds BIGINT: {name}')
-        history = definition.get('history', {})
-        if not isinstance(history, dict) or any(not isinstance(k, str) or v != 'legacy' for k, v in history.items()):
-            raise ValueError(f'Invalid legacy history: {name}')
-        status = definition.get('status')
-        if status not in (None, 'active'):
-            raise ValueError(f'Expected active status; legacy names belong in history: {name}')
-        groups.setdefault(identity, []).append((name, status, history))
-    changes = []
-    for identity, entries in groups.items():
-        if any(e[1:] != entries[0][1:] for e in entries):
-            raise ValueError(f'Inconsistent shared metadata: {identity}')
-        _, status, history = entries[0]
-        names = {e[0] for e in entries}
-        if not set(history) <= names:
-            raise ValueError(f'Legacy names absent from schema: {identity}')
-        current = names - history.keys()
-        if len(current) != 1:
-            raise ValueError(f'Expected one current name for {identity}: {sorted(current)}')
-        name = current.pop()
-        matches = [r for r in rows if str(r['catalog_id']) == identity]
-        if len(matches) > 1:
-            raise ValueError(f'Duplicate catalog ID: {identity}')
-        old = matches[0] if matches else None
+        old = existing.get(identity)
         if old and old['catalog_kind'] != 'wrangle':
             raise ValueError(f'Wrong kind: {identity}')
-        if old and not isinstance(old.get('history'), dict):
-            raise ValueError('Run the history migration first')
-        key = old['catalog_key'] if old else name
-        if key in history:
-            key = name
-        # Preserve custom documentation organization; rename only declared legacy keys.
-        merged = dict(old['history']) if old else {}
-        merged.update(history)
-        if name in merged:
-            raise ValueError(f'Current name already in history: {name}')
-        for row in rows:
-            if str(row['catalog_id']) == identity:
-                continue
-            if row['catalog_key'] == key or (row['catalog_kind'] == 'wrangle' and row['wranglesPY_key'] in names):
-                # Allow a stale binding only when the same plan explicitly moves
-                # that other row to a distinct current name (e.g. lookup variants).
-                other = groups.get(str(row['catalog_id']), [])
-                other_current = {e[0] for e in other} - (other[0][2].keys() if other else set())
-                if row['catalog_key'] == key or len(other_current) != 1 or other_current & names:
-                    raise ValueError(f'Conflicting catalog identity for {name}')
         if not old and status is None:
             raise ValueError(f'New entry needs explicit status: {name}')
+        groups.setdefault(identity, {})[name] = status or (old.get('history', {}).get(name) if old else None) or 'active'
+        owners[name] = identity
+    targets = []
+    identities = set(groups)
+    if inventory is not None:
+        identities.update(str(r['catalog_id']) for r in rows if r['catalog_kind'] == 'wrangle')
+    for identity in sorted(identities, key=int):
+        old = existing.get(identity)
+        # Excel Map is catalog-only, never a recipe callable.
+        if old and old['catalog_key'] == old['wranglesPY_key'] == 'map' and old['wrangle_type'] == 'map' and 'map' not in definitions:
+            continue
+        names = groups.get(identity, {})
+        if old and not isinstance(old.get('history'), dict):
+            raise ValueError('Run the history migration first')
+        history = dict(old['history']) if old else {}
+        known = set(history) | ({old['wranglesPY_key']} if old else set())
+        for name in known:
+            if name in owners and owners[name] != identity:
+                # Historical lookup rows share the old binding; their explicit
+                # IDs may correct that binding, but must not claim lookup itself.
+                if old and old['wranglesPY_key'] == name and old['catalog_key'] in names and name not in history:
+                    continue
+                raise ValueError(f'Catalog identity conflict: {name}')
+            if inventory is not None and name not in inventory:
+                history[name] = 'not active'
+            elif inventory is not None and name not in definitions:
+                raise ValueError(f'Callable exists but its schema is missing: {name}')
+        for name, status in names.items():
+            if status == 'legacy':
+                history[name] = 'legacy'
+            else:
+                history.pop(name, None)
+        active = [name for name, status in names.items() if status == 'active']
+        if len(active) > 1:
+            raise ValueError(f'Multiple active names for catalog ID {identity}: {active}')
+        if active:
+            name, status = active[0], 'active'
+        elif names:
+            name = old['wranglesPY_key'] if old and old['wranglesPY_key'] in names else sorted(names)[0]
+            status = 'legacy'
+        elif old:
+            name = old['wranglesPY_key']
+            status = 'not active' if inventory is not None and not (known & inventory) else old['status']
+        else:
+            continue
+        key = old['catalog_key'] if old else name
+        if old and key == old['wranglesPY_key'] and name != old['wranglesPY_key']:
+            key = name
+        # Without explicit lifecycle metadata, retain deliberate existing state.
+        if old and name in definitions and definitions[name].get('status') is None and len(names) == 1:
+            status = old['status']
         target = dict(catalog_id=identity, catalog_key=key, wranglesPY_key=name,
-                      status=status or old['status'], history=merged)
-        if not old or any(old.get(k) != v for k, v in target.items() if k != 'catalog_id'):
-            changes.append({'action': 'update' if old else 'create', **target})
-    if len({c['catalog_key'] for c in changes}) != len(changes):
-        raise ValueError('Duplicate target catalog keys')
-    return changes, skipped
+                      status=status, history=history)
+        targets.append(target)
+    final = {identity: row for identity, row in existing.items()}
+    final.update({target['catalog_id']: target for target in targets})
+    keys = [r['catalog_key'] for r in final.values()]
+    if len(set(keys)) != len(keys):
+        raise ValueError('Conflicting target catalog keys')
+    for target in targets:
+        for row in rows:
+            if str(row['catalog_id']) != target['catalog_id'] and row['catalog_kind'] == 'wrangle' and row['wranglesPY_key'] == target['wranglesPY_key']:
+                other = final[str(row['catalog_id'])]
+                if other['wranglesPY_key'] == target['wranglesPY_key']:
+                    raise ValueError(f"Conflicting runtime binding: {target['wranglesPY_key']}")
+    return [dict(action='update' if target['catalog_id'] in existing else 'create', **target)
+            for target in targets if target['catalog_id'] not in existing or any(
+                existing[target['catalog_id']].get(k) != v for k, v in target.items() if k != 'catalog_id')], skipped
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('schema')
+    parser.add_argument('--inventory', required=True, help='Complete callable inventory from the same upstream revision')
+    parser.add_argument('--catalog-output', help='Write the updated catalog after applying changes')
     parser.add_argument('--apply', action='store_true')
     args = parser.parse_args()
     import psycopg
@@ -93,6 +132,7 @@ def main():
     from psycopg.types.json import Jsonb
     with open(args.schema) as stream:
         schema = json.load(stream)
+    inventory = json.loads(Path(args.inventory).read_text())
     with psycopg.connect(os.environ['DATABASE_URL'], connect_timeout=15, row_factory=dict_row) as connection:
         connection.execute("SET LOCAL lock_timeout = '10s'")
         connection.execute("SET LOCAL statement_timeout = '60s'")
@@ -102,7 +142,7 @@ def main():
         else:
             connection.execute('SET TRANSACTION READ ONLY')
         rows = connection.execute('SELECT * FROM public.wrangles_catalog').fetchall()
-        changes, skipped = plan(schema, rows)
+        changes, skipped = plan(schema, rows, inventory['names'])
         if args.apply:
             for change in changes:
                 values = (change['catalog_key'], change['wranglesPY_key'], change['status'], Jsonb(change['history']), int(change['catalog_id']))
@@ -120,6 +160,14 @@ def main():
                     GREATEST((SELECT MAX(catalog_id) FROM public.wrangles_catalog),
                     nextval(pg_get_serial_sequence('public.wrangles_catalog','catalog_id'))), true)
                     WHERE pg_get_serial_sequence('public.wrangles_catalog','catalog_id') IS NOT NULL''')
+        if args.apply and args.catalog_output:
+            exported = connection.execute('SELECT * FROM public.wrangles_catalog ORDER BY catalog_key').fetchall()
+            for row in exported:
+                row['catalog_id'] = str(row['catalog_id'])
+                for field in ('created_at', 'updated_at'):
+                    row[field] = row[field].astimezone(timezone.utc).isoformat().replace('+00:00', 'Z')
+    if args.apply and args.catalog_output:
+        Path(args.catalog_output).write_text(json.dumps({'catalog': exported}, indent=2) + '\n')
     print(json.dumps({'applied': args.apply, 'changes': changes, 'unregistered': skipped}, indent=2))
 
 

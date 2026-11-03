@@ -379,10 +379,8 @@ function generateRegistryCatalog(manifestPath, options = {}) {
     if (entry.catalog_id !== null) {
       const previous = seenCatalogIds.get(String(entry.catalog_id)) || [];
       for (const other of previous) {
-        const history = contract.catalog_history || {};
-        if (other.catalog_key !== contract.catalog_key ||
-            JSON.stringify(other.catalog_history || {}) !== JSON.stringify(history) ||
-            (history[other.wrangle_key] !== 'legacy' && history[contract.wrangle_key] !== 'legacy')) {
+        const legacy = entry => entry.name_status === 'legacy' || entry.catalog_history?.[entry.wrangle_key] === 'legacy';
+        if (other.catalog_key !== contract.catalog_key || (!legacy(other) && !legacy(contract))) {
           throw new Error(`Unrelated entries share a catalog ID: ${entry.wrangle_key}`);
         }
       }

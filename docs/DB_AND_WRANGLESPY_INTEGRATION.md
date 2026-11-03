@@ -1,143 +1,81 @@
 # Database, WranglesPY and documentation
 
-**The catalog synchronization is implemented on `feat/catalog-history-sync`;
-it has not been run against the live database.** Documentation regrouping below
-remains a plan. The existing validation workflow remains read-only.
+WranglesPY describes each recipe name. This repository synchronizes the database
+and generates the documentation. All workflow commits go directly to `main`.
 
-## What does each part do?
+## What belongs where?
 
-| Part | Its job |
+| Place | What it contains |
 | --- | --- |
-| WranglesPY | Defines the executable functions and their schemas. Under this plan, it also allocates IDs for new wrangles. |
-| Database (`wrangles_catalog`) | Stores catalog IDs, names, execution bindings and status. |
-| Docs | Stores editable explanations and examples; generates pages and contracts. |
+| WranglesPY docstring/schema | `catalog_id: "123"` and `status: active` or `legacy`. No `history`. |
+| Database | One row per catalog ID, the current runtime name, status, and calculated `history`. |
+| Documentation | A page for each available name. Legacy names get a **Legacy** pill. Removed names have no page. |
 
-## The three important fields
+IDs are metadata, not recipe parameters. The function's exposed name supplies
+`wranglesPY_key`. `catalog_key` controls documentation identity; existing custom
+catalog keys are preserved. A new row starts with its runtime name as catalog key.
+Existing `wrangle_type` and `okf_path` values stay unchanged; new values can be null.
 
-| Field | Meaning |
-| --- | --- |
-| `catalog_id` | Permanent identity linking PY, the database and Docs. Keep it unchanged when names change. |
-| `wranglesPY_key` | The operation used in a recipe, such as `lookup.semantic`. It is not a Python file path. |
-| `catalog_key` | Where the entry belongs in the documentation, such as `standardize.lookup`. |
+## Example
 
-For example, `wranglesPY_key: lookup.semantic` with
-`catalog_key: standardize.lookup` appears under **Standardize → Lookup**.
-Its recipes still use **`lookup.semantic`**, not `standardize.lookup`.
+Old function `split.dictionary`: ID `63`, status `legacy`.
+New function `structure.split_dictionary`: ID `63`, status `active`.
+Each name needs its own status, even when the implementations are equivalent.
+A shared Python function object cannot hold two different docstrings.
 
-Store catalog IDs as quoted strings in metadata, such as `"102"`.
-In PY, this is schema/docstring metadata, **not a function or recipe parameter**.
-In Docs, do not reuse the existing legacy UUID `id` field as the catalog ID.
+The workflow keeps row 63 active, points it to `structure.split_dictionary`, and
+calculates:
 
-## How do we match a wrangle?
-
-Apply these rules separately to each wrangle:
-
-| What PY provides | What happens |
-| --- | --- |
-| An ID that already exists in the database | Use that database row. |
-| A new explicit ID that does not exist in the database | Create a row with that PY-issued ID, only if there is no conflicting existing identity. |
-| No ID, but exactly one database row matches `wranglesPY_key` | Use that row and its existing ID. |
-| No ID and no matching database row | Do not create a database row. Report the entry as unregistered. |
-| Multiple fallback matches or conflicting IDs/keys | Report the problem. Do not guess or overwrite. |
-
-The key fallback is for existing wrangles whose PY metadata does not yet contain
-an ID. Matching does not automatically write the ID back into PY.
-
-## What values do we keep?
-
-| Field | Existing row | New row |
-| --- | --- | --- |
-| `catalog_id` | Keep the existing ID. | Use the explicit PY-issued ID. |
-| `catalog_key` | Keep the database value. | Start with `wranglesPY_key`; it can be reorganized later. |
-| `catalog_kind` | Preserve the correct category. | Identify it as a wrangle, connector, etc. |
-| `wrangle_type` | Keep the existing value. | Allow `null`. |
-| `status` | Use explicit PY status; preserve it when metadata is missing. | Set `active` from PY metadata. |
-| `history` | Merge explicitly declared legacy names. | Start with `{}`, then add declared legacy names. |
-| `okf_path` | Leave unchanged. | Leave `null` for now. |
-
-`active` does not automatically enable the Run button. Execution eligibility
-still needs its own review.
-
-## What happens to the documentation?
-
-Keep a separate document for each supported recipe name, including legacy names.
-Current and legacy names share the catalog ID. History marks the old page with
-a **Legacy** pill; it does not disable execution or change its examples.
-
-- If the document is missing, create a starter page from a valid schema.
-- If the group is missing, create the group too.
-- Keep existing legacy documents and their URLs. Create a separate current-name
-  document when its valid schema is discovered; never overwrite the old prose.
-- Keep executable recipe keys tied to `wranglesPY_key`.
-- Do not invent examples or expected outputs for a new page.
-
-A read-only check reports differences. The synchronization/refresh process
-applies approved changes and regenerates the pages and contracts.
-
-For normal wording and example edits, follow
-[Editing wrangles and connectors](EDITING_WRANGLES_AND_CONNECTORS.md).
-
-## Before merging
-
-We still need to define how PY allocates unique IDs without collisions across
-branches or existing database entries. This workflow uses the direct database
-connection for explicit IDs. API-Core would need a separate change to accept
-caller-supplied IDs through its catalog creation API.
-
-Develop and push the implementation on a **separate branch**, not `main`.
-Merge only after the required IDs are added to WranglesPY and the matching,
-fallback, conflict handling and generated outputs have been tested.
-
-## Run the history migration locally
-
-Connect to the VPN. Set `DATABASE_URL` to the direct PostgreSQL URL, as before.
-Do not paste credentials into this repository.
-
-```sh
-python3 -m pip install 'psycopg[binary]>=3.2,<4'
-python3 scripts/migrate_catalog_history.py > catalog-after-migration.json
+```json
+{"split.dictionary": "legacy"}
 ```
 
-This adds a JSONB `history` column with default `{}`. It preserves existing
-statuses and fills only null statuses with `active`; new rows default to active.
-All rows in the supplied export are already active. It does not rename anything,
-move legacy names, or clear an existing history. The output contains the latest
-catalog rows after the transaction commits. Keep it locally.
+Both documentation pages remain available. Only the old one gets a Legacy pill.
+Its examples and Run eligibility are not disabled merely because it is legacy.
 
-## Run synchronization
+When the old function disappears, the workflow changes its history to:
 
-Use **Actions → Sync catalog identity and history from WranglesPY**. Enter the
-WranglesPY branch containing the new metadata in `upstream_ref`. Later, enter
-`main` after that PR merges. Leave `apply_changes` off to preview; turn it on
-to apply the changes in one database transaction. It uses the existing
-`api-core-validation` environment's `WIREGUARD_CONFIG` and `DATABASE_URL` secrets.
-The database credential must have INSERT and UPDATE permissions for applying.
-The environment must permit this development branch if testing before merge.
-GitHub requires a workflow to exist on the default branch before it can be
-manually dispatched; until then, the same sync script can be tested locally
-with a generated `schema/schema.json` and `DATABASE_URL`:
-
-```sh
-python3 scripts/sync_catalog_history.py /path/to/WranglesPY/schema/schema.json
-# After reviewing the preview:
-python3 scripts/sync_catalog_history.py /path/to/WranglesPY/schema/schema.json --apply
+```json
+{"split.dictionary": "not active"}
 ```
 
-For ID 63, `split.dictionary` moves into `history` as `legacy`, while the runtime
-key becomes `structure.split_dictionary`. The catalog key also changes if it
-still equals the old legacy name; a manually chosen documentation key is kept.
-The row stays active and keeps ID 63. Shared docstrings carry the same history;
-exactly one exposed name must remain outside history for each shared ID.
+Registry refresh removes that old Markdown page, generated page, contract,
+navigation references and Playground entry. Directly deleted active names follow
+the same rule. If no names remain for an ID, the database row stays for history
+with status `not active`. Connectors and the catalog-only Excel Map are excluded.
 
-Only recipe wrangles are synchronized here. Connectors and catalog-only `map`
-are untouched. Missing definitions do not automatically deactivate rows: a
-missing schema is not sufficient proof of removal. Existing documentation
-generation and schema refresh workflows remain separate; refresh the pinned
-WranglesPY schema before expecting validation against renamed bindings to pass.
+A present function with a missing/unreadable schema is an error, not a deletion.
+Disappearance is checked against the complete callable inventory from the same
+upstream revision as the generated schema.
 
-Registry reconciliation resolves current and legacy names to the same ID using
-history. Both pages remain available. Legacy pills appear next to individual
-wrangle headings; a sidebar group gets a pill only when all its wrangles are
-legacy. Playground keeps separate recipe names and accepts shared IDs only for
-explicitly documented legacy aliases. Missing current runtime bindings still
-fail validation, so refresh the saved schema before applying renamed DB bindings.
+## How are IDs matched?
+
+1. Use the explicit WranglesPY catalog ID when present.
+2. Otherwise use an exact, unique existing database `wranglesPY_key` match.
+3. No ID and no database match: report it; do not insert a row.
+4. An explicit new ID may create a row. Conflicting IDs/keys or multiple active
+   names for one ID stop the transaction. Do not guess IDs or allocate them here.
+
+## What do I run?
+
+The one-time `history` column migration has already been run. The saved catalog
+is `registry/catalog/api-core.json`; history currently contains empty objects.
+
+1. Give the WranglesPY AI [this temporary prompt](TEMP_WRANGLESPY_CATALOG_PROMPT.md)
+   and the saved catalog JSON.
+2. Open **Actions → Sync catalog identity and history from WranglesPY** on `main`.
+3. Enter its WranglesPY branch in `upstream_ref`. Use `main` after upstream merges.
+4. Leave `apply_changes` off to preview changes first.
+5. Enable `apply_changes` to update the database, refresh the catalog snapshot,
+   generate/validate/build the documentation, and commit successful results to main.
+6. Run **Publish Latest** to publish those committed results.
+
+The protected `api-core-validation` environment supplies `WIREGUARD_CONFIG` and
+`DATABASE_URL`. No credentials belong in source files. Upstream Python runs in a
+separate job without database/VPN secrets. If documentation validation fails after
+the database transaction, no documentation commit is pushed; fix the reported
+problem and rerun. The sync is idempotent.
+
+The existing **Validate Registry against live API-Core** workflow stays read-only.
+The normal **Refresh Registry from WranglesPY** workflow can also refresh docs
+against the saved catalog after synchronization.

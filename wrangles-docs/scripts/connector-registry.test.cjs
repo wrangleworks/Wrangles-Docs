@@ -168,9 +168,9 @@ test('current and legacy pages resolve to the same identity without ambiguous ma
   assert.equal(catalogForName([row], 'split.dictionary'), row);
   assert.equal(catalogForName([row], 'structure.split_dictionary', '63'), row);
   const beforeSync = {...row, catalog_key: 'split.dictionary', runtime_key: 'split.dictionary', history: {}};
-  assert.equal(catalogForName([beforeSync], 'structure.split_dictionary', '63', row.history), beforeSync);
+  assert.equal(catalogForName([beforeSync], 'structure.split_dictionary', '63'), beforeSync);
   assert.equal(catalogForName([row], 'missing'), null);
-  assert.throws(() => catalogForName([row], 'unrelated', '63'), /conflict/);
+  assert.equal(catalogForName([row], 'renamed', '63'), row);
   assert.throws(() => catalogForName([row, {...row, catalog_id: '64'}], 'split.dictionary'), /Ambiguous/);
 });
 

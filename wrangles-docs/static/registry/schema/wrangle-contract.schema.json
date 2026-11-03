@@ -285,9 +285,15 @@
       "additionalProperties": {
         "enum": [
           "legacy",
-          "not-active"
+          "not active"
         ]
       }
+    },
+    "name_status": {
+      "enum": [
+        "active",
+        "legacy"
+      ]
     },
     "legacy_id": {
       "type": [
