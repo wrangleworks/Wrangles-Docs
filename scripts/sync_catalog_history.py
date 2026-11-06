@@ -235,6 +235,9 @@ def apply_plan(connection, changes, rows, jsonb):
     existing = {str(row['catalog_id']): row for row in rows}
     for change in changes:
         if change['action'] == 'delete':
+            with sync_step(f"reassign model references from catalog ID {change['catalog_id']} to {change['replacement_catalog_id']}"):
+                connection.execute('UPDATE public.models SET catalog_id=%s WHERE catalog_id=%s',
+                                   (int(change['replacement_catalog_id']), int(change['catalog_id'])))
             with sync_step(f"{change['action']} catalog ID {change['catalog_id']}"):
                 connection.execute('DELETE FROM public.wrangles_catalog WHERE catalog_id=%s',
                                    (int(change['catalog_id']),))
@@ -287,6 +290,12 @@ def main():
             rows = connection.execute('SELECT * FROM public.wrangles_catalog').fetchall()
             warnings = []
             changes, skipped = plan(schema, rows, inventory['names'], warnings)
+            for change in changes:
+                if change['action'] == 'delete':
+                    with sync_step(f"count model references for catalog ID {change['catalog_id']}"):
+                        change['model_references_to_reassign'] = connection.execute(
+                            'SELECT COUNT(*) AS count FROM public.models WHERE catalog_id=%s',
+                            (int(change['catalog_id']),)).fetchone()['count']
             if args.apply:
                 apply_plan(connection, changes, rows, Jsonb)
                 # Leave any DB-owned allocator above the explicitly assigned IDs.

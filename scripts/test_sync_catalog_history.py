@@ -2,6 +2,7 @@ import unittest
 from types import SimpleNamespace
 from sync_catalog_history import plan, apply_plan, safe_error, SyncFailure, sync_step
 import json
+import sqlite3
 from unittest.mock import Mock
 from export_wranglespy_inventory import callable_names
 
@@ -26,9 +27,10 @@ class SyncTests(unittest.TestCase):
         error.diag = SimpleNamespace(constraint_name='models_catalog_id_fkey',
                                      table_name='models', message_detail='secret record values')
         connection = Mock()
-        connection.execute.side_effect = error
+        connection.execute.side_effect = [None, error]
         with self.assertRaises(SyncFailure) as caught:
-            apply_plan(connection, [{'action': 'delete', 'catalog_id': '102'}], [], lambda x: x)
+            apply_plan(connection, [{'action': 'delete', 'catalog_id': '102',
+                                     'replacement_catalog_id': '81'}], [], lambda x: x)
         details = json.loads(str(caught.exception))
         self.assertEqual(details['operation'], 'delete catalog ID 102')
         self.assertEqual(details['sqlstate'], '23503')
@@ -187,10 +189,12 @@ class SyncTests(unittest.TestCase):
         connection = Mock()
         apply_plan(connection, list(reversed(changes)), rows, lambda value: value)
         calls = connection.execute.call_args_list
-        self.assertTrue(calls[0].args[0].startswith('DELETE'))
-        self.assertEqual(calls[0].args[1], (102,))
-        self.assertTrue(calls[1].args[0].startswith('UPDATE'))
-        self.assertEqual(calls[1].args[1][-1], 81)
+        self.assertTrue(calls[0].args[0].startswith('UPDATE public.models'))
+        self.assertEqual(calls[0].args[1], (81, 102))
+        self.assertTrue(calls[1].args[0].startswith('DELETE'))
+        self.assertEqual(calls[1].args[1], (102,))
+        self.assertTrue(calls[2].args[0].startswith('UPDATE public.wrangles_catalog'))
+        self.assertEqual(calls[2].args[1][-1], 81)
 
     def test_new_id_preserves_custom_key_and_non_schema_fields(self):
         original = row(catalog_key='custom.dictionary', notes='editorial note',
@@ -200,8 +204,53 @@ class SyncTests(unittest.TestCase):
         self.assertEqual(changes[1]['catalog_key'], 'custom.dictionary')
         connection = Mock()
         apply_plan(connection, changes, [original], lambda value: value)
-        self.assertEqual(connection.execute.call_args_list[1].args[1][-4:],
+        self.assertEqual(connection.execute.call_args_list[2].args[1][-4:],
                          ('recipe', 'existing/path', 'editorial note', '2026-01-01'))
+
+    def test_model_references_migrate_atomically_without_deleting_models(self):
+        # Exercise actual FK enforcement and rollback, without a live database.
+        for fail_after_reassignment in (False, True):
+            connection = sqlite3.connect(':memory:')
+            self.addCleanup(connection.close)
+            connection.execute('PRAGMA foreign_keys=ON')
+            connection.execute("ATTACH DATABASE ':memory:' AS public")
+            connection.create_function('NOW', 0, lambda: 'now')
+            connection.executescript('''
+                CREATE TABLE public.wrangles_catalog (
+                    catalog_id INTEGER PRIMARY KEY, catalog_key TEXT UNIQUE,
+                    wranglesPY_key TEXT, status TEXT, history TEXT, updated_at TEXT);
+                CREATE TABLE public.models (
+                    id INTEGER PRIMARY KEY, catalog_id INTEGER REFERENCES wrangles_catalog(catalog_id),
+                    content TEXT);
+                INSERT INTO public.wrangles_catalog VALUES
+                    (81,'lookup','lookup','active','{}',NULL),
+                    (102,'lookup.semantic','lookup','active','{}',NULL),
+                    (101,'lookup.key','lookup.key','active','{}',NULL);
+                INSERT INTO public.models VALUES (1,102,'keep-one'),(2,102,'keep-two'),(3,101,'unrelated');
+            ''')
+            if fail_after_reassignment:
+                connection.executescript('''
+                    CREATE TRIGGER public.reject_catalog_update BEFORE UPDATE ON wrangles_catalog
+                    BEGIN SELECT RAISE(ABORT, 'test failure'); END;
+                ''')
+            adapter = SimpleNamespace(execute=lambda query, args: connection.execute(query.replace('%s', '?'), args))
+            rows = [row('81', 'lookup'), row('102', 'lookup.semantic'), row('101', 'lookup.key')]
+            entries = {'lookup': metadata('81', 'legacy'), 'lookup.semantic': metadata('81'),
+                       'lookup.key': metadata('101')}
+            changes, _ = plan(schema(entries), rows, list(entries))
+            try:
+                with connection:
+                    apply_plan(adapter, changes, rows, json.dumps)
+            except SyncFailure:
+                if not fail_after_reassignment:
+                    raise
+            else:
+                self.assertFalse(fail_after_reassignment)
+            expected_id = 102 if fail_after_reassignment else 81
+            self.assertEqual(connection.execute('SELECT * FROM public.models ORDER BY id').fetchall(),
+                             [(1, expected_id, 'keep-one'), (2, expected_id, 'keep-two'), (3, 101, 'unrelated')])
+            self.assertEqual(connection.execute('SELECT COUNT(*) FROM public.wrangles_catalog WHERE catalog_id=102').fetchone()[0],
+                             int(fail_after_reassignment))
 
     def test_lookup_ids_correct_old_shared_bindings(self):
         rows = [row('81', 'lookup'), row('101', 'lookup.key', wranglesPY_key='lookup'),

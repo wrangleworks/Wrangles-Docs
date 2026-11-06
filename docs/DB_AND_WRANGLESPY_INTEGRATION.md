@@ -68,7 +68,10 @@ row 102 for `lookup.semantic` is deleted. Preview lists this explicitly as a
 `delete` action with `replacement_catalog_id: "81"`. Both documentation pages remain.
 If `lookup` also stays active, those rows are retained instead and a warning is reported.
 Deletes and updates execute in one database transaction; database constraint
-failures roll it back. No dependent records are explicitly deleted by the script.
+failures roll it back. Before deleting an obsolete row, model references in
+`public.models.catalog_id` move to its replacement ID. The models themselves and
+their content are preserved. Preview reports `model_references_to_reassign` for
+each deletion. Other database constraints remain enforced.
 
 ## What do I run?
 
