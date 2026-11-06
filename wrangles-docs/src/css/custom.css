@@ -364,12 +364,8 @@ body::after {
   background: #ffffff;
   border-bottom: 2px solid var(--ww-gold-500);
   box-shadow: 0 5px 10px rgba(15, 23, 42, 0.08);
-  margin-left: -0.5rem;
-  margin-right: -0.5rem;
+  margin: 0.75rem 0 1.25rem;
   padding: 0.65rem 0.5rem;
-  position: sticky;
-  top: var(--ifm-navbar-height);
-  z-index: 20;
 }
 
 .ww-wrangle-doc-scope .theme-doc-markdown > header:first-child h1 {
@@ -1328,14 +1324,16 @@ h4.tabset {
   font-weight: 600;
   line-height: 1.3;
   vertical-align: middle;
-  color: var(--ifm-color-primary);
+  color: var(--ww-ink-700);
+  background: #fff3cd;
+  border-color: #e6cf82;
 }
 .theme-doc-sidebar-menu:has(.registry-sidebar-intro) .registry-sidebar-legacy > .menu__link::before {
   content: 'Legacy';
-  color: #fff;
+  color: var(--ww-ink-700);
   width: auto;
   height: auto;
-  background: transparent;
+  background: #fff3cd;
   order: 1;
   margin-right: 0;
 }
