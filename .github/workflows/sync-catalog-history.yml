@@ -132,15 +132,22 @@ jobs:
         run: |
           node wrangles-docs/scripts/import-catalog-snapshot.cjs "$RUNNER_TEMP/catalog-after-sync.json"
           python scripts/refresh_registry.py --checkout .upstream-wranglespy
-      - name: Commit validated catalog and documentation to main
+      - name: Push validated catalog and documentation to a review branch
         if: inputs.apply_changes
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add registry wrangles-docs/registry-docs wrangles-docs/static/registry wrangles-docs/static/schemas/recipes wrangles-docs/static/py wrangles-docs/sidebarsRegistry.js wrangles-docs/requirements.txt wrangles-docs/src/components/WrangleFlowPlayground/registryCatalog.generated.js
           if ! git diff --cached --quiet; then
+            branch="catalog-sync/${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
             git commit -m 'docs: sync catalog lifecycle and refresh Registry'
-            git push origin HEAD:main
+            git push origin "HEAD:refs/heads/$branch"
+            echo "### Documentation ready to merge" >> "$GITHUB_STEP_SUMMARY"
+            echo "Branch: \`$branch\`" >> "$GITHUB_STEP_SUMMARY"
+            echo "[Review and create a pull request](${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/compare/main...${branch}?expand=1)" >> "$GITHUB_STEP_SUMMARY"
+            echo 'The database has been updated. Merge this branch to update the documentation on main.' >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo 'No catalog or documentation file changes to commit.' >> "$GITHUB_STEP_SUMMARY"
           fi
       - name: Remove temporary catalog response
         if: always()

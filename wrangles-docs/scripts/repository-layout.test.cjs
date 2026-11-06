@@ -5,6 +5,20 @@ const path = require('node:path');
 const root = path.resolve(__dirname, '../..');
 const {normalizeApiCatalog} = require('./api-core-catalog.cjs');
 
+test('catalog sync pushes validated outputs to a review branch without updating main', () => {
+  const workflow = require('js-yaml').load(fs.readFileSync(path.join(root,
+    '.github/workflows/sync-catalog-history.yml'), 'utf8'));
+  const steps = workflow.jobs.sync.steps;
+  const refresh = steps.findIndex(step => step.run?.includes('python scripts/refresh_registry.py'));
+  const push = steps.findIndex(step => step.run?.includes('git push'));
+  assert.ok(refresh >= 0 && push > refresh);
+  assert.equal(steps[push].if, 'inputs.apply_changes');
+  assert.match(steps[push].run, /catalog-sync\/\$\{GITHUB_RUN_ID\}-\$\{GITHUB_RUN_ATTEMPT\}/);
+  assert.match(steps[push].run, /HEAD:refs\/heads\/\$branch/);
+  assert.doesNotMatch(steps[push].run, /HEAD:(?:refs\/heads\/)?main|--force/);
+  assert.match(steps[push].run, /GITHUB_STEP_SUMMARY/);
+});
+
 test('content compilation validates before committing and all CI consumers regenerate', () => {
   const yaml = require('js-yaml');
   const read = name => yaml.load(fs.readFileSync(path.join(root, '.github/workflows', name), 'utf8'));

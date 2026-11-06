@@ -84,8 +84,12 @@ is `registry/catalog/api-core.json`; history currently contains empty objects.
 3. Enter its WranglesPY branch in `upstream_ref`. Use `main` after upstream merges.
 4. Leave `apply_changes` off to preview changes first.
 5. Enable `apply_changes` to update the database, refresh the catalog snapshot,
-   generate/validate/build the documentation, and commit successful results to main.
-6. Run **Publish Latest** to publish those committed results.
+   generate/validate/build the documentation, and push successful results to a
+   `catalog-sync/<run-id>-<attempt>` branch.
+6. Open the comparison link in the workflow summary, create a pull request, and
+   merge it into `main`. The database is already updated; the merge updates the
+   documentation in the repository.
+7. The merge to `main` triggers **Publish Latest**.
 
 The protected `api-core-validation` environment supplies `WIREGUARD_CONFIG` and
 `DATABASE_URL`. No credentials belong in source files. Upstream Python runs in a
