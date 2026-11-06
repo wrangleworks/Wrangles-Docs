@@ -183,6 +183,7 @@ body::after {
 }
 
 .ww-search__result:hover,
+.ww-search__result[aria-selected="true"],
 .ww-search__result:focus {
   background: var(--ww-blue-100);
   outline: none;

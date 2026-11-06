@@ -1,73 +1,20 @@
-import React, {useMemo, useRef, useState} from 'react';
+import React, {useMemo, useRef, useState, useId} from 'react';
 import {useHistory} from '@docusaurus/router';
-import {useDocsData} from '@docusaurus/plugin-content-docs/client';
+import {useAllDocsData} from '@docusaurus/plugin-content-docs/client';
 
-const MAX_RESULTS = 8;
-
-function normalize(value) {
-  return String(value || '').toLowerCase();
-}
-
-function titleFromId(id) {
-  const lastSegment = String(id || '').split('/').filter(Boolean).pop() || 'Home';
-
-  return lastSegment
-    .replace(/[-_]+/g, ' ')
-    .replace(/\b\w/g, (letter) => letter.toUpperCase());
-}
-
-function getSearchItems(docsData) {
-  const currentVersion = docsData?.versions?.find((version) => version.isLast) || docsData?.versions?.[0];
-
-  return (currentVersion?.docs || [])
-    .map((docRoute) => {
-      return {
-        id: docRoute.id,
-        title: titleFromId(docRoute.id),
-        path: docRoute.path,
-        haystack: normalize(`${titleFromId(docRoute.id)} ${docRoute.id} ${docRoute.path}`),
-      };
-    })
-    .filter(Boolean);
-}
+import {getSearchItems, searchItemsForQuery} from './search.cjs';
 
 export default function SearchBar() {
   const history = useHistory();
   const searchRef = useRef(null);
-  const docsData = useDocsData();
+  const docsData = useAllDocsData();
+  const resultsId = useId();
+  const [activeIndex, setActiveIndex] = useState(0);
   const searchItems = useMemo(() => getSearchItems(docsData), [docsData]);
   const [query, setQuery] = useState('');
   const [isOpen, setIsOpen] = useState(false);
 
-  const results = useMemo(() => {
-    const normalizedQuery = normalize(query).trim();
-
-    if (!normalizedQuery) {
-      return [];
-    }
-
-    const terms = normalizedQuery.split(/\s+/);
-
-    return searchItems
-      .map((item) => {
-        if (!terms.every((term) => item.haystack.includes(term))) {
-          return null;
-        }
-
-        const title = normalize(item.title);
-        const id = normalize(item.id);
-        const score =
-          (title === normalizedQuery ? 30 : 0) +
-          (title.startsWith(normalizedQuery) ? 20 : 0) +
-          (title.includes(normalizedQuery) ? 10 : 0) +
-          (id.includes(normalizedQuery) ? 5 : 0);
-
-        return {...item, score};
-      })
-      .filter(Boolean)
-      .sort((a, b) => b.score - a.score || a.title.localeCompare(b.title))
-      .slice(0, MAX_RESULTS);
-  }, [query, searchItems]);
+  const results = useMemo(() => searchItemsForQuery(searchItems, query), [query, searchItems]);
 
   function navigateTo(path) {
     setQuery('');
@@ -82,9 +29,17 @@ export default function SearchBar() {
       return;
     }
 
-    if (event.key === 'Enter' && results[0]) {
+    if ((event.key === 'ArrowDown' || event.key === 'ArrowUp') && results.length) {
       event.preventDefault();
-      navigateTo(results[0].path);
+      setIsOpen(true);
+      const next = (activeIndex + (event.key === 'ArrowDown' ? 1 : -1) + results.length) % results.length;
+      setActiveIndex(next);
+      document.getElementById(`${resultsId}-${next}`)?.scrollIntoView({block: 'nearest'});
+      return;
+    }
+    if (event.key === 'Enter' && isOpen && results[activeIndex]) {
+      event.preventDefault();
+      navigateTo(results[activeIndex].path);
     }
   }
 
@@ -94,12 +49,16 @@ export default function SearchBar() {
         type="search"
         placeholder="Search"
         aria-label="Search documentation"
-        aria-expanded={isOpen}
-        aria-controls="ww-search-results"
+        role="combobox"
+        aria-autocomplete="list"
+        aria-expanded={isOpen && Boolean(query.trim())}
+        aria-activedescendant={isOpen && results[activeIndex] ? `${resultsId}-${activeIndex}` : undefined}
+        aria-controls={resultsId}
         className="navbar__search-input"
         value={query}
         onChange={(event) => {
           setQuery(event.target.value);
+          setActiveIndex(0);
           setIsOpen(true);
         }}
         onFocus={() => setIsOpen(true)}
@@ -113,14 +72,17 @@ export default function SearchBar() {
         onKeyDown={handleKeyDown}
       />
       {isOpen && query.trim() && (
-        <div className="ww-search__results" id="ww-search-results" role="listbox">
+        <div className="ww-search__results" id={resultsId} role="listbox">
           {results.length > 0 ? (
-            results.map((result) => (
+            results.map((result, index) => (
               <button
                 type="button"
                 className="ww-search__result"
                 key={result.id}
                 role="option"
+                id={`${resultsId}-${index}`}
+                aria-selected={index === activeIndex}
+                onMouseEnter={() => setActiveIndex(index)}
                 onMouseDown={(event) => event.preventDefault()}
                 onClick={() => navigateTo(result.path)}>
                 <span className="ww-search__result-title">{result.title}</span>
