@@ -2,6 +2,21 @@ const test = require('node:test');
 const assert = require('node:assert/strict');
 const {getSearchItems, searchItemsForQuery} = require('../src/theme/SearchBar/search.cjs');
 
+test('search uses page descriptions and keeps destination URLs separate', () => {
+  let descriptions;
+  require('../plugins/search-descriptions.cjs')().allContentLoaded({
+    allContent: {'docusaurus-plugin-content-docs': {registry: {loadedVersions: [{docs: [
+      {permalink: '/py/split/dictionary', description: 'Split `dictionaries`\n into columns.'},
+    ]}]}}},
+    actions: {setGlobalData(value) { descriptions = value; }},
+  });
+  const [item] = getSearchItems({registry: {versions: [{docs: [
+    {id: 'split/dictionary', path: '/py/split/dictionary'},
+  ]}]}}, descriptions);
+  assert.equal(item.description, 'Split dictionaries into columns.');
+  assert.equal(item.path, '/py/split/dictionary');
+});
+
 test('search covers both documentation collections and matches recipe key punctuation', () => {
   const items = getSearchItems({
     default: {versions: [{docs: [{id: 'account/secrets', path: '/account/secrets'}]}]},

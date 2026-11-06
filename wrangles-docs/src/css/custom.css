@@ -190,7 +190,7 @@ body::after {
 }
 
 .ww-search__result-title,
-.ww-search__result-path {
+.ww-search__result-description {
   display: block;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -202,7 +202,12 @@ body::after {
   font-weight: 700;
 }
 
-.ww-search__result-path {
+.ww-search__result-description {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  white-space: normal;
+  line-height: 1.4;
   color: #666666;
   font-size: 0.78rem;
   margin-top: 0.16rem;

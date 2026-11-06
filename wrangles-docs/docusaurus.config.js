@@ -27,6 +27,7 @@ const config = {
   themes: ['@docusaurus/theme-mermaid'],
 
   plugins: [
+    require.resolve('./plugins/search-descriptions.cjs'),
     [
       '@docusaurus/plugin-content-docs',
       /** @type {import('@docusaurus/plugin-content-docs').Options} */

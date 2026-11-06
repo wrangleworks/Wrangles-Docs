@@ -1,6 +1,7 @@
 import React, {useMemo, useRef, useState, useId} from 'react';
 import {useHistory} from '@docusaurus/router';
 import {useAllDocsData} from '@docusaurus/plugin-content-docs/client';
+import {usePluginData} from '@docusaurus/useGlobalData';
 
 import {getSearchItems, searchItemsForQuery} from './search.cjs';
 
@@ -8,9 +9,10 @@ export default function SearchBar() {
   const history = useHistory();
   const searchRef = useRef(null);
   const docsData = useAllDocsData();
+  const descriptions = usePluginData('search-descriptions');
   const resultsId = useId();
   const [activeIndex, setActiveIndex] = useState(0);
-  const searchItems = useMemo(() => getSearchItems(docsData), [docsData]);
+  const searchItems = useMemo(() => getSearchItems(docsData, descriptions), [docsData, descriptions]);
   const [query, setQuery] = useState('');
   const [isOpen, setIsOpen] = useState(false);
 
@@ -86,7 +88,7 @@ export default function SearchBar() {
                 onMouseDown={(event) => event.preventDefault()}
                 onClick={() => navigateTo(result.path)}>
                 <span className="ww-search__result-title">{result.title}</span>
-                <span className="ww-search__result-path">{result.path}</span>
+                {result.description && <span className="ww-search__result-description">{result.description}</span>}
               </button>
             ))
           ) : (

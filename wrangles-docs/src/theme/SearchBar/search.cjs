@@ -2,7 +2,7 @@ function normalize(value) {
   return String(value || '').toLowerCase().replace(/[._/\-]+/g, ' ').replace(/\s+/g, ' ').trim();
 }
 
-function getSearchItems(allDocsData) {
+function getSearchItems(allDocsData, descriptions = {}) {
   const items = new Map();
   for (const [plugin, data] of Object.entries(allDocsData || {})) {
     const version = data.versions?.find(item => item.isLast) || data.versions?.[0];
@@ -12,6 +12,7 @@ function getSearchItems(allDocsData) {
         ? doc.id.replace(/^connectors\//, 'connector/').replaceAll('/', '.').replaceAll('-', '_')
         : doc.id.replaceAll('/', ' / ').replace(/[-_]/g, ' ');
       items.set(doc.path, {id: `${plugin}:${doc.id}`, title, path: doc.path,
+        description: descriptions[doc.path] || '',
         haystack: normalize(`${title} ${doc.id} ${doc.path}`)});
     }
   }
