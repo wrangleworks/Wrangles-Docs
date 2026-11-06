@@ -1189,7 +1189,7 @@ This wrangle is retained only to document historical recipes.${replacementLink ?
 
 ` : '';
   const entryHeading = grouped ?
-    `## ${displayTitle}${legacyPill(entry)} <CopyableCode value="${metadata.wrangle_key}" /> {#${entryAnchor(entry)}}\n\n` : '';
+    `## ${displayTitle}${legacyPill(entry, entriesByKey)} <CopyableCode value="${metadata.wrangle_key}" /> {#${entryAnchor(entry)}}\n\n` : '';
   return `${entryHeading}${lifecycleNotice}${guidance}
 
 <details className="ww-field-disclosure">
@@ -1264,9 +1264,12 @@ ${sourceRows}
 `;
 }
 
-function legacyPill(entry) {
-  return (entry.catalog_name_status || entry.catalog?.history?.[entry.metadata.wrangle_key]) === 'legacy'
-    ? ' <span className="ww-legacy-pill" title="Still supported; a newer name is available">Legacy</span>' : '';
+function legacyPill(entry, entriesByKey = new Map()) {
+  if ((entry.catalog_name_status || entry.catalog?.history?.[entry.metadata.wrangle_key]) !== 'legacy') return '';
+  const replacement = entriesByKey.get(entry.catalog?.runtime_key) || entriesByKey.get(entry.catalog?.catalog_key);
+  const link = replacement && replacement !== entry
+    ? ` For new recipes, use <a href="${entryRoute(replacement)}">${replacement.metadata.wrangle_key}</a>.` : '';
+  return ` <span className="ww-legacy-help"><span className="ww-legacy-pill" tabIndex={0}>Legacy</span><span className="ww-legacy-tooltip">This wrangle is planned for deprecation. Your existing recipes will continue to work.${link}</span></span>`;
 }
 
 function renderEntryPage(entry, controls, entriesByKey) {
@@ -1286,7 +1289,7 @@ toc_max_heading_level: 3
 
 import CopyableCode from '@site/src/components/CopyableCode';
 
-# ${displayTitle}${legacyPill(entry)} <CopyableCode value="${metadata.wrangle_key}" />
+# ${displayTitle}${legacyPill(entry, entriesByKey)} <CopyableCode value="${metadata.wrangle_key}" />
 
 ${renderEntryContent(entry, controls, {entriesByKey})}`;
 }

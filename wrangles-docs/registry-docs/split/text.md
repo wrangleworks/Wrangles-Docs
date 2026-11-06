@@ -10,7 +10,7 @@ toc_max_heading_level: 3
 
 import CopyableCode from '@site/src/components/CopyableCode';
 
-# Text <span className="ww-legacy-pill" title="Still supported; a newer name is available">Legacy</span> <CopyableCode value="split.text" />
+# Text <span className="ww-legacy-help"><span className="ww-legacy-pill" tabIndex={0}>Legacy</span><span className="ww-legacy-tooltip">This wrangle is planned for deprecation. Your existing recipes will continue to work. For new recipes, use <a href="/py/namespaces/structure#split-text">structure.split_text</a>.</span></span> <CopyableCode value="split.text" />
 
 Split text strings on certain characters. The text can be split into either multiple columns or a list.
 

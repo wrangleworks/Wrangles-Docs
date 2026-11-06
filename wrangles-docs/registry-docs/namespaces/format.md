@@ -1632,7 +1632,7 @@ a schema may require an argument even when Python provides a default.
 
 ---
 
-## Replace <span className="ww-legacy-pill" title="Still supported; a newer name is available">Legacy</span> <CopyableCode value="replace" /> {#replace}
+## Replace <span className="ww-legacy-help"><span className="ww-legacy-pill" tabIndex={0}>Legacy</span><span className="ww-legacy-tooltip">This wrangle is planned for deprecation. Your existing recipes will continue to work. For new recipes, use <a href="/py/namespaces/standardize#replace">standardize.replace</a>.</span></span> <CopyableCode value="replace" /> {#replace}
 
 Quick find and replace for simple values. Can use regex in the `find` field.
 

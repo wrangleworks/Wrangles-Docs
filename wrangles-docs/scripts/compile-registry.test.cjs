@@ -21,6 +21,14 @@ test('legacy pages keep active catalog state and receive a pill without recipe c
   assert.equal(report.summary.entries_with_runtime_binding_differences, 0);
   assert.equal(report.summary.catalog_only_entries, 0);
   assert.match(legacyPill(legacy), />Legacy<\/span>/);
+  current.metadata.slug = 'structure/split-dictionary';
+  current.metadata.sources = [];
+  current.metadata.namespace = 'structure';
+  const pill = legacyPill(legacy, new Map([[current.metadata.wrangle_key, current]]));
+  assert.match(pill, /Your existing recipes will continue to work/);
+  assert.match(pill, /href="\/py\/namespaces\/structure#split-dictionary"/);
+  assert.match(pill, />structure.split_dictionary<\/a>/);
+  assert.match(pill, /tabIndex=\{0\}/);
   assert.equal(legacyPill(current), '');
   assert.equal(legacy.catalog.status, 'active');
   assert.equal(legacy.metadata.wrangle_key, 'split.dictionary');

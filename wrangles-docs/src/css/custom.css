@@ -1286,6 +1286,36 @@ h4.tabset {
   color: #ffffff;
 }
 /* Legacy is a supported recipe name, independent of catalog row status. */
+.ww-legacy-help {
+  position: relative;
+  display: inline-block;
+}
+.ww-legacy-tooltip {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 20;
+  width: min(20rem, 70vw);
+  padding: 0.8rem;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 0.5rem;
+  background: var(--ifm-background-surface-color);
+  color: var(--ifm-font-color-base);
+  box-shadow: 0 3px 12px #0002;
+  font-size: 0.85rem;
+  font-weight: 400;
+  line-height: 1.5;
+  white-space: normal;
+}
+.ww-legacy-help:hover .ww-legacy-tooltip,
+.ww-legacy-help:focus-within .ww-legacy-tooltip {
+  display: block;
+}
+.ww-legacy-tooltip a {
+  text-decoration: underline;
+}
+.ww-legacy-pill { cursor: help; }
 .ww-legacy-pill,
 .theme-doc-sidebar-menu:has(.registry-sidebar-intro) .registry-sidebar-legacy > .menu__link::before {
   display: inline-block;

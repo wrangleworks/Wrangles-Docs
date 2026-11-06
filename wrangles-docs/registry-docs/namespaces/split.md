@@ -173,7 +173,7 @@ a schema may require an argument even when Python provides a default.
 
 ---
 
-## Dictionary <span className="ww-legacy-pill" title="Still supported; a newer name is available">Legacy</span> <CopyableCode value="split.dictionary" /> {#dictionary}
+## Dictionary <span className="ww-legacy-help"><span className="ww-legacy-pill" tabIndex={0}>Legacy</span><span className="ww-legacy-tooltip">This wrangle is planned for deprecation. Your existing recipes will continue to work. For new recipes, use <a href="/py/namespaces/structure#split-dictionary">structure.split_dictionary</a>.</span></span> <CopyableCode value="split.dictionary" /> {#dictionary}
 
 Split a dictionary into columns. The dictionary keys are used as the new column headers.
 
@@ -496,7 +496,7 @@ a schema may require an argument even when Python provides a default.
 
 ---
 
-## List <span className="ww-legacy-pill" title="Still supported; a newer name is available">Legacy</span> <CopyableCode value="split.list" /> {#list}
+## List <span className="ww-legacy-help"><span className="ww-legacy-pill" tabIndex={0}>Legacy</span><span className="ww-legacy-tooltip">This wrangle is planned for deprecation. Your existing recipes will continue to work. For new recipes, use <a href="/py/namespaces/structure#split-list">structure.split_list</a>.</span></span> <CopyableCode value="split.list" /> {#list}
 
 Split a list into multiple columns. If only one output is given, `split.list` returns the same list it was given, so output should be a list of columns or a column name with a wildcard (`*`).
 
@@ -679,7 +679,7 @@ a schema may require an argument even when Python provides a default.
 
 ---
 
-## Text <span className="ww-legacy-pill" title="Still supported; a newer name is available">Legacy</span> <CopyableCode value="split.text" /> {#text}
+## Text <span className="ww-legacy-help"><span className="ww-legacy-pill" tabIndex={0}>Legacy</span><span className="ww-legacy-tooltip">This wrangle is planned for deprecation. Your existing recipes will continue to work. For new recipes, use <a href="/py/namespaces/structure#split-text">structure.split_text</a>.</span></span> <CopyableCode value="split.text" /> {#text}
 
 Split text strings on certain characters. The text can be split into either multiple columns or a list.
 
@@ -991,7 +991,7 @@ a schema may require an argument even when Python provides a default.
 
 ---
 
-## Tokenize <span className="ww-legacy-pill" title="Still supported; a newer name is available">Legacy</span> <CopyableCode value="split.tokenize" /> {#tokenize}
+## Tokenize <span className="ww-legacy-help"><span className="ww-legacy-pill" tabIndex={0}>Legacy</span><span className="ww-legacy-tooltip">This wrangle is planned for deprecation. Your existing recipes will continue to work. For new recipes, use <a href="/py/namespaces/structure#tokenize">structure.tokenize</a>.</span></span> <CopyableCode value="split.tokenize" /> {#tokenize}
 
 Tokenize elements in a list or string into individual tokens.
 

@@ -10,7 +10,7 @@ toc_max_heading_level: 3
 
 import CopyableCode from '@site/src/components/CopyableCode';
 
-# Lookup <span className="ww-legacy-pill" title="Still supported; a newer name is available">Legacy</span> <CopyableCode value="lookup" />
+# Lookup <span className="ww-legacy-help"><span className="ww-legacy-pill" tabIndex={0}>Legacy</span><span className="ww-legacy-tooltip">This wrangle is planned for deprecation. Your existing recipes will continue to work. For new recipes, use <a href="/py/namespaces/lookup#semantic">lookup.semantic</a>.</span></span> <CopyableCode value="lookup" />
 
 Look up data from a saved Lookup Wrangle. Data is output as a dictionary if an output is not specified or the output does not match any columns in the lookup. If specific lookup columns are named in the output, they will be output as individual columns.
 
