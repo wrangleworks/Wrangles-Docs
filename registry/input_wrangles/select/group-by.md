@@ -235,6 +235,8 @@ sources:
     title: Archived select.group_by Markdown
 configuration_schema:
   type: object
+  catalog_id: '52'
+  status: active
   description: Group and aggregate the data
   properties:
     by:

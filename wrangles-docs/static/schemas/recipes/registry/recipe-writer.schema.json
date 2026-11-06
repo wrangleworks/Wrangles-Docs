@@ -50,6 +50,8 @@
         "properties": {
           "batch": {
             "type": "object",
+            "catalog_id": "70",
+            "status": "active",
             "description": "Split the data into batches for executing a list of wrangles. Use this in situations such as where the intermediate data is too large to fit in memory.",
             "additionalProperties": false,
             "required": [
@@ -94,6 +96,8 @@
           },
           "classify": {
             "type": "object",
+            "catalog_id": "71",
+            "status": "active",
             "description": "Run classify wrangles on the specified columns.\nRequires WrangleWorks Account and Subscription.\n",
             "required": [
               "input",
@@ -137,6 +141,8 @@
           },
           "clean_whitespaces": {
             "type": "object",
+            "catalog_id": "72",
+            "status": "active",
             "description": "Condense multiple spaces to a single space and convert special space characters to a standard space.",
             "additionalProperties": false,
             "required": [
@@ -179,6 +185,8 @@
           },
           "compare.lists": {
             "type": "object",
+            "catalog_id": "1",
+            "status": "active",
             "description": "Compare multiple lists and return the intersection, difference, or union",
             "required": [
               "input",
@@ -224,6 +232,8 @@
           },
           "compare.text": {
             "type": "object",
+            "catalog_id": "2",
+            "status": "active",
             "description": "Compare two strings and return the intersection or difference, use overlap to find the matching characters between the two strings, or use similarity to get a numeric similarity score.",
             "required": [
               "input",
@@ -389,6 +399,8 @@
           },
           "compute.case_when": {
             "type": "object",
+            "catalog_id": "3",
+            "status": "active",
             "description": "Assign values to a column based on conditional logic",
             "additionalProperties": false,
             "required": [
@@ -450,6 +462,8 @@
           },
           "compute.score_search_results": {
             "type": "object",
+            "catalog_id": "4",
+            "status": "active",
             "description": "Deduplicates and ranks structured search results using part-number, supplier text, context, original-rank, query-order, supplier-domain, and product-URL signals. Unfiltered results come first; filtered results are retained at the end, with each group sorted by descending score. Each result contains summary, scoring_details, pricing, metadata, reduced part_code_matches, and part_code_match_count before evidence reduction. Numeric part-match categories use broad normalized containment and can differ from the exact, stripped, and partial diagnostic evidence levels. Does not search again or visit result pages. See docs/search_result_scoring.md for the full contract.",
             "additionalProperties": false,
             "required": [
@@ -567,6 +581,8 @@
           },
           "convert.case": {
             "type": "object",
+            "catalog_id": "5",
+            "status": "active",
             "description": "Change the case of the input.",
             "additionalProperties": false,
             "required": [
@@ -612,6 +628,8 @@
           },
           "convert.data_type": {
             "type": "object",
+            "catalog_id": "6",
+            "status": "active",
             "description": "Change the data type of the input.",
             "additionalProperties": false,
             "required": [
@@ -667,6 +685,8 @@
           },
           "convert.fraction_to_decimal": {
             "type": "object",
+            "catalog_id": "7",
+            "status": "active",
             "description": "Convert fractions to decimals",
             "additionalProperties": false,
             "required": [
@@ -707,6 +727,8 @@
           },
           "convert.from_json": {
             "type": "object",
+            "catalog_id": "8",
+            "status": "active",
             "description": "Convert a JSON representation into an object.",
             "required": [
               "input"
@@ -751,6 +773,8 @@
           },
           "convert.from_yaml": {
             "type": "object",
+            "catalog_id": "9",
+            "status": "active",
             "description": "Convert a YAML representation into an object",
             "required": [
               "input"
@@ -795,6 +819,8 @@
           },
           "convert.to_json": {
             "type": "object",
+            "catalog_id": "10",
+            "status": "active",
             "description": "Convert an object to a JSON representation.",
             "required": [
               "input"
@@ -843,6 +869,8 @@
           },
           "convert.to_yaml": {
             "type": "object",
+            "catalog_id": "11",
+            "status": "active",
             "description": "Convert an object to a YAML representation.",
             "required": [
               "input"
@@ -884,6 +912,8 @@
           },
           "copy": {
             "type": "object",
+            "catalog_id": "74",
+            "status": "active",
             "description": "Make a copy of a column or a list of columns",
             "additionalProperties": false,
             "required": [
@@ -919,6 +949,8 @@
           },
           "create.bins": {
             "type": "object",
+            "catalog_id": "12",
+            "status": "active",
             "description": "Create a column that groups data into bins",
             "additionalProperties": false,
             "required": [
@@ -966,6 +998,8 @@
           },
           "create.column": {
             "type": "object",
+            "catalog_id": "13",
+            "status": "active",
             "description": "Create column(s) with a user defined value. Defaults to None (empty).",
             "additionalProperties": false,
             "required": [
@@ -1019,6 +1053,8 @@
           },
           "create.embeddings": {
             "type": "object",
+            "catalog_id": "14",
+            "status": "active",
             "description": "Create an embedding based on text input.",
             "required": [
               "input",
@@ -1111,6 +1147,8 @@
           },
           "create.guid": {
             "type": "object",
+            "catalog_id": "15",
+            "status": "active",
             "description": "Create column(s) with a GUID.",
             "additionalProperties": false,
             "required": [
@@ -1137,6 +1175,8 @@
           },
           "create.hash": {
             "type": "object",
+            "catalog_id": "16",
+            "status": "active",
             "description": "Create a hash of a column",
             "additionalProperties": false,
             "required": [
@@ -1181,6 +1221,8 @@
           },
           "create.index": {
             "type": "object",
+            "catalog_id": "17",
+            "status": "active",
             "description": "Create column(s) with an incremental index. e.g. 1,2,3...",
             "additionalProperties": false,
             "required": [
@@ -1222,6 +1264,8 @@
           },
           "create.jinja": {
             "type": "object",
+            "catalog_id": "18",
+            "status": "active",
             "description": "Output text using a jinja template",
             "additionalProperties": false,
             "required": [
@@ -1272,6 +1316,8 @@
           },
           "create.uuid": {
             "type": "object",
+            "catalog_id": "19",
+            "status": "active",
             "description": "Create column(s) with a UUID.",
             "additionalProperties": false,
             "required": [
@@ -1298,6 +1344,8 @@
           },
           "date_calculator": {
             "type": "object",
+            "catalog_id": "75",
+            "status": "active",
             "description": "Add or Subtract time from a date",
             "additionalProperties": false,
             "required": [
@@ -1354,6 +1402,8 @@
           },
           "drop": {
             "type": "object",
+            "catalog_id": "76",
+            "status": "active",
             "description": "Drop (Delete) selected column(s)",
             "additionalProperties": true,
             "required": [
@@ -1378,6 +1428,8 @@
           },
           "explode": {
             "type": "object",
+            "catalog_id": "77",
+            "status": "active",
             "description": "Explode a column of lists into rows",
             "additionalProperties": false,
             "required": [
@@ -1413,6 +1465,8 @@
           },
           "extract.address": {
             "type": "object",
+            "catalog_id": "20",
+            "status": "active",
             "description": "Extract parts of addresses. Requires WrangleWorks Account.",
             "required": [
               "input",
@@ -1470,6 +1524,8 @@
           },
           "extract.ai": {
             "type": "object",
+            "catalog_id": "21",
+            "status": "active",
             "description": "Extract structured data from each input row using an AI model. Define the desired fields with output, or reuse a saved definition with model_id.",
             "additionalProperties": false,
             "required": [
@@ -1853,6 +1909,8 @@
           },
           "extract.attributes": {
             "type": "object",
+            "catalog_id": "22",
+            "status": "active",
             "description": "Extract numeric attributes from the input such as weights or lengths. Requires WrangleWorks Account.",
             "required": [
               "input",
@@ -1958,6 +2016,8 @@
           },
           "extract.brackets": {
             "type": "object",
+            "catalog_id": "23",
+            "status": "active",
             "description": "Extract text properties in brackets from the input",
             "additionalProperties": false,
             "required": [
@@ -2017,6 +2077,8 @@
           },
           "extract.codes": {
             "type": "object",
+            "catalog_id": "24",
+            "status": "active",
             "description": "Extract alphanumeric codes from the input. Requires WrangleWorks Account.",
             "required": [
               "input",
@@ -2112,6 +2174,8 @@
           },
           "extract.custom": {
             "type": "object",
+            "catalog_id": "25",
+            "status": "active",
             "description": "Extract data from the input using a DIY or bespoke extraction wrangle. Requires WrangleWorks Account and Subscription.",
             "required": [
               "input",
@@ -2205,6 +2269,8 @@
           },
           "extract.date_properties": {
             "type": "object",
+            "catalog_id": "26",
+            "status": "active",
             "description": "Extract date properties from a date (day, month, year, etc...)",
             "additionalProperties": false,
             "required": [
@@ -2254,6 +2320,8 @@
           },
           "extract.date_range": {
             "type": "object",
+            "catalog_id": "27",
+            "status": "active",
             "description": "Extract date range frequency from two dates",
             "additionalProperties": false,
             "required": [
@@ -2323,6 +2391,8 @@
           },
           "extract.html": {
             "type": "object",
+            "catalog_id": "28",
+            "status": "active",
             "description": "Extract elements from strings containing html. Requires WrangleWorks Account.",
             "required": [
               "input",
@@ -2379,6 +2449,8 @@
           },
           "extract.properties": {
             "type": "object",
+            "catalog_id": "29",
+            "status": "active",
             "description": "Extract text properties from the input. Requires WrangleWorks Account.",
             "required": [
               "input",
@@ -2449,6 +2521,8 @@
           },
           "extract.regex": {
             "type": "object",
+            "catalog_id": "30",
+            "status": "active",
             "description": "Extract matches or specific capture groups using regex",
             "additionalProperties": false,
             "required": [
@@ -2510,6 +2584,8 @@
           },
           "filter": {
             "type": "object",
+            "catalog_id": "78",
+            "status": "active",
             "description": "Filter the dataframe based on the contents.\nIf multiple filters are specified, all must be correct.\nFor complex filters, use the where parameter.",
             "additionalProperties": false,
             "properties": {
@@ -2612,6 +2688,8 @@
           },
           "format.dates": {
             "type": "object",
+            "catalog_id": "31",
+            "status": "active",
             "description": "Format a date",
             "additionalProperties": false,
             "required": [
@@ -2653,6 +2731,8 @@
           },
           "format.pad": {
             "type": "object",
+            "catalog_id": "32",
+            "status": "active",
             "description": "Pad a string to a fixed length",
             "additionalProperties": false,
             "required": [
@@ -2713,6 +2793,8 @@
           },
           "format.prefix": {
             "type": "object",
+            "catalog_id": "33",
+            "status": "active",
             "description": "Add a prefix to a column",
             "additionalProperties": false,
             "required": [
@@ -2760,6 +2842,8 @@
           },
           "format.remove_duplicates": {
             "type": "object",
+            "catalog_id": "35",
+            "status": "active",
             "description": "Remove duplicates from a list. Preserves input order.",
             "additionalProperties": false,
             "required": [
@@ -2798,6 +2882,8 @@
           },
           "format.significant_figures": {
             "type": "object",
+            "catalog_id": "36",
+            "status": "active",
             "description": "Format a value to a specific number of significant figures",
             "additionalProperties": false,
             "required": [
@@ -2838,6 +2924,8 @@
           },
           "format.suffix": {
             "type": "object",
+            "catalog_id": "37",
+            "status": "active",
             "description": "Add a suffix to a column",
             "additionalProperties": false,
             "required": [
@@ -2885,6 +2973,8 @@
           },
           "format.trim": {
             "type": "object",
+            "catalog_id": "38",
+            "status": "active",
             "description": "Remove excess whitespace at the start and end of text.",
             "additionalProperties": false,
             "required": [
@@ -2919,6 +3009,8 @@
           },
           "generate.ai": {
             "type": "object",
+            "catalog_id": "39",
+            "status": "active",
             "description": "Generate structured AI output for each recipe row.",
             "additionalProperties": false,
             "required": [
@@ -3006,6 +3098,8 @@
           },
           "huggingface": {
             "type": "object",
+            "catalog_id": "79",
+            "status": "active",
             "description": "Use a model from huggingface",
             "required": [
               "input",
@@ -3063,6 +3157,8 @@
           },
           "lookup": {
             "type": "object",
+            "catalog_id": "81",
+            "status": "legacy",
             "description": "Deprecated: Use lookup.key for key lookup models or lookup.semantic for semantic lookup models instead. Lookup values from a saved lookup wrangle.",
             "required": [
               "input",
@@ -3113,6 +3209,8 @@
           },
           "math": {
             "type": "object",
+            "catalog_id": "82",
+            "status": "active",
             "description": "Apply a mathematical calculation.",
             "additionalProperties": false,
             "required": [
@@ -3144,6 +3242,8 @@
           },
           "merge.coalesce": {
             "type": "object",
+            "catalog_id": "40",
+            "status": "active",
             "description": "Take the first non-empty value from a series of columns or lists.",
             "additionalProperties": false,
             "required": [
@@ -3175,6 +3275,8 @@
           },
           "merge.concatenate": {
             "type": "object",
+            "catalog_id": "41",
+            "status": "active",
             "description": "Concatenate a list of columns or a list within a single column.",
             "additionalProperties": false,
             "required": [
@@ -3217,6 +3319,8 @@
           },
           "merge.dictionaries": {
             "type": "object",
+            "catalog_id": "42",
+            "status": "active",
             "description": "Take dictionaries in multiple columns and merge them to a single dictionary.",
             "additionalProperties": false,
             "required": [
@@ -3250,6 +3354,8 @@
           },
           "merge.key_value_pairs": {
             "type": "object",
+            "catalog_id": "43",
+            "status": "active",
             "description": "Create a dictionary from keys and values in paired columns e.g. COLUMN_NAME_1, COLUMN_VALUE_1, COLUMN_NAME_2, COLUMN_VALUE_2 ...",
             "additionalProperties": false,
             "required": [
@@ -3283,6 +3389,8 @@
           },
           "merge.lists": {
             "type": "object",
+            "catalog_id": "44",
+            "status": "active",
             "description": "Take lists in multiple columns and merge them to a single list.",
             "additionalProperties": false,
             "required": [
@@ -3323,6 +3431,8 @@
           },
           "merge.to_dict": {
             "type": "object",
+            "catalog_id": "45",
+            "status": "active",
             "description": "Take multiple columns and merge them to a dictionary (aka object) using the column headers as keys.",
             "additionalProperties": false,
             "required": [
@@ -3359,6 +3469,8 @@
           },
           "merge.to_list": {
             "type": "object",
+            "catalog_id": "46",
+            "status": "active",
             "description": "Take multiple columns and merge them to a list.",
             "additionalProperties": false,
             "required": [
@@ -3395,6 +3507,8 @@
           },
           "python": {
             "type": "object",
+            "catalog_id": "85",
+            "status": "active",
             "description": "Apply a simple single-line python command. For more complex python use a custom function.\nNote, this evaluates the python command - be especially cautious including\nvariables from untrusted sources within the command string.\nThe python command will be evaluated once for each row and the result returned.\nReference column values by using their name.\nNon-alphanumeric characters within column names are replaced by underscores (_)\nAdditionally, all columns are available as a dict named kwargs.\nAdditional parameters set for the wrangle will also be available to the command.",
             "required": [
               "command",
@@ -3444,6 +3558,8 @@
           },
           "reindex": {
             "type": "object",
+            "catalog_id": "87",
+            "status": "active",
             "description": "Changes the row labels and column labels of a DataFrame.",
             "additionalProperties": false,
             "properties": {
@@ -3473,6 +3589,8 @@
           },
           "remove_words": {
             "type": "object",
+            "catalog_id": "88",
+            "status": "active",
             "description": "Remove all the elements that occur in one list from another.",
             "additionalProperties": false,
             "required": [
@@ -3521,6 +3639,8 @@
           },
           "replace": {
             "type": "object",
+            "catalog_id": "90",
+            "status": "legacy",
             "description": "Quick find and replace for simple values. Can use regex if 'input' in params and isinstance(params['input'], list):in the find field.",
             "additionalProperties": false,
             "required": [
@@ -3565,6 +3685,8 @@
           },
           "round": {
             "type": "object",
+            "catalog_id": "91",
+            "status": "active",
             "description": "Round column(s) to the specified decimals",
             "additionalProperties": false,
             "required": [
@@ -3603,6 +3725,8 @@
           },
           "search.find_links": {
             "type": "object",
+            "catalog_id": "47",
+            "status": "active",
             "description": "Perform web searches to find links. Returns structured search results with titles, links, snippets, and optional pricing.",
             "additionalProperties": false,
             "required": [
@@ -3691,6 +3815,8 @@
           },
           "search.retrieve_link_content": {
             "type": "object",
+            "catalog_id": "48",
+            "status": "active",
             "description": "Retrieves targeted content from web pages using LLM URL extraction. Can optionally output a second column containing a clean, human-readable text summary of the retrieved data. Additional options are passed to Gemini GenerateContentConfig.",
             "additionalProperties": true,
             "required": [
@@ -3773,6 +3899,8 @@
           },
           "select.columns": {
             "type": "object",
+            "catalog_id": "49",
+            "status": "active",
             "description": "Select columns from the dataframe",
             "additionalProperties": false,
             "required": [
@@ -3800,6 +3928,8 @@
           },
           "select.dictionary_element": {
             "type": "object",
+            "catalog_id": "50",
+            "status": "active",
             "description": "Select one or more element of a dictionary.",
             "additionalProperties": false,
             "required": [
@@ -3853,6 +3983,8 @@
           },
           "select.element": {
             "type": "object",
+            "catalog_id": "51",
+            "status": "active",
             "description": "Select elements of lists or dicts using python syntax like col[0]['key']",
             "additionalProperties": false,
             "required": [
@@ -3898,6 +4030,8 @@
           },
           "select.group_by": {
             "type": "object",
+            "catalog_id": "52",
+            "status": "active",
             "description": "Group and aggregate the data",
             "properties": {
               "by": {
@@ -4036,6 +4170,8 @@
           },
           "select.head": {
             "type": "object",
+            "catalog_id": "53",
+            "status": "active",
             "description": "Return the first n rows",
             "required": [
               "n"
@@ -4058,6 +4194,8 @@
           },
           "select.highest_confidence": {
             "type": "object",
+            "catalog_id": "54",
+            "status": "active",
             "description": "Select the option with the highest confidence from multiple columns. Inputs are expected to be of the form [<<value>>, <<confidence_score>>].",
             "additionalProperties": false,
             "required": [
@@ -4089,6 +4227,8 @@
           },
           "select.left": {
             "type": "object",
+            "catalog_id": "55",
+            "status": "active",
             "description": "Return characters from the left of text. Strings shorter than the length defined will be unaffected.",
             "additionalProperties": false,
             "required": [
@@ -4128,6 +4268,8 @@
           },
           "select.length": {
             "type": "object",
+            "catalog_id": "56",
+            "status": "active",
             "description": "Calculate the lengths of data in a column. The length depends on the data type e.g. text will be the length of the text, lists will be the number of elements in the list.",
             "required": [
               "input"
@@ -4161,6 +4303,8 @@
           },
           "select.list_element": {
             "type": "object",
+            "catalog_id": "57",
+            "status": "active",
             "description": "Select a numbered element of a list (zero indexed).",
             "additionalProperties": false,
             "required": [
@@ -4211,6 +4355,8 @@
           },
           "select.right": {
             "type": "object",
+            "catalog_id": "58",
+            "status": "active",
             "description": "Return characters from the right of text. Strings shorter than the length defined will be unaffected.",
             "additionalProperties": false,
             "required": [
@@ -4250,6 +4396,8 @@
           },
           "select.sample": {
             "type": "object",
+            "catalog_id": "59",
+            "status": "active",
             "description": "Return a random sample of the rows",
             "required": [
               "rows"
@@ -4276,6 +4424,8 @@
           },
           "select.substring": {
             "type": "object",
+            "catalog_id": "60",
+            "status": "active",
             "description": "Return characters from the middle of text.",
             "additionalProperties": false,
             "required": [
@@ -4322,6 +4472,8 @@
           },
           "select.tail": {
             "type": "object",
+            "catalog_id": "61",
+            "status": "active",
             "description": "Return the last n rows",
             "required": [
               "n"
@@ -4344,6 +4496,8 @@
           },
           "select.threshold": {
             "type": "object",
+            "catalog_id": "62",
+            "status": "active",
             "description": "Select the first option if it exceeds a given threshold, else the second option.",
             "additionalProperties": false,
             "required": [
@@ -4379,6 +4533,8 @@
           },
           "similarity": {
             "type": "object",
+            "catalog_id": "92",
+            "status": "active",
             "description": "Calculate the cosine similarity of two vectors",
             "additionalProperties": false,
             "required": [
@@ -4418,6 +4574,8 @@
           },
           "sort": {
             "type": "object",
+            "catalog_id": "93",
+            "status": "active",
             "description": "Sort the data",
             "additionalProperties": true,
             "required": [
@@ -4454,6 +4612,8 @@
           },
           "split.dictionary": {
             "type": "object",
+            "catalog_id": "63",
+            "status": "legacy",
             "description": "Split one or more dictionaries into columns.\nThe dictionary keys will be returned as the new column headers.\nDictionary keys are case-sensitive. With multiple input columns,\nlater dictionaries overwrite earlier keys before defaults are applied.",
             "additionalProperties": false,
             "required": [
@@ -4500,6 +4660,8 @@
           },
           "split.list": {
             "type": "object",
+            "catalog_id": "64",
+            "status": "legacy",
             "description": "Split a list in a single column to multiple columns.",
             "additionalProperties": false,
             "required": [
@@ -4534,6 +4696,8 @@
           },
           "split.text": {
             "type": "object",
+            "catalog_id": "65",
+            "status": "legacy",
             "description": "Split a string to multiple columns or a list.",
             "additionalProperties": false,
             "required": [
@@ -4588,6 +4752,8 @@
           },
           "split.tokenize": {
             "type": "object",
+            "catalog_id": "66",
+            "status": "legacy",
             "description": "Split text into tokens. A variety of methods are available. The default method is to split on spaces.",
             "additionalProperties": false,
             "required": [
@@ -4639,6 +4805,8 @@
           },
           "sql": {
             "type": "object",
+            "catalog_id": "94",
+            "status": "active",
             "description": "Apply a SQL command to the current dataframe. Only SELECT statements are supported - the result will be the output.",
             "additionalProperties": false,
             "required": [
@@ -4669,6 +4837,8 @@
           },
           "standardize.clean": {
             "type": "object",
+            "catalog_id": "67",
+            "status": "active",
             "description": "Repair common encoding, Unicode, HTML character reference, control character, and whitespace problems locally.",
             "required": [
               "input"
@@ -4791,6 +4961,8 @@
           },
           "standardize.custom": {
             "type": "object",
+            "catalog_id": "68",
+            "status": "active",
             "description": "Standardize data using a DIY or bespoke standardization wrangle. Requires WrangleWorks Account and Subscription.",
             "required": [
               "input"
@@ -4835,6 +5007,8 @@
           },
           "translate": {
             "type": "object",
+            "catalog_id": "96",
+            "status": "active",
             "description": "Translate the input to a different language. Requires WrangleWorks Account and DeepL API Key (A free account for up to 500,000 characters per month is available).",
             "additionalProperties": false,
             "required": [
@@ -4934,6 +5108,8 @@
           },
           "transpose": {
             "type": "object",
+            "catalog_id": "97",
+            "status": "active",
             "description": "Transpose the DataFrame (swap columns to rows)",
             "additionalProperties": false,
             "properties": {

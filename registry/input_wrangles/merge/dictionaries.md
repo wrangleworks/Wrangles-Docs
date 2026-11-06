@@ -68,6 +68,8 @@ sources:
     title: Archived merge.dictionaries Markdown
 configuration_schema:
   type: object
+  catalog_id: '42'
+  status: active
   description: Take dictionaries in multiple columns and merge them to a single dictionary.
   additionalProperties: false
   required:

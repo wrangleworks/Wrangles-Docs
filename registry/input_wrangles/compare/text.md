@@ -169,6 +169,8 @@ sources:
     title: 'Archived compare.text Markdown'
 configuration_schema:
   type: 'object'
+  catalog_id: '2'
+  status: 'active'
   description: 'Compare two strings and return the intersection or difference, use overlap to find the matching characters between the two strings, or use similarity to get a numeric similarity score.'
   required:
     - 'input'

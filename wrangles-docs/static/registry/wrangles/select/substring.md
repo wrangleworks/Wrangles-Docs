@@ -82,6 +82,8 @@ sources:
     title: 'Archived select.substring Markdown'
 configuration_schema:
   type: 'object'
+  catalog_id: '60'
+  status: 'active'
   description: 'Return characters from the middle of text.'
   additionalProperties: false
   required:

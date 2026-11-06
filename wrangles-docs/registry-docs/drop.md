@@ -27,6 +27,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "76",
+  "status": "active",
   "description": "Drop (Delete) selected column(s)",
   "additionalProperties": true,
   "required": [
@@ -129,7 +131,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `select` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.pandas.drop` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `363bffbf-397e-4975-8382-e9efa5e9eed6` |
 
 **Sources**

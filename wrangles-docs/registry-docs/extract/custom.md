@@ -31,6 +31,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "25",
+  "status": "active",
   "description": "Extract data from the input using a DIY or bespoke extraction wrangle. Requires WrangleWorks Account and Subscription.",
   "required": [
     "input",
@@ -297,7 +299,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `extract` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.extract.custom` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `e8e96b76-86bf-41dc-8d16-825dcff9688b` |
 
 **Sources**

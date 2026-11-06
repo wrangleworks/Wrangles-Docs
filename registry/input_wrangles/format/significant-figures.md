@@ -74,6 +74,8 @@ sources:
     title: Archived format.significant_figures Markdown
 configuration_schema:
   type: object
+  catalog_id: '36'
+  status: active
   description: Format a value to a specific number of significant figures
   additionalProperties: false
   required:

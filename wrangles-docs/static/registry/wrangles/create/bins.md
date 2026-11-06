@@ -81,6 +81,8 @@ sources:
     title: Archived create.bins Markdown
 configuration_schema:
   type: object
+  catalog_id: '12'
+  status: active
   description: Create a column that groups data into bins
   additionalProperties: false
   required:

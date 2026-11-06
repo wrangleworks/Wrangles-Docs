@@ -122,6 +122,8 @@ sources:
     title: WranglesPY schema
 configuration_schema:
   type: object
+  catalog_id: '101'
+  status: active
   description: >-
     Look up values using a saved key lookup model. Requires a WrangleWorks account and a model with
     purpose lookup and stored variant key. Missing or unknown variants are rejected; use lookup for

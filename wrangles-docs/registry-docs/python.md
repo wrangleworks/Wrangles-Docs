@@ -31,6 +31,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "85",
+  "status": "active",
   "description": "Apply a simple single-line python command. For more complex python use a custom function.\nNote, this evaluates the python command - be especially cautious including\nvariables from untrusted sources within the command string.\nThe python command will be evaluated once for each row and the result returned.\nReference column values by using their name.\nNon-alphanumeric characters within column names are replaced by underscores (_)\nAdditionally, all columns are available as a dict named kwargs.\nAdditional parameters set for the wrangle will also be available to the command.",
   "required": [
     "command",
@@ -204,7 +206,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `compute` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.python` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `c0398a11-7731-4e47-8df0-b07eea0b1d6c` |
 
 **Sources**

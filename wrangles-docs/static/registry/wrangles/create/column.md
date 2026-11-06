@@ -109,6 +109,8 @@ sources:
     title: Archived create.column Markdown
 configuration_schema:
   type: object
+  catalog_id: '13'
+  status: active
   description: Create column(s) with a user defined value. Defaults to None (empty).
   additionalProperties: false
   required:

@@ -77,6 +77,8 @@ sources:
     title: Archived create.hash Markdown
 configuration_schema:
   type: object
+  catalog_id: '16'
+  status: active
   description: Create a hash of a column
   additionalProperties: false
   required:

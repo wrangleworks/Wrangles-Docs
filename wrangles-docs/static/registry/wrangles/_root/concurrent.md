@@ -74,6 +74,8 @@ sources:
     title: Archived concurrent Markdown
 configuration_schema:
   type: object
+  catalog_id: '73'
+  status: active
   description: >-
     Run multiple wrangles concurrently rather than sequentially. Wrangles must specify output
     columns to be used concurrently. When using concurrent, Wrangles may not complete in a

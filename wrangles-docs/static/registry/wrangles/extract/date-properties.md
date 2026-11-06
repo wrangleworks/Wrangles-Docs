@@ -81,6 +81,8 @@ sources:
     title: Archived extract.date_properties Markdown
 configuration_schema:
   type: object
+  catalog_id: '26'
+  status: active
   description: Extract date properties from a date (day, month, year, etc...)
   additionalProperties: false
   required:

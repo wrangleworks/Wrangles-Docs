@@ -43,6 +43,8 @@
   },
   "configuration_schema": {
     "type": "object",
+    "catalog_id": "69",
+    "status": "active",
     "description": "Apply a series of wrangles to column(s) containing lists. The wrangles will be applied to each element in the list and the results will be returned back as a list.",
     "additionalProperties": false,
     "required": [
@@ -95,7 +97,7 @@
   "schema_adjustments": [],
   "schema_source": {
     "repository": "https://github.com/wrangleworks/WranglesPY",
-    "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+    "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
     "version": "1.20.5",
     "extraction": "static-python-ast"
   },

@@ -31,6 +31,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "12",
+  "status": "active",
   "description": "Create a column that groups data into bins",
   "additionalProperties": false,
   "required": [
@@ -229,7 +231,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `create` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.create.bins` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `232e3ba0-4735-4934-88aa-0163181abb3f` |
 
 **Sources**
@@ -259,6 +261,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "13",
+  "status": "active",
   "description": "Create column(s) with a user defined value. Defaults to None (empty).",
   "additionalProperties": false,
   "required": [
@@ -480,7 +484,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `create` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.create.column` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `5a18e2c8-ec7c-45f5-88fd-bb5c358a8b40` |
 
 **Sources**
@@ -510,6 +514,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "14",
+  "status": "active",
   "description": "Create an embedding based on text input.",
   "required": [
     "input",
@@ -704,7 +710,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `create` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.create.embeddings` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `e3518afd-a819-40ec-8b49-eb25690220c1` |
 
 **Sources**
@@ -734,6 +740,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "15",
+  "status": "active",
   "description": "Create column(s) with a GUID.",
   "additionalProperties": false,
   "required": [
@@ -847,7 +855,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `create` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.create.guid` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `cf3aaab2-3d5b-4c9b-826e-7af7510521c9` |
 
 **Sources**
@@ -877,6 +885,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "16",
+  "status": "active",
   "description": "Create a hash of a column",
   "additionalProperties": false,
   "required": [
@@ -1009,7 +1019,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `create` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.create.hash` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `11e8fc13-00d2-4779-8d87-6288b07de7e7` |
 
 **Sources**
@@ -1039,6 +1049,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "17",
+  "status": "active",
   "description": "Create column(s) with an incremental index. e.g. 1,2,3...",
   "additionalProperties": false,
   "required": [
@@ -1169,7 +1181,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `create` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.create.index` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `0a4909ca-6e14-4da7-8a70-a7fd106d6944` |
 
 **Sources**
@@ -1203,6 +1215,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "18",
+  "status": "active",
   "description": "Output text using a jinja template",
   "additionalProperties": false,
   "required": [
@@ -1344,7 +1358,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `create` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.create.jinja` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `10fc6709-16d4-4eab-8f56-6cb5d170ea66` |
 
 **Sources**
@@ -1374,6 +1388,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "19",
+  "status": "active",
   "description": "Create column(s) with a UUID.",
   "additionalProperties": false,
   "required": [
@@ -1487,7 +1503,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `create` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.create.uuid` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `c376f3ff-2283-4c4c-8d7f-70db6f53ed19` |
 
 **Sources**

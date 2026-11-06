@@ -39,6 +39,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "5",
+  "status": "active",
   "description": "Change the case of the input.",
   "additionalProperties": false,
   "required": [
@@ -172,7 +174,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `convert` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.convert.case` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `12ff4120-3613-4801-8653-99c793477fbc` |
 
 **Sources**
@@ -212,6 +214,8 @@ Compatibility correction: JSON Schema has no datetime primitive; JSON timestamps
 ```json
 {
   "type": "object",
+  "catalog_id": "6",
+  "status": "active",
   "description": "Change the data type of the input.",
   "additionalProperties": false,
   "required": [
@@ -358,7 +362,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `convert` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.convert.data_type` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `52384f01-7164-404f-8615-063e7677a588` |
 
 **Sources**
@@ -388,6 +392,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "7",
+  "status": "active",
   "description": "Convert fractions to decimals",
   "additionalProperties": false,
   "required": [
@@ -516,7 +522,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `convert` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.convert.fraction_to_decimal` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `7c55752e-70ab-4809-8298-c59436127457` |
 
 **Sources**
@@ -556,6 +562,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "8",
+  "status": "active",
   "description": "Convert a JSON representation into an object.",
   "required": [
     "input"
@@ -687,7 +695,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `convert` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.convert.from_json` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `e370dfcf-b0fe-4c48-8a52-6f34c47e7978` |
 
 **Sources**
@@ -717,6 +725,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "9",
+  "status": "active",
   "description": "Convert a YAML representation into an object",
   "required": [
     "input"
@@ -845,7 +855,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `convert` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.convert.from_yaml` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `b1c20004-5f80-41c2-84d2-2d4601a033b5` |
 
 **Sources**
@@ -877,6 +887,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "153",
+  "status": "active",
   "description": "Parse JSON, Python, YAML, or human-readable JSON-like structures into JSON-compatible Python values. YAML-only numeric forms such as 00123 and 12:34 remain strings. YAML anchors, aliases, and explicit tags are not supported. Parsed values retain their Python types, preserving integer precision in mixed columns. Excessively nested inputs use the configured default or raise a contextual ValueError.",
   "additionalProperties": false,
   "required": [
@@ -1009,7 +1021,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `convert` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.convert.parse` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | None |
 
 **Sources**
@@ -1038,6 +1050,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "10",
+  "status": "active",
   "description": "Convert an object to a JSON representation.",
   "required": [
     "input"
@@ -1175,7 +1189,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `convert` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.convert.to_json` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `94e54eb7-2b8c-4047-89d0-fb5d16baf396` |
 
 **Sources**
@@ -1205,6 +1219,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "11",
+  "status": "active",
   "description": "Convert an object to a YAML representation.",
   "required": [
     "input"
@@ -1335,7 +1351,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `convert` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.convert.to_yaml` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `4cd6252f-ce47-4a9d-8272-3d87e875b72a` |
 
 **Sources**

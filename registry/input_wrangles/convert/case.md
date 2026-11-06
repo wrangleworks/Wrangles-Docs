@@ -89,6 +89,8 @@ sources:
     title: Legacy convert.case documentation
 configuration_schema:
   type: object
+  catalog_id: '5'
+  status: active
   description: Change the case of the input.
   additionalProperties: false
   required:

@@ -100,6 +100,8 @@ sources:
     title: Archived date_calculator Markdown
 configuration_schema:
   type: object
+  catalog_id: '75'
+  status: active
   description: Add or Subtract time from a date
   additionalProperties: false
   required:

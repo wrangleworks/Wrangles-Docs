@@ -111,6 +111,8 @@ sources:
     title: Archived lookup Markdown
 configuration_schema:
   type: object
+  catalog_id: '81'
+  status: legacy
   description: >-
     Deprecated: Use lookup.key for key lookup models or lookup.semantic for semantic lookup models
     instead. Lookup values from a saved lookup wrangle.

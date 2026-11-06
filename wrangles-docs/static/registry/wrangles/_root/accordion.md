@@ -95,6 +95,8 @@ sources:
     title: Archived accordion Markdown
 configuration_schema:
   type: object
+  catalog_id: '69'
+  status: active
   description: >-
     Apply a series of wrangles to column(s) containing lists. The wrangles will be applied to each
     element in the list and the results will be returned back as a list.

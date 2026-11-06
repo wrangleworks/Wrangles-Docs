@@ -27,6 +27,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "17",
+  "status": "active",
   "description": "Create column(s) with an incremental index. e.g. 1,2,3...",
   "additionalProperties": false,
   "required": [
@@ -157,7 +159,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `create` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.create.index` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `0a4909ca-6e14-4da7-8a70-a7fd106d6944` |
 
 **Sources**

@@ -105,6 +105,8 @@ sources:
     title: Archived convert.to_json Markdown
 configuration_schema:
   type: object
+  catalog_id: '10'
+  status: active
   description: Convert an object to a JSON representation.
   required:
     - input

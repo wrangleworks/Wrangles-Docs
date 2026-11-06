@@ -82,6 +82,8 @@ sources:
     title: Archived try Markdown
 configuration_schema:
   type: object
+  catalog_id: '98'
+  status: active
   description: Try a list of wrangles and catch any errors that occur
   required:
     - wrangles

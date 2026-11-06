@@ -83,6 +83,8 @@ sources:
     title: Archived sql Markdown
 configuration_schema:
   type: object
+  catalog_id: '94'
+  status: active
   description: >-
     Apply a SQL command to the current dataframe. Only SELECT statements are supported - the result
     will be the output.

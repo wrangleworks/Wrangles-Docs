@@ -83,6 +83,8 @@ sources:
     title: Archived select.element Markdown
 configuration_schema:
   type: object
+  catalog_id: '51'
+  status: active
   description: Select elements of lists or dicts using python syntax like col[0]['key']
   additionalProperties: false
   required:

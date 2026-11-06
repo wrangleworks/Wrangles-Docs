@@ -74,6 +74,8 @@ sources:
     title: Archived convert.fraction_to_decimal Markdown
 configuration_schema:
   type: object
+  catalog_id: '7'
+  status: active
   description: Convert fractions to decimals
   additionalProperties: false
   required:

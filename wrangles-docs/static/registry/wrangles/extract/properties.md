@@ -119,6 +119,8 @@ sources:
     title: 'Archived extract.properties Markdown'
 configuration_schema:
   type: 'object'
+  catalog_id: '29'
+  status: 'active'
   description: 'Extract text properties from the input. Requires WrangleWorks Account.'
   required:
     - 'input'

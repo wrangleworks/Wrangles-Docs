@@ -272,4 +272,4 @@ Export data to a file
 
 </details>
 
-[Machine-readable contract](/registry/connectors/file.json) · [WranglesPY source commit](https://github.com/wrangleworks/WranglesPY/tree/bd5f88fba479ec406b409cb2880689c54e72b298)
+[Machine-readable contract](/registry/connectors/file.json) · [WranglesPY source commit](https://github.com/wrangleworks/WranglesPY/tree/bb47671ab023b3d3eb76fc42f07da4aaed056e2e)

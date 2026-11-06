@@ -27,6 +27,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "2",
+  "status": "active",
   "description": "Compare two strings and return the intersection or difference, use overlap to find the matching characters between the two strings, or use similarity to get a numeric similarity score.",
   "required": [
     "input",
@@ -373,7 +375,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `compare` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.compare.text` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `31905b74-ce58-45cd-8add-821cc04ab946` |
 
 **Sources**

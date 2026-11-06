@@ -160,6 +160,8 @@ sources:
     title: 'Archived extract.codes Markdown'
 configuration_schema:
   type: 'object'
+  catalog_id: '24'
+  status: 'active'
   description: 'Extract alphanumeric codes from the input. Requires WrangleWorks Account.'
   required:
     - 'input'

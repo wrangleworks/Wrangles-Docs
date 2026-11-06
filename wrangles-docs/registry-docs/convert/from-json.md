@@ -37,6 +37,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "8",
+  "status": "active",
   "description": "Convert a JSON representation into an object.",
   "required": [
     "input"
@@ -168,7 +170,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `convert` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.convert.from_json` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `e370dfcf-b0fe-4c48-8a52-6f34c47e7978` |
 
 **Sources**

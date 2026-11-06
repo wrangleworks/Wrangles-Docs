@@ -59,6 +59,8 @@ sources:
     title: Archived transpose Markdown
 configuration_schema:
   type: object
+  catalog_id: '97'
+  status: active
   description: Transpose the DataFrame (swap columns to rows)
   additionalProperties: false
   properties:

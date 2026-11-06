@@ -142,6 +142,8 @@ sources:
     title: Archived translate Markdown
 configuration_schema:
   type: object
+  catalog_id: '96'
+  status: active
   description: >-
     Translate the input to a different language. Requires WrangleWorks Account and DeepL API Key (A
     free account for up to 500,000 characters per month is available).

@@ -55,6 +55,8 @@ sources:
     title: Archived drop Markdown
 configuration_schema:
   type: object
+  catalog_id: '76'
+  status: active
   description: Drop (Delete) selected column(s)
   additionalProperties: true
   required:

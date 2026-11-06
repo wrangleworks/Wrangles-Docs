@@ -103,6 +103,8 @@ sources:
     title: 'Archived extract.brackets Markdown'
 configuration_schema:
   type: 'object'
+  catalog_id: '23'
+  status: 'active'
   description: 'Extract text properties in brackets from the input'
   additionalProperties: false
   required:

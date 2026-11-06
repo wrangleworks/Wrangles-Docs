@@ -31,6 +31,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "1",
+  "status": "active",
   "description": "Compare multiple lists and return the intersection, difference, or union",
   "required": [
     "input",
@@ -246,7 +248,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `compare` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.compare.lists` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `a393225e-7ccf-4708-83f8-d5abd6ba9b1e` |
 
 **Sources**
@@ -276,6 +278,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "2",
+  "status": "active",
   "description": "Compare two strings and return the intersection or difference, use overlap to find the matching characters between the two strings, or use similarity to get a numeric similarity score.",
   "required": [
     "input",
@@ -622,7 +626,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `compare` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.compare.text` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `31905b74-ce58-45cd-8add-821cc04ab946` |
 
 **Sources**
@@ -656,6 +660,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "92",
+  "status": "active",
   "description": "Calculate the cosine similarity of two vectors",
   "additionalProperties": false,
   "required": [
@@ -795,7 +801,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `compare` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.similarity` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `7c733344-4cce-4938-8013-53742fb46a90` |
 
 **Sources**

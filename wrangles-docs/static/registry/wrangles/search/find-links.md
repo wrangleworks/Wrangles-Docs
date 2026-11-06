@@ -168,6 +168,8 @@ sources:
     title: Archived search.find_links Markdown
 configuration_schema:
   type: object
+  catalog_id: '47'
+  status: active
   description: >-
     Perform web searches to find links. Returns structured search results with titles, links,
     snippets, and optional pricing.

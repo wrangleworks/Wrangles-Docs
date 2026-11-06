@@ -79,6 +79,8 @@ sources:
     title: Archived classify Markdown
 configuration_schema:
   type: object
+  catalog_id: '71'
+  status: active
   description: |
     Run classify wrangles on the specified columns.
     Requires WrangleWorks Account and Subscription.

@@ -27,6 +27,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "31",
+  "status": "active",
   "description": "Format a date",
   "additionalProperties": false,
   "required": [
@@ -154,7 +156,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `format` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.format.dates` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `a3c15135-4f7a-4659-83fd-f657afa603c9` |
 
 **Sources**

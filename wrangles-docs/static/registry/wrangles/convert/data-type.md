@@ -97,6 +97,8 @@ sources:
     title: 'Legacy convert.data_type documentation'
 configuration_schema:
   type: 'object'
+  catalog_id: '6'
+  status: 'active'
   description: 'Change the data type of the input.'
   additionalProperties: false
   required:

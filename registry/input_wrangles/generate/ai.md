@@ -179,6 +179,8 @@ sources:
     title: Archived generate.ai Markdown
 configuration_schema:
   type: object
+  catalog_id: '39'
+  status: active
   description: Generate structured AI output for each recipe row.
   additionalProperties: false
   required:

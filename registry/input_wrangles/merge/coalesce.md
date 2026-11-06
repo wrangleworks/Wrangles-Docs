@@ -62,6 +62,8 @@ sources:
     title: Archived merge.coalesce Markdown
 configuration_schema:
   type: object
+  catalog_id: '40'
+  status: active
   description: Take the first non-empty value from a series of columns or lists.
   additionalProperties: false
   required:

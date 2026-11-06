@@ -42,6 +42,8 @@
   },
   "configuration_schema": {
     "type": "object",
+    "catalog_id": "21",
+    "status": "active",
     "description": "Extract structured data from each input row using an AI model. Define the desired fields with output, or reuse a saved definition with model_id.",
     "additionalProperties": false,
     "required": [
@@ -427,7 +429,7 @@
   "schema_adjustments": [],
   "schema_source": {
     "repository": "https://github.com/wrangleworks/WranglesPY",
-    "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+    "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
     "version": "1.20.5",
     "extraction": "static-python-ast"
   },

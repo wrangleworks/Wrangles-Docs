@@ -1,0 +1,241 @@
+{
+  "$schema": "https://docs.wrangles.com/registry/schema/wrangle-contract.schema.json",
+  "format": "wrangles-registry-entry",
+  "registry_version": "0.3.1",
+  "schema_version": "0.3",
+  "type": "wrangle",
+  "catalog_id": "65",
+  "catalog_key": "structure.split_text",
+  "catalog_status": "active",
+  "catalog_history": {
+    "split.text": "legacy"
+  },
+  "legacy_id": null,
+  "wrangle_name": "split_text",
+  "namespace": "structure",
+  "wrangle_key": "structure.split_text",
+  "aliases": [],
+  "slug": "structure/split-text",
+  "title": "Split Text",
+  "description": "Split a string to multiple columns or a list.",
+  "status": "active",
+  "visibility": "public",
+  "recipe_writer": {
+    "eligible": false,
+    "reason": "Automatically documented from schema; execution eligibility requires review."
+  },
+  "tags": [
+    "structure"
+  ],
+  "runtime": {
+    "package": "wrangles",
+    "symbol": "wrangles.recipe_wrangles.structure.split_text",
+    "contract_status": "verified"
+  },
+  "access": {
+    "ai_powered": null,
+    "requires_account": null,
+    "requires_subscription": null,
+    "requires_external_api_key": null
+  },
+  "capabilities": {
+    "if": true,
+    "where": true,
+    "where_params": true
+  },
+  "configuration_schema": {
+    "type": "object",
+    "catalog_id": "65",
+    "status": "active",
+    "description": "Split a string to multiple columns or a list.",
+    "additionalProperties": false,
+    "required": [
+      "input"
+    ],
+    "properties": {
+      "input": {
+        "type": "string",
+        "description": "Name of the column to be split"
+      },
+      "output": {
+        "type": [
+          "string",
+          "array"
+        ],
+        "description": "Name of the output column(s)\nIf a single column is provided,\nthe results will be returned as a list\nIf multiple columns are listed,\nthe results will be separated into the columns.\nIf omitted, will overwrite the input."
+      },
+      "char": {
+        "type": "string",
+        "description": "Set the character(s) to split on.\nDefault comma (,)\nCan also prefix with \"regex:\" to split on a pattern."
+      },
+      "pad": {
+        "type": "boolean",
+        "description": "Choose whether to pad to ensure a consistent length. Default true if outputting to columns, false for lists."
+      },
+      "element": {
+        "type": [
+          "integer",
+          "string"
+        ],
+        "description": "Select a specific element or range after splitting using slicing syntax. e.g. 0, \":5\", \"5:\", \"2:8:2\""
+      },
+      "inclusive": {
+        "type": "boolean",
+        "description": "If true, include the split character in the output. Default False"
+      },
+      "skip_empty": {
+        "type": "boolean",
+        "description": "Whether to skip empty values",
+        "default": false
+      },
+      "if": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/if"
+      },
+      "where": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/where"
+      },
+      "where_params": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/where_params"
+      }
+    }
+  },
+  "schema_origin": "upstream-docstring",
+  "schema_adjustments": [],
+  "schema_source": {
+    "repository": "https://github.com/wrangleworks/WranglesPY",
+    "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
+    "version": "1.20.5",
+    "extraction": "static-python-ast"
+  },
+  "parameters": [
+    {
+      "name": "input",
+      "description": "Name of the column to be split",
+      "param_group": "I/O",
+      "schema": {
+        "type": "string",
+        "description": "Name of the column to be split"
+      },
+      "runtime_required": true,
+      "required": true
+    },
+    {
+      "name": "output",
+      "description": "Name of the output column(s)\nIf a single column is provided,\nthe results will be returned as a list\nIf multiple columns are listed,\nthe results will be separated into the columns.\nIf omitted, will overwrite the input.",
+      "param_group": "I/O",
+      "schema": {
+        "type": [
+          "string",
+          "array"
+        ],
+        "description": "Name of the output column(s)\nIf a single column is provided,\nthe results will be returned as a list\nIf multiple columns are listed,\nthe results will be separated into the columns.\nIf omitted, will overwrite the input."
+      },
+      "runtime_required": false,
+      "required": false,
+      "runtime_default": null
+    },
+    {
+      "name": "char",
+      "description": "Set the character(s) to split on.\nDefault comma (,)\nCan also prefix with \"regex:\" to split on a pattern.",
+      "param_group": "Options",
+      "schema": {
+        "type": "string",
+        "description": "Set the character(s) to split on.\nDefault comma (,)\nCan also prefix with \"regex:\" to split on a pattern."
+      },
+      "runtime_required": false,
+      "required": false,
+      "runtime_default": ","
+    },
+    {
+      "name": "pad",
+      "description": "Choose whether to pad to ensure a consistent length. Default true if outputting to columns, false for lists.",
+      "param_group": "Options",
+      "schema": {
+        "type": "boolean",
+        "description": "Choose whether to pad to ensure a consistent length. Default true if outputting to columns, false for lists."
+      },
+      "runtime_required": false,
+      "required": false,
+      "runtime_default": null
+    },
+    {
+      "name": "element",
+      "description": "Select a specific element or range after splitting using slicing syntax. e.g. 0, \":5\", \"5:\", \"2:8:2\"",
+      "param_group": "Options",
+      "schema": {
+        "type": [
+          "integer",
+          "string"
+        ],
+        "description": "Select a specific element or range after splitting using slicing syntax. e.g. 0, \":5\", \"5:\", \"2:8:2\""
+      },
+      "runtime_required": false,
+      "required": false,
+      "runtime_default": null
+    },
+    {
+      "name": "inclusive",
+      "description": "If true, include the split character in the output. Default False",
+      "param_group": "Options",
+      "schema": {
+        "type": "boolean",
+        "description": "If true, include the split character in the output. Default False"
+      },
+      "runtime_required": false,
+      "required": false,
+      "runtime_default": false
+    },
+    {
+      "name": "skip_empty",
+      "description": "Whether to skip empty values",
+      "param_group": "Options",
+      "schema": {
+        "type": "boolean",
+        "description": "Whether to skip empty values",
+        "default": false
+      },
+      "runtime_required": false,
+      "required": false,
+      "runtime_default": false
+    },
+    {
+      "name": "if",
+      "description": "Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`.",
+      "required": false,
+      "param_group": "Conditions",
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "where",
+      "description": "Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`.",
+      "required": false,
+      "param_group": "Conditions",
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "where_params",
+      "description": "Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`.",
+      "required": false,
+      "param_group": "Conditions",
+      "schema": {
+        "type": [
+          "array",
+          "object"
+        ]
+      }
+    }
+  ],
+  "examples": [],
+  "guidance": "Split a string to multiple columns or a list.\n\nUsage guidance and examples have not yet been reviewed.",
+  "sources": [
+    {
+      "id": "schema",
+      "resource": "https://github.com/wrangleworks/WranglesPY/blob/bb47671ab023b3d3eb76fc42f07da4aaed056e2e/wrangles/recipe_wrangles/structure.py",
+      "title": "WranglesPY schema"
+    }
+  ]
+}

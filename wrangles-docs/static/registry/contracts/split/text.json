@@ -5,8 +5,12 @@
   "schema_version": "0.3",
   "type": "wrangle",
   "catalog_id": "65",
-  "catalog_key": "split.text",
+  "catalog_key": "structure.split_text",
   "catalog_status": "active",
+  "catalog_history": {
+    "split.text": "legacy"
+  },
+  "name_status": "legacy",
   "legacy_id": "e76e43f7-d129-4bf8-87b4-a304a378b130",
   "wrangle_name": "text",
   "namespace": "split",
@@ -42,6 +46,8 @@
   },
   "configuration_schema": {
     "type": "object",
+    "catalog_id": "65",
+    "status": "legacy",
     "description": "Split a string to multiple columns or a list.",
     "additionalProperties": false,
     "required": [
@@ -98,7 +104,7 @@
   "schema_adjustments": [],
   "schema_source": {
     "repository": "https://github.com/wrangleworks/WranglesPY",
-    "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+    "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
     "version": "1.20.5",
     "extraction": "static-python-ast"
   },

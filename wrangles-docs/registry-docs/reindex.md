@@ -27,6 +27,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "87",
+  "status": "active",
   "description": "Changes the row labels and column labels of a DataFrame.",
   "additionalProperties": false,
   "properties": {
@@ -160,7 +162,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `transform` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.pandas.reindex` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `def87df8-72da-4e34-83c1-1fde25126257` |
 
 **Sources**

@@ -65,6 +65,8 @@ sources:
     title: Archived copy Markdown
 configuration_schema:
   type: object
+  catalog_id: '74'
+  status: active
   description: Make a copy of a column or a list of columns
   additionalProperties: false
   required:

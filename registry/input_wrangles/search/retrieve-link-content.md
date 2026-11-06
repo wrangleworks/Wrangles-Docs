@@ -173,6 +173,8 @@ sources:
     title: Archived search.retrieve_link_content Markdown
 configuration_schema:
   type: object
+  catalog_id: '48'
+  status: active
   description: >-
     Retrieves targeted content from web pages using LLM URL extraction. Can optionally output a
     second column containing a clean, human-readable text summary of the retrieved data. Additional

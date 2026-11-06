@@ -27,6 +27,8 @@ Compatibility correction: Normalize schema type null to null.
 ```json
 {
   "type": "object",
+  "catalog_id": "97",
+  "status": "active",
   "description": "Transpose the DataFrame (swap columns to rows)",
   "additionalProperties": false,
   "properties": {
@@ -141,7 +143,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `transform` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.pandas.transpose` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `8716347f-f286-49b2-8a0b-cb73292e7475` |
 
 **Sources**

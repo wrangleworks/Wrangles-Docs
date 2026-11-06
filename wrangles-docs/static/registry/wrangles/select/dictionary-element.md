@@ -101,6 +101,8 @@ sources:
     title: Archived select.dictionary_element Markdown
 configuration_schema:
   type: object
+  catalog_id: '50'
+  status: active
   description: Select one or more element of a dictionary.
   additionalProperties: false
   required:

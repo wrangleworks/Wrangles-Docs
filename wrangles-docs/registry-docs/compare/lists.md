@@ -27,6 +27,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "1",
+  "status": "active",
   "description": "Compare multiple lists and return the intersection, difference, or union",
   "required": [
     "input",
@@ -242,7 +244,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `compare` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.compare.lists` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `a393225e-7ccf-4708-83f8-d5abd6ba9b1e` |
 
 **Sources**

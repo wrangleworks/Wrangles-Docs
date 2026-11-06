@@ -84,7 +84,9 @@ configuration_schema:
     where_params:
       $ref: '#/$defs/wrangles/commonProperties/where_params'
 schema_origin: deprecated-alias:math
-schema_adjustments: []
+schema_adjustments:
+  - Exclude math's catalog_id from the maths alias schema.
+  - Exclude math's status from the maths alias schema.
 ---
 
 # Maths

@@ -167,6 +167,8 @@ sources:
     title: 'Archived extract.custom Markdown'
 configuration_schema:
   type: 'object'
+  catalog_id: '25'
+  status: 'active'
   description: 'Extract data from the input using a DIY or bespoke extraction wrangle. Requires WrangleWorks Account and Subscription.'
   required:
     - 'input'

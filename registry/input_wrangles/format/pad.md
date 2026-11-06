@@ -101,6 +101,8 @@ sources:
     title: Archived format.pad Markdown
 configuration_schema:
   type: object
+  catalog_id: '32'
+  status: active
   description: Pad a string to a fixed length
   additionalProperties: false
   required:

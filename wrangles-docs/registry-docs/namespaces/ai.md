@@ -39,6 +39,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
   "required": [
     "questions"
   ],
+  "catalog_id": "149",
+  "status": "active",
   "description": "Answers any combination of `choose`, `score`, and `true_false` questions about the input with structured results. Accepts multiple named questions in one provider request per row. Question labels determine default output names.",
   "properties": {
     "input": {
@@ -620,7 +622,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `ai` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.ai.answers` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | None |
 
 **Sources**
@@ -660,6 +662,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
   "required": [
     "questions"
   ],
+  "catalog_id": "150",
+  "status": "active",
   "description": "Answers which option best fits the input, with the choice, confidence, and complete probabilities. Accepts multiple named questions in one provider request per row. Question labels determine default output names.",
   "properties": {
     "input": {
@@ -958,7 +962,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `ai` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.ai.choose` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | None |
 
 **Sources**
@@ -998,6 +1002,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
   "required": [
     "questions"
   ],
+  "catalog_id": "151",
+  "status": "active",
   "description": "Answers where the input falls along ordered criteria, with the native score, confidence, and complete probabilities. Accepts multiple named questions in one provider request per row. Question labels determine default output names.",
   "properties": {
     "input": {
@@ -1279,7 +1285,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `ai` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.ai.score` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | None |
 
 **Sources**
@@ -1317,6 +1323,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
   "required": [
     "questions"
   ],
+  "catalog_id": "152",
+  "status": "active",
   "description": "Answers how likely a statement is to be true for the input, with probability_true and the supplied true_criteria. Accepts multiple named questions in one provider request per row. Question labels determine default output names.",
   "properties": {
     "input": {
@@ -1612,7 +1620,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `ai` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.ai.true_false` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | None |
 
 **Sources**
@@ -1642,6 +1650,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "71",
+  "status": "active",
   "description": "Run classify wrangles on the specified columns.\nRequires WrangleWorks Account and Subscription.\n",
   "required": [
     "input",
@@ -1776,7 +1786,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `ai` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.classify` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `06669ef8-cdd1-42f7-8078-98e0b7a42c30` |
 
 **Sources**
@@ -1806,6 +1816,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "79",
+  "status": "active",
   "description": "Use a model from huggingface",
   "required": [
     "input",
@@ -1963,7 +1975,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `ai` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.huggingface` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `ae12cf20-4934-428f-84a9-a6898cb7ffe0` |
 
 **Sources**

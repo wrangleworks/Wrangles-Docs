@@ -288,6 +288,8 @@ configuration_schema:
   additionalProperties: false
   required:
     - questions
+  catalog_id: '150'
+  status: active
   description: >-
     Answers which option best fits the input, with the choice, confidence, and complete
     probabilities. Accepts multiple named questions in one provider request per row. Question labels

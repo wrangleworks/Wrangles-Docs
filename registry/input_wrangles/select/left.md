@@ -78,6 +78,8 @@ sources:
     title: Archived select.left Markdown
 configuration_schema:
   type: object
+  catalog_id: '55'
+  status: active
   description: >-
     Return characters from the left of text. Strings shorter than the length defined will be
     unaffected.

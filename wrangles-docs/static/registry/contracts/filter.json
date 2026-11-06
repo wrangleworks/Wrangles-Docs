@@ -42,6 +42,8 @@
   },
   "configuration_schema": {
     "type": "object",
+    "catalog_id": "78",
+    "status": "active",
     "description": "Filter the dataframe based on the contents.\nIf multiple filters are specified, all must be correct.\nFor complex filters, use the where parameter.",
     "additionalProperties": false,
     "properties": {
@@ -146,7 +148,7 @@
   "schema_adjustments": [],
   "schema_source": {
     "repository": "https://github.com/wrangleworks/WranglesPY",
-    "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+    "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
     "version": "1.20.5",
     "extraction": "static-python-ast"
   },

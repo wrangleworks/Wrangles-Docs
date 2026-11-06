@@ -96,6 +96,8 @@ sources:
     title: 'Archived extract.address Markdown'
 configuration_schema:
   type: 'object'
+  catalog_id: '20'
+  status: 'active'
   description: 'Extract parts of addresses. Requires WrangleWorks Account.'
   required:
     - 'input'

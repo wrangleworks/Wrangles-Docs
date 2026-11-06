@@ -31,6 +31,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "69",
+  "status": "active",
   "description": "Apply a series of wrangles to column(s) containing lists. The wrangles will be applied to each element in the list and the results will be returned back as a list.",
   "additionalProperties": false,
   "required": [
@@ -179,7 +181,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `utility` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.accordion` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | None |
 
 **Sources**
@@ -209,6 +211,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "70",
+  "status": "active",
   "description": "Split the data into batches for executing a list of wrangles. Use this in situations such as where the intermediate data is too large to fit in memory.",
   "additionalProperties": false,
   "required": [
@@ -359,7 +363,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `utility` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.batch` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | None |
 
 **Sources**
@@ -391,6 +395,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "73",
+  "status": "active",
   "description": "Run multiple wrangles concurrently rather than sequentially. Wrangles must specify output columns to be used concurrently. When using concurrent, Wrangles may not complete in a predictable order and it is not recommended to update overlapping columns with different wrangles.",
   "additionalProperties": false,
   "required": [
@@ -519,7 +525,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `utility` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.concurrent` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | None |
 
 **Sources**
@@ -549,6 +555,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "80",
+  "status": "active",
   "description": "Log the current status of the dataframe.",
   "additionalProperties": false,
   "properties": {
@@ -760,7 +768,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `utility` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.log` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `6177808e-aa2d-4d0b-8385-858b16948a5d` |
 
 **Sources**
@@ -792,6 +800,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "84",
+  "status": "active",
   "description": "Apply a matrix of wrangles to the dataframe.\nThis will run the wrangles for each combination of the variables.",
   "required": [
     "variables",
@@ -991,7 +1001,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `utility` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.matrix` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | None |
 
 **Sources**
@@ -1024,6 +1034,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 
 ```json
 {
+  "catalog_id": "86",
+  "status": "active",
   "anyOf": [
     {
       "$ref": "#"
@@ -1120,7 +1132,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `utility` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.recipe` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | None |
 
 **Sources**
@@ -1152,6 +1164,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "98",
+  "status": "active",
   "description": "Try a list of wrangles and catch any errors that occur",
   "required": [
     "wrangles"
@@ -1322,7 +1336,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `utility` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.Try` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | None |
 
 **Sources**

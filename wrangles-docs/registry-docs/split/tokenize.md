@@ -10,7 +10,7 @@ toc_max_heading_level: 3
 
 import CopyableCode from '@site/src/components/CopyableCode';
 
-# Tokenize <CopyableCode value="split.tokenize" />
+# Tokenize <span className="ww-legacy-pill" title="Still supported; a newer name is available">Legacy</span> <CopyableCode value="split.tokenize" />
 
 Tokenize elements in a list or string into individual tokens.
 
@@ -27,6 +27,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "66",
+  "status": "legacy",
   "description": "Split text into tokens. A variety of methods are available. The default method is to split on spaces.",
   "additionalProperties": false,
   "required": [
@@ -186,7 +188,7 @@ a schema may require an argument even when Python provides a default.
 | Field | Value |
 | --- | --- |
 | Catalog ID | `66` |
-| Catalog key | `split.tokenize` |
+| Catalog key | `structure.tokenize` |
 | Recipe key | `split.tokenize` |
 | Catalog status | active |
 | Lifecycle status | active |
@@ -195,7 +197,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `split` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.split.tokenize` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `6cc88418-ae0c-43f6-84ee-31e0d5f838c3` |
 
 **Sources**

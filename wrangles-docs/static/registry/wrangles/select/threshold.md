@@ -68,6 +68,8 @@ sources:
     title: Archived select.threshold Markdown
 configuration_schema:
   type: object
+  catalog_id: '62'
+  status: active
   description: Select the first option if it exceeds a given threshold, else the second option.
   additionalProperties: false
   required:

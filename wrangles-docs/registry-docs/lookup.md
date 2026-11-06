@@ -10,7 +10,7 @@ toc_max_heading_level: 3
 
 import CopyableCode from '@site/src/components/CopyableCode';
 
-# Lookup <CopyableCode value="lookup" />
+# Lookup <span className="ww-legacy-pill" title="Still supported; a newer name is available">Legacy</span> <CopyableCode value="lookup" />
 
 Look up data from a saved Lookup Wrangle. Data is output as a dictionary if an output is not specified or the output does not match any columns in the lookup. If specific lookup columns are named in the output, they will be output as individual columns.
 
@@ -27,6 +27,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "81",
+  "status": "legacy",
   "description": "Deprecated: Use lookup.key for key lookup models or lookup.semantic for semantic lookup models instead. Lookup values from a saved lookup wrangle.",
   "required": [
     "input",
@@ -162,7 +164,7 @@ a schema may require an argument even when Python provides a default.
 | Field | Value |
 | --- | --- |
 | Catalog ID | `81` |
-| Catalog key | `lookup` |
+| Catalog key | `lookup.semantic` |
 | Recipe key | `lookup` |
 | Catalog status | active |
 | Lifecycle status | active |
@@ -171,7 +173,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `lookup` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.lookup` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `b3339193-d1cc-4c89-8ed6-901efa6d81be` |
 
 **Sources**

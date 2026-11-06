@@ -87,6 +87,8 @@ sources:
     title: Archived standardize Markdown
 configuration_schema:
   type: object
+  catalog_id: '95'
+  status: active
   description: >-
     Standardize data using a DIY or bespoke standardization wrangle. Requires WrangleWorks Account
     and Subscription.

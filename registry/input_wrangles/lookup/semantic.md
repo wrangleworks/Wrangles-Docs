@@ -122,6 +122,8 @@ sources:
     title: WranglesPY schema
 configuration_schema:
   type: object
+  catalog_id: '81'
+  status: active
   description: >-
     Look up values using a saved semantic lookup model. Requires a WrangleWorks account and a model
     with purpose lookup and stored variant embedding. Missing or unknown variants are rejected; use

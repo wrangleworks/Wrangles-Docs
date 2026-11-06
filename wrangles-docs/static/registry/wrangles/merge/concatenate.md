@@ -80,6 +80,8 @@ sources:
     title: Archived merge.concatenate Markdown
 configuration_schema:
   type: object
+  catalog_id: '41'
+  status: active
   description: Concatenate a list of columns or a list within a single column.
   additionalProperties: false
   required:

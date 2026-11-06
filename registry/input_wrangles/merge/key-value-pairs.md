@@ -70,6 +70,8 @@ sources:
     title: Archived merge.key_value_pairs Markdown
 configuration_schema:
   type: object
+  catalog_id: '43'
+  status: active
   description: >-
     Create a dictionary from keys and values in paired columns e.g. COLUMN_NAME_1, COLUMN_VALUE_1,
     COLUMN_NAME_2, COLUMN_VALUE_2 ...

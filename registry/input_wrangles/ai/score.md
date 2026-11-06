@@ -283,6 +283,8 @@ configuration_schema:
   additionalProperties: false
   required:
     - questions
+  catalog_id: '151'
+  status: active
   description: >-
     Answers where the input falls along ordered criteria, with the native score, confidence, and
     complete probabilities. Accepts multiple named questions in one provider request per row.

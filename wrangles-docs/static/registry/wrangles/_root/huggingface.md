@@ -111,6 +111,8 @@ sources:
     title: Archived huggingface Markdown
 configuration_schema:
   type: object
+  catalog_id: '79'
+  status: active
   description: Use a model from huggingface
   required:
     - input

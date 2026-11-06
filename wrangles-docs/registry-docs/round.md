@@ -27,6 +27,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "91",
+  "status": "active",
   "description": "Round column(s) to the specified decimals",
   "additionalProperties": false,
   "required": [
@@ -153,7 +155,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `format` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.pandas.round` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `12f3111b-8511-4e42-8d3f-b5302dc3b4e4` |
 
 **Sources**

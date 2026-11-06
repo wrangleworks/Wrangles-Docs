@@ -95,6 +95,8 @@ sources:
     title: Legacy convert.from_json documentation
 configuration_schema:
   type: object
+  catalog_id: '8'
+  status: active
   description: Convert a JSON representation into an object.
   required:
     - input

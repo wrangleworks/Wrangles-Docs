@@ -85,6 +85,8 @@ sources:
     title: Archived merge.lists Markdown
 configuration_schema:
   type: object
+  catalog_id: '44'
+  status: active
   description: Take lists in multiple columns and merge them to a single list.
   additionalProperties: false
   required:

@@ -31,6 +31,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "39",
+  "status": "active",
   "description": "Generate structured AI output for each recipe row.",
   "additionalProperties": false,
   "required": [
@@ -230,7 +232,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `generate` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.generate.ai` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `12c31c6c-cade-484d-84ba-7f302bf6af52` |
 
 **Sources**

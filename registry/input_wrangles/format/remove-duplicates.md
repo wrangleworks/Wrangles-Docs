@@ -73,6 +73,8 @@ sources:
     title: Archived format.remove_duplicates Markdown
 configuration_schema:
   type: object
+  catalog_id: '35'
+  status: active
   description: Remove duplicates from a list. Preserves input order.
   additionalProperties: false
   required:

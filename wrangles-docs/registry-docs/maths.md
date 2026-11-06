@@ -30,7 +30,9 @@ Schema source: deprecated-alias:math. Conditional and cross-parameter
 rules below apply in addition to the parameter table. References resolve against
 the [complete recipe schema](/schemas/recipes/registry/schema.json).
 
+Compatibility correction: Exclude math's catalog_id from the maths alias schema.
 
+Compatibility correction: Exclude math's status from the maths alias schema.
 
 ```json
 {
@@ -124,7 +126,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `compute` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.maths` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | None |
 
 **Sources**

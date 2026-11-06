@@ -102,6 +102,8 @@ sources:
     title: Archived extract.date_range Markdown
 configuration_schema:
   type: object
+  catalog_id: '27'
+  status: active
   description: Extract date range frequency from two dates
   additionalProperties: false
   required:

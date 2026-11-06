@@ -109,6 +109,8 @@ sources:
     title: 'Archived extract.regex Markdown'
 configuration_schema:
   type: 'object'
+  catalog_id: '30'
+  status: 'active'
   description: 'Extract matches or specific capture groups using regex'
   additionalProperties: false
   required:

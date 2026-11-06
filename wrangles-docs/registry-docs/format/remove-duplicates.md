@@ -27,6 +27,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "35",
+  "status": "active",
   "description": "Remove duplicates from a list. Preserves input order.",
   "additionalProperties": false,
   "required": [
@@ -153,7 +155,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `format` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.format.remove_duplicates` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `283b9e78-b2b2-43d0-844f-9842c33120aa` |
 
 **Sources**

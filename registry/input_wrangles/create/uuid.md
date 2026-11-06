@@ -52,6 +52,8 @@ sources:
     title: Archived create.uuid Markdown
 configuration_schema:
   type: object
+  catalog_id: '19'
+  status: active
   description: Create column(s) with a UUID.
   additionalProperties: false
   required:

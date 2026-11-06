@@ -1,0 +1,201 @@
+{
+  "$schema": "https://docs.wrangles.com/registry/schema/wrangle-contract.schema.json",
+  "format": "wrangles-registry-entry",
+  "registry_version": "0.3.1",
+  "schema_version": "0.3",
+  "type": "wrangle",
+  "catalog_id": "63",
+  "catalog_key": "structure.split_dictionary",
+  "catalog_status": "active",
+  "catalog_history": {
+    "split.dictionary": "legacy"
+  },
+  "legacy_id": null,
+  "wrangle_name": "split_dictionary",
+  "namespace": "structure",
+  "wrangle_key": "structure.split_dictionary",
+  "aliases": [],
+  "slug": "structure/split-dictionary",
+  "title": "Split Dictionary",
+  "description": "Split one or more dictionaries into columns.\nThe dictionary keys will be returned as the new column headers.\nDictionary keys are case-sensitive. With multiple input columns,\nlater dictionaries overwrite earlier keys before defaults are applied.",
+  "status": "active",
+  "visibility": "public",
+  "recipe_writer": {
+    "eligible": false,
+    "reason": "Automatically documented from schema; execution eligibility requires review."
+  },
+  "tags": [
+    "structure"
+  ],
+  "runtime": {
+    "package": "wrangles",
+    "symbol": "wrangles.recipe_wrangles.structure.split_dictionary",
+    "contract_status": "verified"
+  },
+  "access": {
+    "ai_powered": null,
+    "requires_account": null,
+    "requires_subscription": null,
+    "requires_external_api_key": null
+  },
+  "capabilities": {
+    "if": true,
+    "where": true,
+    "where_params": true
+  },
+  "configuration_schema": {
+    "type": "object",
+    "catalog_id": "63",
+    "status": "active",
+    "description": "Split one or more dictionaries into columns.\nThe dictionary keys will be returned as the new column headers.\nDictionary keys are case-sensitive. With multiple input columns,\nlater dictionaries overwrite earlier keys before defaults are applied.",
+    "additionalProperties": false,
+    "required": [
+      "input"
+    ],
+    "properties": {
+      "input": {
+        "type": [
+          "string",
+          "integer",
+          "array"
+        ],
+        "description": "Name or list of columns containing dictionaries or JSON object strings to split.\nFor overlapping keys, later input columns take precedence\nbefore defaults are applied."
+      },
+      "output": {
+        "type": [
+          "string",
+          "array"
+        ],
+        "description": "In columns output_format, this is an optional subset of keys to extract\nfrom the dictionary. If not provided, all keys will be returned.\nColumns can be renamed with the following syntax:\noutput:\n  - key1: new_column_name1\n  - key2: new_column_name2\nIn to_lists output_format, this must be two output columns for the keys\nand values lists. If not provided, Keys and Values will be used."
+      },
+      "default": {
+        "type": "object",
+        "description": "Provide defaults for missing top-level keys or keys with null values after merging the input dictionaries. Keys use their original names before output renaming. Non-null values, including 0, false, empty strings, lists, and dictionaries, are preserved. Nested values are not filled recursively. When default is supplied (including {}), invalid or non-dictionary input cells are treated as empty dictionaries, so valid values from other input columns are retained. Without default, invalid input raises an error."
+      },
+      "output_format": {
+        "type": "string",
+        "enum": [
+          "columns",
+          "to_lists"
+        ],
+        "description": "How to split the dictionary.\ncolumns creates one output column for each dictionary key.\nIn recipes, remaining null cells are normalized to empty strings.\nto_lists creates two output columns containing lists of keys and values.\nRemaining null values inside these lists are preserved."
+      },
+      "if": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/if"
+      },
+      "where": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/where"
+      },
+      "where_params": {
+        "$ref": "https://docs.wrangles.com/schemas/recipes/registry/schema.json#/$defs/wrangles/commonProperties/where_params"
+      }
+    }
+  },
+  "schema_origin": "upstream-docstring",
+  "schema_adjustments": [],
+  "schema_source": {
+    "repository": "https://github.com/wrangleworks/WranglesPY",
+    "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
+    "version": "1.20.5",
+    "extraction": "static-python-ast"
+  },
+  "parameters": [
+    {
+      "name": "input",
+      "description": "Name or list of columns containing dictionaries or JSON object strings to split.\nFor overlapping keys, later input columns take precedence\nbefore defaults are applied.",
+      "param_group": "I/O",
+      "schema": {
+        "type": [
+          "string",
+          "integer",
+          "array"
+        ],
+        "description": "Name or list of columns containing dictionaries or JSON object strings to split.\nFor overlapping keys, later input columns take precedence\nbefore defaults are applied."
+      },
+      "runtime_required": true,
+      "required": true
+    },
+    {
+      "name": "output",
+      "description": "In columns output_format, this is an optional subset of keys to extract\nfrom the dictionary. If not provided, all keys will be returned.\nColumns can be renamed with the following syntax:\noutput:\n  - key1: new_column_name1\n  - key2: new_column_name2\nIn to_lists output_format, this must be two output columns for the keys\nand values lists. If not provided, Keys and Values will be used.",
+      "param_group": "I/O",
+      "schema": {
+        "type": [
+          "string",
+          "array"
+        ],
+        "description": "In columns output_format, this is an optional subset of keys to extract\nfrom the dictionary. If not provided, all keys will be returned.\nColumns can be renamed with the following syntax:\noutput:\n  - key1: new_column_name1\n  - key2: new_column_name2\nIn to_lists output_format, this must be two output columns for the keys\nand values lists. If not provided, Keys and Values will be used."
+      },
+      "runtime_required": false,
+      "required": false,
+      "runtime_default": null
+    },
+    {
+      "name": "default",
+      "description": "Provide defaults for missing top-level keys or keys with null values after merging the input dictionaries. Keys use their original names before output renaming. Non-null values, including 0, false, empty strings, lists, and dictionaries, are preserved. Nested values are not filled recursively. When default is supplied (including {}), invalid or non-dictionary input cells are treated as empty dictionaries, so valid values from other input columns are retained. Without default, invalid input raises an error.",
+      "param_group": "Options",
+      "schema": {
+        "type": "object",
+        "description": "Provide defaults for missing top-level keys or keys with null values after merging the input dictionaries. Keys use their original names before output renaming. Non-null values, including 0, false, empty strings, lists, and dictionaries, are preserved. Nested values are not filled recursively. When default is supplied (including {}), invalid or non-dictionary input cells are treated as empty dictionaries, so valid values from other input columns are retained. Without default, invalid input raises an error."
+      },
+      "runtime_required": false,
+      "required": false,
+      "runtime_default": null
+    },
+    {
+      "name": "output_format",
+      "description": "How to split the dictionary.\ncolumns creates one output column for each dictionary key.\nIn recipes, remaining null cells are normalized to empty strings.\nto_lists creates two output columns containing lists of keys and values.\nRemaining null values inside these lists are preserved.",
+      "param_group": "Options",
+      "schema": {
+        "type": "string",
+        "enum": [
+          "columns",
+          "to_lists"
+        ],
+        "description": "How to split the dictionary.\ncolumns creates one output column for each dictionary key.\nIn recipes, remaining null cells are normalized to empty strings.\nto_lists creates two output columns containing lists of keys and values.\nRemaining null values inside these lists are preserved."
+      },
+      "runtime_required": false,
+      "required": false,
+      "runtime_default": "columns"
+    },
+    {
+      "name": "if",
+      "description": "Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`.",
+      "required": false,
+      "param_group": "Conditions",
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "where",
+      "description": "Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`.",
+      "required": false,
+      "param_group": "Conditions",
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "where_params",
+      "description": "Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`.",
+      "required": false,
+      "param_group": "Conditions",
+      "schema": {
+        "type": [
+          "array",
+          "object"
+        ]
+      }
+    }
+  ],
+  "examples": [],
+  "guidance": "Split one or more dictionaries into columns.\nThe dictionary keys will be returned as the new column headers.\nDictionary keys are case-sensitive. With multiple input columns,\nlater dictionaries overwrite earlier keys before defaults are applied.\n\nUsage guidance and examples have not yet been reviewed.",
+  "sources": [
+    {
+      "id": "schema",
+      "resource": "https://github.com/wrangleworks/WranglesPY/blob/bb47671ab023b3d3eb76fc42f07da4aaed056e2e/wrangles/recipe_wrangles/structure.py",
+      "title": "WranglesPY schema"
+    }
+  ]
+}

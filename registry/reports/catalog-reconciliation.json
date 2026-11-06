@@ -6,18 +6,18 @@
     "system": "API Core",
     "repository": "https://github.com/wrangleworks/API-Core",
     "table": "public.wrangles_catalog",
-    "data_updated_through": "2026-10-18T10:01:30Z"
+    "data_updated_through": "2026-11-06T16:17:54Z"
   },
   "summary": {
-    "catalog_entries": 153,
+    "catalog_entries": 152,
     "pending_registration": 0,
     "matched_connector_entries": 46,
-    "registry_entries": 106,
-    "matched_entries": 106,
+    "registry_entries": 111,
+    "matched_entries": 111,
     "conflicting_entries": 0,
     "entries_with_status_differences": 2,
-    "entries_with_runtime_binding_differences": 2,
-    "entries_without_catalog_registry_path": 106,
+    "entries_with_runtime_binding_differences": 0,
+    "entries_without_catalog_registry_path": 111,
     "catalog_only_entries": 1
   },
   "matched_entries": [
@@ -1143,11 +1143,11 @@
     },
     {
       "catalog_id": "81",
-      "catalog_key": "lookup",
+      "catalog_key": "lookup.semantic",
       "wrangle_key": "lookup",
       "title": null,
       "catalog_status": "active",
-      "catalog_runtime_key": "lookup",
+      "catalog_runtime_key": "lookup.semantic",
       "registry_status": "active",
       "expected_registry_path": "registry/input_wrangles/_root/lookup.md",
       "catalog_registry_path": null,
@@ -1167,18 +1167,13 @@
       "wrangle_key": "lookup.key",
       "title": null,
       "catalog_status": "active",
-      "catalog_runtime_key": "lookup",
+      "catalog_runtime_key": "lookup.key",
       "registry_status": "active",
       "expected_registry_path": "registry/input_wrangles/lookup/key.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
-        {
-          "code": "runtime_binding_difference",
-          "catalog": "lookup",
-          "registry": "lookup.key"
-        },
         {
           "code": "registry_path_missing",
           "expected": "registry/input_wrangles/lookup/key.md",
@@ -1187,23 +1182,18 @@
       ]
     },
     {
-      "catalog_id": "102",
+      "catalog_id": "81",
       "catalog_key": "lookup.semantic",
       "wrangle_key": "lookup.semantic",
       "title": null,
       "catalog_status": "active",
-      "catalog_runtime_key": "lookup",
+      "catalog_runtime_key": "lookup.semantic",
       "registry_status": "active",
       "expected_registry_path": "registry/input_wrangles/lookup/semantic.md",
       "catalog_registry_path": null,
       "status": "matched",
       "conflicts": [],
       "differences": [
-        {
-          "code": "runtime_binding_difference",
-          "catalog": "lookup",
-          "registry": "lookup.semantic"
-        },
         {
           "code": "registry_path_missing",
           "expected": "registry/input_wrangles/lookup/semantic.md",
@@ -1518,11 +1508,11 @@
     },
     {
       "catalog_id": "90",
-      "catalog_key": "replace",
+      "catalog_key": "standardize.replace",
       "wrangle_key": "replace",
       "title": null,
       "catalog_status": "active",
-      "catalog_runtime_key": "replace",
+      "catalog_runtime_key": "standardize.replace",
       "registry_status": "active",
       "expected_registry_path": "registry/input_wrangles/_root/replace.md",
       "catalog_registry_path": null,
@@ -1938,11 +1928,11 @@
     },
     {
       "catalog_id": "63",
-      "catalog_key": "split.dictionary",
+      "catalog_key": "structure.split_dictionary",
       "wrangle_key": "split.dictionary",
       "title": null,
       "catalog_status": "active",
-      "catalog_runtime_key": "split.dictionary",
+      "catalog_runtime_key": "structure.split_dictionary",
       "registry_status": "active",
       "expected_registry_path": "registry/input_wrangles/split/dictionary.md",
       "catalog_registry_path": null,
@@ -1958,11 +1948,11 @@
     },
     {
       "catalog_id": "64",
-      "catalog_key": "split.list",
+      "catalog_key": "structure.split_list",
       "wrangle_key": "split.list",
       "title": null,
       "catalog_status": "active",
-      "catalog_runtime_key": "split.list",
+      "catalog_runtime_key": "structure.split_list",
       "registry_status": "active",
       "expected_registry_path": "registry/input_wrangles/split/list.md",
       "catalog_registry_path": null,
@@ -1978,11 +1968,11 @@
     },
     {
       "catalog_id": "65",
-      "catalog_key": "split.text",
+      "catalog_key": "structure.split_text",
       "wrangle_key": "split.text",
       "title": null,
       "catalog_status": "active",
-      "catalog_runtime_key": "split.text",
+      "catalog_runtime_key": "structure.split_text",
       "registry_status": "active",
       "expected_registry_path": "registry/input_wrangles/split/text.md",
       "catalog_registry_path": null,
@@ -1998,11 +1988,11 @@
     },
     {
       "catalog_id": "66",
-      "catalog_key": "split.tokenize",
+      "catalog_key": "structure.tokenize",
       "wrangle_key": "split.tokenize",
       "title": null,
       "catalog_status": "active",
-      "catalog_runtime_key": "split.tokenize",
+      "catalog_runtime_key": "structure.tokenize",
       "registry_status": "active",
       "expected_registry_path": "registry/input_wrangles/split/tokenize.md",
       "catalog_registry_path": null,
@@ -2102,6 +2092,106 @@
       ]
     },
     {
+      "catalog_id": "90",
+      "catalog_key": "standardize.replace",
+      "wrangle_key": "standardize.replace",
+      "title": null,
+      "catalog_status": "active",
+      "catalog_runtime_key": "standardize.replace",
+      "registry_status": "active",
+      "expected_registry_path": "registry/input_wrangles/standardize/replace.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/input_wrangles/standardize/replace.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "63",
+      "catalog_key": "structure.split_dictionary",
+      "wrangle_key": "structure.split_dictionary",
+      "title": null,
+      "catalog_status": "active",
+      "catalog_runtime_key": "structure.split_dictionary",
+      "registry_status": "active",
+      "expected_registry_path": "registry/input_wrangles/structure/split-dictionary.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/input_wrangles/structure/split-dictionary.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "64",
+      "catalog_key": "structure.split_list",
+      "wrangle_key": "structure.split_list",
+      "title": null,
+      "catalog_status": "active",
+      "catalog_runtime_key": "structure.split_list",
+      "registry_status": "active",
+      "expected_registry_path": "registry/input_wrangles/structure/split-list.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/input_wrangles/structure/split-list.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "65",
+      "catalog_key": "structure.split_text",
+      "wrangle_key": "structure.split_text",
+      "title": null,
+      "catalog_status": "active",
+      "catalog_runtime_key": "structure.split_text",
+      "registry_status": "active",
+      "expected_registry_path": "registry/input_wrangles/structure/split-text.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/input_wrangles/structure/split-text.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
+      "catalog_id": "66",
+      "catalog_key": "structure.tokenize",
+      "wrangle_key": "structure.tokenize",
+      "title": null,
+      "catalog_status": "active",
+      "catalog_runtime_key": "structure.tokenize",
+      "registry_status": "active",
+      "expected_registry_path": "registry/input_wrangles/structure/tokenize.md",
+      "catalog_registry_path": null,
+      "status": "matched",
+      "conflicts": [],
+      "differences": [
+        {
+          "code": "registry_path_missing",
+          "expected": "registry/input_wrangles/structure/tokenize.md",
+          "catalog": null
+        }
+      ]
+    },
+    {
       "catalog_id": "96",
       "catalog_key": "translate",
       "wrangle_key": "translate",
@@ -2175,7 +2265,7 @@
       ],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -2191,7 +2281,7 @@
       ],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -2206,7 +2296,7 @@
       ],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -2222,7 +2312,7 @@
       ],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -2237,7 +2327,7 @@
       ],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -2252,7 +2342,7 @@
       ],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -2269,7 +2359,7 @@
       ],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -2284,7 +2374,7 @@
       ],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -2301,7 +2391,7 @@
       ],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -2316,7 +2406,7 @@
       ],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -2331,7 +2421,7 @@
       ],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -2346,7 +2436,7 @@
       ],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -2362,7 +2452,7 @@
       ],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -2377,7 +2467,7 @@
       ],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -2394,7 +2484,7 @@
       ],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -2409,7 +2499,7 @@
       ],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -2424,7 +2514,7 @@
       ],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -2439,7 +2529,7 @@
       ],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -2456,7 +2546,7 @@
       ],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -2472,7 +2562,7 @@
       ],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -2488,7 +2578,7 @@
       ],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -2505,7 +2595,7 @@
       ],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -2521,7 +2611,7 @@
       ],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -2536,7 +2626,7 @@
       ],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -2551,7 +2641,7 @@
       ],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -2566,7 +2656,7 @@
       ],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -2581,7 +2671,7 @@
       ],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -2598,7 +2688,7 @@
       ],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -2614,7 +2704,7 @@
       ],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -2631,7 +2721,7 @@
       ],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -2646,7 +2736,7 @@
       ],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -2662,7 +2752,7 @@
       ],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -2677,7 +2767,7 @@
       ],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -2693,7 +2783,7 @@
       ],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -2708,7 +2798,7 @@
       ],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -2724,7 +2814,7 @@
       ],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -2739,7 +2829,7 @@
       ],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -2756,7 +2846,7 @@
       ],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -2771,7 +2861,7 @@
       ],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -2786,7 +2876,7 @@
       ],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -2802,7 +2892,7 @@
       ],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -2818,7 +2908,7 @@
       ],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -2834,7 +2924,7 @@
       ],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -2850,7 +2940,7 @@
       ],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -2866,7 +2956,7 @@
       ],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -2881,7 +2971,7 @@
       ],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },

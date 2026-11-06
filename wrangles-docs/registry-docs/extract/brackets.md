@@ -27,6 +27,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "23",
+  "status": "active",
   "description": "Extract text properties in brackets from the input",
   "additionalProperties": false,
   "required": [
@@ -181,7 +183,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `extract` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.extract.brackets` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `9b4c15fa-2aaa-40c8-8834-6e835760bee5` |
 
 **Sources**
