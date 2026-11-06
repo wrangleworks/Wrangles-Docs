@@ -151,14 +151,19 @@ for name, kind in (("broken", "bad"), ("valid", "good")):
             catalog_path.write_text(json.dumps(catalog))
             candidate = json.loads((fixture / 'registry/runtime/wranglespy-source-schema.json').read_text())
             candidate['wrangles']['math']['schema'].update(catalog_id='82', status='active')
-            # Exercise an actual renamed namespace and the corrected lookup binding.
-            current_split = 'structure.split_list'
-            for field in ('wrangles', 'wrangle_definitions'):
-                candidate[field][current_split] = copy.deepcopy(candidate[field]['split.list'])
-            candidate['wrangles']['split.list']['schema'].update(catalog_id='64', status='legacy')
-            candidate['wrangles'][current_split]['schema'].update(catalog_id='64', status='active')
-            next(row for row in catalog['catalog'] if row['catalog_id'] == '64').update(
-                catalog_key=current_split, wranglesPY_key=current_split, history={'split.list': 'legacy'})
+            # Exercise all production renames together, including old-name lookups in tests.
+            renamed = [('63', 'split.dictionary', 'structure.split_dictionary'),
+                       ('64', 'split.list', 'structure.split_list'),
+                       ('65', 'split.text', 'structure.split_text'),
+                       ('66', 'split.tokenize', 'structure.tokenize'),
+                       ('90', 'replace', 'standardize.replace')]
+            for identity, legacy_name, current_name in renamed:
+                for field in ('wrangles', 'wrangle_definitions'):
+                    candidate[field][current_name] = copy.deepcopy(candidate[field][legacy_name])
+                candidate['wrangles'][legacy_name]['schema'].update(catalog_id=identity, status='legacy')
+                candidate['wrangles'][current_name]['schema'].update(catalog_id=identity, status='active')
+                next(row for row in catalog['catalog'] if row['catalog_id'] == identity).update(
+                    catalog_key=current_name, wranglesPY_key=current_name, history={legacy_name: 'legacy'})
             next(row for row in catalog['catalog'] if row['catalog_id'] == '101')['wranglesPY_key'] = 'lookup.key'
             # A merged identity removes the obsolete DB row but keeps both pages.
             lookup = next(row for row in catalog['catalog'] if row['catalog_id'] == '81')
