@@ -150,6 +150,13 @@ for name, kind in (("broken", "bad"), ("valid", "good")):
             catalog['catalog'][0]['history'] = {'previous.name': 'legacy'}
             catalog_path.write_text(json.dumps(catalog))
             candidate = json.loads((fixture / 'registry/runtime/wranglespy-source-schema.json').read_text())
+            # A merged identity removes the obsolete DB row but keeps both pages.
+            lookup = next(row for row in catalog['catalog'] if row['catalog_id'] == '81')
+            lookup.update(catalog_key='lookup.semantic', wranglesPY_key='lookup.semantic',
+                          history={'lookup': 'legacy'})
+            catalog['catalog'] = [row for row in catalog['catalog'] if row['catalog_id'] != '102']
+            candidate['wrangles']['lookup']['schema'].update(catalog_id='81', status='legacy')
+            candidate['wrangles']['lookup.semantic']['schema'].update(catalog_id='81', status='active')
             # A second supported name gets its own page but shares an identity.
             alias = 'format.refresh_alias'
             candidate['wrangle_definitions'][alias] = copy.deepcopy(candidate['wrangle_definitions']['format.suffix'])
@@ -195,6 +202,10 @@ for name, kind in (("broken", "bad"), ("valid", "good")):
             self.assertEqual(alias_contract['catalog_status'], 'active')
             self.assertEqual(alias_contract['catalog_history'], {alias: 'legacy'})
             self.assertEqual(alias_contract['name_status'], 'legacy')
+            for key, legacy in [('lookup', True), ('lookup/semantic', False)]:
+                lookup_contract = json.loads((fixture / f'wrangles-docs/static/registry/contracts/{key}.json').read_text())
+                self.assertEqual(lookup_contract['catalog_id'], '81')
+                self.assertEqual(lookup_contract.get('name_status') == 'legacy', legacy)
             for filename in ('registry/input_wrangles/_root/round.md',
                              'wrangles-docs/registry-docs/round.md',
                              'wrangles-docs/static/registry/contracts/round.json'):

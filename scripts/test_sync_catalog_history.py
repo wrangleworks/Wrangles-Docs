@@ -1,6 +1,7 @@
 import unittest
 from types import SimpleNamespace
-from sync_catalog_history import plan
+from sync_catalog_history import plan, apply_plan
+from unittest.mock import Mock
 from export_wranglespy_inventory import callable_names
 
 
@@ -63,7 +64,7 @@ class SyncTests(unittest.TestCase):
         changes, skipped = plan(schema(entries), rows,
                                 [*entries, 'maths', 'format.price_breaks', 'new.no_schema'], warnings)
         self.assertEqual({c['catalog_id'] for c in changes}, {'63', '200'})
-        self.assertEqual({w['name'] for w in warnings},
+        self.assertEqual({w['name'] for w in warnings if 'name' in w},
                          {'maths', 'format.price_breaks', 'new.no_schema'})
         self.assertEqual(skipped, [])
         self.assertEqual(changes[0]['history'], {'split.dictionary': 'legacy'})
@@ -77,7 +78,6 @@ class SyncTests(unittest.TestCase):
 
     def test_no_docstring_history_and_only_one_active_name(self):
         for entries in ({'a': {**metadata(), 'history': {}}},
-                        {'a': metadata(), 'b': metadata()},
                         {'a': metadata(status='not active')}):
             with self.assertRaises(ValueError):
                 plan(schema(entries), [row()], list(entries))
@@ -91,10 +91,89 @@ class SyncTests(unittest.TestCase):
         changes, _ = plan(schema(entries), [row(catalog_key='custom.dictionary')], list(entries))
         self.assertEqual(changes[0]['catalog_key'], 'custom.dictionary')
 
-    def test_no_id_never_creates_and_conflicts_abort(self):
+    def test_no_id_never_creates(self):
         self.assertEqual(plan(schema({'new': {'status': 'active'}}), [], ['new']), ([], ['new']))
-        with self.assertRaises(ValueError):
-            plan(schema({'split.dictionary': metadata('200')}), [row()], ['split.dictionary'])
+
+    def test_id_change_deletes_obsolete_row_and_is_idempotent(self):
+        entries = {'split.dictionary': metadata('200')}
+        changes, _ = plan(schema(entries), [row()], list(entries))
+        self.assertEqual([(c['action'], c['catalog_id']) for c in changes],
+                         [('delete', '63'), ('create', '200')])
+        updated = row('200', 'split.dictionary')
+        self.assertEqual(plan(schema(entries), [updated], list(entries)), ([], []))
+
+    def test_lookup_merge_deletes_102_with_original_and_corrected_bindings(self):
+        entries = {'lookup': metadata('81', 'legacy'), 'lookup.semantic': metadata('81'),
+                   'lookup.key': metadata('101')}
+        for old_binding in ('lookup', 'lookup.semantic'):
+            rows = [row('81', 'lookup'), row('101', 'lookup.key'),
+                    row('102', 'lookup.semantic', wranglesPY_key=old_binding)]
+            changes, _ = plan(schema(entries), rows, list(entries))
+            self.assertEqual([(c['action'], c['catalog_id']) for c in changes],
+                             [('delete', '102'), ('update', '81')])
+            self.assertEqual(changes[0]['replacement_catalog_id'], '81')
+            self.assertEqual(changes[1]['wranglesPY_key'], 'lookup.semantic')
+            self.assertEqual(changes[1]['history'], {'lookup': 'legacy'})
+            updated = {**rows[0], **{k: v for k, v in changes[1].items() if k != 'action'}}
+            self.assertEqual(plan(schema(entries), [updated, rows[1]], list(entries)), ([], []))
+
+    def test_active_collision_retains_both_rows_and_syncs_unrelated(self):
+        rows = [row('81', 'lookup'), row('102', 'lookup.semantic')]
+        entries = {'lookup': metadata('81'), 'lookup.semantic': metadata('81'),
+                   'new.valid': metadata('200')}
+        warnings = []
+        changes, _ = plan(schema(entries), rows, list(entries), warnings)
+        self.assertEqual([(c['action'], c['catalog_id']) for c in changes], [('create', '200')])
+        self.assertEqual({w['catalog_id'] for w in warnings}, {'81', '102'})
+
+    def test_missing_schema_at_destination_retains_source_too(self):
+        rows = [row('81', 'lookup'), row('102', 'lookup.semantic')]
+        entries = {'lookup.semantic': metadata('81'), 'new.valid': metadata('200')}
+        changes, _ = plan(schema(entries), rows, [*entries, 'lookup'])
+        self.assertEqual([(c['action'], c['catalog_id']) for c in changes], [('create', '200')])
+
+    def test_connector_id_collision_is_reported_without_blocking_others(self):
+        rows = [row('103', 'connector.access', catalog_kind='connector')]
+        entries = {'new.invalid': metadata('103'), 'new.valid': metadata('200')}
+        warnings = []
+        changes, _ = plan(schema(entries), rows, list(entries), warnings)
+        self.assertEqual([c['catalog_id'] for c in changes], ['200'])
+        self.assertEqual(warnings[0]['catalog_id'], '103')
+
+    def test_reassignment_preserves_removed_alias_history(self):
+        old = row(history={'older.name': 'not active'})
+        entries = {'split.dictionary': metadata('200')}
+        changes, _ = plan(schema(entries), [old], list(entries))
+        self.assertEqual(changes[1]['history'], {'older.name': 'not active'})
+
+    def test_missing_lookup_schema_does_not_delete_its_stale_binding(self):
+        rows = [row('81', 'lookup'), row('101', 'lookup.key', wranglesPY_key='lookup')]
+        entries = {'lookup': metadata('81'), 'new.valid': metadata('200')}
+        changes, _ = plan(schema(entries), rows, [*entries, 'lookup.key'])
+        self.assertEqual([c['catalog_id'] for c in changes], ['200'])
+
+    def test_apply_deletes_obsolete_row_before_reusing_unique_key(self):
+        rows = [row('81', 'lookup'), row('102', 'lookup.semantic')]
+        entries = {'lookup': metadata('81', 'legacy'), 'lookup.semantic': metadata('81')}
+        changes, _ = plan(schema(entries), rows, list(entries))
+        connection = Mock()
+        apply_plan(connection, list(reversed(changes)), rows, lambda value: value)
+        calls = connection.execute.call_args_list
+        self.assertTrue(calls[0].args[0].startswith('DELETE'))
+        self.assertEqual(calls[0].args[1], (102,))
+        self.assertTrue(calls[1].args[0].startswith('UPDATE'))
+        self.assertEqual(calls[1].args[1][-1], 81)
+
+    def test_new_id_preserves_custom_key_and_non_schema_fields(self):
+        original = row(catalog_key='custom.dictionary', notes='editorial note',
+                       okf_path='existing/path', created_at='2026-01-01')
+        entries = {'split.dictionary': metadata('200')}
+        changes, _ = plan(schema(entries), [original], list(entries))
+        self.assertEqual(changes[1]['catalog_key'], 'custom.dictionary')
+        connection = Mock()
+        apply_plan(connection, changes, [original], lambda value: value)
+        self.assertEqual(connection.execute.call_args_list[1].args[1][-4:],
+                         ('recipe', 'existing/path', 'editorial note', '2026-01-01'))
 
     def test_lookup_ids_correct_old_shared_bindings(self):
         rows = [row('81', 'lookup'), row('101', 'lookup.key', wranglesPY_key='lookup'),

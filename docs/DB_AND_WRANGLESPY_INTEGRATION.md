@@ -47,7 +47,8 @@ with status `not active`. Connectors and the catalog-only Excel Map are excluded
 A present function missing from the generated schema produces a warning. Its
 existing DB row (including any shared aliases) is retained unchanged, while other
 valid identities continue syncing. A new name without a schema is skipped.
-An unreadable schema file or an identity conflict still stops the sync.
+An unreadable schema file stops the sync. Identity conflicts retain the affected
+rows and report warnings; unrelated identities continue syncing.
 Disappearance is checked against the complete callable inventory from the same
 upstream revision as the generated schema.
 
@@ -56,8 +57,18 @@ upstream revision as the generated schema.
 1. Use the explicit WranglesPY catalog ID when present.
 2. Otherwise use an exact, unique existing database `wranglesPY_key` match.
 3. No ID and no database match: report it; do not insert a row.
-4. An explicit new ID may create a row. Conflicting IDs/keys or multiple active
-   names for one ID stop the transaction. Do not guess IDs or allocate them here.
+4. An explicit new ID may create a row. When an existing name moves to another ID,
+   delete its obsolete row and use the schema-declared ID. Preserve its history.
+5. If multiple active names request the same ID, retain all rows involved in that
+   move and report the conflict. Unrelated changes still apply. Do not guess IDs.
+
+For example, `lookup` (81, legacy) and `lookup.semantic` (81, active) share row 81.
+It points to `lookup.semantic`, with `{"lookup":"legacy"}` in history. The obsolete
+row 102 for `lookup.semantic` is deleted. Preview lists this explicitly as a
+`delete` action with `replacement_catalog_id: "81"`. Both documentation pages remain.
+If `lookup` also stays active, those rows are retained instead and a warning is reported.
+Deletes and updates execute in one database transaction; database constraint
+failures roll it back. No dependent records are explicitly deleted by the script.
 
 ## What do I run?
 

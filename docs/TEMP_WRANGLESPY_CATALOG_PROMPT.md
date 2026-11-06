@@ -16,8 +16,10 @@ status: active
 
 Use the supplied `registry/catalog/api-core.json` from Wrangles-Docs for IDs.
 Keep all existing IDs; do not invent an ID for an unmatched existing name.
-Lookup IDs are 81 for `lookup`, 101 for `lookup.key`, and 102 for
-`lookup.semantic`; the last two database runtime bindings are awaiting correction.
+For the agreed lookup migration, use ID 81 with `status: legacy` for `lookup`,
+ID 81 with `status: active` for `lookup.semantic`, and ID 101 with `status: active`
+for `lookup.key`. The Docs workflow will absorb the old semantic row 102 into
+row 81; do not perform that database change in WranglesPY.
 The database-only `map` entry is not a recipe callable: do not invent one.
 
 For these five pairs, the OLD name must have `status: legacy` and the CURRENT
@@ -69,12 +71,13 @@ catalog is a reference for IDs, not a file to commit into WranglesPY.
 Report these known warnings without inventing schemas or IDs to silence them:
 - maths (83) and format.price_breaks (34) lack structured schemas.
 - map (99) remains catalog-only.
-- Lookup bindings 101/102 are corrected by the Docs synchronization workflow.
+- Lookup bindings and the obsolete row 102 are handled by the Docs synchronization workflow.
 - Connector metadata is unchanged; excel.table has no catalog row.
 
 The Docs DB sync retains existing rows for present functions whose schemas are
 missing, reports warnings, and continues with other valid identities. Missing
-schemas do not mean functions were deleted. Identity conflicts still block sync.
+schemas do not mean functions were deleted. Identity conflicts retain the affected
+rows and report warnings while unrelated identities continue syncing.
 
 Run the relevant existing tests and report changed files, results, warnings and
 the current branch name. Leave all changes uncommitted on codex/catalog-schema-ids.
