@@ -33,6 +33,14 @@ function configurationSchema(runtime, snapshot) {
   if (!schema && runtime.runtime_key === 'maths') {
     if (!snapshot.wrangles.math?.schema) throw new Error('maths requires the math schema to be present.');
     schema = clone(snapshot.wrangles.math.schema);
+    // Borrow the parameter contract, never another wrangle's identity/status.
+    // maths has its own catalog row and no explicit upstream metadata here.
+    for (const field of ['catalog_id', 'status']) {
+      if (Object.hasOwn(schema, field)) {
+        delete schema[field];
+        adjustments.push(`Exclude math's ${field} from the maths alias schema.`);
+      }
+    }
     origin = 'deprecated-alias:math';
   }
   if (!schema) {

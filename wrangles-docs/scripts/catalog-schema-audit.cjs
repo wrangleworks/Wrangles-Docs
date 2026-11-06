@@ -49,7 +49,11 @@ function auditCatalogSchema(catalog, snapshot, runtimeManifest) {
           if (projected.adjustments.some(value => value.startsWith('Normalize schema type '))) {
             issue('info', 'equivalent_type_spelling_normalized');
           }
-          if (projected.adjustments.some(value => !value.startsWith('Normalize schema type '))) {
+          const aliasMetadataExcluded = value => projected.origin === 'deprecated-alias:math' &&
+            ["Exclude math's catalog_id from the maths alias schema.",
+              "Exclude math's status from the maths alias schema."].includes(value);
+          if (projected.adjustments.some(aliasMetadataExcluded)) issue('info', 'alias_identity_metadata_excluded');
+          if (projected.adjustments.some(value => !value.startsWith('Normalize schema type ') && !aliasMetadataExcluded(value))) {
             issue('warning', 'upstream_schema_correction');
           }
         } catch {

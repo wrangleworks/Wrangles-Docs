@@ -21,6 +21,16 @@ test('legacy history supplies identity coverage but cannot hide missing current 
   assert.equal(refreshed.summary.failed, 0);
   assert.deepEqual(refreshed.missing_catalog_identities, auditCatalogSchema(catalog, snapshot, runtime).missing_catalog_identities);
 });
+test('maths identity exclusion is informational and other corrections still need review', () => {
+  const updated = structuredClone(snapshot);
+  Object.assign(updated.wrangles.math.schema, {catalog_id: '82', status: 'active'});
+  const result = auditCatalogSchema(catalog, updated, runtime).rows.find(row => row.catalog_key === 'maths');
+  assert.equal(result.status, 'passed');
+  assert.ok(result.issues.some(issue => issue.code === 'alias_identity_metadata_excluded' && issue.severity === 'info'));
+  assert.ok(auditCatalogSchema(catalog, updated, runtime).rows.some(row =>
+    row.issues.some(issue => issue.code === 'upstream_schema_correction' && issue.severity === 'warning')));
+});
+
 test('catalog bindings are checked directly and non-schema fields are excluded', () => {
   const report = auditCatalogSchema(catalog, snapshot, runtime);
   assert.equal(report.summary.rows, catalog.catalog.length);
@@ -34,9 +44,12 @@ test('catalog bindings are checked directly and non-schema fields are excluded',
   assert.ok(report.not_schema_validatable.includes('wrangle_type'));
   assert.equal(report.rows.find(row => row.catalog_key === 'maths').schema_origin, 'deprecated-alias:math');
   assert.equal(report.rows.find(row => row.catalog_key === 'maths').status, 'passed');
-  assert.equal(report.rows.find(row => row.catalog_key === 'split.list').status, 'passed');
+  const splitListKey = catalog.catalog.find(row => row.catalog_id === '64').catalog_key;
+  assert.equal(report.rows.find(row => row.catalog_key === splitListKey).status, 'passed');
   assert.equal(report.rows.find(row => row.catalog_key === 'format.price_breaks').schema_origin, 'signature-derived');
-  assert.equal(report.rows.find(row => row.catalog_key === 'lookup.key').status, 'review-required');
+  const lookupKey = catalog.catalog.find(row => row.catalog_key === 'lookup.key');
+  assert.equal(report.rows.find(row => row.catalog_key === 'lookup.key').issues.some(
+    issue => issue.code === 'catalog_key_binding_difference'), lookupKey.catalog_key !== lookupKey.wranglesPY_key);
   assert.deepEqual(report.rows.find(row => row.catalog_key === 'connector.file').operations.sort(), ['read', 'write']);
 });
 test('new unregistered wrangles are reported without blocking documentation checks', () => {

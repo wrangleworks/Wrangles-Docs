@@ -15,6 +15,27 @@ const walk = dir => fs.readdirSync(dir, {withFileTypes: true}).flatMap(item => i
 const entries = walk(path.join(root, 'registry/input_wrangles')).filter(file => file.endsWith('.md')).map(file => ({...parseRegistryMarkdown(fs.readFileSync(file, 'utf8')), sourceFile: file}));
 const validate = new Ajv({strict: false, validateFormats: false, allErrors: true}).compile(schema);
 
+test('maths borrows math parameters without inheriting its catalog identity or status', () => {
+  const donor = {type: 'object', catalog_id: '82', status: 'active',
+    properties: {catalog_id: {type: 'string'}, expression: {type: 'string'}},
+    required: ['expression'], additionalProperties: false};
+  const result = configurationSchema({runtime_key: 'maths', docstring_schema: null,
+    capabilities: {}}, {wrangles: {math: {schema: donor}}});
+  assert.equal(Object.hasOwn(result.schema, 'catalog_id'), false);
+  assert.equal(Object.hasOwn(result.schema, 'status'), false);
+  assert.deepEqual(result.schema.properties, donor.properties);
+  assert.deepEqual(result.schema.required, donor.required);
+  assert.equal(result.schema.additionalProperties, false);
+  assert.equal(donor.catalog_id, '82');
+  assert.equal(donor.status, 'active');
+  assert.equal(result.origin, 'deprecated-alias:math');
+  assert.equal(result.adjustments.length, 2);
+  const explicit = configurationSchema({runtime_key: 'maths',
+    docstring_schema: {...donor, catalog_id: '83', status: 'legacy'}, capabilities: {}}, {});
+  assert.equal(explicit.schema.catalog_id, '83');
+  assert.equal(explicit.schema.status, 'legacy');
+});
+
 test('generated AI schemas retain nested question and conditional output rules', () => {
   for (const key of ['ai.choose', 'ai.score', 'ai.true_false', 'ai.answers']) {
     const definition = snapshot.wrangles[key];

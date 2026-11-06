@@ -150,6 +150,16 @@ for name, kind in (("broken", "bad"), ("valid", "good")):
             catalog['catalog'][0]['history'] = {'previous.name': 'legacy'}
             catalog_path.write_text(json.dumps(catalog))
             candidate = json.loads((fixture / 'registry/runtime/wranglespy-source-schema.json').read_text())
+            candidate['wrangles']['math']['schema'].update(catalog_id='82', status='active')
+            # Exercise an actual renamed namespace and the corrected lookup binding.
+            current_split = 'structure.split_list'
+            for field in ('wrangles', 'wrangle_definitions'):
+                candidate[field][current_split] = copy.deepcopy(candidate[field]['split.list'])
+            candidate['wrangles']['split.list']['schema'].update(catalog_id='64', status='legacy')
+            candidate['wrangles'][current_split]['schema'].update(catalog_id='64', status='active')
+            next(row for row in catalog['catalog'] if row['catalog_id'] == '64').update(
+                catalog_key=current_split, wranglesPY_key=current_split, history={'split.list': 'legacy'})
+            next(row for row in catalog['catalog'] if row['catalog_id'] == '101')['wranglesPY_key'] = 'lookup.key'
             # A merged identity removes the obsolete DB row but keeps both pages.
             lookup = next(row for row in catalog['catalog'] if row['catalog_id'] == '81')
             lookup.update(catalog_key='lookup.semantic', wranglesPY_key='lookup.semantic',
@@ -202,6 +212,9 @@ for name, kind in (("broken", "bad"), ("valid", "good")):
             self.assertEqual(alias_contract['catalog_status'], 'active')
             self.assertEqual(alias_contract['catalog_history'], {alias: 'legacy'})
             self.assertEqual(alias_contract['name_status'], 'legacy')
+            for key, identity in [('math', '82'), ('maths', '83')]:
+                contract_path = fixture / f'wrangles-docs/static/registry/contracts/{key}.json'
+                self.assertEqual(json.loads(contract_path.read_text())['catalog_id'], identity)
             for key, legacy in [('lookup', True), ('lookup/semantic', False)]:
                 lookup_contract = json.loads((fixture / f'wrangles-docs/static/registry/contracts/{key}.json').read_text())
                 self.assertEqual(lookup_contract['catalog_id'], '81')
