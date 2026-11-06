@@ -90,6 +90,8 @@ sources:
     title: Archived matrix Markdown
 configuration_schema:
   type: object
+  catalog_id: '84'
+  status: active
   description: |-
     Apply a matrix of wrangles to the dataframe.
     This will run the wrangles for each combination of the variables.

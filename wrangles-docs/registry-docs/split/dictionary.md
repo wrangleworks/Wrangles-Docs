@@ -10,7 +10,7 @@ toc_max_heading_level: 3
 
 import CopyableCode from '@site/src/components/CopyableCode';
 
-# Dictionary <CopyableCode value="split.dictionary" />
+# Dictionary <span className="ww-legacy-pill" title="Still supported; a newer name is available">Legacy</span> <CopyableCode value="split.dictionary" />
 
 Split a dictionary into columns. The dictionary keys are used as the new column headers.
 
@@ -27,6 +27,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "63",
+  "status": "legacy",
   "description": "Split one or more dictionaries into columns.\nThe dictionary keys will be returned as the new column headers.\nDictionary keys are case-sensitive. With multiple input columns,\nlater dictionaries overwrite earlier keys before defaults are applied.",
   "additionalProperties": false,
   "required": [
@@ -309,7 +311,7 @@ a schema may require an argument even when Python provides a default.
 | Field | Value |
 | --- | --- |
 | Catalog ID | `63` |
-| Catalog key | `split.dictionary` |
+| Catalog key | `structure.split_dictionary` |
 | Recipe key | `split.dictionary` |
 | Catalog status | active |
 | Lifecycle status | active |
@@ -318,7 +320,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `split` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.split.dictionary` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `06ca98e4-d026-43f7-84eb-af246d401ba9` |
 
 **Sources**

@@ -51,6 +51,8 @@ sources:
     title: 'Archived select.sample Markdown'
 configuration_schema:
   type: 'object'
+  catalog_id: '59'
+  status: 'active'
   description: 'Return a random sample of the rows'
   required:
     - 'rows'

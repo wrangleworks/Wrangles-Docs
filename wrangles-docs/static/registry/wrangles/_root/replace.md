@@ -82,6 +82,8 @@ sources:
     title: Archived replace Markdown
 configuration_schema:
   type: object
+  catalog_id: '90'
+  status: legacy
   description: >-
     Quick find and replace for simple values. Can use regex if 'input' in params and
     isinstance(params['input'], list):in the find field.

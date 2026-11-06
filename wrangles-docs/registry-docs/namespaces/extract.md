@@ -31,6 +31,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "20",
+  "status": "active",
   "description": "Extract parts of addresses. Requires WrangleWorks Account.",
   "required": [
     "input",
@@ -180,7 +182,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `extract` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.extract.address` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `44153f95-4581-4cee-898e-b3b4714045fd` |
 
 **Sources**
@@ -214,6 +216,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "21",
+  "status": "active",
   "description": "Extract structured data from each input row using an AI model. Define the desired fields with output, or reuse a saved definition with model_id.",
   "additionalProperties": false,
   "required": [
@@ -794,7 +798,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `extract` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.extract.ai` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `d9f89b00-fda3-4f4c-826c-6417b9390607` |
 
 **Sources**
@@ -824,6 +828,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "22",
+  "status": "active",
   "description": "Extract numeric attributes from the input such as weights or lengths. Requires WrangleWorks Account.",
   "required": [
     "input",
@@ -1083,7 +1089,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `extract` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.extract.attributes` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `03ccedef-c938-41f1-8980-280f1a91542e` |
 
 **Sources**
@@ -1113,6 +1119,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "23",
+  "status": "active",
   "description": "Extract text properties in brackets from the input",
   "additionalProperties": false,
   "required": [
@@ -1267,7 +1275,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `extract` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.extract.brackets` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `9b4c15fa-2aaa-40c8-8834-6e835760bee5` |
 
 **Sources**
@@ -1297,6 +1305,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "24",
+  "status": "active",
   "description": "Extract alphanumeric codes from the input. Requires WrangleWorks Account.",
   "required": [
     "input",
@@ -1522,7 +1532,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `extract` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.extract.codes` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `da591387-0fca-4842-8bcb-d19f561f0292` |
 
 **Sources**
@@ -1556,6 +1566,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "25",
+  "status": "active",
   "description": "Extract data from the input using a DIY or bespoke extraction wrangle. Requires WrangleWorks Account and Subscription.",
   "required": [
     "input",
@@ -1822,7 +1834,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `extract` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.extract.custom` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `e8e96b76-86bf-41dc-8d16-825dcff9688b` |
 
 **Sources**
@@ -1852,6 +1864,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "26",
+  "status": "active",
   "description": "Extract date properties from a date (day, month, year, etc...)",
   "additionalProperties": false,
   "required": [
@@ -1987,7 +2001,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `extract` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.extract.date_properties` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `a346de62-93cd-44ba-8d30-a6305629c6d7` |
 
 **Sources**
@@ -2017,6 +2031,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "27",
+  "status": "active",
   "description": "Extract date range frequency from two dates",
   "additionalProperties": false,
   "required": [
@@ -2162,7 +2178,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `extract` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.extract.date_range` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `9cebfa6f-a524-4aec-84a7-02d77b792843` |
 
 **Sources**
@@ -2192,6 +2208,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "28",
+  "status": "active",
   "description": "Extract elements from strings containing html. Requires WrangleWorks Account.",
   "required": [
     "input",
@@ -2369,7 +2387,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `extract` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.extract.html` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `728fc87a-a20d-4efa-833a-612e0b5eadc3` |
 
 **Sources**
@@ -2399,6 +2417,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "29",
+  "status": "active",
   "description": "Extract text properties from the input. Requires WrangleWorks Account.",
   "required": [
     "input",
@@ -2589,7 +2609,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `extract` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.extract.properties` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `23bbdb86-fd13-4b78-8fff-a7a76769ab63` |
 
 **Sources**
@@ -2619,6 +2639,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "30",
+  "status": "active",
   "description": "Extract matches or specific capture groups using regex",
   "additionalProperties": false,
   "required": [
@@ -2808,7 +2830,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `extract` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.extract.regex` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `9aa0253a-4b70-4737-832c-964e15967289` |
 
 **Sources**

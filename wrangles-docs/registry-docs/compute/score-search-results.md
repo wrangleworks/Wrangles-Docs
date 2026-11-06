@@ -27,6 +27,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "4",
+  "status": "active",
   "description": "Deduplicates and ranks structured search results using part-number, supplier text, context, original-rank, query-order, supplier-domain, and product-URL signals. Unfiltered results come first; filtered results are retained at the end, with each group sorted by descending score. Each result contains summary, scoring_details, pricing, metadata, reduced part_code_matches, and part_code_match_count before evidence reduction. Numeric part-match categories use broad normalized containment and can differ from the exact, stripped, and partial diagnostic evidence levels. Does not search again or visit result pages. See docs/search_result_scoring.md for the full contract.",
   "additionalProperties": false,
   "required": [
@@ -259,7 +261,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `compute` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.compute.score_search_results` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `313a8ec0-cf13-4956-8d3b-5362b8641d0f` |
 
 **Sources**

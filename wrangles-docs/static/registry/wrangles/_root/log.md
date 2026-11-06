@@ -103,6 +103,8 @@ sources:
     title: Archived log Markdown
 configuration_schema:
   type: object
+  catalog_id: '80'
+  status: active
   description: Log the current status of the dataframe.
   additionalProperties: false
   properties:

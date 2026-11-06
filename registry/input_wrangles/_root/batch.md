@@ -109,6 +109,8 @@ sources:
     title: Archived batch Markdown
 configuration_schema:
   type: object
+  catalog_id: '70'
+  status: active
   description: >-
     Split the data into batches for executing a list of wrangles. Use this in situations such as
     where the intermediate data is too large to fit in memory.

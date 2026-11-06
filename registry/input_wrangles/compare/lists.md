@@ -89,6 +89,8 @@ sources:
     title: Archived compare.lists Markdown
 configuration_schema:
   type: object
+  catalog_id: '1'
+  status: active
   description: Compare multiple lists and return the intersection, difference, or union
   required:
     - input

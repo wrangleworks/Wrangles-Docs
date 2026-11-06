@@ -201,6 +201,8 @@ sources:
     title: Archived filter Markdown
 configuration_schema:
   type: object
+  catalog_id: '78'
+  status: active
   description: |-
     Filter the dataframe based on the contents.
     If multiple filters are specified, all must be correct.

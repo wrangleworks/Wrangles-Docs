@@ -81,6 +81,8 @@ sources:
     title: Archived create.index Markdown
 configuration_schema:
   type: object
+  catalog_id: '17'
+  status: active
   description: Create column(s) with an incremental index. e.g. 1,2,3...
   additionalProperties: false
   required:

@@ -198,6 +198,8 @@ sources:
     title: WranglesPY schema
 configuration_schema:
   type: object
+  catalog_id: '154'
+  status: active
   description: >-
     Retrieve Google AI Mode Markdown and metadata. Use standardize.clean and extract.ai afterwards
     for cleanup and structuring.

@@ -98,6 +98,8 @@ sources:
     title: Archived create.jinja Markdown
 configuration_schema:
   type: object
+  catalog_id: '18'
+  status: active
   description: Output text using a jinja template
   additionalProperties: false
   required:

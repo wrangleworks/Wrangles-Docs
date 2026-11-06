@@ -31,6 +31,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "74",
+  "status": "active",
   "description": "Make a copy of a column or a list of columns",
   "additionalProperties": false,
   "required": [
@@ -187,7 +189,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `transform` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.pandas.copy` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `b002fbdc-92c0-4347-889d-0f4bfeec99fa` |
 
 **Sources**
@@ -217,6 +219,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "87",
+  "status": "active",
   "description": "Changes the row labels and column labels of a DataFrame.",
   "additionalProperties": false,
   "properties": {
@@ -350,7 +354,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `transform` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.pandas.reindex` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `def87df8-72da-4e34-83c1-1fde25126257` |
 
 **Sources**
@@ -380,6 +384,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "89",
+  "status": "active",
   "description": "Rename a column or list of columns.",
   "properties": {
     "input": {
@@ -578,7 +584,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `transform` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.rename` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `ab06898f-faf7-42e7-8275-5e3034a4d727` |
 
 **Sources**
@@ -608,6 +614,8 @@ Compatibility correction: Normalize schema type null to null.
 ```json
 {
   "type": "object",
+  "catalog_id": "97",
+  "status": "active",
   "description": "Transpose the DataFrame (swap columns to rows)",
   "additionalProperties": false,
   "properties": {
@@ -722,7 +730,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `transform` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.pandas.transpose` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `8716347f-f286-49b2-8a0b-cb73292e7475` |
 
 **Sources**

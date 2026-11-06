@@ -64,6 +64,8 @@ sources:
     title: Archived format.trim Markdown
 configuration_schema:
   type: object
+  catalog_id: '38'
+  status: active
   description: Remove excess whitespace at the start and end of text.
   additionalProperties: false
   required:

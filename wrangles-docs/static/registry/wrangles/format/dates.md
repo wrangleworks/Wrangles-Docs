@@ -73,6 +73,8 @@ sources:
     title: Archived format.dates Markdown
 configuration_schema:
   type: object
+  catalog_id: '31'
+  status: active
   description: Format a date
   additionalProperties: false
   required:

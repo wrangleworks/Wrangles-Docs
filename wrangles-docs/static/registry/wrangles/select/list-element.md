@@ -94,6 +94,8 @@ sources:
     title: Archived select.list_element Markdown
 configuration_schema:
   type: object
+  catalog_id: '57'
+  status: active
   description: Select a numbered element of a list (zero indexed).
   additionalProperties: false
   required:

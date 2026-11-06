@@ -307,6 +307,8 @@ sources:
     title: Archived compute.score_search_results Markdown
 configuration_schema:
   type: object
+  catalog_id: '4'
+  status: active
   description: >-
     Deduplicates and ranks structured search results using part-number, supplier text, context,
     original-rank, query-order, supplier-domain, and product-URL signals. Unfiltered results come

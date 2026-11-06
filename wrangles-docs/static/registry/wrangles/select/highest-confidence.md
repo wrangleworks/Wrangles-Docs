@@ -62,6 +62,8 @@ sources:
     title: Archived select.highest_confidence Markdown
 configuration_schema:
   type: object
+  catalog_id: '54'
+  status: active
   description: >-
     Select the option with the highest confidence from multiple columns. Inputs are expected to be
     of the form [<<value>>, <<confidence_score>>].

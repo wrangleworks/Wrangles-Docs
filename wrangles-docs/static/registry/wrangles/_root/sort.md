@@ -75,6 +75,8 @@ sources:
     title: Archived sort Markdown
 configuration_schema:
   type: object
+  catalog_id: '93'
+  status: active
   description: Sort the data
   additionalProperties: true
   required:

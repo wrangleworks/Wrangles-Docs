@@ -131,6 +131,8 @@ sources:
     title: Archived split.dictionary Markdown
 configuration_schema:
   type: object
+  catalog_id: '63'
+  status: legacy
   description: |-
     Split one or more dictionaries into columns.
     The dictionary keys will be returned as the new column headers.

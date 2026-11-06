@@ -115,6 +115,14 @@ for structured discovery.
 - [`standardize`](wrangles/_root/standardize.md): Deprecated compatibility key for `standardize.custom`, which standardizes data using a trained DIY or bespoke model.
 - [`standardize.clean`](wrangles/standardize/clean.md): Repair common encoding, Unicode, HTML character reference, control character, and whitespace problems locally.
 - [`standardize.custom`](wrangles/standardize/custom.md): Standardize data using a DIY or bespoke standardization wrangle. Requires WrangleWorks Account and Subscription.
+- [`standardize.replace`](wrangles/standardize/replace.md): Quick find and replace for simple values. Can use regex if 'input' in params and isinstance(params['input'], list):in the find field.
+- [`structure.split_dictionary`](wrangles/structure/split-dictionary.md): Split one or more dictionaries into columns.
+The dictionary keys will be returned as the new column headers.
+Dictionary keys are case-sensitive. With multiple input columns,
+later dictionaries overwrite earlier keys before defaults are applied.
+- [`structure.split_list`](wrangles/structure/split-list.md): Split a list in a single column to multiple columns.
+- [`structure.split_text`](wrangles/structure/split-text.md): Split a string to multiple columns or a list.
+- [`structure.tokenize`](wrangles/structure/tokenize.md): Split text into tokens. A variety of methods are available. The default method is to split on spaces.
 - [`translate`](wrangles/_root/translate.md): Translate the input to a different language. Requires WrangleWorks Account and DeepL API Key (A free account for up to 500,000 characters per month is available).
 - [`transpose`](wrangles/_root/transpose.md): Transpose the DataFrame (swap columns to rows).
 - [`try`](wrangles/_root/try.md): Try a list of wrangles and catch any errors that occur.

@@ -66,6 +66,8 @@ sources:
     title: Archived select.length Markdown
 configuration_schema:
   type: object
+  catalog_id: '56'
+  status: active
   description: >-
     Calculate the lengths of data in a column. The length depends on the data type e.g. text will be
     the length of the text, lists will be the number of elements in the list.

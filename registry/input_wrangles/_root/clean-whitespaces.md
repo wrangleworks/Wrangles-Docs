@@ -84,6 +84,8 @@ sources:
     title: Archived clean_whitespaces Markdown
 configuration_schema:
   type: object
+  catalog_id: '72'
+  status: active
   description: >-
     Condense multiple spaces to a single space and convert special space characters to a standard
     space.

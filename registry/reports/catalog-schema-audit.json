@@ -2,7 +2,7 @@
   "format": "catalog-schema-audit",
   "source": {
     "repository": "https://github.com/wrangleworks/WranglesPY",
-    "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+    "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
     "version": "1.20.5",
     "extraction": "static-python-ast"
   },
@@ -23,15 +23,30 @@
   ],
   "limitations": "Catalog contains no parameter contracts or structured operation list to compare. Alias meaning needs review. Full Registry configuration schemas are validated separately.",
   "summary": {
-    "rows": 153,
-    "passed": 148,
-    "review_required": 4,
+    "rows": 152,
+    "passed": 149,
+    "review_required": 2,
     "not_applicable": 1,
     "failed": 0,
     "schema_entries_missing_catalog_identity": 0
   },
   "missing_catalog_identities": [],
   "rows": [
+    {
+      "catalog_key": "accordion",
+      "runtime_key": "accordion",
+      "catalog_kind": "wrangle",
+      "status": "passed",
+      "issues": [],
+      "source": {
+        "repository": "https://github.com/wrangleworks/WranglesPY",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
+        "version": "1.20.5",
+        "extraction": "static-python-ast"
+      },
+      "schema_origin": "upstream-docstring",
+      "adjustments": []
+    },
     {
       "catalog_key": "ai.answers",
       "runtime_key": "ai.answers",
@@ -40,7 +55,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -55,7 +70,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -70,7 +85,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -85,52 +100,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
-        "version": "1.20.5",
-        "extraction": "static-python-ast"
-      },
-      "schema_origin": "upstream-docstring",
-      "adjustments": []
-    },
-    {
-      "catalog_key": "convert.parse",
-      "runtime_key": "convert.parse",
-      "catalog_kind": "wrangle",
-      "status": "passed",
-      "issues": [],
-      "source": {
-        "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
-        "version": "1.20.5",
-        "extraction": "static-python-ast"
-      },
-      "schema_origin": "upstream-docstring",
-      "adjustments": []
-    },
-    {
-      "catalog_key": "search.ai_mode",
-      "runtime_key": "search.ai_mode",
-      "catalog_kind": "wrangle",
-      "status": "passed",
-      "issues": [],
-      "source": {
-        "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
-        "version": "1.20.5",
-        "extraction": "static-python-ast"
-      },
-      "schema_origin": "upstream-docstring",
-      "adjustments": []
-    },
-    {
-      "catalog_key": "accordion",
-      "runtime_key": "accordion",
-      "catalog_kind": "wrangle",
-      "status": "passed",
-      "issues": [],
-      "source": {
-        "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -145,7 +115,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -160,7 +130,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -175,7 +145,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -190,7 +160,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -205,7 +175,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -220,7 +190,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -235,7 +205,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -250,7 +220,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -265,7 +235,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -284,7 +254,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -302,7 +272,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -320,7 +290,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -337,7 +307,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -354,7 +324,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -371,7 +341,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -390,7 +360,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -407,7 +377,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -426,7 +396,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -443,7 +413,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -460,7 +430,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -477,7 +447,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -495,7 +465,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -512,7 +482,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -531,7 +501,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -548,7 +518,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -565,7 +535,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -582,7 +552,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -601,7 +571,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -619,7 +589,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -637,7 +607,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -656,7 +626,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -674,7 +644,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -691,7 +661,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -708,7 +678,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -725,7 +695,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -742,7 +712,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -761,7 +731,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -779,7 +749,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -798,7 +768,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -816,7 +786,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -833,7 +803,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -850,7 +820,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -868,7 +838,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -886,7 +856,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -903,7 +873,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -920,7 +890,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -939,7 +909,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -956,7 +926,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -973,7 +943,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -991,7 +961,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -1009,7 +979,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -1027,7 +997,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -1045,7 +1015,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -1063,7 +1033,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -1080,7 +1050,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -1100,7 +1070,7 @@
       ],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -1117,7 +1087,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -1132,7 +1102,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -1147,7 +1117,22 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
+        "version": "1.20.5",
+        "extraction": "static-python-ast"
+      },
+      "schema_origin": "upstream-docstring",
+      "adjustments": []
+    },
+    {
+      "catalog_key": "convert.parse",
+      "runtime_key": "convert.parse",
+      "catalog_kind": "wrangle",
+      "status": "passed",
+      "issues": [],
+      "source": {
+        "repository": "https://github.com/wrangleworks/WranglesPY",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -1162,7 +1147,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -1177,7 +1162,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -1192,7 +1177,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -1207,7 +1192,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -1222,7 +1207,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -1237,7 +1222,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -1252,7 +1237,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -1267,7 +1252,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -1282,7 +1267,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -1297,7 +1282,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -1312,7 +1297,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -1327,7 +1312,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -1342,7 +1327,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -1357,7 +1342,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -1372,7 +1357,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -1387,7 +1372,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -1402,7 +1387,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -1417,7 +1402,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -1432,7 +1417,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -1447,7 +1432,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -1462,7 +1447,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -1477,7 +1462,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -1492,7 +1477,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -1507,7 +1492,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -1522,7 +1507,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -1537,7 +1522,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -1552,7 +1537,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -1567,7 +1552,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -1582,7 +1567,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -1602,7 +1587,7 @@
       ],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -1617,7 +1602,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -1632,7 +1617,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -1647,7 +1632,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -1662,7 +1647,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -1677,7 +1662,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -1692,7 +1677,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -1707,22 +1692,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
-        "version": "1.20.5",
-        "extraction": "static-python-ast"
-      },
-      "schema_origin": "upstream-docstring",
-      "adjustments": []
-    },
-    {
-      "catalog_key": "lookup",
-      "runtime_key": "lookup",
-      "catalog_kind": "wrangle",
-      "status": "passed",
-      "issues": [],
-      "source": {
-        "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -1731,18 +1701,13 @@
     },
     {
       "catalog_key": "lookup.key",
-      "runtime_key": "lookup",
+      "runtime_key": "lookup.key",
       "catalog_kind": "wrangle",
-      "status": "review-required",
-      "issues": [
-        {
-          "severity": "warning",
-          "code": "catalog_key_binding_difference"
-        }
-      ],
+      "status": "passed",
+      "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -1751,18 +1716,13 @@
     },
     {
       "catalog_key": "lookup.semantic",
-      "runtime_key": "lookup",
+      "runtime_key": "lookup.semantic",
       "catalog_kind": "wrangle",
-      "status": "review-required",
-      "issues": [
-        {
-          "severity": "warning",
-          "code": "catalog_key_binding_difference"
-        }
-      ],
+      "status": "passed",
+      "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -1792,7 +1752,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -1808,16 +1768,23 @@
         {
           "severity": "info",
           "code": "accepted_math_schema_alias"
+        },
+        {
+          "severity": "info",
+          "code": "alias_identity_metadata_excluded"
         }
       ],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
       "schema_origin": "deprecated-alias:math",
-      "adjustments": []
+      "adjustments": [
+        "Exclude math's catalog_id from the maths alias schema.",
+        "Exclude math's status from the maths alias schema."
+      ]
     },
     {
       "catalog_key": "matrix",
@@ -1827,7 +1794,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -1842,7 +1809,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -1857,7 +1824,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -1872,7 +1839,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -1887,7 +1854,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -1902,7 +1869,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -1917,7 +1884,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -1932,7 +1899,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -1947,7 +1914,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -1962,7 +1929,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -1977,7 +1944,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -1992,7 +1959,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -2007,22 +1974,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
-        "version": "1.20.5",
-        "extraction": "static-python-ast"
-      },
-      "schema_origin": "upstream-docstring",
-      "adjustments": []
-    },
-    {
-      "catalog_key": "replace",
-      "runtime_key": "replace",
-      "catalog_kind": "wrangle",
-      "status": "passed",
-      "issues": [],
-      "source": {
-        "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -2037,7 +1989,22 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
+        "version": "1.20.5",
+        "extraction": "static-python-ast"
+      },
+      "schema_origin": "upstream-docstring",
+      "adjustments": []
+    },
+    {
+      "catalog_key": "search.ai_mode",
+      "runtime_key": "search.ai_mode",
+      "catalog_kind": "wrangle",
+      "status": "passed",
+      "issues": [],
+      "source": {
+        "repository": "https://github.com/wrangleworks/WranglesPY",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -2052,7 +2019,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -2067,7 +2034,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -2082,7 +2049,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -2097,7 +2064,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -2112,7 +2079,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -2127,7 +2094,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -2142,7 +2109,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -2157,7 +2124,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -2172,7 +2139,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -2187,7 +2154,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -2202,7 +2169,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -2217,7 +2184,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -2232,7 +2199,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -2247,7 +2214,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -2262,7 +2229,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -2277,7 +2244,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -2292,7 +2259,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -2307,74 +2274,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
-        "version": "1.20.5",
-        "extraction": "static-python-ast"
-      },
-      "schema_origin": "upstream-docstring",
-      "adjustments": []
-    },
-    {
-      "catalog_key": "split.dictionary",
-      "runtime_key": "split.dictionary",
-      "catalog_kind": "wrangle",
-      "status": "passed",
-      "issues": [],
-      "source": {
-        "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
-        "version": "1.20.5",
-        "extraction": "static-python-ast"
-      },
-      "schema_origin": "upstream-docstring",
-      "adjustments": []
-    },
-    {
-      "catalog_key": "split.list",
-      "runtime_key": "split.list",
-      "catalog_kind": "wrangle",
-      "status": "passed",
-      "issues": [
-        {
-          "severity": "info",
-          "code": "equivalent_type_spelling_normalized"
-        }
-      ],
-      "source": {
-        "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
-        "version": "1.20.5",
-        "extraction": "static-python-ast"
-      },
-      "schema_origin": "upstream-docstring",
-      "adjustments": [
-        "Normalize schema type \"int\" to integer."
-      ]
-    },
-    {
-      "catalog_key": "split.text",
-      "runtime_key": "split.text",
-      "catalog_kind": "wrangle",
-      "status": "passed",
-      "issues": [],
-      "source": {
-        "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
-        "version": "1.20.5",
-        "extraction": "static-python-ast"
-      },
-      "schema_origin": "upstream-docstring",
-      "adjustments": []
-    },
-    {
-      "catalog_key": "split.tokenize",
-      "runtime_key": "split.tokenize",
-      "catalog_kind": "wrangle",
-      "status": "passed",
-      "issues": [],
-      "source": {
-        "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -2389,7 +2289,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -2404,7 +2304,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -2419,7 +2319,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -2434,7 +2334,89 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
+        "version": "1.20.5",
+        "extraction": "static-python-ast"
+      },
+      "schema_origin": "upstream-docstring",
+      "adjustments": []
+    },
+    {
+      "catalog_key": "standardize.replace",
+      "runtime_key": "standardize.replace",
+      "catalog_kind": "wrangle",
+      "status": "passed",
+      "issues": [],
+      "source": {
+        "repository": "https://github.com/wrangleworks/WranglesPY",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
+        "version": "1.20.5",
+        "extraction": "static-python-ast"
+      },
+      "schema_origin": "upstream-docstring",
+      "adjustments": []
+    },
+    {
+      "catalog_key": "structure.split_dictionary",
+      "runtime_key": "structure.split_dictionary",
+      "catalog_kind": "wrangle",
+      "status": "passed",
+      "issues": [],
+      "source": {
+        "repository": "https://github.com/wrangleworks/WranglesPY",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
+        "version": "1.20.5",
+        "extraction": "static-python-ast"
+      },
+      "schema_origin": "upstream-docstring",
+      "adjustments": []
+    },
+    {
+      "catalog_key": "structure.split_list",
+      "runtime_key": "structure.split_list",
+      "catalog_kind": "wrangle",
+      "status": "passed",
+      "issues": [
+        {
+          "severity": "info",
+          "code": "equivalent_type_spelling_normalized"
+        }
+      ],
+      "source": {
+        "repository": "https://github.com/wrangleworks/WranglesPY",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
+        "version": "1.20.5",
+        "extraction": "static-python-ast"
+      },
+      "schema_origin": "upstream-docstring",
+      "adjustments": [
+        "Normalize schema type \"int\" to integer."
+      ]
+    },
+    {
+      "catalog_key": "structure.split_text",
+      "runtime_key": "structure.split_text",
+      "catalog_kind": "wrangle",
+      "status": "passed",
+      "issues": [],
+      "source": {
+        "repository": "https://github.com/wrangleworks/WranglesPY",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
+        "version": "1.20.5",
+        "extraction": "static-python-ast"
+      },
+      "schema_origin": "upstream-docstring",
+      "adjustments": []
+    },
+    {
+      "catalog_key": "structure.tokenize",
+      "runtime_key": "structure.tokenize",
+      "catalog_kind": "wrangle",
+      "status": "passed",
+      "issues": [],
+      "source": {
+        "repository": "https://github.com/wrangleworks/WranglesPY",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -2449,7 +2431,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -2469,7 +2451,7 @@
       ],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },
@@ -2486,7 +2468,7 @@
       "issues": [],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
         "version": "1.20.5",
         "extraction": "static-python-ast"
       },

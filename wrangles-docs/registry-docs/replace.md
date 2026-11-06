@@ -10,7 +10,7 @@ toc_max_heading_level: 3
 
 import CopyableCode from '@site/src/components/CopyableCode';
 
-# Replace <CopyableCode value="replace" />
+# Replace <span className="ww-legacy-pill" title="Still supported; a newer name is available">Legacy</span> <CopyableCode value="replace" />
 
 Quick find and replace for simple values. Can use regex in the `find` field.
 
@@ -31,6 +31,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "90",
+  "status": "legacy",
   "description": "Quick find and replace for simple values. Can use regex if 'input' in params and isinstance(params['input'], list):in the find field.",
   "additionalProperties": false,
   "required": [
@@ -155,7 +157,7 @@ a schema may require an argument even when Python provides a default.
 | Field | Value |
 | --- | --- |
 | Catalog ID | `90` |
-| Catalog key | `replace` |
+| Catalog key | `standardize.replace` |
 | Recipe key | `replace` |
 | Catalog status | active |
 | Lifecycle status | active |
@@ -164,7 +166,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `format` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.replace` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `f0ab715e-9e0e-4614-83e4-5cd8ea08a09f` |
 
 **Sources**

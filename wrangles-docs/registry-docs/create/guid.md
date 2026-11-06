@@ -27,6 +27,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "15",
+  "status": "active",
   "description": "Create column(s) with a GUID.",
   "additionalProperties": false,
   "required": [
@@ -140,7 +142,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `create` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.create.guid` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `cf3aaab2-3d5b-4c9b-826e-7af7510521c9` |
 
 **Sources**

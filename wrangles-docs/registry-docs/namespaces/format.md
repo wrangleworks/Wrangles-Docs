@@ -31,6 +31,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "72",
+  "status": "active",
   "description": "Condense multiple spaces to a single space and convert special space characters to a standard space.",
   "additionalProperties": false,
   "required": [
@@ -160,7 +162,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `format` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.clean_whitespaces` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `e36e15c4-f0ad-43f8-8555-ef683a8ab892` |
 
 **Sources**
@@ -190,6 +192,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "31",
+  "status": "active",
   "description": "Format a date",
   "additionalProperties": false,
   "required": [
@@ -317,7 +321,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `format` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.format.dates` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `a3c15135-4f7a-4659-83fd-f657afa603c9` |
 
 **Sources**
@@ -347,6 +351,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "32",
+  "status": "active",
   "description": "Pad a string to a fixed length",
   "additionalProperties": false,
   "required": [
@@ -504,7 +510,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `format` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.format.pad` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `76c19378-38f4-45aa-85d1-3cdf8f8aae29` |
 
 **Sources**
@@ -534,6 +540,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "33",
+  "status": "active",
   "description": "Add a prefix to a column",
   "additionalProperties": false,
   "required": [
@@ -672,7 +680,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `format` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.format.prefix` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `c12f99b9-2363-4da7-8405-7c73b87906e5` |
 
 **Sources**
@@ -794,7 +802,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `format` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.format.price_breaks` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | None |
 
 **Sources**
@@ -823,6 +831,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "35",
+  "status": "active",
   "description": "Remove duplicates from a list. Preserves input order.",
   "additionalProperties": false,
   "required": [
@@ -949,7 +959,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `format` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.format.remove_duplicates` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `283b9e78-b2b2-43d0-844f-9842c33120aa` |
 
 **Sources**
@@ -979,6 +989,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "36",
+  "status": "active",
   "description": "Format a value to a specific number of significant figures",
   "additionalProperties": false,
   "required": [
@@ -1109,7 +1121,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `format` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.format.significant_figures` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `a359f72a-5250-4dd8-84f6-8a8173bee0f6` |
 
 **Sources**
@@ -1139,6 +1151,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "37",
+  "status": "active",
   "description": "Add a suffix to a column",
   "additionalProperties": false,
   "required": [
@@ -1277,7 +1291,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `format` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.format.suffix` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `8d127060-ba2d-4934-897f-07662e01e40b` |
 
 **Sources**
@@ -1311,6 +1325,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "38",
+  "status": "active",
   "description": "Remove excess whitespace at the start and end of text.",
   "additionalProperties": false,
   "required": [
@@ -1429,7 +1445,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `format` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.format.trim` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `af16b3c1-c230-4868-8ebe-f574904a0c76` |
 
 **Sources**
@@ -1459,6 +1475,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "88",
+  "status": "active",
   "description": "Remove all the elements that occur in one list from another.",
   "additionalProperties": false,
   "required": [
@@ -1601,7 +1619,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `format` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.remove_words` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `543b96c3-f354-48be-8046-bf0cb9fbaf56` |
 
 **Sources**
@@ -1614,7 +1632,7 @@ a schema may require an argument even when Python provides a default.
 
 ---
 
-## Replace <CopyableCode value="replace" /> {#replace}
+## Replace <span className="ww-legacy-pill" title="Still supported; a newer name is available">Legacy</span> <CopyableCode value="replace" /> {#replace}
 
 Quick find and replace for simple values. Can use regex in the `find` field.
 
@@ -1635,6 +1653,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "90",
+  "status": "legacy",
   "description": "Quick find and replace for simple values. Can use regex if 'input' in params and isinstance(params['input'], list):in the find field.",
   "additionalProperties": false,
   "required": [
@@ -1759,7 +1779,7 @@ a schema may require an argument even when Python provides a default.
 | Field | Value |
 | --- | --- |
 | Catalog ID | `90` |
-| Catalog key | `replace` |
+| Catalog key | `standardize.replace` |
 | Recipe key | `replace` |
 | Catalog status | active |
 | Lifecycle status | active |
@@ -1768,7 +1788,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `format` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.replace` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `f0ab715e-9e0e-4614-83e4-5cd8ea08a09f` |
 
 **Sources**
@@ -1798,6 +1818,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "91",
+  "status": "active",
   "description": "Round column(s) to the specified decimals",
   "additionalProperties": false,
   "required": [
@@ -1924,7 +1946,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `format` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.pandas.round` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `12f3111b-8511-4e42-8d3f-b5302dc3b4e4` |
 
 **Sources**
@@ -1954,6 +1976,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "96",
+  "status": "active",
   "description": "Translate the input to a different language. Requires WrangleWorks Account and DeepL API Key (A free account for up to 500,000 characters per month is available).",
   "additionalProperties": false,
   "required": [
@@ -2142,7 +2166,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `format` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.translate` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `73c3ceb6-ffd8-4d74-8389-c83b99d33bb0` |
 
 **Sources**
@@ -2176,6 +2200,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "95",
+  "status": "active",
   "description": "Standardize data using a DIY or bespoke standardization wrangle. Requires WrangleWorks Account and Subscription.",
   "required": [
     "input"
@@ -2312,7 +2338,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `format` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.standardize` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `53cd3fdd-24e2-4411-8655-6014b92a3f3a` |
 
 **Sources**

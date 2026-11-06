@@ -27,6 +27,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "54",
+  "status": "active",
   "description": "Select the option with the highest confidence from multiple columns. Inputs are expected to be of the form [<<value>>, <<confidence_score>>].",
   "additionalProperties": false,
   "required": [
@@ -180,7 +182,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `select` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.select.highest_confidence` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `00aad85d-8cc8-42e5-86f3-e4ff916e8ac2` |
 
 **Sources**

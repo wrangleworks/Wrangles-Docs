@@ -5,17 +5,17 @@
   "runtime_source": {
     "repository": "https://github.com/wrangleworks/WranglesPY",
     "version": "1.20.5",
-    "revision": "bd5f88fba479ec406b409cb2880689c54e72b298"
+    "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e"
   },
   "summary": {
-    "runtime_entries": 106,
-    "embedded_schema_entries": 104,
-    "normalized_registry_entries": 106,
-    "entries_with_upstream_schema_issues": 31,
-    "unmodified_upstream_schemas": 101,
-    "corrected_upstream_schemas": 3,
+    "runtime_entries": 111,
+    "embedded_schema_entries": 109,
+    "normalized_registry_entries": 111,
+    "entries_with_upstream_schema_issues": 32,
+    "unmodified_upstream_schemas": 105,
+    "corrected_upstream_schemas": 5,
     "derived_schema_fallbacks": 2,
-    "normalized_verified_entries": 106,
+    "normalized_verified_entries": 111,
     "normalized_conflicting_entries": 0,
     "normalized_entries_with_embedded_schema_differences": 0,
     "runtime_entries_without_embedded_schema": 2,
@@ -861,10 +861,21 @@
         {
           "code": "missing_upstream_schema",
           "resolution": "deprecated-alias:math"
+        },
+        {
+          "code": "upstream_invalid_schema_type",
+          "resolution": "Exclude math's catalog_id from the maths alias schema."
+        },
+        {
+          "code": "upstream_invalid_schema_type",
+          "resolution": "Exclude math's status from the maths alias schema."
         }
       ],
       "schema_origin": "deprecated-alias:math",
-      "schema_adjustments": []
+      "schema_adjustments": [
+        "Exclude math's catalog_id from the maths alias schema.",
+        "Exclude math's status from the maths alias schema."
+      ]
     },
     {
       "wrangle_key": "matrix",
@@ -1466,6 +1477,73 @@
           "schema_required": false
         }
       ],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
+    },
+    {
+      "wrangle_key": "standardize.replace",
+      "matched_runtime_keys": [
+        "standardize.replace"
+      ],
+      "status": "verified",
+      "runtime_issues": [],
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
+    },
+    {
+      "wrangle_key": "structure.split_dictionary",
+      "matched_runtime_keys": [
+        "structure.split_dictionary"
+      ],
+      "status": "verified",
+      "runtime_issues": [],
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
+    },
+    {
+      "wrangle_key": "structure.split_list",
+      "matched_runtime_keys": [
+        "structure.split_list"
+      ],
+      "status": "verified",
+      "runtime_issues": [],
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [
+        {
+          "code": "upstream_invalid_schema_type",
+          "resolution": "Normalize schema type \"int\" to integer."
+        }
+      ],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": [
+        "Normalize schema type \"int\" to integer."
+      ]
+    },
+    {
+      "wrangle_key": "structure.split_text",
+      "matched_runtime_keys": [
+        "structure.split_text"
+      ],
+      "status": "verified",
+      "runtime_issues": [],
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [],
+      "schema_origin": "upstream-docstring",
+      "schema_adjustments": []
+    },
+    {
+      "wrangle_key": "structure.tokenize",
+      "matched_runtime_keys": [
+        "structure.tokenize"
+      ],
+      "status": "verified",
+      "runtime_issues": [],
+      "embedded_schema_differences": [],
+      "upstream_schema_issues": [],
       "schema_origin": "upstream-docstring",
       "schema_adjustments": []
     },

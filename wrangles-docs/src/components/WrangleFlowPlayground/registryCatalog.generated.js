@@ -831,7 +831,7 @@ const GENERATED_REGISTRY_CATALOG = [
   {
     "type": "split.dictionary",
     "catalogId": "63",
-    "catalogKey": "split.dictionary",
+    "catalogKey": "structure.split_dictionary",
     "registryRoute": "/py/namespaces/split#dictionary",
     "recipeWriterEligible": true,
     "label": "Dictionary",
@@ -893,7 +893,7 @@ const GENERATED_REGISTRY_CATALOG = [
   {
     "type": "split.list",
     "catalogId": "64",
-    "catalogKey": "split.list",
+    "catalogKey": "structure.split_list",
     "registryRoute": "/py/namespaces/split#list",
     "recipeWriterEligible": true,
     "label": "List",
@@ -930,7 +930,7 @@ const GENERATED_REGISTRY_CATALOG = [
   {
     "type": "split.text",
     "catalogId": "65",
-    "catalogKey": "split.text",
+    "catalogKey": "structure.split_text",
     "registryRoute": "/py/namespaces/split#text",
     "recipeWriterEligible": true,
     "label": "Text",
@@ -1003,7 +1003,7 @@ const GENERATED_REGISTRY_CATALOG = [
   {
     "type": "split.tokenize",
     "catalogId": "66",
-    "catalogKey": "split.tokenize",
+    "catalogKey": "structure.tokenize",
     "registryRoute": "/py/namespaces/split#tokenize",
     "recipeWriterEligible": true,
     "label": "Tokenize",
@@ -2407,7 +2407,7 @@ const GENERATED_REGISTRY_CATALOG = [
   {
     "type": "replace",
     "catalogId": "90",
-    "catalogKey": "replace",
+    "catalogKey": "standardize.replace",
     "registryRoute": "/py/namespaces/format#replace",
     "recipeWriterEligible": true,
     "label": "Replace",
@@ -6133,7 +6133,7 @@ const GENERATED_REGISTRY_CATALOG = [
   {
     "type": "lookup",
     "catalogId": "81",
-    "catalogKey": "lookup",
+    "catalogKey": "lookup.semantic",
     "registryRoute": "/py/namespaces/lookup#lookup",
     "recipeWriterEligible": true,
     "label": "Lookup",
@@ -6271,7 +6271,7 @@ const GENERATED_REGISTRY_CATALOG = [
   },
   {
     "type": "lookup.semantic",
-    "catalogId": "102",
+    "catalogId": "81",
     "catalogKey": "lookup.semantic",
     "registryRoute": "/py/namespaces/lookup#semantic",
     "recipeWriterEligible": false,
@@ -7603,6 +7603,288 @@ const GENERATED_REGISTRY_CATALOG = [
         "type": "list",
         "required": false,
         "helper": "The ID of the wrangle to use (do not include 'find' and 'replace')"
+      }
+    ]
+  },
+  {
+    "type": "standardize.replace",
+    "catalogId": "90",
+    "catalogKey": "standardize.replace",
+    "registryRoute": "/py/namespaces/standardize#replace",
+    "recipeWriterEligible": false,
+    "label": "Replace",
+    "category": "Standardize",
+    "description": "Quick find and replace for simple values. Can use regex if 'input' in params and isinstance(params['input'], list):in the find field.",
+    "color": "forest",
+    "defaults": {
+      "input": [
+        "Column A",
+        "Column B"
+      ],
+      "output": null,
+      "find": "",
+      "replace": ""
+    },
+    "fields": [
+      {
+        "key": "input",
+        "label": "Input",
+        "type": "list",
+        "required": true,
+        "helper": "Name or list of input column",
+        "placeholder": "Column A"
+      },
+      {
+        "key": "output",
+        "label": "Output",
+        "type": "list",
+        "required": false,
+        "helper": "Name or list of output column",
+        "placeholder": null
+      },
+      {
+        "key": "find",
+        "label": "Find",
+        "type": "text",
+        "required": true,
+        "helper": "Pattern to find using regex"
+      },
+      {
+        "key": "replace",
+        "label": "Replace",
+        "type": "text",
+        "required": true,
+        "helper": "Value to replace the pattern found"
+      }
+    ]
+  },
+  {
+    "type": "structure.split_dictionary",
+    "catalogId": "63",
+    "catalogKey": "structure.split_dictionary",
+    "registryRoute": "/py/namespaces/structure#split-dictionary",
+    "recipeWriterEligible": false,
+    "label": "Split Dictionary",
+    "category": "Structure",
+    "description": "Split one or more dictionaries into columns.",
+    "color": "slate",
+    "defaults": {
+      "input": [
+        "Column A",
+        "Column B"
+      ],
+      "output": null,
+      "default": null,
+      "output_format": "columns"
+    },
+    "fields": [
+      {
+        "key": "input",
+        "label": "Input",
+        "type": "list",
+        "required": true,
+        "helper": "Name or list of columns containing dictionaries or JSON object strings to split.",
+        "placeholder": "Column A"
+      },
+      {
+        "key": "output",
+        "label": "Output",
+        "type": "list",
+        "required": false,
+        "helper": "In columns output_format, this is an optional subset of keys to extract",
+        "placeholder": null
+      },
+      {
+        "key": "default",
+        "label": "Default",
+        "type": "json",
+        "required": false,
+        "helper": "Provide defaults for missing top-level keys or keys with null values after merging the input dictionaries. Keys use their original names before output renaming. Non-null values, including 0, false, empty strings, lists, and dictionaries, are preserved. Nested values are not filled recursively. When default is supplied (including {}), invalid or non-dictionary input cells are treated as empty dictionaries, so valid values from other input columns are retained. Without default, invalid input raises an error."
+      },
+      {
+        "key": "output_format",
+        "label": "Output Format",
+        "type": "select",
+        "required": false,
+        "helper": "How to split the dictionary.",
+        "options": [
+          {
+            "value": "columns",
+            "label": "Columns"
+          },
+          {
+            "value": "to_lists",
+            "label": "To Lists"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "structure.split_list",
+    "catalogId": "64",
+    "catalogKey": "structure.split_list",
+    "registryRoute": "/py/namespaces/structure#split-list",
+    "recipeWriterEligible": false,
+    "label": "Split List",
+    "category": "Structure",
+    "description": "Split a list in a single column to multiple columns.",
+    "color": "slate",
+    "defaults": {
+      "input": "Column A",
+      "output": [
+        "Split List Output"
+      ]
+    },
+    "fields": [
+      {
+        "key": "input",
+        "label": "Input",
+        "type": "text",
+        "required": true,
+        "helper": "Name of the column to be split",
+        "placeholder": "Column A"
+      },
+      {
+        "key": "output",
+        "label": "Output",
+        "type": "list",
+        "required": true,
+        "helper": "Name of column(s) for the results. If providing a single column, use a wildcard (*) to indicate a incrementing integer",
+        "placeholder": [
+          "Split List Output"
+        ]
+      }
+    ]
+  },
+  {
+    "type": "structure.split_text",
+    "catalogId": "65",
+    "catalogKey": "structure.split_text",
+    "registryRoute": "/py/namespaces/structure#split-text",
+    "recipeWriterEligible": false,
+    "label": "Split Text",
+    "category": "Structure",
+    "description": "Split a string to multiple columns or a list.",
+    "color": "slate",
+    "defaults": {
+      "input": "Column A",
+      "output": null,
+      "char": ",",
+      "element": null,
+      "inclusive": false,
+      "pad": null,
+      "skip_empty": false
+    },
+    "fields": [
+      {
+        "key": "input",
+        "label": "Input",
+        "type": "text",
+        "required": true,
+        "helper": "Name of the column to be split",
+        "placeholder": "Column A"
+      },
+      {
+        "key": "output",
+        "label": "Output",
+        "type": "list",
+        "required": false,
+        "helper": "Name of the output column(s)",
+        "placeholder": null
+      },
+      {
+        "key": "char",
+        "label": "Char",
+        "type": "text",
+        "required": false,
+        "helper": "Set the character(s) to split on."
+      },
+      {
+        "key": "element",
+        "label": "Element",
+        "type": "text",
+        "required": false,
+        "helper": "Select a specific element or range after splitting using slicing syntax. e.g. 0, \":5\", \"5:\", \"2:8:2\""
+      },
+      {
+        "key": "inclusive",
+        "label": "Inclusive",
+        "type": "boolean",
+        "required": false,
+        "helper": "If true, include the split character in the output. Default False"
+      },
+      {
+        "key": "pad",
+        "label": "Pad",
+        "type": "boolean",
+        "required": false,
+        "helper": "Choose whether to pad to ensure a consistent length. Default true if outputting to columns, false for lists."
+      },
+      {
+        "key": "skip_empty",
+        "label": "Skip Empty",
+        "type": "boolean",
+        "required": false,
+        "helper": "Whether to skip empty values"
+      }
+    ]
+  },
+  {
+    "type": "structure.tokenize",
+    "catalogId": "66",
+    "catalogKey": "structure.tokenize",
+    "registryRoute": "/py/namespaces/structure#tokenize",
+    "recipeWriterEligible": false,
+    "label": "Tokenize",
+    "category": "Structure",
+    "description": "Split text into tokens. A variety of methods are available. The default method is to split on spaces.",
+    "color": "slate",
+    "defaults": {
+      "input": [
+        "Column A",
+        "Column B"
+      ],
+      "output": null,
+      "method": "space"
+    },
+    "fields": [
+      {
+        "key": "input",
+        "label": "Input",
+        "type": "list",
+        "required": true,
+        "helper": "Column(s) to be split into tokens",
+        "placeholder": "Column A"
+      },
+      {
+        "key": "output",
+        "label": "Output",
+        "type": "list",
+        "required": false,
+        "helper": "Name of the output column",
+        "placeholder": null
+      },
+      {
+        "key": "method",
+        "label": "Method",
+        "type": "select",
+        "required": false,
+        "helper": "The method parameter.",
+        "options": [
+          {
+            "value": "space",
+            "label": "Space"
+          },
+          {
+            "value": "boundary",
+            "label": "Boundary"
+          },
+          {
+            "value": "boundary_ignore_space",
+            "label": "Boundary Ignore Space"
+          }
+        ]
       }
     ]
   },

@@ -31,6 +31,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "40",
+  "status": "active",
   "description": "Take the first non-empty value from a series of columns or lists.",
   "additionalProperties": false,
   "required": [
@@ -153,7 +155,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `merge` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.merge.coalesce` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `25c1a60d-fa48-4b9a-8c03-0921d5b31049` |
 
 **Sources**
@@ -183,6 +185,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "41",
+  "status": "active",
   "description": "Concatenate a list of columns or a list within a single column.",
   "additionalProperties": false,
   "required": [
@@ -350,7 +354,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `merge` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.merge.concatenate` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `6ff76728-e1f6-4d3d-8946-6aa3b7524b3f` |
 
 **Sources**
@@ -384,6 +388,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "42",
+  "status": "active",
   "description": "Take dictionaries in multiple columns and merge them to a single dictionary.",
   "additionalProperties": false,
   "required": [
@@ -576,7 +582,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `merge` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.merge.dictionaries` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `93e27737-e966-4ba9-8777-4e96724ebfc4` |
 
 **Sources**
@@ -606,6 +612,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "43",
+  "status": "active",
   "description": "Create a dictionary from keys and values in paired columns e.g. COLUMN_NAME_1, COLUMN_VALUE_1, COLUMN_NAME_2, COLUMN_VALUE_2 ...",
   "additionalProperties": false,
   "required": [
@@ -766,7 +774,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `merge` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.merge.key_value_pairs` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `8a2cd37c-8ef7-4b05-8264-36512f5dd837` |
 
 **Sources**
@@ -796,6 +804,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "44",
+  "status": "active",
   "description": "Take lists in multiple columns and merge them to a single list.",
   "additionalProperties": false,
   "required": [
@@ -926,7 +936,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `merge` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.merge.lists` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `d9978f00-b3d4-4583-884e-a53b98a43e9a` |
 
 **Sources**
@@ -956,6 +966,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "45",
+  "status": "active",
   "description": "Take multiple columns and merge them to a dictionary (aka object) using the column headers as keys.",
   "additionalProperties": false,
   "required": [
@@ -1079,7 +1091,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `merge` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.merge.to_dict` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `9b869210-0d89-403b-8409-7cecdb5f9c7c` |
 
 **Sources**
@@ -1109,6 +1121,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "46",
+  "status": "active",
   "description": "Take multiple columns and merge them to a list.",
   "additionalProperties": false,
   "required": [
@@ -1233,7 +1247,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `merge` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.merge.to_list` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `d5300fe7-c8a4-4a41-8f12-f2c1698678cc` |
 
 **Sources**

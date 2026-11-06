@@ -50,6 +50,8 @@ sources:
     title: Archived select.tail Markdown
 configuration_schema:
   type: object
+  catalog_id: '61'
+  status: active
   description: Return the last n rows
   required:
     - 'n'

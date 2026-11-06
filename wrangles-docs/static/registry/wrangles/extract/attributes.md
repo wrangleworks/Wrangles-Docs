@@ -162,6 +162,8 @@ sources:
     title: 'Archived extract.attributes Markdown'
 configuration_schema:
   type: 'object'
+  catalog_id: '22'
+  status: 'active'
   description: 'Extract numeric attributes from the input such as weights or lengths. Requires WrangleWorks Account.'
   required:
     - 'input'

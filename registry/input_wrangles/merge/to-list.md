@@ -70,6 +70,8 @@ sources:
     title: Archived merge.to_list Markdown
 configuration_schema:
   type: object
+  catalog_id: '46'
+  status: active
   description: Take multiple columns and merge them to a list.
   additionalProperties: false
   required:

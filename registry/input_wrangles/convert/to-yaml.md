@@ -90,6 +90,8 @@ sources:
     title: Archived convert.to_yaml Markdown
 configuration_schema:
   type: object
+  catalog_id: '11'
+  status: active
   description: Convert an object to a YAML representation.
   required:
     - input

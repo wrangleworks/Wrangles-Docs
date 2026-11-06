@@ -27,6 +27,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "3",
+  "status": "active",
   "description": "Assign values to a column based on conditional logic",
   "additionalProperties": false,
   "required": [
@@ -234,7 +236,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `compute` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.compute.case_when` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `9a9662e4-53d1-4932-8adf-bc3e7aa364ad` |
 
 **Sources**

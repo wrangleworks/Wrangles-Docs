@@ -31,6 +31,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "76",
+  "status": "active",
   "description": "Drop (Delete) selected column(s)",
   "additionalProperties": true,
   "required": [
@@ -133,7 +135,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `select` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.pandas.drop` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `363bffbf-397e-4975-8382-e9efa5e9eed6` |
 
 **Sources**
@@ -163,6 +165,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "78",
+  "status": "active",
   "description": "Filter the dataframe based on the contents.\nIf multiple filters are specified, all must be correct.\nFor complex filters, use the where parameter.",
   "additionalProperties": false,
   "properties": {
@@ -366,7 +370,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `select` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.filter` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `e3242acf-d204-433f-8373-205b77481131` |
 
 **Sources**
@@ -396,6 +400,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "49",
+  "status": "active",
   "description": "Select columns from the dataframe",
   "additionalProperties": false,
   "required": [
@@ -506,7 +512,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `select` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.select.columns` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `bca12c60-3957-4dc5-83f7-5ee460df2a11` |
 
 **Sources**
@@ -536,6 +542,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "50",
+  "status": "active",
   "description": "Select one or more element of a dictionary.",
   "additionalProperties": false,
   "required": [
@@ -855,7 +863,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `select` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.select.dictionary_element` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `5adaeada-6da8-464f-84cb-9fb5ecc17e48` |
 
 **Sources**
@@ -885,6 +893,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "51",
+  "status": "active",
   "description": "Select elements of lists or dicts using python syntax like col[0]['key']",
   "additionalProperties": false,
   "required": [
@@ -1017,7 +1027,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `select` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.select.element` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `223d2f4e-3247-4189-8b6c-e73fe44c4266` |
 
 **Sources**
@@ -1047,6 +1057,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "52",
+  "status": "active",
   "description": "Group and aggregate the data",
   "properties": {
     "by": {
@@ -1334,7 +1346,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `select` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.select.group_by` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `c0af10b1-423a-416c-8cb5-7e7fe1164964` |
 
 **Sources**
@@ -1364,6 +1376,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "53",
+  "status": "active",
   "description": "Return the first n rows",
   "required": [
     "n"
@@ -1471,7 +1485,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `select` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.select.head` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `237af1ec-db7d-415a-88b7-70586a2191fb` |
 
 **Sources**
@@ -1501,6 +1515,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "54",
+  "status": "active",
   "description": "Select the option with the highest confidence from multiple columns. Inputs are expected to be of the form [<<value>>, <<confidence_score>>].",
   "additionalProperties": false,
   "required": [
@@ -1654,7 +1670,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `select` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.select.highest_confidence` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `00aad85d-8cc8-42e5-86f3-e4ff916e8ac2` |
 
 **Sources**
@@ -1684,6 +1700,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "55",
+  "status": "active",
   "description": "Return characters from the left of text. Strings shorter than the length defined will be unaffected.",
   "additionalProperties": false,
   "required": [
@@ -1809,7 +1827,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `select` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.select.left` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `5cdd9857-0c77-43bf-80d7-d0a8cb6f980b` |
 
 **Sources**
@@ -1839,6 +1857,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "56",
+  "status": "active",
   "description": "Calculate the lengths of data in a column. The length depends on the data type e.g. text will be the length of the text, lists will be the number of elements in the list.",
   "required": [
     "input"
@@ -1955,7 +1975,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `select` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.select.length` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `4d7a5f66-0a4a-40e0-8298-d5c55754423d` |
 
 **Sources**
@@ -1985,6 +2005,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "57",
+  "status": "active",
   "description": "Select a numbered element of a list (zero indexed).",
   "additionalProperties": false,
   "required": [
@@ -2126,7 +2148,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `select` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.select.list_element` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `ec40495d-d29a-4f62-86dd-eafa43cf388a` |
 
 **Sources**
@@ -2156,6 +2178,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "58",
+  "status": "active",
   "description": "Return characters from the right of text. Strings shorter than the length defined will be unaffected.",
   "additionalProperties": false,
   "required": [
@@ -2281,7 +2305,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `select` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.select.right` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `89ee82ec-3bc5-4bfa-899b-7a1260ef9bdb` |
 
 **Sources**
@@ -2311,6 +2335,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "59",
+  "status": "active",
   "description": "Return a random sample of the rows",
   "required": [
     "rows"
@@ -2461,7 +2487,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `select` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.select.sample` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `95a84ab6-a66e-450f-8a4a-7a87e3a77932` |
 
 **Sources**
@@ -2491,6 +2517,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "60",
+  "status": "active",
   "description": "Return characters from the middle of text.",
   "additionalProperties": false,
   "required": [
@@ -2696,7 +2724,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `select` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.select.substring` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `8befddf8-602e-4fa9-8f16-4c547210ebec` |
 
 **Sources**
@@ -2726,6 +2754,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "61",
+  "status": "active",
   "description": "Return the last n rows",
   "required": [
     "n"
@@ -2833,7 +2863,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `select` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.select.tail` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `60853759-c160-49a4-87eb-036516a9d823` |
 
 **Sources**
@@ -2863,6 +2893,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "62",
+  "status": "active",
   "description": "Select the first option if it exceeds a given threshold, else the second option.",
   "additionalProperties": false,
   "required": [
@@ -2986,7 +3018,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `select` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.select.threshold` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `af2a5dcc-0ec0-48d7-8fb4-f58d9c5391d2` |
 
 **Sources**
@@ -3016,6 +3048,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "93",
+  "status": "active",
   "description": "Sort the data",
   "additionalProperties": true,
   "required": [
@@ -3146,7 +3180,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `select` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.pandas.sort` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `1dcf06ad-898a-4d83-862c-4774be37a687` |
 
 **Sources**

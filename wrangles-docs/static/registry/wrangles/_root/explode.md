@@ -81,6 +81,8 @@ sources:
     title: Archived explode Markdown
 configuration_schema:
   type: object
+  catalog_id: '77'
+  status: active
   description: Explode a column of lists into rows
   additionalProperties: false
   required:

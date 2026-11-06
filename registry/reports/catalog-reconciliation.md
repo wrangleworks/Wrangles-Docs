@@ -3,15 +3,15 @@
 Generated file. Do not edit directly.
 
 - Catalog source: `public.wrangles_catalog`
-- Catalog data updated through: `2026-10-18T10:01:30Z`
-- Catalog rows: 153
-- Callable Registry entries: 106
-- Identity matches: 106
+- Catalog data updated through: `2026-11-06T16:17:54Z`
+- Catalog rows: 152
+- Callable Registry entries: 111
+- Identity matches: 111
 - Connector matches: 46
 - Identity conflicts: 0
 - Lifecycle/status differences: 2
-- Runtime binding differences requiring review: 2
-- Missing catalog registry paths: 106
+- Runtime binding differences requiring review: 0
+- Missing catalog registry paths: 111
 - Catalog-only rows: 1
 
 The compiler joins callable entries to API Core by `wrangle_key`. Missing rows
@@ -42,8 +42,7 @@ Allocate IDs in the database; do not copy or guess IDs from documentation.
 
 | Catalog ID | Catalog key | API-Core wranglesPY_key | Documented callable key |
 | --- | --- | --- | --- |
-| `101` | `lookup.key` | `lookup` | `lookup.key` |
-| `102` | `lookup.semantic` | `lookup` | `lookup.semantic` |
+| — | none | — | — |
 
 Different keys can be intentional aliases. Review the implementation before
 changing a binding; this report does not rewrite API-Core data. Missing

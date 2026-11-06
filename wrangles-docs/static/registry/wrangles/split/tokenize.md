@@ -88,6 +88,8 @@ sources:
     title: Archived split.tokenize Markdown
 configuration_schema:
   type: object
+  catalog_id: '66'
+  status: legacy
   description: >-
     Split text into tokens. A variety of methods are available. The default method is to split on
     spaces.

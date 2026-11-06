@@ -53,6 +53,8 @@ sources:
     title: Archived select.columns Markdown
 configuration_schema:
   type: object
+  catalog_id: '49'
+  status: active
   description: Select columns from the dataframe
   additionalProperties: false
   required:

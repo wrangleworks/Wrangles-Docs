@@ -518,6 +518,8 @@ configuration_schema:
   additionalProperties: false
   required:
     - questions
+  catalog_id: '149'
+  status: active
   description: >-
     Answers any combination of `choose`, `score`, and `true_false` questions about the input with
     structured results. Accepts multiple named questions in one provider request per row. Question

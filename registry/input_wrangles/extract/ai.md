@@ -420,6 +420,8 @@ sources:
     title: 'Archived extract.ai Markdown'
 configuration_schema:
   type: 'object'
+  catalog_id: '21'
+  status: 'active'
   description: 'Extract structured data from each input row using an AI model. Define the desired fields with output, or reuse a saved definition with model_id.'
   additionalProperties: false
   required:

@@ -116,6 +116,8 @@ sources:
     title: Archived python Markdown
 configuration_schema:
   type: object
+  catalog_id: '85'
+  status: active
   description: |-
     Apply a simple single-line python command. For more complex python use a custom function.
     Note, this evaluates the python command - be especially cautious including

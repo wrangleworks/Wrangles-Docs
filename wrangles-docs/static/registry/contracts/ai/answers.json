@@ -46,6 +46,8 @@
     "required": [
       "questions"
     ],
+    "catalog_id": "149",
+    "status": "active",
     "description": "Answers any combination of `choose`, `score`, and `true_false` questions about the input with structured results. Accepts multiple named questions in one provider request per row. Question labels determine default output names.",
     "properties": {
       "input": {
@@ -562,7 +564,7 @@
   "schema_adjustments": [],
   "schema_source": {
     "repository": "https://github.com/wrangleworks/WranglesPY",
-    "revision": "bd5f88fba479ec406b409cb2880689c54e72b298",
+    "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
     "version": "1.20.5",
     "extraction": "static-python-ast"
   },

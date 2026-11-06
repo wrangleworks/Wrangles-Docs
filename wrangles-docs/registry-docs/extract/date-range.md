@@ -27,6 +27,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "27",
+  "status": "active",
   "description": "Extract date range frequency from two dates",
   "additionalProperties": false,
   "required": [
@@ -172,7 +174,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `extract` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.extract.date_range` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `9cebfa6f-a524-4aec-84a7-02d77b792843` |
 
 **Sources**

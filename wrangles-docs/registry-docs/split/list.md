@@ -10,7 +10,7 @@ toc_max_heading_level: 3
 
 import CopyableCode from '@site/src/components/CopyableCode';
 
-# List <CopyableCode value="split.list" />
+# List <span className="ww-legacy-pill" title="Still supported; a newer name is available">Legacy</span> <CopyableCode value="split.list" />
 
 Split a list into multiple columns. If only one output is given, `split.list` returns the same list it was given, so output should be a list of columns or a column name with a wildcard (`*`).
 
@@ -27,6 +27,8 @@ Compatibility correction: Normalize schema type "int" to integer.
 ```json
 {
   "type": "object",
+  "catalog_id": "64",
+  "status": "legacy",
   "description": "Split a list in a single column to multiple columns.",
   "additionalProperties": false,
   "required": [
@@ -169,7 +171,7 @@ a schema may require an argument even when Python provides a default.
 | Field | Value |
 | --- | --- |
 | Catalog ID | `64` |
-| Catalog key | `split.list` |
+| Catalog key | `structure.split_list` |
 | Recipe key | `split.list` |
 | Catalog status | active |
 | Lifecycle status | active |
@@ -178,7 +180,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `split` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.split.list` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `3260b9f7-aae2-499f-8004-d211c2cf643e` |
 
 **Sources**

@@ -135,6 +135,8 @@ sources:
     title: Archived split.text Markdown
 configuration_schema:
   type: object
+  catalog_id: '65'
+  status: legacy
   description: Split a string to multiple columns or a list.
   additionalProperties: false
   required:

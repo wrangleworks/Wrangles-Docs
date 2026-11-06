@@ -72,6 +72,8 @@ sources:
     title: Archived merge.to_dict Markdown
 configuration_schema:
   type: object
+  catalog_id: '45'
+  status: active
   description: >-
     Take multiple columns and merge them to a dictionary (aka object) using the column headers as
     keys.

@@ -37,6 +37,8 @@ Compatibility correction: JSON Schema has no datetime primitive; JSON timestamps
 ```json
 {
   "type": "object",
+  "catalog_id": "6",
+  "status": "active",
   "description": "Change the data type of the input.",
   "additionalProperties": false,
   "required": [
@@ -183,7 +185,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `convert` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.convert.data_type` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `52384f01-7164-404f-8615-063e7677a588` |
 
 **Sources**

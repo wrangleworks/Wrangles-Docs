@@ -81,6 +81,8 @@ sources:
     title: WranglesPY standardize.custom implementation
 configuration_schema:
   type: object
+  catalog_id: '68'
+  status: active
   description: >-
     Standardize data using a DIY or bespoke standardization wrangle. Requires WrangleWorks Account
     and Subscription.

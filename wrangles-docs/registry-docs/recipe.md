@@ -30,6 +30,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 
 ```json
 {
+  "catalog_id": "86",
+  "status": "active",
   "anyOf": [
     {
       "$ref": "#"
@@ -126,7 +128,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `utility` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.recipe` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | None |
 
 **Sources**

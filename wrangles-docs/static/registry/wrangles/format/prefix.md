@@ -84,6 +84,8 @@ sources:
     title: Archived format.prefix Markdown
 configuration_schema:
   type: object
+  catalog_id: '33'
+  status: active
   description: Add a prefix to a column
   additionalProperties: false
   required:

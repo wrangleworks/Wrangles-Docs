@@ -52,6 +52,8 @@ sources:
     title: Archived create.guid Markdown
 configuration_schema:
   type: object
+  catalog_id: '15'
+  status: active
   description: Create column(s) with a GUID.
   additionalProperties: false
   required:

@@ -27,10 +27,11 @@ root-level compatibility keys remain in their existing documentation group.
 | [AI](/py/namespaces/ai) | 6 | AI wrangles and compatibility entries. |
 | [Generate](/py/namespaces/generate) | 1 | Generate wrangles and compatibility entries. |
 | [Lookup](/py/namespaces/lookup) | 3 | Lookup wrangles and compatibility entries. |
-| [Standardize](/py/namespaces/standardize) | 2 | Standardize wrangles and compatibility entries. |
+| [Standardize](/py/namespaces/standardize) | 3 | Standardize wrangles and compatibility entries. |
 | [Transform](/py/namespaces/transform) | 4 | Transform wrangles and compatibility entries. |
 | [Utility](/py/namespaces/utility) | 7 | Utility wrangles and compatibility entries. |
 | [Date](/py/namespaces/date) | 1 | Date wrangles and compatibility entries. |
+| [Structure](/py/namespaces/structure) | 4 | Structure wrangles and compatibility entries. |
 
 ## Connector reference
 

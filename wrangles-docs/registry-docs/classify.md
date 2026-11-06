@@ -27,6 +27,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "71",
+  "status": "active",
   "description": "Run classify wrangles on the specified columns.\nRequires WrangleWorks Account and Subscription.\n",
   "required": [
     "input",
@@ -161,7 +163,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `ai` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.classify` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `06669ef8-cdd1-42f7-8078-98e0b7a42c30` |
 
 **Sources**

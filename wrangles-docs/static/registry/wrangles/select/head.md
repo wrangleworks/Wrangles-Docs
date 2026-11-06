@@ -50,6 +50,8 @@ sources:
     title: Archived select.head Markdown
 configuration_schema:
   type: object
+  catalog_id: '53'
+  status: active
   description: Return the first n rows
   required:
     - 'n'

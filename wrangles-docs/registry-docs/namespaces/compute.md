@@ -31,6 +31,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "3",
+  "status": "active",
   "description": "Assign values to a column based on conditional logic",
   "additionalProperties": false,
   "required": [
@@ -238,7 +240,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `compute` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.compute.case_when` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `9a9662e4-53d1-4932-8adf-bc3e7aa364ad` |
 
 **Sources**
@@ -268,6 +270,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "4",
+  "status": "active",
   "description": "Deduplicates and ranks structured search results using part-number, supplier text, context, original-rank, query-order, supplier-domain, and product-URL signals. Unfiltered results come first; filtered results are retained at the end, with each group sorted by descending score. Each result contains summary, scoring_details, pricing, metadata, reduced part_code_matches, and part_code_match_count before evidence reduction. Numeric part-match categories use broad normalized containment and can differ from the exact, stripped, and partial diagnostic evidence levels. Does not search again or visit result pages. See docs/search_result_scoring.md for the full contract.",
   "additionalProperties": false,
   "required": [
@@ -500,7 +504,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `compute` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.compute.score_search_results` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `313a8ec0-cf13-4956-8d3b-5362b8641d0f` |
 
 **Sources**
@@ -534,6 +538,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "82",
+  "status": "active",
   "description": "Apply a mathematical calculation.",
   "additionalProperties": false,
   "required": [
@@ -652,7 +658,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `compute` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.math` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `494b11ad-00c1-4748-8b93-6bec982f4fec` |
 
 **Sources**
@@ -686,6 +692,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "85",
+  "status": "active",
   "description": "Apply a simple single-line python command. For more complex python use a custom function.\nNote, this evaluates the python command - be especially cautious including\nvariables from untrusted sources within the command string.\nThe python command will be evaluated once for each row and the result returned.\nReference column values by using their name.\nNon-alphanumeric characters within column names are replaced by underscores (_)\nAdditionally, all columns are available as a dict named kwargs.\nAdditional parameters set for the wrangle will also be available to the command.",
   "required": [
     "command",
@@ -859,7 +867,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `compute` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.python` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `c0398a11-7731-4e47-8df0-b07eea0b1d6c` |
 
 **Sources**
@@ -893,6 +901,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "94",
+  "status": "active",
   "description": "Apply a SQL command to the current dataframe. Only SELECT statements are supported - the result will be the output.",
   "additionalProperties": false,
   "required": [
@@ -1014,7 +1024,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `compute` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.sql` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `467a06b1-a697-4d31-8061-7d83a719fd79` |
 
 **Sources**
@@ -1047,7 +1057,9 @@ Schema source: deprecated-alias:math. Conditional and cross-parameter
 rules below apply in addition to the parameter table. References resolve against
 the [complete recipe schema](/schemas/recipes/registry/schema.json).
 
+Compatibility correction: Exclude math's catalog_id from the maths alias schema.
 
+Compatibility correction: Exclude math's status from the maths alias schema.
 
 ```json
 {
@@ -1141,7 +1153,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `compute` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.maths` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | None |
 
 **Sources**

@@ -33,6 +33,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "154",
+  "status": "active",
   "description": "Retrieve Google AI Mode Markdown and metadata. Use standardize.clean and extract.ai afterwards for cleanup and structuring.",
   "additionalProperties": false,
   "required": [
@@ -215,7 +217,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `search` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.search.ai_mode` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | None |
 
 **Sources**
@@ -244,6 +246,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "47",
+  "status": "active",
   "description": "Perform web searches to find links. Returns structured search results with titles, links, snippets, and optional pricing.",
   "additionalProperties": false,
   "required": [
@@ -440,7 +444,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `search` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.search.find_links` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `ec1f661b-2cbc-4a47-88e3-646179104376` |
 
 **Sources**
@@ -470,6 +474,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "48",
+  "status": "active",
   "description": "Retrieves targeted content from web pages using LLM URL extraction. Can optionally output a second column containing a clean, human-readable text summary of the retrieved data. Additional options are passed to Gemini GenerateContentConfig.",
   "additionalProperties": true,
   "required": [
@@ -659,7 +665,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `search` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.search.retrieve_link_content` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `3d5faa87-9e96-48c0-8226-5ae566e8d76c` |
 
 **Sources**

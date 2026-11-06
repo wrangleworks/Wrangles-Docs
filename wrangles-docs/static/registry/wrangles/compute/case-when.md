@@ -89,6 +89,8 @@ sources:
     title: Archived compute.case_when Markdown
 configuration_schema:
   type: object
+  catalog_id: '3'
+  status: active
   description: Assign values to a column based on conditional logic
   additionalProperties: false
   required:

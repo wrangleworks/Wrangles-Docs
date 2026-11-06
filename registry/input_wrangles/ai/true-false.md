@@ -287,6 +287,8 @@ configuration_schema:
   additionalProperties: false
   required:
     - questions
+  catalog_id: '152'
+  status: active
   description: >-
     Answers how likely a statement is to be true for the input, with probability_true and the
     supplied true_criteria. Accepts multiple named questions in one provider request per row.

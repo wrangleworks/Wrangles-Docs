@@ -3,14 +3,14 @@
 Generated file. Do not edit directly.
 
 - Runtime version: `1.20.5`
-- Runtime source: [`bd5f88fba479ec406b409cb2880689c54e72b298`](https://github.com/wrangleworks/WranglesPY/commit/bd5f88fba479ec406b409cb2880689c54e72b298)
+- Runtime source: [`bb47671ab023b3d3eb76fc42f07da4aaed056e2e`](https://github.com/wrangleworks/WranglesPY/commit/bb47671ab023b3d3eb76fc42f07da4aaed056e2e)
 - Registry version: `0.3.1`
-- Runtime entries: 106
-- Embedded Python schema docstrings: 104
-- Registry entries: 106
-- Verified Registry entries: 106
-- Unmodified upstream schemas (plus shared controls): 101
-- Upstream schemas with explicit syntax corrections: 3
+- Runtime entries: 111
+- Embedded Python schema docstrings: 109
+- Registry entries: 111
+- Verified Registry entries: 111
+- Unmodified upstream schemas (plus shared controls): 105
+- Upstream schemas with explicit syntax corrections: 5
 - Explicit alias/signature-derived fallbacks: 2
 - Runtime entries without Registry entries: 0
 
@@ -127,6 +127,11 @@ separately below, not counted as Registry drift or silently discarded.
 | `standardize` | `standardize` | verified | 0 | 0 |
 | `standardize.clean` | `standardize.clean` | verified | 0 | 0 |
 | `standardize.custom` | `standardize.custom` | verified | 0 | 0 |
+| `standardize.replace` | `standardize.replace` | verified | 0 | 0 |
+| `structure.split_dictionary` | `structure.split_dictionary` | verified | 0 | 0 |
+| `structure.split_list` | `structure.split_list` | verified | 0 | 0 |
+| `structure.split_text` | `structure.split_text` | verified | 0 | 0 |
+| `structure.tokenize` | `structure.tokenize` | verified | 0 | 0 |
 | `translate` | `translate` | verified | 0 | 0 |
 | `transpose` | `transpose` | verified | 0 | 0 |
 | `try` | `try` | verified | 0 | 0 |
@@ -162,6 +167,8 @@ correctness. Schema requiredness is preserved independently from Python required
 | `format.price_breaks` | missing_upstream_schema | — | signature-derived |
 | `lookup` | upstream_required_mismatch | model_id | Python required=false; schema required=true |
 | `maths` | missing_upstream_schema | — | deprecated-alias:math |
+| `maths` | upstream_invalid_schema_type | — | Exclude math's catalog_id from the maths alias schema. |
+| `maths` | upstream_invalid_schema_type | — | Exclude math's status from the maths alias schema. |
 | `merge.concatenate` | upstream_required_mismatch | char | Python required=false; schema required=true |
 | `recipe` | signature_parameter_not_declared_by_schema | input | Python accepts this parameter, but the upstream schema does not declare a constraint for it. |
 | `recipe` | signature_parameter_not_declared_by_schema | output | Python accepts this parameter, but the upstream schema does not declare a constraint for it. |
@@ -178,5 +185,6 @@ correctness. Schema requiredness is preserved independently from Python required
 | `sql` | signature_parameter_not_declared_by_schema | preserve_data_types | Python accepts this parameter, but the upstream schema does not declare a constraint for it. |
 | `standardize` | upstream_required_mismatch | model_id | Python required=true; schema required=false |
 | `standardize.custom` | upstream_required_mismatch | model_id | Python required=true; schema required=false |
+| `structure.split_list` | upstream_invalid_schema_type | — | Normalize schema type "int" to integer. |
 | `translate` | signature_parameter_not_declared_by_schema | case | Python accepts this parameter, but the upstream schema does not declare a constraint for it. |
 | `transpose` | upstream_invalid_schema_type | — | Normalize schema type null to null. |

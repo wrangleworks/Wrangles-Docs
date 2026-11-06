@@ -95,6 +95,8 @@ sources:
     title: 'Archived extract.html Markdown'
 configuration_schema:
   type: 'object'
+  catalog_id: '28'
+  status: 'active'
   description: 'Extract elements from strings containing html. Requires WrangleWorks Account.'
   required:
     - 'input'

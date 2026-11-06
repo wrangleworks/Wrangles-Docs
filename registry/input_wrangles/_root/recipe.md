@@ -69,6 +69,8 @@ sources:
       https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/main.py
     title: WranglesPY recipe implementation
 configuration_schema:
+  catalog_id: '86'
+  status: active
   anyOf:
     - $ref: '#'
     - type: object

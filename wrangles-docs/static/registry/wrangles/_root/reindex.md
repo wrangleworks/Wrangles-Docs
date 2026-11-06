@@ -80,6 +80,8 @@ sources:
     title: Archived reindex Markdown
 configuration_schema:
   type: object
+  catalog_id: '87'
+  status: active
   description: Changes the row labels and column labels of a DataFrame.
   additionalProperties: false
   properties:

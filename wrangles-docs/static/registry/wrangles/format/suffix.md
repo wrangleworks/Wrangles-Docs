@@ -84,6 +84,8 @@ sources:
     title: Archived format.suffix Markdown
 configuration_schema:
   type: object
+  catalog_id: '37'
+  status: active
   description: Add a suffix to a column
   additionalProperties: false
   required:

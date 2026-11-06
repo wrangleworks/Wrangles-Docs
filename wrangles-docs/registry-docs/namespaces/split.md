@@ -31,6 +31,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "77",
+  "status": "active",
   "description": "Explode a column of lists into rows",
   "additionalProperties": false,
   "required": [
@@ -158,7 +160,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `split` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.pandas.explode` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `4e4b13ac-8d50-4b2c-85c8-2c31de1e817d` |
 
 **Sources**
@@ -171,7 +173,7 @@ a schema may require an argument even when Python provides a default.
 
 ---
 
-## Dictionary <CopyableCode value="split.dictionary" /> {#dictionary}
+## Dictionary <span className="ww-legacy-pill" title="Still supported; a newer name is available">Legacy</span> <CopyableCode value="split.dictionary" /> {#dictionary}
 
 Split a dictionary into columns. The dictionary keys are used as the new column headers.
 
@@ -188,6 +190,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "63",
+  "status": "legacy",
   "description": "Split one or more dictionaries into columns.\nThe dictionary keys will be returned as the new column headers.\nDictionary keys are case-sensitive. With multiple input columns,\nlater dictionaries overwrite earlier keys before defaults are applied.",
   "additionalProperties": false,
   "required": [
@@ -470,7 +474,7 @@ a schema may require an argument even when Python provides a default.
 | Field | Value |
 | --- | --- |
 | Catalog ID | `63` |
-| Catalog key | `split.dictionary` |
+| Catalog key | `structure.split_dictionary` |
 | Recipe key | `split.dictionary` |
 | Catalog status | active |
 | Lifecycle status | active |
@@ -479,7 +483,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `split` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.split.dictionary` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `06ca98e4-d026-43f7-84eb-af246d401ba9` |
 
 **Sources**
@@ -492,7 +496,7 @@ a schema may require an argument even when Python provides a default.
 
 ---
 
-## List <CopyableCode value="split.list" /> {#list}
+## List <span className="ww-legacy-pill" title="Still supported; a newer name is available">Legacy</span> <CopyableCode value="split.list" /> {#list}
 
 Split a list into multiple columns. If only one output is given, `split.list` returns the same list it was given, so output should be a list of columns or a column name with a wildcard (`*`).
 
@@ -509,6 +513,8 @@ Compatibility correction: Normalize schema type "int" to integer.
 ```json
 {
   "type": "object",
+  "catalog_id": "64",
+  "status": "legacy",
   "description": "Split a list in a single column to multiple columns.",
   "additionalProperties": false,
   "required": [
@@ -651,7 +657,7 @@ a schema may require an argument even when Python provides a default.
 | Field | Value |
 | --- | --- |
 | Catalog ID | `64` |
-| Catalog key | `split.list` |
+| Catalog key | `structure.split_list` |
 | Recipe key | `split.list` |
 | Catalog status | active |
 | Lifecycle status | active |
@@ -660,7 +666,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `split` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.split.list` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `3260b9f7-aae2-499f-8004-d211c2cf643e` |
 
 **Sources**
@@ -673,7 +679,7 @@ a schema may require an argument even when Python provides a default.
 
 ---
 
-## Text <CopyableCode value="split.text" /> {#text}
+## Text <span className="ww-legacy-pill" title="Still supported; a newer name is available">Legacy</span> <CopyableCode value="split.text" /> {#text}
 
 Split text strings on certain characters. The text can be split into either multiple columns or a list.
 
@@ -690,6 +696,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "65",
+  "status": "legacy",
   "description": "Split a string to multiple columns or a list.",
   "additionalProperties": false,
   "required": [
@@ -961,7 +969,7 @@ a schema may require an argument even when Python provides a default.
 | Field | Value |
 | --- | --- |
 | Catalog ID | `65` |
-| Catalog key | `split.text` |
+| Catalog key | `structure.split_text` |
 | Recipe key | `split.text` |
 | Catalog status | active |
 | Lifecycle status | active |
@@ -970,7 +978,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `split` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.split.text` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `e76e43f7-d129-4bf8-87b4-a304a378b130` |
 
 **Sources**
@@ -983,7 +991,7 @@ a schema may require an argument even when Python provides a default.
 
 ---
 
-## Tokenize <CopyableCode value="split.tokenize" /> {#tokenize}
+## Tokenize <span className="ww-legacy-pill" title="Still supported; a newer name is available">Legacy</span> <CopyableCode value="split.tokenize" /> {#tokenize}
 
 Tokenize elements in a list or string into individual tokens.
 
@@ -1000,6 +1008,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "66",
+  "status": "legacy",
   "description": "Split text into tokens. A variety of methods are available. The default method is to split on spaces.",
   "additionalProperties": false,
   "required": [
@@ -1159,7 +1169,7 @@ a schema may require an argument even when Python provides a default.
 | Field | Value |
 | --- | --- |
 | Catalog ID | `66` |
-| Catalog key | `split.tokenize` |
+| Catalog key | `structure.tokenize` |
 | Recipe key | `split.tokenize` |
 | Catalog status | active |
 | Lifecycle status | active |
@@ -1168,7 +1178,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `split` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.split.tokenize` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `6cc88418-ae0c-43f6-84ee-31e0d5f838c3` |
 
 **Sources**

@@ -31,6 +31,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "94",
+  "status": "active",
   "description": "Apply a SQL command to the current dataframe. Only SELECT statements are supported - the result will be the output.",
   "additionalProperties": false,
   "required": [
@@ -152,7 +154,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `compute` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.sql` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `467a06b1-a697-4d31-8061-7d83a719fd79` |
 
 **Sources**

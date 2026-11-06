@@ -73,6 +73,8 @@ sources:
     title: Archived round Markdown
 configuration_schema:
   type: object
+  catalog_id: '91'
+  status: active
   description: Round column(s) to the specified decimals
   additionalProperties: false
   required:

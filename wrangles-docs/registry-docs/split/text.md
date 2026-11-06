@@ -10,7 +10,7 @@ toc_max_heading_level: 3
 
 import CopyableCode from '@site/src/components/CopyableCode';
 
-# Text <CopyableCode value="split.text" />
+# Text <span className="ww-legacy-pill" title="Still supported; a newer name is available">Legacy</span> <CopyableCode value="split.text" />
 
 Split text strings on certain characters. The text can be split into either multiple columns or a list.
 
@@ -27,6 +27,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "65",
+  "status": "legacy",
   "description": "Split a string to multiple columns or a list.",
   "additionalProperties": false,
   "required": [
@@ -298,7 +300,7 @@ a schema may require an argument even when Python provides a default.
 | Field | Value |
 | --- | --- |
 | Catalog ID | `65` |
-| Catalog key | `split.text` |
+| Catalog key | `structure.split_text` |
 | Recipe key | `split.text` |
 | Catalog status | active |
 | Lifecycle status | active |
@@ -307,7 +309,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `split` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.split.text` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `e76e43f7-d129-4bf8-87b4-a304a378b130` |
 
 **Sources**

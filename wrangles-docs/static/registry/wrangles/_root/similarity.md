@@ -77,6 +77,8 @@ sources:
     title: Archived similarity Markdown
 configuration_schema:
   type: object
+  catalog_id: '92'
+  status: active
   description: Calculate the cosine similarity of two vectors
   additionalProperties: false
   required:

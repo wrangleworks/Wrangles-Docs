@@ -66,6 +66,8 @@ sources:
     title: Archived split.list Markdown
 configuration_schema:
   type: object
+  catalog_id: '64'
+  status: legacy
   description: Split a list in a single column to multiple columns.
   additionalProperties: false
   required:

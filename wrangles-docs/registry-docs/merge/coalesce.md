@@ -27,6 +27,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "40",
+  "status": "active",
   "description": "Take the first non-empty value from a series of columns or lists.",
   "additionalProperties": false,
   "required": [
@@ -149,7 +151,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `merge` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.merge.coalesce` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `25c1a60d-fa48-4b9a-8c03-0921d5b31049` |
 
 **Sources**

@@ -31,6 +31,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "92",
+  "status": "active",
   "description": "Calculate the cosine similarity of two vectors",
   "additionalProperties": false,
   "required": [
@@ -170,7 +172,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `compare` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.similarity` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `7c733344-4cce-4938-8013-53742fb46a90` |
 
 **Sources**

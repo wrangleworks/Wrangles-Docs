@@ -27,6 +27,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "77",
+  "status": "active",
   "description": "Explode a column of lists into rows",
   "additionalProperties": false,
   "required": [
@@ -154,7 +156,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `split` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.pandas.explode` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | `4e4b13ac-8d50-4b2c-85c8-2c31de1e817d` |
 
 **Sources**

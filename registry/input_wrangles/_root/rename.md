@@ -92,6 +92,8 @@ sources:
     title: Archived rename Markdown
 configuration_schema:
   type: object
+  catalog_id: '89'
+  status: active
   description: Rename a column or list of columns.
   properties:
     input:

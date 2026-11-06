@@ -35,6 +35,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
   "required": [
     "questions"
   ],
+  "catalog_id": "152",
+  "status": "active",
   "description": "Answers how likely a statement is to be true for the input, with probability_true and the supplied true_criteria. Accepts multiple named questions in one provider request per row. Question labels determine default output names.",
   "properties": {
     "input": {
@@ -330,7 +332,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `ai` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.ai.true_false` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | None |
 
 **Sources**

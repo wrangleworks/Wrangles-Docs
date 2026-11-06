@@ -115,6 +115,8 @@ sources:
     title: WranglesPY schema
 configuration_schema:
   type: object
+  catalog_id: '153'
+  status: active
   description: >-
     Parse JSON, Python, YAML, or human-readable JSON-like structures into JSON-compatible Python
     values. YAML-only numeric forms such as 00123 and 12:34 remain strings. YAML anchors, aliases,

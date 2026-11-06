@@ -90,6 +90,8 @@ sources:
     title: Archived remove_words Markdown
 configuration_schema:
   type: object
+  catalog_id: '88'
+  status: active
   description: Remove all the elements that occur in one list from another.
   additionalProperties: false
   required:

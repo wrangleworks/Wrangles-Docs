@@ -198,6 +198,8 @@ sources:
     title: 'WranglesPY standardize.clean implementation'
 configuration_schema:
   type: 'object'
+  catalog_id: '67'
+  status: 'active'
   description: 'Repair common encoding, Unicode, HTML character reference, control character, and whitespace problems locally.'
   required:
     - 'input'

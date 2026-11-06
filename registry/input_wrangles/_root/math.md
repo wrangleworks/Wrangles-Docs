@@ -64,6 +64,8 @@ sources:
     title: Archived math Markdown
 configuration_schema:
   type: object
+  catalog_id: '82'
+  status: active
   description: Apply a mathematical calculation.
   additionalProperties: false
   required:

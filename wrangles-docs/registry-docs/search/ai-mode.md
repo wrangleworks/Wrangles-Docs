@@ -29,6 +29,8 @@ the [complete recipe schema](/schemas/recipes/registry/schema.json).
 ```json
 {
   "type": "object",
+  "catalog_id": "154",
+  "status": "active",
   "description": "Retrieve Google AI Mode Markdown and metadata. Use standardize.clean and extract.ai afterwards for cleanup and structuring.",
   "additionalProperties": false,
   "required": [
@@ -211,7 +213,7 @@ a schema may require an argument even when Python provides a default.
 | Documentation group | `search` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.search.ai_mode` |
-| Accepted schema revision | `bd5f88fba479ec406b409cb2880689c54e72b298` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
 | Legacy UUID | None |
 
 **Sources**

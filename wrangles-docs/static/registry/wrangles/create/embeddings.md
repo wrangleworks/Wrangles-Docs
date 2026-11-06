@@ -223,6 +223,8 @@ sources:
     title: Archived create.embeddings Markdown
 configuration_schema:
   type: object
+  catalog_id: '14'
+  status: active
   description: Create an embedding based on text input.
   required:
     - input
