@@ -5,9 +5,48 @@ import json
 import os
 import re
 import sys
-from datetime import datetime, timezone
+from datetime import timezone
+from contextlib import contextmanager
 from pathlib import Path
 
+
+
+class SyncFailure(Exception):
+    """An actionable diagnostic containing no raw DB error or connection string."""
+
+
+def safe_error(error, operation, committed=False):
+    details = {'operation': operation, 'error_type': type(error).__name__,
+               'catalog_changes_committed': committed}
+    state = getattr(error, 'sqlstate', None)
+    if isinstance(state, str) and re.fullmatch(r'[A-Z0-9]{5}', state):
+        details['sqlstate'] = state
+        details['reason'] = {
+            '23503': 'Foreign-key reference prevents the catalog change',
+            '23505': 'Unique constraint conflict',
+            '23514': 'Check constraint violation',
+            '23502': 'Required database column is null',
+            '42501': 'Database role lacks permission for this operation',
+            '55P03': 'Could not acquire the database lock',
+            '57014': 'Database statement timed out or was cancelled',
+            '25006': 'Database connection is read-only',
+        }.get(state, 'Database rejected this operation')
+    diagnostic = getattr(error, 'diag', None)
+    for key in ('schema_name', 'table_name', 'column_name', 'constraint_name'):
+        value = getattr(diagnostic, key, None)
+        if isinstance(value, str) and re.fullmatch(r'[A-Za-z_][A-Za-z0-9_]{0,127}', value):
+            details[key] = value
+    return json.dumps(details, sort_keys=True)
+
+
+@contextmanager
+def sync_step(label, committed=False):
+    try:
+        yield
+    except SyncFailure:
+        raise
+    except Exception as error:
+        raise SyncFailure(safe_error(error, label, committed)) from None
 
 def plan(schema, rows, inventory=None, warnings=None):
     """Derive DB lifecycle from per-name metadata, never from docstring history.
@@ -196,30 +235,32 @@ def apply_plan(connection, changes, rows, jsonb):
     existing = {str(row['catalog_id']): row for row in rows}
     for change in changes:
         if change['action'] == 'delete':
-            connection.execute('DELETE FROM public.wrangles_catalog WHERE catalog_id=%s',
-                               (int(change['catalog_id']),))
+            with sync_step(f"{change['action']} catalog ID {change['catalog_id']}"):
+                connection.execute('DELETE FROM public.wrangles_catalog WHERE catalog_id=%s',
+                                   (int(change['catalog_id']),))
     for change in changes:
         if change['action'] == 'delete':
             continue
         values = (change['catalog_key'], change['wranglesPY_key'], change['status'],
                   jsonb(change['history']), int(change['catalog_id']))
         if change['action'] == 'update':
-            connection.execute('''UPDATE public.wrangles_catalog SET catalog_key=%s,
-                "wranglesPY_key"=%s, status=%s, history=%s, updated_at=NOW()
-                WHERE catalog_id=%s''', values)
+            with sync_step(f"{change['action']} catalog ID {change['catalog_id']}"):
+                connection.execute('''UPDATE public.wrangles_catalog SET catalog_key=%s,
+                    "wranglesPY_key"=%s, status=%s, history=%s, updated_at=NOW()
+                    WHERE catalog_id=%s''', values)
         else:
             # ID reassignment preserves the source row's non-schema metadata.
             source = next((existing[c['catalog_id']] for c in changes if c['action'] == 'delete'
                            and c['replacement_catalog_id'] == change['catalog_id']
                            and change['wranglesPY_key'] in
                            (existing[c['catalog_id']]['catalog_key'], existing[c['catalog_id']]['wranglesPY_key'])), {})
-            connection.execute('''INSERT INTO public.wrangles_catalog
-                (catalog_key, "wranglesPY_key", status, history, catalog_id, catalog_kind,
-                 wrangle_type, okf_path, notes, created_at)
-                OVERRIDING SYSTEM VALUE VALUES (%s,%s,%s,%s,%s,'wrangle',%s,%s,%s,COALESCE(%s,NOW()))''',
-                (*values, source.get('wrangle_type'), source.get('okf_path'),
-                 source.get('notes'), source.get('created_at')))
-
+            with sync_step(f"{change['action']} catalog ID {change['catalog_id']}"):
+                connection.execute('''INSERT INTO public.wrangles_catalog
+                    (catalog_key, "wranglesPY_key", status, history, catalog_id, catalog_kind,
+                     wrangle_type, okf_path, notes, created_at)
+                    OVERRIDING SYSTEM VALUE VALUES (%s,%s,%s,%s,%s,'wrangle',%s,%s,%s,COALESCE(%s,NOW()))''',
+                    (*values, source.get('wrangle_type'), source.get('okf_path'),
+                     source.get('notes'), source.get('created_at')))
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
@@ -234,33 +275,35 @@ def main():
     with open(args.schema) as stream:
         schema = json.load(stream)
     inventory = json.loads(Path(args.inventory).read_text())
-    with psycopg.connect(os.environ['DATABASE_URL'], connect_timeout=15, row_factory=dict_row) as connection:
-        connection.execute("SET LOCAL lock_timeout = '10s'")
-        connection.execute("SET LOCAL statement_timeout = '60s'")
-        # Prevent competing writes between conflict checks and application.
-        if args.apply:
-            connection.execute('LOCK TABLE public.wrangles_catalog IN SHARE ROW EXCLUSIVE MODE')
-        else:
-            connection.execute('SET TRANSACTION READ ONLY')
-        rows = connection.execute('SELECT * FROM public.wrangles_catalog').fetchall()
-        warnings = []
-        changes, skipped = plan(schema, rows, inventory['names'], warnings)
-        if args.apply:
-            apply_plan(connection, changes, rows, Jsonb)
-            # Leave any DB-owned allocator above the explicitly assigned IDs.
-            if any(c['action'] == 'create' for c in changes):
-                connection.execute('''SELECT setval(pg_get_serial_sequence('public.wrangles_catalog','catalog_id'),
-                    GREATEST((SELECT MAX(catalog_id) FROM public.wrangles_catalog),
-                    nextval(pg_get_serial_sequence('public.wrangles_catalog','catalog_id'))), true)
-                    WHERE pg_get_serial_sequence('public.wrangles_catalog','catalog_id') IS NOT NULL''')
-        if args.apply and args.catalog_output:
-            exported = connection.execute('SELECT * FROM public.wrangles_catalog ORDER BY catalog_key').fetchall()
-            for row in exported:
-                row['catalog_id'] = str(row['catalog_id'])
-                for field in ('created_at', 'updated_at'):
-                    row[field] = row[field].astimezone(timezone.utc).isoformat().replace('+00:00', 'Z')
+    with sync_step('database transaction (connect, plan, apply, export, commit)'):
+        with psycopg.connect(os.environ['DATABASE_URL'], connect_timeout=15, row_factory=dict_row) as connection:
+            connection.execute("SET LOCAL lock_timeout = '10s'")
+            connection.execute("SET LOCAL statement_timeout = '60s'")
+            # Prevent competing writes between conflict checks and application.
+            if args.apply:
+                connection.execute('LOCK TABLE public.wrangles_catalog IN SHARE ROW EXCLUSIVE MODE')
+            else:
+                connection.execute('SET TRANSACTION READ ONLY')
+            rows = connection.execute('SELECT * FROM public.wrangles_catalog').fetchall()
+            warnings = []
+            changes, skipped = plan(schema, rows, inventory['names'], warnings)
+            if args.apply:
+                apply_plan(connection, changes, rows, Jsonb)
+                # Leave any DB-owned allocator above the explicitly assigned IDs.
+                if any(c['action'] == 'create' for c in changes):
+                    connection.execute('''SELECT setval(pg_get_serial_sequence('public.wrangles_catalog','catalog_id'),
+                        GREATEST((SELECT MAX(catalog_id) FROM public.wrangles_catalog),
+                        nextval(pg_get_serial_sequence('public.wrangles_catalog','catalog_id'))), true)
+                        WHERE pg_get_serial_sequence('public.wrangles_catalog','catalog_id') IS NOT NULL''')
+            if args.apply and args.catalog_output:
+                exported = connection.execute('SELECT * FROM public.wrangles_catalog ORDER BY catalog_key').fetchall()
+                for row in exported:
+                    row['catalog_id'] = str(row['catalog_id'])
+                    for field in ('created_at', 'updated_at'):
+                        row[field] = row[field].astimezone(timezone.utc).isoformat().replace('+00:00', 'Z')
     if args.apply and args.catalog_output:
-        Path(args.catalog_output).write_text(json.dumps({'catalog': exported}, indent=2) + '\n')
+        with sync_step('write catalog snapshot after database commit', committed=True):
+            Path(args.catalog_output).write_text(json.dumps({'catalog': exported}, indent=2) + '\n')
     print(json.dumps({'applied': args.apply, 'changes': changes, 'unregistered': skipped,
                       'warnings': warnings}, indent=2))
 
@@ -268,9 +311,12 @@ def main():
 if __name__ == '__main__':
     try:
         main()
+    except SyncFailure as error:
+        print(f'Catalog sync failed: {error}', file=sys.stderr)
+        sys.exit(1)
     except ValueError as error:
         print(f'Catalog sync rejected: {error}. No catalog row changes committed.', file=sys.stderr)
         sys.exit(1)
-    except Exception:
-        print('Catalog sync failed; transaction rolled back. Check schema metadata, identity conflicts, migration and DB access.', file=sys.stderr)
+    except Exception as error:
+        print(f'Catalog sync failed: {safe_error(error, 'load configuration/schema')}', file=sys.stderr)
         sys.exit(1)

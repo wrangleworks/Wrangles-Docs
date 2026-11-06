@@ -1,6 +1,7 @@
 import unittest
 from types import SimpleNamespace
-from sync_catalog_history import plan, apply_plan
+from sync_catalog_history import plan, apply_plan, safe_error, SyncFailure, sync_step
+import json
 from unittest.mock import Mock
 from export_wranglespy_inventory import callable_names
 
@@ -19,6 +20,33 @@ def metadata(identity='63', status='active'):
 
 
 class SyncTests(unittest.TestCase):
+    def test_database_error_reports_operation_and_constraint_without_secrets(self):
+        error = RuntimeError('postgresql://user:secret@private-host/database')
+        error.sqlstate = '23503'
+        error.diag = SimpleNamespace(constraint_name='models_catalog_id_fkey',
+                                     table_name='models', message_detail='secret record values')
+        connection = Mock()
+        connection.execute.side_effect = error
+        with self.assertRaises(SyncFailure) as caught:
+            apply_plan(connection, [{'action': 'delete', 'catalog_id': '102'}], [], lambda x: x)
+        details = json.loads(str(caught.exception))
+        self.assertEqual(details['operation'], 'delete catalog ID 102')
+        self.assertEqual(details['sqlstate'], '23503')
+        self.assertEqual(details['constraint_name'], 'models_catalog_id_fkey')
+        self.assertFalse(details['catalog_changes_committed'])
+        self.assertNotIn('secret', str(caught.exception))
+        self.assertNotIn('private-host', str(caught.exception))
+
+    def test_snapshot_failure_after_commit_is_not_reported_as_rollback(self):
+        with self.assertRaises(SyncFailure) as caught:
+            with sync_step('write snapshot', committed=True):
+                raise OSError('secret path')
+        self.assertTrue(json.loads(str(caught.exception))['catalog_changes_committed'])
+        self.assertNotIn('secret', str(caught.exception))
+        details = json.loads(safe_error(RuntimeError('password=secret'), 'connect'))
+        self.assertEqual(details['error_type'], 'RuntimeError')
+        self.assertNotIn('secret', json.dumps(details))
+
     def test_rename_legacy_deletion_and_idempotence(self):
         entries = {'split.dictionary': metadata(status='legacy'), 'structure.split_dictionary': metadata()}
         changes, skipped = plan(schema(entries), [row()], list(entries))
