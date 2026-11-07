@@ -8,7 +8,10 @@
   "catalog_key": "lookup.semantic",
   "catalog_status": "active",
   "catalog_history": {
-    "lookup": "legacy"
+    "lookup": {
+      "status": "legacy",
+      "catalog_key": "lookup"
+    }
   },
   "legacy_id": null,
   "wrangle_name": "semantic",

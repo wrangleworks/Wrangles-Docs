@@ -2,6 +2,7 @@
 
 const fs = require('node:fs');
 const path = require('node:path');
+const {historyStatus} = require('./catalog-history.cjs');
 
 const DEFAULT_MANIFEST = 'static/registry/manifest.json';
 const DEFAULT_OUTPUT = 'src/components/WrangleFlowPlayground/registryCatalog.generated.js';
@@ -379,7 +380,7 @@ function generateRegistryCatalog(manifestPath, options = {}) {
     if (entry.catalog_id !== null) {
       const previous = seenCatalogIds.get(String(entry.catalog_id)) || [];
       for (const other of previous) {
-        const legacy = entry => entry.name_status === 'legacy' || entry.catalog_history?.[entry.wrangle_key] === 'legacy';
+        const legacy = entry => entry.name_status === 'legacy' || historyStatus(entry.catalog_history?.[entry.wrangle_key]) === 'legacy';
         if (other.catalog_key !== contract.catalog_key || (!legacy(other) && !legacy(contract))) {
           throw new Error(`Unrelated entries share a catalog ID: ${entry.wrangle_key}`);
         }

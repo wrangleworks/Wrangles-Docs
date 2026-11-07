@@ -149,7 +149,8 @@ def refresh(root, checkout, report_dir, skip_build=False):
                 raise ValueError('Empty upstream inventory; refusing retirement')
             catalog = json.loads((stage / 'registry/catalog/api-core.json').read_text())['catalog']
             inactive = {name for row in catalog if row['catalog_kind'] == 'wrangle'
-                        for name, status in row.get('history', {}).items() if status == 'not active'}
+                        for name, status in row.get('history', {}).items()
+                        if (status.get('status') if isinstance(status, dict) else status) == 'not active'}
             inactive.update(row['wranglesPY_key'] for row in catalog
                             if row['catalog_kind'] == 'wrangle' and row['status'] == 'not active')
             if inactive & set(candidate['wrangle_definitions']):

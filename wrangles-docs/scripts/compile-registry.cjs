@@ -5,6 +5,7 @@ const path = require('node:path');
 const crypto = require('node:crypto');
 const {isDeepStrictEqual} = require('node:util');
 const yaml = require('js-yaml');
+const {historyStatus, historyEntrySchema} = require('./catalog-history.cjs');
 const {normalizeApiCatalog, catalogForName} = require('./api-core-catalog.cjs');
 const {parseRegistryMarkdown} = require('./registry-markdown.cjs');
 const {loadConnectors, withConnectors, renderConnector, compiledConnector} = require('./connector-registry.cjs');
@@ -1060,7 +1061,12 @@ function previousEntryGroup(entry) {
 }
 
 function catalogPlacementKey(entry) {
-  return entry.catalog?.catalog_id ? entry.catalog.catalog_key : null;
+  if (!entry.catalog?.catalog_id) return null;
+  const previous = entry.catalog.history?.[entry.metadata.wrangle_key];
+  if (historyStatus(previous) === 'legacy') {
+    return typeof previous === 'string' ? entry.metadata.wrangle_key : previous.catalog_key;
+  }
+  return entry.catalog.catalog_key;
 }
 
 function entryGroup(entry) {
@@ -1085,7 +1091,7 @@ function entryAnchor(entry) {
   const key = catalogPlacementKey(entry);
   if (key) {
     // Both names share a row, but must retain distinct documentation sections.
-    if (entry.catalog_name_status === 'legacy' || entry.catalog?.history?.[entry.metadata.wrangle_key] === 'legacy') {
+    if (key === entry.catalog.catalog_key && (entry.catalog_name_status === 'legacy' || historyStatus(entry.catalog?.history?.[entry.metadata.wrangle_key]) === 'legacy')) {
       return `legacy-${entry.metadata.wrangle_key.replace(/[._]/g, '-')}`;
     }
     return key.split('.').at(-1).replaceAll('_', '-');
@@ -1282,7 +1288,7 @@ ${sourceRows}
 }
 
 function legacyPill(entry, entriesByKey = new Map()) {
-  if ((entry.catalog_name_status || entry.catalog?.history?.[entry.metadata.wrangle_key]) !== 'legacy') return '';
+  if ((entry.catalog_name_status || historyStatus(entry.catalog?.history?.[entry.metadata.wrangle_key])) !== 'legacy') return '';
   const replacement = entriesByKey.get(entry.catalog?.runtime_key) || entriesByKey.get(entry.catalog?.catalog_key);
   const link = replacement && replacement !== entry
     ? ` For new recipes, use <a href="${entryRoute(replacement)}">${replacement.metadata.wrangle_key}</a>.` : '';
@@ -1633,7 +1639,7 @@ function buildCompiledContractSchema(entrySchema) {
         pattern: '^[a-z][a-z0-9_]*(\\.[a-z][a-z0-9_]*)*$',
       },
       catalog_status: {type: 'string', minLength: 1},
-      catalog_history: {type: 'object', additionalProperties: {enum: ['legacy', 'not active']}},
+      catalog_history: {type: 'object', additionalProperties: historyEntrySchema},
       name_status: {enum: ['active', 'legacy']},
       legacy_id: {
         type: ['string', 'null'],
@@ -1951,12 +1957,12 @@ function reconcileCatalog(entries, catalogSnapshot, connectors = []) {
       continue;
     }
     entry.catalog = catalog;
-    entry.catalog_name_status = sourceSchema.status || catalog.history?.[key] || catalog.status;
+    entry.catalog_name_status = sourceSchema.status || historyStatus(catalog.history?.[key]) || catalog.status;
     const declaredRename = sourceSchema.catalog_id && String(sourceSchema.catalog_id) === catalog.catalog_id;
     if (entry.catalog_name_status === 'not active') fail(entry.sourceFile, 'Inactive documentation must be retired by Registry refresh');
 
     const conflicts = [];
-    if (catalog.catalog_key !== key && catalog.runtime_key !== key && catalog.history?.[key] !== 'legacy' && !declaredRename) {
+    if (catalog.catalog_key !== key && catalog.runtime_key !== key && historyStatus(catalog.history?.[key]) !== 'legacy' && !declaredRename) {
       conflicts.push({
         code: 'catalog_key_mismatch',
         registry: key,
@@ -1970,7 +1976,7 @@ function reconcileCatalog(entries, catalogSnapshot, connectors = []) {
         catalog: catalog.kind,
       });
     }
-    if (catalog.history?.[key] !== 'legacy' && catalog.title !== null && catalog.title !== entry.metadata.title) {
+    if (historyStatus(catalog.history?.[key]) !== 'legacy' && catalog.title !== null && catalog.title !== entry.metadata.title) {
       conflicts.push({
         code: 'title_mismatch',
         registry: entry.metadata.title,
@@ -1983,7 +1989,7 @@ function reconcileCatalog(entries, catalogSnapshot, connectors = []) {
 
     const expectedRegistryPath = posixPath(path.relative(repositoryRoot, entry.sourceFile));
     const differences = [];
-    if (catalog.runtime_key && catalog.runtime_key !== key && catalog.history?.[key] !== 'legacy') {
+    if (catalog.runtime_key && catalog.runtime_key !== key && historyStatus(catalog.history?.[key]) !== 'legacy') {
       differences.push({code: 'runtime_binding_difference', catalog: catalog.runtime_key,
         registry: key});
     }

@@ -16,6 +16,7 @@ root-level compatibility keys remain in their existing documentation group.
 | --- | ---: | --- |
 | [Convert](/py/namespaces/convert) | 8 | Convert wrangles and compatibility entries. |
 | [Merge](/py/namespaces/merge) | 7 | Merge wrangles and compatibility entries. |
+| [Split](/py/namespaces/split) | 4 | Split wrangles and compatibility entries. |
 | [Select](/py/namespaces/select) | 14 | Select wrangles and compatibility entries. |
 | [Format](/py/namespaces/format) | 8 | Format wrangles and compatibility entries. |
 | [Create](/py/namespaces/create) | 8 | Create wrangles and compatibility entries. |
@@ -25,10 +26,10 @@ root-level compatibility keys remain in their existing documentation group.
 | [Search](/py/namespaces/search) | 3 | Search wrangles and compatibility entries. |
 | [AI](/py/namespaces/ai) | 4 | AI wrangles and compatibility entries. |
 | [Generate](/py/namespaces/generate) | 1 | Generate wrangles and compatibility entries. |
-| [Lookup](/py/namespaces/lookup) | 3 | Lookup wrangles and compatibility entries. |
-| [Standardize](/py/namespaces/standardize) | 4 | Standardize wrangles and compatibility entries. |
-| [Other](/py/namespaces/other) | 28 | Other wrangles and compatibility entries. |
-| [Structure](/py/namespaces/structure) | 8 | Structure wrangles and compatibility entries. |
+| [Lookup](/py/namespaces/lookup) | 2 | Lookup wrangles and compatibility entries. |
+| [Standardize](/py/namespaces/standardize) | 3 | Standardize wrangles and compatibility entries. |
+| [Other](/py/namespaces/other) | 30 | Other wrangles and compatibility entries. |
+| [Structure](/py/namespaces/structure) | 4 | Structure wrangles and compatibility entries. |
 
 ## Connector reference
 

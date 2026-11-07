@@ -8,7 +8,10 @@
   "catalog_key": "structure.split_dictionary",
   "catalog_status": "active",
   "catalog_history": {
-    "split.dictionary": "legacy"
+    "split.dictionary": {
+      "status": "legacy",
+      "catalog_key": "split.dictionary"
+    }
   },
   "name_status": "legacy",
   "legacy_id": "06ca98e4-d026-43f7-84eb-af246d401ba9",

@@ -11,7 +11,7 @@ toc_max_heading_level: 3
 import CopyableCode from '@site/src/components/CopyableCode';
 import RegistryLocationRedirect from '@site/src/components/RegistryLocationRedirect';
 
-<RegistryLocationRedirect from={"/py/namespaces/format"} routes={{"clean-whitespaces":"/py/namespaces/other#clean-whitespaces","remove-words":"/py/namespaces/other#remove-words","replace":"/py/namespaces/standardize#legacy-replace","round":"/py/namespaces/other#round","standardize":"/py/namespaces/other#standardize","translate":"/py/namespaces/other#translate"}} />
+<RegistryLocationRedirect from={"/py/namespaces/format"} routes={{"clean-whitespaces":"/py/namespaces/other#clean-whitespaces","remove-words":"/py/namespaces/other#remove-words","replace":"/py/namespaces/other#replace","round":"/py/namespaces/other#round","standardize":"/py/namespaces/other#standardize","translate":"/py/namespaces/other#translate"}} />
 
 # Format Wrangles
 

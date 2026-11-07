@@ -156,7 +156,11 @@ test('catalog normalization retains separate lookup identities and rejects dupli
 test('catalog history survives normalization and rejects invalid states', () => {
   const payload = structuredClone(catalog);
   payload.catalog[0].history = {'old.name': 'legacy'};
-  assert.deepEqual(normalizeApiCatalog(payload, 'test').entries[0].history, {'old.name': 'legacy'});
+  assert.deepEqual(normalizeApiCatalog(payload, 'test').entries[0].history, {'old.name': {status: 'legacy', catalog_key: 'old.name'}});
+  payload.catalog[0].history = {'old.name': {status: 'legacy', catalog_key: 'manual.placement'}};
+  assert.equal(normalizeApiCatalog(payload, 'test').entries[0].history['old.name'].catalog_key, 'manual.placement');
+  payload.catalog[0].history['old.name'].catalog_key = '../invalid';
+  assert.throws(() => normalizeApiCatalog(payload, 'test'), /Invalid catalog history/);
   payload.catalog[0].history = {'old.name': 'active'};
   assert.throws(() => normalizeApiCatalog(payload, 'test'), /Invalid catalog history/);
 });

@@ -8,7 +8,10 @@
   "catalog_key": "standardize.replace",
   "catalog_status": "active",
   "catalog_history": {
-    "replace": "legacy"
+    "replace": {
+      "status": "legacy",
+      "catalog_key": "replace"
+    }
   },
   "legacy_id": null,
   "wrangle_name": "replace",

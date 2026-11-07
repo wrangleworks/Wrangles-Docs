@@ -8,6 +8,7 @@ import sys
 from datetime import timezone
 from contextlib import contextmanager
 from pathlib import Path
+from catalog_history import history_status, normalize_history
 
 
 
@@ -92,7 +93,7 @@ def plan(schema, rows, inventory=None, warnings=None):
         old = existing.get(identity)
         if not old and status is None:
             raise ValueError(f'New entry needs explicit status: {name}')
-        groups.setdefault(identity, {})[name] = status or (old.get('history', {}).get(name) if old else None) or 'active'
+        groups.setdefault(identity, {})[name] = status or (history_status(old.get('history', {}).get(name)) if old else None) or 'active'
         owners[name] = identity
     # Link source/destination IDs so a rejected move retains both sides.
     links = {identity: set() for identity in set(existing) | set(groups)}
@@ -106,9 +107,8 @@ def plan(schema, rows, inventory=None, warnings=None):
         blocked.add(identity)
 
     def row_name(row):
-        # Older lookup rows have distinct catalog keys but all bind to lookup.
-        # Prefer that exact exposed key when resolving the original identity.
-        return row['catalog_key'] if row['catalog_key'] in definitions or row['catalog_key'] in missing else row['wranglesPY_key']
+        # Catalog keys are editorial placement, never callable identity.
+        return row['wranglesPY_key']
 
     for identity, names in groups.items():
         if identity in existing and existing[identity]['catalog_kind'] != 'wrangle':
@@ -123,7 +123,7 @@ def plan(schema, rows, inventory=None, warnings=None):
             raise ValueError('Run the history migration first')
         current = row_name(old)
         known = set(old['history']) | {current}
-        if known & missing:
+        if known & missing or old['catalog_key'] in missing:
             block(identity, 'Present function lacks a schema; retain the entire identity')
         for name in known:
             destination = owners.get(name)
@@ -135,11 +135,13 @@ def plan(schema, rows, inventory=None, warnings=None):
             moves[identity] = destination
 
     # Preserve old history when a whole row is absorbed by a new identity.
-    histories = {identity: dict(row.get('history', {})) for identity, row in existing.items()}
-    for source, destination in moves.items():
-        for name, status in existing[source]['history'].items():
-            owner = owners.get(name, destination)
-            histories.setdefault(owner, {})[name] = status
+    histories = {identity: normalize_history(row.get('history', {})) for identity, row in existing.items()}
+    for source, row in existing.items():
+        for name, record in normalize_history(row.get('history', {})).items():
+            owner = owners.get(name, moves.get(source, source))
+            if owner == source:
+                continue
+            histories.setdefault(owner, {}).setdefault(name, record)
             links[source].add(owner)
             links[owner].add(source)
 
@@ -165,15 +167,19 @@ def plan(schema, rows, inventory=None, warnings=None):
             continue
         names = groups.get(identity, {})
         history = dict(histories.get(identity, {}))
+        def retain_name(name, status):
+            # An old current name keeps its edited placement when it becomes history.
+            key = old['catalog_key'] if old and name == row_name(old) else name
+            history[name] = {**history.get(name, {'catalog_key': key}), 'status': status}
         known = set(history) | ({row_name(old)} if old else set())
         for name in known:
             if name in owners and owners[name] != identity:
                 history.pop(name, None)
             elif inventory is not None and name not in inventory:
-                history[name] = 'not active'
+                retain_name(name, 'not active')
         for name, status in names.items():
             if status == 'legacy':
-                history[name] = 'legacy'
+                retain_name(name, 'legacy')
             else:
                 history.pop(name, None)
         active = [name for name, status in names.items() if status == 'active']

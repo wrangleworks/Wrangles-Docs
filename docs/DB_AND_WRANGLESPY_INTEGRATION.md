@@ -20,7 +20,8 @@ Edit the catalog key in the database when you want to change documentation place
 For example, `catalog_key: standardize.lookup` puts a wrangle under **Standardize**,
 at the `lookup` section, even if its runtime key is `lookup.semantic`. A key without
 a dot goes under **Other**. If no catalog key is available, the existing placement
-is kept. Legacy names share their row's group but keep separate legacy sections.
+is kept. Each legacy name uses its own `history` entry's `catalog_key`, so it can
+stay in a different group from its replacement. Sync preserves both keys.
 Editorial titles and prose, recipe names, source file locations, and individual
 page URLs stay unchanged. Original namespace bookmarks redirect to the new sections.
 Existing `wrangle_type` and `okf_path` values stay unchanged; new values can be null.
@@ -36,7 +37,7 @@ The workflow keeps row 63 active, points it to `structure.split_dictionary`, and
 calculates:
 
 ```json
-{"split.dictionary": "legacy"}
+{"split.dictionary": {"status": "legacy", "catalog_key": "split.dictionary"}}
 ```
 
 Both documentation pages remain available. Only the old one gets a Legacy pill.
@@ -45,7 +46,7 @@ Its examples and Run eligibility are not disabled merely because it is legacy.
 When the old function disappears, the workflow changes its history to:
 
 ```json
-{"split.dictionary": "not active"}
+{"split.dictionary": {"status": "not active", "catalog_key": "split.dictionary"}}
 ```
 
 Registry refresh removes that old Markdown page, generated page, contract,
@@ -72,7 +73,7 @@ upstream revision as the generated schema.
    move and report the conflict. Unrelated changes still apply. Do not guess IDs.
 
 For example, `lookup` (81, legacy) and `lookup.semantic` (81, active) share row 81.
-It points to `lookup.semantic`, with `{"lookup":"legacy"}` in history. The obsolete
+It points to `lookup.semantic`, with `{"lookup":{"status":"legacy","catalog_key":"lookup.lookup"}}` in history. The obsolete
 row 102 for `lookup.semantic` is deleted. Preview lists this explicitly as a
 `delete` action with `replacement_catalog_id: "81"`. Both documentation pages remain.
 If `lookup` also stays active, those rows are retained instead and a warning is reported.
@@ -84,21 +85,23 @@ each deletion. Other database constraints remain enforced.
 
 ## What do I run?
 
-The one-time `history` column migration has already been run. The saved catalog
-is `registry/catalog/api-core.json`; history currently contains empty objects.
+The one-time history and placement migration is complete. For future database
+or WranglesPY changes, use the sync workflow:
 
-1. Give the WranglesPY AI [this temporary prompt](TEMP_WRANGLESPY_CATALOG_PROMPT.md)
-   and the saved catalog JSON.
-2. Open **Actions → Sync catalog identity and history from WranglesPY** on `main`.
-3. Enter its WranglesPY branch in `upstream_ref`. Use `main` after upstream merges.
-4. Leave `apply_changes` off to preview changes first.
-5. Enable `apply_changes` to update the database, refresh the catalog snapshot,
-   generate/validate/build the documentation, and push successful results to a
-   `catalog-sync/<run-id>-<attempt>` branch.
-6. Open the comparison link in the workflow summary, create a pull request, and
-   merge it into `main`. The database is already updated; the merge updates the
-   documentation in the repository.
-7. The merge to `main` triggers **Publish Latest**.
+1. Open **Actions → Sync catalog identity and history from WranglesPY**.
+2. Select `main` as the workflow branch. Set `upstream_ref` to the WranglesPY
+   branch containing the ID/status changes (or `main` once those changes merge).
+3. Leave `apply_changes` off and run it to review the preview.
+4. Run again with `apply_changes` on. This updates the DB, imports the live catalog,
+   refreshes the documentation, validates/builds it, and pushes successful outputs
+   to a `catalog-sync/<run-id>-<attempt>` branch.
+5. Open the comparison link in the workflow summary, create a pull request, and
+   merge it into `main`. The DB is already updated; merging updates the repository.
+6. Check **Validate Registry** and **Publish Latest**, triggered by the merge.
+7. Run **Validate Registry against live API-Core** for a read-only live comparison.
+
+You do not need to run **Refresh Registry from WranglesPY** separately for this
+operation: the sync already performs the documentation refresh.
 
 The protected `api-core-validation` environment supplies `WIREGUARD_CONFIG` and
 `DATABASE_URL`. No credentials belong in source files. Upstream Python runs in a

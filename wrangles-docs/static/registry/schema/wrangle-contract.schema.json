@@ -283,10 +283,24 @@
     "catalog_history": {
       "type": "object",
       "additionalProperties": {
-        "enum": [
-          "legacy",
-          "not active"
-        ]
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "status",
+          "catalog_key"
+        ],
+        "properties": {
+          "status": {
+            "enum": [
+              "legacy",
+              "not active"
+            ]
+          },
+          "catalog_key": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*(\\.[a-z][a-z0-9_]*)*$"
+          }
+        }
       }
     },
     "name_status": {

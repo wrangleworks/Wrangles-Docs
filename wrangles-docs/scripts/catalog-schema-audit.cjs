@@ -1,3 +1,4 @@
+const {historyStatus} = require('./catalog-history.cjs');
 // Compare DB identity/binding fields directly with pinned WranglesPY sources.
 // Database lifecycle, IDs, paths, notes and model types are not schema facts.
 const {configurationSchema} = require('./wrangle-schema.cjs');
@@ -70,7 +71,7 @@ function auditCatalogSchema(catalog, snapshot, runtimeManifest) {
   for (const row of catalog.catalog.filter(row => row.catalog_kind === 'wrangle')) {
     identities.add(`wrangle:${row.wranglesPY_key}`);
     for (const [name, state] of Object.entries(row.history || {})) {
-      if (state === 'legacy') identities.add(`wrangle:${name}`);
+      if (historyStatus(state) === 'legacy') identities.add(`wrangle:${name}`);
     }
   }
   const identityRows = catalog.catalog.map(row => ({...row, kind: row.catalog_kind, runtime_key: row.wranglesPY_key}));

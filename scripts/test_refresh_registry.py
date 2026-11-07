@@ -215,7 +215,7 @@ for name, kind in (("broken", "bad"), ("valid", "good")):
             alias_contract = json.loads((fixture / 'wrangles-docs/static/registry/contracts/format/refresh-alias.json').read_text())
             self.assertEqual(alias_contract['catalog_id'], '37')
             self.assertEqual(alias_contract['catalog_status'], 'active')
-            self.assertEqual(alias_contract['catalog_history'], {alias: 'legacy'})
+            self.assertEqual(alias_contract['catalog_history'], {alias: {'status': 'legacy', 'catalog_key': alias}})
             self.assertEqual(alias_contract['name_status'], 'legacy')
             for key, identity in [('math', '82'), ('maths', '83')]:
                 contract_path = fixture / f'wrangles-docs/static/registry/contracts/{key}.json'
@@ -241,7 +241,7 @@ for name, kind in (("broken", "bad"), ("valid", "good")):
             self.assertTrue(any(item['key'] == 'format.refresh_test' and item['action'] == 'created' for item in report['accepted']))
             # Removing the legacy function removes its page on the next sync,
             # without removing the active page sharing the same catalog ID.
-            catalog_row['history'][alias] = 'not active'
+            catalog_row['history'][alias] = {'status': 'not active', 'catalog_key': alias}
             catalog_path.write_text(json.dumps(catalog))
             for field in ('wrangles', 'wrangle_definitions'):
                 candidate[field].pop(alias)

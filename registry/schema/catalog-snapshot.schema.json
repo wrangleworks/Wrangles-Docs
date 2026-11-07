@@ -72,7 +72,15 @@
         "status": {"type": "string", "minLength": 1},
         "history": {
           "type": "object",
-          "additionalProperties": {"enum": ["legacy", "not active"]}
+          "additionalProperties": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["status", "catalog_key"],
+            "properties": {
+              "status": {"enum": ["legacy", "not active"]},
+              "catalog_key": {"type": "string", "pattern": "^[a-z][a-z0-9_]*(\\.[a-z][a-z0-9_]*)*$"}
+            }
+          }
         },
         "source": {"type": "string", "minLength": 1},
         "created_at": {"type": "string", "format": "date-time"},

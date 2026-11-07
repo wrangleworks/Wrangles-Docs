@@ -40,6 +40,7 @@ const sidebarsRegistry = {
         {type: 'doc', id: 'namespaces/other', label: 'Other'},
         {type: 'doc', id: 'namespaces/search', label: 'Search'},
         {type: 'doc', id: 'namespaces/select', label: 'Select'},
+        {type: 'doc', id: 'namespaces/split', label: 'Split', className: 'registry-sidebar-legacy'},
         {type: 'doc', id: 'namespaces/standardize', label: 'Standardize'},
         {type: 'doc', id: 'namespaces/structure', label: 'Structure'},
       ],

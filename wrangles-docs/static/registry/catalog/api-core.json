@@ -1459,7 +1459,10 @@
       "wrangle_key": "lookup.semantic",
       "runtime_key": "lookup.semantic",
       "history": {
-        "lookup": "legacy"
+        "lookup": {
+          "status": "legacy",
+          "catalog_key": "lookup"
+        }
       },
       "title": null,
       "registry_path": null,
@@ -2035,7 +2038,10 @@
       "wrangle_key": "standardize.replace",
       "runtime_key": "standardize.replace",
       "history": {
-        "replace": "legacy"
+        "replace": {
+          "status": "legacy",
+          "catalog_key": "replace"
+        }
       },
       "title": null,
       "registry_path": null,
@@ -2051,7 +2057,10 @@
       "wrangle_key": "structure.split_dictionary",
       "runtime_key": "structure.split_dictionary",
       "history": {
-        "split.dictionary": "legacy"
+        "split.dictionary": {
+          "status": "legacy",
+          "catalog_key": "split.dictionary"
+        }
       },
       "title": null,
       "registry_path": null,
@@ -2067,7 +2076,10 @@
       "wrangle_key": "structure.split_list",
       "runtime_key": "structure.split_list",
       "history": {
-        "split.list": "legacy"
+        "split.list": {
+          "status": "legacy",
+          "catalog_key": "split.list"
+        }
       },
       "title": null,
       "registry_path": null,
@@ -2083,7 +2095,10 @@
       "wrangle_key": "structure.split_text",
       "runtime_key": "structure.split_text",
       "history": {
-        "split.text": "legacy"
+        "split.text": {
+          "status": "legacy",
+          "catalog_key": "split.text"
+        }
       },
       "title": null,
       "registry_path": null,
@@ -2099,7 +2114,10 @@
       "wrangle_key": "structure.tokenize",
       "runtime_key": "structure.tokenize",
       "history": {
-        "split.tokenize": "legacy"
+        "split.tokenize": {
+          "status": "legacy",
+          "catalog_key": "split.tokenize"
+        }
       },
       "title": null,
       "registry_path": null,

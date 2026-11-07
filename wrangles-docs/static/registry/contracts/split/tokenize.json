@@ -8,7 +8,10 @@
   "catalog_key": "structure.tokenize",
   "catalog_status": "active",
   "catalog_history": {
-    "split.tokenize": "legacy"
+    "split.tokenize": {
+      "status": "legacy",
+      "catalog_key": "split.tokenize"
+    }
   },
   "name_status": "legacy",
   "legacy_id": "6cc88418-ae0c-43f6-84ee-31e0d5f838c3",

@@ -25,6 +25,19 @@ test('catalog keys determine placement without changing recipe names or editoria
   assert.equal(entryGroup(entry), 'split');
 });
 
+test('legacy placement follows its history object independently of the current row', () => {
+  const {entryRoute, legacyPill} = require('./compile-registry.cjs');
+  const entry = {metadata: {wrangle_key: 'split.dictionary', slug: 'split/dictionary', namespace: 'split'},
+    catalog_name_status: 'legacy', catalog: {catalog_id: '63', catalog_key: 'structure.split_dictionary',
+      history: {'split.dictionary': {status: 'legacy', catalog_key: 'previous.dictionary'}}}};
+  assert.equal(entryRoute(entry), '/py/namespaces/previous#dictionary');
+  assert.match(legacyPill(entry), /Legacy/);
+  entry.catalog.history['split.dictionary'].catalog_key = 'split.dictionary';
+  assert.equal(entryRoute(entry), '/py/namespaces/split#dictionary');
+  entry.catalog.history['split.dictionary'].catalog_key = 'structure.split_dictionary';
+  assert.equal(entryRoute(entry), '/py/namespaces/structure#legacy-split-dictionary');
+});
+
 test('legacy pages keep active catalog state and receive a pill without recipe changes', () => {
   const {reconcileCatalog, legacyPill} = require('./compile-registry.cjs');
   const make = key => ({sourceFile: '/tmp/' + key + '.md', metadata: {

@@ -8,7 +8,10 @@
   "catalog_key": "structure.split_list",
   "catalog_status": "active",
   "catalog_history": {
-    "split.list": "legacy"
+    "split.list": {
+      "status": "legacy",
+      "catalog_key": "split.list"
+    }
   },
   "legacy_id": null,
   "wrangle_name": "split_list",

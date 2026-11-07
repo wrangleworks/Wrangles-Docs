@@ -21,6 +21,32 @@ def metadata(identity='63', status='active'):
 
 
 class SyncTests(unittest.TestCase):
+    def test_object_history_preserves_edited_placement_through_retirement(self):
+        original = row(key='structure.split_dictionary', history={
+            'split.dictionary': {'status': 'legacy', 'catalog_key': 'old_tools.dictionary'}})
+        entries = {'split.dictionary': metadata(status='legacy'), 'structure.split_dictionary': metadata()}
+        self.assertEqual(plan(schema(entries), [original], list(entries)), ([], []))
+        del entries['split.dictionary']
+        changes, _ = plan(schema(entries), [original], list(entries))
+        self.assertEqual(changes[0]['history']['split.dictionary'],
+                         {'status': 'not active', 'catalog_key': 'old_tools.dictionary'})
+
+    def test_catalog_placement_never_impersonates_another_callable(self):
+        original = row(catalog_key='other')
+        entries = {'split.dictionary': metadata(), 'other': metadata('200')}
+        changes, _ = plan(schema(entries), [original], list(entries))
+        self.assertFalse(any(c['action'] == 'delete' for c in changes))
+        self.assertEqual(original['wranglesPY_key'], 'split.dictionary')
+
+    def test_history_move_preserves_placement(self):
+        old = row(history={'older.name': {'status': 'legacy', 'catalog_key': 'custom.old'}})
+        destination = row('200', 'new.name')
+        entries = {'split.dictionary': metadata(), 'new.name': metadata('200'),
+                   'older.name': metadata('200', 'legacy')}
+        changes, _ = plan(schema(entries), [old, destination], list(entries))
+        moved = next(c for c in changes if c['catalog_id'] == '200')
+        self.assertEqual(moved['history']['older.name'], {'status': 'legacy', 'catalog_key': 'custom.old'})
+
     def test_database_error_reports_operation_and_constraint_without_secrets(self):
         error = RuntimeError('postgresql://user:secret@private-host/database')
         error.sqlstate = '23503'
@@ -56,21 +82,21 @@ class SyncTests(unittest.TestCase):
         updated = {**row(), **{k: v for k, v in changes[0].items() if k != 'action'}}
         self.assertEqual(updated['catalog_key'], 'split.dictionary')
         self.assertEqual(updated['wranglesPY_key'], 'structure.split_dictionary')
-        self.assertEqual(updated['history'], {'split.dictionary': 'legacy'})
+        self.assertEqual(updated['history'], {'split.dictionary': {'status': 'legacy', 'catalog_key': 'split.dictionary'}})
         self.assertEqual(updated['status'], 'active')
         self.assertEqual(plan(schema(entries), [updated], list(entries)), ([], []))
         del entries['split.dictionary']
         changes, _ = plan(schema(entries), [updated], list(entries))
-        self.assertEqual(changes[0]['history'], {'split.dictionary': 'not active'})
+        self.assertEqual(changes[0]['history'], {'split.dictionary': {'status': 'not active', 'catalog_key': 'split.dictionary'}})
         self.assertEqual(changes[0]['status'], 'active')
 
     def test_direct_deletion_and_entire_identity_removal(self):
         changes, _ = plan(schema({'other': {}}), [row()], ['other'])
         self.assertEqual(changes[0]['status'], 'not active')
-        self.assertEqual(changes[0]['history'], {'split.dictionary': 'not active'})
+        self.assertEqual(changes[0]['history'], {'split.dictionary': {'status': 'not active', 'catalog_key': 'split.dictionary'}})
         entries = {'structure.split_dictionary': metadata()}
         changes, _ = plan(schema(entries), [row()], list(entries))
-        self.assertEqual(changes[0]['history'], {'split.dictionary': 'not active'})
+        self.assertEqual(changes[0]['history'], {'split.dictionary': {'status': 'not active', 'catalog_key': 'split.dictionary'}})
         self.assertEqual(changes[0]['status'], 'active')
 
     def test_fallback_and_unregistered_names(self):
@@ -98,7 +124,7 @@ class SyncTests(unittest.TestCase):
         self.assertEqual({w['name'] for w in warnings if 'name' in w},
                          {'maths', 'format.price_breaks', 'new.no_schema'})
         self.assertEqual(skipped, [])
-        self.assertEqual(changes[0]['history'], {'split.dictionary': 'legacy'})
+        self.assertEqual(changes[0]['history'], {'split.dictionary': {'status': 'legacy', 'catalog_key': 'split.dictionary'}})
 
     def test_missing_legacy_schema_retains_whole_shared_identity(self):
         original = row(key='structure.split_dictionary', history={'split.dictionary': 'legacy'})
@@ -118,7 +144,7 @@ class SyncTests(unittest.TestCase):
         changes, _ = plan(schema(entries), [], list(entries))
         self.assertEqual(changes[0]['action'], 'create')
         self.assertEqual(changes[0]['catalog_key'], 'new.name')
-        self.assertEqual(changes[0]['history'], {'new.name': 'legacy'})
+        self.assertEqual(changes[0]['history'], {'new.name': {'status': 'legacy', 'catalog_key': 'new.name'}})
         entries = {'split.dictionary': metadata(status='legacy'), 'structure.split_dictionary': metadata()}
         changes, _ = plan(schema(entries), [row(catalog_key='custom.dictionary')], list(entries))
         self.assertEqual(changes[0]['catalog_key'], 'custom.dictionary')
@@ -145,7 +171,7 @@ class SyncTests(unittest.TestCase):
                              [('delete', '102'), ('update', '81')])
             self.assertEqual(changes[0]['replacement_catalog_id'], '81')
             self.assertEqual(changes[1]['wranglesPY_key'], 'lookup.semantic')
-            self.assertEqual(changes[1]['history'], {'lookup': 'legacy'})
+            self.assertEqual(changes[1]['history'], {'lookup': {'status': 'legacy', 'catalog_key': 'lookup'}})
             updated = {**rows[0], **{k: v for k, v in changes[1].items() if k != 'action'}}
             self.assertEqual(plan(schema(entries), [updated, rows[1]], list(entries)), ([], []))
 
@@ -176,7 +202,7 @@ class SyncTests(unittest.TestCase):
         old = row(history={'older.name': 'not active'})
         entries = {'split.dictionary': metadata('200')}
         changes, _ = plan(schema(entries), [old], list(entries))
-        self.assertEqual(changes[1]['history'], {'older.name': 'not active'})
+        self.assertEqual(changes[1]['history'], {'older.name': {'status': 'not active', 'catalog_key': 'older.name'}})
 
     def test_missing_lookup_schema_does_not_delete_its_stale_binding(self):
         rows = [row('81', 'lookup'), row('101', 'lookup.key', wranglesPY_key='lookup')]
