@@ -163,13 +163,13 @@ a schema may require an argument even when Python provides a default.
 | Field | Value |
 | --- | --- |
 | Catalog ID | `92` |
-| Catalog key | `similarity` |
+| Catalog key | `compare.similarity` |
 | Recipe key | `similarity` |
 | Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | Root-level |
-| Documentation group | `other` |
+| Documentation group | `compare` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.similarity` |
 | Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |

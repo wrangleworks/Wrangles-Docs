@@ -177,13 +177,13 @@ a schema may require an argument even when Python provides a default.
 | Field | Value |
 | --- | --- |
 | Catalog ID | `79` |
-| Catalog key | `huggingface` |
+| Catalog key | `ai.huggingface` |
 | Recipe key | `huggingface` |
 | Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | Root-level |
-| Documentation group | `other` |
+| Documentation group | `ai` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.huggingface` |
 | Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |

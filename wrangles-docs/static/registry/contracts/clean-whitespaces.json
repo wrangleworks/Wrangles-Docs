@@ -5,7 +5,7 @@
   "schema_version": "0.3",
   "type": "wrangle",
   "catalog_id": "72",
-  "catalog_key": "clean_whitespaces",
+  "catalog_key": "format.clean_whitespaces",
   "catalog_status": "active",
   "legacy_id": "e36e15c4-f0ad-43f8-8555-ef683a8ab892",
   "wrangle_name": "clean_whitespaces",

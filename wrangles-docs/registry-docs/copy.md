@@ -176,13 +176,13 @@ a schema may require an argument even when Python provides a default.
 | Field | Value |
 | --- | --- |
 | Catalog ID | `74` |
-| Catalog key | `copy` |
+| Catalog key | `transform.copy` |
 | Recipe key | `copy` |
 | Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | Root-level |
-| Documentation group | `other` |
+| Documentation group | `transform` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.pandas.copy` |
 | Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |

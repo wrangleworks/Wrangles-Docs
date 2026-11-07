@@ -5,7 +5,7 @@
   "schema_version": "0.3",
   "type": "wrangle",
   "catalog_id": "75",
-  "catalog_key": "date_calculator",
+  "catalog_key": "date.date_calculator",
   "catalog_status": "active",
   "legacy_id": "19cfeb4f-02af-4ab2-895c-0ff2bb5cce19",
   "wrangle_name": "date_calculator",

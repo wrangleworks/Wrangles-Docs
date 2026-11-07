@@ -149,13 +149,13 @@ a schema may require an argument even when Python provides a default.
 | Field | Value |
 | --- | --- |
 | Catalog ID | `72` |
-| Catalog key | `clean_whitespaces` |
+| Catalog key | `format.clean_whitespaces` |
 | Recipe key | `clean_whitespaces` |
 | Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | Root-level |
-| Documentation group | `other` |
+| Documentation group | `format` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.clean_whitespaces` |
 | Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |

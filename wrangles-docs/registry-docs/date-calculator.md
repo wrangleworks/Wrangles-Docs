@@ -166,13 +166,13 @@ a schema may require an argument even when Python provides a default.
 | Field | Value |
 | --- | --- |
 | Catalog ID | `75` |
-| Catalog key | `date_calculator` |
+| Catalog key | `date.date_calculator` |
 | Recipe key | `date_calculator` |
 | Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | Root-level |
-| Documentation group | `other` |
+| Documentation group | `date` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.date_calculator` |
 | Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |

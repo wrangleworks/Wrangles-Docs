@@ -5,7 +5,7 @@
   "schema_version": "0.3",
   "type": "wrangle",
   "catalog_id": "93",
-  "catalog_key": "sort",
+  "catalog_key": "select.sort",
   "catalog_status": "active",
   "legacy_id": "1dcf06ad-898a-4d83-862c-4774be37a687",
   "wrangle_name": "sort",

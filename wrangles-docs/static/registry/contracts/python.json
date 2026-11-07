@@ -5,7 +5,7 @@
   "schema_version": "0.3",
   "type": "wrangle",
   "catalog_id": "85",
-  "catalog_key": "python",
+  "catalog_key": "compute.python",
   "catalog_status": "active",
   "legacy_id": "c0398a11-7731-4e47-8df0-b07eea0b1d6c",
   "wrangle_name": "python",

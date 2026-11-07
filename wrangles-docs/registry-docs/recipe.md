@@ -118,14 +118,14 @@ a schema may require an argument even when Python provides a default.
 | Field | Value |
 | --- | --- |
 | Catalog ID | `86` |
-| Catalog key | `recipe` |
+| Catalog key | `utility.recipe` |
 | Recipe key | `recipe` |
 | Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | No |
 | Recipe Writer exclusion | Nested recipe composition is outside the baseline. |
 | Namespace | Root-level |
-| Documentation group | `other` |
+| Documentation group | `utility` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.recipe` |
 | Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |

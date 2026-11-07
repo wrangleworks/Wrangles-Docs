@@ -217,14 +217,14 @@ a schema may require an argument even when Python provides a default.
 | Field | Value |
 | --- | --- |
 | Catalog ID | `89` |
-| Catalog key | `rename` |
+| Catalog key | `transform.rename` |
 | Recipe key | `rename` |
 | Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | No |
 | Recipe Writer exclusion | Structural rename steps are not supported in the baseline. |
 | Namespace | Root-level |
-| Documentation group | `other` |
+| Documentation group | `transform` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.rename` |
 | Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |

@@ -5,7 +5,7 @@
   "schema_version": "0.3",
   "type": "wrangle",
   "catalog_id": "71",
-  "catalog_key": "classify",
+  "catalog_key": "ai.classify",
   "catalog_status": "active",
   "legacy_id": "06669ef8-cdd1-42f7-8078-98e0b7a42c30",
   "wrangle_name": "classify",

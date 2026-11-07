@@ -3,7 +3,7 @@
 Generated file. Do not edit directly.
 
 - Catalog source: `public.wrangles_catalog`
-- Catalog data updated through: `2026-11-06T16:17:54Z`
+- Catalog data updated through: `2026-11-07T08:31:58Z`
 - Catalog rows: 152
 - Callable Registry entries: 111
 - Identity matches: 111

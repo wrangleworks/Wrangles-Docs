@@ -6,24 +6,10 @@
     "system": "API Core",
     "repository": "https://github.com/wrangleworks/API-Core",
     "table": "public.wrangles_catalog",
-    "data_updated_through": "2026-11-06T16:17:54Z"
+    "data_updated_through": "2026-11-07T08:31:58Z"
   },
   "entry_count": 152,
   "entries": [
-    {
-      "catalog_id": "69",
-      "catalog_key": "accordion",
-      "kind": "wrangle",
-      "wrangle_key": "accordion",
-      "runtime_key": "accordion",
-      "history": {},
-      "title": null,
-      "registry_path": null,
-      "status": "active",
-      "source": "API Core",
-      "created_at": "2026-09-16T08:41:16Z",
-      "updated_at": "2026-09-23T16:47:58Z"
-    },
     {
       "catalog_id": "149",
       "catalog_key": "ai.answers",
@@ -51,6 +37,34 @@
       "source": "API Core",
       "created_at": "2026-10-18T10:01:30Z",
       "updated_at": "2026-10-18T10:01:30Z"
+    },
+    {
+      "catalog_id": "71",
+      "catalog_key": "ai.classify",
+      "kind": "wrangle",
+      "wrangle_key": "ai.classify",
+      "runtime_key": "classify",
+      "history": {},
+      "title": null,
+      "registry_path": null,
+      "status": "active",
+      "source": "API Core",
+      "created_at": "2026-09-16T08:41:16Z",
+      "updated_at": "2026-11-07T08:31:58Z"
+    },
+    {
+      "catalog_id": "79",
+      "catalog_key": "ai.huggingface",
+      "kind": "wrangle",
+      "wrangle_key": "ai.huggingface",
+      "runtime_key": "huggingface",
+      "history": {},
+      "title": null,
+      "registry_path": null,
+      "status": "active",
+      "source": "API Core",
+      "created_at": "2026-09-16T08:41:16Z",
+      "updated_at": "2026-11-07T08:31:58Z"
     },
     {
       "catalog_id": "151",
@@ -81,48 +95,6 @@
       "updated_at": "2026-10-18T10:01:30Z"
     },
     {
-      "catalog_id": "70",
-      "catalog_key": "batch",
-      "kind": "wrangle",
-      "wrangle_key": "batch",
-      "runtime_key": "batch",
-      "history": {},
-      "title": null,
-      "registry_path": null,
-      "status": "active",
-      "source": "API Core",
-      "created_at": "2026-09-16T08:41:16Z",
-      "updated_at": "2026-09-23T16:47:58Z"
-    },
-    {
-      "catalog_id": "71",
-      "catalog_key": "classify",
-      "kind": "wrangle",
-      "wrangle_key": "classify",
-      "runtime_key": "classify",
-      "history": {},
-      "title": null,
-      "registry_path": null,
-      "status": "active",
-      "source": "API Core",
-      "created_at": "2026-09-16T08:41:16Z",
-      "updated_at": "2026-09-23T16:47:58Z"
-    },
-    {
-      "catalog_id": "72",
-      "catalog_key": "clean_whitespaces",
-      "kind": "wrangle",
-      "wrangle_key": "clean_whitespaces",
-      "runtime_key": "clean_whitespaces",
-      "history": {},
-      "title": null,
-      "registry_path": null,
-      "status": "active",
-      "source": "API Core",
-      "created_at": "2026-09-16T08:41:16Z",
-      "updated_at": "2026-09-23T16:47:58Z"
-    },
-    {
       "catalog_id": "1",
       "catalog_key": "compare.lists",
       "kind": "wrangle",
@@ -135,6 +107,20 @@
       "source": "API Core",
       "created_at": "2026-09-16T08:41:16Z",
       "updated_at": "2026-09-23T16:47:58Z"
+    },
+    {
+      "catalog_id": "92",
+      "catalog_key": "compare.similarity",
+      "kind": "wrangle",
+      "wrangle_key": "compare.similarity",
+      "runtime_key": "similarity",
+      "history": {},
+      "title": null,
+      "registry_path": null,
+      "status": "active",
+      "source": "API Core",
+      "created_at": "2026-09-16T08:41:16Z",
+      "updated_at": "2026-11-07T08:31:58Z"
     },
     {
       "catalog_id": "2",
@@ -165,6 +151,48 @@
       "updated_at": "2026-09-23T16:47:58Z"
     },
     {
+      "catalog_id": "82",
+      "catalog_key": "compute.math",
+      "kind": "wrangle",
+      "wrangle_key": "compute.math",
+      "runtime_key": "math",
+      "history": {},
+      "title": null,
+      "registry_path": null,
+      "status": "active",
+      "source": "API Core",
+      "created_at": "2026-09-16T08:41:16Z",
+      "updated_at": "2026-11-07T08:31:58Z"
+    },
+    {
+      "catalog_id": "83",
+      "catalog_key": "compute.maths",
+      "kind": "wrangle",
+      "wrangle_key": "compute.maths",
+      "runtime_key": "maths",
+      "history": {},
+      "title": null,
+      "registry_path": null,
+      "status": "active",
+      "source": "API Core",
+      "created_at": "2026-09-16T08:41:16Z",
+      "updated_at": "2026-11-07T08:31:58Z"
+    },
+    {
+      "catalog_id": "85",
+      "catalog_key": "compute.python",
+      "kind": "wrangle",
+      "wrangle_key": "compute.python",
+      "runtime_key": "python",
+      "history": {},
+      "title": null,
+      "registry_path": null,
+      "status": "active",
+      "source": "API Core",
+      "created_at": "2026-09-16T08:41:16Z",
+      "updated_at": "2026-11-07T08:31:58Z"
+    },
+    {
       "catalog_id": "4",
       "catalog_key": "compute.score_search_results",
       "kind": "wrangle",
@@ -179,18 +207,18 @@
       "updated_at": "2026-09-23T16:47:58Z"
     },
     {
-      "catalog_id": "73",
-      "catalog_key": "concurrent",
+      "catalog_id": "94",
+      "catalog_key": "compute.sql",
       "kind": "wrangle",
-      "wrangle_key": "concurrent",
-      "runtime_key": "concurrent",
+      "wrangle_key": "compute.sql",
+      "runtime_key": "sql",
       "history": {},
       "title": null,
       "registry_path": null,
       "status": "active",
       "source": "API Core",
       "created_at": "2026-09-16T08:41:16Z",
-      "updated_at": "2026-09-23T16:47:58Z"
+      "updated_at": "2026-11-07T08:31:58Z"
     },
     {
       "catalog_id": "103",
@@ -949,20 +977,6 @@
       "updated_at": "2026-09-23T16:47:58Z"
     },
     {
-      "catalog_id": "74",
-      "catalog_key": "copy",
-      "kind": "wrangle",
-      "wrangle_key": "copy",
-      "runtime_key": "copy",
-      "history": {},
-      "title": null,
-      "registry_path": null,
-      "status": "active",
-      "source": "API Core",
-      "created_at": "2026-09-16T08:41:16Z",
-      "updated_at": "2026-09-23T16:47:58Z"
-    },
-    {
       "catalog_id": "12",
       "catalog_key": "create.bins",
       "kind": "wrangle",
@@ -1076,9 +1090,9 @@
     },
     {
       "catalog_id": "75",
-      "catalog_key": "date_calculator",
+      "catalog_key": "date.date_calculator",
       "kind": "wrangle",
-      "wrangle_key": "date_calculator",
+      "wrangle_key": "date.date_calculator",
       "runtime_key": "date_calculator",
       "history": {},
       "title": null,
@@ -1086,35 +1100,7 @@
       "status": "active",
       "source": "API Core",
       "created_at": "2026-09-16T08:41:16Z",
-      "updated_at": "2026-09-23T16:47:58Z"
-    },
-    {
-      "catalog_id": "76",
-      "catalog_key": "drop",
-      "kind": "wrangle",
-      "wrangle_key": "drop",
-      "runtime_key": "drop",
-      "history": {},
-      "title": null,
-      "registry_path": null,
-      "status": "active",
-      "source": "API Core",
-      "created_at": "2026-09-16T08:41:16Z",
-      "updated_at": "2026-09-23T16:47:58Z"
-    },
-    {
-      "catalog_id": "77",
-      "catalog_key": "explode",
-      "kind": "wrangle",
-      "wrangle_key": "explode",
-      "runtime_key": "explode",
-      "history": {},
-      "title": null,
-      "registry_path": null,
-      "status": "active",
-      "source": "API Core",
-      "created_at": "2026-09-16T08:41:16Z",
-      "updated_at": "2026-09-23T16:47:58Z"
+      "updated_at": "2026-11-07T08:31:58Z"
     },
     {
       "catalog_id": "20",
@@ -1271,18 +1257,18 @@
       "updated_at": "2026-09-23T16:47:58Z"
     },
     {
-      "catalog_id": "78",
-      "catalog_key": "filter",
+      "catalog_id": "72",
+      "catalog_key": "format.clean_whitespaces",
       "kind": "wrangle",
-      "wrangle_key": "filter",
-      "runtime_key": "filter",
+      "wrangle_key": "format.clean_whitespaces",
+      "runtime_key": "clean_whitespaces",
       "history": {},
       "title": null,
       "registry_path": null,
       "status": "active",
       "source": "API Core",
       "created_at": "2026-09-16T08:41:16Z",
-      "updated_at": "2026-09-23T16:47:58Z"
+      "updated_at": "2026-11-07T08:31:58Z"
     },
     {
       "catalog_id": "31",
@@ -1355,6 +1341,34 @@
       "updated_at": "2026-09-23T16:47:58Z"
     },
     {
+      "catalog_id": "88",
+      "catalog_key": "format.remove_words",
+      "kind": "wrangle",
+      "wrangle_key": "format.remove_words",
+      "runtime_key": "remove_words",
+      "history": {},
+      "title": null,
+      "registry_path": null,
+      "status": "active",
+      "source": "API Core",
+      "created_at": "2026-09-16T08:41:16Z",
+      "updated_at": "2026-11-07T08:31:58Z"
+    },
+    {
+      "catalog_id": "91",
+      "catalog_key": "format.round",
+      "kind": "wrangle",
+      "wrangle_key": "format.round",
+      "runtime_key": "round",
+      "history": {},
+      "title": null,
+      "registry_path": null,
+      "status": "active",
+      "source": "API Core",
+      "created_at": "2026-09-16T08:41:16Z",
+      "updated_at": "2026-11-07T08:31:58Z"
+    },
+    {
       "catalog_id": "36",
       "catalog_key": "format.significant_figures",
       "kind": "wrangle",
@@ -1369,6 +1383,20 @@
       "updated_at": "2026-09-23T16:47:58Z"
     },
     {
+      "catalog_id": "95",
+      "catalog_key": "format.standardize",
+      "kind": "wrangle",
+      "wrangle_key": "format.standardize",
+      "runtime_key": "standardize",
+      "history": {},
+      "title": null,
+      "registry_path": null,
+      "status": "active",
+      "source": "API Core",
+      "created_at": "2026-09-16T08:41:16Z",
+      "updated_at": "2026-11-07T08:31:58Z"
+    },
+    {
       "catalog_id": "37",
       "catalog_key": "format.suffix",
       "kind": "wrangle",
@@ -1381,6 +1409,20 @@
       "source": "API Core",
       "created_at": "2026-09-16T08:41:16Z",
       "updated_at": "2026-09-23T16:47:58Z"
+    },
+    {
+      "catalog_id": "96",
+      "catalog_key": "format.translate",
+      "kind": "wrangle",
+      "wrangle_key": "format.translate",
+      "runtime_key": "translate",
+      "history": {},
+      "title": null,
+      "registry_path": null,
+      "status": "active",
+      "source": "API Core",
+      "created_at": "2026-09-16T08:41:16Z",
+      "updated_at": "2026-11-07T08:31:58Z"
     },
     {
       "catalog_id": "38",
@@ -1402,34 +1444,6 @@
       "kind": "wrangle",
       "wrangle_key": "generate.ai",
       "runtime_key": "generate.ai",
-      "history": {},
-      "title": null,
-      "registry_path": null,
-      "status": "active",
-      "source": "API Core",
-      "created_at": "2026-09-16T08:41:16Z",
-      "updated_at": "2026-09-23T16:47:58Z"
-    },
-    {
-      "catalog_id": "79",
-      "catalog_key": "huggingface",
-      "kind": "wrangle",
-      "wrangle_key": "huggingface",
-      "runtime_key": "huggingface",
-      "history": {},
-      "title": null,
-      "registry_path": null,
-      "status": "active",
-      "source": "API Core",
-      "created_at": "2026-09-16T08:41:16Z",
-      "updated_at": "2026-09-23T16:47:58Z"
-    },
-    {
-      "catalog_id": "80",
-      "catalog_key": "log",
-      "kind": "wrangle",
-      "wrangle_key": "log",
-      "runtime_key": "log",
       "history": {},
       "title": null,
       "registry_path": null,
@@ -1461,7 +1475,7 @@
       "history": {
         "lookup": {
           "status": "legacy",
-          "catalog_key": "lookup"
+          "catalog_key": "lookup.lookup"
         }
       },
       "title": null,
@@ -1469,7 +1483,7 @@
       "status": "active",
       "source": "API Core",
       "created_at": "2026-09-16T08:41:16Z",
-      "updated_at": "2026-11-06T16:17:54Z"
+      "updated_at": "2026-11-07T08:31:58Z"
     },
     {
       "catalog_id": "99",
@@ -1483,48 +1497,6 @@
       "status": "active",
       "source": "API Core",
       "created_at": "2026-09-16T08:44:50Z",
-      "updated_at": "2026-09-23T16:47:58Z"
-    },
-    {
-      "catalog_id": "82",
-      "catalog_key": "math",
-      "kind": "wrangle",
-      "wrangle_key": "math",
-      "runtime_key": "math",
-      "history": {},
-      "title": null,
-      "registry_path": null,
-      "status": "active",
-      "source": "API Core",
-      "created_at": "2026-09-16T08:41:16Z",
-      "updated_at": "2026-09-23T16:47:58Z"
-    },
-    {
-      "catalog_id": "83",
-      "catalog_key": "maths",
-      "kind": "wrangle",
-      "wrangle_key": "maths",
-      "runtime_key": "maths",
-      "history": {},
-      "title": null,
-      "registry_path": null,
-      "status": "active",
-      "source": "API Core",
-      "created_at": "2026-09-16T08:41:16Z",
-      "updated_at": "2026-09-23T16:47:58Z"
-    },
-    {
-      "catalog_id": "84",
-      "catalog_key": "matrix",
-      "kind": "wrangle",
-      "wrangle_key": "matrix",
-      "runtime_key": "matrix",
-      "history": {},
-      "title": null,
-      "registry_path": null,
-      "status": "active",
-      "source": "API Core",
-      "created_at": "2026-09-16T08:41:16Z",
       "updated_at": "2026-09-23T16:47:58Z"
     },
     {
@@ -1626,90 +1598,6 @@
       "updated_at": "2026-09-23T16:47:58Z"
     },
     {
-      "catalog_id": "85",
-      "catalog_key": "python",
-      "kind": "wrangle",
-      "wrangle_key": "python",
-      "runtime_key": "python",
-      "history": {},
-      "title": null,
-      "registry_path": null,
-      "status": "active",
-      "source": "API Core",
-      "created_at": "2026-09-16T08:41:16Z",
-      "updated_at": "2026-09-23T16:47:58Z"
-    },
-    {
-      "catalog_id": "86",
-      "catalog_key": "recipe",
-      "kind": "wrangle",
-      "wrangle_key": "recipe",
-      "runtime_key": "recipe",
-      "history": {},
-      "title": null,
-      "registry_path": null,
-      "status": "active",
-      "source": "API Core",
-      "created_at": "2026-09-16T08:41:16Z",
-      "updated_at": "2026-09-23T16:47:58Z"
-    },
-    {
-      "catalog_id": "87",
-      "catalog_key": "reindex",
-      "kind": "wrangle",
-      "wrangle_key": "reindex",
-      "runtime_key": "reindex",
-      "history": {},
-      "title": null,
-      "registry_path": null,
-      "status": "active",
-      "source": "API Core",
-      "created_at": "2026-09-16T08:41:16Z",
-      "updated_at": "2026-09-23T16:47:58Z"
-    },
-    {
-      "catalog_id": "88",
-      "catalog_key": "remove_words",
-      "kind": "wrangle",
-      "wrangle_key": "remove_words",
-      "runtime_key": "remove_words",
-      "history": {},
-      "title": null,
-      "registry_path": null,
-      "status": "active",
-      "source": "API Core",
-      "created_at": "2026-09-16T08:41:16Z",
-      "updated_at": "2026-09-23T16:47:58Z"
-    },
-    {
-      "catalog_id": "89",
-      "catalog_key": "rename",
-      "kind": "wrangle",
-      "wrangle_key": "rename",
-      "runtime_key": "rename",
-      "history": {},
-      "title": null,
-      "registry_path": null,
-      "status": "active",
-      "source": "API Core",
-      "created_at": "2026-09-16T08:41:16Z",
-      "updated_at": "2026-09-23T16:47:58Z"
-    },
-    {
-      "catalog_id": "91",
-      "catalog_key": "round",
-      "kind": "wrangle",
-      "wrangle_key": "round",
-      "runtime_key": "round",
-      "history": {},
-      "title": null,
-      "registry_path": null,
-      "status": "active",
-      "source": "API Core",
-      "created_at": "2026-09-16T08:41:16Z",
-      "updated_at": "2026-09-23T16:47:58Z"
-    },
-    {
       "catalog_id": "154",
       "catalog_key": "search.ai_mode",
       "kind": "wrangle",
@@ -1780,6 +1668,20 @@
       "updated_at": "2026-09-23T16:47:58Z"
     },
     {
+      "catalog_id": "76",
+      "catalog_key": "select.drop",
+      "kind": "wrangle",
+      "wrangle_key": "select.drop",
+      "runtime_key": "drop",
+      "history": {},
+      "title": null,
+      "registry_path": null,
+      "status": "active",
+      "source": "API Core",
+      "created_at": "2026-09-16T08:41:16Z",
+      "updated_at": "2026-11-07T08:31:58Z"
+    },
+    {
       "catalog_id": "51",
       "catalog_key": "select.element",
       "kind": "wrangle",
@@ -1792,6 +1694,20 @@
       "source": "API Core",
       "created_at": "2026-09-16T08:41:16Z",
       "updated_at": "2026-09-23T16:47:58Z"
+    },
+    {
+      "catalog_id": "78",
+      "catalog_key": "select.filter",
+      "kind": "wrangle",
+      "wrangle_key": "select.filter",
+      "runtime_key": "filter",
+      "history": {},
+      "title": null,
+      "registry_path": null,
+      "status": "active",
+      "source": "API Core",
+      "created_at": "2026-09-16T08:41:16Z",
+      "updated_at": "2026-11-07T08:31:58Z"
     },
     {
       "catalog_id": "52",
@@ -1906,6 +1822,20 @@
       "updated_at": "2026-09-23T16:47:58Z"
     },
     {
+      "catalog_id": "93",
+      "catalog_key": "select.sort",
+      "kind": "wrangle",
+      "wrangle_key": "select.sort",
+      "runtime_key": "sort",
+      "history": {},
+      "title": null,
+      "registry_path": null,
+      "status": "active",
+      "source": "API Core",
+      "created_at": "2026-09-16T08:41:16Z",
+      "updated_at": "2026-11-07T08:31:58Z"
+    },
+    {
       "catalog_id": "60",
       "catalog_key": "select.substring",
       "kind": "wrangle",
@@ -1948,60 +1878,18 @@
       "updated_at": "2026-09-23T16:47:58Z"
     },
     {
-      "catalog_id": "92",
-      "catalog_key": "similarity",
+      "catalog_id": "77",
+      "catalog_key": "split.explode",
       "kind": "wrangle",
-      "wrangle_key": "similarity",
-      "runtime_key": "similarity",
+      "wrangle_key": "split.explode",
+      "runtime_key": "explode",
       "history": {},
       "title": null,
       "registry_path": null,
       "status": "active",
       "source": "API Core",
       "created_at": "2026-09-16T08:41:16Z",
-      "updated_at": "2026-09-23T16:47:58Z"
-    },
-    {
-      "catalog_id": "93",
-      "catalog_key": "sort",
-      "kind": "wrangle",
-      "wrangle_key": "sort",
-      "runtime_key": "sort",
-      "history": {},
-      "title": null,
-      "registry_path": null,
-      "status": "active",
-      "source": "API Core",
-      "created_at": "2026-09-16T08:41:16Z",
-      "updated_at": "2026-09-23T16:47:58Z"
-    },
-    {
-      "catalog_id": "94",
-      "catalog_key": "sql",
-      "kind": "wrangle",
-      "wrangle_key": "sql",
-      "runtime_key": "sql",
-      "history": {},
-      "title": null,
-      "registry_path": null,
-      "status": "active",
-      "source": "API Core",
-      "created_at": "2026-09-16T08:41:16Z",
-      "updated_at": "2026-09-23T16:47:58Z"
-    },
-    {
-      "catalog_id": "95",
-      "catalog_key": "standardize",
-      "kind": "wrangle",
-      "wrangle_key": "standardize",
-      "runtime_key": "standardize",
-      "history": {},
-      "title": null,
-      "registry_path": null,
-      "status": "active",
-      "source": "API Core",
-      "created_at": "2026-09-16T08:41:16Z",
-      "updated_at": "2026-09-23T16:47:58Z"
+      "updated_at": "2026-11-07T08:31:58Z"
     },
     {
       "catalog_id": "67",
@@ -2040,7 +1928,7 @@
       "history": {
         "replace": {
           "status": "legacy",
-          "catalog_key": "replace"
+          "catalog_key": "format.replace"
         }
       },
       "title": null,
@@ -2048,7 +1936,7 @@
       "status": "active",
       "source": "API Core",
       "created_at": "2026-09-16T08:41:16Z",
-      "updated_at": "2026-11-06T16:17:54Z"
+      "updated_at": "2026-11-07T08:31:58Z"
     },
     {
       "catalog_id": "63",
@@ -2067,7 +1955,7 @@
       "status": "active",
       "source": "API Core",
       "created_at": "2026-09-16T08:41:16Z",
-      "updated_at": "2026-11-06T16:17:54Z"
+      "updated_at": "2026-11-07T08:31:58Z"
     },
     {
       "catalog_id": "64",
@@ -2086,7 +1974,7 @@
       "status": "active",
       "source": "API Core",
       "created_at": "2026-09-16T08:41:16Z",
-      "updated_at": "2026-11-06T16:17:54Z"
+      "updated_at": "2026-11-07T08:31:58Z"
     },
     {
       "catalog_id": "65",
@@ -2105,7 +1993,7 @@
       "status": "active",
       "source": "API Core",
       "created_at": "2026-09-16T08:41:16Z",
-      "updated_at": "2026-11-06T16:17:54Z"
+      "updated_at": "2026-11-07T08:31:58Z"
     },
     {
       "catalog_id": "66",
@@ -2124,27 +2012,55 @@
       "status": "active",
       "source": "API Core",
       "created_at": "2026-09-16T08:41:16Z",
-      "updated_at": "2026-11-06T16:17:54Z"
+      "updated_at": "2026-11-07T08:31:58Z"
     },
     {
-      "catalog_id": "96",
-      "catalog_key": "translate",
+      "catalog_id": "74",
+      "catalog_key": "transform.copy",
       "kind": "wrangle",
-      "wrangle_key": "translate",
-      "runtime_key": "translate",
+      "wrangle_key": "transform.copy",
+      "runtime_key": "copy",
       "history": {},
       "title": null,
       "registry_path": null,
       "status": "active",
       "source": "API Core",
       "created_at": "2026-09-16T08:41:16Z",
-      "updated_at": "2026-09-23T16:47:58Z"
+      "updated_at": "2026-11-07T08:31:58Z"
+    },
+    {
+      "catalog_id": "87",
+      "catalog_key": "transform.reindex",
+      "kind": "wrangle",
+      "wrangle_key": "transform.reindex",
+      "runtime_key": "reindex",
+      "history": {},
+      "title": null,
+      "registry_path": null,
+      "status": "active",
+      "source": "API Core",
+      "created_at": "2026-09-16T08:41:16Z",
+      "updated_at": "2026-11-07T08:31:58Z"
+    },
+    {
+      "catalog_id": "89",
+      "catalog_key": "transform.rename",
+      "kind": "wrangle",
+      "wrangle_key": "transform.rename",
+      "runtime_key": "rename",
+      "history": {},
+      "title": null,
+      "registry_path": null,
+      "status": "active",
+      "source": "API Core",
+      "created_at": "2026-09-16T08:41:16Z",
+      "updated_at": "2026-11-07T08:31:58Z"
     },
     {
       "catalog_id": "97",
-      "catalog_key": "transpose",
+      "catalog_key": "transform.transpose",
       "kind": "wrangle",
-      "wrangle_key": "transpose",
+      "wrangle_key": "transform.transpose",
       "runtime_key": "transpose",
       "history": {},
       "title": null,
@@ -2152,13 +2068,97 @@
       "status": "active",
       "source": "API Core",
       "created_at": "2026-09-16T08:41:16Z",
-      "updated_at": "2026-09-23T16:47:58Z"
+      "updated_at": "2026-11-07T08:31:58Z"
+    },
+    {
+      "catalog_id": "69",
+      "catalog_key": "utility.accordion",
+      "kind": "wrangle",
+      "wrangle_key": "utility.accordion",
+      "runtime_key": "accordion",
+      "history": {},
+      "title": null,
+      "registry_path": null,
+      "status": "active",
+      "source": "API Core",
+      "created_at": "2026-09-16T08:41:16Z",
+      "updated_at": "2026-11-07T08:31:58Z"
+    },
+    {
+      "catalog_id": "70",
+      "catalog_key": "utility.batch",
+      "kind": "wrangle",
+      "wrangle_key": "utility.batch",
+      "runtime_key": "batch",
+      "history": {},
+      "title": null,
+      "registry_path": null,
+      "status": "active",
+      "source": "API Core",
+      "created_at": "2026-09-16T08:41:16Z",
+      "updated_at": "2026-11-07T08:31:58Z"
+    },
+    {
+      "catalog_id": "73",
+      "catalog_key": "utility.concurrent",
+      "kind": "wrangle",
+      "wrangle_key": "utility.concurrent",
+      "runtime_key": "concurrent",
+      "history": {},
+      "title": null,
+      "registry_path": null,
+      "status": "active",
+      "source": "API Core",
+      "created_at": "2026-09-16T08:41:16Z",
+      "updated_at": "2026-11-07T08:31:58Z"
+    },
+    {
+      "catalog_id": "80",
+      "catalog_key": "utility.log",
+      "kind": "wrangle",
+      "wrangle_key": "utility.log",
+      "runtime_key": "log",
+      "history": {},
+      "title": null,
+      "registry_path": null,
+      "status": "active",
+      "source": "API Core",
+      "created_at": "2026-09-16T08:41:16Z",
+      "updated_at": "2026-11-07T08:31:58Z"
+    },
+    {
+      "catalog_id": "84",
+      "catalog_key": "utility.matrix",
+      "kind": "wrangle",
+      "wrangle_key": "utility.matrix",
+      "runtime_key": "matrix",
+      "history": {},
+      "title": null,
+      "registry_path": null,
+      "status": "active",
+      "source": "API Core",
+      "created_at": "2026-09-16T08:41:16Z",
+      "updated_at": "2026-11-07T08:31:58Z"
+    },
+    {
+      "catalog_id": "86",
+      "catalog_key": "utility.recipe",
+      "kind": "wrangle",
+      "wrangle_key": "utility.recipe",
+      "runtime_key": "recipe",
+      "history": {},
+      "title": null,
+      "registry_path": null,
+      "status": "active",
+      "source": "API Core",
+      "created_at": "2026-09-16T08:41:16Z",
+      "updated_at": "2026-11-07T08:31:58Z"
     },
     {
       "catalog_id": "98",
-      "catalog_key": "try",
+      "catalog_key": "utility.try",
       "kind": "wrangle",
-      "wrangle_key": "try",
+      "wrangle_key": "utility.try",
       "runtime_key": "try",
       "history": {},
       "title": null,
@@ -2166,7 +2166,7 @@
       "status": "active",
       "source": "API Core",
       "created_at": "2026-09-16T08:41:16Z",
-      "updated_at": "2026-09-23T16:47:58Z"
+      "updated_at": "2026-11-07T08:31:58Z"
     }
   ]
 }

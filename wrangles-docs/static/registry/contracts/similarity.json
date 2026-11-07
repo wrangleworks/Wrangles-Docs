@@ -5,7 +5,7 @@
   "schema_version": "0.3",
   "type": "wrangle",
   "catalog_id": "92",
-  "catalog_key": "similarity",
+  "catalog_key": "compare.similarity",
   "catalog_status": "active",
   "legacy_id": "7c733344-4cce-4938-8013-53742fb46a90",
   "wrangle_name": "similarity",

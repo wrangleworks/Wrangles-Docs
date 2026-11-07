@@ -220,14 +220,14 @@ a schema may require an argument even when Python provides a default.
 | Field | Value |
 | --- | --- |
 | Catalog ID | `84` |
-| Catalog key | `matrix` |
+| Catalog key | `utility.matrix` |
 | Recipe key | `matrix` |
 | Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | No |
 | Recipe Writer exclusion | Matrix orchestration is not supported in the baseline. |
 | Namespace | Root-level |
-| Documentation group | `other` |
+| Documentation group | `utility` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.matrix` |
 | Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |

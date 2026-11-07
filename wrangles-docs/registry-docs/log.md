@@ -230,14 +230,14 @@ a schema may require an argument even when Python provides a default.
 | Field | Value |
 | --- | --- |
 | Catalog ID | `80` |
-| Catalog key | `log` |
+| Catalog key | `utility.log` |
 | Recipe key | `log` |
 | Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | No |
 | Recipe Writer exclusion | Operational logging steps are not authored in the baseline. |
 | Namespace | Root-level |
-| Documentation group | `other` |
+| Documentation group | `utility` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.log` |
 | Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |

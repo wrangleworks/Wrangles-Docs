@@ -158,7 +158,7 @@ a schema may require an argument even when Python provides a default.
 | Field | Value |
 | --- | --- |
 | Catalog ID | `95` |
-| Catalog key | `standardize` |
+| Catalog key | `format.standardize` |
 | Recipe key | `standardize` |
 | Catalog status | active |
 | Lifecycle status | deprecated |
@@ -166,7 +166,7 @@ a schema may require an argument even when Python provides a default.
 | Recipe Writer exclusion | Deprecated compatibility key; use standardize.custom. |
 | Replaced by | [`standardize.custom`](/py/namespaces/standardize#custom) |
 | Namespace | Root-level |
-| Documentation group | `other` |
+| Documentation group | `format` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.standardize` |
 | Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
