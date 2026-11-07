@@ -1,19 +1,6 @@
 {
   "catalog": [
     {
-      "catalog_id": "69",
-      "catalog_key": "accordion",
-      "catalog_kind": "wrangle",
-      "wranglesPY_key": "accordion",
-      "okf_path": null,
-      "status": "active",
-      "created_at": "2026-09-16T08:41:16Z",
-      "updated_at": "2026-09-23T16:47:58Z",
-      "wrangle_type": "recipe",
-      "notes": null,
-      "history": {}
-    },
-    {
       "catalog_id": "149",
       "catalog_key": "ai.answers",
       "catalog_kind": "wrangle",
@@ -35,6 +22,32 @@
       "status": "active",
       "created_at": "2026-10-18T10:01:30Z",
       "updated_at": "2026-10-18T10:01:30Z",
+      "wrangle_type": "recipe",
+      "notes": null,
+      "history": {}
+    },
+    {
+      "catalog_id": "71",
+      "catalog_key": "ai.classify",
+      "catalog_kind": "wrangle",
+      "wranglesPY_key": "classify",
+      "okf_path": null,
+      "status": "active",
+      "created_at": "2026-09-16T08:41:16Z",
+      "updated_at": "2026-11-07T08:31:58Z",
+      "wrangle_type": "classify",
+      "notes": null,
+      "history": {}
+    },
+    {
+      "catalog_id": "79",
+      "catalog_key": "ai.huggingface",
+      "catalog_kind": "wrangle",
+      "wranglesPY_key": "huggingface",
+      "okf_path": null,
+      "status": "active",
+      "created_at": "2026-09-16T08:41:16Z",
+      "updated_at": "2026-11-07T08:31:58Z",
       "wrangle_type": "recipe",
       "notes": null,
       "history": {}
@@ -66,45 +79,6 @@
       "history": {}
     },
     {
-      "catalog_id": "70",
-      "catalog_key": "batch",
-      "catalog_kind": "wrangle",
-      "wranglesPY_key": "batch",
-      "okf_path": null,
-      "status": "active",
-      "created_at": "2026-09-16T08:41:16Z",
-      "updated_at": "2026-09-23T16:47:58Z",
-      "wrangle_type": "recipe",
-      "notes": null,
-      "history": {}
-    },
-    {
-      "catalog_id": "71",
-      "catalog_key": "classify",
-      "catalog_kind": "wrangle",
-      "wranglesPY_key": "classify",
-      "okf_path": null,
-      "status": "active",
-      "created_at": "2026-09-16T08:41:16Z",
-      "updated_at": "2026-09-23T16:47:58Z",
-      "wrangle_type": "classify",
-      "notes": null,
-      "history": {}
-    },
-    {
-      "catalog_id": "72",
-      "catalog_key": "clean_whitespaces",
-      "catalog_kind": "wrangle",
-      "wranglesPY_key": "clean_whitespaces",
-      "okf_path": null,
-      "status": "active",
-      "created_at": "2026-09-16T08:41:16Z",
-      "updated_at": "2026-09-23T16:47:58Z",
-      "wrangle_type": "recipe",
-      "notes": null,
-      "history": {}
-    },
-    {
       "catalog_id": "1",
       "catalog_key": "compare.lists",
       "catalog_kind": "wrangle",
@@ -113,6 +87,19 @@
       "status": "active",
       "created_at": "2026-09-16T08:41:16Z",
       "updated_at": "2026-09-23T16:47:58Z",
+      "wrangle_type": "recipe",
+      "notes": null,
+      "history": {}
+    },
+    {
+      "catalog_id": "92",
+      "catalog_key": "compare.similarity",
+      "catalog_kind": "wrangle",
+      "wranglesPY_key": "similarity",
+      "okf_path": null,
+      "status": "active",
+      "created_at": "2026-09-16T08:41:16Z",
+      "updated_at": "2026-11-07T08:31:58Z",
       "wrangle_type": "recipe",
       "notes": null,
       "history": {}
@@ -144,6 +131,45 @@
       "history": {}
     },
     {
+      "catalog_id": "82",
+      "catalog_key": "compute.math",
+      "catalog_kind": "wrangle",
+      "wranglesPY_key": "math",
+      "okf_path": null,
+      "status": "active",
+      "created_at": "2026-09-16T08:41:16Z",
+      "updated_at": "2026-11-07T08:31:58Z",
+      "wrangle_type": "recipe",
+      "notes": null,
+      "history": {}
+    },
+    {
+      "catalog_id": "83",
+      "catalog_key": "compute.maths",
+      "catalog_kind": "wrangle",
+      "wranglesPY_key": "maths",
+      "okf_path": null,
+      "status": "active",
+      "created_at": "2026-09-16T08:41:16Z",
+      "updated_at": "2026-11-07T08:31:58Z",
+      "wrangle_type": "recipe",
+      "notes": null,
+      "history": {}
+    },
+    {
+      "catalog_id": "85",
+      "catalog_key": "compute.python",
+      "catalog_kind": "wrangle",
+      "wranglesPY_key": "python",
+      "okf_path": null,
+      "status": "active",
+      "created_at": "2026-09-16T08:41:16Z",
+      "updated_at": "2026-11-07T08:31:58Z",
+      "wrangle_type": "recipe",
+      "notes": null,
+      "history": {}
+    },
+    {
       "catalog_id": "4",
       "catalog_key": "compute.score_search_results",
       "catalog_kind": "wrangle",
@@ -157,14 +183,14 @@
       "history": {}
     },
     {
-      "catalog_id": "73",
-      "catalog_key": "concurrent",
+      "catalog_id": "94",
+      "catalog_key": "compute.sql",
       "catalog_kind": "wrangle",
-      "wranglesPY_key": "concurrent",
+      "wranglesPY_key": "sql",
       "okf_path": null,
       "status": "active",
       "created_at": "2026-09-16T08:41:16Z",
-      "updated_at": "2026-09-23T16:47:58Z",
+      "updated_at": "2026-11-07T08:31:58Z",
       "wrangle_type": "recipe",
       "notes": null,
       "history": {}
@@ -872,19 +898,6 @@
       "history": {}
     },
     {
-      "catalog_id": "74",
-      "catalog_key": "copy",
-      "catalog_kind": "wrangle",
-      "wranglesPY_key": "copy",
-      "okf_path": null,
-      "status": "active",
-      "created_at": "2026-09-16T08:41:16Z",
-      "updated_at": "2026-09-23T16:47:58Z",
-      "wrangle_type": "recipe",
-      "notes": null,
-      "history": {}
-    },
-    {
       "catalog_id": "12",
       "catalog_key": "create.bins",
       "catalog_kind": "wrangle",
@@ -990,39 +1003,13 @@
     },
     {
       "catalog_id": "75",
-      "catalog_key": "date_calculator",
+      "catalog_key": "date.date_calculator",
       "catalog_kind": "wrangle",
       "wranglesPY_key": "date_calculator",
       "okf_path": null,
       "status": "active",
       "created_at": "2026-09-16T08:41:16Z",
-      "updated_at": "2026-09-23T16:47:58Z",
-      "wrangle_type": "recipe",
-      "notes": null,
-      "history": {}
-    },
-    {
-      "catalog_id": "76",
-      "catalog_key": "drop",
-      "catalog_kind": "wrangle",
-      "wranglesPY_key": "drop",
-      "okf_path": null,
-      "status": "active",
-      "created_at": "2026-09-16T08:41:16Z",
-      "updated_at": "2026-09-23T16:47:58Z",
-      "wrangle_type": "recipe",
-      "notes": null,
-      "history": {}
-    },
-    {
-      "catalog_id": "77",
-      "catalog_key": "explode",
-      "catalog_kind": "wrangle",
-      "wranglesPY_key": "explode",
-      "okf_path": null,
-      "status": "active",
-      "created_at": "2026-09-16T08:41:16Z",
-      "updated_at": "2026-09-23T16:47:58Z",
+      "updated_at": "2026-11-07T08:31:58Z",
       "wrangle_type": "recipe",
       "notes": null,
       "history": {}
@@ -1171,14 +1158,14 @@
       "history": {}
     },
     {
-      "catalog_id": "78",
-      "catalog_key": "filter",
+      "catalog_id": "72",
+      "catalog_key": "format.clean_whitespaces",
       "catalog_kind": "wrangle",
-      "wranglesPY_key": "filter",
+      "wranglesPY_key": "clean_whitespaces",
       "okf_path": null,
       "status": "active",
       "created_at": "2026-09-16T08:41:16Z",
-      "updated_at": "2026-09-23T16:47:58Z",
+      "updated_at": "2026-11-07T08:31:58Z",
       "wrangle_type": "recipe",
       "notes": null,
       "history": {}
@@ -1249,6 +1236,32 @@
       "history": {}
     },
     {
+      "catalog_id": "88",
+      "catalog_key": "format.remove_words",
+      "catalog_kind": "wrangle",
+      "wranglesPY_key": "remove_words",
+      "okf_path": null,
+      "status": "active",
+      "created_at": "2026-09-16T08:41:16Z",
+      "updated_at": "2026-11-07T08:31:58Z",
+      "wrangle_type": "recipe",
+      "notes": null,
+      "history": {}
+    },
+    {
+      "catalog_id": "91",
+      "catalog_key": "format.round",
+      "catalog_kind": "wrangle",
+      "wranglesPY_key": "round",
+      "okf_path": null,
+      "status": "active",
+      "created_at": "2026-09-16T08:41:16Z",
+      "updated_at": "2026-11-07T08:31:58Z",
+      "wrangle_type": "recipe",
+      "notes": null,
+      "history": {}
+    },
+    {
       "catalog_id": "36",
       "catalog_key": "format.significant_figures",
       "catalog_kind": "wrangle",
@@ -1262,6 +1275,19 @@
       "history": {}
     },
     {
+      "catalog_id": "95",
+      "catalog_key": "format.standardize",
+      "catalog_kind": "wrangle",
+      "wranglesPY_key": "standardize",
+      "okf_path": null,
+      "status": "active",
+      "created_at": "2026-09-16T08:41:16Z",
+      "updated_at": "2026-11-07T08:31:58Z",
+      "wrangle_type": "standardize",
+      "notes": null,
+      "history": {}
+    },
+    {
       "catalog_id": "37",
       "catalog_key": "format.suffix",
       "catalog_kind": "wrangle",
@@ -1270,6 +1296,19 @@
       "status": "active",
       "created_at": "2026-09-16T08:41:16Z",
       "updated_at": "2026-09-23T16:47:58Z",
+      "wrangle_type": "recipe",
+      "notes": null,
+      "history": {}
+    },
+    {
+      "catalog_id": "96",
+      "catalog_key": "format.translate",
+      "catalog_kind": "wrangle",
+      "wranglesPY_key": "translate",
+      "okf_path": null,
+      "status": "active",
+      "created_at": "2026-09-16T08:41:16Z",
+      "updated_at": "2026-11-07T08:31:58Z",
       "wrangle_type": "recipe",
       "notes": null,
       "history": {}
@@ -1301,32 +1340,6 @@
       "history": {}
     },
     {
-      "catalog_id": "79",
-      "catalog_key": "huggingface",
-      "catalog_kind": "wrangle",
-      "wranglesPY_key": "huggingface",
-      "okf_path": null,
-      "status": "active",
-      "created_at": "2026-09-16T08:41:16Z",
-      "updated_at": "2026-09-23T16:47:58Z",
-      "wrangle_type": "recipe",
-      "notes": null,
-      "history": {}
-    },
-    {
-      "catalog_id": "80",
-      "catalog_key": "log",
-      "catalog_kind": "wrangle",
-      "wranglesPY_key": "log",
-      "okf_path": null,
-      "status": "active",
-      "created_at": "2026-09-16T08:41:16Z",
-      "updated_at": "2026-09-23T16:47:58Z",
-      "wrangle_type": "recipe",
-      "notes": null,
-      "history": {}
-    },
-    {
       "catalog_id": "101",
       "catalog_key": "lookup.key",
       "catalog_kind": "wrangle",
@@ -1347,11 +1360,14 @@
       "okf_path": null,
       "status": "active",
       "created_at": "2026-09-16T08:41:16Z",
-      "updated_at": "2026-11-06T16:17:54Z",
+      "updated_at": "2026-11-07T08:31:58Z",
       "wrangle_type": "lookup",
       "notes": null,
       "history": {
-        "lookup": "legacy"
+        "lookup": {
+          "status": "legacy",
+          "catalog_key": "lookup.lookup"
+        }
       }
     },
     {
@@ -1364,45 +1380,6 @@
       "created_at": "2026-09-16T08:44:50Z",
       "updated_at": "2026-09-23T16:47:58Z",
       "wrangle_type": "map",
-      "notes": null,
-      "history": {}
-    },
-    {
-      "catalog_id": "82",
-      "catalog_key": "math",
-      "catalog_kind": "wrangle",
-      "wranglesPY_key": "math",
-      "okf_path": null,
-      "status": "active",
-      "created_at": "2026-09-16T08:41:16Z",
-      "updated_at": "2026-09-23T16:47:58Z",
-      "wrangle_type": "recipe",
-      "notes": null,
-      "history": {}
-    },
-    {
-      "catalog_id": "83",
-      "catalog_key": "maths",
-      "catalog_kind": "wrangle",
-      "wranglesPY_key": "maths",
-      "okf_path": null,
-      "status": "active",
-      "created_at": "2026-09-16T08:41:16Z",
-      "updated_at": "2026-09-23T16:47:58Z",
-      "wrangle_type": "recipe",
-      "notes": null,
-      "history": {}
-    },
-    {
-      "catalog_id": "84",
-      "catalog_key": "matrix",
-      "catalog_kind": "wrangle",
-      "wranglesPY_key": "matrix",
-      "okf_path": null,
-      "status": "active",
-      "created_at": "2026-09-16T08:41:16Z",
-      "updated_at": "2026-09-23T16:47:58Z",
-      "wrangle_type": "recipe",
       "notes": null,
       "history": {}
     },
@@ -1498,84 +1475,6 @@
       "history": {}
     },
     {
-      "catalog_id": "85",
-      "catalog_key": "python",
-      "catalog_kind": "wrangle",
-      "wranglesPY_key": "python",
-      "okf_path": null,
-      "status": "active",
-      "created_at": "2026-09-16T08:41:16Z",
-      "updated_at": "2026-09-23T16:47:58Z",
-      "wrangle_type": "recipe",
-      "notes": null,
-      "history": {}
-    },
-    {
-      "catalog_id": "86",
-      "catalog_key": "recipe",
-      "catalog_kind": "wrangle",
-      "wranglesPY_key": "recipe",
-      "okf_path": null,
-      "status": "active",
-      "created_at": "2026-09-16T08:41:16Z",
-      "updated_at": "2026-09-23T16:47:58Z",
-      "wrangle_type": "recipe",
-      "notes": null,
-      "history": {}
-    },
-    {
-      "catalog_id": "87",
-      "catalog_key": "reindex",
-      "catalog_kind": "wrangle",
-      "wranglesPY_key": "reindex",
-      "okf_path": null,
-      "status": "active",
-      "created_at": "2026-09-16T08:41:16Z",
-      "updated_at": "2026-09-23T16:47:58Z",
-      "wrangle_type": "recipe",
-      "notes": null,
-      "history": {}
-    },
-    {
-      "catalog_id": "88",
-      "catalog_key": "remove_words",
-      "catalog_kind": "wrangle",
-      "wranglesPY_key": "remove_words",
-      "okf_path": null,
-      "status": "active",
-      "created_at": "2026-09-16T08:41:16Z",
-      "updated_at": "2026-09-23T16:47:58Z",
-      "wrangle_type": "recipe",
-      "notes": null,
-      "history": {}
-    },
-    {
-      "catalog_id": "89",
-      "catalog_key": "rename",
-      "catalog_kind": "wrangle",
-      "wranglesPY_key": "rename",
-      "okf_path": null,
-      "status": "active",
-      "created_at": "2026-09-16T08:41:16Z",
-      "updated_at": "2026-09-23T16:47:58Z",
-      "wrangle_type": "recipe",
-      "notes": null,
-      "history": {}
-    },
-    {
-      "catalog_id": "91",
-      "catalog_key": "round",
-      "catalog_kind": "wrangle",
-      "wranglesPY_key": "round",
-      "okf_path": null,
-      "status": "active",
-      "created_at": "2026-09-16T08:41:16Z",
-      "updated_at": "2026-09-23T16:47:58Z",
-      "wrangle_type": "recipe",
-      "notes": null,
-      "history": {}
-    },
-    {
       "catalog_id": "154",
       "catalog_key": "search.ai_mode",
       "catalog_kind": "wrangle",
@@ -1641,6 +1540,19 @@
       "history": {}
     },
     {
+      "catalog_id": "76",
+      "catalog_key": "select.drop",
+      "catalog_kind": "wrangle",
+      "wranglesPY_key": "drop",
+      "okf_path": null,
+      "status": "active",
+      "created_at": "2026-09-16T08:41:16Z",
+      "updated_at": "2026-11-07T08:31:58Z",
+      "wrangle_type": "recipe",
+      "notes": null,
+      "history": {}
+    },
+    {
       "catalog_id": "51",
       "catalog_key": "select.element",
       "catalog_kind": "wrangle",
@@ -1649,6 +1561,19 @@
       "status": "active",
       "created_at": "2026-09-16T08:41:16Z",
       "updated_at": "2026-09-23T16:47:58Z",
+      "wrangle_type": "recipe",
+      "notes": null,
+      "history": {}
+    },
+    {
+      "catalog_id": "78",
+      "catalog_key": "select.filter",
+      "catalog_kind": "wrangle",
+      "wranglesPY_key": "filter",
+      "okf_path": null,
+      "status": "active",
+      "created_at": "2026-09-16T08:41:16Z",
+      "updated_at": "2026-11-07T08:31:58Z",
       "wrangle_type": "recipe",
       "notes": null,
       "history": {}
@@ -1758,6 +1683,19 @@
       "history": {}
     },
     {
+      "catalog_id": "93",
+      "catalog_key": "select.sort",
+      "catalog_kind": "wrangle",
+      "wranglesPY_key": "sort",
+      "okf_path": null,
+      "status": "active",
+      "created_at": "2026-09-16T08:41:16Z",
+      "updated_at": "2026-11-07T08:31:58Z",
+      "wrangle_type": "recipe",
+      "notes": null,
+      "history": {}
+    },
+    {
       "catalog_id": "60",
       "catalog_key": "select.substring",
       "catalog_kind": "wrangle",
@@ -1797,54 +1735,15 @@
       "history": {}
     },
     {
-      "catalog_id": "92",
-      "catalog_key": "similarity",
+      "catalog_id": "77",
+      "catalog_key": "split.explode",
       "catalog_kind": "wrangle",
-      "wranglesPY_key": "similarity",
+      "wranglesPY_key": "explode",
       "okf_path": null,
       "status": "active",
       "created_at": "2026-09-16T08:41:16Z",
-      "updated_at": "2026-09-23T16:47:58Z",
+      "updated_at": "2026-11-07T08:31:58Z",
       "wrangle_type": "recipe",
-      "notes": null,
-      "history": {}
-    },
-    {
-      "catalog_id": "93",
-      "catalog_key": "sort",
-      "catalog_kind": "wrangle",
-      "wranglesPY_key": "sort",
-      "okf_path": null,
-      "status": "active",
-      "created_at": "2026-09-16T08:41:16Z",
-      "updated_at": "2026-09-23T16:47:58Z",
-      "wrangle_type": "recipe",
-      "notes": null,
-      "history": {}
-    },
-    {
-      "catalog_id": "94",
-      "catalog_key": "sql",
-      "catalog_kind": "wrangle",
-      "wranglesPY_key": "sql",
-      "okf_path": null,
-      "status": "active",
-      "created_at": "2026-09-16T08:41:16Z",
-      "updated_at": "2026-09-23T16:47:58Z",
-      "wrangle_type": "recipe",
-      "notes": null,
-      "history": {}
-    },
-    {
-      "catalog_id": "95",
-      "catalog_key": "standardize",
-      "catalog_kind": "wrangle",
-      "wranglesPY_key": "standardize",
-      "okf_path": null,
-      "status": "active",
-      "created_at": "2026-09-16T08:41:16Z",
-      "updated_at": "2026-09-23T16:47:58Z",
-      "wrangle_type": "standardize",
       "notes": null,
       "history": {}
     },
@@ -1882,11 +1781,14 @@
       "okf_path": null,
       "status": "active",
       "created_at": "2026-09-16T08:41:16Z",
-      "updated_at": "2026-11-06T16:17:54Z",
+      "updated_at": "2026-11-07T08:31:58Z",
       "wrangle_type": "recipe",
       "notes": null,
       "history": {
-        "replace": "legacy"
+        "replace": {
+          "status": "legacy",
+          "catalog_key": "format.replace"
+        }
       }
     },
     {
@@ -1897,11 +1799,14 @@
       "okf_path": null,
       "status": "active",
       "created_at": "2026-09-16T08:41:16Z",
-      "updated_at": "2026-11-06T16:17:54Z",
+      "updated_at": "2026-11-07T08:31:58Z",
       "wrangle_type": "recipe",
       "notes": null,
       "history": {
-        "split.dictionary": "legacy"
+        "split.dictionary": {
+          "status": "legacy",
+          "catalog_key": "split.dictionary"
+        }
       }
     },
     {
@@ -1912,11 +1817,14 @@
       "okf_path": null,
       "status": "active",
       "created_at": "2026-09-16T08:41:16Z",
-      "updated_at": "2026-11-06T16:17:54Z",
+      "updated_at": "2026-11-07T08:31:58Z",
       "wrangle_type": "recipe",
       "notes": null,
       "history": {
-        "split.list": "legacy"
+        "split.list": {
+          "status": "legacy",
+          "catalog_key": "split.list"
+        }
       }
     },
     {
@@ -1927,11 +1835,14 @@
       "okf_path": null,
       "status": "active",
       "created_at": "2026-09-16T08:41:16Z",
-      "updated_at": "2026-11-06T16:17:54Z",
+      "updated_at": "2026-11-07T08:31:58Z",
       "wrangle_type": "recipe",
       "notes": null,
       "history": {
-        "split.text": "legacy"
+        "split.text": {
+          "status": "legacy",
+          "catalog_key": "split.text"
+        }
       }
     },
     {
@@ -1942,48 +1853,155 @@
       "okf_path": null,
       "status": "active",
       "created_at": "2026-09-16T08:41:16Z",
-      "updated_at": "2026-11-06T16:17:54Z",
+      "updated_at": "2026-11-07T08:31:58Z",
       "wrangle_type": "recipe",
       "notes": null,
       "history": {
-        "split.tokenize": "legacy"
+        "split.tokenize": {
+          "status": "legacy",
+          "catalog_key": "split.tokenize"
+        }
       }
     },
     {
-      "catalog_id": "96",
-      "catalog_key": "translate",
+      "catalog_id": "74",
+      "catalog_key": "transform.copy",
       "catalog_kind": "wrangle",
-      "wranglesPY_key": "translate",
+      "wranglesPY_key": "copy",
       "okf_path": null,
       "status": "active",
       "created_at": "2026-09-16T08:41:16Z",
-      "updated_at": "2026-09-23T16:47:58Z",
+      "updated_at": "2026-11-07T08:31:58Z",
+      "wrangle_type": "recipe",
+      "notes": null,
+      "history": {}
+    },
+    {
+      "catalog_id": "87",
+      "catalog_key": "transform.reindex",
+      "catalog_kind": "wrangle",
+      "wranglesPY_key": "reindex",
+      "okf_path": null,
+      "status": "active",
+      "created_at": "2026-09-16T08:41:16Z",
+      "updated_at": "2026-11-07T08:31:58Z",
+      "wrangle_type": "recipe",
+      "notes": null,
+      "history": {}
+    },
+    {
+      "catalog_id": "89",
+      "catalog_key": "transform.rename",
+      "catalog_kind": "wrangle",
+      "wranglesPY_key": "rename",
+      "okf_path": null,
+      "status": "active",
+      "created_at": "2026-09-16T08:41:16Z",
+      "updated_at": "2026-11-07T08:31:58Z",
       "wrangle_type": "recipe",
       "notes": null,
       "history": {}
     },
     {
       "catalog_id": "97",
-      "catalog_key": "transpose",
+      "catalog_key": "transform.transpose",
       "catalog_kind": "wrangle",
       "wranglesPY_key": "transpose",
       "okf_path": null,
       "status": "active",
       "created_at": "2026-09-16T08:41:16Z",
-      "updated_at": "2026-09-23T16:47:58Z",
+      "updated_at": "2026-11-07T08:31:58Z",
+      "wrangle_type": "recipe",
+      "notes": null,
+      "history": {}
+    },
+    {
+      "catalog_id": "69",
+      "catalog_key": "utility.accordion",
+      "catalog_kind": "wrangle",
+      "wranglesPY_key": "accordion",
+      "okf_path": null,
+      "status": "active",
+      "created_at": "2026-09-16T08:41:16Z",
+      "updated_at": "2026-11-07T08:31:58Z",
+      "wrangle_type": "recipe",
+      "notes": null,
+      "history": {}
+    },
+    {
+      "catalog_id": "70",
+      "catalog_key": "utility.batch",
+      "catalog_kind": "wrangle",
+      "wranglesPY_key": "batch",
+      "okf_path": null,
+      "status": "active",
+      "created_at": "2026-09-16T08:41:16Z",
+      "updated_at": "2026-11-07T08:31:58Z",
+      "wrangle_type": "recipe",
+      "notes": null,
+      "history": {}
+    },
+    {
+      "catalog_id": "73",
+      "catalog_key": "utility.concurrent",
+      "catalog_kind": "wrangle",
+      "wranglesPY_key": "concurrent",
+      "okf_path": null,
+      "status": "active",
+      "created_at": "2026-09-16T08:41:16Z",
+      "updated_at": "2026-11-07T08:31:58Z",
+      "wrangle_type": "recipe",
+      "notes": null,
+      "history": {}
+    },
+    {
+      "catalog_id": "80",
+      "catalog_key": "utility.log",
+      "catalog_kind": "wrangle",
+      "wranglesPY_key": "log",
+      "okf_path": null,
+      "status": "active",
+      "created_at": "2026-09-16T08:41:16Z",
+      "updated_at": "2026-11-07T08:31:58Z",
+      "wrangle_type": "recipe",
+      "notes": null,
+      "history": {}
+    },
+    {
+      "catalog_id": "84",
+      "catalog_key": "utility.matrix",
+      "catalog_kind": "wrangle",
+      "wranglesPY_key": "matrix",
+      "okf_path": null,
+      "status": "active",
+      "created_at": "2026-09-16T08:41:16Z",
+      "updated_at": "2026-11-07T08:31:58Z",
+      "wrangle_type": "recipe",
+      "notes": null,
+      "history": {}
+    },
+    {
+      "catalog_id": "86",
+      "catalog_key": "utility.recipe",
+      "catalog_kind": "wrangle",
+      "wranglesPY_key": "recipe",
+      "okf_path": null,
+      "status": "active",
+      "created_at": "2026-09-16T08:41:16Z",
+      "updated_at": "2026-11-07T08:31:58Z",
       "wrangle_type": "recipe",
       "notes": null,
       "history": {}
     },
     {
       "catalog_id": "98",
-      "catalog_key": "try",
+      "catalog_key": "utility.try",
       "catalog_kind": "wrangle",
       "wranglesPY_key": "try",
       "okf_path": null,
       "status": "active",
       "created_at": "2026-09-16T08:41:16Z",
-      "updated_at": "2026-09-23T16:47:58Z",
+      "updated_at": "2026-11-07T08:31:58Z",
       "wrangle_type": "recipe",
       "notes": null,
       "history": {}

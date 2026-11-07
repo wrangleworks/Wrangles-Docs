@@ -5,7 +5,7 @@
   "schema_version": "0.3",
   "type": "wrangle",
   "catalog_id": "88",
-  "catalog_key": "remove_words",
+  "catalog_key": "format.remove_words",
   "catalog_status": "active",
   "legacy_id": "543b96c3-f354-48be-8046-bf0cb9fbaf56",
   "wrangle_name": "remove_words",

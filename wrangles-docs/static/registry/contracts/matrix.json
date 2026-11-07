@@ -5,7 +5,7 @@
   "schema_version": "0.3",
   "type": "wrangle",
   "catalog_id": "84",
-  "catalog_key": "matrix",
+  "catalog_key": "utility.matrix",
   "catalog_status": "active",
   "legacy_id": null,
   "wrangle_name": "matrix",

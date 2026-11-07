@@ -33,21 +33,6 @@
   "missing_catalog_identities": [],
   "rows": [
     {
-      "catalog_key": "accordion",
-      "runtime_key": "accordion",
-      "catalog_kind": "wrangle",
-      "status": "passed",
-      "issues": [],
-      "source": {
-        "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
-        "version": "1.20.5",
-        "extraction": "static-python-ast"
-      },
-      "schema_origin": "upstream-docstring",
-      "adjustments": []
-    },
-    {
       "catalog_key": "ai.answers",
       "runtime_key": "ai.answers",
       "catalog_kind": "wrangle",
@@ -68,6 +53,46 @@
       "catalog_kind": "wrangle",
       "status": "passed",
       "issues": [],
+      "source": {
+        "repository": "https://github.com/wrangleworks/WranglesPY",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
+        "version": "1.20.5",
+        "extraction": "static-python-ast"
+      },
+      "schema_origin": "upstream-docstring",
+      "adjustments": []
+    },
+    {
+      "catalog_key": "ai.classify",
+      "runtime_key": "classify",
+      "catalog_kind": "wrangle",
+      "status": "passed",
+      "issues": [
+        {
+          "severity": "info",
+          "code": "catalog_key_binding_difference"
+        }
+      ],
+      "source": {
+        "repository": "https://github.com/wrangleworks/WranglesPY",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
+        "version": "1.20.5",
+        "extraction": "static-python-ast"
+      },
+      "schema_origin": "upstream-docstring",
+      "adjustments": []
+    },
+    {
+      "catalog_key": "ai.huggingface",
+      "runtime_key": "huggingface",
+      "catalog_kind": "wrangle",
+      "status": "passed",
+      "issues": [
+        {
+          "severity": "info",
+          "code": "catalog_key_binding_difference"
+        }
+      ],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
         "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
@@ -108,56 +133,31 @@
       "adjustments": []
     },
     {
-      "catalog_key": "batch",
-      "runtime_key": "batch",
-      "catalog_kind": "wrangle",
-      "status": "passed",
-      "issues": [],
-      "source": {
-        "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
-        "version": "1.20.5",
-        "extraction": "static-python-ast"
-      },
-      "schema_origin": "upstream-docstring",
-      "adjustments": []
-    },
-    {
-      "catalog_key": "classify",
-      "runtime_key": "classify",
-      "catalog_kind": "wrangle",
-      "status": "passed",
-      "issues": [],
-      "source": {
-        "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
-        "version": "1.20.5",
-        "extraction": "static-python-ast"
-      },
-      "schema_origin": "upstream-docstring",
-      "adjustments": []
-    },
-    {
-      "catalog_key": "clean_whitespaces",
-      "runtime_key": "clean_whitespaces",
-      "catalog_kind": "wrangle",
-      "status": "passed",
-      "issues": [],
-      "source": {
-        "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
-        "version": "1.20.5",
-        "extraction": "static-python-ast"
-      },
-      "schema_origin": "upstream-docstring",
-      "adjustments": []
-    },
-    {
       "catalog_key": "compare.lists",
       "runtime_key": "compare.lists",
       "catalog_kind": "wrangle",
       "status": "passed",
       "issues": [],
+      "source": {
+        "repository": "https://github.com/wrangleworks/WranglesPY",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
+        "version": "1.20.5",
+        "extraction": "static-python-ast"
+      },
+      "schema_origin": "upstream-docstring",
+      "adjustments": []
+    },
+    {
+      "catalog_key": "compare.similarity",
+      "runtime_key": "similarity",
+      "catalog_kind": "wrangle",
+      "status": "passed",
+      "issues": [
+        {
+          "severity": "info",
+          "code": "catalog_key_binding_difference"
+        }
+      ],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
         "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
@@ -198,6 +198,77 @@
       "adjustments": []
     },
     {
+      "catalog_key": "compute.math",
+      "runtime_key": "math",
+      "catalog_kind": "wrangle",
+      "status": "passed",
+      "issues": [
+        {
+          "severity": "info",
+          "code": "catalog_key_binding_difference"
+        }
+      ],
+      "source": {
+        "repository": "https://github.com/wrangleworks/WranglesPY",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
+        "version": "1.20.5",
+        "extraction": "static-python-ast"
+      },
+      "schema_origin": "upstream-docstring",
+      "adjustments": []
+    },
+    {
+      "catalog_key": "compute.maths",
+      "runtime_key": "maths",
+      "catalog_kind": "wrangle",
+      "status": "passed",
+      "issues": [
+        {
+          "severity": "info",
+          "code": "accepted_math_schema_alias"
+        },
+        {
+          "severity": "info",
+          "code": "alias_identity_metadata_excluded"
+        },
+        {
+          "severity": "info",
+          "code": "catalog_key_binding_difference"
+        }
+      ],
+      "source": {
+        "repository": "https://github.com/wrangleworks/WranglesPY",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
+        "version": "1.20.5",
+        "extraction": "static-python-ast"
+      },
+      "schema_origin": "deprecated-alias:math",
+      "adjustments": [
+        "Exclude math's catalog_id from the maths alias schema.",
+        "Exclude math's status from the maths alias schema."
+      ]
+    },
+    {
+      "catalog_key": "compute.python",
+      "runtime_key": "python",
+      "catalog_kind": "wrangle",
+      "status": "passed",
+      "issues": [
+        {
+          "severity": "info",
+          "code": "catalog_key_binding_difference"
+        }
+      ],
+      "source": {
+        "repository": "https://github.com/wrangleworks/WranglesPY",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
+        "version": "1.20.5",
+        "extraction": "static-python-ast"
+      },
+      "schema_origin": "upstream-docstring",
+      "adjustments": []
+    },
+    {
       "catalog_key": "compute.score_search_results",
       "runtime_key": "compute.score_search_results",
       "catalog_kind": "wrangle",
@@ -213,11 +284,16 @@
       "adjustments": []
     },
     {
-      "catalog_key": "concurrent",
-      "runtime_key": "concurrent",
+      "catalog_key": "compute.sql",
+      "runtime_key": "sql",
       "catalog_kind": "wrangle",
       "status": "passed",
-      "issues": [],
+      "issues": [
+        {
+          "severity": "info",
+          "code": "catalog_key_binding_difference"
+        }
+      ],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
         "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
@@ -1170,21 +1246,6 @@
       "adjustments": []
     },
     {
-      "catalog_key": "copy",
-      "runtime_key": "copy",
-      "catalog_kind": "wrangle",
-      "status": "passed",
-      "issues": [],
-      "source": {
-        "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
-        "version": "1.20.5",
-        "extraction": "static-python-ast"
-      },
-      "schema_origin": "upstream-docstring",
-      "adjustments": []
-    },
-    {
       "catalog_key": "create.bins",
       "runtime_key": "create.bins",
       "catalog_kind": "wrangle",
@@ -1305,41 +1366,16 @@
       "adjustments": []
     },
     {
-      "catalog_key": "date_calculator",
+      "catalog_key": "date.date_calculator",
       "runtime_key": "date_calculator",
       "catalog_kind": "wrangle",
       "status": "passed",
-      "issues": [],
-      "source": {
-        "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
-        "version": "1.20.5",
-        "extraction": "static-python-ast"
-      },
-      "schema_origin": "upstream-docstring",
-      "adjustments": []
-    },
-    {
-      "catalog_key": "drop",
-      "runtime_key": "drop",
-      "catalog_kind": "wrangle",
-      "status": "passed",
-      "issues": [],
-      "source": {
-        "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
-        "version": "1.20.5",
-        "extraction": "static-python-ast"
-      },
-      "schema_origin": "upstream-docstring",
-      "adjustments": []
-    },
-    {
-      "catalog_key": "explode",
-      "runtime_key": "explode",
-      "catalog_kind": "wrangle",
-      "status": "passed",
-      "issues": [],
+      "issues": [
+        {
+          "severity": "info",
+          "code": "catalog_key_binding_difference"
+        }
+      ],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
         "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
@@ -1515,11 +1551,16 @@
       "adjustments": []
     },
     {
-      "catalog_key": "filter",
-      "runtime_key": "filter",
+      "catalog_key": "format.clean_whitespaces",
+      "runtime_key": "clean_whitespaces",
       "catalog_kind": "wrangle",
       "status": "passed",
-      "issues": [],
+      "issues": [
+        {
+          "severity": "info",
+          "code": "catalog_key_binding_difference"
+        }
+      ],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
         "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
@@ -1610,6 +1651,46 @@
       "adjustments": []
     },
     {
+      "catalog_key": "format.remove_words",
+      "runtime_key": "remove_words",
+      "catalog_kind": "wrangle",
+      "status": "passed",
+      "issues": [
+        {
+          "severity": "info",
+          "code": "catalog_key_binding_difference"
+        }
+      ],
+      "source": {
+        "repository": "https://github.com/wrangleworks/WranglesPY",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
+        "version": "1.20.5",
+        "extraction": "static-python-ast"
+      },
+      "schema_origin": "upstream-docstring",
+      "adjustments": []
+    },
+    {
+      "catalog_key": "format.round",
+      "runtime_key": "round",
+      "catalog_kind": "wrangle",
+      "status": "passed",
+      "issues": [
+        {
+          "severity": "info",
+          "code": "catalog_key_binding_difference"
+        }
+      ],
+      "source": {
+        "repository": "https://github.com/wrangleworks/WranglesPY",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
+        "version": "1.20.5",
+        "extraction": "static-python-ast"
+      },
+      "schema_origin": "upstream-docstring",
+      "adjustments": []
+    },
+    {
       "catalog_key": "format.significant_figures",
       "runtime_key": "format.significant_figures",
       "catalog_kind": "wrangle",
@@ -1625,11 +1706,51 @@
       "adjustments": []
     },
     {
+      "catalog_key": "format.standardize",
+      "runtime_key": "standardize",
+      "catalog_kind": "wrangle",
+      "status": "passed",
+      "issues": [
+        {
+          "severity": "info",
+          "code": "catalog_key_binding_difference"
+        }
+      ],
+      "source": {
+        "repository": "https://github.com/wrangleworks/WranglesPY",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
+        "version": "1.20.5",
+        "extraction": "static-python-ast"
+      },
+      "schema_origin": "upstream-docstring",
+      "adjustments": []
+    },
+    {
       "catalog_key": "format.suffix",
       "runtime_key": "format.suffix",
       "catalog_kind": "wrangle",
       "status": "passed",
       "issues": [],
+      "source": {
+        "repository": "https://github.com/wrangleworks/WranglesPY",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
+        "version": "1.20.5",
+        "extraction": "static-python-ast"
+      },
+      "schema_origin": "upstream-docstring",
+      "adjustments": []
+    },
+    {
+      "catalog_key": "format.translate",
+      "runtime_key": "translate",
+      "catalog_kind": "wrangle",
+      "status": "passed",
+      "issues": [
+        {
+          "severity": "info",
+          "code": "catalog_key_binding_difference"
+        }
+      ],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
         "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
@@ -1657,36 +1778,6 @@
     {
       "catalog_key": "generate.ai",
       "runtime_key": "generate.ai",
-      "catalog_kind": "wrangle",
-      "status": "passed",
-      "issues": [],
-      "source": {
-        "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
-        "version": "1.20.5",
-        "extraction": "static-python-ast"
-      },
-      "schema_origin": "upstream-docstring",
-      "adjustments": []
-    },
-    {
-      "catalog_key": "huggingface",
-      "runtime_key": "huggingface",
-      "catalog_kind": "wrangle",
-      "status": "passed",
-      "issues": [],
-      "source": {
-        "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
-        "version": "1.20.5",
-        "extraction": "static-python-ast"
-      },
-      "schema_origin": "upstream-docstring",
-      "adjustments": []
-    },
-    {
-      "catalog_key": "log",
-      "runtime_key": "log",
       "catalog_kind": "wrangle",
       "status": "passed",
       "issues": [],
@@ -1743,63 +1834,6 @@
       "source": null,
       "reason": "Excel column mapping (API-Core purpose=schema); WranglesPY recipe schema validation does not apply.",
       "documentation": "wrangles-docs/docs/excel/map.md"
-    },
-    {
-      "catalog_key": "math",
-      "runtime_key": "math",
-      "catalog_kind": "wrangle",
-      "status": "passed",
-      "issues": [],
-      "source": {
-        "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
-        "version": "1.20.5",
-        "extraction": "static-python-ast"
-      },
-      "schema_origin": "upstream-docstring",
-      "adjustments": []
-    },
-    {
-      "catalog_key": "maths",
-      "runtime_key": "maths",
-      "catalog_kind": "wrangle",
-      "status": "passed",
-      "issues": [
-        {
-          "severity": "info",
-          "code": "accepted_math_schema_alias"
-        },
-        {
-          "severity": "info",
-          "code": "alias_identity_metadata_excluded"
-        }
-      ],
-      "source": {
-        "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
-        "version": "1.20.5",
-        "extraction": "static-python-ast"
-      },
-      "schema_origin": "deprecated-alias:math",
-      "adjustments": [
-        "Exclude math's catalog_id from the maths alias schema.",
-        "Exclude math's status from the maths alias schema."
-      ]
-    },
-    {
-      "catalog_key": "matrix",
-      "runtime_key": "matrix",
-      "catalog_kind": "wrangle",
-      "status": "passed",
-      "issues": [],
-      "source": {
-        "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
-        "version": "1.20.5",
-        "extraction": "static-python-ast"
-      },
-      "schema_origin": "upstream-docstring",
-      "adjustments": []
     },
     {
       "catalog_key": "merge.coalesce",
@@ -1907,96 +1941,6 @@
       "adjustments": []
     },
     {
-      "catalog_key": "python",
-      "runtime_key": "python",
-      "catalog_kind": "wrangle",
-      "status": "passed",
-      "issues": [],
-      "source": {
-        "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
-        "version": "1.20.5",
-        "extraction": "static-python-ast"
-      },
-      "schema_origin": "upstream-docstring",
-      "adjustments": []
-    },
-    {
-      "catalog_key": "recipe",
-      "runtime_key": "recipe",
-      "catalog_kind": "wrangle",
-      "status": "passed",
-      "issues": [],
-      "source": {
-        "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
-        "version": "1.20.5",
-        "extraction": "static-python-ast"
-      },
-      "schema_origin": "upstream-docstring",
-      "adjustments": []
-    },
-    {
-      "catalog_key": "reindex",
-      "runtime_key": "reindex",
-      "catalog_kind": "wrangle",
-      "status": "passed",
-      "issues": [],
-      "source": {
-        "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
-        "version": "1.20.5",
-        "extraction": "static-python-ast"
-      },
-      "schema_origin": "upstream-docstring",
-      "adjustments": []
-    },
-    {
-      "catalog_key": "remove_words",
-      "runtime_key": "remove_words",
-      "catalog_kind": "wrangle",
-      "status": "passed",
-      "issues": [],
-      "source": {
-        "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
-        "version": "1.20.5",
-        "extraction": "static-python-ast"
-      },
-      "schema_origin": "upstream-docstring",
-      "adjustments": []
-    },
-    {
-      "catalog_key": "rename",
-      "runtime_key": "rename",
-      "catalog_kind": "wrangle",
-      "status": "passed",
-      "issues": [],
-      "source": {
-        "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
-        "version": "1.20.5",
-        "extraction": "static-python-ast"
-      },
-      "schema_origin": "upstream-docstring",
-      "adjustments": []
-    },
-    {
-      "catalog_key": "round",
-      "runtime_key": "round",
-      "catalog_kind": "wrangle",
-      "status": "passed",
-      "issues": [],
-      "source": {
-        "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
-        "version": "1.20.5",
-        "extraction": "static-python-ast"
-      },
-      "schema_origin": "upstream-docstring",
-      "adjustments": []
-    },
-    {
       "catalog_key": "search.ai_mode",
       "runtime_key": "search.ai_mode",
       "catalog_kind": "wrangle",
@@ -2072,11 +2016,51 @@
       "adjustments": []
     },
     {
+      "catalog_key": "select.drop",
+      "runtime_key": "drop",
+      "catalog_kind": "wrangle",
+      "status": "passed",
+      "issues": [
+        {
+          "severity": "info",
+          "code": "catalog_key_binding_difference"
+        }
+      ],
+      "source": {
+        "repository": "https://github.com/wrangleworks/WranglesPY",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
+        "version": "1.20.5",
+        "extraction": "static-python-ast"
+      },
+      "schema_origin": "upstream-docstring",
+      "adjustments": []
+    },
+    {
       "catalog_key": "select.element",
       "runtime_key": "select.element",
       "catalog_kind": "wrangle",
       "status": "passed",
       "issues": [],
+      "source": {
+        "repository": "https://github.com/wrangleworks/WranglesPY",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
+        "version": "1.20.5",
+        "extraction": "static-python-ast"
+      },
+      "schema_origin": "upstream-docstring",
+      "adjustments": []
+    },
+    {
+      "catalog_key": "select.filter",
+      "runtime_key": "filter",
+      "catalog_kind": "wrangle",
+      "status": "passed",
+      "issues": [
+        {
+          "severity": "info",
+          "code": "catalog_key_binding_difference"
+        }
+      ],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
         "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
@@ -2207,6 +2191,26 @@
       "adjustments": []
     },
     {
+      "catalog_key": "select.sort",
+      "runtime_key": "sort",
+      "catalog_kind": "wrangle",
+      "status": "passed",
+      "issues": [
+        {
+          "severity": "info",
+          "code": "catalog_key_binding_difference"
+        }
+      ],
+      "source": {
+        "repository": "https://github.com/wrangleworks/WranglesPY",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
+        "version": "1.20.5",
+        "extraction": "static-python-ast"
+      },
+      "schema_origin": "upstream-docstring",
+      "adjustments": []
+    },
+    {
       "catalog_key": "select.substring",
       "runtime_key": "select.substring",
       "catalog_kind": "wrangle",
@@ -2252,56 +2256,16 @@
       "adjustments": []
     },
     {
-      "catalog_key": "similarity",
-      "runtime_key": "similarity",
+      "catalog_key": "split.explode",
+      "runtime_key": "explode",
       "catalog_kind": "wrangle",
       "status": "passed",
-      "issues": [],
-      "source": {
-        "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
-        "version": "1.20.5",
-        "extraction": "static-python-ast"
-      },
-      "schema_origin": "upstream-docstring",
-      "adjustments": []
-    },
-    {
-      "catalog_key": "sort",
-      "runtime_key": "sort",
-      "catalog_kind": "wrangle",
-      "status": "passed",
-      "issues": [],
-      "source": {
-        "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
-        "version": "1.20.5",
-        "extraction": "static-python-ast"
-      },
-      "schema_origin": "upstream-docstring",
-      "adjustments": []
-    },
-    {
-      "catalog_key": "sql",
-      "runtime_key": "sql",
-      "catalog_kind": "wrangle",
-      "status": "passed",
-      "issues": [],
-      "source": {
-        "repository": "https://github.com/wrangleworks/WranglesPY",
-        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
-        "version": "1.20.5",
-        "extraction": "static-python-ast"
-      },
-      "schema_origin": "upstream-docstring",
-      "adjustments": []
-    },
-    {
-      "catalog_key": "standardize",
-      "runtime_key": "standardize",
-      "catalog_kind": "wrangle",
-      "status": "passed",
-      "issues": [],
+      "issues": [
+        {
+          "severity": "info",
+          "code": "catalog_key_binding_difference"
+        }
+      ],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
         "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
@@ -2424,11 +2388,16 @@
       "adjustments": []
     },
     {
-      "catalog_key": "translate",
-      "runtime_key": "translate",
+      "catalog_key": "transform.copy",
+      "runtime_key": "copy",
       "catalog_kind": "wrangle",
       "status": "passed",
-      "issues": [],
+      "issues": [
+        {
+          "severity": "info",
+          "code": "catalog_key_binding_difference"
+        }
+      ],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
         "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
@@ -2439,7 +2408,47 @@
       "adjustments": []
     },
     {
-      "catalog_key": "transpose",
+      "catalog_key": "transform.reindex",
+      "runtime_key": "reindex",
+      "catalog_kind": "wrangle",
+      "status": "passed",
+      "issues": [
+        {
+          "severity": "info",
+          "code": "catalog_key_binding_difference"
+        }
+      ],
+      "source": {
+        "repository": "https://github.com/wrangleworks/WranglesPY",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
+        "version": "1.20.5",
+        "extraction": "static-python-ast"
+      },
+      "schema_origin": "upstream-docstring",
+      "adjustments": []
+    },
+    {
+      "catalog_key": "transform.rename",
+      "runtime_key": "rename",
+      "catalog_kind": "wrangle",
+      "status": "passed",
+      "issues": [
+        {
+          "severity": "info",
+          "code": "catalog_key_binding_difference"
+        }
+      ],
+      "source": {
+        "repository": "https://github.com/wrangleworks/WranglesPY",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
+        "version": "1.20.5",
+        "extraction": "static-python-ast"
+      },
+      "schema_origin": "upstream-docstring",
+      "adjustments": []
+    },
+    {
+      "catalog_key": "transform.transpose",
       "runtime_key": "transpose",
       "catalog_kind": "wrangle",
       "status": "passed",
@@ -2447,6 +2456,10 @@
         {
           "severity": "info",
           "code": "equivalent_type_spelling_normalized"
+        },
+        {
+          "severity": "info",
+          "code": "catalog_key_binding_difference"
         }
       ],
       "source": {
@@ -2461,11 +2474,136 @@
       ]
     },
     {
-      "catalog_key": "try",
+      "catalog_key": "utility.accordion",
+      "runtime_key": "accordion",
+      "catalog_kind": "wrangle",
+      "status": "passed",
+      "issues": [
+        {
+          "severity": "info",
+          "code": "catalog_key_binding_difference"
+        }
+      ],
+      "source": {
+        "repository": "https://github.com/wrangleworks/WranglesPY",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
+        "version": "1.20.5",
+        "extraction": "static-python-ast"
+      },
+      "schema_origin": "upstream-docstring",
+      "adjustments": []
+    },
+    {
+      "catalog_key": "utility.batch",
+      "runtime_key": "batch",
+      "catalog_kind": "wrangle",
+      "status": "passed",
+      "issues": [
+        {
+          "severity": "info",
+          "code": "catalog_key_binding_difference"
+        }
+      ],
+      "source": {
+        "repository": "https://github.com/wrangleworks/WranglesPY",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
+        "version": "1.20.5",
+        "extraction": "static-python-ast"
+      },
+      "schema_origin": "upstream-docstring",
+      "adjustments": []
+    },
+    {
+      "catalog_key": "utility.concurrent",
+      "runtime_key": "concurrent",
+      "catalog_kind": "wrangle",
+      "status": "passed",
+      "issues": [
+        {
+          "severity": "info",
+          "code": "catalog_key_binding_difference"
+        }
+      ],
+      "source": {
+        "repository": "https://github.com/wrangleworks/WranglesPY",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
+        "version": "1.20.5",
+        "extraction": "static-python-ast"
+      },
+      "schema_origin": "upstream-docstring",
+      "adjustments": []
+    },
+    {
+      "catalog_key": "utility.log",
+      "runtime_key": "log",
+      "catalog_kind": "wrangle",
+      "status": "passed",
+      "issues": [
+        {
+          "severity": "info",
+          "code": "catalog_key_binding_difference"
+        }
+      ],
+      "source": {
+        "repository": "https://github.com/wrangleworks/WranglesPY",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
+        "version": "1.20.5",
+        "extraction": "static-python-ast"
+      },
+      "schema_origin": "upstream-docstring",
+      "adjustments": []
+    },
+    {
+      "catalog_key": "utility.matrix",
+      "runtime_key": "matrix",
+      "catalog_kind": "wrangle",
+      "status": "passed",
+      "issues": [
+        {
+          "severity": "info",
+          "code": "catalog_key_binding_difference"
+        }
+      ],
+      "source": {
+        "repository": "https://github.com/wrangleworks/WranglesPY",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
+        "version": "1.20.5",
+        "extraction": "static-python-ast"
+      },
+      "schema_origin": "upstream-docstring",
+      "adjustments": []
+    },
+    {
+      "catalog_key": "utility.recipe",
+      "runtime_key": "recipe",
+      "catalog_kind": "wrangle",
+      "status": "passed",
+      "issues": [
+        {
+          "severity": "info",
+          "code": "catalog_key_binding_difference"
+        }
+      ],
+      "source": {
+        "repository": "https://github.com/wrangleworks/WranglesPY",
+        "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",
+        "version": "1.20.5",
+        "extraction": "static-python-ast"
+      },
+      "schema_origin": "upstream-docstring",
+      "adjustments": []
+    },
+    {
+      "catalog_key": "utility.try",
       "runtime_key": "try",
       "catalog_kind": "wrangle",
       "status": "passed",
-      "issues": [],
+      "issues": [
+        {
+          "severity": "info",
+          "code": "catalog_key_binding_difference"
+        }
+      ],
       "source": {
         "repository": "https://github.com/wrangleworks/WranglesPY",
         "revision": "bb47671ab023b3d3eb76fc42f07da4aaed056e2e",

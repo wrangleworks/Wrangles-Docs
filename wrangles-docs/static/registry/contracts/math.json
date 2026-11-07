@@ -5,7 +5,7 @@
   "schema_version": "0.3",
   "type": "wrangle",
   "catalog_id": "82",
-  "catalog_key": "math",
+  "catalog_key": "compute.math",
   "catalog_status": "active",
   "legacy_id": "494b11ad-00c1-4748-8b93-6bec982f4fec",
   "wrangle_name": "math",

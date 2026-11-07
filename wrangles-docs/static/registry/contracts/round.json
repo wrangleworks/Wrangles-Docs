@@ -5,7 +5,7 @@
   "schema_version": "0.3",
   "type": "wrangle",
   "catalog_id": "91",
-  "catalog_key": "round",
+  "catalog_key": "format.round",
   "catalog_status": "active",
   "legacy_id": "12f3111b-8511-4e42-8d3f-b5302dc3b4e4",
   "wrangle_name": "round",

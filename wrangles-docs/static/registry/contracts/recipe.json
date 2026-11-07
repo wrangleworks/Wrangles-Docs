@@ -5,7 +5,7 @@
   "schema_version": "0.3",
   "type": "wrangle",
   "catalog_id": "86",
-  "catalog_key": "recipe",
+  "catalog_key": "utility.recipe",
   "catalog_status": "active",
   "legacy_id": null,
   "wrangle_name": "recipe",

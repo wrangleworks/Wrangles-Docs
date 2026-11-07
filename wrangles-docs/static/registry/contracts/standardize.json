@@ -5,7 +5,7 @@
   "schema_version": "0.3",
   "type": "wrangle",
   "catalog_id": "95",
-  "catalog_key": "standardize",
+  "catalog_key": "format.standardize",
   "catalog_status": "active",
   "legacy_id": "53cd3fdd-24e2-4411-8655-6014b92a3f3a",
   "wrangle_name": "standardize",

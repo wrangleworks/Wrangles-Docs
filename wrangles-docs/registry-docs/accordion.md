@@ -167,14 +167,14 @@ a schema may require an argument even when Python provides a default.
 | Field | Value |
 | --- | --- |
 | Catalog ID | `69` |
-| Catalog key | `accordion` |
+| Catalog key | `utility.accordion` |
 | Recipe key | `accordion` |
 | Catalog status | active |
 | Lifecycle status | active |
 | Recipe Writer eligible | No |
 | Recipe Writer exclusion | Nested-list orchestration is not supported in the baseline. |
 | Namespace | Root-level |
-| Documentation group | `other` |
+| Documentation group | `utility` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.accordion` |
 | Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |

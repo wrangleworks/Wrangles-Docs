@@ -5,7 +5,7 @@
   "schema_version": "0.3",
   "type": "wrangle",
   "catalog_id": "70",
-  "catalog_key": "batch",
+  "catalog_key": "utility.batch",
   "catalog_status": "active",
   "legacy_id": null,
   "wrangle_name": "batch",

@@ -5,7 +5,7 @@
   "schema_version": "0.3",
   "type": "wrangle",
   "catalog_id": "69",
-  "catalog_key": "accordion",
+  "catalog_key": "utility.accordion",
   "catalog_status": "active",
   "legacy_id": null,
   "wrangle_name": "accordion",

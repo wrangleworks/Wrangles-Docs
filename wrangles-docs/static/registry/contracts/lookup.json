@@ -10,7 +10,7 @@
   "catalog_history": {
     "lookup": {
       "status": "legacy",
-      "catalog_key": "lookup"
+      "catalog_key": "lookup.lookup"
     }
   },
   "name_status": "legacy",

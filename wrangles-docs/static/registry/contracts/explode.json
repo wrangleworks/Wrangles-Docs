@@ -5,7 +5,7 @@
   "schema_version": "0.3",
   "type": "wrangle",
   "catalog_id": "77",
-  "catalog_key": "explode",
+  "catalog_key": "split.explode",
   "catalog_status": "active",
   "legacy_id": "4e4b13ac-8d50-4b2c-85c8-2c31de1e817d",
   "wrangle_name": "explode",

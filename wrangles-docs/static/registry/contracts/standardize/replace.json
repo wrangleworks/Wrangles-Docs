@@ -10,7 +10,7 @@
   "catalog_history": {
     "replace": {
       "status": "legacy",
-      "catalog_key": "replace"
+      "catalog_key": "format.replace"
     }
   },
   "legacy_id": null,

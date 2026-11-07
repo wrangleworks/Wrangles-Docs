@@ -5,7 +5,7 @@
   "schema_version": "0.3",
   "type": "wrangle",
   "catalog_id": "96",
-  "catalog_key": "translate",
+  "catalog_key": "format.translate",
   "catalog_status": "active",
   "legacy_id": "73c3ceb6-ffd8-4d74-8389-c83b99d33bb0",
   "wrangle_name": "translate",

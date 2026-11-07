@@ -11,7 +11,7 @@ toc_max_heading_level: 3
 import CopyableCode from '@site/src/components/CopyableCode';
 import RegistryLocationRedirect from '@site/src/components/RegistryLocationRedirect';
 
-<RegistryLocationRedirect from={"/py/namespaces/ai"} routes={{"classify":"/py/namespaces/other#classify","huggingface":"/py/namespaces/other#huggingface"}} />
+<RegistryLocationRedirect from={"/py/namespaces/ai"} routes={{}} />
 
 # AI Wrangles
 
@@ -1630,5 +1630,360 @@ a schema may require an argument even when Python provides a default.
 
 - [AI Wrangles — original documentation](https://wrangles.io/en/python/recipes/wrangles/ai)
 - [WranglesPY schema](https://github.com/wrangleworks/WranglesPY/blob/bd5f88fba479ec406b409cb2880689c54e72b298/wrangles/recipe_wrangles/ai.py)
+
+</details>
+
+
+---
+
+## Classify <CopyableCode value="classify" /> {#classify}
+
+Run a custom classification wrangle on the specified column or columns. A classification wrangle must be trained first.
+
+<details className="ww-field-disclosure">
+
+<summary>Complete configuration schema</summary>
+
+Schema source: upstream-docstring. Conditional and cross-parameter
+rules below apply in addition to the parameter table. References resolve against
+the [complete recipe schema](/schemas/recipes/registry/schema.json).
+
+
+
+```json
+{
+  "type": "object",
+  "catalog_id": "71",
+  "status": "active",
+  "description": "Run classify wrangles on the specified columns.\nRequires WrangleWorks Account and Subscription.\n",
+  "required": [
+    "input",
+    "output",
+    "model_id"
+  ],
+  "properties": {
+    "input": {
+      "type": [
+        "string",
+        "integer",
+        "array"
+      ],
+      "description": "Name of the input column."
+    },
+    "output": {
+      "type": [
+        "string",
+        "array"
+      ],
+      "description": "Name of the output column."
+    },
+    "model_id": {
+      "type": "string",
+      "description": "ID of the classification model to be used"
+    },
+    "include_confidence": {
+      "type": "boolean",
+      "description": "For models that support it, include the confidence level in the output"
+    },
+    "if": {
+      "$ref": "#/$defs/wrangles/commonProperties/if"
+    },
+    "where": {
+      "$ref": "#/$defs/wrangles/commonProperties/where"
+    },
+    "where_params": {
+      "$ref": "#/$defs/wrangles/commonProperties/where_params"
+    }
+  }
+}
+```
+
+</details>
+
+### Examples
+
+```yaml
+wrangles:
+  - classify:
+      input: Products
+      output: Category
+      model_id: ${model_id}
+      where: Products = Milk
+```
+
+<div className="ww-sample-grid">
+
+<div className="ww-sample-panel ww-sample-panel--input" data-sample-role="input">
+
+| Products |
+| --- |
+| Rice |
+| Milk |
+
+</div>
+
+<div className="ww-sample-panel ww-sample-panel--output" data-sample-role="output">
+
+| Category |
+| --- |
+|  |
+| Dairy |
+
+</div>
+
+</div>
+
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
+
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
+| --- | --- | --- | --- | --- |
+| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
+| `input` | Name of the input column. | string, integer, array | — | Yes |
+| `output` | Name of the output column. | string, array | — | Yes |
+| <span className="ww-param-group-label">Formatting</span> |  |  |  |  |
+| `include_confidence` | For models that support it, include the confidence level in the output | boolean | — | No |
+| <span className="ww-param-group-label">Details</span> |  |  |  |  |
+| `model_id` | ID of the classification model to be used | string | — | Yes |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
+
+</div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+</details>
+
+<details className="ww-field-disclosure">
+
+<summary>Access</summary>
+
+| Requirement | Value |
+| --- | --- |
+| AI-powered | No |
+| Requires WrangleWorks account | Yes |
+| Requires subscription | No |
+| Requires external API key | No |
+
+</details>
+
+<details className="ww-field-disclosure">
+
+<summary>Technical details</summary>
+
+| Field | Value |
+| --- | --- |
+| Catalog ID | `71` |
+| Catalog key | `ai.classify` |
+| Recipe key | `classify` |
+| Catalog status | active |
+| Lifecycle status | active |
+| Recipe Writer eligible | Yes |
+| Namespace | Root-level |
+| Documentation group | `ai` |
+| Aliases | None |
+| Runtime symbol | `wrangles.recipe_wrangles.main.classify` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
+| Legacy UUID | `06669ef8-cdd1-42f7-8078-98e0b7a42c30` |
+
+**Sources**
+
+- [WranglesPY classify implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/main.py)
+- [Archived classify Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/ai/_sources/classify.md)
+
+</details>
+
+
+---
+
+## Huggingface <CopyableCode value="huggingface" /> {#huggingface}
+
+Use a model from huggingface
+
+<details className="ww-field-disclosure">
+
+<summary>Complete configuration schema</summary>
+
+Schema source: upstream-docstring. Conditional and cross-parameter
+rules below apply in addition to the parameter table. References resolve against
+the [complete recipe schema](/schemas/recipes/registry/schema.json).
+
+
+
+```json
+{
+  "type": "object",
+  "catalog_id": "79",
+  "status": "active",
+  "description": "Use a model from huggingface",
+  "required": [
+    "input",
+    "api_token",
+    "model"
+  ],
+  "properties": {
+    "input": {
+      "type": [
+        "string",
+        "integer",
+        "array"
+      ],
+      "description": "Name of the input column."
+    },
+    "output": {
+      "type": [
+        "string",
+        "array"
+      ],
+      "description": "Name of the output column. If not provided, will overwrite the input column\n"
+    },
+    "model": {
+      "type": "string",
+      "description": "Name of the model to use. e.g. facebook/bart-large-cnn"
+    },
+    "api_token": {
+      "type": "string",
+      "description": "Huggingface API Token"
+    },
+    "parameters": {
+      "type": "object",
+      "description": "Optionally, provide additional parameters to define the model behaviour"
+    },
+    "timeout": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "description": "Request timeout in seconds; defaults to the AI configuration."
+    },
+    "retries": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Additional attempts after transient failures; defaults to the AI configuration."
+    },
+    "if": {
+      "$ref": "#/$defs/wrangles/commonProperties/if"
+    },
+    "where": {
+      "$ref": "#/$defs/wrangles/commonProperties/where"
+    },
+    "where_params": {
+      "$ref": "#/$defs/wrangles/commonProperties/where_params"
+    }
+  }
+}
+```
+
+</details>
+
+### Examples
+
+This template uses a Hugging Face summarization model. The exact response shape and text depend on the selected model.
+
+
+
+```yaml
+wrangles:
+  - huggingface:
+      input:
+        - Product Description
+      output:
+        - Summary
+      api_token: Your Hugging Face API token
+      model: facebook/bart-large-cnn
+```
+
+<div className="ww-sample-grid">
+
+<div className="ww-sample-panel ww-sample-panel--input" data-sample-role="input">
+
+| Product Description |
+| --- |
+| A cordless drill with two batteries, a charger, and a compact carrying case. |
+
+</div>
+
+<div className="ww-sample-panel ww-sample-panel--output" data-sample-role="output">
+
+| Summary |
+| --- |
+| Cordless drill kit with batteries, charger, and case. |
+
+</div>
+
+</div>
+
+_Template based on the documented parameters; no published source example is currently available._
+
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
+
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
+| --- | --- | --- | --- | --- |
+| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
+| `input` | Name of the input column. | string, integer, array | — | Yes |
+| `output` | Name of the output column. If not provided, will overwrite the input column<br /> | string, array | `null` | No |
+| <span className="ww-param-group-label">Options</span> |  |  |  |  |
+| `parameters` | Optionally, provide additional parameters to define the model behaviour | object | `null` | No |
+| `timeout` | Request timeout in seconds; defaults to the AI configuration. | number | `null` | No |
+| `retries` | Additional attempts after transient failures; defaults to the AI configuration. | integer | `null` | No |
+| <span className="ww-param-group-label">Details</span> |  |  |  |  |
+| `api_token` | Huggingface API Token | string | — | Yes |
+| `model` | Name of the model to use. e.g. facebook/bart-large-cnn | string | — | Yes |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
+
+</div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+</details>
+
+<details className="ww-field-disclosure">
+
+<summary>Access</summary>
+
+| Requirement | Value |
+| --- | --- |
+| AI-powered | No |
+| Requires WrangleWorks account | No |
+| Requires subscription | No |
+| Requires external API key | No |
+
+</details>
+
+<details className="ww-field-disclosure">
+
+<summary>Technical details</summary>
+
+| Field | Value |
+| --- | --- |
+| Catalog ID | `79` |
+| Catalog key | `ai.huggingface` |
+| Recipe key | `huggingface` |
+| Catalog status | active |
+| Lifecycle status | active |
+| Recipe Writer eligible | Yes |
+| Namespace | Root-level |
+| Documentation group | `ai` |
+| Aliases | None |
+| Runtime symbol | `wrangles.recipe_wrangles.main.huggingface` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
+| Legacy UUID | `ae12cf20-4934-428f-84a9-a6898cb7ffe0` |
+
+**Sources**
+
+- [WranglesPY huggingface implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/main.py)
+- [Archived huggingface Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/ai/_sources/huggingface.md)
 
 </details>

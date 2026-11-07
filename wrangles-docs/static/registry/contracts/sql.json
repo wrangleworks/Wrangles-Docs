@@ -5,7 +5,7 @@
   "schema_version": "0.3",
   "type": "wrangle",
   "catalog_id": "94",
-  "catalog_key": "sql",
+  "catalog_key": "compute.sql",
   "catalog_status": "active",
   "legacy_id": "467a06b1-a697-4d31-8061-7d83a719fd79",
   "wrangle_name": "sql",

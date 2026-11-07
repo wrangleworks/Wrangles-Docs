@@ -5,7 +5,7 @@
   "schema_version": "0.3",
   "type": "wrangle",
   "catalog_id": "79",
-  "catalog_key": "huggingface",
+  "catalog_key": "ai.huggingface",
   "catalog_status": "active",
   "legacy_id": "ae12cf20-4934-428f-84a9-a6898cb7ffe0",
   "wrangle_name": "huggingface",

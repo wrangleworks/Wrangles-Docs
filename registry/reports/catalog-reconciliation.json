@@ -6,7 +6,7 @@
     "system": "API Core",
     "repository": "https://github.com/wrangleworks/API-Core",
     "table": "public.wrangles_catalog",
-    "data_updated_through": "2026-11-06T16:17:54Z"
+    "data_updated_through": "2026-11-07T08:31:58Z"
   },
   "summary": {
     "catalog_entries": 152,
@@ -23,7 +23,7 @@
   "matched_entries": [
     {
       "catalog_id": "69",
-      "catalog_key": "accordion",
+      "catalog_key": "utility.accordion",
       "wrangle_key": "accordion",
       "title": null,
       "catalog_status": "active",
@@ -123,7 +123,7 @@
     },
     {
       "catalog_id": "70",
-      "catalog_key": "batch",
+      "catalog_key": "utility.batch",
       "wrangle_key": "batch",
       "title": null,
       "catalog_status": "active",
@@ -143,7 +143,7 @@
     },
     {
       "catalog_id": "71",
-      "catalog_key": "classify",
+      "catalog_key": "ai.classify",
       "wrangle_key": "classify",
       "title": null,
       "catalog_status": "active",
@@ -163,7 +163,7 @@
     },
     {
       "catalog_id": "72",
-      "catalog_key": "clean_whitespaces",
+      "catalog_key": "format.clean_whitespaces",
       "wrangle_key": "clean_whitespaces",
       "title": null,
       "catalog_status": "active",
@@ -263,7 +263,7 @@
     },
     {
       "catalog_id": "73",
-      "catalog_key": "concurrent",
+      "catalog_key": "utility.concurrent",
       "wrangle_key": "concurrent",
       "title": null,
       "catalog_status": "active",
@@ -443,7 +443,7 @@
     },
     {
       "catalog_id": "74",
-      "catalog_key": "copy",
+      "catalog_key": "transform.copy",
       "wrangle_key": "copy",
       "title": null,
       "catalog_status": "active",
@@ -623,7 +623,7 @@
     },
     {
       "catalog_id": "75",
-      "catalog_key": "date_calculator",
+      "catalog_key": "date.date_calculator",
       "wrangle_key": "date_calculator",
       "title": null,
       "catalog_status": "active",
@@ -643,7 +643,7 @@
     },
     {
       "catalog_id": "76",
-      "catalog_key": "drop",
+      "catalog_key": "select.drop",
       "wrangle_key": "drop",
       "title": null,
       "catalog_status": "active",
@@ -663,7 +663,7 @@
     },
     {
       "catalog_id": "77",
-      "catalog_key": "explode",
+      "catalog_key": "split.explode",
       "wrangle_key": "explode",
       "title": null,
       "catalog_status": "active",
@@ -903,7 +903,7 @@
     },
     {
       "catalog_id": "78",
-      "catalog_key": "filter",
+      "catalog_key": "select.filter",
       "wrangle_key": "filter",
       "title": null,
       "catalog_status": "active",
@@ -1103,7 +1103,7 @@
     },
     {
       "catalog_id": "79",
-      "catalog_key": "huggingface",
+      "catalog_key": "ai.huggingface",
       "wrangle_key": "huggingface",
       "title": null,
       "catalog_status": "active",
@@ -1123,7 +1123,7 @@
     },
     {
       "catalog_id": "80",
-      "catalog_key": "log",
+      "catalog_key": "utility.log",
       "wrangle_key": "log",
       "title": null,
       "catalog_status": "active",
@@ -1203,7 +1203,7 @@
     },
     {
       "catalog_id": "82",
-      "catalog_key": "math",
+      "catalog_key": "compute.math",
       "wrangle_key": "math",
       "title": null,
       "catalog_status": "active",
@@ -1223,7 +1223,7 @@
     },
     {
       "catalog_id": "83",
-      "catalog_key": "maths",
+      "catalog_key": "compute.maths",
       "wrangle_key": "maths",
       "title": null,
       "catalog_status": "active",
@@ -1248,7 +1248,7 @@
     },
     {
       "catalog_id": "84",
-      "catalog_key": "matrix",
+      "catalog_key": "utility.matrix",
       "wrangle_key": "matrix",
       "title": null,
       "catalog_status": "active",
@@ -1408,7 +1408,7 @@
     },
     {
       "catalog_id": "85",
-      "catalog_key": "python",
+      "catalog_key": "compute.python",
       "wrangle_key": "python",
       "title": null,
       "catalog_status": "active",
@@ -1428,7 +1428,7 @@
     },
     {
       "catalog_id": "86",
-      "catalog_key": "recipe",
+      "catalog_key": "utility.recipe",
       "wrangle_key": "recipe",
       "title": null,
       "catalog_status": "active",
@@ -1448,7 +1448,7 @@
     },
     {
       "catalog_id": "87",
-      "catalog_key": "reindex",
+      "catalog_key": "transform.reindex",
       "wrangle_key": "reindex",
       "title": null,
       "catalog_status": "active",
@@ -1468,7 +1468,7 @@
     },
     {
       "catalog_id": "88",
-      "catalog_key": "remove_words",
+      "catalog_key": "format.remove_words",
       "wrangle_key": "remove_words",
       "title": null,
       "catalog_status": "active",
@@ -1488,7 +1488,7 @@
     },
     {
       "catalog_id": "89",
-      "catalog_key": "rename",
+      "catalog_key": "transform.rename",
       "wrangle_key": "rename",
       "title": null,
       "catalog_status": "active",
@@ -1528,7 +1528,7 @@
     },
     {
       "catalog_id": "91",
-      "catalog_key": "round",
+      "catalog_key": "format.round",
       "wrangle_key": "round",
       "title": null,
       "catalog_status": "active",
@@ -1888,7 +1888,7 @@
     },
     {
       "catalog_id": "92",
-      "catalog_key": "similarity",
+      "catalog_key": "compare.similarity",
       "wrangle_key": "similarity",
       "title": null,
       "catalog_status": "active",
@@ -1908,7 +1908,7 @@
     },
     {
       "catalog_id": "93",
-      "catalog_key": "sort",
+      "catalog_key": "select.sort",
       "wrangle_key": "sort",
       "title": null,
       "catalog_status": "active",
@@ -2008,7 +2008,7 @@
     },
     {
       "catalog_id": "94",
-      "catalog_key": "sql",
+      "catalog_key": "compute.sql",
       "wrangle_key": "sql",
       "title": null,
       "catalog_status": "active",
@@ -2028,7 +2028,7 @@
     },
     {
       "catalog_id": "95",
-      "catalog_key": "standardize",
+      "catalog_key": "format.standardize",
       "wrangle_key": "standardize",
       "title": null,
       "catalog_status": "active",
@@ -2193,7 +2193,7 @@
     },
     {
       "catalog_id": "96",
-      "catalog_key": "translate",
+      "catalog_key": "format.translate",
       "wrangle_key": "translate",
       "title": null,
       "catalog_status": "active",
@@ -2213,7 +2213,7 @@
     },
     {
       "catalog_id": "97",
-      "catalog_key": "transpose",
+      "catalog_key": "transform.transpose",
       "wrangle_key": "transpose",
       "title": null,
       "catalog_status": "active",
@@ -2233,7 +2233,7 @@
     },
     {
       "catalog_id": "98",
-      "catalog_key": "try",
+      "catalog_key": "utility.try",
       "wrangle_key": "try",
       "title": null,
       "catalog_status": "active",

@@ -5,7 +5,7 @@
   "schema_version": "0.3",
   "type": "wrangle",
   "catalog_id": "98",
-  "catalog_key": "try",
+  "catalog_key": "utility.try",
   "catalog_status": "active",
   "legacy_id": null,
   "wrangle_name": "try",

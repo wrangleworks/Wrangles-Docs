@@ -11,11 +11,172 @@ toc_max_heading_level: 3
 import CopyableCode from '@site/src/components/CopyableCode';
 import RegistryLocationRedirect from '@site/src/components/RegistryLocationRedirect';
 
-<RegistryLocationRedirect from={"/py/namespaces/format"} routes={{"clean-whitespaces":"/py/namespaces/other#clean-whitespaces","remove-words":"/py/namespaces/other#remove-words","replace":"/py/namespaces/other#replace","round":"/py/namespaces/other#round","standardize":"/py/namespaces/other#standardize","translate":"/py/namespaces/other#translate"}} />
+<RegistryLocationRedirect from={"/py/namespaces/format"} routes={{}} />
 
 # Format Wrangles
 
 Format wrangles, with recipe examples, parameters, and behavior.
+
+## Clean Whitespaces <CopyableCode value="clean_whitespaces" /> {#clean-whitespaces}
+
+Condense multiple spaces to a single space and convert special space characters to a standard space.
+
+<details className="ww-field-disclosure">
+
+<summary>Complete configuration schema</summary>
+
+Schema source: upstream-docstring. Conditional and cross-parameter
+rules below apply in addition to the parameter table. References resolve against
+the [complete recipe schema](/schemas/recipes/registry/schema.json).
+
+
+
+```json
+{
+  "type": "object",
+  "catalog_id": "72",
+  "status": "active",
+  "description": "Condense multiple spaces to a single space and convert special space characters to a standard space.",
+  "additionalProperties": false,
+  "required": [
+    "input"
+  ],
+  "properties": {
+    "input": {
+      "type": [
+        "string",
+        "integer",
+        "array"
+      ],
+      "description": "Name or list of input columns."
+    },
+    "output": {
+      "type": [
+        "string",
+        "array"
+      ],
+      "description": "Name or list of output columns."
+    },
+    "trim": {
+      "type": "boolean",
+      "description": "Whether to trim leading and trailing spaces. Default True."
+    },
+    "remove_literals": {
+      "type": "boolean",
+      "description": "Whether to remove special space characters such as new lines etc. Default True."
+    },
+    "if": {
+      "$ref": "#/$defs/wrangles/commonProperties/if"
+    },
+    "where": {
+      "$ref": "#/$defs/wrangles/commonProperties/where"
+    },
+    "where_params": {
+      "$ref": "#/$defs/wrangles/commonProperties/where_params"
+    }
+  }
+}
+```
+
+</details>
+
+### Examples
+
+```yaml
+wrangles:
+  - clean_whitespaces:
+      input: Products
+```
+
+<div className="ww-sample-grid">
+
+<div className="ww-sample-panel ww-sample-panel--input" data-sample-role="input">
+
+| Products |
+| --- |
+| `Hello     world!` |
+| `Hello     universe!` |
+
+</div>
+
+<div className="ww-sample-panel ww-sample-panel--output" data-sample-role="output">
+
+| Products |
+| --- |
+| Hello world! |
+| Hello universe! |
+
+</div>
+
+</div>
+
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
+
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
+| --- | --- | --- | --- | --- |
+| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
+| `input` | Name or list of input columns. | string, integer, array | — | Yes |
+| `output` | Name or list of output columns. | string, array | `null` | No |
+| <span className="ww-param-group-label">Options</span> |  |  |  |  |
+| `trim` | Whether to trim leading and trailing spaces. Default True. | boolean | `true` | No |
+| `remove_literals` | Whether to remove special space characters such as new lines etc. Default True. | boolean | `true` | No |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
+
+</div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+</details>
+
+<details className="ww-field-disclosure">
+
+<summary>Access</summary>
+
+| Requirement | Value |
+| --- | --- |
+| AI-powered | No |
+| Requires WrangleWorks account | No |
+| Requires subscription | No |
+| Requires external API key | No |
+
+</details>
+
+<details className="ww-field-disclosure">
+
+<summary>Technical details</summary>
+
+| Field | Value |
+| --- | --- |
+| Catalog ID | `72` |
+| Catalog key | `format.clean_whitespaces` |
+| Recipe key | `clean_whitespaces` |
+| Catalog status | active |
+| Lifecycle status | active |
+| Recipe Writer eligible | Yes |
+| Namespace | Root-level |
+| Documentation group | `format` |
+| Aliases | None |
+| Runtime symbol | `wrangles.recipe_wrangles.main.clean_whitespaces` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
+| Legacy UUID | `e36e15c4-f0ad-43f8-8555-ef683a8ab892` |
+
+**Sources**
+
+- [WranglesPY clean_whitespaces implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/main.py)
+- [Archived clean_whitespaces Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/format/_sources/clean-whitespaces.md)
+
+</details>
+
+
+---
 
 ## Dates <CopyableCode value="format.dates" /> {#dates}
 
@@ -1294,5 +1455,898 @@ a schema may require an argument even when Python provides a default.
 
 - [WranglesPY format.trim implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/format.py)
 - [Archived format.trim Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/format/_sources/trim.md)
+
+</details>
+
+
+---
+
+## Remove Words <CopyableCode value="remove_words" /> {#remove-words}
+
+Remove all the elements that occur in one list from another.
+
+<details className="ww-field-disclosure">
+
+<summary>Complete configuration schema</summary>
+
+Schema source: upstream-docstring. Conditional and cross-parameter
+rules below apply in addition to the parameter table. References resolve against
+the [complete recipe schema](/schemas/recipes/registry/schema.json).
+
+
+
+```json
+{
+  "type": "object",
+  "catalog_id": "88",
+  "status": "active",
+  "description": "Remove all the elements that occur in one list from another.",
+  "additionalProperties": false,
+  "required": [
+    "input",
+    "to_remove",
+    "output"
+  ],
+  "properties": {
+    "input": {
+      "type": [
+        "string",
+        "integer",
+        "array"
+      ],
+      "description": "Name of column to remove words from"
+    },
+    "to_remove": {
+      "type": "array",
+      "description": "Column or list of columns with a list of words to be removed"
+    },
+    "output": {
+      "type": [
+        "string",
+        "array"
+      ],
+      "description": "Name of the output columns"
+    },
+    "tokenize_to_remove": {
+      "type": "boolean",
+      "description": "Tokenize all to_remove inputs"
+    },
+    "ignore_case": {
+      "type": "boolean",
+      "description": "Ignore input and to_remove case"
+    },
+    "if": {
+      "$ref": "#/$defs/wrangles/commonProperties/if"
+    },
+    "where": {
+      "$ref": "#/$defs/wrangles/commonProperties/where"
+    },
+    "where_params": {
+      "$ref": "#/$defs/wrangles/commonProperties/where_params"
+    }
+  }
+}
+```
+
+</details>
+
+### Examples
+
+```yaml
+wrangles:
+   - remove_words:
+        input: Description
+        to_remove: # To Remove columns must be list
+          - Materials
+          - Colours
+        output: Product
+        tokenize_to_remove: True
+        ignore_case: False
+```
+
+<div className="ww-sample-grid">
+
+<div className="ww-sample-panel ww-sample-panel--input" data-sample-role="input">
+
+| Colours | Materials | Description |
+| --- | --- | --- |
+| ['Blue'] | ['Steel'] | Steel Blue Bottle |
+| ['Blue'] | ['Steel'] | ['Steel', 'Blue', 'Bottle'] |
+
+</div>
+
+<div className="ww-sample-panel ww-sample-panel--output" data-sample-role="output">
+
+| Product |
+| --- |
+| Bottle |
+| Bottle |
+
+</div>
+
+</div>
+
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
+
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
+| --- | --- | --- | --- | --- |
+| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
+| `input` | Name of column to remove words from | string, integer, array | — | Yes |
+| `to_remove` | Column or list of columns with a list of words to be removed | array | — | Yes |
+| `output` | Name of the output columns | string, array | `null` | Yes |
+| <span className="ww-param-group-label">Options</span> |  |  |  |  |
+| `tokenize_to_remove` | Tokenize all to_remove inputs | boolean | `false` | No |
+| `ignore_case` | Ignore input and to_remove case | boolean | `true` | No |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
+
+</div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+</details>
+
+<details className="ww-field-disclosure">
+
+<summary>Access</summary>
+
+| Requirement | Value |
+| --- | --- |
+| AI-powered | No |
+| Requires WrangleWorks account | No |
+| Requires subscription | No |
+| Requires external API key | No |
+
+</details>
+
+<details className="ww-field-disclosure">
+
+<summary>Technical details</summary>
+
+| Field | Value |
+| --- | --- |
+| Catalog ID | `88` |
+| Catalog key | `format.remove_words` |
+| Recipe key | `remove_words` |
+| Catalog status | active |
+| Lifecycle status | active |
+| Recipe Writer eligible | Yes |
+| Namespace | Root-level |
+| Documentation group | `format` |
+| Aliases | None |
+| Runtime symbol | `wrangles.recipe_wrangles.main.remove_words` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
+| Legacy UUID | `543b96c3-f354-48be-8046-bf0cb9fbaf56` |
+
+**Sources**
+
+- [WranglesPY remove_words implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/main.py)
+- [Archived remove_words Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/format/_sources/remove-words.md)
+
+</details>
+
+
+---
+
+## Replace <span className="ww-legacy-help"><span className="ww-legacy-pill" tabIndex={0}>Legacy</span><span className="ww-legacy-tooltip">This wrangle is planned for deprecation. Your existing recipes will continue to work. For new recipes, use <a href="/py/namespaces/standardize#replace">standardize.replace</a>.</span></span> <CopyableCode value="replace" /> {#replace}
+
+Quick find and replace for simple values. Can use regex in the `find` field.
+
+:::note
+Values that are not a number or a string pass through unaltered.
+:::
+
+<details className="ww-field-disclosure">
+
+<summary>Complete configuration schema</summary>
+
+Schema source: upstream-docstring. Conditional and cross-parameter
+rules below apply in addition to the parameter table. References resolve against
+the [complete recipe schema](/schemas/recipes/registry/schema.json).
+
+
+
+```json
+{
+  "type": "object",
+  "catalog_id": "90",
+  "status": "legacy",
+  "description": "Quick find and replace for simple values. Can use regex if 'input' in params and isinstance(params['input'], list):in the find field.",
+  "additionalProperties": false,
+  "required": [
+    "input",
+    "find",
+    "replace"
+  ],
+  "properties": {
+    "input": {
+      "type": [
+        "string",
+        "integer",
+        "array"
+      ],
+      "description": "Name or list of input column"
+    },
+    "output": {
+      "type": [
+        "string",
+        "array"
+      ],
+      "description": "Name or list of output column"
+    },
+    "find": {
+      "type": "string",
+      "description": "Pattern to find using regex"
+    },
+    "replace": {
+      "type": "string",
+      "description": "Value to replace the pattern found"
+    },
+    "if": {
+      "$ref": "#/$defs/wrangles/commonProperties/if"
+    },
+    "where": {
+      "$ref": "#/$defs/wrangles/commonProperties/where"
+    },
+    "where_params": {
+      "$ref": "#/$defs/wrangles/commonProperties/where_params"
+    }
+  }
+}
+```
+
+</details>
+
+### Examples
+
+```yaml
+wrangles:
+  - replace:
+      input: Product Data
+      find: brg
+      replace: bearing
+```
+
+<div className="ww-sample-grid">
+
+<div className="ww-sample-panel ww-sample-panel--input" data-sample-role="input">
+
+| Product Data |
+| --- |
+| SKF ball brg |
+| brg seal |
+
+</div>
+
+<div className="ww-sample-panel ww-sample-panel--output" data-sample-role="output">
+
+| Product Data |
+| --- |
+| SKF ball bearing |
+| bearing seal |
+
+</div>
+
+</div>
+
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
+
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
+| --- | --- | --- | --- | --- |
+| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
+| `input` | Name or list of input column | string, integer, array | — | Yes |
+| `output` | Name or list of output column | string, array | `null` | No |
+| <span className="ww-param-group-label">Options</span> |  |  |  |  |
+| `find` | Pattern to find using regex | string | — | Yes |
+| `replace` | Value to replace the pattern found | string | — | Yes |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
+
+</div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+</details>
+
+<details className="ww-field-disclosure">
+
+<summary>Access</summary>
+
+| Requirement | Value |
+| --- | --- |
+| AI-powered | No |
+| Requires WrangleWorks account | No |
+| Requires subscription | No |
+| Requires external API key | No |
+
+</details>
+
+<details className="ww-field-disclosure">
+
+<summary>Technical details</summary>
+
+| Field | Value |
+| --- | --- |
+| Catalog ID | `90` |
+| Catalog key | `standardize.replace` |
+| Recipe key | `replace` |
+| Catalog status | active |
+| Lifecycle status | active |
+| Recipe Writer eligible | Yes |
+| Namespace | Root-level |
+| Documentation group | `format` |
+| Aliases | None |
+| Runtime symbol | `wrangles.recipe_wrangles.main.replace` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
+| Legacy UUID | `f0ab715e-9e0e-4614-83e4-5cd8ea08a09f` |
+
+**Sources**
+
+- [WranglesPY replace implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/main.py)
+- [Archived replace Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/format/_sources/replace.md)
+
+</details>
+
+
+---
+
+## Round <CopyableCode value="round" /> {#round}
+
+Round numbers in a column to the nearest decimal point of your choosing.
+
+<details className="ww-field-disclosure">
+
+<summary>Complete configuration schema</summary>
+
+Schema source: upstream-docstring. Conditional and cross-parameter
+rules below apply in addition to the parameter table. References resolve against
+the [complete recipe schema](/schemas/recipes/registry/schema.json).
+
+
+
+```json
+{
+  "type": "object",
+  "catalog_id": "91",
+  "status": "active",
+  "description": "Round column(s) to the specified decimals",
+  "additionalProperties": false,
+  "required": [
+    "input"
+  ],
+  "properties": {
+    "input": {
+      "type": [
+        "string",
+        "integer",
+        "array"
+      ],
+      "description": "Name of the input column(s)"
+    },
+    "output": {
+      "type": [
+        "string",
+        "array"
+      ],
+      "description": "Name of the output column(s)"
+    },
+    "decimals": {
+      "type": "number",
+      "description": "Number of decimal places to round column"
+    },
+    "if": {
+      "$ref": "#/$defs/wrangles/commonProperties/if"
+    },
+    "where": {
+      "$ref": "#/$defs/wrangles/commonProperties/where"
+    },
+    "where_params": {
+      "$ref": "#/$defs/wrangles/commonProperties/where_params"
+    }
+  }
+}
+```
+
+</details>
+
+### Examples
+
+```yaml
+wrangles:
+  - round:
+      input: Cost Per Unit
+      output: Cost Rounded
+      decimals: 2
+```
+
+<div className="ww-sample-grid">
+
+<div className="ww-sample-panel ww-sample-panel--input" data-sample-role="input">
+
+| Cost Per Unit |
+| --- |
+| 3.14159 |
+| 2.71828 |
+
+</div>
+
+<div className="ww-sample-panel ww-sample-panel--output" data-sample-role="output">
+
+| Cost Rounded |
+| --- |
+| 3.14 |
+| 2.72 |
+
+</div>
+
+</div>
+
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
+
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
+| --- | --- | --- | --- | --- |
+| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
+| `input` | Name of the input column(s) | string, integer, array | — | Yes |
+| `output` | Name of the output column(s) | string, array | `null` | No |
+| <span className="ww-param-group-label">Formatting</span> |  |  |  |  |
+| `decimals` | Number of decimal places to round column | number | `0` | No |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
+
+</div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+</details>
+
+<details className="ww-field-disclosure">
+
+<summary>Access</summary>
+
+| Requirement | Value |
+| --- | --- |
+| AI-powered | No |
+| Requires WrangleWorks account | No |
+| Requires subscription | No |
+| Requires external API key | No |
+
+</details>
+
+<details className="ww-field-disclosure">
+
+<summary>Technical details</summary>
+
+| Field | Value |
+| --- | --- |
+| Catalog ID | `91` |
+| Catalog key | `format.round` |
+| Recipe key | `round` |
+| Catalog status | active |
+| Lifecycle status | active |
+| Recipe Writer eligible | Yes |
+| Namespace | Root-level |
+| Documentation group | `format` |
+| Aliases | None |
+| Runtime symbol | `wrangles.recipe_wrangles.pandas.round` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
+| Legacy UUID | `12f3111b-8511-4e42-8d3f-b5302dc3b4e4` |
+
+**Sources**
+
+- [WranglesPY round implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/pandas.py)
+- [Archived round Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/format/_sources/round.md)
+
+</details>
+
+
+---
+
+## Translate <CopyableCode value="translate" /> {#translate}
+
+Translate the input column to another language. Powered by DeepL.
+
+<details className="ww-field-disclosure">
+
+<summary>Complete configuration schema</summary>
+
+Schema source: upstream-docstring. Conditional and cross-parameter
+rules below apply in addition to the parameter table. References resolve against
+the [complete recipe schema](/schemas/recipes/registry/schema.json).
+
+
+
+```json
+{
+  "type": "object",
+  "catalog_id": "96",
+  "status": "active",
+  "description": "Translate the input to a different language. Requires WrangleWorks Account and DeepL API Key (A free account for up to 500,000 characters per month is available).",
+  "additionalProperties": false,
+  "required": [
+    "input",
+    "output",
+    "target_language"
+  ],
+  "properties": {
+    "input": {
+      "type": [
+        "string",
+        "integer",
+        "array"
+      ],
+      "description": "Name of the column to translate"
+    },
+    "output": {
+      "type": [
+        "string",
+        "array"
+      ],
+      "description": "Name of the output column"
+    },
+    "target_language": {
+      "type": "string",
+      "description": "Code of the language to translate to",
+      "enum": [
+        "Bulgarian",
+        "Chinese",
+        "Czech",
+        "Danish",
+        "Dutch",
+        "English (American)",
+        "English (British)",
+        "Estonian",
+        "Finnish",
+        "French",
+        "German",
+        "Greek",
+        "Hungarian",
+        "Italian",
+        "Japanese",
+        "Latvian",
+        "Lithuanian",
+        "Polish",
+        "Portuguese",
+        "Portuguese (Brazilian)",
+        "Romanian",
+        "Russian",
+        "Slovak",
+        "Slovenian",
+        "Spanish",
+        "Swedish"
+      ]
+    },
+    "source_language": {
+      "type": "string",
+      "description": "Code of the language to translate from. If omitted, automatically detects the input language",
+      "enum": [
+        "Auto",
+        "Bulgarian",
+        "Chinese",
+        "Czech",
+        "Danish",
+        "Dutch",
+        "English",
+        "Estonian",
+        "Finnish",
+        "French",
+        "German",
+        "Greek",
+        "Hungarian",
+        "Italian",
+        "Japanese",
+        "Latvian",
+        "Lithuanian",
+        "Polish",
+        "Portuguese",
+        "Romanian",
+        "Russian",
+        "Slovak",
+        "Slovenian",
+        "Spanish",
+        "Swedish"
+      ]
+    },
+    "if": {
+      "$ref": "#/$defs/wrangles/commonProperties/if"
+    },
+    "where": {
+      "$ref": "#/$defs/wrangles/commonProperties/where"
+    },
+    "where_params": {
+      "$ref": "#/$defs/wrangles/commonProperties/where_params"
+    }
+  }
+}
+```
+
+</details>
+
+### Examples
+
+```yaml
+wrangles:
+  - translate:
+      input: Español
+      output: English
+      source_language: Spanish
+      target_language: English (British)
+```
+
+<div className="ww-sample-grid">
+
+<div className="ww-sample-panel ww-sample-panel--input" data-sample-role="input">
+
+| Español |
+| --- |
+| ¡Hola Mundo! |
+
+</div>
+
+<div className="ww-sample-panel ww-sample-panel--output" data-sample-role="output">
+
+| English |
+| --- |
+| Hello World! |
+
+</div>
+
+</div>
+
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
+
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
+| --- | --- | --- | --- | --- |
+| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
+| `input` | Name of the column to translate | string, integer, array | — | Yes |
+| `output` | Name of the output column | string, array | — | Yes |
+| <span className="ww-param-group-label">Options</span> |  |  |  |  |
+| `target_language` | Code of the language to translate to | string; one of:<ul className="ww-param-enum-values"><li>Bulgarian</li><li>Chinese</li><li>Czech</li><li>Danish</li><li>Dutch</li><li>English (American)</li><li>English (British)</li><li>Estonian</li><li>Finnish</li><li>French</li><li>German</li><li>Greek</li><li>Hungarian</li><li>Italian</li><li>Japanese</li><li>Latvian</li><li>Lithuanian</li><li>Polish</li><li>Portuguese</li><li>Portuguese (Brazilian)</li><li>Romanian</li><li>Russian</li><li>Slovak</li><li>Slovenian</li><li>Spanish</li><li>Swedish</li></ul> | — | Yes |
+| `source_language` | Code of the language to translate from. If omitted, automatically detects the input language | string; one of:<ul className="ww-param-enum-values"><li>Auto</li><li>Bulgarian</li><li>Chinese</li><li>Czech</li><li>Danish</li><li>Dutch</li><li>English</li><li>Estonian</li><li>Finnish</li><li>French</li><li>German</li><li>Greek</li><li>Hungarian</li><li>Italian</li><li>Japanese</li><li>Latvian</li><li>Lithuanian</li><li>Polish</li><li>Portuguese</li><li>Romanian</li><li>Russian</li><li>Slovak</li><li>Slovenian</li><li>Spanish</li><li>Swedish</li></ul> | `"AUTO"` | No |
+| `case` | Allow changing the case of the input prior to translation. | Any JSON value (not constrained upstream) | `null` | No |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
+
+</div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+</details>
+
+<details className="ww-field-disclosure">
+
+<summary>Access</summary>
+
+| Requirement | Value |
+| --- | --- |
+| AI-powered | No |
+| Requires WrangleWorks account | Yes |
+| Requires subscription | No |
+| Requires external API key | No |
+
+</details>
+
+<details className="ww-field-disclosure">
+
+<summary>Technical details</summary>
+
+| Field | Value |
+| --- | --- |
+| Catalog ID | `96` |
+| Catalog key | `format.translate` |
+| Recipe key | `translate` |
+| Catalog status | active |
+| Lifecycle status | active |
+| Recipe Writer eligible | Yes |
+| Namespace | Root-level |
+| Documentation group | `format` |
+| Aliases | None |
+| Runtime symbol | `wrangles.recipe_wrangles.main.translate` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
+| Legacy UUID | `73c3ceb6-ffd8-4d74-8389-c83b99d33bb0` |
+
+**Sources**
+
+- [WranglesPY translate implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/main.py)
+- [Archived translate Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/format/_sources/translate.md)
+
+</details>
+
+
+---
+
+## Standardize (Deprecated) <CopyableCode value="standardize" /> {#standardize}
+
+:::warning Deprecated
+This compatibility wrangle remains available for existing recipes. Use [`standardize.custom`](/py/namespaces/standardize#custom) for new recipes.
+:::
+
+Run a standardize wrangle, such as one that expands abbreviations. A standardization wrangle must be trained first.
+
+<details className="ww-field-disclosure">
+
+<summary>Complete configuration schema</summary>
+
+Schema source: upstream-docstring. Conditional and cross-parameter
+rules below apply in addition to the parameter table. References resolve against
+the [complete recipe schema](/schemas/recipes/registry/schema.json).
+
+
+
+```json
+{
+  "type": "object",
+  "catalog_id": "95",
+  "status": "active",
+  "description": "Standardize data using a DIY or bespoke standardization wrangle. Requires WrangleWorks Account and Subscription.",
+  "required": [
+    "input"
+  ],
+  "properties": {
+    "input": {
+      "type": [
+        "string",
+        "integer",
+        "array"
+      ],
+      "description": "Name or list of input columns."
+    },
+    "output": {
+      "type": [
+        "string",
+        "array"
+      ],
+      "description": "Name or list of output columns"
+    },
+    "model_id": {
+      "type": [
+        "string",
+        "array"
+      ],
+      "description": "The ID of the wrangle to use (do not include 'find' and 'replace')"
+    },
+    "case_sensitive": {
+      "type": "boolean",
+      "description": "Allows the wrangle to be case sensitive if set to True, default is False."
+    },
+    "if": {
+      "$ref": "#/$defs/wrangles/commonProperties/if"
+    },
+    "where": {
+      "$ref": "#/$defs/wrangles/commonProperties/where"
+    },
+    "where_params": {
+      "$ref": "#/$defs/wrangles/commonProperties/where_params"
+    }
+  }
+}
+```
+
+</details>
+
+### Examples
+
+```yaml
+wrangles:
+  - standardize:
+      input: Abbrev
+      output: Abbreviations
+      model_id: code_here
+```
+
+<div className="ww-sample-grid">
+
+<div className="ww-sample-panel ww-sample-panel--input" data-sample-role="input">
+
+| Abbrev |
+| --- |
+| ASAP |
+| ETA |
+
+</div>
+
+<div className="ww-sample-panel ww-sample-panel--output" data-sample-role="output">
+
+| Abbreviations |
+| --- |
+| As Soon As Possible |
+| Estimated Time of Arrival |
+
+</div>
+
+</div>
+
+<details className="ww-field-disclosure">
+
+<summary>Parameters</summary>
+
+<div className="ww-parameters-table">
+
+| Name | Description | Accepted Values | Default | Required |
+| --- | --- | --- | --- | --- |
+| <span className="ww-param-group-label">I/O</span> |  |  |  |  |
+| `input` | Name or list of input columns. | string, integer, array | — | Yes |
+| `output` | Name or list of output columns | string, array | `null` | No |
+| <span className="ww-param-group-label">Options</span> |  |  |  |  |
+| `case_sensitive` | Allows the wrangle to be case sensitive if set to True, default is False. | boolean | `false` | No |
+| <span className="ww-param-group-label">Details</span> |  |  |  |  |
+| `model_id` | The ID of the wrangle to use (do not include 'find' and 'replace') | string, array | — | No |
+| <span className="ww-param-group-label">Conditions</span> |  |  |  |  |
+| `if` | Condition that determines whether the wrangle runs as a whole. Recipe variables may be referenced with `${variable}`. | string | — | No |
+| `where` | Filter rows before applying the wrangle using SQL-like criteria, such as `column1 = 123 OR column2 = 'abc'`. | string | — | No |
+| `where_params` | Values used with `where` for parameterized criteria. Uses SQLite placeholder syntax such as `?` or `:name`. | array, object | — | No |
+
+</div>
+
+Required follows the recipe schema. Default records the Python argument default;
+a schema may require an argument even when Python provides a default.
+
+</details>
+
+<details className="ww-field-disclosure">
+
+<summary>Access</summary>
+
+| Requirement | Value |
+| --- | --- |
+| AI-powered | No |
+| Requires WrangleWorks account | Yes |
+| Requires subscription | No |
+| Requires external API key | No |
+
+</details>
+
+<details className="ww-field-disclosure">
+
+<summary>Technical details</summary>
+
+| Field | Value |
+| --- | --- |
+| Catalog ID | `95` |
+| Catalog key | `format.standardize` |
+| Recipe key | `standardize` |
+| Catalog status | active |
+| Lifecycle status | deprecated |
+| Recipe Writer eligible | No |
+| Recipe Writer exclusion | Deprecated compatibility key; use standardize.custom. |
+| Replaced by | [`standardize.custom`](/py/namespaces/standardize#custom) |
+| Namespace | Root-level |
+| Documentation group | `format` |
+| Aliases | None |
+| Runtime symbol | `wrangles.recipe_wrangles.main.standardize` |
+| Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |
+| Legacy UUID | `53cd3fdd-24e2-4411-8655-6014b92a3f3a` |
+
+**Sources**
+
+- [WranglesPY standardize implementation](https://github.com/wrangleworks/WranglesPY/blob/7916bf158e8b7e561270a1bea7b808f88956edc4/wrangles/recipe_wrangles/main.py)
+- [Archived standardize Markdown](https://github.com/wrangleworks/Wrangles-Docs/blob/6ad22fdaefc31154f38d7576e5e76746927daa69/wrangles-docs/wrangle-docs/format/_sources/standardize.md)
 
 </details>

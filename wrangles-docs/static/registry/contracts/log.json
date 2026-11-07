@@ -5,7 +5,7 @@
   "schema_version": "0.3",
   "type": "wrangle",
   "catalog_id": "80",
-  "catalog_key": "log",
+  "catalog_key": "utility.log",
   "catalog_status": "active",
   "legacy_id": "6177808e-aa2d-4d0b-8385-858b16948a5d",
   "wrangle_name": "log",

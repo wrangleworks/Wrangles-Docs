@@ -5,7 +5,7 @@
   "schema_version": "0.3",
   "type": "wrangle",
   "catalog_id": "89",
-  "catalog_key": "rename",
+  "catalog_key": "transform.rename",
   "catalog_status": "active",
   "legacy_id": "ab06898f-faf7-42e7-8275-5e3034a4d727",
   "wrangle_name": "rename",

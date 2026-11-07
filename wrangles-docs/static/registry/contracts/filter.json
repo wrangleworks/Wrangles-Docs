@@ -5,7 +5,7 @@
   "schema_version": "0.3",
   "type": "wrangle",
   "catalog_id": "78",
-  "catalog_key": "filter",
+  "catalog_key": "select.filter",
   "catalog_status": "active",
   "legacy_id": "e3242acf-d204-433f-8373-205b77481131",
   "wrangle_name": "filter",
