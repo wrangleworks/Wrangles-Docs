@@ -1,4 +1,5 @@
 const yaml = require('js-yaml');
+const {customFunctionNames, sources} = require('./customFunctionReferences.cjs');
 
 // UI availability only: this is not a server-side security sandbox.
 const RUN_DISABLED_WRANGLES = {
@@ -85,7 +86,8 @@ function getRunDisabledReason(recipe) {
     }
     return '';
   }
-  return inspect(parsed) || inspectVariables(parsed);
+  const missing = customFunctionNames(source).filter(name => !Object.hasOwn(sources, name));
+  return inspect(parsed) || inspectVariables(parsed) || (missing.length ? `Custom function not available: ${missing.map(name => 'custom.' + name).join(', ')}.` : '');
 }
 
 module.exports = {getRunDisabledReason};

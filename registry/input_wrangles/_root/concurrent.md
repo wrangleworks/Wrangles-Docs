@@ -148,9 +148,9 @@ wrangles:
 
 | Products | Part Codes | Attributes |
 | --- | --- | --- |
-| SKF ball brg 2" od 6202 | 6202 | `{"length":["2in"]}` |
-| brg seal 1" id 5493 | 5493 | `{"length":["1in"]}` |
-| 3lb hammer 87102 | 87102 | `{"weight":["3lb"]}` |
+| SKF ball brg 2" od 6202 | `["6202"]` | `{"length":["2in"],"unitless":[6202]}` |
+| brg seal 1" id 5493 | `["5493"]` | `{"length":["1in"],"unitless":[5493]}` |
+| 3lb hammer 87102 | `["87102"]` | `{"weight":["3lb"],"unitless":[87102]}` |
 
 </div>
 

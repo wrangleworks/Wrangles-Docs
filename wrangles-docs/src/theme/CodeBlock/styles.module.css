@@ -1,0 +1,4 @@
+.tabs { display: flex; gap: .4rem; margin-bottom: .65rem; }
+.tabs button { border: 1px solid var(--ifm-color-emphasis-300); border-radius: 999px; padding: .35rem .85rem; background: var(--ifm-background-surface-color); color: var(--ifm-font-color-base); cursor: pointer; font: inherit; }
+.tabs button[aria-selected='true'] { background: var(--ifm-color-primary); color: #fff; border-color: var(--ifm-color-primary); }
+.tabs button:focus-visible { outline: 2px solid var(--ifm-color-primary); outline-offset: 3px; }

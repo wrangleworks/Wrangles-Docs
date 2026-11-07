@@ -426,6 +426,16 @@ function main() {
   const result = generateRegistryCatalog(args.manifest, args);
   const outputPath = path.resolve(args.output);
   const rendered = renderRegistryCatalog(result, args.manifest);
+  const functionsPath = path.resolve(__dirname, '../src/components/customFunctions.generated.json');
+  const extraction = require('node:child_process').spawnSync('python3', [path.join(__dirname, 'extract-custom-functions.py')], {encoding: 'utf8'});
+  if (extraction.status !== 0) throw new Error(`Custom function extraction failed: ${extraction.stderr}`);
+  const functions = JSON.stringify(JSON.parse(extraction.stdout), null, 2) + '\n';
+  if (args.check) {
+    if (!fs.existsSync(functionsPath) || fs.readFileSync(functionsPath, 'utf8') !== functions) {
+      throw new Error('Custom function UI source is stale; run npm run generate:playground-registry');
+    }
+  } else fs.writeFileSync(functionsPath, functions);
+
 
   if (args.check) {
     if (!fs.existsSync(outputPath)) {

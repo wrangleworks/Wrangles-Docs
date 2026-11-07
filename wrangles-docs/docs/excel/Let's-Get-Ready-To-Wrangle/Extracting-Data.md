@@ -125,14 +125,14 @@ The above code snippet shows the two wrangles used to extract materials. The fir
 ## Extracting Weight
 
 ```yaml
-  - extract.attributes:
-      input: Products
-      output: Weight
-      attribute_type: mass
+- extract.attributes:
+    input: Products
+    output: Weight
+    attribute_type: mass
 
-  - select.list_element:
-      input: Weight
-      element: 0
+- select.list_element:
+    input: Weight
+    element: 0
 ```
 
 Similar to extracting materials above, extracting weight uses a stock extract (extract.attributes) with a names attribute_type (mass) then utilizes select.list_element to select only the first match.
@@ -140,18 +140,18 @@ Similar to extracting materials above, extracting weight uses a stock extract (e
 ## Extracting Part Number
 
 ```yaml
-  - extract.codes:
-      input: Products
-      output: Part Number
+- extract.codes:
+    input: Products
+    output: Part Number
 
-  - select.list_element:
-      input: Part Number
-      element: 0
+- select.list_element:
+    input: Part Number
+    element: 0
 
-  - replace:
-      input: Part Number
-      find: 0000
-      replace: ''
+- replace:
+    input: Part Number
+    find: 0000
+    replace: ''
 ```
 
 Like done before, extracting part numbers utilizes a stock extract wrangle (extract.codes) with select.list_element but then we go an extra step. The replace wrangle is used to drop leading zeros from our part number.
@@ -159,14 +159,14 @@ Like done before, extracting part numbers utilizes a stock extract wrangle (extr
 ## Extracting Country of Origin
 
 ```yaml
-  - extract.address:
-      input: Products
-      output: Country of Origin
-      dataType: countries
+- extract.address:
+    input: Products
+    output: Country of Origin
+    dataType: countries
 
-  - select.list_element:
-      input: Country of Origin
-      element: 0
+- select.list_element:
+    input: Country of Origin
+    element: 0
 ```
 
 I'm sure you are catching on to the process by now but again we a using a stock extract wrangle (extract.address) with a named dataType along with select.list_element.
@@ -174,9 +174,9 @@ I'm sure you are catching on to the process by now but again we a using a stock 
 ## Extracting Storage
 
 ```yaml
-  - extract.brackets:
-      input: Products
-      output: Storage
+- extract.brackets:
+    input: Products
+    output: Storage
 ```
 
 Storage is wrapped in curly brackets in our data so the extract.brackets stock wrangles is utilized to extract storage capacity. Here, we do not need to use a select wrangle, because we only have one set of brackets (if any) in each row. 
@@ -184,11 +184,11 @@ Storage is wrapped in curly brackets in our data so the extract.brackets stock w
 ## Extracting Brand
 
 ```yaml
-  - extract.custom:
-      input: Products
-      output: Brand
-      model_id: xxxxxxxx-xxxx-xxxx
-      first_element: true
+- extract.custom:
+    input: Products
+    output: Brand
+    model_id: xxxxxxxx-xxxx-xxxx
+    first_element: true
 ```
 
 In order to extract brand, we have utilized a custom extract wrangle. You'll notice that extract.custom has a first_element parameter that allows users to specify the first element only when running the wrangle. This gets rid of the need for an additional select wrangle. See [extract.custom](/py/extract/custom) to learn how to train your own custom extract wrangle.
@@ -202,11 +202,11 @@ There are only three brands listed and two variations but that is just because w
 ## Extracting Product Type
 
 ```yaml
-  - extract.custom:
-      input: Products
-      output: Product Type
-      model_id: xxxxxxxx-xxxx-xxxx
-      first_element: true
+- extract.custom:
+    input: Products
+    output: Product Type
+    model_id: xxxxxxxx-xxxx-xxxx
+    first_element: true
 ```
 
 Just as before with brand, a custom extract wrangle is used to extract product type.
@@ -237,16 +237,16 @@ In this regex pattern we are matching a dollar sign (\$) followed by one or more
 ## Creating a Description
 
 ```yaml
-  - merge.concatenate:
-      input:
-        - Brand
-        - Product Type
-        - Storage
-        - Price
-        - Country of Origin
-        - Part Number
-      output: Description
-      char: ' '
+- merge.concatenate:
+    input:
+      - Brand
+      - Product Type
+      - Storage
+      - Price
+      - Country of Origin
+      - Part Number
+    output: Description
+    char: ' '
 ```
 
 In order to creat a description, merge.concatenate was used to combine Brand, Product Type, Storage, Price, Country of Origin, and Part Number into one column. Creating a description can be tricky because you don't always want to include too much data but you also don't want to not include enough. This is why only these columns were included in our description, it keeps it short and clean while still being descriptive.

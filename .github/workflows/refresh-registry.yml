@@ -65,7 +65,7 @@ jobs:
       - name: Package preview
         run: |
           git diff --binary > registry-refresh-report/tracked-changes.patch
-          tar -czf registry-refresh-report/registry-output.tar.gz registry wrangles-docs/registry-docs wrangles-docs/static/registry wrangles-docs/static/schemas/recipes wrangles-docs/static/py wrangles-docs/sidebarsRegistry.js wrangles-docs/requirements.txt wrangles-docs/src/components/WrangleFlowPlayground/registryCatalog.generated.js
+          tar -czf registry-refresh-report/registry-output.tar.gz registry wrangles-docs/registry-docs wrangles-docs/static/registry wrangles-docs/static/schemas/recipes wrangles-docs/static/py wrangles-docs/sidebarsRegistry.js wrangles-docs/requirements.txt wrangles-docs/src/components/WrangleFlowPlayground/registryCatalog.generated.js wrangles-docs/src/components/customFunctions.generated.json
       - name: Upload report and generated files
         if: always()
         uses: actions/upload-artifact@v4
@@ -79,7 +79,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add registry wrangles-docs/registry-docs wrangles-docs/static/registry wrangles-docs/static/schemas/recipes wrangles-docs/static/py wrangles-docs/sidebarsRegistry.js wrangles-docs/requirements.txt wrangles-docs/src/components/WrangleFlowPlayground/registryCatalog.generated.js
+          git add registry wrangles-docs/registry-docs wrangles-docs/static/registry wrangles-docs/static/schemas/recipes wrangles-docs/static/py wrangles-docs/sidebarsRegistry.js wrangles-docs/requirements.txt wrangles-docs/src/components/WrangleFlowPlayground/registryCatalog.generated.js wrangles-docs/src/components/customFunctions.generated.json
           if ! git diff --cached --quiet; then
             git commit -m 'docs: refresh Registry from WranglesPY schema'
             git push origin HEAD:main

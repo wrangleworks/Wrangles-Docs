@@ -7,6 +7,8 @@ import {runRecipeRequest} from '../recipeRunnerClient';
 import runPolicy from '../recipeRunPolicy.cjs';
 import REGISTRY_CATALOG, {WRANGLE_MAP} from './registryCatalog';
 import styles from './styles.module.css';
+import recipeModel from './recipeModel.cjs';
+const {parseRecipe, recipeSteps, buildRecipeYaml, updateConfig} = recipeModel;
 
 const MAX_COLUMNS = 10;
 const MAX_ROWS = 10;
@@ -51,79 +53,41 @@ function createInitialTable() {
   };
 }
 
-function createBlock(type) {
-  const definition = WRANGLE_MAP[type];
-  const defaults = JSON.parse(JSON.stringify(definition.defaults));
-
-  for (const field of definition.fields) {
-    if (field.type === 'list' && Array.isArray(defaults[field.key])) {
-      defaults[field.key] = formatListValue(defaults[field.key]);
-    }
-  }
-
-  return {
-    id: `${type}-${nextBlockId++}`,
-    type,
-    values: defaults,
-  };
+function definitionFor(type) {
+  return (Object.hasOwn(WRANGLE_MAP, type) ? WRANGLE_MAP[type] : null) || {type, label: type, category: 'Recipe', color: 'slate',
+    description: 'Edit this step using its YAML configuration.', fields: [], defaults: {}};
 }
 
-function formatFieldValueForControl(field, value) {
-  if (field.type === 'list' && Array.isArray(value)) {
-    return formatListValue(value.map((item) => (typeof item === 'string' ? item : yaml.dump(item, {flowLevel: 0}).trim())));
-  }
-
-  if (field.type === 'json' && value && typeof value === 'object') {
-    return JSON.stringify(value, null, 2);
-  }
-
-  return value;
-}
-
-function createBlockFromRecipe(type, config = {}) {
-  const block = createBlock(type);
-  const definition = WRANGLE_MAP[type];
-
-  return {
-    ...block,
-    values: definition.fields.reduce(
-      (values, field) => ({
-        ...values,
-        [field.key]: Object.prototype.hasOwnProperty.call(config, field.key)
-          ? formatFieldValueForControl(field, config[field.key])
-          : values[field.key],
-      }),
-      block.values,
-    ),
-  };
+function createBlock(type, config) {
+  const definition = definitionFor(type);
+  return {id: `${type}-${nextBlockId++}`, type,
+    config: structuredClone(config === undefined ? definition.buildConfig?.(definition.defaults) || {} : config),
+    fieldErrors: {}, drafts: {}};
 }
 
 function blocksFromRecipe(recipe) {
-  const parsed = yaml.load(recipe);
-  if (!Array.isArray(parsed?.wrangles)) {
-    return [];
-  }
+  return recipeSteps(parseRecipe(recipe)).map(({type, config}) => createBlock(type, config));
+}
 
-  return parsed.wrangles
-    .map((entry) => {
-      if (!entry || typeof entry !== 'object' || Array.isArray(entry)) {
-        return null;
-      }
-
-      const [[type, config]] = Object.entries(entry);
-      if (!WRANGLE_MAP[type]) {
-        return null;
-      }
-
-      return createBlockFromRecipe(type, config && typeof config === 'object' ? config : {});
-    })
-    .filter(Boolean);
+// Form controls must reflect the actual value, including union types. Complex
+// values use YAML rather than being flattened into strings or checkbox values.
+function fieldForValue(field, value) {
+  if (field.key === 'input' && ((Array.isArray(value) && value.every(item => typeof item === 'string')) || (value === undefined && field.type === 'list'))) return {...field, type: 'input-list'};
+  if (field.key === 'input' && typeof value === 'number') return {...field, type: 'yaml'};
+  if (value === undefined) return ['list', 'json'].includes(field.type) ? {...field, type: 'yaml'} : field;
+  if (value === null || typeof value === 'object') return {...field, type: 'yaml'};
+  if (typeof value === 'boolean') return {...field, type: 'boolean'};
+  if (typeof value === 'number') return {...field, type: 'number'};
+  return {...field, type: field.type === 'select' ? 'select' : 'text'};
+}
+function controlValue(field, value) {
+  return field.type === 'yaml' ? yaml.dump(value === undefined ? [] : value, {lineWidth: -1}).trimEnd() : value ?? '';
 }
 
 function tableFromTransfer(table) {
   const columns = Array.isArray(table?.columns) ? table.columns.map((column, index) => String(column || createColumnName(index))) : [];
   const rows = Array.isArray(table?.rows)
-    ? table.rows.map((row) => (Array.isArray(row) ? row.map((cell) => String(cell ?? '')) : []))
+    ? table.rows.map((row) => (Array.isArray(row) ? row.map((cell) => cell && typeof cell === 'object' ? JSON.stringify(cell) : String(cell ?? '')) : []))
     : [];
   return limitTable(columns, rows).table;
 }
@@ -152,7 +116,7 @@ function consumePlaygroundTransfer() {
     return {
       blocks,
       table,
-      disabledReason: runPolicy.getRunDisabledReason(payload.recipe),
+      options: Object.fromEntries(Object.entries(parseRecipe(payload.recipe)).filter(([key]) => key !== 'wrangles')),
     };
   } catch (error) {
     console.error('[wrangle-flow-playground] Could not load transferred recipe example:', error);
@@ -169,57 +133,6 @@ function moveItem(items, fromIndex, toIndex) {
   const [item] = nextItems.splice(fromIndex, 1);
   nextItems.splice(toIndex, 0, item);
   return nextItems;
-}
-
-function parseListValue(value) {
-  return Array.isArray(value)
-    ? value.map((item) => String(item).replace(/^-\s*/, '').trim()).filter(Boolean)
-    : String(value ?? '')
-        .split('\n')
-        .map((item) => item.replace(/^-\s*/, '').trim())
-        .filter(Boolean);
-}
-
-function formatListValue(items) {
-  return items.map((item) => `- ${item}`).join('\n');
-}
-
-function normalizeFieldValue(field, value) {
-  if (field.type === 'list') {
-    return parseListValue(value);
-  }
-
-  if (field.type === 'boolean') {
-    return Boolean(value);
-  }
-
-  return value;
-}
-function toRecipeConfig(block) {
-  const definition = WRANGLE_MAP[block.type];
-  const values = Object.fromEntries(
-    definition.fields.map((field) => [field.key, normalizeFieldValue(field, block.values[field.key])]),
-  );
-
-  return {
-    [block.type]: definition.buildConfig(values),
-  };
-}
-
-function buildRecipeYaml(blocks) {
-  if (!blocks.length) {
-    return 'wrangles: []\n';
-  }
-
-  return yaml.dump(
-    {
-      wrangles: blocks.map(toRecipeConfig),
-    },
-    {
-      lineWidth: -1,
-      noRefs: true,
-    },
-  );
 }
 
 function limitTable(columns, rows) {
@@ -239,56 +152,12 @@ function copyRows(rows) {
 }
 
 function getBlockOutputNames(block) {
-  const definition = WRANGLE_MAP[block.type];
-  if (!definition) {
-    return [];
-  }
-
-  return definition.fields
-    .filter((field) => field.key === 'output')
-    .flatMap((field) => {
-      const value = block.values[field.key];
-      return field.type === 'list' ? parseListValue(value) : [String(value ?? '').trim()];
-    })
-    .filter(Boolean);
+  const output = block.config?.output;
+  return (Array.isArray(output) ? output : [output]).filter(value => typeof value === 'string');
 }
 
 function uniqueOptions(options) {
   return [...new Set(options.map((option) => String(option ?? '').trim()).filter(Boolean))];
-}
-
-function sanitizeInputValues(blocks, tableColumns) {
-  return blocks.map((block, blockIndex) => {
-    const definition = WRANGLE_MAP[block.type];
-    const availableInputs = uniqueOptions([
-      ...tableColumns,
-      ...blocks.slice(0, blockIndex).flatMap(getBlockOutputNames),
-    ]);
-
-    let nextValues = block.values;
-
-    for (const field of definition.fields) {
-      if (field.key !== 'input') {
-        continue;
-      }
-
-      if (field.type === 'list') {
-        const selected = parseListValue(block.values[field.key]).filter((input) => availableInputs.includes(input));
-        const nextValue = formatListValue(selected);
-        if (nextValue !== block.values[field.key]) {
-          nextValues = {...nextValues, [field.key]: nextValue};
-        }
-        continue;
-      }
-
-      const currentValue = String(block.values[field.key] ?? '').trim();
-      if (!availableInputs.includes(currentValue)) {
-        nextValues = {...nextValues, [field.key]: availableInputs[0] ?? ''};
-      }
-    }
-
-    return nextValues === block.values ? block : {...block, values: nextValues};
-  });
 }
 
 function WrangleIcon({category}) {
@@ -455,17 +324,17 @@ function SingleInputPicker({value, options, onChange}) {
 }
 
 function MultiInputPicker({value, options, onChange}) {
-  const selectedInputs = parseListValue(value);
+  const selectedInputs = Array.isArray(value) ? value : [];
 
   function removeInput(input) {
-    onChange(formatListValue(selectedInputs.filter((item) => item !== input)));
+    onChange(selectedInputs.filter((item) => item !== input));
   }
 
   function addInput(input) {
     if (!input) {
       return;
     }
-    onChange(formatListValue([...selectedInputs, input]));
+    onChange([...new Set([...selectedInputs, input])]);
   }
 
   return (
@@ -489,9 +358,10 @@ function MultiInputPicker({value, options, onChange}) {
 }
 
 function FieldControl({field, value, onChange, availableInputs}) {
+  if (field.type === 'yaml') return <textarea className={styles.fieldInput} rows={5} value={value} onChange={event => onChange(event.target.value)} spellCheck={false} />;
   const isInputField = field.key === 'input';
 
-  if (isInputField && field.type === 'list') {
+  if (isInputField && field.type === 'input-list') {
     return <MultiInputPicker value={value} options={availableInputs} onChange={onChange} />;
   }
 
@@ -534,54 +404,6 @@ function FieldControl({field, value, onChange, availableInputs}) {
     );
   }
 
-  if (field.type === 'json') {
-    return (
-      <textarea
-        className={clsx(styles.fieldInput, styles.listInput)}
-        rows={5}
-        value={value ?? ''}
-        onChange={(event) => onChange(event.target.value)}
-        placeholder={'{\n  "key": "value"\n}'}
-        spellCheck={false}
-      />
-    );
-  }
-
-  if (field.type === 'list') {
-    const listValue = Array.isArray(value) ? value.join('\n') : String(value ?? '');
-
-    const handleKeyDown = (event) => {
-      if (event.key === 'Enter') {
-        event.preventDefault(); // Prevent standard new line
-        
-        const target = event.target;
-        const { selectionStart, selectionEnd } = target;
-        const text = target.value;
-
-        // Inject the hyphen at the cursor
-        const nextValue = text.substring(0, selectionStart) + '\n- ' + text.substring(selectionEnd);
-        onChange(nextValue);
-
-        // Move the cursor exactly after the newly injected '- '
-        window.requestAnimationFrame(() => {
-          target.selectionStart = selectionStart + 3;
-          target.selectionEnd = selectionStart + 3;
-        });
-      }
-    };
-
-    return (
-      <textarea
-        className={clsx(styles.fieldInput, styles.listInput)}
-        rows={4}
-        value={listValue}
-        onChange={(event) => onChange(event.target.value)}
-        onKeyDown={handleKeyDown}
-        placeholder={field.placeholder ? `- ${field.placeholder}` : '- Column A\n- Column B'}
-        spellCheck={false}
-      />
-    );
-  }
 
   return (
     <input
@@ -594,12 +416,12 @@ function FieldControl({field, value, onChange, availableInputs}) {
   );
 }
 
-function BlockInspectorModal({block, availableInputs, currentColumns, onChange, onClose}) {
+function BlockInspectorModal({block, availableInputs, currentColumns, onChange, onConfigChange, onClose}) {
   if (!block) {
     return null;
   }
 
-  const definition = WRANGLE_MAP[block.type];
+  const definition = definitionFor(block.type);
 
   return (
     <div className={styles.modalOverlay} onClick={onClose}>
@@ -623,19 +445,30 @@ function BlockInspectorModal({block, availableInputs, currentColumns, onChange, 
           <p className={styles.helperText}>{definition.description}</p>
 
           <div className={styles.fieldGrid}>
-            {definition.fields.map((field) => (
+            {definition.fields.map((original) => {
+              const field = fieldForValue(original, block.config?.[original.key]);
+              return (
               <label key={field.key} className={styles.fieldCard}>
                 <span className={styles.fieldLabel}>{field.label}</span>
                 <FieldControl 
                   field={field} 
-                  value={block.values[field.key]} 
+                  value={block.drafts[field.key] ?? controlValue(field, block.config?.[field.key])}
                   availableInputs={availableInputs}
-                  onChange={(value) => onChange(block.id, field.key, value)} 
+                  onChange={(value) => onChange(block.id, field, value)}
                 />
+                {block.fieldErrors[field.key] ? <span role="alert">{block.fieldErrors[field.key]}</span> : null}
                 {field.helper ? <span className={styles.fieldHint}>{field.helper}</span> : null}
               </label>
-            ))}
+            );})}
           </div>
+
+          <label className={styles.fieldCard}>
+            <span className={styles.fieldLabel}>Full configuration (YAML)</span>
+            <textarea aria-label="Full configuration (YAML)" className={styles.fieldInput} rows={10}
+              value={block.configDraft ?? yaml.dump(block.config, {lineWidth: -1})}
+              onChange={event => onConfigChange(block.id, event.target.value)} spellCheck={false} />
+            {block.configError ? <span role="alert">{block.configError}</span> : null}
+          </label>
 
           <div className={styles.columnStrip}>
             <span>Available inputs</span>
@@ -651,12 +484,10 @@ function BlockInspectorModal({block, availableInputs, currentColumns, onChange, 
                       return;
                     }
 
-                    const currentValue = block.values[inputField.key];
-                    const nextValue =
-                      inputField.type === 'list'
-                        ? formatListValue(uniqueOptions([...parseListValue(currentValue), column]))
-                        : column;
-                    onChange(block.id, inputField.key, nextValue);
+                    const currentValue = block.config?.input;
+                    const field = fieldForValue(inputField, currentValue);
+                    const nextValue = Array.isArray(currentValue) ? [...new Set([...currentValue, column])] : column;
+                    onChange(block.id, field, field.type === 'yaml' ? yaml.dump(nextValue).trimEnd() : nextValue);
                   }}
                   onDragStart={(event) => event.dataTransfer.setData('text/wrangle-input', column)}
                   className={styles.availableInputChip}>
@@ -678,7 +509,7 @@ function BlockInspectorModal({block, availableInputs, currentColumns, onChange, 
 }
 
 function PipelineCard({block, isActive, index, isLast, onSelect, onMove, onDuplicate, onRemove}) {
-  const definition = WRANGLE_MAP[block.type];
+  const definition = definitionFor(block.type);
 
   return (
     <div className={styles.pipelineNode}>
@@ -800,7 +631,7 @@ export default function WrangleFlowPlayground() {
   const [error, setError] = useState('');
   const [notice, setNotice] = useState('');
   const [isRunning, setIsRunning] = useState(false);
-  const [transferDisabledReason, setTransferDisabledReason] = useState('');
+  const [recipeOptions, setRecipeOptions] = useState({});
 
   useEffect(() => {
     const transfer = consumePlaygroundTransfer();
@@ -809,8 +640,8 @@ export default function WrangleFlowPlayground() {
     }
 
     setTable(transfer.table);
-    setTransferDisabledReason(transfer.disabledReason);
-    setBlocks(sanitizeInputValues(transfer.blocks, transfer.table.columns));
+    setRecipeOptions(transfer.options);
+    setBlocks(transfer.blocks);
     setActiveBlockId(transfer.blocks[0]?.id ?? null);
     setNotice('Loaded the recipe example into the playground.');
     setError('');
@@ -831,8 +662,8 @@ export default function WrangleFlowPlayground() {
     return uniqueOptions([...table.columns, ...previousOutputs]);
   }, [activeBlock, blocks, table.columns]);
 
-  const recipeYaml = useMemo(() => buildRecipeYaml(blocks), [blocks]);
-  const runDisabledReason = transferDisabledReason || runPolicy.getRunDisabledReason(recipeYaml);
+  const recipeYaml = useMemo(() => buildRecipeYaml(blocks, recipeOptions), [blocks, recipeOptions]);
+  const runDisabledReason = (blocks.some(block => block.configError || Object.values(block.fieldErrors).some(Boolean)) ? 'Fix the invalid YAML configuration before running.' : '') || runPolicy.getRunDisabledReason(recipeYaml);
 
   function setCellValue(rowIndex, columnIndex, nextValue) {
     setTable((previousTable) => ({
@@ -902,29 +733,40 @@ export default function WrangleFlowPlayground() {
 
   function addBlock(type) {
     const nextBlock = createBlock(type);
-    setBlocks((previousBlocks) => sanitizeInputValues([...previousBlocks, nextBlock], table.columns));
+    setBlocks((previousBlocks) => [...previousBlocks, nextBlock]);
     setActiveBlockId(nextBlock.id);
     setNotice(`Added ${WRANGLE_MAP[type].label} to the pipeline.`);
   }
 
-  function updateBlockValue(blockId, key, value) {
-    setBlocks((previousBlocks) =>
-      previousBlocks.map((block) =>
-        block.id === blockId
-          ? {
-              ...block,
-              values: {
-                ...block.values,
-                [key]: value,
-              },
-            }
-          : block,
-      ),
-    );
+  function updateBlockValue(blockId, field, value) {
+    setBlocks(previous => previous.map(block => {
+      if (block.id !== blockId) return block;
+      try {
+        const parsed = field.type === 'yaml' ? yaml.load(value) : field.type === 'number' && value !== '' ? Number(value) : value;
+        if (parsed === undefined) throw new Error('Enter a YAML value (use null for an empty value).');
+        JSON.stringify(parsed);
+        return {...block, config: updateConfig(block.config, field.key, parsed), configDraft: undefined, configError: '',
+          drafts: {...block.drafts, [field.key]: value}, fieldErrors: {...block.fieldErrors, [field.key]: ''}};
+      } catch (error) {
+        return {...block, drafts: {...block.drafts, [field.key]: value}, fieldErrors: {...block.fieldErrors, [field.key]: error.message}};
+      }
+    }));
+  }
+
+  function updateBlockConfig(blockId, source) {
+    setBlocks(previous => previous.map(block => {
+      if (block.id !== blockId) return block;
+      try {
+        const config = yaml.load(source);
+        if (config === undefined) throw new Error('Enter a YAML configuration.');
+        JSON.stringify(config); // Recursive YAML aliases cannot be executed as a recipe.
+        return {...block, config, configDraft: source, configError: '', drafts: {}, fieldErrors: {}};
+      } catch (error) { return {...block, configDraft: source, configError: error.message}; }
+    }));
   }
 
   function moveBlock(index, direction) {
-    setBlocks((previousBlocks) => sanitizeInputValues(moveItem(previousBlocks, index, index + direction), table.columns));
+    setBlocks((previousBlocks) => moveItem(previousBlocks, index, index + direction));
   }
 
   function duplicateBlock(blockId) {
@@ -936,7 +778,7 @@ export default function WrangleFlowPlayground() {
     const duplicate = {
       ...block,
       id: `${block.type}-${nextBlockId++}`,
-      values: JSON.parse(JSON.stringify(block.values)),
+      config: structuredClone(block.config), drafts: {...block.drafts}, fieldErrors: {...block.fieldErrors},
     };
 
     setBlocks((previousBlocks) => {
@@ -949,7 +791,7 @@ export default function WrangleFlowPlayground() {
   }
 
   function removeBlock(blockId) {
-    const remainingBlocks = sanitizeInputValues(blocks.filter((block) => block.id !== blockId), table.columns);
+    const remainingBlocks = blocks.filter((block) => block.id !== blockId);
     setBlocks(remainingBlocks);
     if (activeBlockId === blockId) {
       setActiveBlockId(remainingBlocks[0]?.id ?? null);
@@ -957,7 +799,7 @@ export default function WrangleFlowPlayground() {
   }
 
   function resetBoard() {
-    setTransferDisabledReason('');
+    setRecipeOptions({});
     setBlocks([]);
     setActiveBlockId(null);
     setTable(createInitialTable());
@@ -1047,7 +889,7 @@ export default function WrangleFlowPlayground() {
           </button>
         </div>
       </header>
-      {runDisabledReason && <p role="status">{runDisabledReason}{transferDisabledReason ? ' Reset the board to start a different recipe.' : ''}</p>}
+      {runDisabledReason && <p role="status">{runDisabledReason}</p>}
 
       <div className={styles.workspace}>
         <aside className={styles.leftPane}>
@@ -1130,7 +972,8 @@ export default function WrangleFlowPlayground() {
         block={activeBlock} 
         availableInputs={activeBlockAvailableInputs}
         currentColumns={table.columns} 
-        onChange={updateBlockValue} 
+        onChange={updateBlockValue}
+        onConfigChange={updateBlockConfig}
         onClose={() => setActiveBlockId(null)} 
       />
     </div>

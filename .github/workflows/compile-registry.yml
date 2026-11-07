@@ -44,7 +44,7 @@ jobs:
         env:
           TARGET_BRANCH: ${{ github.ref_name }}
         run: |
-          git add registry/reports wrangles-docs/registry-docs wrangles-docs/static/registry wrangles-docs/static/schemas/recipes/registry wrangles-docs/static/py wrangles-docs/sidebarsRegistry.js wrangles-docs/src/components/WrangleFlowPlayground/registryCatalog.generated.js
+          git add registry/reports wrangles-docs/registry-docs wrangles-docs/static/registry wrangles-docs/static/schemas/recipes/registry wrangles-docs/static/py wrangles-docs/sidebarsRegistry.js wrangles-docs/src/components/WrangleFlowPlayground/registryCatalog.generated.js wrangles-docs/src/components/customFunctions.generated.json
           if git diff --cached --quiet; then
             echo 'Generated Registry outputs are already current.' >> "$GITHUB_STEP_SUMMARY"
             exit 0

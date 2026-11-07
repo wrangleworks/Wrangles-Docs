@@ -28,7 +28,7 @@ wrangles:
   - create.jinja:
       output: Description
       template:
-        string: {{ Brand }} {{ Product_Type }} ({{ Features }})
+        string: "{{ Brand }} {{ Product_Type }} ({{ Features }})"
         
   - rename:
       Product_Type: Product Type
@@ -53,7 +53,7 @@ wrangles:
   - create.jinja:
       output: Description
       template:
-        string: {{ Brand }} {{ Product_Type }} {% if Features %} ({{ Features }}) {% endif %}
+        string: "{{ Brand }} {{ Product_Type }} {% if Features %} ({{ Features }}) {% endif %}"
         
   - rename:
       Product_Type: Product Type

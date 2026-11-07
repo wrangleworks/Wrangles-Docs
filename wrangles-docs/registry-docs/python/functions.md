@@ -65,7 +65,7 @@ Extract features from addresses such as streets or countries.
 ##### Samples
 Use the power of AI (OpenAI's chatGPT in particular) to extract meaningful data
 ```python
->>> wrangles.extract.ai('Yellow Submarine', api_key='<api key>', output='The names of any colors found in the input)
+>>> wrangles.extract.ai('Yellow Submarine', api_key='<api key>', output='The names of any colors found in the input')
 'Yellow'
 
 >>> wrangles.extract.ai('Yellow Submarine', api_key='<api key>', output={'type': 'string', 'description': 'The names of any colors found in the input'})

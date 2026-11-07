@@ -21,7 +21,8 @@ from module_name import function_name
 
 # Define the function within the same script
 def function_name(df):
-  # Do something with the dataframe
+  # Replace this placeholder with your write logic.
+  raise NotImplementedError("Add your write logic here")
 
 # Run the recipe with the custom function
 wrangles.recipe.run('recipe.wrgl.yml', functions=[function_name])

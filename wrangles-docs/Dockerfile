@@ -1,5 +1,6 @@
 # Stage 1: Build the static Docusaurus site
 FROM node:lts-bookworm-slim AS builder
+RUN apt-get update && apt-get install -y --no-install-recommends python3 && rm -rf /var/lib/apt/lists/*
 WORKDIR /app
 COPY wrangles-docs/package.json wrangles-docs/package-lock.json ./
 RUN npm ci

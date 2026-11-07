@@ -10,7 +10,7 @@ test('ordinary and custom group_by use the same runner', () => {
   }
   assert.equal(reason([{'select.group_by': {by: 'Category', sum: 'Quantity'}}]), '');
   assert.equal(reason([{'select.group_by': {by: 'Category', 'custom.sum_times_two': 'Quantity'}}]), '');
-  assert.equal(reason([{'custom.example': {input: 'x'}}]), '');
+  assert.match(reason([{'custom.example': {input: 'x'}}]), /not available/);
 });
 
 test('matrix resolves only its own explicit local variables and retains dependency blocks', () => {
@@ -25,8 +25,8 @@ test('matrix resolves only its own explicit local variables and retains dependen
 });
 
 test('custom function dependencies are checked inside nested recipes', () => {
-  assert.equal(reason([{concurrent: {wrangles: [{'select.group_by': {'custom.sum': 'x'}}]}}]), '');
-  assert.equal(reason([{recipe: {wrangles: [{'custom.example': {}}]}}]), '');
+  assert.equal(reason([{concurrent: {wrangles: [{'select.group_by': {'custom.sum_times_two': 'x'}}]}}]), '');
+  assert.match(reason([{recipe: {wrangles: [{'custom.example': {}}]}}]), /not available/);
   assert.match(getRunDisabledReason('functions: {}\nwrangles:\n  - copy: {input: x, output: y}'), /configured by the server/);
 });
 

@@ -27,14 +27,14 @@ Pandas functions within recipes allow users to employ the powerful [pandas](http
 
 See [format.remove_duplicates](/py/namespaces/format#remove-duplicates) for the native Wrangle equivalent.
 
-# pandas.groupby
+# pandas.sort_values
 ### Sample
 
-#### Group DataFrame using a mapper or by a Series of columns.
+#### Put rows with the same product type together.
 
 <RecipePlayground
   editable={true}
-  recipe={"wrangles:\n  - pandas.groupby:\n      parameters:\n        by: Product Type"}
+  recipe={"wrangles:\n  - pandas.sort_values:\n      parameters:\n        by: Product Type"}
   exampleSource={"<div className=\"table-scroll\">\n<table>\n<tr><th></th><th></th><th></th></tr>\n<tr><td>\n  \n| Product Type | Description |\n|:--------|:--------|\n| bearings | 14mm skf radial ball bearing |\n| hardware | 1/4-20x3\" machine screw |\n| bearings | 3\"odx2.5\"id thrust bearing |\n| hardware | m6x35mm stainless steel bolt |\n\n</td><td>\n→ \n</td><td>\n  \n| Product Type | Description |\n|:--------|:--------|\n| bearings | 14mm skf radial ball bearing |\n| bearings | 3\"odx2.5\"id thrust bearing |\n| hardware | 1/4-20x3\" machine screw |\n| hardware | m6x35mm stainless steel bolt |\n</td></tr>\n</table>\n</div>"}
 />
 
@@ -44,15 +44,17 @@ See [format.remove_duplicates](/py/namespaces/format#remove-duplicates) for the 
 | Parameter | Required | Data Type | Notes |
 | :-------- | :------: | :-------- | :---- |
 | parameters | ✓ | dictionary | The "parameters" parameter is a dictionary of all the parameters needed for the function | 
-| by | ✓ | str, list | mapping, function, str, or iterable to be used for grouping |
+| by | ✓ | str, list | Column name or list of column names to sort by |
 | where | | str | Filter the data to only apply the wrangle to certain rows using an equivalent to a SQL where criteria, such as column1 = 123 OR column2 = 'abc' |
 | where_params | | str | Variables to use in conjunctions with where. This allows the query to be parameterized. This uses sqlite syntax (? or :name) |
 | if | | str | A condition that will determine whether the action runs or not as a whole. |
 </div>
 
-> More parameters for this function can be found in the [pandas.groupby](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.groupby.html) documentation.
+> More parameters for this function can be found in the [pandas.sort_values](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.sort_values.html) documentation.
 
-See [select.group_by](/py/namespaces/select#group-by) for the native Wrangles equivalent.
+Sorting keeps every row and puts matching product types together. `pandas.groupby` returns a GroupBy object rather than a DataFrame, so it is not suitable as a standalone recipe step.
+
+Use [sort](/py/namespaces/select#sort) to sort with a native wrangle. Use [select.group_by](/py/namespaces/select#group-by) when you need to aggregate groups.
 
 # pandas.sample
 

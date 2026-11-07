@@ -1,0 +1,11 @@
+{
+  "sum_times_two": "def sum_times_two(values):\n    \"\"\"Aggregate a group, matching WranglesPY's test_select custom-function test.\"\"\"\n    return sum(values) * 2\n",
+  "test_fn": "def test_fn(Part_Code, value):\n    \"\"\"Append the matrix variable to a part code, including numeric part codes.\"\"\"\n    return str(Part_Code) + str(value)\n",
+  "reverse_strings": "def reverse_strings(Strings):\n    \"\"\"Row-level implementation from the custom-functions tutorial.\"\"\"\n    return Strings[::-1]\n",
+  "stock_status_dataframe": "def stock_status_dataframe(df, input, output):\n    \"\"\"Dataframe-level stock message from the custom-functions tutorial.\"\"\"\n    df[output] = df[input] + ' is out of stock'\n    return df\n",
+  "stock_status": "def stock_status(Products):\n    \"\"\"Row-level version of the same stock message.\"\"\"\n    return Products + ' is out of stock'\n",
+  "append_fields": "def append_fields(Products, **kwargs):\n    \"\"\"Append the additional values supplied by the tutorial.\"\"\"\n    return ''.join(Products + ' ' + str(value) for value in kwargs.values())\n",
+  "append_suffix": "def append_suffix(Products, suffix):\n    \"\"\"Append an explicitly supplied suffix, preserving its whitespace.\"\"\"\n    return Products + suffix\n",
+  "variable_function": "def variable_function(variables):\n    \"\"\"Resolve the column variable used by the variables tutorial.\"\"\"\n    return variables['other_col']\n",
+  "function": "test_vals = []\n\ndef function(value):\n    \"\"\"Value collector explicitly defined by the matrix connector tutorial.\"\"\"\n    test_vals.append(value)\n"
+}

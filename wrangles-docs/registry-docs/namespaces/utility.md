@@ -466,9 +466,9 @@ wrangles:
 
 | Part Codes | Attributes |
 | --- | --- |
-| 6202 | `{"length":["2in"]}` |
-| 5493 | `{"length":["1in"]}` |
-| 87102 | `{"weight":["3lb"]}` |
+| `["6202"]` | `{"length":["2in"],"unitless":[6202]}` |
+| `["5493"]` | `{"length":["1in"],"unitless":[5493]}` |
+| `["87102"]` | `{"weight":["3lb"],"unitless":[87102]}` |
 
 </div>
 

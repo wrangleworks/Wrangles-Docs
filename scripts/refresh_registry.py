@@ -91,7 +91,7 @@ def generated_files(stage):
 def fingerprint(root):
     """Guard authoritative inputs against concurrent editing during a long build."""
     return {str(file.relative_to(root)): hashlib.sha256(file.read_bytes()).hexdigest()
-            for file in (root / 'registry').rglob('*') if file.is_file()}
+            for file in [*(root / 'registry').rglob('*'), root / 'wrangles-docs/customFunctions.py'] if file.is_file()}
 
 
 def source_file(key):
@@ -331,7 +331,8 @@ def refresh(root, checkout, report_dir, skip_build=False):
             for relative in retired_sources:
                 (root / relative).unlink(missing_ok=True)
             for relative in ('wrangles-docs/sidebarsRegistry.js', 'wrangles-docs/requirements.txt',
-                             'wrangles-docs/src/components/WrangleFlowPlayground/registryCatalog.generated.js'):
+                             'wrangles-docs/src/components/WrangleFlowPlayground/registryCatalog.generated.js',
+                             'wrangles-docs/src/components/customFunctions.generated.json'):
                 shutil.copy2(stage / relative, root / relative)
             report['status'] = 'completed_with_warnings' if report['rejected'] else 'completed'
             report['site_build'] = 'skipped_for_test' if skip_build else 'passed'

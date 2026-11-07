@@ -40,6 +40,11 @@ Custom functions are executable Python, not page text. Keep function names and
 arguments consistent with the examples, and have a developer review and test
 changes. Registry checks alone do not test execution.
 
+Examples that use these functions show **Recipe / Custom functions** tabs.
+The function view is read-only and comes from `customFunctions.py`. Compilation
+updates it automatically. Do not edit `customFunctions.generated.json`.
+A missing custom function keeps the Run button disabled.
+
 ## After saving: the Registry compiles automatically
 
 Click **Commit changes** on GitHub. That is all you need to start compilation.

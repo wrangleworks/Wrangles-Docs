@@ -81,7 +81,7 @@ function tableFromElement(table) {
 
 function findSampleGrid(control) {
   const codeBlock = control.closest('.theme-code-block');
-  let candidate = codeBlock?.nextElementSibling ?? null;
+  let candidate = (codeBlock?.closest('[data-recipe-code]') || codeBlock)?.nextElementSibling ?? null;
 
   while (candidate) {
     if (/^H[2-4]$/.test(candidate.tagName)) {
@@ -261,7 +261,7 @@ function RunButton() {
     };
   }, [canRunRawRecipe, recipePlayground, runDisabledReason]);
 
-  if (!recipePlayground && !canRunRawRecipe) {
+  if (!isRecipeYaml(metadata) || (!recipePlayground && !canRunRawRecipe)) {
     return null;
   }
 
@@ -372,7 +372,7 @@ function PlaygroundButton() {
   const canOpenRawRecipe =
     !isCurrentPlayground && isRecipeYaml(metadata);
 
-  if (!recipePlayground?.canOpenInPlayground && !canOpenRawRecipe) {
+  if (!isRecipeYaml(metadata) || (!recipePlayground?.canOpenInPlayground && !canOpenRawRecipe)) {
     return null;
   }
 

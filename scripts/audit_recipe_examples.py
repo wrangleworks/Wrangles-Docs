@@ -14,6 +14,7 @@ import json
 from pathlib import Path
 import re
 import subprocess
+import textwrap
 import sys
 from uuid import UUID
 
@@ -71,7 +72,7 @@ def collect():
     for page in pages:
         soup = BeautifulSoup(page.read_text(), 'html.parser')
         for ordinal, block in enumerate(soup.select('div.theme-code-block.language-yaml'), 1):
-            code = '\n'.join(line.get_text() for line in block.select('.token-line')).strip()
+            code = textwrap.dedent('\n'.join(line.get_text() for line in block.select('.token-line'))).strip()
             heading = block.find_previous(['h2', 'h3', 'h4'])
             anchor = heading.get('id', '') if heading else ''
             path = '/' + str(page.parent.relative_to(SITE / 'build'))
@@ -85,7 +86,8 @@ def collect():
                 recipe = None
             item['parsed'] = recipe
             grid = None
-            for sibling in block.next_siblings:
+            example_block = block.find_parent(attrs={'data-recipe-code': True}) or block
+            for sibling in example_block.next_siblings:
                 if getattr(sibling, 'name', '') in ('h2', 'h3', 'h4'):
                     break
                 if 'ww-sample-grid' in getattr(sibling, 'attrs', {}).get('class', []):
@@ -103,6 +105,11 @@ def collect():
                     nested = outer.select('table') if outer else []
                     if len(nested) == 2:
                         item['input'], item['expected'] = table(nested[0]), table(nested[1])
+            component = block.find_parent(class_=lambda name: name and name.startswith('playground_'))
+            if not item['input'] and component:
+                component_tables = component.select('table')
+                if len(component_tables) >= 2:
+                    item['input'], item['expected'] = table(component_tables[0]), table(component_tables[-1])
             item['has_sample'] = bool(item['input'])
             if not item['input']:
                 steps = recipe.get('wrangles', []) if isinstance(recipe, dict) else []
