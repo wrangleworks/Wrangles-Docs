@@ -405,7 +405,7 @@ test('catalog-only records and source differences remain explicit', () => {
   assert.equal(typeof map.catalog_id, 'string');
   assert.deepEqual(
     reconciliation.catalog_only_entries.map((entry) => entry.catalog_key),
-    snapshot.entries.filter(entry => !JSON.parse(fs.readFileSync(registryManifestPath)).entries.some(record => record.wrangle_key === entry.catalog_key) && entry.kind === 'wrangle').map(entry => entry.catalog_key),
+    snapshot.entries.filter(entry => entry.kind === 'wrangle' && !manifest.entries.some(record => record.catalog_id === entry.catalog_id)).map(entry => entry.catalog_key),
   );
   assert.deepEqual(
     reconciliation.matched_entries

@@ -147,6 +147,12 @@ for name, kind in (("broken", "bad"), ("valid", "good")):
             catalog = json.loads(catalog_path.read_text())
             for row in catalog['catalog']:
                 row['history'] = {}
+            # Placement keys are editable and need not equal callable names.
+            for row in catalog['catalog']:
+                if row['catalog_id'] in ('82', '83'):
+                    row['catalog_key'] = 'compute.' + row['wranglesPY_key']
+                elif row['catalog_id'] in ('91', '95'):
+                    row['catalog_key'] = 'format.' + row['wranglesPY_key']
             catalog['catalog'][0]['history'] = {'previous.name': 'legacy'}
             catalog_path.write_text(json.dumps(catalog))
             candidate = json.loads((fixture / 'registry/runtime/wranglespy-source-schema.json').read_text())
@@ -178,10 +184,10 @@ for name, kind in (("broken", "bad"), ("valid", "good")):
             candidate['wrangles'][alias] = copy.deepcopy(candidate['wrangles']['format.suffix'])
             candidate['wrangles'][alias]['schema'].update(catalog_id='37', status='legacy')
             candidate['wrangles']['format.suffix']['schema'].update(catalog_id='37', status='active')
-            catalog_row = next(row for row in catalog['catalog'] if row['catalog_key'] == 'format.suffix')
+            catalog_row = next(row for row in catalog['catalog'] if row['catalog_id'] == '37')
             catalog_row['history'] = {alias: 'legacy'}
             # A direct deletion also retires its reviewed Recipe Writer entry.
-            retired = next(row for row in catalog['catalog'] if row['catalog_key'] == 'round')
+            retired = next(row for row in catalog['catalog'] if row['catalog_id'] == '91')
             retired.update(status='not active', history={'round': 'not active'})
             for field in ('wrangles', 'wrangle_definitions'):
                 candidate[field].pop('round')

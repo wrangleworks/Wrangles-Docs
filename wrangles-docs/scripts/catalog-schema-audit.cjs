@@ -61,13 +61,13 @@ function auditCatalogSchema(catalog, snapshot, runtimeManifest) {
           issue('error', 'readable_configuration_schema_missing');
         }
       }
-      // A different identity is not automatically an invalid binding. Schema
-      // existence cannot establish whether the alias is semantically intended.
-      if (row.catalog_key !== key) issue('warning', 'catalog_key_binding_difference');
+      // Documentation placement is independent of the executable binding.
+      if (row.catalog_key !== key) issue('info', 'catalog_key_binding_difference');
     } else issue('error', 'unsupported_catalog_kind');
     return result;
   });
-  const identities = new Set(catalog.catalog.map(row => `${row.catalog_kind}:${row.catalog_key}`));
+  const identities = new Set(catalog.catalog.filter(row => row.catalog_kind === 'connector')
+    .map(row => `connector:${row.catalog_key}`));
   for (const row of catalog.catalog.filter(row => row.catalog_kind === 'wrangle')) {
     identities.add(`wrangle:${row.wranglesPY_key}`);
     for (const [name, state] of Object.entries(row.history || {})) {

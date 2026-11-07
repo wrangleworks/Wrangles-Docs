@@ -30,7 +30,7 @@ test('legacy history supplies identity coverage but cannot hide missing current 
 test('maths identity exclusion is informational and other corrections still need review', () => {
   const updated = structuredClone(snapshot);
   Object.assign(updated.wrangles.math.schema, {catalog_id: '82', status: 'active'});
-  const result = auditCatalogSchema(catalog, updated, runtime).rows.find(row => row.catalog_key === 'maths');
+  const result = auditCatalogSchema(catalog, updated, runtime).rows.find(row => row.runtime_key === 'maths');
   assert.equal(result.status, 'passed');
   assert.ok(result.issues.some(issue => issue.code === 'alias_identity_metadata_excluded' && issue.severity === 'info'));
   assert.ok(auditCatalogSchema(catalog, updated, runtime).rows.some(row =>
@@ -48,8 +48,8 @@ test('catalog bindings are checked directly and non-schema fields are excluded',
   assert.equal(map.source, null);
   assert.match(map.reason, /Excel column mapping/);
   assert.ok(report.not_schema_validatable.includes('wrangle_type'));
-  assert.equal(report.rows.find(row => row.catalog_key === 'maths').schema_origin, 'deprecated-alias:math');
-  assert.equal(report.rows.find(row => row.catalog_key === 'maths').status, 'passed');
+  assert.equal(report.rows.find(row => row.runtime_key === 'maths').schema_origin, 'deprecated-alias:math');
+  assert.equal(report.rows.find(row => row.runtime_key === 'maths').status, 'passed');
   const splitListKey = catalog.catalog.find(row => row.catalog_id === '64').catalog_key;
   assert.equal(report.rows.find(row => row.catalog_key === splitListKey).status, 'passed');
   assert.equal(report.rows.find(row => row.catalog_key === 'format.price_breaks').schema_origin, 'signature-derived');
@@ -94,4 +94,19 @@ test('wrong kind, nonexistent binding and missing catalog identities are detecte
   assert.equal(report.rows.find(row => row.catalog_key === 'connector.file').status, 'failed');
   assert.ok(report.missing_catalog_identities.includes('convert.parse'));
   assert.ok(report.missing_catalog_identities.includes('connector.file'));
+});
+
+test('wrangle placement changes neither runtime coverage nor lifecycle audit status', () => {
+  const changed = structuredClone(catalog);
+  const maths = changed.catalog.find(row => row.wranglesPY_key === 'maths');
+  maths.catalog_key = 'compute.maths';
+  const report = auditCatalogSchema(changed, snapshot, runtime);
+  const result = report.rows.find(row => row.runtime_key === 'maths');
+  assert.equal(result.status, 'passed');
+  assert.ok(result.issues.some(issue => issue.code === 'catalog_key_binding_difference' && issue.severity === 'info'));
+  const removed = {...maths, catalog_key: 'archive.removed', wranglesPY_key: 'removed', status: 'not active'};
+  assert.equal(auditCatalogSchema({catalog: [removed]}, snapshot, runtime).rows[0].status, 'not-applicable');
+  const unrelated = {...maths, catalog_key: 'convert.case'};
+  const missing = auditCatalogSchema({catalog: [unrelated]}, snapshot, runtime).missing_catalog_identities;
+  assert.ok(missing.includes('convert.case'));
 });
