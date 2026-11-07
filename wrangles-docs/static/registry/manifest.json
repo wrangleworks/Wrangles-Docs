@@ -645,7 +645,7 @@
         "utility",
         "accordion"
       ],
-      "route": "/py/namespaces/utility#accordion",
+      "route": "/py/namespaces/other#accordion",
       "contract_json": "/registry/contracts/accordion.json",
       "raw_markdown": "/registry/wrangles/_root/accordion.md",
       "runtime_symbol": "wrangles.recipe_wrangles.main.accordion",
@@ -785,7 +785,7 @@
         "utility",
         "batch"
       ],
-      "route": "/py/namespaces/utility#batch",
+      "route": "/py/namespaces/other#batch",
       "contract_json": "/registry/contracts/batch.json",
       "raw_markdown": "/registry/wrangles/_root/batch.md",
       "runtime_symbol": "wrangles.recipe_wrangles.main.batch",
@@ -813,7 +813,7 @@
         "ai",
         "classify"
       ],
-      "route": "/py/namespaces/ai#classify",
+      "route": "/py/namespaces/other#classify",
       "contract_json": "/registry/contracts/classify.json",
       "raw_markdown": "/registry/wrangles/_root/classify.md",
       "runtime_symbol": "wrangles.recipe_wrangles.main.classify",
@@ -841,7 +841,7 @@
         "format",
         "clean-whitespaces"
       ],
-      "route": "/py/namespaces/format#clean-whitespaces",
+      "route": "/py/namespaces/other#clean-whitespaces",
       "contract_json": "/registry/contracts/clean-whitespaces.json",
       "raw_markdown": "/registry/wrangles/_root/clean-whitespaces.md",
       "runtime_symbol": "wrangles.recipe_wrangles.main.clean_whitespaces",
@@ -982,7 +982,7 @@
         "utility",
         "concurrent"
       ],
-      "route": "/py/namespaces/utility#concurrent",
+      "route": "/py/namespaces/other#concurrent",
       "contract_json": "/registry/contracts/concurrent.json",
       "raw_markdown": "/registry/wrangles/_root/concurrent.md",
       "runtime_symbol": "wrangles.recipe_wrangles.main.concurrent",
@@ -1237,7 +1237,7 @@
         "transform",
         "copy"
       ],
-      "route": "/py/namespaces/transform#copy",
+      "route": "/py/namespaces/other#copy",
       "contract_json": "/registry/contracts/copy.json",
       "raw_markdown": "/registry/wrangles/_root/copy.md",
       "runtime_symbol": "wrangles.recipe_wrangles.pandas.copy",
@@ -1489,7 +1489,7 @@
         "date",
         "date-calculator"
       ],
-      "route": "/py/namespaces/date#date-calculator",
+      "route": "/py/namespaces/other#date-calculator",
       "contract_json": "/registry/contracts/date-calculator.json",
       "raw_markdown": "/registry/wrangles/_root/date-calculator.md",
       "runtime_symbol": "wrangles.recipe_wrangles.main.date_calculator",
@@ -1517,7 +1517,7 @@
         "select",
         "drop"
       ],
-      "route": "/py/namespaces/select#drop",
+      "route": "/py/namespaces/other#drop",
       "contract_json": "/registry/contracts/drop.json",
       "raw_markdown": "/registry/wrangles/_root/drop.md",
       "runtime_symbol": "wrangles.recipe_wrangles.pandas.drop",
@@ -1545,7 +1545,7 @@
         "split",
         "explode"
       ],
-      "route": "/py/namespaces/split#explode",
+      "route": "/py/namespaces/other#explode",
       "contract_json": "/registry/contracts/explode.json",
       "raw_markdown": "/registry/wrangles/_root/explode.md",
       "runtime_symbol": "wrangles.recipe_wrangles.pandas.explode",
@@ -1881,7 +1881,7 @@
         "select",
         "filter"
       ],
-      "route": "/py/namespaces/select#filter",
+      "route": "/py/namespaces/other#filter",
       "contract_json": "/registry/contracts/filter.json",
       "raw_markdown": "/registry/wrangles/_root/filter.md",
       "runtime_symbol": "wrangles.recipe_wrangles.main.filter",
@@ -2162,7 +2162,7 @@
         "ai",
         "huggingface"
       ],
-      "route": "/py/namespaces/ai#huggingface",
+      "route": "/py/namespaces/other#huggingface",
       "contract_json": "/registry/contracts/huggingface.json",
       "raw_markdown": "/registry/wrangles/_root/huggingface.md",
       "runtime_symbol": "wrangles.recipe_wrangles.main.huggingface",
@@ -2191,7 +2191,7 @@
         "utility",
         "log"
       ],
-      "route": "/py/namespaces/utility#log",
+      "route": "/py/namespaces/other#log",
       "contract_json": "/registry/contracts/log.json",
       "raw_markdown": "/registry/wrangles/_root/log.md",
       "runtime_symbol": "wrangles.recipe_wrangles.main.log",
@@ -2218,7 +2218,7 @@
       "tags": [
         "lookup"
       ],
-      "route": "/py/namespaces/lookup#lookup",
+      "route": "/py/namespaces/lookup#legacy-lookup",
       "contract_json": "/registry/contracts/lookup.json",
       "raw_markdown": "/registry/wrangles/_root/lookup.md",
       "runtime_symbol": "wrangles.recipe_wrangles.main.lookup",
@@ -2302,7 +2302,7 @@
         "compute",
         "math"
       ],
-      "route": "/py/namespaces/compute#math",
+      "route": "/py/namespaces/other#math",
       "contract_json": "/registry/contracts/math.json",
       "raw_markdown": "/registry/wrangles/_root/math.md",
       "runtime_symbol": "wrangles.recipe_wrangles.main.math",
@@ -2331,7 +2331,7 @@
       "tags": [
         "maths"
       ],
-      "route": "/py/namespaces/compute#maths",
+      "route": "/py/namespaces/other#maths",
       "contract_json": "/registry/contracts/maths.json",
       "raw_markdown": "/registry/wrangles/_root/maths.md",
       "runtime_symbol": "wrangles.recipe_wrangles.main.maths",
@@ -2360,7 +2360,7 @@
         "utility",
         "matrix"
       ],
-      "route": "/py/namespaces/utility#matrix",
+      "route": "/py/namespaces/other#matrix",
       "contract_json": "/registry/contracts/matrix.json",
       "raw_markdown": "/registry/wrangles/_root/matrix.md",
       "runtime_symbol": "wrangles.recipe_wrangles.main.matrix",
@@ -2584,7 +2584,7 @@
         "compute",
         "python"
       ],
-      "route": "/py/namespaces/compute#python",
+      "route": "/py/namespaces/other#python",
       "contract_json": "/registry/contracts/python.json",
       "raw_markdown": "/registry/wrangles/_root/python.md",
       "runtime_symbol": "wrangles.recipe_wrangles.main.python",
@@ -2612,7 +2612,7 @@
       "tags": [
         "recipe"
       ],
-      "route": "/py/namespaces/utility#recipe",
+      "route": "/py/namespaces/other#recipe",
       "contract_json": "/registry/contracts/recipe.json",
       "raw_markdown": "/registry/wrangles/_root/recipe.md",
       "runtime_symbol": "wrangles.recipe_wrangles.main.recipe",
@@ -2640,7 +2640,7 @@
         "transform",
         "reindex"
       ],
-      "route": "/py/namespaces/transform#reindex",
+      "route": "/py/namespaces/other#reindex",
       "contract_json": "/registry/contracts/reindex.json",
       "raw_markdown": "/registry/wrangles/_root/reindex.md",
       "runtime_symbol": "wrangles.recipe_wrangles.pandas.reindex",
@@ -2668,7 +2668,7 @@
         "format",
         "remove-words"
       ],
-      "route": "/py/namespaces/format#remove-words",
+      "route": "/py/namespaces/other#remove-words",
       "contract_json": "/registry/contracts/remove-words.json",
       "raw_markdown": "/registry/wrangles/_root/remove-words.md",
       "runtime_symbol": "wrangles.recipe_wrangles.main.remove_words",
@@ -2697,7 +2697,7 @@
         "transform",
         "rename"
       ],
-      "route": "/py/namespaces/transform#rename",
+      "route": "/py/namespaces/other#rename",
       "contract_json": "/registry/contracts/rename.json",
       "raw_markdown": "/registry/wrangles/_root/rename.md",
       "runtime_symbol": "wrangles.recipe_wrangles.main.rename",
@@ -2725,7 +2725,7 @@
         "format",
         "replace"
       ],
-      "route": "/py/namespaces/format#replace",
+      "route": "/py/namespaces/standardize#legacy-replace",
       "contract_json": "/registry/contracts/replace.json",
       "raw_markdown": "/registry/wrangles/_root/replace.md",
       "runtime_symbol": "wrangles.recipe_wrangles.main.replace",
@@ -2753,7 +2753,7 @@
         "format",
         "round"
       ],
-      "route": "/py/namespaces/format#round",
+      "route": "/py/namespaces/other#round",
       "contract_json": "/registry/contracts/round.json",
       "raw_markdown": "/registry/wrangles/_root/round.md",
       "runtime_symbol": "wrangles.recipe_wrangles.pandas.round",
@@ -3257,7 +3257,7 @@
         "compare",
         "similarity"
       ],
-      "route": "/py/namespaces/compare#similarity",
+      "route": "/py/namespaces/other#similarity",
       "contract_json": "/registry/contracts/similarity.json",
       "raw_markdown": "/registry/wrangles/_root/similarity.md",
       "runtime_symbol": "wrangles.recipe_wrangles.main.similarity",
@@ -3285,7 +3285,7 @@
         "select",
         "sort"
       ],
-      "route": "/py/namespaces/select#sort",
+      "route": "/py/namespaces/other#sort",
       "contract_json": "/registry/contracts/sort.json",
       "raw_markdown": "/registry/wrangles/_root/sort.md",
       "runtime_symbol": "wrangles.recipe_wrangles.pandas.sort",
@@ -3313,7 +3313,7 @@
         "split",
         "dictionary"
       ],
-      "route": "/py/namespaces/split#dictionary",
+      "route": "/py/namespaces/structure#legacy-split-dictionary",
       "contract_json": "/registry/contracts/split/dictionary.json",
       "raw_markdown": "/registry/wrangles/split/dictionary.md",
       "runtime_symbol": "wrangles.recipe_wrangles.split.dictionary",
@@ -3341,7 +3341,7 @@
         "split",
         "list"
       ],
-      "route": "/py/namespaces/split#list",
+      "route": "/py/namespaces/structure#legacy-split-list",
       "contract_json": "/registry/contracts/split/list.json",
       "raw_markdown": "/registry/wrangles/split/list.md",
       "runtime_symbol": "wrangles.recipe_wrangles.split.list",
@@ -3369,7 +3369,7 @@
         "split",
         "text"
       ],
-      "route": "/py/namespaces/split#text",
+      "route": "/py/namespaces/structure#legacy-split-text",
       "contract_json": "/registry/contracts/split/text.json",
       "raw_markdown": "/registry/wrangles/split/text.md",
       "runtime_symbol": "wrangles.recipe_wrangles.split.text",
@@ -3397,7 +3397,7 @@
         "split",
         "tokenize"
       ],
-      "route": "/py/namespaces/split#tokenize",
+      "route": "/py/namespaces/structure#legacy-split-tokenize",
       "contract_json": "/registry/contracts/split/tokenize.json",
       "raw_markdown": "/registry/wrangles/split/tokenize.md",
       "runtime_symbol": "wrangles.recipe_wrangles.split.tokenize",
@@ -3425,7 +3425,7 @@
         "compute",
         "sql"
       ],
-      "route": "/py/namespaces/compute#sql",
+      "route": "/py/namespaces/other#sql",
       "contract_json": "/registry/contracts/sql.json",
       "raw_markdown": "/registry/wrangles/_root/sql.md",
       "runtime_symbol": "wrangles.recipe_wrangles.main.sql",
@@ -3455,7 +3455,7 @@
         "format",
         "standardize"
       ],
-      "route": "/py/namespaces/format#standardize",
+      "route": "/py/namespaces/other#standardize",
       "contract_json": "/registry/contracts/standardize.json",
       "raw_markdown": "/registry/wrangles/_root/standardize.md",
       "runtime_symbol": "wrangles.recipe_wrangles.main.standardize",
@@ -3679,7 +3679,7 @@
         "format",
         "translate"
       ],
-      "route": "/py/namespaces/format#translate",
+      "route": "/py/namespaces/other#translate",
       "contract_json": "/registry/contracts/translate.json",
       "raw_markdown": "/registry/wrangles/_root/translate.md",
       "runtime_symbol": "wrangles.recipe_wrangles.main.translate",
@@ -3707,7 +3707,7 @@
         "transform",
         "transpose"
       ],
-      "route": "/py/namespaces/transform#transpose",
+      "route": "/py/namespaces/other#transpose",
       "contract_json": "/registry/contracts/transpose.json",
       "raw_markdown": "/registry/wrangles/_root/transpose.md",
       "runtime_symbol": "wrangles.recipe_wrangles.pandas.transpose",
@@ -3736,7 +3736,7 @@
         "utility",
         "try"
       ],
-      "route": "/py/namespaces/utility#try",
+      "route": "/py/namespaces/other#try",
       "contract_json": "/registry/contracts/try.json",
       "raw_markdown": "/registry/wrangles/_root/try.md",
       "runtime_symbol": "wrangles.recipe_wrangles.main.Try",

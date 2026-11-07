@@ -153,7 +153,7 @@ a schema may require an argument even when Python provides a default.
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | Root-level |
-| Documentation group | `split` |
+| Documentation group | `other` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.pandas.explode` |
 | Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |

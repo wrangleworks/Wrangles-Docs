@@ -5,6 +5,26 @@ const test = require('node:test');
 
 const {validateColumnSemantics, sampleValue} = require('./compile-registry.cjs');
 
+test('catalog keys determine placement without changing recipe names or editorial content', () => {
+  const {entryGroup, entryAnchor, entryRoute} = require('./compile-registry.cjs');
+  const entry = {metadata: {wrangle_key: 'lookup.semantic', namespace: 'lookup',
+    slug: 'lookup/semantic', title: 'My edited title', sources: []},
+    catalog: {catalog_id: '81', catalog_key: 'standardize.lookup'}, catalog_name_status: 'active'};
+  assert.equal(entryRoute(entry), '/py/namespaces/standardize#lookup');
+  assert.equal(entry.metadata.title, 'My edited title');
+  assert.equal(entry.metadata.wrangle_key, 'lookup.semantic');
+  entry.catalog.catalog_key = 'lookup';
+  assert.equal(entryGroup(entry), 'other');
+  assert.equal(entryAnchor(entry), 'lookup');
+  entry.catalog_name_status = 'legacy';
+  assert.equal(entryAnchor(entry), 'legacy-lookup-semantic');
+  entry.catalog = {catalog_id: null, catalog_key: 'lookup.semantic'};
+  assert.equal(entryRoute(entry), '/py/namespaces/lookup#semantic');
+  entry.metadata.namespace = null;
+  entry.metadata.sources = [{resource: 'https://example.test/wrangle-docs/split/_sources/semantic.md'}];
+  assert.equal(entryGroup(entry), 'split');
+});
+
 test('legacy pages keep active catalog state and receive a pill without recipe changes', () => {
   const {reconcileCatalog, legacyPill} = require('./compile-registry.cjs');
   const make = key => ({sourceFile: '/tmp/' + key + '.md', metadata: {

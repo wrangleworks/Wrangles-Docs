@@ -9,6 +9,9 @@ toc_max_heading_level: 3
 ---
 
 import CopyableCode from '@site/src/components/CopyableCode';
+import RegistryLocationRedirect from '@site/src/components/RegistryLocationRedirect';
+
+<RegistryLocationRedirect from={"/py/namespaces/extract"} routes={{}} />
 
 # Extract Wrangles
 

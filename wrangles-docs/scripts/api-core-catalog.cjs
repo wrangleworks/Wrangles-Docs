@@ -1,5 +1,6 @@
 // Convert API-Core's current response to the compiler's internal snapshot model.
-// Identity is catalog_key: several catalog rows legitimately share wranglesPY_key.
+// Catalog IDs identify rows; catalog keys control documentation placement.
+// Multiple catalog rows can legitimately share a runtime binding.
 function normalizeApiCatalog(payload, schemaId) {
   if (!Array.isArray(payload.catalog)) return payload;
   const ids = new Set();

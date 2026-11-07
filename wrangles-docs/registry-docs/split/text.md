@@ -306,7 +306,7 @@ a schema may require an argument even when Python provides a default.
 | Lifecycle status | active |
 | Recipe Writer eligible | Yes |
 | Namespace | `split` |
-| Documentation group | `split` |
+| Documentation group | `structure` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.split.text` |
 | Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |

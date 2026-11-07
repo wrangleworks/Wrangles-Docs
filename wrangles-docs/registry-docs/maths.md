@@ -13,7 +13,7 @@ import CopyableCode from '@site/src/components/CopyableCode';
 # Maths (Deprecated) <CopyableCode value="maths" />
 
 :::warning Deprecated
-This compatibility wrangle remains available for existing recipes. Use [`math`](/py/namespaces/compute#math) for new recipes.
+This compatibility wrangle remains available for existing recipes. Use [`math`](/py/namespaces/other#math) for new recipes.
 :::
 
 ## Behavior
@@ -121,9 +121,9 @@ a schema may require an argument even when Python provides a default.
 | Lifecycle status | deprecated |
 | Recipe Writer eligible | No |
 | Recipe Writer exclusion | Deprecated compatibility key; use math. |
-| Replaced by | [`math`](/py/namespaces/compute#math) |
+| Replaced by | [`math`](/py/namespaces/other#math) |
 | Namespace | Root-level |
-| Documentation group | `compute` |
+| Documentation group | `other` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.maths` |
 | Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |

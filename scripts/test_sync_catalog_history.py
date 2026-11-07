@@ -54,7 +54,8 @@ class SyncTests(unittest.TestCase):
         changes, skipped = plan(schema(entries), [row()], list(entries))
         self.assertEqual(skipped, [])
         updated = {**row(), **{k: v for k, v in changes[0].items() if k != 'action'}}
-        self.assertEqual(updated['catalog_key'], 'structure.split_dictionary')
+        self.assertEqual(updated['catalog_key'], 'split.dictionary')
+        self.assertEqual(updated['wranglesPY_key'], 'structure.split_dictionary')
         self.assertEqual(updated['history'], {'split.dictionary': 'legacy'})
         self.assertEqual(updated['status'], 'active')
         self.assertEqual(plan(schema(entries), [updated], list(entries)), ([], []))
@@ -116,6 +117,7 @@ class SyncTests(unittest.TestCase):
         entries = {'new.name': metadata('200', 'legacy')}
         changes, _ = plan(schema(entries), [], list(entries))
         self.assertEqual(changes[0]['action'], 'create')
+        self.assertEqual(changes[0]['catalog_key'], 'new.name')
         self.assertEqual(changes[0]['history'], {'new.name': 'legacy'})
         entries = {'split.dictionary': metadata(status='legacy'), 'structure.split_dictionary': metadata()}
         changes, _ = plan(schema(entries), [row(catalog_key='custom.dictionary')], list(entries))

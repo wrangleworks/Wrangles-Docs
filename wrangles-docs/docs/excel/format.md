@@ -55,7 +55,7 @@ Change the case of the input.
 Merges multiple columns into one, only merging the first non-empty values in the column; "first" being from left to right.
 Useful if you have multiple columns with similar data but only need one column.
 
-> Click [here](/py/namespaces/merge#coalesce) to learn how to use Coalesce Wrangles in a recipe.
+> Click [here](/py/merge/coalesce) to learn how to use Coalesce Wrangles in a recipe.
 
 ### Example
 
@@ -158,7 +158,7 @@ For objects the column headers will be used as the keys and must be unique.
 
 Merges multiple columns into one. All columns are combined together sequentially.
 
-> Click [here](/py/namespaces/merge#concatenate) to learn how to use Concatenate Wrangles in a recipe.
+> Click [here](/py/merge/concatenate) to learn how to use Concatenate Wrangles in a recipe.
 
 ### Example
 <div className="table-scroll">

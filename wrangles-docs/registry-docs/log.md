@@ -237,7 +237,7 @@ a schema may require an argument even when Python provides a default.
 | Recipe Writer eligible | No |
 | Recipe Writer exclusion | Operational logging steps are not authored in the baseline. |
 | Namespace | Root-level |
-| Documentation group | `utility` |
+| Documentation group | `other` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.log` |
 | Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |

@@ -76,7 +76,7 @@ And our final output is shown below:
 ## Notes
 You might ask why we didn't use merge.coalesce or merge.concatenate? Stick around and we'll show you.
 
-[Coalesce](/py/namespaces/merge#coalesce) only keeps data from subsequent columns if there are any empty cells in the previous columns. The recipe below generated the following screen capture.
+[Coalesce](/py/merge/coalesce) only keeps data from subsequent columns if there are any empty cells in the previous columns. The recipe below generated the following screen capture.
 
 ```yaml
 wrangles:
@@ -100,7 +100,7 @@ wrangles:
 
 You can see that valuable data from the extract was left out from the coalesce.
 
-[Concatenate](/py/namespaces/merge#concatenate) merges everything from all columns. Let's see how the output would look using concatenate.
+[Concatenate](/py/merge/concatenate) merges everything from all columns. Let's see how the output would look using concatenate.
 
 ```yaml
 wrangles:

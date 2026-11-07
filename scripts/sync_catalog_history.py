@@ -190,8 +190,6 @@ def plan(schema, rows, inventory=None, warnings=None):
         template = old or next((existing[source] for source, destination in moves.items()
                                if destination == identity and row_name(existing[source]) == name), None)
         key = template['catalog_key'] if template else name
-        if template and key == template['wranglesPY_key'] and name != template['wranglesPY_key']:
-            key = name
         if old and name in definitions and definitions[name].get('status') is None and len(names) == 1:
             status = old['status']
         targets[identity] = dict(catalog_id=identity, catalog_key=key, wranglesPY_key=name,

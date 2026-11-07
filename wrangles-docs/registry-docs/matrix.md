@@ -227,7 +227,7 @@ a schema may require an argument even when Python provides a default.
 | Recipe Writer eligible | No |
 | Recipe Writer exclusion | Matrix orchestration is not supported in the baseline. |
 | Namespace | Root-level |
-| Documentation group | `utility` |
+| Documentation group | `other` |
 | Aliases | None |
 | Runtime symbol | `wrangles.recipe_wrangles.main.matrix` |
 | Accepted schema revision | `bb47671ab023b3d3eb76fc42f07da4aaed056e2e` |

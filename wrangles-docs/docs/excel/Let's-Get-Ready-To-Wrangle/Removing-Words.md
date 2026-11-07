@@ -33,7 +33,7 @@ Now, we can plug our regex pattern into the Replace Wrangle and run it.
 
 ## Removing Words in a Recipe
 
-Removing words isn't always as simple as using the [remove_words](/py/namespaces/format#remove-words) wrangle. There are many cases where an extract wrangle will find a match but the remove wrangle will not. This is because extracts are allowed variants (listed int he "Find" column of the training data). By using an extract wrangle in conjunction with our remove_words wrangle, we can achieve the desired output.
+Removing words isn't always as simple as using the [remove_words](/py/remove-words) wrangle. There are many cases where an extract wrangle will find a match but the remove wrangle will not. This is because extracts are allowed variants (listed int he "Find" column of the training data). By using an extract wrangle in conjunction with our remove_words wrangle, we can achieve the desired output.
 
 This portion of the tutorial will show you how to build a short recipe that uses both extract and remove_words to remove brand names from our data. 
 

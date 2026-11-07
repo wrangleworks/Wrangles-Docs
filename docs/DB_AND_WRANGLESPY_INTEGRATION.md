@@ -1,7 +1,8 @@
 # Database, WranglesPY and documentation
 
 WranglesPY describes each recipe name. This repository synchronizes the database
-and generates the documentation. All workflow commits go directly to `main`.
+and generates the documentation. Sync pushes its documentation changes to a
+review branch for you to merge into `main`.
 
 ## What belongs where?
 
@@ -12,8 +13,16 @@ and generates the documentation. All workflow commits go directly to `main`.
 | Documentation | A page for each available name. Legacy names get a **Legacy** pill. Removed names have no page. |
 
 IDs are metadata, not recipe parameters. The function's exposed name supplies
-`wranglesPY_key`. `catalog_key` controls documentation identity; existing custom
-catalog keys are preserved. A new row starts with its runtime name as catalog key.
+`wranglesPY_key`. A new row starts with its runtime name as `catalog_key`.
+After creation, sync preserves that catalog key even if the runtime name changes.
+Edit the catalog key in the database when you want to change documentation placement.
+
+For example, `catalog_key: standardize.lookup` puts a wrangle under **Standardize**,
+at the `lookup` section, even if its runtime key is `lookup.semantic`. A key without
+a dot goes under **Other**. If no catalog key is available, the existing placement
+is kept. Legacy names share their row's group but keep separate legacy sections.
+Editorial titles and prose, recipe names, source file locations, and individual
+page URLs stay unchanged. Original namespace bookmarks redirect to the new sections.
 Existing `wrangle_type` and `okf_path` values stay unchanged; new values can be null.
 
 ## Example

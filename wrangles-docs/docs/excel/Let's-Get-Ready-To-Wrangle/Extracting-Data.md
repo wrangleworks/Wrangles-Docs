@@ -18,15 +18,15 @@ If you recall from the manual excersize, our data is dirty and riddled with nois
 ![demo_-_products.png](/images/demo_-_products.png)
 
 The wrangles we will be working with can be found here:
-- [extract.properties](/py/namespaces/extract#properties)
-- [select.list_element](/py/namespaces/select#list-element)
-- [extract.attributes](/py/namespaces/extract#attributes)
-- [extract.codes](/py/namespaces/extract#codes)
-- [replace](/py/namespaces/format#replace)
-- [extract.address](/py/namespaces/extract#address)
-- [extract.brackets](/py/namespaces/extract#brackets)
-- [extract.custom](/py/namespaces/extract#custom)
-- [merge.concatenate](/py/namespaces/merge#concatenate)
+- [extract.properties](/py/extract/properties)
+- [select.list_element](/py/select/list-element)
+- [extract.attributes](/py/extract/attributes)
+- [extract.codes](/py/extract/codes)
+- [replace](/py/replace)
+- [extract.address](/py/extract/address)
+- [extract.brackets](/py/extract/brackets)
+- [extract.custom](/py/extract/custom)
+- [merge.concatenate](/py/merge/concatenate)
 
 Here is the recipe we will be using, but keep reading to go over it step by step.
 
@@ -191,7 +191,7 @@ Storage is wrapped in curly brackets in our data so the extract.brackets stock w
       first_element: true
 ```
 
-In order to extract brand, we have utilized a custom extract wrangle. You'll notice that extract.custom has a first_element parameter that allows users to specify the first element only when running the wrangle. This gets rid of the need for an additional select wrangle. See [extract.custom](/py/namespaces/extract#custom) to learn how to train your own custom extract wrangle.
+In order to extract brand, we have utilized a custom extract wrangle. You'll notice that extract.custom has a first_element parameter that allows users to specify the first element only when running the wrangle. This gets rid of the need for an additional select wrangle. See [extract.custom](/py/extract/custom) to learn how to train your own custom extract wrangle.
 
 Our model is as follows:
 

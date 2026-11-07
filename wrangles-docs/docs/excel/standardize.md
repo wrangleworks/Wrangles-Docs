@@ -10,7 +10,7 @@ slug: /xl/standardize
 This is a testing env
 The Standardize Wrangle can be used to replace words or patterns with their "standardized" form. You can think of this Wrangle as a smart find-and-replace feature. In addition to our Standardize Stock Wrangles, you can customize Standardize Wrangles so that they are much more unique to your use case.
 
-> Click [here](/py/namespaces/format#standardize) to learn how to use Standardize Wrangles in a recipe.
+> Click [here](/py/standardize) to learn how to use Standardize Wrangles in a recipe.
 
 
 # Convert Attributes
@@ -218,7 +218,7 @@ Standardize your data by removing specific words. The Remove Words wrangle will 
 # Replace
 Standardize data with our find and replace functionality; optionally utilize regular expressions for advanced matching.
 
-> Click [here](/py/namespaces/format#replace) to learn how to use Replace Wrangles in a recipe.
+> Click [here](/py/replace) to learn how to use Replace Wrangles in a recipe.
 
 ### Example
 <div className="table-scroll">
@@ -256,7 +256,7 @@ Standardize data with our find and replace functionality; optionally utilize reg
 # Round
 Round to a set number of decimal places. Number of decimal places to round to can be set by the user. The example below shows rounding to two decimal places.
 
-> Click [here](/py/namespaces/format#round) to learn how to use Round Wrangles in a recipe.
+> Click [here](/py/round) to learn how to use Round Wrangles in a recipe.
 
 <div className="table-scroll">
 <table>

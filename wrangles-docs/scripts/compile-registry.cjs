@@ -1052,11 +1052,20 @@ function legacyDocumentationGroup(entry) {
   return null;
 }
 
-function entryGroup(entry) {
+function previousEntryGroup(entry) {
   return entry.metadata.namespace ||
     legacyDocumentationGroup(entry) ||
     LEGACY_GROUP_OVERRIDES[entry.metadata.wrangle_key] ||
     'other';
+}
+
+function catalogPlacementKey(entry) {
+  return entry.catalog?.catalog_id ? entry.catalog.catalog_key : null;
+}
+
+function entryGroup(entry) {
+  const key = catalogPlacementKey(entry);
+  return key ? key.split('.').slice(0, -1).join('.') || 'other' : previousEntryGroup(entry);
 }
 
 function groupLabel(group) {
@@ -1073,6 +1082,14 @@ function groupRoute(group) {
 }
 
 function entryAnchor(entry) {
+  const key = catalogPlacementKey(entry);
+  if (key) {
+    // Both names share a row, but must retain distinct documentation sections.
+    if (entry.catalog_name_status === 'legacy' || entry.catalog?.history?.[entry.metadata.wrangle_key] === 'legacy') {
+      return `legacy-${entry.metadata.wrangle_key.replace(/[._]/g, '-')}`;
+    }
+    return key.split('.').at(-1).replaceAll('_', '-');
+  }
   return entry.metadata.slug.split('/').at(-1);
 }
 
@@ -1320,7 +1337,7 @@ function groupedEntries(entries) {
     );
 }
 
-function renderNamespacePage(grouped, controls, entriesByKey) {
+function renderNamespacePage(grouped, controls, entriesByKey, redirects = {}) {
   const label = groupLabel(grouped.group);
   const description = `${label} wrangles, with recipe examples, parameters, and behavior.`;
   const sections = grouped.entries.map((entry) =>
@@ -1337,6 +1354,9 @@ toc_max_heading_level: 3
 ---
 
 import CopyableCode from '@site/src/components/CopyableCode';
+import RegistryLocationRedirect from '@site/src/components/RegistryLocationRedirect';
+
+<RegistryLocationRedirect from={${JSON.stringify(groupRoute(grouped.group))}} routes={${JSON.stringify(redirects)}} />
 
 # ${label} Wrangles
 
@@ -2358,6 +2378,22 @@ function buildOutputs(
 
   const groups = groupedEntries(publicEntries);
   const entriesByKey = new Map(publicEntries.map((entry) => [entry.metadata.wrangle_key, entry]));
+  const currentRoutes = new Set();
+  for (const entry of publicEntries) {
+    const route = entryRoute(entry);
+    if (currentRoutes.has(route)) fail(entry.sourceFile, `Duplicate documentation placement: ${route}`);
+    currentRoutes.add(route);
+  }
+  const redirectsByGroup = new Map();
+  for (const entry of publicEntries) {
+    const group = previousEntryGroup(entry);
+    const anchor = entry.metadata.slug.split('/').at(-1);
+    const previous = `${groupRoute(group)}#${anchor}`;
+    if (previous !== entryRoute(entry) && !currentRoutes.has(previous)) {
+      if (!redirectsByGroup.has(group)) redirectsByGroup.set(group, {});
+      redirectsByGroup.get(group)[anchor] = entryRoute(entry);
+    }
+  }
   const bundleMembers = [];
 
   addGeneratedFile(path.join(docsOutputRoot, 'index.md'), renderDocsIndex(groups, connectors));
@@ -2365,8 +2401,13 @@ function buildOutputs(
   for (const group of groups) {
     addGeneratedFile(
       path.join(docsOutputRoot, 'namespaces', `${group.group}.md`),
-      renderNamespacePage(group, controls, entriesByKey),
+      renderNamespacePage(group, controls, entriesByKey, redirectsByGroup.get(group.group)),
     );
+  }
+  for (const [group, routes] of redirectsByGroup) {
+    if (groups.some(item => item.group === group)) continue;
+    addGeneratedFile(path.join(docsOutputRoot, 'namespaces', `${group}.md`),
+      `---\ntitle: ${JSON.stringify(groupLabel(group))}\nslug: /namespaces/${group}\nunlisted: true\n---\n\nimport RegistryLocationRedirect from '@site/src/components/RegistryLocationRedirect';\n\n<RegistryLocationRedirect from={${JSON.stringify(groupRoute(group))}} routes={${JSON.stringify(routes)}} fallback={${JSON.stringify(Object.values(routes)[0])}} />\n`);
   }
   for (const entry of publicEntries) {
     addGeneratedFile(
@@ -2732,4 +2773,4 @@ if (require.main === module) {
   });
 }
 
-module.exports = {validateColumnSemantics, compareEmbeddedSchema, sampleValue, normalizePublicBody, legacyPill, reconcileCatalog};
+module.exports = {validateColumnSemantics, compareEmbeddedSchema, sampleValue, normalizePublicBody, legacyPill, reconcileCatalog, entryGroup, entryAnchor, entryRoute};
