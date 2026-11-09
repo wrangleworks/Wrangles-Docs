@@ -97,4 +97,42 @@ schema_adjustments:
 
 Split a list in a single column to multiple columns.
 
-Usage guidance and examples have not yet been reviewed.
+## Examples
+
+### Split names into two columns
+
+```yaml
+wrangles:
+  - structure.split_list:
+      input: Names
+      output:
+        - First
+        - Second
+```
+
+<div className="ww-sample-grid">
+
+<div className="ww-sample-panel">
+
+##### Input Sample
+
+| Names |
+| --- |
+| ["Thomas", "Baver"] |
+| ["Eric", "Maria"] |
+
+</div>
+
+<div className="ww-sample-panel">
+
+##### Output Sample
+
+| First | Second |
+| --- | --- |
+| Thomas | Baver |
+| Eric | Maria |
+
+</div>
+
+</div>
+
