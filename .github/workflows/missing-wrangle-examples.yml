@@ -15,9 +15,4 @@ jobs:
         with:
           python-version: '3.12'
       - name: List pages missing YAML or sample tables
-        run: python scripts/list_missing_examples.py
-      - uses: actions/upload-artifact@v4
-        with:
-          name: missing-wrangle-examples
-          path: audits/missing-wrangle-examples.csv
-          if-no-files-found: error
+        run: python scripts/list_missing_examples.py --output "$GITHUB_STEP_SUMMARY"

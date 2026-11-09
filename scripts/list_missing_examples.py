@@ -5,7 +5,6 @@ Reads the compiled Registry pages saved in the repo (including generated tables)
 Checks presence only; does not run recipes or call AI. No extra packages needed.
 """
 import argparse
-import csv
 import json
 from pathlib import Path
 import re
@@ -30,7 +29,7 @@ def missing_examples(body):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--output', type=Path, default=ROOT / 'audits/missing-wrangle-examples.csv')
+    parser.add_argument('--output', type=Path, default=ROOT / 'audits/missing-wrangle-examples.md')
     args = parser.parse_args()
     rows = []
     entries = json.loads((SITE / 'static/registry/manifest.json').read_text(encoding='utf-8'))['entries']
@@ -40,10 +39,14 @@ def main():
         if missing_examples(body):
             rows.append((entry['wrangle_key'], entry['route']))
     args.output.parent.mkdir(parents=True, exist_ok=True)
-    with args.output.open('w', newline='', encoding='utf-8') as handle:
-        writer = csv.writer(handle)
-        writer.writerow(['wrangle', 'page'])
-        writer.writerows(sorted(rows))
+    with args.output.open('w', encoding='utf-8') as handle:
+        handle.write(f'## Wrangle pages missing examples\n\n{len(rows)} of {len(entries)} pages are missing YAML or an input/output sample table.\n\n')
+        if rows:
+            handle.write('| Wrangle | Page |\n| --- | --- |\n')
+            for name, route in sorted(rows):
+                handle.write(f'| `{name}` | `{route}` |\n')
+        else:
+            handle.write('No pages are missing examples.\n')
     print(f'{len(rows)} of {len(entries)} wrangle pages need examples: {args.output}')
 
 
